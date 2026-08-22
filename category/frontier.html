@@ -1,0 +1,1896 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest — 출시모델</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
+       거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
+       됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
+       색상이 비슷한 리본이 있어도 톤 자체가 달라 서로 헷갈리지 않게 했다.
+       13개를 색상환에 27.7도 간격으로 고르게 배치(채도·명도 고정) —
+       처음엔 임의로 고른 값이라 3개(#3 #9 #13)가 우연히 거의 같은 색상(H≈29도)
+       으로 몰려서 명도/채도 차이로만 구분해야 했는데, 그건 눈으로 잘 안
+       구별돼서 균등 배치로 다시 잡았다. */
+    --coll-1: #905047; --coll-2: #907247; --coll-3: #8b9047;
+    --coll-4: #6a9047; --coll-5: #489047; --coll-6: #479067;
+    --coll-7: #479088; --coll-8: #477590; --coll-9: #475390;
+    --coll-10: #5c4790; --coll-11: #7d4790; --coll-12: #904780;
+    --coll-13: #90475f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
+      --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
+      --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
+      --coll-10: #b7a8dc; --coll-11: #cfa8dc; --coll-12: #dca8d1;
+      --coll-13: #dca8b9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">출시모델 · 총 95건</div>
+    <div class="nav"><a href="../index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<section class="cat-recent"><h3 class="cat-date-heading">2026-08-11 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Nemotron 3.5 Lightning (NVIDIA) (2026.8.11)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Nemotron 3.5 Lightning (NVIDIA) (2026.8.11)
+
+Reasoning · Open · 1000K ctx
+
+GPQA 75.44% · SWE 51.56% · MMLU 81.94%
+
+NVIDIA&#x27;s first entry in the tracker and the sharpest statement yet of speed over peak intelligence. 30B Mixture-of-Experts with only 3B active per token, on a Mamba2-Transformer hybrid architecture with Multi-Token Prediction - the low active-parameter count is the whole point, buying up to 4x the output speed of similar-sized models. Open weights under OpenMDW-1.1, BF16 and NVFP4 formats on Hugging Face. Context up to 1M tokens, though NVIDIA runs 256K for single-H100 deployment. Pre-trained on 20T+ tokens spanning English, 19 other spoken languages, and 43 programming languages; pre-training cutoff September 2025, post-training May 2026. Reasoning is configurable on or off via the chat template. Text in, text out. Model-card benchmarks: MMLU-Pro 81.94, GPQA Diamond 75.44, SWE-bench Verified 51.56, IFBench (loose) 71.88, AA-LCR 52.00, Terminal-Bench 2.1 24.58. NVIDIA also reports 86% on its own PinchBench while completing 10,000 tasks 30% faster than Qwen3.6 35B. Positioned for high-volume, low-latency agent execution rather than frontier reasoning - read the Terminal-Bench score in that light.
+
+https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 1000K ctx</p>
+<p>GPQA 75.44% · SWE 51.56% · MMLU 81.94%</p>
+<p>NVIDIA&#x27;s first entry in the tracker and the sharpest statement yet of speed over peak intelligence. 30B Mixture-of-Experts with only 3B active per token, on a Mamba2-Transformer hybrid architecture with Multi-Token Prediction - the low active-parameter count is the whole point, buying up to 4x the output speed of similar-sized models. Open weights under OpenMDW-1.1, BF16 and NVFP4 formats on Hugging Face. Context up to 1M tokens, though NVIDIA runs 256K for single-H100 deployment. Pre-trained on 20T+ tokens spanning English, 19 other spoken languages, and 43 programming languages; pre-training cutoff September 2025, post-training May 2026. Reasoning is configurable on or off via the chat template. Text in, text out. Model-card benchmarks: MMLU-Pro 81.94, GPQA Diamond 75.44, SWE-bench Verified 51.56, IFBench (loose) 71.88, AA-LCR 52.00, Terminal-Bench 2.1 24.58. NVIDIA also reports 86% on its own PinchBench while completing 10,000 tasks 30% faster than Qwen3.6 35B. Positioned for high-volume, low-latency agent execution rather than frontier reasoning - read the Terminal-Bench score in that light.</p>
+  <p class="url"><a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16">https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16</a></p>
+</article>
+<h3 class="cat-date-heading">2026-08-10 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Muse Glimmer (Meta) (2026.8.10)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Muse Glimmer (Meta) (2026.8.10)
+
+General · Open · 131K ctx
+
+AIME 94.7%
+
+Roughly 30B dense causal transformer including the vision tower, released August 10 under Apache 2.0 and built to run on one consumer GPU - quantized to under 20GB so the model and its supporting components fit a 24GB or 32GB memory envelope. Text and image in, text out; audio is unsupported and video is processed as individual frames. Trained on data from more than 100 languages. 131,072-token context, knowledge cutoff January 4, 2026. On Hugging Face with Ollama, LM Studio, llama.cpp, ExecuTorch, and MLX integrations. Meta-published results: AIME 2026 94.7, MCP Atlas 75.5, SWE-Bench Pro 51.2, DeepSearch QA 74.6, AA-LCR 80.0, IFBench 77.0, OSWorld-Verified 65.9, Gaia2 43.3. Meta&#x27;s comparison against Gemma 4 31B and Qwen3.6-27B takes the better of each competitor&#x27;s self-reported or Meta-reproduced score, so read the head-to-heads accordingly. Positioned as an agentic model rather than a reasoning model. Zuckerberg framed the release around distributing rather than centralizing capability.
+
+https://www.marktechpost.com/2026/08/10/meta-ai-releases-muse-glimmer/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 131K ctx</p>
+<p>AIME 94.7%</p>
+<p>Roughly 30B dense causal transformer including the vision tower, released August 10 under Apache 2.0 and built to run on one consumer GPU - quantized to under 20GB so the model and its supporting components fit a 24GB or 32GB memory envelope. Text and image in, text out; audio is unsupported and video is processed as individual frames. Trained on data from more than 100 languages. 131,072-token context, knowledge cutoff January 4, 2026. On Hugging Face with Ollama, LM Studio, llama.cpp, ExecuTorch, and MLX integrations. Meta-published results: AIME 2026 94.7, MCP Atlas 75.5, SWE-Bench Pro 51.2, DeepSearch QA 74.6, AA-LCR 80.0, IFBench 77.0, OSWorld-Verified 65.9, Gaia2 43.3. Meta&#x27;s comparison against Gemma 4 31B and Qwen3.6-27B takes the better of each competitor&#x27;s self-reported or Meta-reproduced score, so read the head-to-heads accordingly. Positioned as an agentic model rather than a reasoning model. Zuckerberg framed the release around distributing rather than centralizing capability.</p>
+  <p class="url"><a href="https://www.marktechpost.com/2026/08/10/meta-ai-releases-muse-glimmer/">https://www.marktechpost.com/2026/08/10/meta-ai-releases-muse-glimmer/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-08-05 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Muse Spark 1.2 (Meta) (2026.8.5)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Muse Spark 1.2 (Meta) (2026.8.5)
+
+Reasoning · Closed · 1000K ctx · $1.25/M · $4.25/M
+
+벤치마크 미공개
+
+Meta&#x27;s flagship coding model, released August 5 through the Meta Model API and the model behind Muse Code, a terminal coding agent for macOS and Linux. 1,048,576-token context, unchanged from 1.1. Reasoning is mandatory with five effort levels (minimal, low, medium, high, xhigh; medium default) - there is no non-thinking configuration. Standard tier $1.25/$4.25 per 1M with cached input at $0.15; a contributor tier drops to $0.10/$0.20 in exchange for opting into Meta training, capped at 60 requests/min. Listed for text, image, video, audio, and PDF input, though independent evaluation so far covers only text and image. All published numbers are vendor-run inside Meta&#x27;s own harness: Terminal-Bench 2.1 82.9%, DeepSWE v1.1 59.3%, Artificial Analysis Intelligence Index 54 (tied with Grok 4.5). No third party has published scores from a neutral scaffold. Parameter count and knowledge cutoff undisclosed. Meta says weights are coming, without a date or license.
+
+https://www.orcarouter.ai/blog/meta-muse-spark-1-2-explained" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $1.25/M · $4.25/M</p>
+<p>벤치마크 미공개</p>
+<p>Meta&#x27;s flagship coding model, released August 5 through the Meta Model API and the model behind Muse Code, a terminal coding agent for macOS and Linux. 1,048,576-token context, unchanged from 1.1. Reasoning is mandatory with five effort levels (minimal, low, medium, high, xhigh; medium default) - there is no non-thinking configuration. Standard tier $1.25/$4.25 per 1M with cached input at $0.15; a contributor tier drops to $0.10/$0.20 in exchange for opting into Meta training, capped at 60 requests/min. Listed for text, image, video, audio, and PDF input, though independent evaluation so far covers only text and image. All published numbers are vendor-run inside Meta&#x27;s own harness: Terminal-Bench 2.1 82.9%, DeepSWE v1.1 59.3%, Artificial Analysis Intelligence Index 54 (tied with Grok 4.5). No third party has published scores from a neutral scaffold. Parameter count and knowledge cutoff undisclosed. Meta says weights are coming, without a date or license.</p>
+  <p class="url"><a href="https://www.orcarouter.ai/blog/meta-muse-spark-1-2-explained">https://www.orcarouter.ai/blog/meta-muse-spark-1-2-explained</a></p>
+</article>
+<h3 class="cat-date-heading">2026-08-03 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Qwen3.8-Max (Alibaba/Qwen) (2026.8.3)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3.8-Max (Alibaba/Qwen) (2026.8.3)
+
+Reasoning · Closed · 1000K ctx
+
+벤치마크 미공개
+
+Alibaba&#x27;s flagship Qwen3.8-Max, previewed July 19 and made generally available via API (QwenCloud) on August 3, with open weights due the following week - Alibaba&#x27;s first open-weight model at Max scale, alongside a smaller Qwen3.8-27B open checkpoint. Sparse Mixture-of-Experts, 2.4T total with roughly 95B active per token, 1M context, and Qwen&#x27;s first multimodal model above 1T (text, image, and video in; text out). Alibaba positions it against GPT-5.6 Sol and Claude Fable 5. Vendor-reported benchmarks (not independently verified): PaperBench 93.0 vs Fable 5&#x27;s 88.8, IFBench 82.8 vs 63.5, and Terminal-Bench 2.1 86.6 - ahead of Opus 4.8 and Fable 5 at 84.6, behind GPT-5.6 Sol at 88.8. Emphasizes coding and long-horizon autonomous operation (10+ days of continuous software development). Per-token API pricing not broken out at launch; the predecessor Qwen3.7-Max ran $2.50/$7.50 per 1M.
+
+https://www.marktechpost.com/2026/08/03/alibaba-qwen-releases-qwen3-8-max/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx</p>
+<p>벤치마크 미공개</p>
+<p>Alibaba&#x27;s flagship Qwen3.8-Max, previewed July 19 and made generally available via API (QwenCloud) on August 3, with open weights due the following week - Alibaba&#x27;s first open-weight model at Max scale, alongside a smaller Qwen3.8-27B open checkpoint. Sparse Mixture-of-Experts, 2.4T total with roughly 95B active per token, 1M context, and Qwen&#x27;s first multimodal model above 1T (text, image, and video in; text out). Alibaba positions it against GPT-5.6 Sol and Claude Fable 5. Vendor-reported benchmarks (not independently verified): PaperBench 93.0 vs Fable 5&#x27;s 88.8, IFBench 82.8 vs 63.5, and Terminal-Bench 2.1 86.6 - ahead of Opus 4.8 and Fable 5 at 84.6, behind GPT-5.6 Sol at 88.8. Emphasizes coding and long-horizon autonomous operation (10+ days of continuous software development). Per-token API pricing not broken out at launch; the predecessor Qwen3.7-Max ran $2.50/$7.50 per 1M.</p>
+  <p class="url"><a href="https://www.marktechpost.com/2026/08/03/alibaba-qwen-releases-qwen3-8-max/">https://www.marktechpost.com/2026/08/03/alibaba-qwen-releases-qwen3-8-max/</a></p>
+</article></section><details class="archive-month" open><summary>2026년 7월 <span class="archive-count">(8건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-07-24 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Opus 5 (Anthropic) (2026.7.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 5 (Anthropic) (2026.7.24)
+
+Reasoning · Closed · 1000K ctx · $5/M · $25/M
+
+벤치마크 미공개
+
+Anthropic&#x27;s new flagship, released July 24 and positioned as a daily-driver Opus that rivals Fable 5 at half the price ($5/$25 vs $10/$50). Anthropic reports it more than doubles Opus 4.8 on Frontier-Bench v0.1 and surpasses all other models there; lands within 0.5% of Fable 5&#x27;s peak on CursorBench 3.2 at half the cost; scores roughly 3x the next-best model on ARC-AGI 3; and beats Fable 5&#x27;s best OSWorld 2.0 result at about one-third the cost. Standard SWE-bench / GPQA figures were not published at launch. 1M context, multimodal, adaptive thinking. Closed, via the Anthropic API.
+
+https://www.anthropic.com/news/claude-opus-5" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $5/M · $25/M</p>
+<p>벤치마크 미공개</p>
+<p>Anthropic&#x27;s new flagship, released July 24 and positioned as a daily-driver Opus that rivals Fable 5 at half the price ($5/$25 vs $10/$50). Anthropic reports it more than doubles Opus 4.8 on Frontier-Bench v0.1 and surpasses all other models there; lands within 0.5% of Fable 5&#x27;s peak on CursorBench 3.2 at half the cost; scores roughly 3x the next-best model on ARC-AGI 3; and beats Fable 5&#x27;s best OSWorld 2.0 result at about one-third the cost. Standard SWE-bench / GPQA figures were not published at launch. 1M context, multimodal, adaptive thinking. Closed, via the Anthropic API.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-opus-5">https://www.anthropic.com/news/claude-opus-5</a></p>
+</article>
+<h3 class="cat-date-heading">2026-07-21 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Gemini 3.6 Flash (Google) (2026.7.21)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemini 3.6 Flash (Google) (2026.7.21)
+
+Reasoning · Closed · 1000K ctx · $1.5/M · $7.5/M
+
+벤치마크 미공개
+
+Google&#x27;s mid-tier Gemini refresh, launched July 21 with day-one availability in AI Studio, the Gemini API, and the Gemini app. 1,048,576-token input window and up to 65,536 output tokens. $1.50/$7.50 per 1M tokens with cached input at $0.15 - a lower output rate than Gemini 3.5 Flash despite the capability bump. Multimodal input (text, image, video, audio, PDF), text output. Google reports it uses roughly 17% fewer output tokens than 3.5 Flash while beating it on every published benchmark, including SWE-Bench Pro 58.7 vs 55.1 and OSWorld-Verified 83.0 vs 78.4. Artificial Analysis puts it at 52 on the Intelligence Index at high reasoning effort. Standard benchmark columns left blank - Google did not publish MMLU-Pro, GPQA Diamond, or SWE-bench Verified for this release.
+
+https://openrouter.ai/google/gemini-3.6-flash" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $1.5/M · $7.5/M</p>
+<p>벤치마크 미공개</p>
+<p>Google&#x27;s mid-tier Gemini refresh, launched July 21 with day-one availability in AI Studio, the Gemini API, and the Gemini app. 1,048,576-token input window and up to 65,536 output tokens. $1.50/$7.50 per 1M tokens with cached input at $0.15 - a lower output rate than Gemini 3.5 Flash despite the capability bump. Multimodal input (text, image, video, audio, PDF), text output. Google reports it uses roughly 17% fewer output tokens than 3.5 Flash while beating it on every published benchmark, including SWE-Bench Pro 58.7 vs 55.1 and OSWorld-Verified 83.0 vs 78.4. Artificial Analysis puts it at 52 on the Intelligence Index at high reasoning effort. Standard benchmark columns left blank - Google did not publish MMLU-Pro, GPQA Diamond, or SWE-bench Verified for this release.</p>
+  <p class="url"><a href="https://openrouter.ai/google/gemini-3.6-flash">https://openrouter.ai/google/gemini-3.6-flash</a></p>
+</article>
+<h3 class="cat-date-heading">2026-07-16 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Kimi K3 (Moonshot AI) (2026.7.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Kimi K3 (Moonshot AI) (2026.7.16)
+
+Reasoning · Open · 1000K ctx · $3/M · $15/M
+
+벤치마크 미공개
+
+Moonshot AI&#x27;s 2.8T-parameter open-weight multimodal reasoning MoE - 896 experts with 16 activated per token, an unusually high sparsity ratio, so active compute sits far below the headline count. Built on Kimi Delta Attention (KDA) hybrid linear attention plus Attention Residuals for efficiency (up to ~6.3x faster decoding at 1M-token context). Native vision, 1M context. Released July 16 via the Kimi apps and API, with full open weights scheduled for July 27. Independent testing places it #4 among all frontier models, trailing only Claude Fable 5 and GPT-5.6 Sol and edging past Opus 4.8; debuted #1 on LMArena&#x27;s Frontend Code Arena (1679 Elo) and 1486 on the main text board. Artificial Analysis: Intelligence Index 57.1, Coding 76.2, Agentic 50.1. Pricing $3/$15 per 1M tokens (cache-hit input $0.30). Reasoning effort currently supports only the &#x27;max&#x27; level.
+
+https://openrouter.ai/moonshotai/kimi-k3" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 1000K ctx · $3/M · $15/M</p>
+<p>벤치마크 미공개</p>
+<p>Moonshot AI&#x27;s 2.8T-parameter open-weight multimodal reasoning MoE - 896 experts with 16 activated per token, an unusually high sparsity ratio, so active compute sits far below the headline count. Built on Kimi Delta Attention (KDA) hybrid linear attention plus Attention Residuals for efficiency (up to ~6.3x faster decoding at 1M-token context). Native vision, 1M context. Released July 16 via the Kimi apps and API, with full open weights scheduled for July 27. Independent testing places it #4 among all frontier models, trailing only Claude Fable 5 and GPT-5.6 Sol and edging past Opus 4.8; debuted #1 on LMArena&#x27;s Frontend Code Arena (1679 Elo) and 1486 on the main text board. Artificial Analysis: Intelligence Index 57.1, Coding 76.2, Agentic 50.1. Pricing $3/$15 per 1M tokens (cache-hit input $0.30). Reasoning effort currently supports only the &#x27;max&#x27; level.</p>
+  <p class="url"><a href="https://openrouter.ai/moonshotai/kimi-k3">https://openrouter.ai/moonshotai/kimi-k3</a></p>
+</article>
+<h3 class="cat-date-heading">2026-07-15 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Inkling (Thinking Machines Lab) (2026.7.15)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Inkling (Thinking Machines Lab) (2026.7.15)
+
+Reasoning · Open · 1000K ctx
+
+벤치마크 미공개
+
+Thinking Machines Lab&#x27;s debut model and first public release (Mira Murati&#x27;s team). Sparse Mixture-of-Experts with 975B total / 41B active parameters (256 routed plus 2 shared experts, 6 routed active per token), pretrained on 45T tokens of text, image, audio, and video. 1M context with efficient thinking-mode reasoning. Open weights on Hugging Face, fine-tunable via the lab&#x27;s Tinker platform. The lab is candid that it is &#x27;not the strongest overall model available today, open or closed,&#x27; emphasizing multimodal breadth and efficient reasoning instead. Self-reported benchmarks at effort=0.99 (not independently verified): GPQA Diamond 87.2, AIME 2026 97.1, SWE-bench Verified 77.6, Global-MMLU-Lite 88.7, and HLE with tools 46.0. Served on Tinker (limited-time 50% off, with 64K and 256K context tiers) and via TogetherAI, Fireworks, Modal, Databricks, and Baseten; no first-party per-token pricing disclosed yet. A companion Inkling-Small preview (276B total / 12B active) was announced alongside it.
+
+https://thinkingmachines.ai/news/introducing-inkling/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 1000K ctx</p>
+<p>벤치마크 미공개</p>
+<p>Thinking Machines Lab&#x27;s debut model and first public release (Mira Murati&#x27;s team). Sparse Mixture-of-Experts with 975B total / 41B active parameters (256 routed plus 2 shared experts, 6 routed active per token), pretrained on 45T tokens of text, image, audio, and video. 1M context with efficient thinking-mode reasoning. Open weights on Hugging Face, fine-tunable via the lab&#x27;s Tinker platform. The lab is candid that it is &#x27;not the strongest overall model available today, open or closed,&#x27; emphasizing multimodal breadth and efficient reasoning instead. Self-reported benchmarks at effort=0.99 (not independently verified): GPQA Diamond 87.2, AIME 2026 97.1, SWE-bench Verified 77.6, Global-MMLU-Lite 88.7, and HLE with tools 46.0. Served on Tinker (limited-time 50% off, with 64K and 256K context tiers) and via TogetherAI, Fireworks, Modal, Databricks, and Baseten; no first-party per-token pricing disclosed yet. A companion Inkling-Small preview (276B total / 12B active) was announced alongside it.</p>
+  <p class="url"><a href="https://thinkingmachines.ai/news/introducing-inkling/">https://thinkingmachines.ai/news/introducing-inkling/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-07-09 <span class="archive-count">(3건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.6 Sol (OpenAI) (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.6 Sol (OpenAI) (2026.7.9)
+
+Reasoning · Closed · 1000K ctx · $5/M · $30/M
+
+벤치마크 미공개
+
+Flagship of the GPT-5.6 family (Sol, Terra, Luna) and OpenAI&#x27;s most capable tier. State of the art on Terminal-Bench 2.1. Adds programmatic tool calling in the Responses API. Went public July 9 after a gated preview that opened June 25. $5/$30 per 1M tokens, priced like the prior GPT-5.5. 1M context.
+
+https://openai.com/index/previewing-gpt-5-6-sol/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $5/M · $30/M</p>
+<p>벤치마크 미공개</p>
+<p>Flagship of the GPT-5.6 family (Sol, Terra, Luna) and OpenAI&#x27;s most capable tier. State of the art on Terminal-Bench 2.1. Adds programmatic tool calling in the Responses API. Went public July 9 after a gated preview that opened June 25. $5/$30 per 1M tokens, priced like the prior GPT-5.5. 1M context.</p>
+  <p class="url"><a href="https://openai.com/index/previewing-gpt-5-6-sol/">https://openai.com/index/previewing-gpt-5-6-sol/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.6 Terra (OpenAI) (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.6 Terra (OpenAI) (2026.7.9)
+
+Reasoning · Closed · 1000K ctx · $2.5/M · $15/M
+
+벤치마크 미공개
+
+Balanced mid-tier of the GPT-5.6 family. OpenAI positions it at GPT-5.5-class quality at about half the cost. $2.50/$15 per 1M tokens. 1M context.
+
+https://openai.com/index/previewing-gpt-5-6-sol/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $2.5/M · $15/M</p>
+<p>벤치마크 미공개</p>
+<p>Balanced mid-tier of the GPT-5.6 family. OpenAI positions it at GPT-5.5-class quality at about half the cost. $2.50/$15 per 1M tokens. 1M context.</p>
+  <p class="url"><a href="https://openai.com/index/previewing-gpt-5-6-sol/">https://openai.com/index/previewing-gpt-5-6-sol/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.6 Luna (OpenAI) (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.6 Luna (OpenAI) (2026.7.9)
+
+Reasoning · Closed · 1000K ctx · $1/M · $6/M
+
+벤치마크 미공개
+
+Fastest and cheapest tier of the GPT-5.6 family. $1/$6 per 1M tokens. 1M context.
+
+https://openai.com/index/previewing-gpt-5-6-sol/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $1/M · $6/M</p>
+<p>벤치마크 미공개</p>
+<p>Fastest and cheapest tier of the GPT-5.6 family. $1/$6 per 1M tokens. 1M context.</p>
+  <p class="url"><a href="https://openai.com/index/previewing-gpt-5-6-sol/">https://openai.com/index/previewing-gpt-5-6-sol/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-07-08 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Grok 4.5 (xAI) (2026.7.8)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Grok 4.5 (xAI) (2026.7.8)
+
+Reasoning · Closed · 500K ctx · $2/M · $6/M
+
+벤치마크 미공개
+
+xAI&#x27;s flagship, positioned as Opus-class. Built on the 1.5T-parameter V9 foundation and trained on real Cursor session data for coding and agentic tasks. Artificial Analysis Intelligence Index 54 at launch (up 16 points over Grok 4.3), #4 overall behind Fable 5, Opus 4.8, and GPT-5.5. xAI claims roughly 4.2x fewer output tokens than Opus 4.8 on SWE-Bench Pro. 500K context. $2/$6 per 1M tokens.
+
+https://x.ai/news/grok-4-5" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 500K ctx · $2/M · $6/M</p>
+<p>벤치마크 미공개</p>
+<p>xAI&#x27;s flagship, positioned as Opus-class. Built on the 1.5T-parameter V9 foundation and trained on real Cursor session data for coding and agentic tasks. Artificial Analysis Intelligence Index 54 at launch (up 16 points over Grok 4.3), #4 overall behind Fable 5, Opus 4.8, and GPT-5.5. xAI claims roughly 4.2x fewer output tokens than Opus 4.8 on SWE-Bench Pro. 500K context. $2/$6 per 1M tokens.</p>
+  <p class="url"><a href="https://x.ai/news/grok-4-5">https://x.ai/news/grok-4-5</a></p>
+</article></div></details><details class="archive-month"><summary>2026년 6월 <span class="archive-count">(11건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-06-30 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Sonnet 5 (Anthropic) (2026.6.30)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 5 (Anthropic) (2026.6.30)
+
+General · Closed · 1000K ctx · $2/M · $10/M
+
+HLE 34.6%
+
+Anthropic&#x27;s most agentic Sonnet, positioned close to Opus 4.8 at a lower price. Replaced Sonnet 4.6 as the default model on Claude.ai for Free and Pro plans. Per Anthropic: Humanity&#x27;s Last Exam 34.6% (46.8% with tools), OSWorld-Verified 78.5%. Reported SWE-bench Verified ~85% and GPQA Diamond ~96% (third-party numbers vary; pending system-card confirmation). 1M context. Uses the newer tokenizer (~30% more tokens for the same text). Introductory pricing $2/$10 per 1M tokens through 2026-08-31, then $3/$15 (batch 50% off).
+
+https://www.anthropic.com/news/claude-sonnet-5" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 1000K ctx · $2/M · $10/M</p>
+<p>HLE 34.6%</p>
+<p>Anthropic&#x27;s most agentic Sonnet, positioned close to Opus 4.8 at a lower price. Replaced Sonnet 4.6 as the default model on Claude.ai for Free and Pro plans. Per Anthropic: Humanity&#x27;s Last Exam 34.6% (46.8% with tools), OSWorld-Verified 78.5%. Reported SWE-bench Verified ~85% and GPQA Diamond ~96% (third-party numbers vary; pending system-card confirmation). 1M context. Uses the newer tokenizer (~30% more tokens for the same text). Introductory pricing $2/$10 per 1M tokens through 2026-08-31, then $3/$15 (batch 50% off).</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-sonnet-5">https://www.anthropic.com/news/claude-sonnet-5</a></p>
+</article>
+<h3 class="cat-date-heading">2026-06-29 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳🇺🇸 LongCat-2.0 (Meituan) (2026.6.29)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="LongCat-2.0 (Meituan) (2026.6.29)
+
+Reasoning · Open · 1000K ctx · $0.75/M · $2.95/M
+
+벤치마크 미공개
+
+Meituan&#x27;s 1.6T-parameter open MoE agentic coding model (~48B active per token), with native 1M context via LongCat Sparse Attention. Trained entirely on a ~50,000-card domestic Chinese ASIC cluster (no Nvidia). Ran anonymously as &#x27;Owl Alpha&#x27; on OpenRouter for roughly two months and topped the platform&#x27;s coding usage charts before Meituan revealed it. Vendor-reported benchmarks (not yet independently verified): 59.5 SWE-Bench Pro (edging GPT-5.5&#x27;s 58.6), 70.8 Terminal-Bench 2.1, 77.3 SWE-Bench Multilingual, 73.2 FORTE. MIT license; full weights &#x27;coming soon&#x27; with an INT8 checkpoint posted so far. Available via OpenRouter (about $0.75/$2.95 per 1M) and the LongCat API (OpenAI- and Anthropic-compatible); integrated in Claude Code, OpenCode, and Codex.
+
+https://venturebeat.com/technology/meituan-open-sources-longcat-2-0-the-1-6t-near-frontier-agentic-coding-model-thats-been-leading-openrouter-trained-entirely-on-chinese-chips" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 1000K ctx · $0.75/M · $2.95/M</p>
+<p>벤치마크 미공개</p>
+<p>Meituan&#x27;s 1.6T-parameter open MoE agentic coding model (~48B active per token), with native 1M context via LongCat Sparse Attention. Trained entirely on a ~50,000-card domestic Chinese ASIC cluster (no Nvidia). Ran anonymously as &#x27;Owl Alpha&#x27; on OpenRouter for roughly two months and topped the platform&#x27;s coding usage charts before Meituan revealed it. Vendor-reported benchmarks (not yet independently verified): 59.5 SWE-Bench Pro (edging GPT-5.5&#x27;s 58.6), 70.8 Terminal-Bench 2.1, 77.3 SWE-Bench Multilingual, 73.2 FORTE. MIT license; full weights &#x27;coming soon&#x27; with an INT8 checkpoint posted so far. Available via OpenRouter (about $0.75/$2.95 per 1M) and the LongCat API (OpenAI- and Anthropic-compatible); integrated in Claude Code, OpenCode, and Codex.</p>
+  <p class="url"><a href="https://venturebeat.com/technology/meituan-open-sources-longcat-2-0-the-1-6t-near-frontier-agentic-coding-model-thats-been-leading-openrouter-trained-entirely-on-chinese-chips">https://venturebeat.com/technology/meituan-open-sources-longcat-2-0-the-1-6t-near-frontier-agentic-coding-model-thats-been-leading-openrouter-trained-entirely-on-chinese-chips</a></p>
+</article>
+<h3 class="cat-date-heading">2026-06-24 <span class="archive-count">(2건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Doubao Seed 2.1 Pro (ByteDance) (2026.6.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Doubao Seed 2.1 Pro (ByteDance) (2026.6.24)
+
+Reasoning · Closed · $0.83/M · $4.17/M
+
+벤치마크 미공개
+
+ByteDance&#x27;s flagship deep-thinking model for the coding and agent era, which ByteDance positions as comparable to GPT-5.5. Leads GDPval, MobileWorld, CharXiv-RQ, and MeasureBench; #8 on Code Arena Frontend (1539, level with Claude Opus 4.6); top-tier on Agents&#x27; Last Exam. Built for strong demand understanding, long-horizon planning, and continuous repair on complex coding and long-chain agents. Multimodal (image + video). Closed, API via Doubao / Volcano Engine. Pricing ¥6/¥30 per 1M tokens (~$0.83/$4.17; cache-hit input ¥1.2). Parameters and context window not disclosed.
+
+https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · $0.83/M · $4.17/M</p>
+<p>벤치마크 미공개</p>
+<p>ByteDance&#x27;s flagship deep-thinking model for the coding and agent era, which ByteDance positions as comparable to GPT-5.5. Leads GDPval, MobileWorld, CharXiv-RQ, and MeasureBench; #8 on Code Arena Frontend (1539, level with Claude Opus 4.6); top-tier on Agents&#x27; Last Exam. Built for strong demand understanding, long-horizon planning, and continuous repair on complex coding and long-chain agents. Multimodal (image + video). Closed, API via Doubao / Volcano Engine. Pricing ¥6/¥30 per 1M tokens (~$0.83/$4.17; cache-hit input ¥1.2). Parameters and context window not disclosed.</p>
+  <p class="url"><a href="https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity">https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>Doubao Seed 2.1 Turbo (ByteDance) (2026.6.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Doubao Seed 2.1 Turbo (ByteDance) (2026.6.24)
+
+Reasoning · Closed · $0.42/M · $2.08/M
+
+벤치마크 미공개
+
+Low-cost, low-latency sibling of Doubao Seed 2.1 Pro, built for large-scale enterprise deployment handling high-volume online agent and coding calls. ByteDance reports performance comparable to the Pro version. Multimodal (image + video). Closed, API via Doubao / Volcano Engine. Pricing ¥3/¥15 per 1M tokens (~$0.42/$2.08). Parameters and context window not disclosed.
+
+https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · $0.42/M · $2.08/M</p>
+<p>벤치마크 미공개</p>
+<p>Low-cost, low-latency sibling of Doubao Seed 2.1 Pro, built for large-scale enterprise deployment handling high-volume online agent and coding calls. ByteDance reports performance comparable to the Pro version. Multimodal (image + video). Closed, API via Doubao / Volcano Engine. Pricing ¥3/¥15 per 1M tokens (~$0.42/$2.08). Parameters and context window not disclosed.</p>
+  <p class="url"><a href="https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity">https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity</a></p>
+</article>
+<h3 class="cat-date-heading">2026-06-13 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>GLM-5.2 (Zhipu AI) (2026.6.13)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GLM-5.2 (Zhipu AI) (2026.6.13)
+
+Reasoning · Open · 1000K ctx · $1.4/M · $4.4/M
+
+GPQA 91.2% · AIME 99.2%
+
+753B MoE / 40B active. SWE-Bench Pro 62.1% (up from GLM-5.1&#x27;s 58.4%), beating GPT-5.5 (58.6%). Terminal-Bench 2.1 81.0% (82.7% best harness), AIME 2026 99.2%, GPQA Diamond 91.2%, HLE 54.7% with tools, MCP-Atlas 76.8%. Selectable reasoning effort (High/Max). 1M context, up to 131K output. Open-weight, MIT license. API $1.40/$4.40 per 1M tokens (cached input $0.26); GLM Coding Plan from ~$10/mo.
+
+https://docs.z.ai/release-notes/new-released" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 1000K ctx · $1.4/M · $4.4/M</p>
+<p>GPQA 91.2% · AIME 99.2%</p>
+<p>753B MoE / 40B active. SWE-Bench Pro 62.1% (up from GLM-5.1&#x27;s 58.4%), beating GPT-5.5 (58.6%). Terminal-Bench 2.1 81.0% (82.7% best harness), AIME 2026 99.2%, GPQA Diamond 91.2%, HLE 54.7% with tools, MCP-Atlas 76.8%. Selectable reasoning effort (High/Max). 1M context, up to 131K output. Open-weight, MIT license. API $1.40/$4.40 per 1M tokens (cached input $0.26); GLM Coding Plan from ~$10/mo.</p>
+  <p class="url"><a href="https://docs.z.ai/release-notes/new-released">https://docs.z.ai/release-notes/new-released</a></p>
+</article>
+<h3 class="cat-date-heading">2026-06-12 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Kimi K2.7 Code (Moonshot AI) (2026.6.12)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Kimi K2.7 Code (Moonshot AI) (2026.6.12)
+
+Reasoning · Open · 262K ctx · $0.95/M · $4/M
+
+벤치마크 미공개
+
+1T MoE / 32B active, built on Kimi K2.6 and specialized for coding. Mandatory thinking mode, ~30% fewer reasoning tokens than K2.6. MoonViT vision encoder (400M) for image and video input; native INT4 quantization. Moonshot reports +21.8% on Kimi Code Bench v2 over K2.6; no independent SWE-Bench numbers published yet. 256K context. Open-weight, Modified MIT. API $0.95/$4.00 per 1M tokens (cached input $0.19).
+
+https://huggingface.co/moonshotai/Kimi-K2.7-Code" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 262K ctx · $0.95/M · $4/M</p>
+<p>벤치마크 미공개</p>
+<p>1T MoE / 32B active, built on Kimi K2.6 and specialized for coding. Mandatory thinking mode, ~30% fewer reasoning tokens than K2.6. MoonViT vision encoder (400M) for image and video input; native INT4 quantization. Moonshot reports +21.8% on Kimi Code Bench v2 over K2.6; no independent SWE-Bench numbers published yet. 256K context. Open-weight, Modified MIT. API $0.95/$4.00 per 1M tokens (cached input $0.19).</p>
+  <p class="url"><a href="https://huggingface.co/moonshotai/Kimi-K2.7-Code">https://huggingface.co/moonshotai/Kimi-K2.7-Code</a></p>
+</article>
+<h3 class="cat-date-heading">2026-06-09 <span class="archive-count">(2건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Mythos 5 (Anthropic) (2026.6.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Mythos 5 (Anthropic) (2026.6.9)
+
+Reasoning · Closed · 1000K ctx · $10/M · $50/M
+
+GPQA 94.1% · SWE 95.5% · HLE 59%
+
+Anthropic&#x27;s restricted Mythos-class frontier model. Same underlying model as Claude Fable 5 but with safeguards lifted on cybersecurity, biology, chemistry, and model-distillation queries. Per Fable 5/Mythos 5 System Card: 95.5% SWE-Bench Verified, 80.3% SWE-Bench Pro, 88.0% Terminal-Bench 2.1, 85.0% OSWorld-Verified, 59.0% Humanity&#x27;s Last Exam (64.5% with tools), 88.0% BrowseComp single-agent (93.3% multi-agent), 88.9% CharXiv Reasoning (93.5% with tools), 94.1% GPQA Diamond (Anthropic now considers GPQA saturated), 83.9% BioMystery Bench Human (46.1% Hard), 28.6 CritPt, 78.5 ArxivMath, 55.0 RiemannBench, 91.1% GraphWalks BFS 256K, 99.96% GraphWalks Parents 256K. 1M context. Same $10/$50 pricing as Fable 5. Access restricted to Project Glasswing partners (US government cyberdefenders) and select biomedical research organizations. Note: on 2026-06-12 Anthropic suspended access to Mythos 5 and Fable 5 across all platforms after a US export-control directive it could not enforce by nationality in real time. Redeployed 2026-07-01 after the US lifted the export-control order; available again across all platforms.
+
+https://www.anthropic.com/news/claude-fable-5-mythos-5" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $10/M · $50/M</p>
+<p>GPQA 94.1% · SWE 95.5% · HLE 59%</p>
+<p>Anthropic&#x27;s restricted Mythos-class frontier model. Same underlying model as Claude Fable 5 but with safeguards lifted on cybersecurity, biology, chemistry, and model-distillation queries. Per Fable 5/Mythos 5 System Card: 95.5% SWE-Bench Verified, 80.3% SWE-Bench Pro, 88.0% Terminal-Bench 2.1, 85.0% OSWorld-Verified, 59.0% Humanity&#x27;s Last Exam (64.5% with tools), 88.0% BrowseComp single-agent (93.3% multi-agent), 88.9% CharXiv Reasoning (93.5% with tools), 94.1% GPQA Diamond (Anthropic now considers GPQA saturated), 83.9% BioMystery Bench Human (46.1% Hard), 28.6 CritPt, 78.5 ArxivMath, 55.0 RiemannBench, 91.1% GraphWalks BFS 256K, 99.96% GraphWalks Parents 256K. 1M context. Same $10/$50 pricing as Fable 5. Access restricted to Project Glasswing partners (US government cyberdefenders) and select biomedical research organizations. Note: on 2026-06-12 Anthropic suspended access to Mythos 5 and Fable 5 across all platforms after a US export-control directive it could not enforce by nationality in real time. Redeployed 2026-07-01 after the US lifted the export-control order; available again across all platforms.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">https://www.anthropic.com/news/claude-fable-5-mythos-5</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Fable 5 (Anthropic) (2026.6.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Fable 5 (Anthropic) (2026.6.9)
+
+Reasoning · Closed · 1000K ctx · $10/M · $50/M
+
+SWE 95%
+
+Anthropic&#x27;s first publicly available Mythos-class model. Same underlying model as Claude Mythos 5 but with safety classifiers layered on top - requests touching cybersecurity, biology, chemistry, or model distillation fall back to Claude Opus 4.8. Per Fable 5/Mythos 5 System Card: 95% SWE-Bench Verified, 80% SWE-Bench Pro, 84.3% Terminal-Bench 2.1, 85.0% OSWorld-Verified, 29.3 FrontierCode Diamond, 1932 GDPval-AA, 57.9% OfficeQA Pro. Anthropic notes Stripe used Fable 5 to complete a codebase-wide migration across a 50M-line Ruby codebase in one day (estimated two months of manual work). 1M context. Generally available via Anthropic API, AWS Bedrock, and GitHub Copilot at $10/$50 per 1M tokens (batch: $5/$25). Pro/Max/Team plans include Fable 5 at no extra cost through 2026-06-22. Note: on 2026-06-12 Anthropic suspended access to Fable 5 and Mythos 5 across all platforms (Anthropic API, AWS Bedrock, Google Cloud, Microsoft Foundry, Snowflake, Box) after a US export-control directive it could not enforce by nationality in real time. Redeployed 2026-07-01 after the US lifted the export-control order; available again across all platforms.
+
+https://www.anthropic.com/news/claude-fable-5-mythos-5" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $10/M · $50/M</p>
+<p>SWE 95%</p>
+<p>Anthropic&#x27;s first publicly available Mythos-class model. Same underlying model as Claude Mythos 5 but with safety classifiers layered on top - requests touching cybersecurity, biology, chemistry, or model distillation fall back to Claude Opus 4.8. Per Fable 5/Mythos 5 System Card: 95% SWE-Bench Verified, 80% SWE-Bench Pro, 84.3% Terminal-Bench 2.1, 85.0% OSWorld-Verified, 29.3 FrontierCode Diamond, 1932 GDPval-AA, 57.9% OfficeQA Pro. Anthropic notes Stripe used Fable 5 to complete a codebase-wide migration across a 50M-line Ruby codebase in one day (estimated two months of manual work). 1M context. Generally available via Anthropic API, AWS Bedrock, and GitHub Copilot at $10/$50 per 1M tokens (batch: $5/$25). Pro/Max/Team plans include Fable 5 at no extra cost through 2026-06-22. Note: on 2026-06-12 Anthropic suspended access to Fable 5 and Mythos 5 across all platforms (Anthropic API, AWS Bedrock, Google Cloud, Microsoft Foundry, Snowflake, Box) after a US export-control directive it could not enforce by nationality in real time. Redeployed 2026-07-01 after the US lifted the export-control order; available again across all platforms.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">https://www.anthropic.com/news/claude-fable-5-mythos-5</a></p>
+</article>
+<h3 class="cat-date-heading">2026-06-02 <span class="archive-count">(2건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>MAI-Code-1-Flash (Microsoft) (2026.6.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="MAI-Code-1-Flash (Microsoft) (2026.6.2)
+
+General · Closed
+
+벤치마크 미공개
+
+Microsoft&#x27;s first in-house coding model, announced at Build 2026. 5B active sparse MoE; total parameter count not published on Microsoft&#x27;s announcement pages (Simon Willison&#x27;s coverage of the model card cites 137B total but Microsoft itself surfaces only the active count). Per Microsoft: 51.2% SWE-Bench Pro (a +16-point lead over Claude Haiku 4.5&#x27;s 35.2%); outperforms Haiku 4.5 across all four core coding benchmarks (Pro, Verified, Multilingual, Terminal Bench 2); solves harder problems with up to 60% fewer tokens on SWE-Bench Verified; +28.9 point lead on IF Bench; 85.8% adjusted accuracy on adversarial reasoning. Rolling out to VS Code GitHub Copilot individual users. Purpose-built for Copilot + VS Code.
+
+https://microsoft.ai/news/introducingmai-code-1-flash/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed</p>
+<p>벤치마크 미공개</p>
+<p>Microsoft&#x27;s first in-house coding model, announced at Build 2026. 5B active sparse MoE; total parameter count not published on Microsoft&#x27;s announcement pages (Simon Willison&#x27;s coverage of the model card cites 137B total but Microsoft itself surfaces only the active count). Per Microsoft: 51.2% SWE-Bench Pro (a +16-point lead over Claude Haiku 4.5&#x27;s 35.2%); outperforms Haiku 4.5 across all four core coding benchmarks (Pro, Verified, Multilingual, Terminal Bench 2); solves harder problems with up to 60% fewer tokens on SWE-Bench Verified; +28.9 point lead on IF Bench; 85.8% adjusted accuracy on adversarial reasoning. Rolling out to VS Code GitHub Copilot individual users. Purpose-built for Copilot + VS Code.</p>
+  <p class="url"><a href="https://microsoft.ai/news/introducingmai-code-1-flash/">https://microsoft.ai/news/introducingmai-code-1-flash/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>MAI-Thinking-1 (Microsoft) (2026.6.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="MAI-Thinking-1 (Microsoft) (2026.6.2)
+
+Reasoning · Closed · 256K ctx
+
+AIME 94.5%
+
+Microsoft&#x27;s first in-house frontier reasoning model, announced at Build 2026. 35B active sparse MoE; not a distillation. Total parameter count not published on Microsoft&#x27;s announcement pages (Simon Willison&#x27;s coverage cites ~1T but Microsoft surfaces only the active count). Per Microsoft&#x27;s Build 2026 keynote: 52.8% SWE-Bench Pro (alongside Claude Opus 4.6), 97.0% AIME 2025, 94.5% AIME 2026. Independent human raters on Surge prefer MAI-Thinking-1 over Claude Sonnet 4.6 in blind side-by-sides. 256K context. Available in private preview on Microsoft Foundry; public preview on MAI Playground coming.
+
+https://microsoft.ai/news/introducing-mai-thinking-1/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 256K ctx</p>
+<p>AIME 94.5%</p>
+<p>Microsoft&#x27;s first in-house frontier reasoning model, announced at Build 2026. 35B active sparse MoE; not a distillation. Total parameter count not published on Microsoft&#x27;s announcement pages (Simon Willison&#x27;s coverage cites ~1T but Microsoft surfaces only the active count). Per Microsoft&#x27;s Build 2026 keynote: 52.8% SWE-Bench Pro (alongside Claude Opus 4.6), 97.0% AIME 2025, 94.5% AIME 2026. Independent human raters on Surge prefer MAI-Thinking-1 over Claude Sonnet 4.6 in blind side-by-sides. 256K context. Available in private preview on Microsoft Foundry; public preview on MAI Playground coming.</p>
+  <p class="url"><a href="https://microsoft.ai/news/introducing-mai-thinking-1/">https://microsoft.ai/news/introducing-mai-thinking-1/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-06-01 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 MiniMax M3 (MiniMax) (2026.6.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="MiniMax M3 (MiniMax) (2026.6.1)
+
+Reasoning · Open · 1000K ctx · $0.6/M · $2.4/M
+
+벤치마크 미공개
+
+Open-weights model committed to combine frontier coding, a 1M-token context window, and native multimodality (image + video input) in a single system. Weights and technical report pledged for ~2026-06-11 on Hugging Face and GitHub; as of that date the M3 repo on huggingface.co/MiniMaxAI still showed only the M2 series, so the open-weight delivery has slipped past its committed window. Built on MiniMax Sparse Attention (MSA): per-token compute at 1M context drops to one-twentieth of the prior generation, with 9x faster prefill and 15x faster decoding. Per MiniMax launch materials (vendor-run on their own scaffolding): 59.0% SWE-Bench Pro, 66.0% Terminal-Bench 2.1, 34.8% SWE-fficiency, 74.2% MCP Atlas, 70.06% OSWorld-Verified, 83.5 BrowseComp. Reference-point note: MiniMax compared to Opus 4.7; Anthropic shipped Opus 4.8 four days before M3 at 69.2% SWE-Bench Pro, so the gap to current frontier is ~10 points. API live on MiniMax platform at $0.60/$2.40 standard (50% promotional discount at launch brings effective rate to $0.30/$1.20 for a window).
+
+https://www.marktechpost.com/2026/06/01/minimax-releases-minimax-m3-with-msa-architecture-supporting-1m-token-context-native-multimodality-and-agentic-coding/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 1000K ctx · $0.6/M · $2.4/M</p>
+<p>벤치마크 미공개</p>
+<p>Open-weights model committed to combine frontier coding, a 1M-token context window, and native multimodality (image + video input) in a single system. Weights and technical report pledged for ~2026-06-11 on Hugging Face and GitHub; as of that date the M3 repo on huggingface.co/MiniMaxAI still showed only the M2 series, so the open-weight delivery has slipped past its committed window. Built on MiniMax Sparse Attention (MSA): per-token compute at 1M context drops to one-twentieth of the prior generation, with 9x faster prefill and 15x faster decoding. Per MiniMax launch materials (vendor-run on their own scaffolding): 59.0% SWE-Bench Pro, 66.0% Terminal-Bench 2.1, 34.8% SWE-fficiency, 74.2% MCP Atlas, 70.06% OSWorld-Verified, 83.5 BrowseComp. Reference-point note: MiniMax compared to Opus 4.7; Anthropic shipped Opus 4.8 four days before M3 at 69.2% SWE-Bench Pro, so the gap to current frontier is ~10 points. API live on MiniMax platform at $0.60/$2.40 standard (50% promotional discount at launch brings effective rate to $0.30/$1.20 for a window).</p>
+  <p class="url"><a href="https://www.marktechpost.com/2026/06/01/minimax-releases-minimax-m3-with-msa-architecture-supporting-1m-token-context-native-multimodality-and-agentic-coding/">https://www.marktechpost.com/2026/06/01/minimax-releases-minimax-m3-with-msa-architecture-supporting-1m-token-context-native-multimodality-and-agentic-coding/</a></p>
+</article></div></details><details class="archive-month"><summary>2026년 5월 <span class="archive-count">(7건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-05-28 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Opus 4.8 (Anthropic) (2026.5.28)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.8 (Anthropic) (2026.5.28)
+
+Reasoning · Closed · 1000K ctx · $5/M · $25/M
+
+GPQA 93.6% · SWE 88.6% · HLE 49.8%
+
+Anthropic flagship, ~6 weeks after Opus 4.7. Per Opus 4.8 System Card: 88.6% SWE-Bench Verified, 69.2% SWE-Bench Pro (vs 64.3% on 4.7), 84.4% SWE-Bench Multilingual, 93.6% GPQA Diamond, 74.6% Terminal-Bench 2.1, 49.8% HLE (57.9% with tools), 83.4% OSWorld-Verified, 1890 GDPval-AA. Anthropic press headline: 84% on Online-Mind2Web computer-use. 1M context default on API/Bedrock/Vertex (200K on Foundry). Same $5/$25 pricing as 4.7; new Fast Mode at $10/$50 runs the same model ~2.5x faster (vs Opus 4.7 Fast Mode at $30/$150). Adaptive thinking only; no extended-thinking budgets. Ships with dynamic workflows for subagent orchestration and effort-level controls.
+
+https://www.anthropic.com/news/claude-opus-4-8" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $5/M · $25/M</p>
+<p>GPQA 93.6% · SWE 88.6% · HLE 49.8%</p>
+<p>Anthropic flagship, ~6 weeks after Opus 4.7. Per Opus 4.8 System Card: 88.6% SWE-Bench Verified, 69.2% SWE-Bench Pro (vs 64.3% on 4.7), 84.4% SWE-Bench Multilingual, 93.6% GPQA Diamond, 74.6% Terminal-Bench 2.1, 49.8% HLE (57.9% with tools), 83.4% OSWorld-Verified, 1890 GDPval-AA. Anthropic press headline: 84% on Online-Mind2Web computer-use. 1M context default on API/Bedrock/Vertex (200K on Foundry). Same $5/$25 pricing as 4.7; new Fast Mode at $10/$50 runs the same model ~2.5x faster (vs Opus 4.7 Fast Mode at $30/$150). Adaptive thinking only; no extended-thinking budgets. Ships with dynamic workflows for subagent orchestration and effort-level controls.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-opus-4-8">https://www.anthropic.com/news/claude-opus-4-8</a></p>
+</article>
+<h3 class="cat-date-heading">2026-05-20 <span class="archive-count">(3건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Qwen3.7-Max (Alibaba/Qwen) (2026.5.20)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3.7-Max (Alibaba/Qwen) (2026.5.20)
+
+Reasoning · Closed · 1000K ctx · $2.5/M · $7.5/M
+
+GPQA 92.4%
+
+Alibaba&#x27;s agent-first flagship, formally launched at the 2026 Alibaba Cloud Summit (May 20) after preview API access on May 18-19. 56.6 Intelligence Index (#5 globally, #1 Chinese). 60.6 SWE-Bench Pro, 69.7 Terminal-Bench 2.0, 76.4 MCP-Atlas, 92.4 GPQA Diamond, 97.1 HMMT Feb 2026. Lowest hallucination rate among frontier models at 22.9%. 1M context, native extended thinking, 1000+ tools. API-only on DashScope at $2.50/$7.50; cached input $0.25 (90% discount).
+
+https://qwen.ai/blog/qwen3-7-max-preview/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $2.5/M · $7.5/M</p>
+<p>GPQA 92.4%</p>
+<p>Alibaba&#x27;s agent-first flagship, formally launched at the 2026 Alibaba Cloud Summit (May 20) after preview API access on May 18-19. 56.6 Intelligence Index (#5 globally, #1 Chinese). 60.6 SWE-Bench Pro, 69.7 Terminal-Bench 2.0, 76.4 MCP-Atlas, 92.4 GPQA Diamond, 97.1 HMMT Feb 2026. Lowest hallucination rate among frontier models at 22.9%. 1M context, native extended thinking, 1000+ tools. API-only on DashScope at $2.50/$7.50; cached input $0.25 (90% discount).</p>
+  <p class="url"><a href="https://qwen.ai/blog/qwen3-7-max-preview/">https://qwen.ai/blog/qwen3-7-max-preview/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Grok Build 0.1 (xAI) (2026.5.20)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Grok Build 0.1 (xAI) (2026.5.20)
+
+General · Closed · 256K ctx · $1/M · $2/M
+
+벤치마크 미공개
+
+xAI&#x27;s first model purpose-built for agentic software engineering. Trained to plan, refactor, invoke tools, and run continuous loops until a task completes. 256K context, text + image input. 88.9% on PinchBench; ranks #4 of 50 on OpenClaw agent tasks. Bundled with SuperGrok and X Premium+; $1/$2 per 1M tokens via OpenRouter. Available through the Grok Build CLI and Kilo IDE integration.
+
+https://x.ai/news/grok-build-cli" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 256K ctx · $1/M · $2/M</p>
+<p>벤치마크 미공개</p>
+<p>xAI&#x27;s first model purpose-built for agentic software engineering. Trained to plan, refactor, invoke tools, and run continuous loops until a task completes. 256K context, text + image input. 88.9% on PinchBench; ranks #4 of 50 on OpenClaw agent tasks. Bundled with SuperGrok and X Premium+; $1/$2 per 1M tokens via OpenRouter. Available through the Grok Build CLI and Kilo IDE integration.</p>
+  <p class="url"><a href="https://x.ai/news/grok-build-cli">https://x.ai/news/grok-build-cli</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇯🇵🇰🇷 Command A+ (Cohere) (2026.5.20)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Command A+ (Cohere) (2026.5.20)
+
+General · Open · 128K ctx · $0/M · $0/M
+
+벤치마크 미공개
+
+First fully Apache 2.0 enterprise model from Cohere. 218B sparse MoE, 25B active. Multimodal (text + image + tool use), 128K input / 64K max generation. Runs on as few as two H100s at W4A4 lossless quantization. Benchmarks: 37 Intelligence Index, 75.1% MMMU, 80.6% MathVista, 85% tau-2 Telecom (vs 37% prior), 63% MMMU Pro. Native citation generation with grounding spans linking each claim to source. Tokenizer covers 48 languages with 16-20% token reduction for Arabic/Japanese/Korean. Built for sovereign agentic workflows.
+
+https://cohere.com/blog/command-a-plus" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 128K ctx · $0/M · $0/M</p>
+<p>벤치마크 미공개</p>
+<p>First fully Apache 2.0 enterprise model from Cohere. 218B sparse MoE, 25B active. Multimodal (text + image + tool use), 128K input / 64K max generation. Runs on as few as two H100s at W4A4 lossless quantization. Benchmarks: 37 Intelligence Index, 75.1% MMMU, 80.6% MathVista, 85% tau-2 Telecom (vs 37% prior), 63% MMMU Pro. Native citation generation with grounding spans linking each claim to source. Tokenizer covers 48 languages with 16-20% token reduction for Arabic/Japanese/Korean. Built for sovereign agentic workflows.</p>
+  <p class="url"><a href="https://cohere.com/blog/command-a-plus">https://cohere.com/blog/command-a-plus</a></p>
+</article>
+<h3 class="cat-date-heading">2026-05-19 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Gemini 3.5 Flash (Google) (2026.5.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemini 3.5 Flash (Google) (2026.5.19)
+
+Reasoning · Closed · 1000K ctx · $1.5/M · $9/M
+
+벤치마크 미공개
+
+Announced at Google I/O 2026 as the fastest agentic frontier model. 76.2% Terminal-Bench 2.1, 83.6% MCP Atlas, 84.2% CharXiv Reasoning, 1656 Elo on GDPval-AA. ~289 output tokens/sec. 1M context. Available in Gemini app, AI Studio, API, and AI Mode in Google Search. A 3.5 Pro version is in internal use, targeted for June 2026.
+
+https://blog.google/technology/google-deepmind/gemini-3-5-flash/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $1.5/M · $9/M</p>
+<p>벤치마크 미공개</p>
+<p>Announced at Google I/O 2026 as the fastest agentic frontier model. 76.2% Terminal-Bench 2.1, 83.6% MCP Atlas, 84.2% CharXiv Reasoning, 1656 Elo on GDPval-AA. ~289 output tokens/sec. 1M context. Available in Gemini app, AI Studio, API, and AI Mode in Google Search. A 3.5 Pro version is in internal use, targeted for June 2026.</p>
+  <p class="url"><a href="https://blog.google/technology/google-deepmind/gemini-3-5-flash/">https://blog.google/technology/google-deepmind/gemini-3-5-flash/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-05-06 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Grok 4.3 (xAI) (2026.5.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Grok 4.3 (xAI) (2026.5.6)
+
+Reasoning · Closed · 2000K ctx · $1.25/M · $2.5/M
+
+벤치마크 미공개
+
+1M context. Three reasoning intensity levels. $1.25/$2.50 per 1M tokens. GA May 6 (beta Apr 17).
+
+https://piunikaweb.com/2026/04/17/xai-grok-4-3-beta-supergrok-heavy/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 2000K ctx · $1.25/M · $2.5/M</p>
+<p>벤치마크 미공개</p>
+<p>1M context. Three reasoning intensity levels. $1.25/$2.50 per 1M tokens. GA May 6 (beta Apr 17).</p>
+  <p class="url"><a href="https://piunikaweb.com/2026/04/17/xai-grok-4-3-beta-supergrok-heavy/">https://piunikaweb.com/2026/04/17/xai-grok-4-3-beta-supergrok-heavy/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-05-05 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.5 Instant (OpenAI) (2026.5.5)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.5 Instant (OpenAI) (2026.5.5)
+
+Reasoning · Closed
+
+AIME 81.2%
+
+New ChatGPT default, replacing GPT-5.3 Instant. 52.5% fewer hallucinations on high-stakes prompts (medicine, law, finance). 81.2 AIME 2025 (vs 65.4 prior). Vision supported. API alias: chat-latest.
+
+https://openai.com/index/gpt-5-5-instant/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed</p>
+<p>AIME 81.2%</p>
+<p>New ChatGPT default, replacing GPT-5.3 Instant. 52.5% fewer hallucinations on high-stakes prompts (medicine, law, finance). 81.2 AIME 2025 (vs 65.4 prior). Vision supported. API alias: chat-latest.</p>
+  <p class="url"><a href="https://openai.com/index/gpt-5-5-instant/">https://openai.com/index/gpt-5-5-instant/</a></p>
+</article></div></details><details class="archive-month"><summary>2026년 4월 <span class="archive-count">(17건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-04-29 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Mistral Medium 3.5 (Mistral AI) (2026.4.29)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Mistral Medium 3.5 (Mistral AI) (2026.4.29)
+
+Dense · Open · 256K ctx · $1.5/M · $7.5/M
+
+SWE 77.6%
+
+128B dense model. 256K context. Open weights (modified MIT). Strong coding and agentic capabilities. 77.6% SWE-Bench Verified. $1.50/$7.50 per 1M tokens.
+
+https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5" onclick="copyEntry(this)">복사</button></div>
+  <p>Dense · Open · 256K ctx · $1.5/M · $7.5/M</p>
+<p>SWE 77.6%</p>
+<p>128B dense model. 256K context. Open weights (modified MIT). Strong coding and agentic capabilities. 77.6% SWE-Bench Verified. $1.50/$7.50 per 1M tokens.</p>
+  <p class="url"><a href="https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5">https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5</a></p>
+</article>
+<h3 class="cat-date-heading">2026-04-24 <span class="archive-count">(3건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.5 Pro (OpenAI) (2026.4.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.5 Pro (OpenAI) (2026.4.24)
+
+Reasoning · Closed · 1000K ctx · $30/M · $180/M
+
+GPQA 93.6% · SWE 88.7% · MMLU 92.4%
+
+Higher-accuracy variant of GPT-5.5 with extended compute. $30/$180 per 1M tokens.
+
+https://openai.com/index/introducing-gpt-5-5/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $30/M · $180/M</p>
+<p>GPQA 93.6% · SWE 88.7% · MMLU 92.4%</p>
+<p>Higher-accuracy variant of GPT-5.5 with extended compute. $30/$180 per 1M tokens.</p>
+  <p class="url"><a href="https://openai.com/index/introducing-gpt-5-5/">https://openai.com/index/introducing-gpt-5-5/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 DeepSeek V4 Pro (DeepSeek) (2026.4.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="DeepSeek V4 Pro (DeepSeek) (2026.4.24)
+
+Reasoning · Open · 1000K ctx · $1.74/M · $3.48/M
+
+GPQA 90.1% · SWE 80.6% · MMLU 87.5% · HLE 37.7%
+
+1.6T MoE / 49B active. MIT license. Trained on 32T+ tokens. Hybrid Attention (CSA+HCA): 27% inference FLOPs and 10% KV cache vs V3 at 1M tokens. 90.1% GPQA Diamond, 80.6% SWE-bench Verified, 93.5% LiveCodeBench (SOTA), 37.7% HLE. Three reasoning modes (non-think, high, max).
+
+https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 1000K ctx · $1.74/M · $3.48/M</p>
+<p>GPQA 90.1% · SWE 80.6% · MMLU 87.5% · HLE 37.7%</p>
+<p>1.6T MoE / 49B active. MIT license. Trained on 32T+ tokens. Hybrid Attention (CSA+HCA): 27% inference FLOPs and 10% KV cache vs V3 at 1M tokens. 90.1% GPQA Diamond, 80.6% SWE-bench Verified, 93.5% LiveCodeBench (SOTA), 37.7% HLE. Three reasoning modes (non-think, high, max).</p>
+  <p class="url"><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro">https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 DeepSeek V4 Flash (DeepSeek) (2026.4.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="DeepSeek V4 Flash (DeepSeek) (2026.4.24)
+
+Reasoning · Open · 1000K ctx · $0.14/M · $0.28/M
+
+GPQA 88.1% · MMLU 86.2% · HE 69.5%
+
+284B MoE / 13B active. MIT license. Same hybrid attention as V4-Pro. 88.1% GPQA Diamond, 91.6% LiveCodeBench. 1M context. $0.14/$0.28 per 1M tokens - 96% cheaper than GPT-5.4 output.
+
+https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 1000K ctx · $0.14/M · $0.28/M</p>
+<p>GPQA 88.1% · MMLU 86.2% · HE 69.5%</p>
+<p>284B MoE / 13B active. MIT license. Same hybrid attention as V4-Pro. 88.1% GPQA Diamond, 91.6% LiveCodeBench. 1M context. $0.14/$0.28 per 1M tokens - 96% cheaper than GPT-5.4 output.</p>
+  <p class="url"><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash">https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash</a></p>
+</article>
+<h3 class="cat-date-heading">2026-04-23 <span class="archive-count">(2건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.5 (OpenAI) (2026.4.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.5 (OpenAI) (2026.4.23)
+
+Reasoning · Closed · 1000K ctx · $5/M · $30/M
+
+GPQA 93.6% · SWE 88.7% · MMLU 92.4%
+
+OpenAI&#x27;s most capable model. Stronger coding, agentic tasks, and research. $5/$30 per 1M tokens. 1M context.
+
+https://openai.com/index/introducing-gpt-5-5/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $5/M · $30/M</p>
+<p>GPQA 93.6% · SWE 88.7% · MMLU 92.4%</p>
+<p>OpenAI&#x27;s most capable model. Stronger coding, agentic tasks, and research. $5/$30 per 1M tokens. 1M context.</p>
+  <p class="url"><a href="https://openai.com/index/introducing-gpt-5-5/">https://openai.com/index/introducing-gpt-5-5/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Hy3 Preview (Tencent) (2026.4.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Hy3 Preview (Tencent) (2026.4.23)
+
+Reasoning · Open · 256K ctx
+
+GPQA 87.2% · SWE 74.4% · MMLU 65.8%
+
+295B MoE / 21B active. 87.2% GPQA Diamond, 74.4% SWE-bench Verified. Hybrid fast/slow thinking. 256K context. Tencent Hy Community License. Open weights.
+
+https://huggingface.co/tencent/Hy3-preview" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 256K ctx</p>
+<p>GPQA 87.2% · SWE 74.4% · MMLU 65.8%</p>
+<p>295B MoE / 21B active. 87.2% GPQA Diamond, 74.4% SWE-bench Verified. Hybrid fast/slow thinking. 256K context. Tencent Hy Community License. Open weights.</p>
+  <p class="url"><a href="https://huggingface.co/tencent/Hy3-preview">https://huggingface.co/tencent/Hy3-preview</a></p>
+</article>
+<h3 class="cat-date-heading">2026-04-22 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Qwen3.6-27B (Alibaba/Qwen) (2026.4.22)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3.6-27B (Alibaba/Qwen) (2026.4.22)
+
+Reasoning · Open · 262K ctx
+
+GPQA 87.8% · SWE 77.2% · MMLU 86.2%
+
+Dense 27B open-weight vision model. Apache 2.0. Hybrid Gated DeltaNet + Gated Attention. 87.8% GPQA Diamond, 77.2% SWE-bench, 83.9% LiveCodeBench v6. 262K native context (1M extended). Thinking preservation across turns.
+
+https://huggingface.co/Qwen/Qwen3.6-27B" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 262K ctx</p>
+<p>GPQA 87.8% · SWE 77.2% · MMLU 86.2%</p>
+<p>Dense 27B open-weight vision model. Apache 2.0. Hybrid Gated DeltaNet + Gated Attention. 87.8% GPQA Diamond, 77.2% SWE-bench, 83.9% LiveCodeBench v6. 262K native context (1M extended). Thinking preservation across turns.</p>
+  <p class="url"><a href="https://huggingface.co/Qwen/Qwen3.6-27B">https://huggingface.co/Qwen/Qwen3.6-27B</a></p>
+</article>
+<h3 class="cat-date-heading">2026-04-20 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Qwen3.6-Max-Preview (Alibaba/Qwen) (2026.4.20)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3.6-Max-Preview (Alibaba/Qwen) (2026.4.20)
+
+Reasoning · Closed · 256K ctx
+
+벤치마크 미공개
+
+Most powerful Qwen model. Top scores on 6 programming benchmarks. Enhanced agent coding, world knowledge, instruction following vs Qwen3.6-Plus. Free preview on Bailian.
+
+https://cntechpost.com/2026/04/20/alibaba-releases-qwen3-6-max-preview-stronger-instruction-following-capabilities/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 256K ctx</p>
+<p>벤치마크 미공개</p>
+<p>Most powerful Qwen model. Top scores on 6 programming benchmarks. Enhanced agent coding, world knowledge, instruction following vs Qwen3.6-Plus. Free preview on Bailian.</p>
+  <p class="url"><a href="https://cntechpost.com/2026/04/20/alibaba-releases-qwen3-6-max-preview-stronger-instruction-following-capabilities/">https://cntechpost.com/2026/04/20/alibaba-releases-qwen3-6-max-preview-stronger-instruction-following-capabilities/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-04-16 <span class="archive-count">(3건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Qwen3.6 35B-A3B (Alibaba/Qwen) (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3.6 35B-A3B (Alibaba/Qwen) (2026.4.16)
+
+Reasoning · Open · 262K ctx
+
+GPQA 86% · SWE 73.4% · MMLU 85.2% · AIME 92.7% · HLE 21.4%
+
+MoE - 3B active / 35B total, 256 experts. Runs on a laptop. 73.4% SWE-bench Verified. Natively multimodal. Extensible to 1M context. Apache 2.0.
+
+https://qwen.ai/blog?id=qwen3.6-35b-a3b" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 262K ctx</p>
+<p>GPQA 86% · SWE 73.4% · MMLU 85.2% · AIME 92.7% · HLE 21.4%</p>
+<p>MoE - 3B active / 35B total, 256 experts. Runs on a laptop. 73.4% SWE-bench Verified. Natively multimodal. Extensible to 1M context. Apache 2.0.</p>
+  <p class="url"><a href="https://qwen.ai/blog?id=qwen3.6-35b-a3b">https://qwen.ai/blog?id=qwen3.6-35b-a3b</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Opus 4.7 (Anthropic) (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.7 (Anthropic) (2026.4.16)
+
+Reasoning · Closed · 1000K ctx · $5/M · $25/M
+
+GPQA 94.2% · SWE 87.6%
+
+#1 SWE-bench Verified (87.6%). #1 SWE-bench Pro (64.3%). 94.2% GPQA Diamond. High-res vision (3.75MP). New xhigh effort level. Agentic task budgets. $5/$25 per 1M tokens.
+
+https://www.anthropic.com/news/claude-opus-4-7" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $5/M · $25/M</p>
+<p>GPQA 94.2% · SWE 87.6%</p>
+<p>#1 SWE-bench Verified (87.6%). #1 SWE-bench Pro (64.3%). 94.2% GPQA Diamond. High-res vision (3.75MP). New xhigh effort level. Agentic task budgets. $5/$25 per 1M tokens.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-opus-4-7">https://www.anthropic.com/news/claude-opus-4-7</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-Rosalind (OpenAI) (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-Rosalind (OpenAI) (2026.4.16)
+
+Reasoning · Closed
+
+벤치마크 미공개
+
+First domain-specific OpenAI model. Life sciences: genomics, protein engineering, drug discovery. Research preview for qualified US enterprise customers. Partners: Amgen, Moderna, Allen Institute, Thermo Fisher.
+
+https://openai.com/index/introducing-gpt-rosalind/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed</p>
+<p>벤치마크 미공개</p>
+<p>First domain-specific OpenAI model. Life sciences: genomics, protein engineering, drug discovery. Research preview for qualified US enterprise customers. Partners: Amgen, Moderna, Allen Institute, Thermo Fisher.</p>
+  <p class="url"><a href="https://openai.com/index/introducing-gpt-rosalind/">https://openai.com/index/introducing-gpt-rosalind/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-04-13 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Kimi K2.6 (Moonshot AI) (2026.4.13)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Kimi K2.6 (Moonshot AI) (2026.4.13)
+
+Reasoning · Open · 262K ctx · $0.6/M · $2.5/M
+
+벤치마크 미공개
+
+1T MoE / 32B active. Four variants: Instant, Thinking, Agent, Agent Swarm (300 sub-agents, 4K coordinated steps). Open-weight, Modified MIT. 262K context.
+
+https://www.kimi.com/code" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 262K ctx · $0.6/M · $2.5/M</p>
+<p>벤치마크 미공개</p>
+<p>1T MoE / 32B active. Four variants: Instant, Thinking, Agent, Agent Swarm (300 sub-agents, 4K coordinated steps). Open-weight, Modified MIT. 262K context.</p>
+  <p class="url"><a href="https://www.kimi.com/code">https://www.kimi.com/code</a></p>
+</article>
+<h3 class="cat-date-heading">2026-04-08 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Muse Spark (Meta) (2026.4.8)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Muse Spark (Meta) (2026.4.8)
+
+Reasoning · Closed · 262K ctx
+
+GPQA 89.5% · HLE 50.2%
+
+First model from Meta Superintelligence Labs. 89.5% GPQA Diamond, 50.2% HLE (Contemplating mode). Natively multimodal with visual chain of thought and multi-agent orchestration. 262K context. Free at meta.ai. #1 on HealthBench Hard (42.8) and CharXiv Reasoning (86.4).
+
+https://ai.meta.com/blog/introducing-muse-spark-msl/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 262K ctx</p>
+<p>GPQA 89.5% · HLE 50.2%</p>
+<p>First model from Meta Superintelligence Labs. 89.5% GPQA Diamond, 50.2% HLE (Contemplating mode). Natively multimodal with visual chain of thought and multi-agent orchestration. 262K context. Free at meta.ai. #1 on HealthBench Hard (42.8) and CharXiv Reasoning (86.4).</p>
+  <p class="url"><a href="https://ai.meta.com/blog/introducing-muse-spark-msl/">https://ai.meta.com/blog/introducing-muse-spark-msl/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-04-07 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>GLM-5.1 (Zhipu AI) (2026.4.7)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GLM-5.1 (Zhipu AI) (2026.4.7)
+
+Reasoning · Open · 200K ctx · $1.4/M · $4.4/M
+
+벤치마크 미공개
+
+754B MoE / 40B active. #1 SWE-Bench Pro (58.4%), beating GPT-5.4 (57.7%) and Opus 4.6 (57.3%). 8-hour autonomous coding loops. MIT license.
+
+https://docs.z.ai/release-notes/new-released" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 200K ctx · $1.4/M · $4.4/M</p>
+<p>벤치마크 미공개</p>
+<p>754B MoE / 40B active. #1 SWE-Bench Pro (58.4%), beating GPT-5.4 (57.7%) and Opus 4.6 (57.3%). 8-hour autonomous coding loops. MIT license.</p>
+  <p class="url"><a href="https://docs.z.ai/release-notes/new-released">https://docs.z.ai/release-notes/new-released</a></p>
+</article>
+<h3 class="cat-date-heading">2026-04-02 <span class="archive-count">(3건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Gemma 4 31B (Google) (2026.4.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemma 4 31B (Google) (2026.4.2)
+
+General · Open · 256K ctx
+
+GPQA 84.3% · MMLU 85.2% · AIME 89.2%
+
+Strongest open Gemma model. 85.2% MMLU-Pro, 84.3% GPQA Diamond. Hybrid attention with sliding window. Apache 2.0.
+
+https://ai.google.dev/gemma/docs/core/model_card_4" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 256K ctx</p>
+<p>GPQA 84.3% · MMLU 85.2% · AIME 89.2%</p>
+<p>Strongest open Gemma model. 85.2% MMLU-Pro, 84.3% GPQA Diamond. Hybrid attention with sliding window. Apache 2.0.</p>
+  <p class="url"><a href="https://ai.google.dev/gemma/docs/core/model_card_4">https://ai.google.dev/gemma/docs/core/model_card_4</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>Gemma 4 26B-A4B (Google) (2026.4.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemma 4 26B-A4B (Google) (2026.4.2)
+
+General · Open · 256K ctx
+
+GPQA 82.3% · MMLU 82.6% · AIME 88.3%
+
+MoE - 3.8B active / 25.2B total. Near 31B performance at a fraction of the compute. Apache 2.0.
+
+https://ai.google.dev/gemma/docs/core/model_card_4" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 256K ctx</p>
+<p>GPQA 82.3% · MMLU 82.6% · AIME 88.3%</p>
+<p>MoE - 3.8B active / 25.2B total. Near 31B performance at a fraction of the compute. Apache 2.0.</p>
+  <p class="url"><a href="https://ai.google.dev/gemma/docs/core/model_card_4">https://ai.google.dev/gemma/docs/core/model_card_4</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Qwen3.6-Plus (Alibaba/Qwen) (2026.4.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3.6-Plus (Alibaba/Qwen) (2026.4.2)
+
+Reasoning · Closed · 1000K ctx · $0.29/M · $1.65/M
+
+SWE 78.8%
+
+Proprietary flagship. 1M native context, 65K output tokens. 78.8% SWE-bench Verified. Always-on chain-of-thought. Native function calling and tool use.
+
+https://qwen.ai/blog?id=qwen3.6" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $0.29/M · $1.65/M</p>
+<p>SWE 78.8%</p>
+<p>Proprietary flagship. 1M native context, 65K output tokens. 78.8% SWE-bench Verified. Always-on chain-of-thought. Native function calling and tool use.</p>
+  <p class="url"><a href="https://qwen.ai/blog?id=qwen3.6">https://qwen.ai/blog?id=qwen3.6</a></p>
+</article></div></details><details class="archive-month"><summary>2026년 3월 <span class="archive-count">(7건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-03-18 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>MiniMax M2.7 (MiniMax) (2026.3.18)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="MiniMax M2.7 (MiniMax) (2026.3.18)
+
+Reasoning · Closed · 205K ctx · $0.3/M · $1.2/M
+
+MMLU 78% · HE 93% · MATH 85%
+
+MiniMax March 2026 flagship. Self-evolving agentic model. 56.2% SWE-Pro. 205K context with automatic caching. $0.30/$1.20 per 1M tokens.
+
+https://openrouter.ai/minimax/minimax-m2.7" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 205K ctx · $0.3/M · $1.2/M</p>
+<p>MMLU 78% · HE 93% · MATH 85%</p>
+<p>MiniMax March 2026 flagship. Self-evolving agentic model. 56.2% SWE-Pro. 205K context with automatic caching. $0.30/$1.20 per 1M tokens.</p>
+  <p class="url"><a href="https://openrouter.ai/minimax/minimax-m2.7">https://openrouter.ai/minimax/minimax-m2.7</a></p>
+</article>
+<h3 class="cat-date-heading">2026-03-17 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.4 Mini (OpenAI) (2026.3.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.4 Mini (OpenAI) (2026.3.17)
+
+Reasoning · Closed · 400K ctx · $0.75/M · $4.5/M
+
+GPQA 82.3%
+
+Cost-efficient reasoning model. 400K context. Near GPT-5.4 Standard performance at 70% lower cost. Multimodal with computer use support.
+
+https://openai.com/index/introducing-gpt-5-4-mini-and-nano/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 400K ctx · $0.75/M · $4.5/M</p>
+<p>GPQA 82.3%</p>
+<p>Cost-efficient reasoning model. 400K context. Near GPT-5.4 Standard performance at 70% lower cost. Multimodal with computer use support.</p>
+  <p class="url"><a href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano/">https://openai.com/index/introducing-gpt-5-4-mini-and-nano/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-03-16 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Mistral Small 4 (Mistral AI) (2026.3.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Mistral Small 4 (Mistral AI) (2026.3.16)
+
+Reasoning · Open · 256K ctx · $0.15/M · $0.6/M
+
+벤치마크 미공개
+
+MoE - 6B active / 119B total. Merges Magistral (reasoning), Pixtral (vision), Devstral (coding). Per-request reasoning_effort toggle. 3x throughput vs Small 3. Apache 2.0.
+
+https://mistral.ai/news/mistral-small-4" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 256K ctx · $0.15/M · $0.6/M</p>
+<p>벤치마크 미공개</p>
+<p>MoE - 6B active / 119B total. Merges Magistral (reasoning), Pixtral (vision), Devstral (coding). Per-request reasoning_effort toggle. 3x throughput vs Small 3. Apache 2.0.</p>
+  <p class="url"><a href="https://mistral.ai/news/mistral-small-4">https://mistral.ai/news/mistral-small-4</a></p>
+</article>
+<h3 class="cat-date-heading">2026-03-10 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Grok 4.20 (xAI) (2026.3.10)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Grok 4.20 (xAI) (2026.3.10)
+
+Reasoning · Closed · 2000K ctx · $2/M · $6/M
+
+GPQA 88.5% · SWE 76.7% · MMLU 81.2% · HE 94.1% · MATH 95%
+
+xAI flagship API model. 2M token context. Four-agent and 16-agent (Heavy) multi-agent variants. Reasoning on/off toggle. $2/$6 per 1M tokens. Superseded in SuperGrok Heavy chatbot by Grok 4.3 Beta (Apr 17), still primary via API.
+
+https://docs.x.ai/developers/models" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 2000K ctx · $2/M · $6/M</p>
+<p>GPQA 88.5% · SWE 76.7% · MMLU 81.2% · HE 94.1% · MATH 95%</p>
+<p>xAI flagship API model. 2M token context. Four-agent and 16-agent (Heavy) multi-agent variants. Reasoning on/off toggle. $2/$6 per 1M tokens. Superseded in SuperGrok Heavy chatbot by Grok 4.3 Beta (Apr 17), still primary via API.</p>
+  <p class="url"><a href="https://docs.x.ai/developers/models">https://docs.x.ai/developers/models</a></p>
+</article>
+<h3 class="cat-date-heading">2026-03-05 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.4 (OpenAI) (2026.3.5)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.4 (OpenAI) (2026.3.5)
+
+Reasoning · Closed · 1050K ctx · $2.5/M · $15/M
+
+GPQA 92% · MMLU 83.1% · HE 94.5% · MATH 92.4% · AIME 100%
+
+OpenAI March 2026 flagship. First model with native Computer Use API (75% OSWorld, above human baseline of 72.4%). 1M context in Codex/API. 33% fewer hallucinations vs GPT-5.2. 83% GDPval. GPT-5.2 retires June 5, 2026.
+
+https://openai.com/index/introducing-gpt-5-4/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1050K ctx · $2.5/M · $15/M</p>
+<p>GPQA 92% · MMLU 83.1% · HE 94.5% · MATH 92.4% · AIME 100%</p>
+<p>OpenAI March 2026 flagship. First model with native Computer Use API (75% OSWorld, above human baseline of 72.4%). 1M context in Codex/API. 33% fewer hallucinations vs GPT-5.2. 83% GDPval. GPT-5.2 retires June 5, 2026.</p>
+  <p class="url"><a href="https://openai.com/index/introducing-gpt-5-4/">https://openai.com/index/introducing-gpt-5-4/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-03-04 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Phi-4 Reasoning Vision 15B (Microsoft) (2026.3.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Phi-4 Reasoning Vision 15B (Microsoft) (2026.3.4)
+
+Reasoning · Open · 16K ctx
+
+벤치마크 미공개
+
+15B multimodal reasoning model. Mid-fusion SigLIP-2 vision encoder. Excels at math, science, GUI understanding. Adaptive reasoning depth. MIT license.
+
+https://huggingface.co/microsoft/Phi-4-reasoning-vision-15B" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 16K ctx</p>
+<p>벤치마크 미공개</p>
+<p>15B multimodal reasoning model. Mid-fusion SigLIP-2 vision encoder. Excels at math, science, GUI understanding. Adaptive reasoning depth. MIT license.</p>
+  <p class="url"><a href="https://huggingface.co/microsoft/Phi-4-reasoning-vision-15B">https://huggingface.co/microsoft/Phi-4-reasoning-vision-15B</a></p>
+</article>
+<h3 class="cat-date-heading">2026-03-03 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Gemini 3.1 Flash Lite (Google) (2026.3.3)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemini 3.1 Flash Lite (Google) (2026.3.3)
+
+General · Closed · 1000K ctx · $0.25/M · $1.5/M
+
+벤치마크 미공개
+
+Most cost-efficient Google model. 2.5x faster TTFAT vs 2.5 Flash. Thinking levels. 1M context. $0.25/$1.50 per 1M tokens.
+
+https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-lite/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 1000K ctx · $0.25/M · $1.5/M</p>
+<p>벤치마크 미공개</p>
+<p>Most cost-efficient Google model. 2.5x faster TTFAT vs 2.5 Flash. Thinking levels. 1M context. $0.25/$1.50 per 1M tokens.</p>
+  <p class="url"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-lite/">https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-lite/</a></p>
+</article></div></details><details class="archive-month"><summary>2026년 2월 <span class="archive-count">(7건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-02-24 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.3-Codex (OpenAI) (2026.2.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.3-Codex (OpenAI) (2026.2.24)
+
+General · Closed · 400K ctx · $1.75/M · $14/M
+
+벤치마크 미공개
+
+Agentic coding model. SOTA on SWE-Bench Pro, Terminal-Bench 2.0, OSWorld-Verified. 400K context. Combines Codex + GPT-5 training stacks. 25% faster than predecessor.
+
+https://openai.com/index/introducing-gpt-5-3-codex/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 400K ctx · $1.75/M · $14/M</p>
+<p>벤치마크 미공개</p>
+<p>Agentic coding model. SOTA on SWE-Bench Pro, Terminal-Bench 2.0, OSWorld-Verified. 400K context. Combines Codex + GPT-5 training stacks. 25% faster than predecessor.</p>
+  <p class="url"><a href="https://openai.com/index/introducing-gpt-5-3-codex/">https://openai.com/index/introducing-gpt-5-3-codex/</a></p>
+</article>
+<h3 class="cat-date-heading">2026-02-19 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Gemini 3.1 Pro (Google) (2026.2.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemini 3.1 Pro (Google) (2026.2.19)
+
+Reasoning · Closed · 1000K ctx · $2/M · $12/M
+
+GPQA 94.3% · SWE 80.6% · MMLU 84% · HE 95% · MATH 93% · AIME 91.2% · HLE 41%
+
+First model to break 1500 LMArena Elo. 94.3% GPQA Diamond. 41% HLE. Deep Think mode. 1M context. $2/$12 per 1M tokens ($4/$18 above 200K).
+
+https://ai.google.dev/gemini-api/docs/models" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $2/M · $12/M</p>
+<p>GPQA 94.3% · SWE 80.6% · MMLU 84% · HE 95% · MATH 93% · AIME 91.2% · HLE 41%</p>
+<p>First model to break 1500 LMArena Elo. 94.3% GPQA Diamond. 41% HLE. Deep Think mode. 1M context. $2/$12 per 1M tokens ($4/$18 above 200K).</p>
+  <p class="url"><a href="https://ai.google.dev/gemini-api/docs/models">https://ai.google.dev/gemini-api/docs/models</a></p>
+</article>
+<h3 class="cat-date-heading">2026-02-17 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Sonnet 4.6 (Anthropic) (2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 4.6 (Anthropic) (2026.2.17)
+
+General · Closed · 1000K ctx · $3/M · $15/M
+
+GPQA 87.4% · SWE 79.6% · MMLU 83% · HE 94.5% · MATH 89% · AIME 83%
+
+Current production Sonnet. Frontier coding and agent performance. Top Arena-Code Elo for everyday use.
+
+https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 1000K ctx · $3/M · $15/M</p>
+<p>GPQA 87.4% · SWE 79.6% · MMLU 83% · HE 94.5% · MATH 89% · AIME 83%</p>
+<p>Current production Sonnet. Frontier coding and agent performance. Top Arena-Code Elo for everyday use.</p>
+  <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
+</article>
+<h3 class="cat-date-heading">2026-02-16 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Qwen3.5 397B-A17B (Alibaba/Qwen) (2026.2.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3.5 397B-A17B (Alibaba/Qwen) (2026.2.16)
+
+Reasoning · Open · 262K ctx · $0.6/M · $3.6/M
+
+GPQA 88.4% · MMLU 86.1% · MATH 74.1% · AIME 91.3%
+
+MoE - 17B active / 397B total. 88.4% GPQA Diamond. 201 languages. Extensible to 1M context. Apache 2.0.
+
+https://qwen.ai/blog/qwen3.5" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 262K ctx · $0.6/M · $3.6/M</p>
+<p>GPQA 88.4% · MMLU 86.1% · MATH 74.1% · AIME 91.3%</p>
+<p>MoE - 17B active / 397B total. 88.4% GPQA Diamond. 201 languages. Extensible to 1M context. Apache 2.0.</p>
+  <p class="url"><a href="https://qwen.ai/blog/qwen3.5">https://qwen.ai/blog/qwen3.5</a></p>
+</article>
+<h3 class="cat-date-heading">2026-02-12 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>MiniMax M2.5 (MiniMax) (2026.2.12)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="MiniMax M2.5 (MiniMax) (2026.2.12)
+
+Reasoning · Open · 205K ctx · $0.3/M · $2.4/M
+
+SWE 80.2% · MMLU 78% · HE 93% · MATH 85% · AIME 86.3%
+
+229B MoE / 10B active. 80.2% SWE-bench. 0.6pts behind Claude Opus 4.6. Most-used open model on OpenRouter.
+
+https://www.minimax.io/news/minimax-m25" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 205K ctx · $0.3/M · $2.4/M</p>
+<p>SWE 80.2% · MMLU 78% · HE 93% · MATH 85% · AIME 86.3%</p>
+<p>229B MoE / 10B active. 80.2% SWE-bench. 0.6pts behind Claude Opus 4.6. Most-used open model on OpenRouter.</p>
+  <p class="url"><a href="https://www.minimax.io/news/minimax-m25">https://www.minimax.io/news/minimax-m25</a></p>
+</article>
+<h3 class="cat-date-heading">2026-02-11 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>GLM-5 (Zhipu AI) (2026.2.11)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GLM-5 (Zhipu AI) (2026.2.11)
+
+General · Open · 200K ctx · $1/M · $3.2/M
+
+벤치마크 미공개
+
+744B MoE / 40B active. First publicly traded foundation model company (HK IPO Jan 2026). Tsinghua spinoff. MIT license.
+
+https://docs.z.ai/release-notes/new-released" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 200K ctx · $1/M · $3.2/M</p>
+<p>벤치마크 미공개</p>
+<p>744B MoE / 40B active. First publicly traded foundation model company (HK IPO Jan 2026). Tsinghua spinoff. MIT license.</p>
+  <p class="url"><a href="https://docs.z.ai/release-notes/new-released">https://docs.z.ai/release-notes/new-released</a></p>
+</article>
+<h3 class="cat-date-heading">2026-02-05 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Opus 4.6 (Anthropic) (2026.2.5)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.6 (Anthropic) (2026.2.5)
+
+Reasoning · Closed · 1000K ctx · $5/M · $25/M
+
+GPQA 91.3% · SWE 80.8% · MMLU 89% · HE 96% · MATH 92% · AIME 99.8%
+
+Arena Code Elo 1548. 80.8% SWE-bench. 89.11% MMLU-Pro (vals.ai). Leads for coding and nuanced writing.
+
+https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $5/M · $25/M</p>
+<p>GPQA 91.3% · SWE 80.8% · MMLU 89% · HE 96% · MATH 92% · AIME 99.8%</p>
+<p>Arena Code Elo 1548. 80.8% SWE-bench. 89.11% MMLU-Pro (vals.ai). Leads for coding and nuanced writing.</p>
+  <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
+</article></div></details><details class="archive-month"><summary>2026년 1월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-01-27 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Kimi K2.5 (Moonshot AI) (2026.1.27)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Kimi K2.5 (Moonshot AI) (2026.1.27)
+
+Reasoning · Open · 262K ctx · $0.6/M · $2.5/M
+
+MMLU 87.1% · HE 91% · MATH 88% · AIME 96.1%
+
+Multimodal K2 with native vision, video. Agent Swarm: up to 100 parallel sub-agents. Modified MIT.
+
+https://kimi.ai" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 262K ctx · $0.6/M · $2.5/M</p>
+<p>MMLU 87.1% · HE 91% · MATH 88% · AIME 96.1%</p>
+<p>Multimodal K2 with native vision, video. Agent Swarm: up to 100 parallel sub-agents. Modified MIT.</p>
+  <p class="url"><a href="https://kimi.ai">https://kimi.ai</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(4건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-17 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Gemini 3 Flash (Google) (2025.12.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemini 3 Flash (Google) (2025.12.17)
+
+General · Closed · 1000K ctx · $0.5/M · $3/M
+
+GPQA 90.4% · SWE 78% · MMLU 76% · HE 90.4% · MATH 87% · AIME 99.7% · HLE 33.7%
+
+Budget champion - 78% SWE-bench, 90.4% GPQA Diamond, 99.7% AIME 2025. Best value in Dec 2025 frontier.
+
+https://ai.google.dev/gemini-api/docs/models" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 1000K ctx · $0.5/M · $3/M</p>
+<p>GPQA 90.4% · SWE 78% · MMLU 76% · HE 90.4% · MATH 87% · AIME 99.7% · HLE 33.7%</p>
+<p>Budget champion - 78% SWE-bench, 90.4% GPQA Diamond, 99.7% AIME 2025. Best value in Dec 2025 frontier.</p>
+  <p class="url"><a href="https://ai.google.dev/gemini-api/docs/models">https://ai.google.dev/gemini-api/docs/models</a></p>
+</article>
+<h3 class="cat-date-heading">2025-12-02 <span class="archive-count">(2건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Mistral Large 3 (Mistral AI) (2025.12.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Mistral Large 3 (Mistral AI) (2025.12.2)
+
+General · Open · 262K ctx · $0.5/M · $1.5/M
+
+벤치마크 미공개
+
+MoE - 41B active / 675B total. 262K context, multimodal, 40+ languages. #2 open model on LMArena at launch. Apache 2.0.
+
+https://mistral.ai/news/mistral-3" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 262K ctx · $0.5/M · $1.5/M</p>
+<p>벤치마크 미공개</p>
+<p>MoE - 41B active / 675B total. 262K context, multimodal, 40+ languages. #2 open model on LMArena at launch. Apache 2.0.</p>
+  <p class="url"><a href="https://mistral.ai/news/mistral-3">https://mistral.ai/news/mistral-3</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>Nova 2 Pro Preview (Amazon) (2025.12.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Nova 2 Pro Preview (Amazon) (2025.12.2)
+
+Reasoning · Closed · 1000K ctx · $1.25/M · $10/M
+
+벤치마크 미공개
+
+Frontier reasoning via Bedrock. Text, image, video, speech input. Three thinking intensities. $1.25/$10 per 1M tokens.
+
+https://aws.amazon.com/about-aws/whats-new/2025/12/nova-2-foundation-models-amazon-bedrock/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $1.25/M · $10/M</p>
+<p>벤치마크 미공개</p>
+<p>Frontier reasoning via Bedrock. Text, image, video, speech input. Three thinking intensities. $1.25/$10 per 1M tokens.</p>
+  <p class="url"><a href="https://aws.amazon.com/about-aws/whats-new/2025/12/nova-2-foundation-models-amazon-bedrock/">https://aws.amazon.com/about-aws/whats-new/2025/12/nova-2-foundation-models-amazon-bedrock/</a></p>
+</article>
+<h3 class="cat-date-heading">2025-12-01 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 DeepSeek V3.2 (DeepSeek) (2025.12.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="DeepSeek V3.2 (DeepSeek) (2025.12.1)
+
+General · Open · 128K ctx · $0.28/M · $0.42/M
+
+MMLU 85% · MATH 91% · AIME 93.1%
+
+685B MoE / 37B active. DeepSeek Sparse Attention: 70% long-context cost reduction. MIT license.
+
+https://deepseek.com" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 128K ctx · $0.28/M · $0.42/M</p>
+<p>MMLU 85% · MATH 91% · AIME 93.1%</p>
+<p>685B MoE / 37B active. DeepSeek Sparse Attention: 70% long-context cost reduction. MIT license.</p>
+  <p class="url"><a href="https://deepseek.com">https://deepseek.com</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 11월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-11-24 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Opus 4.5 (Anthropic) (2025.11.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.5 (Anthropic) (2025.11.24)
+
+Reasoning · Closed · 200K ctx · $5/M · $25/M
+
+GPQA 87% · SWE 80.9% · MMLU 89.5% · HE 93.5% · MATH 90% · AIME 93%
+
+80.9% SWE-bench (record Nov 2025). 89.5% MMLU-Pro. Long-horizon agentic tasks. Extended thinking mode.
+
+https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 200K ctx · $5/M · $25/M</p>
+<p>GPQA 87% · SWE 80.9% · MMLU 89.5% · HE 93.5% · MATH 90% · AIME 93%</p>
+<p>80.9% SWE-bench (record Nov 2025). 89.5% MMLU-Pro. Long-horizon agentic tasks. Extended thinking mode.</p>
+  <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
+</article>
+<h3 class="cat-date-heading">2025-11-19 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Grok 4.1 Fast (xAI) (2025.11.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Grok 4.1 Fast (xAI) (2025.11.19)
+
+Reasoning · Closed · 2000K ctx · $0.2/M · $0.5/M
+
+MMLU 84% · HE 97% · MATH 94%
+
+Grok 4 capabilities at dramatically lower cost ($0.20/$0.50). #2 LMArena Elo Dec 2025. Leads EQ-Bench for creative. Real-time X data.
+
+https://docs.x.ai/docs/models" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 2000K ctx · $0.2/M · $0.5/M</p>
+<p>MMLU 84% · HE 97% · MATH 94%</p>
+<p>Grok 4 capabilities at dramatically lower cost ($0.20/$0.50). #2 LMArena Elo Dec 2025. Leads EQ-Bench for creative. Real-time X data.</p>
+  <p class="url"><a href="https://docs.x.ai/docs/models">https://docs.x.ai/docs/models</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 10월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-10-15 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Haiku 4.5 (Anthropic) (2025.10.15)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Haiku 4.5 (Anthropic) (2025.10.15)
+
+General · Closed · 200K ctx · $1/M · $5/M
+
+GPQA 73% · SWE 73.3% · MMLU 65% · HE 89% · MATH 72% · AIME 80.7%
+
+Fastest efficient Anthropic model. First Haiku with extended thinking and computer use. 73.3% SWE-bench.
+
+https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 200K ctx · $1/M · $5/M</p>
+<p>GPQA 73% · SWE 73.3% · MMLU 65% · HE 89% · MATH 72% · AIME 80.7%</p>
+<p>Fastest efficient Anthropic model. First Haiku with extended thinking and computer use. 73.3% SWE-bench.</p>
+  <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 9월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-09-29 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Sonnet 4.5 (Anthropic) (2025.9.29)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 4.5 (Anthropic) (2025.9.29)
+
+General · Closed · 200K ctx · $3/M · $15/M
+
+GPQA 83.4% · SWE 77.2% · MMLU 82% · HE 94% · MATH 88% · AIME 87%
+
+Leading coding model. 77.2% SWE-bench Verified. 30+ hour autonomous task operation. Computer use, extended thinking.
+
+https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 200K ctx · $3/M · $15/M</p>
+<p>GPQA 83.4% · SWE 77.2% · MMLU 82% · HE 94% · MATH 88% · AIME 87%</p>
+<p>Leading coding model. 77.2% SWE-bench Verified. 30+ hour autonomous task operation. Computer use, extended thinking.</p>
+  <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 8월 <span class="archive-count">(3건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-08-26 <span class="archive-count">(2건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Hermes 4 70B (Nous Research) (2025.8.26)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Hermes 4 70B (Nous Research) (2025.8.26)
+
+Reasoning · Open · 131K ctx · $0.13/M · $0.4/M
+
+MMLU 71% · HE 88% · MATH 95.6%
+
+Hybrid reasoning on Llama 3.1 70B. Toggle &lt;think&gt; traces per-request. SOTA RefusalBench (57.1%). Neutral alignment. $0.13/$0.40 via OpenRouter.
+
+https://huggingface.co/NousResearch/Hermes-4-70B" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 131K ctx · $0.13/M · $0.4/M</p>
+<p>MMLU 71% · HE 88% · MATH 95.6%</p>
+<p>Hybrid reasoning on Llama 3.1 70B. Toggle &lt;think&gt; traces per-request. SOTA RefusalBench (57.1%). Neutral alignment. $0.13/$0.40 via OpenRouter.</p>
+  <p class="url"><a href="https://huggingface.co/NousResearch/Hermes-4-70B">https://huggingface.co/NousResearch/Hermes-4-70B</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>Hermes 4 405B (Nous Research) (2025.8.26)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Hermes 4 405B (Nous Research) (2025.8.26)
+
+Reasoning · Open · 131K ctx · $1/M · $3/M
+
+GPQA 70.5% · MMLU 80.6% · HE 91% · MATH 96.3% · AIME 78.1%
+
+96.3% MATH-500, 81.9% AIME&#x27;24, 70.5% GPQA Diamond. Trained w/ DataForge + Atropos RL on 192 B200 GPUs. Llama 3.1 license.
+
+https://huggingface.co/NousResearch/Hermes-4-405B" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 131K ctx · $1/M · $3/M</p>
+<p>GPQA 70.5% · MMLU 80.6% · HE 91% · MATH 96.3% · AIME 78.1%</p>
+<p>96.3% MATH-500, 81.9% AIME&#x27;24, 70.5% GPQA Diamond. Trained w/ DataForge + Atropos RL on 192 B200 GPUs. Llama 3.1 license.</p>
+  <p class="url"><a href="https://huggingface.co/NousResearch/Hermes-4-405B">https://huggingface.co/NousResearch/Hermes-4-405B</a></p>
+</article>
+<h3 class="cat-date-heading">2025-08-07 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5 (OpenAI) (2025.8.7)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5 (OpenAI) (2025.8.7)
+
+Reasoning · Closed · 400K ctx · $0.625/M · $5/M
+
+GPQA 86.2% · SWE 73.6% · MMLU 88% · HE 95% · MATH 96% · AIME 94.6%
+
+First unified reasoning+general model. Adaptive routing auto-switches between instant and deep-think. 94.6% AIME 2025.
+
+https://openai.com/index/introducing-gpt-5" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 400K ctx · $0.625/M · $5/M</p>
+<p>GPQA 86.2% · SWE 73.6% · MMLU 88% · HE 95% · MATH 96% · AIME 94.6%</p>
+<p>First unified reasoning+general model. Adaptive routing auto-switches between instant and deep-think. 94.6% AIME 2025.</p>
+  <p class="url"><a href="https://openai.com/index/introducing-gpt-5">https://openai.com/index/introducing-gpt-5</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 7월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-07-11 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Kimi K2 (Moonshot AI) (2025.7.11)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Kimi K2 (Moonshot AI) (2025.7.11)
+
+Reasoning · Open · 128K ctx · $0.6/M · $2.5/M
+
+MMLU 81.1% · HE 89% · MATH 97.4% · AIME 49.5%
+
+1T param MoE / 32B active. Modified MIT license. 60.2% BrowseComp. Optimized for agentic tool use.
+
+https://huggingface.co/moonshotai/Kimi-K2-Instruct" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 128K ctx · $0.6/M · $2.5/M</p>
+<p>MMLU 81.1% · HE 89% · MATH 97.4% · AIME 49.5%</p>
+<p>1T param MoE / 32B active. Modified MIT license. 60.2% BrowseComp. Optimized for agentic tool use.</p>
+  <p class="url"><a href="https://huggingface.co/moonshotai/Kimi-K2-Instruct">https://huggingface.co/moonshotai/Kimi-K2-Instruct</a></p>
+</article>
+<h3 class="cat-date-heading">2025-07-09 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Grok 4 (xAI) (2025.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Grok 4 (xAI) (2025.7.9)
+
+Reasoning · Closed · 256K ctx · $3/M · $15/M
+
+GPQA 87% · SWE 75% · MMLU 86.6% · HE 96% · MATH 95% · AIME 91.7% · HLE 24%
+
+87% GPQA Diamond at launch. 24% HLE. Trained on Colossus 2.0. Premium pricing for enterprise/research.
+
+https://docs.x.ai/docs/models" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 256K ctx · $3/M · $15/M</p>
+<p>GPQA 87% · SWE 75% · MMLU 86.6% · HE 96% · MATH 95% · AIME 91.7% · HLE 24%</p>
+<p>87% GPQA Diamond at launch. 24% HLE. Trained on Colossus 2.0. Premium pricing for enterprise/research.</p>
+  <p class="url"><a href="https://docs.x.ai/docs/models">https://docs.x.ai/docs/models</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 6월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-06-17 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>MiniMax M1 (MiniMax) (2025.6.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="MiniMax M1 (MiniMax) (2025.6.17)
+
+Reasoning · Open · 1000K ctx · $0.55/M · $2.2/M
+
+MMLU 81.1% · HE 88% · MATH 96.8% · AIME 76.9%
+
+456B MoE / 46B active. 1M context. Lightning attention for long-sequence efficiency.
+
+https://huggingface.co/MiniMaxAI/MiniMax-M1-80k" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 1000K ctx · $0.55/M · $2.2/M</p>
+<p>MMLU 81.1% · HE 88% · MATH 96.8% · AIME 76.9%</p>
+<p>456B MoE / 46B active. 1M context. Lightning attention for long-sequence efficiency.</p>
+  <p class="url"><a href="https://huggingface.co/MiniMaxAI/MiniMax-M1-80k">https://huggingface.co/MiniMaxAI/MiniMax-M1-80k</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 5월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-05-07 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Mistral Medium 3 (Mistral AI) (2025.5.7)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Mistral Medium 3 (Mistral AI) (2025.5.7)
+
+General · Closed · 131K ctx · $0.4/M · $2/M
+
+벤치마크 미공개
+
+~90% of Sonnet 3.7 at 8x lower cost. Multimodal. Strong coding and STEM. $0.40/$2.00 per 1M tokens.
+
+https://mistral.ai/news/mistral-medium-3" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 131K ctx · $0.4/M · $2/M</p>
+<p>벤치마크 미공개</p>
+<p>~90% of Sonnet 3.7 at 8x lower cost. Multimodal. Strong coding and STEM. $0.40/$2.00 per 1M tokens.</p>
+  <p class="url"><a href="https://mistral.ai/news/mistral-medium-3">https://mistral.ai/news/mistral-medium-3</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 4월 <span class="archive-count">(6건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-04-28 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Qwen3 235B-A22B (Alibaba/Qwen) (2025.4.28)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3 235B-A22B (Alibaba/Qwen) (2025.4.28)
+
+Reasoning · Open · 128K ctx · $0.09/M · $0.58/M
+
+MMLU 68.2% · HE 77.6% · MATH 71.8% · AIME 81.5%
+
+MoE - 22B active / 235B total. Hybrid thinking/non-thinking modes. Overtook Llama in HuggingFace downloads. Apache 2.0.
+
+https://qwen.ai/blog/qwen3" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 128K ctx · $0.09/M · $0.58/M</p>
+<p>MMLU 68.2% · HE 77.6% · MATH 71.8% · AIME 81.5%</p>
+<p>MoE - 22B active / 235B total. Hybrid thinking/non-thinking modes. Overtook Llama in HuggingFace downloads. Apache 2.0.</p>
+  <p class="url"><a href="https://qwen.ai/blog/qwen3">https://qwen.ai/blog/qwen3</a></p>
+</article>
+<h3 class="cat-date-heading">2025-04-16 <span class="archive-count">(2건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 o3 (OpenAI) (2025.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="o3 (OpenAI) (2025.4.16)
+
+Reasoning · Closed · 200K ctx · $2/M · $8/M
+
+GPQA 87.7% · SWE 71.7% · MMLU 87% · HE 97% · MATH 97.3% · AIME 88.9%
+
+Flagship reasoning model. 88% ARC-AGI. Three effort levels. Price dropped ~80% from launch.
+
+https://platform.openai.com/docs/models#o3" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 200K ctx · $2/M · $8/M</p>
+<p>GPQA 87.7% · SWE 71.7% · MMLU 87% · HE 97% · MATH 97.3% · AIME 88.9%</p>
+<p>Flagship reasoning model. 88% ARC-AGI. Three effort levels. Price dropped ~80% from launch.</p>
+  <p class="url"><a href="https://platform.openai.com/docs/models#o3">https://platform.openai.com/docs/models#o3</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 o4-mini (OpenAI) (2025.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="o4-mini (OpenAI) (2025.4.16)
+
+Reasoning · Closed · 200K ctx · $1.1/M · $4.4/M
+
+GPQA 81.4% · SWE 68.1% · MMLU 85% · HE 95% · MATH 97.4% · AIME 92.7%
+
+Best-value reasoning model with vision. Near-o3 math at 2.4x lower cost.
+
+https://platform.openai.com/docs/models#o4-mini" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 200K ctx · $1.1/M · $4.4/M</p>
+<p>GPQA 81.4% · SWE 68.1% · MMLU 85% · HE 95% · MATH 97.4% · AIME 92.7%</p>
+<p>Best-value reasoning model with vision. Near-o3 math at 2.4x lower cost.</p>
+  <p class="url"><a href="https://platform.openai.com/docs/models#o4-mini">https://platform.openai.com/docs/models#o4-mini</a></p>
+</article>
+<h3 class="cat-date-heading">2025-04-14 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-4.1 (OpenAI) (2025.4.14)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-4.1 (OpenAI) (2025.4.14)
+
+General · Closed · 1000K ctx · $2/M · $8/M
+
+GPQA 66.3% · SWE 54.6% · MMLU 78% · HE 93% · MATH 90% · AIME 34.7%
+
+1M token context window. Strong coding and instruction following between GPT-4o and GPT-5.
+
+https://platform.openai.com/docs/models#gpt-4-1" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 1000K ctx · $2/M · $8/M</p>
+<p>GPQA 66.3% · SWE 54.6% · MMLU 78% · HE 93% · MATH 90% · AIME 34.7%</p>
+<p>1M token context window. Strong coding and instruction following between GPT-4o and GPT-5.</p>
+  <p class="url"><a href="https://platform.openai.com/docs/models#gpt-4-1">https://platform.openai.com/docs/models#gpt-4-1</a></p>
+</article>
+<h3 class="cat-date-heading">2025-04-05 <span class="archive-count">(2건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Llama 4 Scout (Meta) (2025.4.5)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Llama 4 Scout (Meta) (2025.4.5)
+
+General · Open · 10000K ctx
+
+MMLU 74.3% · AIME 83%
+
+MoE - 17B active / 109B total. 10M token context. Multimodal. Extremely compute-efficient.
+
+https://llama.meta.com/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 10000K ctx</p>
+<p>MMLU 74.3% · AIME 83%</p>
+<p>MoE - 17B active / 109B total. 10M token context. Multimodal. Extremely compute-efficient.</p>
+  <p class="url"><a href="https://llama.meta.com/">https://llama.meta.com/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>Llama 4 Maverick (Meta) (2025.4.5)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Llama 4 Maverick (Meta) (2025.4.5)
+
+General · Open · 1000K ctx
+
+MMLU 80.5% · AIME 96.1%
+
+Meta top-tier open MoE - 17B active / ~400B total. 1M context, multimodal.
+
+https://llama.meta.com/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 1000K ctx</p>
+<p>MMLU 80.5% · AIME 96.1%</p>
+<p>Meta top-tier open MoE - 17B active / ~400B total. 1M context, multimodal.</p>
+  <p class="url"><a href="https://llama.meta.com/">https://llama.meta.com/</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 3월 <span class="archive-count">(6건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-03-25 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Gemini 2.5 Pro (Google) (2025.3.25)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemini 2.5 Pro (Google) (2025.3.25)
+
+Reasoning · Closed · 1000K ctx · $1.25/M · $10/M
+
+GPQA 84% · SWE 63.8% · MMLU 86% · HE 89.7% · MATH 78.3% · AIME 86.7%
+
+GA. First Deep Think Google model. 1M context. Still widely deployed alongside Gemini 3.
+
+https://ai.google.dev/gemini-api/docs/models" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $1.25/M · $10/M</p>
+<p>GPQA 84% · SWE 63.8% · MMLU 86% · HE 89.7% · MATH 78.3% · AIME 86.7%</p>
+<p>GA. First Deep Think Google model. 1M context. Still widely deployed alongside Gemini 3.</p>
+  <p class="url"><a href="https://ai.google.dev/gemini-api/docs/models">https://ai.google.dev/gemini-api/docs/models</a></p>
+</article>
+<h3 class="cat-date-heading">2025-03-17 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Mistral Small 3.1 (Mistral AI) (2025.3.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Mistral Small 3.1 (Mistral AI) (2025.3.17)
+
+General · Open · 128K ctx · $0.1/M · $0.3/M
+
+벤치마크 미공개
+
+Multimodal upgrade to Small 3. Vision + 24 languages. 128K context. Apache 2.0.
+
+https://mistral.ai/news/mistral-small-3-1" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 128K ctx · $0.1/M · $0.3/M</p>
+<p>벤치마크 미공개</p>
+<p>Multimodal upgrade to Small 3. Vision + 24 languages. 128K context. Apache 2.0.</p>
+  <p class="url"><a href="https://mistral.ai/news/mistral-small-3-1">https://mistral.ai/news/mistral-small-3-1</a></p>
+</article>
+<h3 class="cat-date-heading">2025-03-13 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Command A (Cohere) (2025.3.13)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Command A (Cohere) (2025.3.13)
+
+General · Open · 256K ctx · $2.5/M · $10/M
+
+GPQA 50.8% · SWE 26.8% · MMLU 69.6% · HE 76.2% · MATH 80% · AIME 23.3%
+
+111B enterprise RAG model. 256K context, 23 languages. Strong tool use and grounded citations. CC-BY-NC license. Runs on 2 GPUs.
+
+https://docs.cohere.com/docs/command-a" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 256K ctx · $2.5/M · $10/M</p>
+<p>GPQA 50.8% · SWE 26.8% · MMLU 69.6% · HE 76.2% · MATH 80% · AIME 23.3%</p>
+<p>111B enterprise RAG model. 256K context, 23 languages. Strong tool use and grounded citations. CC-BY-NC license. Runs on 2 GPUs.</p>
+  <p class="url"><a href="https://docs.cohere.com/docs/command-a">https://docs.cohere.com/docs/command-a</a></p>
+</article>
+<h3 class="cat-date-heading">2025-03-12 <span class="archive-count">(3건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Gemma 3 4B (Google) (2025.3.12)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemma 3 4B (Google) (2025.3.12)
+
+General · Open · 128K ctx
+
+GPQA 30.8% · MMLU 43.6% · HE 71.3% · MATH 75.6%
+
+Compact multimodal Gemma 3. 128K context. Outperforms Gemma 2 27B despite 7x fewer params. On-device optimized.
+
+https://deepmind.google/models/gemma/gemma-3/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 128K ctx</p>
+<p>GPQA 30.8% · MMLU 43.6% · HE 71.3% · MATH 75.6%</p>
+<p>Compact multimodal Gemma 3. 128K context. Outperforms Gemma 2 27B despite 7x fewer params. On-device optimized.</p>
+  <p class="url"><a href="https://deepmind.google/models/gemma/gemma-3/">https://deepmind.google/models/gemma/gemma-3/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>Gemma 3 12B (Google) (2025.3.12)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemma 3 12B (Google) (2025.3.12)
+
+General · Open · 128K ctx
+
+GPQA 40.9% · MMLU 60.6% · HE 85.4% · MATH 83.8%
+
+Mid-size Gemma 3. 128K context, multimodal. Strong multilingual and reasoning for its size class.
+
+https://deepmind.google/models/gemma/gemma-3/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 128K ctx</p>
+<p>GPQA 40.9% · MMLU 60.6% · HE 85.4% · MATH 83.8%</p>
+<p>Mid-size Gemma 3. 128K context, multimodal. Strong multilingual and reasoning for its size class.</p>
+  <p class="url"><a href="https://deepmind.google/models/gemma/gemma-3/">https://deepmind.google/models/gemma/gemma-3/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>Gemma 3 27B (Google) (2025.3.12)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemma 3 27B (Google) (2025.3.12)
+
+General · Open · 128K ctx
+
+GPQA 42.4% · MMLU 67.5% · HE 87.8% · MATH 89%
+
+Google&#x27;s largest open Gemma model. 128K context, multimodal. Competitive with several closed mid-tier models.
+
+https://deepmind.google/models/gemma/gemma-3/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 128K ctx</p>
+<p>GPQA 42.4% · MMLU 67.5% · HE 87.8% · MATH 89%</p>
+<p>Google&#x27;s largest open Gemma model. 128K context, multimodal. Competitive with several closed mid-tier models.</p>
+  <p class="url"><a href="https://deepmind.google/models/gemma/gemma-3/">https://deepmind.google/models/gemma/gemma-3/</a></p>
+</article></div></details><details class="archive-month"><summary>2025년 1월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-01-20 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 DeepSeek R1 (DeepSeek) (2025.1.20)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="DeepSeek R1 (DeepSeek) (2025.1.20)
+
+Reasoning · Open · 128K ctx · $0.55/M · $2.19/M
+
+MMLU 84% · MATH 97.3% · AIME 87.5%
+
+Open reasoning model matching o1 on math/science. Full 671B weights. Distilled 1.5B-70B variants. Triggered open-source reasoning boom.
+
+https://api-docs.deepseek.com/news/news250120" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 128K ctx · $0.55/M · $2.19/M</p>
+<p>MMLU 84% · MATH 97.3% · AIME 87.5%</p>
+<p>Open reasoning model matching o1 on math/science. Full 671B weights. Distilled 1.5B-70B variants. Triggered open-source reasoning boom.</p>
+  <p class="url"><a href="https://api-docs.deepseek.com/news/news250120">https://api-docs.deepseek.com/news/news250120</a></p>
+</article></div></details><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(3건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-12 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Phi-4 (Microsoft) (2024.12.12)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Phi-4 (Microsoft) (2024.12.12)
+
+General · Open · 16K ctx
+
+MMLU 70.4% · HE 82.6% · MATH 80.4% · AIME 18%
+
+14B model outperforming models 2-5x its size. Best-in-class for on-device / edge. MIT license.
+
+https://azure.microsoft.com/en-us/products/phi" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 16K ctx</p>
+<p>MMLU 70.4% · HE 82.6% · MATH 80.4% · AIME 18%</p>
+<p>14B model outperforming models 2-5x its size. Best-in-class for on-device / edge. MIT license.</p>
+  <p class="url"><a href="https://azure.microsoft.com/en-us/products/phi">https://azure.microsoft.com/en-us/products/phi</a></p>
+</article>
+<h3 class="cat-date-heading">2024-12-06 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Llama 3.3 70B (Meta) (2024.12.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Llama 3.3 70B (Meta) (2024.12.6)
+
+General · Open · 128K ctx
+
+MMLU 68.9% · HE 88.4% · MATH 77%
+
+Best dense open 70B. Matches Llama 3.1 405B on most tasks. Reference model for fine-tuning.
+
+https://llama.meta.com/docs/model-cards-and-prompt-formats/llama3_3/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 128K ctx</p>
+<p>MMLU 68.9% · HE 88.4% · MATH 77%</p>
+<p>Best dense open 70B. Matches Llama 3.1 405B on most tasks. Reference model for fine-tuning.</p>
+  <p class="url"><a href="https://llama.meta.com/docs/model-cards-and-prompt-formats/llama3_3/">https://llama.meta.com/docs/model-cards-and-prompt-formats/llama3_3/</a></p>
+</article>
+<h3 class="cat-date-heading">2024-12-03 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Nova Pro (Amazon) (2024.12.3)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Nova Pro (Amazon) (2024.12.3)
+
+General · Closed · 300K ctx · $0.8/M · $3.2/M
+
+MMLU 64.9% · HE 89% · MATH 79.5% · AIME 7%
+
+Amazon multimodal via Bedrock. Deep AWS integrations. Enterprise document, image, video workflows.
+
+https://aws.amazon.com/nova/" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 300K ctx · $0.8/M · $3.2/M</p>
+<p>MMLU 64.9% · HE 89% · MATH 79.5% · AIME 7%</p>
+<p>Amazon multimodal via Bedrock. Deep AWS integrations. Enterprise document, image, video workflows.</p>
+  <p class="url"><a href="https://aws.amazon.com/nova/">https://aws.amazon.com/nova/</a></p>
+</article></div></details><details class="archive-month"><summary>2024년 7월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-07-24 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Mistral Large 2 (Mistral AI) (2024.7.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Mistral Large 2 (Mistral AI) (2024.7.24)
+
+General · Open · 128K ctx · $2/M · $6/M
+
+MMLU 66% · HE 92% · MATH 71.5%
+
+123B open-weight flagship. 80+ language multilingual. Strong function calling. La Plateforme API + open weights.
+
+https://mistral.ai/news/mistral-large-2407" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Open · 128K ctx · $2/M · $6/M</p>
+<p>MMLU 66% · HE 92% · MATH 71.5%</p>
+<p>123B open-weight flagship. 80+ language multilingual. Strong function calling. La Plateforme API + open weights.</p>
+  <p class="url"><a href="https://mistral.ai/news/mistral-large-2407">https://mistral.ai/news/mistral-large-2407</a></p>
+</article></div></details><details class="archive-month"><summary>2024년 4월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-04-04 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-frontier">
+  <h2>Command R+ (Cohere) (2024.4.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Command R+ (Cohere) (2024.4.4)
+
+General · Closed · 128K ctx · $2.5/M · $10/M
+
+MMLU 60% · HE 72% · MATH 50.7%
+
+104B enterprise RAG model. Optimized for retrieval, tool use, grounded citations. Popular in regulated industries.
+
+https://docs.cohere.com/docs/command-r-plus" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 128K ctx · $2.5/M · $10/M</p>
+<p>MMLU 60% · HE 72% · MATH 50.7%</p>
+<p>104B enterprise RAG model. Optimized for retrieval, tool use, grounded citations. Popular in regulated industries.</p>
+  <p class="url"><a href="https://docs.cohere.com/docs/command-r-plus">https://docs.cohere.com/docs/command-r-plus</a></p>
+</article></div></details>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

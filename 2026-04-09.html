@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-04-09</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
+       거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
+       됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
+       색상이 비슷한 리본이 있어도 톤 자체가 달라 서로 헷갈리지 않게 했다.
+       13개를 색상환에 27.7도 간격으로 고르게 배치(채도·명도 고정) —
+       처음엔 임의로 고른 값이라 3개(#3 #9 #13)가 우연히 거의 같은 색상(H≈29도)
+       으로 몰려서 명도/채도 차이로만 구분해야 했는데, 그건 눈으로 잘 안
+       구별돼서 균등 배치로 다시 잡았다. */
+    --coll-1: #905047; --coll-2: #907247; --coll-3: #8b9047;
+    --coll-4: #6a9047; --coll-5: #489047; --coll-6: #479067;
+    --coll-7: #479088; --coll-8: #477590; --coll-9: #475390;
+    --coll-10: #5c4790; --coll-11: #7d4790; --coll-12: #904780;
+    --coll-13: #90475f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
+      --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
+      --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
+      --coll-10: #b7a8dc; --coll-11: #cfa8dc; --coll-12: #dca8d1;
+      --coll-13: #dca8b9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-04-09 · 9/10건 요약</div>
+    <div class="nav"><a href="index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-company">
+  <h2>🇺🇸 신뢰할 수 있는 에이전트의 실제 적용 사례 (2026.4.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span></span><button type="button" class="copy-btn" data-copy="신뢰할 수 있는 에이전트의 실제 적용 사례 (2026.4.9)
+
+Anthropic은 신뢰할 수 있는 AI 에이전트 개발을 위한 프레임워크를 소개하며, 이를 실제 제품 적용 사례를 통해 설명합니다. 에이전트는 단순한 챗봇을 넘어 코드 작성, 파일 관리, 다중 애플리케이션 작업 완료 등 복잡한 작업을 수행할 수 있습니다. 이러한 자율성은 생산성 향상에 기여하지만, 사용자 의도의 오해와 부작용을 초래할 위험도 증가시킵니다. 또한, 에이전트는 &#x27;프롬프트 주입&#x27; 공격의 대상이 될 수 있습니다. 
+
+Anthropic은 에이전트의 안전성과 유용성을 위한 다섯 가지 핵심 원칙을 제시합니다: 인간 통제 유지, 사용자 가치와의 일치, 상호작용 보안 강화, 투명성 유지, 개인정보 보호입니다. 구체적으로는 다음과 같습니다:
+
+- **인간 통제 유지**: 사용자가 에이전트의 기능을 제한하고 허가를 설정할 수 있도록 설계하여 자율성과 안전성 사이의 균형을 맞춥니다.
+- **사용자 기대와의 일치**: 에이전트가 불확실하거나 오해할 가능성이 있는 상황에서 사용자에게 확인을 요청하도록 훈련하여 사용자 의도에 부합하도록 합니다.
+- **공격 방어**: 다양한 보안 계층을 통해 프롬프트 주입 공격 등을 방어합니다.
+
+또한, 산업계, 표준 기관, 정부가 공동 인프라 구축에 참여해야 한다는 점을 강조하며, 이를 위한 몇 가지 제안을 제시합니다: 표준화된 벤치마크 개발, 증거 공유의 확대, 오픈 표준 도입 등입니다. 이러한 노력은 에이전트 기술의 안전하고 개방적인 발전을 촉진할 것입니다.
+
+https://www.anthropic.com/research/trustworthy-agents" onclick="copyEntry(this)">복사</button></div>
+  <p>Anthropic은 신뢰할 수 있는 AI 에이전트 개발을 위한 프레임워크를 소개하며, 이를 실제 제품 적용 사례를 통해 설명합니다. 에이전트는 단순한 챗봇을 넘어 코드 작성, 파일 관리, 다중 애플리케이션 작업 완료 등 복잡한 작업을 수행할 수 있습니다. 이러한 자율성은 생산성 향상에 기여하지만, 사용자 의도의 오해와 부작용을 초래할 위험도 증가시킵니다. 또한, 에이전트는 &#x27;프롬프트 주입&#x27; 공격의 대상이 될 수 있습니다.</p>
+<p>Anthropic은 에이전트의 안전성과 유용성을 위한 다섯 가지 핵심 원칙을 제시합니다: 인간 통제 유지, 사용자 가치와의 일치, 상호작용 보안 강화, 투명성 유지, 개인정보 보호입니다. 구체적으로는 다음과 같습니다:</p>
+<p>- **인간 통제 유지**: 사용자가 에이전트의 기능을 제한하고 허가를 설정할 수 있도록 설계하여 자율성과 안전성 사이의 균형을 맞춥니다.
+- **사용자 기대와의 일치**: 에이전트가 불확실하거나 오해할 가능성이 있는 상황에서 사용자에게 확인을 요청하도록 훈련하여 사용자 의도에 부합하도록 합니다.
+- **공격 방어**: 다양한 보안 계층을 통해 프롬프트 주입 공격 등을 방어합니다.</p>
+<p>또한, 산업계, 표준 기관, 정부가 공동 인프라 구축에 참여해야 한다는 점을 강조하며, 이를 위한 몇 가지 제안을 제시합니다: 표준화된 벤치마크 개발, 증거 공유의 확대, 오픈 표준 도입 등입니다. 이러한 노력은 에이전트 기술의 안전하고 개방적인 발전을 촉진할 것입니다.</p>
+  <p class="url"><a href="https://www.anthropic.com/research/trustworthy-agents">https://www.anthropic.com/research/trustworthy-agents</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 AI Continent Action Plan, 5대 분야에서 주요 성과(2026.4.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">유럽연합 집행위원회(EU-Digital-Strategy)</span></span><button type="button" class="copy-btn" data-copy="AI Continent Action Plan, 5대 분야에서 주요 성과(2026.4.9)
+
+유럽 집행위원회는 AI Continent Action Plan이 5대 축(인프라·데이터·인재·도입·신뢰할 수 있는 AI)에서 성과를 내고 있다고 밝혔다. 슈퍼컴퓨터 기반 ‘AI 팩토리’ 19개를 배치했으며, 지역 접근을 위한 안테나 13개와 ‘AI 기가팩토리’도 곧 도입될 예정이다. 데이터 측면에서는 Data Union Strategy와 AI Omnibus를 통해 데이터 접근·공유를 촉진하고 기업의 법적 확실성과 준수비용 절감을 목표로 한다. 또한 ICT 인재 이동을 돕는 EU-인도 법률 게이트웨이 사무소, 생성형 AI·첨단컴퓨팅 특화 프로그램을 위한 AI Skills Academy, 산업·공공 부문 AI 도입을 위한 Apply AI Strategy(이미 10억 유로 규모 공모 포함) 등의 추진 상황을 소개했다.
+
+https://digital-strategy.ec.europa.eu/en/news/ai-continent-action-plan-delivers-major-milestones" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽 집행위원회는 AI Continent Action Plan이 5대 축(인프라·데이터·인재·도입·신뢰할 수 있는 AI)에서 성과를 내고 있다고 밝혔다. 슈퍼컴퓨터 기반 ‘AI 팩토리’ 19개를 배치했으며, 지역 접근을 위한 안테나 13개와 ‘AI 기가팩토리’도 곧 도입될 예정이다. 데이터 측면에서는 Data Union Strategy와 AI Omnibus를 통해 데이터 접근·공유를 촉진하고 기업의 법적 확실성과 준수비용 절감을 목표로 한다. 또한 ICT 인재 이동을 돕는 EU-인도 법률 게이트웨이 사무소, 생성형 AI·첨단컴퓨팅 특화 프로그램을 위한 AI Skills Academy, 산업·공공 부문 AI 도입을 위한 Apply AI Strategy(이미 10억 유로 규모 공모 포함) 등의 추진 상황을 소개했다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/ai-continent-action-plan-delivers-major-milestones">https://digital-strategy.ec.europa.eu/en/news/ai-continent-action-plan-delivers-major-milestones</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 유럽 집행위, 이탈리아 ‘광자(포토닉) 칩’ 개발 지원을 위한 2억1100만 유로 국가지원 승인 (2026.4.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">EU 디지털 전략(EU-Digital-Strategy)</span></span><button type="button" class="copy-btn" data-copy="유럽 집행위, 이탈리아 ‘광자(포토닉) 칩’ 개발 지원을 위한 2억1100만 유로 국가지원 승인 (2026.4.9)
+
+유럽 집행위는 비공개 해제 후 경쟁 웹사이트의 국가지원 등록부(사건번호 SA.115733)에 결정문을 공개할 예정입니다.
+
+유럽 집행위원회는 EU 국가지원 규정에 따라 이탈리아의 2억1100만 유로 규모 지원안을 승인했습니다. 이 지원은 이탈리아 중소기업 CamGraPhIC가 그래핀 기반 광학 트랜시버(데이터를 빛으로 송수신하는 칩 부품)를 개발하는 데 직접 보조금 형태로 제공됩니다. 집행위는 해당 조치가 필요하고 적절하며, 공적 지원이 없으면 투자가 이뤄지지 않는 ‘인센티브 효과’가 있고, 경쟁과 역내 무역에 부정적 영향이 과도하지 않다고 판단했습니다.
+
+https://digital-strategy.ec.europa.eu/en/news/commission-approves-eu211-million-italian-state-aid-measure-support-photonic-chips-development" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽 집행위는 비공개 해제 후 경쟁 웹사이트의 국가지원 등록부(사건번호 SA.115733)에 결정문을 공개할 예정입니다.</p>
+<p>유럽 집행위원회는 EU 국가지원 규정에 따라 이탈리아의 2억1100만 유로 규모 지원안을 승인했습니다. 이 지원은 이탈리아 중소기업 CamGraPhIC가 그래핀 기반 광학 트랜시버(데이터를 빛으로 송수신하는 칩 부품)를 개발하는 데 직접 보조금 형태로 제공됩니다. 집행위는 해당 조치가 필요하고 적절하며, 공적 지원이 없으면 투자가 이뤄지지 않는 ‘인센티브 효과’가 있고, 경쟁과 역내 무역에 부정적 영향이 과도하지 않다고 판단했습니다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-approves-eu211-million-italian-state-aid-measure-support-photonic-chips-development">https://digital-strategy.ec.europa.eu/en/news/commission-approves-eu211-million-italian-state-aid-measure-support-photonic-chips-development</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 유럽연합 집행위, ‘AI 대륙 행동계획’ 1주년 맞아 AI 도입·정책 관련 신규 보고서 2건 발표 (2026.4.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">EU-Digital-Strategy</span></span><button type="button" class="copy-btn" data-copy="유럽연합 집행위, ‘AI 대륙 행동계획’ 1주년 맞아 AI 도입·정책 관련 신규 보고서 2건 발표 (2026.4.9)
+
+유럽연합 집행위는 ‘AI 대륙 행동계획’ 1주년을 맞아 AI 도입(공공행정) 보고서와 EU의 AI 정책 10년을 다룬 Science for Policy 브리프를 공개했다. 지난 1년간 AI 팩토리(19개)와 안테나(13개) 운영 확대, AI 기가팩토리 관심표현(16개 회원국 60개 사이트에서 76건) 등 인프라·데이터·역량·규제 단순화가 추진됐다고 밝혔다. 공공행정 분야 보고서는 AI 도입을 정책·규정·원칙에 정착(Anchoring), 공공행정 역량 조정(Adapting), 고영향 분야 적용(Applying) 등 3가지 활동으로 제시한다.
+
+https://digital-strategy.ec.europa.eu/en/news/commission-marks-one-year-ai-continent-action-plan-two-new-reports-ai-adoption-and-policymaking" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽연합 집행위는 ‘AI 대륙 행동계획’ 1주년을 맞아 AI 도입(공공행정) 보고서와 EU의 AI 정책 10년을 다룬 Science for Policy 브리프를 공개했다. 지난 1년간 AI 팩토리(19개)와 안테나(13개) 운영 확대, AI 기가팩토리 관심표현(16개 회원국 60개 사이트에서 76건) 등 인프라·데이터·역량·규제 단순화가 추진됐다고 밝혔다. 공공행정 분야 보고서는 AI 도입을 정책·규정·원칙에 정착(Anchoring), 공공행정 역량 조정(Adapting), 고영향 분야 적용(Applying) 등 3가지 활동으로 제시한다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-marks-one-year-ai-continent-action-plan-two-new-reports-ai-adoption-and-policymaking">https://digital-strategy.ec.europa.eu/en/news/commission-marks-one-year-ai-continent-action-plan-two-new-reports-ai-adoption-and-policymaking</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 (2026.4.9) 지중해 협력 ‘디지털 전환’ 첫 이니셔티브 출범</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">유럽 집행위원회(EU 디지털 전략)</span></span><button type="button" class="copy-btn" data-copy="(2026.4.9) 지중해 협력 ‘디지털 전환’ 첫 이니셔티브 출범
+
+유럽 집행위원회는 2025년 말 출범한 ‘지중해 협력(Pact for the Mediterranean)’의 디지털 분야 첫 성과로, 북아프리카와 중동 국가를 대상으로 디지털 전환 프로그램을 시작했다. 독일 정부가 공동으로 재원을 지원하며, 시민·공공행정·기업의 디지털 서비스 접근성 개선, 디지털 규제 정합성, 사이버보안 강화, 디지털 역량 향상을 목표로 한다. 프로그램은 (1) EU 기준에 맞춘 통신 규제 정렬과 국가 규제기관 역량 강화 및 지역 협력 네트워크 구축, (2) 국가 차원의 사이버보안 프레임워크·거버넌스 개선, (3) EU DigComp 기준에 따른 지역 디지털 역량 개발과 학습·전문성 교류를 위한 플랫폼·네트워크 구축에 중점을 둔다. 공식 출범은 모로코 마라케시에서 열린 GITEX Africa에서 진행됐다.
+
+https://digital-strategy.ec.europa.eu/en/news/pact-mediterranean-delivers-eu-unveils-first-digital-initiative-region" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽 집행위원회는 2025년 말 출범한 ‘지중해 협력(Pact for the Mediterranean)’의 디지털 분야 첫 성과로, 북아프리카와 중동 국가를 대상으로 디지털 전환 프로그램을 시작했다. 독일 정부가 공동으로 재원을 지원하며, 시민·공공행정·기업의 디지털 서비스 접근성 개선, 디지털 규제 정합성, 사이버보안 강화, 디지털 역량 향상을 목표로 한다. 프로그램은 (1) EU 기준에 맞춘 통신 규제 정렬과 국가 규제기관 역량 강화 및 지역 협력 네트워크 구축, (2) 국가 차원의 사이버보안 프레임워크·거버넌스 개선, (3) EU DigComp 기준에 따른 지역 디지털 역량 개발과 학습·전문성 교류를 위한 플랫폼·네트워크 구축에 중점을 둔다. 공식 출범은 모로코 마라케시에서 열린 GITEX Africa에서 진행됐다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/pact-mediterranean-delivers-eu-unveils-first-digital-initiative-region">https://digital-strategy.ec.europa.eu/en/news/pact-mediterranean-delivers-eu-unveils-first-digital-initiative-region</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>🇺🇸 미국 직장인 AI 사용자 절반은 업무에도 주로 활용(2026.4.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">Epoch AI(서브스택)·Ipsos 공동 설문</span></span><button type="button" class="copy-btn" data-copy="미국 직장인 AI 사용자 절반은 업무에도 주로 활용(2026.4.9)
+
+미국에서 최근 1주일 내 AI 도구를 사용한 직장인 중 절반은 업무에 개인 용도만큼(또는 그 이상) AI를 사용한다고 응답했다. AI는 업무에서 기존 작업을 대체하는 경우(27%)와 새로운 작업을 만들어내는 경우(21%)가 모두 나타났으며, 유급 구독(무료가 아닌 유료) 사용자가 업무 활용 비중이 더 높았다. 특히 고용주가 제공한 구독자는 무료 이용자보다 업무 활용 비율이 더 높게 조사됐다.
+
+https://epochai.substack.com/p/ai-is-a-common-workplace-tool-half" onclick="copyEntry(this)">복사</button></div>
+  <p>미국에서 최근 1주일 내 AI 도구를 사용한 직장인 중 절반은 업무에 개인 용도만큼(또는 그 이상) AI를 사용한다고 응답했다. AI는 업무에서 기존 작업을 대체하는 경우(27%)와 새로운 작업을 만들어내는 경우(21%)가 모두 나타났으며, 유급 구독(무료가 아닌 유료) 사용자가 업무 활용 비중이 더 높았다. 특히 고용주가 제공한 구독자는 무료 이용자보다 업무 활용 비율이 더 높게 조사됐다.</p>
+  <p class="url"><a href="https://epochai.substack.com/p/ai-is-a-common-workplace-tool-half">https://epochai.substack.com/p/ai-is-a-common-workplace-tool-half</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>🇺🇸 OpenAI Plans Gradual Rollout of New Model Over Cybersecurity Risks (2026.4.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="OpenAI Plans Gradual Rollout of New Model Over Cybersecurity Risks (2026.4.9)
+
+요약불가
+
+https://www.axios.com/2026/04/09/openai-new-model-cyber-mythos-anthopic" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.axios.com/2026/04/09/openai-new-model-cyber-mythos-anthopic">https://www.axios.com/2026/04/09/openai-new-model-cyber-mythos-anthopic</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>🇺🇸 연방 항소법원이 펜타곤의 ‘블랙리스트’ 조치에 대한 앤트로픽의 집행정지 요청을 기각(2026.4.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">PBS(Associated Press)</span></span><button type="button" class="copy-btn" data-copy="연방 항소법원이 펜타곤의 ‘블랙리스트’ 조치에 대한 앤트로픽의 집행정지 요청을 기각(2026.4.9)
+
+미 연방 항소법원(워싱턴 D.C.)은 앤트로픽을 펜타곤이 블랙리스트에 올리는 조치와 관련해, 회사가 요청한 집행정지(보호명령)를 받아들이지 않았다. 다만 항소법원은 앤트로픽이 ‘공급망 위험’으로 판단될 경우 일부 회복하기 어려운 피해가 있을 수 있다고 보면서도, 재정적 피해 규모가 명확하지 않다는 이유로 별도의 명령을 내리지 않았다. 앞서 샌프란시스코 연방법원에서는 트럼프 행정부가 앤트로픽에 국가안보 위험 라벨을 붙인 것이 부당하다고 보고 라벨을 제거하도록 했으며, 행정부는 그에 따라 사용 가능 조치 등을 진행한 것으로 전해졌다.
+
+https://www.pbs.org/newshour/politics/appeals-court-decides-against-anthropic-in-latest-round-of-its-ai-battle-with-the-trump-administration" onclick="copyEntry(this)">복사</button></div>
+  <p>미 연방 항소법원(워싱턴 D.C.)은 앤트로픽을 펜타곤이 블랙리스트에 올리는 조치와 관련해, 회사가 요청한 집행정지(보호명령)를 받아들이지 않았다. 다만 항소법원은 앤트로픽이 ‘공급망 위험’으로 판단될 경우 일부 회복하기 어려운 피해가 있을 수 있다고 보면서도, 재정적 피해 규모가 명확하지 않다는 이유로 별도의 명령을 내리지 않았다. 앞서 샌프란시스코 연방법원에서는 트럼프 행정부가 앤트로픽에 국가안보 위험 라벨을 붙인 것이 부당하다고 보고 라벨을 제거하도록 했으며, 행정부는 그에 따라 사용 가능 조치 등을 진행한 것으로 전해졌다.</p>
+  <p class="url"><a href="https://www.pbs.org/newshour/politics/appeals-court-decides-against-anthropic-in-latest-round-of-its-ai-battle-with-the-trump-administration">https://www.pbs.org/newshour/politics/appeals-court-decides-against-anthropic-in-latest-round-of-its-ai-battle-with-the-trump-administration</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 AI 인프라 경쟁에서 소프트웨어의 구조적 역할(2026.04.09)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">소프트웨어정책연구소(SPRi)</span></span><button type="button" class="copy-btn" data-copy="AI 인프라 경쟁에서 소프트웨어의 구조적 역할(2026.04.09)
+
+전 세계 AI 지출이 2026년 2.5조 달러로 전망되며, 그중 절반 이상이 서버·가속기·데이터센터 등 인프라에 집중된다고 설명한다. NVIDIA는 CUDA 이후 축적된 소프트웨어 생태계와 최적화 격차로 인해 동일 칩에서도 처리량이 3배 이상 달라질 수 있고, 이를 성능 종속·구조적 종속의 이중 장벽으로 분석한다. 보고서는 AI SW 스택을 프레임워크-컴파일러-가속 라이브러리-드라이버/런타임 4계층으로 보고, 성능 종속·설계 종속·구조적 종속 3가지 잠금(lock-in) 메커니즘이 중첩될 때 전환비용이 커진다고 제시한다. K-NPU에 적용하면 프레임워크 계층 진입은 PyTorch 네이티브 지원과 vLLM 통합으로 이뤘으나, 컴파일러·라이브러리 성능 격차 해소와 운영 생태계 규모 확보가 각각 진행 중/초기 단계이며, 이를 위해 HW-SW 균형 R&amp;D, OpenXLA·MLIR 등 오픈소스 표준 참여, 공공 실증환경 제공, TCO 기반 평가와 전문 인력 양성을 제언한다.
+
+https://www.spri.kr/posts/view/23966?code=issue_reports&amp;study_type=&amp;board_type=&amp;flg=0" onclick="copyEntry(this)">복사</button></div>
+  <p>전 세계 AI 지출이 2026년 2.5조 달러로 전망되며, 그중 절반 이상이 서버·가속기·데이터센터 등 인프라에 집중된다고 설명한다. NVIDIA는 CUDA 이후 축적된 소프트웨어 생태계와 최적화 격차로 인해 동일 칩에서도 처리량이 3배 이상 달라질 수 있고, 이를 성능 종속·구조적 종속의 이중 장벽으로 분석한다. 보고서는 AI SW 스택을 프레임워크-컴파일러-가속 라이브러리-드라이버/런타임 4계층으로 보고, 성능 종속·설계 종속·구조적 종속 3가지 잠금(lock-in) 메커니즘이 중첩될 때 전환비용이 커진다고 제시한다. K-NPU에 적용하면 프레임워크 계층 진입은 PyTorch 네이티브 지원과 vLLM 통합으로 이뤘으나, 컴파일러·라이브러리 성능 격차 해소와 운영 생태계 규모 확보가 각각 진행 중/초기 단계이며, 이를 위해 HW-SW 균형 R&amp;D, OpenXLA·MLIR 등 오픈소스 표준 참여, 공공 실증환경 제공, TCO 기반 평가와 전문 인력 양성을 제언한다.</p>
+  <p class="url"><a href="https://www.spri.kr/posts/view/23966?code=issue_reports&amp;study_type=&amp;board_type=&amp;flg=0">https://www.spri.kr/posts/view/23966?code=issue_reports&amp;study_type=&amp;board_type=&amp;flg=0</a></p>
+</article>
+<article class="entry cat-research">
+  <h2>🇺🇸 LLM 에이전트용 API 라우터가 공급망 공격에 취약함을 실증(2026.4.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="LLM 에이전트용 API 라우터가 공급망 공격에 취약함을 실증(2026.4.9)
+
+LLM 에이전트가 여러 상위 제공자에 요청을 분배할 때 사용하는 제3자 API 라우터가, 전송 중 JSON 페이로드를 평문으로 볼 수 있지만 클라이언트-상위 모델 간 암호학적 무결성 검증이 강제되지 않는 점을 공격 표면으로 지적한다. 연구진은 Taobao/Xianyu/Shopify 등에서 유료 라우터 28개와 공개 커뮤니티에서 수집한 무료 라우터 400개를 조사한 결과, 유료 1개·무료 8개에서 악성 코드 주입이 실제로 이뤄졌고 일부는 연구자 AWS 자격증명 접근 및 개인키 기반 자금 유출도 시도했다고 보고한다. 또한 유출된 OpenAI 키나 설정이 약한 디코이(decoy)만으로도 라우터가 동일한 공격 표면에 “오염”될 수 있음을 보이며, 이를 막기 위한 클라이언트 측 방어(실패 시 차단 정책 게이트, 응답 이상 탐지, append-only 투명성 로깅)를 평가한다.
+
+https://arxiv.org/abs/2604.08407" onclick="copyEntry(this)">복사</button></div>
+  <p>LLM 에이전트가 여러 상위 제공자에 요청을 분배할 때 사용하는 제3자 API 라우터가, 전송 중 JSON 페이로드를 평문으로 볼 수 있지만 클라이언트-상위 모델 간 암호학적 무결성 검증이 강제되지 않는 점을 공격 표면으로 지적한다. 연구진은 Taobao/Xianyu/Shopify 등에서 유료 라우터 28개와 공개 커뮤니티에서 수집한 무료 라우터 400개를 조사한 결과, 유료 1개·무료 8개에서 악성 코드 주입이 실제로 이뤄졌고 일부는 연구자 AWS 자격증명 접근 및 개인키 기반 자금 유출도 시도했다고 보고한다. 또한 유출된 OpenAI 키나 설정이 약한 디코이(decoy)만으로도 라우터가 동일한 공격 표면에 “오염”될 수 있음을 보이며, 이를 막기 위한 클라이언트 측 방어(실패 시 차단 정책 게이트, 응답 이상 탐지, append-only 투명성 로깅)를 평가한다.</p>
+  <p class="url"><a href="https://arxiv.org/abs/2604.08407">https://arxiv.org/abs/2604.08407</a></p>
+</article>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

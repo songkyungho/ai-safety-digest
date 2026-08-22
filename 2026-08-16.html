@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-08-16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
+       거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
+       됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
+       색상이 비슷한 리본이 있어도 톤 자체가 달라 서로 헷갈리지 않게 했다.
+       13개를 색상환에 27.7도 간격으로 고르게 배치(채도·명도 고정) —
+       처음엔 임의로 고른 값이라 3개(#3 #9 #13)가 우연히 거의 같은 색상(H≈29도)
+       으로 몰려서 명도/채도 차이로만 구분해야 했는데, 그건 눈으로 잘 안
+       구별돼서 균등 배치로 다시 잡았다. */
+    --coll-1: #905047; --coll-2: #907247; --coll-3: #8b9047;
+    --coll-4: #6a9047; --coll-5: #489047; --coll-6: #479067;
+    --coll-7: #479088; --coll-8: #477590; --coll-9: #475390;
+    --coll-10: #5c4790; --coll-11: #7d4790; --coll-12: #904780;
+    --coll-13: #90475f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
+      --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
+      --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
+      --coll-10: #b7a8dc; --coll-11: #cfa8dc; --coll-12: #dca8d1;
+      --coll-13: #dca8b9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-08-16 · 55/55 수집 성공, 14/14건 요약</div>
+    <div class="nav"><a href="index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<section class="ribbon-nav"><h2 class="trend-title">오늘의 하이라이트</h2><div class="entry">
+  <div class="meta">
+    <span class="meta-tags"><b>2026.8.16</b></span>
+    <button type="button" class="copy-btn" data-copy="오늘의 AI Safety 하이라이트 (2026.8.16)
+
+국방 분야에서는 자율 전투기 X-62A가 실제 공중에서 가상 적기를 감지·추적해 모의 요격 임무를 성공적으로 수행한 시험이 보도되며, AI가 실시간 데이터 분석을 통해 전투기 기동을 조종하는 체계의 작동 가능성과 함께 안전·책임성 측면의 감독 필요성이 부각된다[1]. 한편 정부는 국가 차원의 AI 윤리 원칙 논의를 포럼 형태로 진행하며, 위험한 활용을 제어하기 위한 윤리·거버넌스 프레임을 제도화하려는 흐름을 보여준다[2].
+
+[1] https://www.khan.co.kr/article/202608160900011/?utm_source=khan_rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=total_news
+[2] https://www.msit.go.kr/bbs/list.do?sCode=user&amp;amp;mPid=208&amp;amp;mId=307" onclick="copyEntry(this)">복사</button>
+  </div>
+  <p style="font-size:0.98rem; line-height:1.9;">국방 분야에서는 자율 전투기 X-62A가 실제 공중에서 가상 적기를 감지·추적해 모의 요격 임무를 성공적으로 수행한 시험이 보도되며, AI가 실시간 데이터 분석을 통해 전투기 기동을 조종하는 체계의 작동 가능성과 함께 안전·책임성 측면의 감독 필요성이 부각된다<sup><a href="https://www.khan.co.kr/article/202608160900011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=total_news" title="경향신문">[1]</a></sup>. 한편 정부는 국가 차원의 <u>AI 윤리 원칙</u> 논의를 포럼 형태로 진행하며, 위험한 활용을 제어하기 위한 <u>윤리·거버넌스 프레임</u>을 제도화하려는 흐름을 보여준다<sup><a href="https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307" title="MSIT">[2]</a></sup>.</p>
+</div><div class="section-more"><a href="summary/index.html">지난 하이라이트 전체 보기 →</a></div></section><article class="entry cat-msit">
+  <h2>🇰🇷 MSIT 신규 게시물 1건</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-msit">MSIT</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 1건
+
+[2026-08-14] [Asia] MSIT holds forum on national AI ethics principles (https://english.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187662&amp;searchOpt=ALL&amp;searchTxt=)
+
+https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307" onclick="copyEntry(this)">복사</button></div>
+  <p>[2026-08-14] [Asia] MSIT holds forum on national AI ethics principles (<a href="https://english.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187662&amp;searchOpt=ALL&amp;searchTxt=">https://english.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187662&amp;searchOpt=ALL&amp;searchTxt=</a>)</p>
+  <p class="url"><a href="https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307">https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307</a></p>
+</article>
+<article class="entry cat-gov">
+  <h2>🇪🇺🇰🇷 키프로스, AI 규제를 위한 첫 법안 초안 발표 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">글로벌 AI 규제 추적기</span></span><button type="button" class="copy-btn" data-copy="키프로스, AI 규제를 위한 첫 법안 초안 발표 (2026.8.16)
+
+키프로스는 유럽연합 인공지능법(Regulation (EU) 2024/1689)의 국내 적용과 감독을 위한 「2026년 인공지능법」 초안을 공개했다. 법안은 국가 거버넌스와 관할 당국, 시장 감시·통제, 준수 및 행정벌금 부과 절차를 규정하고 고위험 AI 시스템 등록과 AI Regulatory Sandbox를 도입한다. 정부는 기관·기업·시민의 의견을 2026년 9월 16일까지 전자 공공협의 플랫폼을 통해 접수한다.
+
+https://e-consultation.gov.cy/diavouleuseis/%CE%BF-%CF%80%CE%B5%CF%81%CE%B9-%CF%84%CE%B7%CF%83-%CF%84%CE%B5%CF%87%CE%BD%CE%B7%CF%84%CE%B7%CF%83-%CE%BD%CE%BF%CE%B7%CE%BC%CE%BF%CF%83%CF%85%CE%BD%CE%B7%CF%82-%CE%BD%CE%BF%CE%BC%CE%BF%CF%83-%CF%84" onclick="copyEntry(this)">복사</button></div>
+  <p>키프로스는 유럽연합 인공지능법(Regulation (EU) 2024/1689)의 국내 적용과 감독을 위한 「2026년 인공지능법」 초안을 공개했다. 법안은 국가 거버넌스와 관할 당국, 시장 감시·통제, 준수 및 행정벌금 부과 절차를 규정하고 고위험 AI 시스템 등록과 AI Regulatory Sandbox를 도입한다. 정부는 기관·기업·시민의 의견을 2026년 9월 16일까지 전자 공공협의 플랫폼을 통해 접수한다.</p>
+  <p class="url"><a href="https://e-consultation.gov.cy/diavouleuseis/%CE%BF-%CF%80%CE%B5%CF%81%CE%B9-%CF%84%CE%B7%CF%83-%CF%84%CE%B5%CF%87%CE%BD%CE%B7%CF%84%CE%B7%CF%83-%CE%BD%CE%BF%CE%B7%CE%BC%CE%BF%CF%83%CF%85%CE%BD%CE%B7%CF%82-%CE%BD%CE%BF%CE%BC%CE%BF%CF%83-%CF%84">https://e-consultation.gov.cy/diavouleuseis/%CE%BF-%CF%80%CE%B5%CF%81%CE%B9-%CF%84%CE%B7%CF%83-%CF%84%CE%B5%CF%87%CE%BD%CE%B7%CF%84%CE%B7%CF%83-%CE%BD%CE%BF%CE%B7%CE%BC%CE%BF%CF%83%CF%85%CE%BD%CE%B7%CF%82-%CE%BD%CE%BF%CE%BC%CE%BF%CF%83-%CF%84</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇨🇳 Zhipu AI 공동 창업자 Tang Jie의 토큰이 지능 경제 동력으로서의 역할 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">GeopoliTechs</span></span><button type="button" class="copy-btn" data-copy="Zhipu AI 공동 창업자 Tang Jie의 토큰이 지능 경제 동력으로서의 역할 (2026.8.16)
+
+본 논문은 토큰이 지능 경제의 고품질 발전을 주도하는 엔진으로 작용해야 한다는 주장을 제기한다. 저자 Tang Jie는 Zhipu AI의 공동 창업자이자 청화대학교 컴퓨터과학기술부 교수로, 토큰이 단순히 정보 처리의 기술적 단위가 아니라 지능 서비스의 생산, 교환, 가치 창출을 측정하는 기초 단위가 되어야 한다고 강조한다. 지능 경제 발전은 모델 지능 수준, API 호출량, 그리고 지능적 전환 효율성이라는 세 가지 요소에 달려 있다. 중국은 개방형 소스 모델, 저렴한 서비스, 그리고 방대한 API 호출량을 통해 의미 있는 이점을 구축했으나, 토큰 소비의 상당 부분이 채팅과 이미지 생성 같은 저가치 시나리오에 집중되어 있는 반면, 산업 제조와 과학 연구 같은 고부가가치 영역에서의 근본적인 모델 혁신은 부족하다. 향후 발전 방향은 호출량 증가만을 추구하는 것이 아니라 모델 능력 향상과 실제 경제로의 전환률 증대를 동시에 추구해야 한다. 또한 토큰의 측정, 가격 책정, 거래, 관리 규칙을 정립하는 것이 중요하다. 토큰의 가치는 단순히 토큰 수보다는 지능적 전환 효율성에 더 크게 의존한다.
+
+https://www.geopolitechs.org/p/zhipu-ai-co-founder-tang-jie-tokens" onclick="copyEntry(this)">복사</button></div>
+  <p>본 논문은 토큰이 지능 경제의 고품질 발전을 주도하는 엔진으로 작용해야 한다는 주장을 제기한다. 저자 Tang Jie는 Zhipu AI의 공동 창업자이자 청화대학교 컴퓨터과학기술부 교수로, 토큰이 단순히 정보 처리의 기술적 단위가 아니라 지능 서비스의 생산, 교환, 가치 창출을 측정하는 기초 단위가 되어야 한다고 강조한다. 지능 경제 발전은 모델 지능 수준, API 호출량, 그리고 지능적 전환 효율성이라는 세 가지 요소에 달려 있다. 중국은 개방형 소스 모델, 저렴한 서비스, 그리고 방대한 API 호출량을 통해 의미 있는 이점을 구축했으나, 토큰 소비의 상당 부분이 채팅과 이미지 생성 같은 저가치 시나리오에 집중되어 있는 반면, 산업 제조와 과학 연구 같은 고부가가치 영역에서의 근본적인 모델 혁신은 부족하다. 향후 발전 방향은 호출량 증가만을 추구하는 것이 아니라 모델 능력 향상과 실제 경제로의 전환률 증대를 동시에 추구해야 한다. 또한 토큰의 측정, 가격 책정, 거래, 관리 규칙을 정립하는 것이 중요하다. 토큰의 가치는 단순히 토큰 수보다는 지능적 전환 효율성에 더 크게 의존한다.</p>
+  <p class="url"><a href="https://www.geopolitechs.org/p/zhipu-ai-co-founder-tang-jie-tokens">https://www.geopolitechs.org/p/zhipu-ai-co-founder-tang-jie-tokens</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>합성 유권자의 등장: AI 기반 모의 포커스 그룹의 활용과 위험 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">TechPolicyPress</span></span><button type="button" class="copy-btn" data-copy="합성 유권자의 등장: AI 기반 모의 포커스 그룹의 활용과 위험 (2026.8.16)
+
+AI 기술을 활용한 모의 포커스 그룹이 정치 캠페인에서 실제 유권자의 마음을 이해하는 데 새로운 도구로 활용될 가능성이 제기되고 있다. 그러나 이러한 합성 유권자들이 실제 유권자의 의견을 정확하게 반영할지, 아니면 오히려 왜곡된 이미지를 제공할지에 대한 우려도 제기되었다. 연구에 따르면, 이러한 도구의 사용은 위험성 평가와 실제 유권자와의 유사성 정도에 따라 결정되어야 하며, 특히 특정 결정(예: 연합 참여 여부)에 활용될 경우 위험성이 크다고 경고한다. 또한, 합성 유권자 데이터가 특정 플랫폼에서 수집된 데이터에 기반하고 있어 전체적인 공공의견을 완벽하게 반영하지 못한다는 점도 지적되었다. 이로 인해 공공의견 형성에 인공적인 요소가 추가될 위험이 있다는 우려도 함께 제기되었다.
+
+https://www.techpolicy.press/here-come-the-synthetic-voters" onclick="copyEntry(this)">복사</button></div>
+  <p>AI 기술을 활용한 모의 포커스 그룹이 정치 캠페인에서 실제 유권자의 마음을 이해하는 데 새로운 도구로 활용될 가능성이 제기되고 있다. 그러나 이러한 합성 유권자들이 실제 유권자의 의견을 정확하게 반영할지, 아니면 오히려 왜곡된 이미지를 제공할지에 대한 우려도 제기되었다. 연구에 따르면, 이러한 도구의 사용은 위험성 평가와 실제 유권자와의 유사성 정도에 따라 결정되어야 하며, 특히 특정 결정(예: 연합 참여 여부)에 활용될 경우 위험성이 크다고 경고한다. 또한, 합성 유권자 데이터가 특정 플랫폼에서 수집된 데이터에 기반하고 있어 전체적인 공공의견을 완벽하게 반영하지 못한다는 점도 지적되었다. 이로 인해 공공의견 형성에 인공적인 요소가 추가될 위험이 있다는 우려도 함께 제기되었다.</p>
+  <p class="url"><a href="https://www.techpolicy.press/here-come-the-synthetic-voters">https://www.techpolicy.press/here-come-the-synthetic-voters</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>2026 US 미중간선거 앞두고 AI가 선거 정보 재구성 중 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">TechPolicyPress</span></span><button type="button" class="copy-btn" data-copy="2026 US 미중간선거 앞두고 AI가 선거 정보 재구성 중 (2026.8.16)
+
+AI 챗봇의 확산으로 선거 정보의 생성과 접근이 변화하고 있으며, 이는 2026년 미중간선거를 앞두고 선거 정보 환경에 영향을 미치고 있다. 연구에 따르면, 주요 챗봇들은 제시된 선거 관련 허위 음모론에도 불구하고 사실을 반박하는 경향을 보였다. 그러나 이는 일시적인 현상일 수 있으며, 현재 연방 정부의 선거 정보 관련 지원 축소와 함께 주 단위의 대응 노력이 중요해지고 있다. 한편, 대부분의 주들은 선거 인프라에 대한 투자를 통해 투표 보안을 강화해 왔다.
+
+https://www.techpolicy.press/how-ai-is-reshaping-election-information-ahead-of-the-2026-us-midterms" onclick="copyEntry(this)">복사</button></div>
+  <p>AI 챗봇의 확산으로 선거 정보의 생성과 접근이 변화하고 있으며, 이는 2026년 미중간선거를 앞두고 선거 정보 환경에 영향을 미치고 있다. 연구에 따르면, 주요 챗봇들은 제시된 선거 관련 허위 음모론에도 불구하고 사실을 반박하는 경향을 보였다. 그러나 이는 일시적인 현상일 수 있으며, 현재 연방 정부의 선거 정보 관련 지원 축소와 함께 주 단위의 대응 노력이 중요해지고 있다. 한편, 대부분의 주들은 선거 인프라에 대한 투자를 통해 투표 보안을 강화해 왔다.</p>
+  <p class="url"><a href="https://www.techpolicy.press/how-ai-is-reshaping-election-information-ahead-of-the-2026-us-midterms">https://www.techpolicy.press/how-ai-is-reshaping-election-information-ahead-of-the-2026-us-midterms</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇺🇸 AI가 미국 중간선거에 미치는 영향 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">TechPolicyPress</span></span><button type="button" class="copy-btn" data-copy="AI가 미국 중간선거에 미치는 영향 (2026.8.16)
+
+미국 중간선거 기간 동안 AI 챗봇이 선거 정보 검색과 생성에 널리 활용되면서 정보 환경이 변화하고 있다. 브레넌 센터의 연구는 AI가 선거 관련 허위 정보 확산에 기여하는지 여부를 탐구했으며, 인터뷰에서는 AI 챗봇이 선거 관련 음모론과 허위 정보에 어떻게 대응하는지, 그리고 정부 기관의 정보 접근성 문제 등 다양한 주제를 다뤘다. 특히 트럼프 행정부 하에서 선거 보안 관련 정보 출처가 제거된 상황에서 AI 챗봇이 신뢰할 수 있는 정부 정보를 제대로 제공하지 못하는 문제점이 제기되었다. 또한, AI 안전 검토의 한계와 AI 기술의 책임 있는 활용 방안에 대한 논의도 포함되어 있다.
+
+https://www.techpolicy.press/newsletter-august-16-2026" onclick="copyEntry(this)">복사</button></div>
+  <p>미국 중간선거 기간 동안 AI 챗봇이 선거 정보 검색과 생성에 널리 활용되면서 정보 환경이 변화하고 있다. 브레넌 센터의 연구는 AI가 선거 관련 허위 정보 확산에 기여하는지 여부를 탐구했으며, 인터뷰에서는 AI 챗봇이 선거 관련 음모론과 허위 정보에 어떻게 대응하는지, 그리고 정부 기관의 정보 접근성 문제 등 다양한 주제를 다뤘다. 특히 트럼프 행정부 하에서 선거 보안 관련 정보 출처가 제거된 상황에서 AI 챗봇이 신뢰할 수 있는 정부 정보를 제대로 제공하지 못하는 문제점이 제기되었다. 또한, AI 안전 검토의 한계와 AI 기술의 책임 있는 활용 방안에 대한 논의도 포함되어 있다.</p>
+  <p class="url"><a href="https://www.techpolicy.press/newsletter-august-16-2026">https://www.techpolicy.press/newsletter-august-16-2026</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>인공지능 조종 전투기 모의 요격 성공 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">경향신문</span></span><button type="button" class="copy-btn" data-copy="인공지능 조종 전투기 모의 요격 성공 (2026.8.16)
+
+록히드 마틴이 개발한 자율 전투기 X-62A가 실제 공중에서 가상 적기를 감지하고 추적하여 모의 요격 임무를 성공적으로 수행하였다. 이 전투기는 F-16을 기반으로 개조되었으며, 인공지능이 실시간 데이터를 분석하여 조종한다. 이번 시험에서는 실제 훈련기인 T-38 탤론 제트를 대상으로 8번의 출격에서 27번의 요격 기동을 성공적으로 이뤄냈다. 향후에는 AI가 복잡한 비행 조작을 담당하고 조종사는 전략적 판단에 집중할 것으로 보인다.
+
+https://www.khan.co.kr/article/202608160900011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=total_news" onclick="copyEntry(this)">복사</button></div>
+  <p>록히드 마틴이 개발한 자율 전투기 X-62A가 실제 공중에서 가상 적기를 감지하고 추적하여 모의 요격 임무를 성공적으로 수행하였다. 이 전투기는 F-16을 기반으로 개조되었으며, 인공지능이 실시간 데이터를 분석하여 조종한다. 이번 시험에서는 실제 훈련기인 T-38 탤론 제트를 대상으로 8번의 출격에서 27번의 요격 기동을 성공적으로 이뤄냈다. 향후에는 AI가 복잡한 비행 조작을 담당하고 조종사는 전략적 판단에 집중할 것으로 보인다.</p>
+  <p class="url"><a href="https://www.khan.co.kr/article/202608160900011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=total_news">https://www.khan.co.kr/article/202608160900011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=total_news</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>🇰🇷🇨🇳 하반기 북한 해킹 공격 최다 99건, AI 및 딥페이크 활용 증가 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">조선일보</span></span><button type="button" class="copy-btn" data-copy="하반기 북한 해킹 공격 최다 99건, AI 및 딥페이크 활용 증가 (2026.8.16)
+
+올해 상반기 북한을 비롯한 국가 배후 해킹 조직의 공격이 증가한 가운데, 특히 북한의 공격이 한국을 가장 많이 노리며 생성형 인공지능과 딥페이크 공격 기법을 더 많이 사용한 것으로 나타났다. 북한의 해킹 활동은 한국을 19회 공격 대상으로 삼았으며, 주요 공격 기법으로는 암호화폐와 IT 산업, 딥페이크 등이 포함되었다. 중국과 러시아의 공격도 각각 동남아시아와 동유럽 지역으로 확대되었다. 보고서는 하반기에도 이러한 사이버 위협이 지속될 가능성을 경고했다.
+
+https://www.chosun.com/economy/tech_it/2026/08/16/FM4KIXMH6VHS3IFY5N326EV4RQ/" onclick="copyEntry(this)">복사</button></div>
+  <p>올해 상반기 북한을 비롯한 국가 배후 해킹 조직의 공격이 증가한 가운데, 특히 북한의 공격이 한국을 가장 많이 노리며 생성형 인공지능과 딥페이크 공격 기법을 더 많이 사용한 것으로 나타났다. 북한의 해킹 활동은 한국을 19회 공격 대상으로 삼았으며, 주요 공격 기법으로는 암호화폐와 IT 산업, 딥페이크 등이 포함되었다. 중국과 러시아의 공격도 각각 동남아시아와 동유럽 지역으로 확대되었다. 보고서는 하반기에도 이러한 사이버 위협이 지속될 가능성을 경고했다.</p>
+  <p class="url"><a href="https://www.chosun.com/economy/tech_it/2026/08/16/FM4KIXMH6VHS3IFY5N326EV4RQ/">https://www.chosun.com/economy/tech_it/2026/08/16/FM4KIXMH6VHS3IFY5N326EV4RQ/</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>🇺🇸🇰🇷 &quot;AI 생성 소송 자료의 비밀 유지 문제 제기&quot; (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">조선일보</span></span><button type="button" class="copy-btn" data-copy="&quot;AI 생성 소송 자료의 비밀 유지 문제 제기&quot; (2026.8.16)
+
+AI 챗봇과 생성된 소송 자료의 비밀 유지 여부가 법조계의 새로운 쟁점으로 부상하고 있다. 미국에서는 AI가 만든 문서가 변호사와 의뢰인 간의 비밀 유지 특권을 인정받지 못해 공개될 위기에 처했으나, 한국에서는 챗GPT를 활용한 소송 자료가 비밀 유지가 인정되는 사례가 있어 법적 해석의 차이가 나타나고 있다. 이로 인해 이용자의 민감한 정보 보호에 대한 우려가 제기되고 있다.
+
+https://www.chosun.com/economy/tech_it/2026/08/17/KLMERY5JAVCVZI3IXUE3WSS7SY/" onclick="copyEntry(this)">복사</button></div>
+  <p>AI 챗봇과 생성된 소송 자료의 비밀 유지 여부가 법조계의 새로운 쟁점으로 부상하고 있다. 미국에서는 AI가 만든 문서가 변호사와 의뢰인 간의 비밀 유지 특권을 인정받지 못해 공개될 위기에 처했으나, 한국에서는 챗GPT를 활용한 소송 자료가 비밀 유지가 인정되는 사례가 있어 법적 해석의 차이가 나타나고 있다. 이로 인해 이용자의 민감한 정보 보호에 대한 우려가 제기되고 있다.</p>
+  <p class="url"><a href="https://www.chosun.com/economy/tech_it/2026/08/17/KLMERY5JAVCVZI3IXUE3WSS7SY/">https://www.chosun.com/economy/tech_it/2026/08/17/KLMERY5JAVCVZI3IXUE3WSS7SY/</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>🇺🇸🇨🇳 미국과 중국의 AI 경쟁 격화 속에서 미국이 한국을 포함한 35개 동맹국에게 중국과의 선택적 동맹을 요구하는 압박 서한 발송을 준비 중이다 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">경향신문</span></span><button type="button" class="copy-btn" data-copy="미국과 중국의 AI 경쟁 격화 속에서 미국이 한국을 포함한 35개 동맹국에게 중국과의 선택적 동맹을 요구하는 압박 서한 발송을 준비 중이다 (2026.8.16)
+
+미국은 동맹국들에게 팍스 실리카와 같은 AI 공급망 협의체에 참여하면서 중국의 AI 이니셔티브인 WAICO에 동시에 가입하는 것을 피할 것을 촉구하는 서한을 준비하고 있다. 이는 미중 간의 AI 경쟁이 단순 기술 경쟁을 넘어 외교와 통상 영역까지 확대된 결과이다. 한국을 포함한 회원국들은 미국과의 협력을 통해 중국 의존도를 줄이려 하지만, 반도체 수출 등에서 여전히 중국에 크게 의존하고 있어 딜레마에 직면해 있다. 미국의 압박은 동맹국들이 명확한 진영 선택을 하도록 요구하는 것으로 보인다.
+
+https://www.khan.co.kr/article/202608161244001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=economy_news" onclick="copyEntry(this)">복사</button></div>
+  <p>미국은 동맹국들에게 팍스 실리카와 같은 AI 공급망 협의체에 참여하면서 중국의 AI 이니셔티브인 WAICO에 동시에 가입하는 것을 피할 것을 촉구하는 서한을 준비하고 있다. 이는 미중 간의 AI 경쟁이 단순 기술 경쟁을 넘어 외교와 통상 영역까지 확대된 결과이다. 한국을 포함한 회원국들은 미국과의 협력을 통해 중국 의존도를 줄이려 하지만, 반도체 수출 등에서 여전히 중국에 크게 의존하고 있어 딜레마에 직면해 있다. 미국의 압박은 동맹국들이 명확한 진영 선택을 하도록 요구하는 것으로 보인다.</p>
+  <p class="url"><a href="https://www.khan.co.kr/article/202608161244001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=economy_news">https://www.khan.co.kr/article/202608161244001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=economy_news</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>🇺🇸🇰🇷 미국 주도 AI 연합 참여 국가들에 대한 경고 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">서울신문</span></span><button type="button" class="copy-btn" data-copy="미국 주도 AI 연합 참여 국가들에 대한 경고 (2026.8.16)
+
+미국이 한국을 포함한 35개 국가들에게 중국의 인공지능(AI) 개발에 참여하면 미국이 주도하는 글로벌 AI 연합에서 배제될 것이라는 경고를 발송했다. 이는 미국과 중국 간의 치열한 AI 경쟁의 일환으로, 특히 애플이 중국산 메모리 반도체 사용을 검토하는 상황에서 미국 정부의 강한 반발을 보여주고 있다. 중국과의 협력을 피하려는 미국의 노력이 강조되고 있다.
+
+https://www.seoul.co.kr/news/newsView.php?id=20260816500056" onclick="copyEntry(this)">복사</button></div>
+  <p>미국이 한국을 포함한 35개 국가들에게 중국의 인공지능(AI) 개발에 참여하면 미국이 주도하는 글로벌 AI 연합에서 배제될 것이라는 경고를 발송했다. 이는 미국과 중국 간의 치열한 AI 경쟁의 일환으로, 특히 애플이 중국산 메모리 반도체 사용을 검토하는 상황에서 미국 정부의 강한 반발을 보여주고 있다. 중국과의 협력을 피하려는 미국의 노력이 강조되고 있다.</p>
+  <p class="url"><a href="https://www.seoul.co.kr/news/newsView.php?id=20260816500056">https://www.seoul.co.kr/news/newsView.php?id=20260816500056</a></p>
+</article>
+<article class="entry cat-aiid">
+  <h2>액시오스, 오픈AI와 지역 저널리즘 자동화 협력 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aiid">AIID</span> · <span class="source">퓨처리즘</span></span><button type="button" class="copy-btn" data-copy="액시오스, 오픈AI와 지역 저널리즘 자동화 협력 (2026.8.16)
+
+액시오스는 오픈AI와 3년간 협력해 13개 지역 뉴스레터에 콘텐츠 생성 도구를 무료로 제공하고, 오픈AI는 액시오스의 모든 콘텐츠를 ChatGPT 학습에 활용할 수 있게 됐다. 기사에서는 액시오스가 이미 축약된 편집 과정을 AI로 자동화하려 한다고 지적하며, 기술 기업과 오픈AI를 취재하는 매체가 오픈AI와 협력하는 데 따른 이해충돌을 문제로 제기한다. 액시오스 공동창업자 짐 반더하이는 직원들에게 AI를 받아들이지 않으면 언론계에서 일자리를 찾기 어려울 수 있다고 말했다.
+
+https://futurism.com/future-society/axios-ceo-ai-journalism-openai-chatgpt" onclick="copyEntry(this)">복사</button></div>
+  <p>액시오스는 오픈AI와 3년간 협력해 13개 지역 뉴스레터에 콘텐츠 생성 도구를 무료로 제공하고, 오픈AI는 액시오스의 모든 콘텐츠를 ChatGPT 학습에 활용할 수 있게 됐다. 기사에서는 액시오스가 이미 축약된 편집 과정을 AI로 자동화하려 한다고 지적하며, 기술 기업과 오픈AI를 취재하는 매체가 오픈AI와 협력하는 데 따른 이해충돌을 문제로 제기한다. 액시오스 공동창업자 짐 반더하이는 직원들에게 AI를 받아들이지 않으면 언론계에서 일자리를 찾기 어려울 수 있다고 말했다.</p>
+  <p class="url"><a href="https://futurism.com/future-society/axios-ceo-ai-journalism-openai-chatgpt">https://futurism.com/future-society/axios-ceo-ai-journalism-openai-chatgpt</a></p>
+</article>
+<article class="entry cat-aiid">
+  <h2>AI와의 대화가 경찰 수사의 디지털 기록이 될 수 있다 (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aiid">AIID</span> · <span class="source">CTech</span></span><button type="button" class="copy-btn" data-copy="AI와의 대화가 경찰 수사의 디지털 기록이 될 수 있다 (2026.8.16)
+
+이스라엘의 두 사건에서 ChatGPT와 Gemini 대화가 방화 혐의자의 범행 전 생각과 실종된 모녀의 이동·도피 계획을 파악하는 단서로 활용된 것으로 보도됐다. AI 대화는 삭제하더라도 기기 포렌식이나 적법한 법적 절차 등을 통해 확보될 가능성이 있어, 인터페이스에서 삭제하는 것이 데이터의 완전한 삭제를 뜻하지는 않는다. 기사에서는 임시 대화, 기록·모델 개선 설정 조정 등 각 서비스의 개인정보 보호 기능을 소개하면서도, 민감한 정보는 애초에 입력하지 않는 것이 가장 확실한 보호책이라고 설명한다.
+
+https://www.calcalistech.com/ctechnews/article/rk311lbypmg" onclick="copyEntry(this)">복사</button></div>
+  <p>이스라엘의 두 사건에서 ChatGPT와 Gemini 대화가 방화 혐의자의 범행 전 생각과 실종된 모녀의 이동·도피 계획을 파악하는 단서로 활용된 것으로 보도됐다. AI 대화는 삭제하더라도 기기 포렌식이나 적법한 법적 절차 등을 통해 확보될 가능성이 있어, 인터페이스에서 삭제하는 것이 데이터의 완전한 삭제를 뜻하지는 않는다. 기사에서는 임시 대화, 기록·모델 개선 설정 조정 등 각 서비스의 개인정보 보호 기능을 소개하면서도, 민감한 정보는 애초에 입력하지 않는 것이 가장 확실한 보호책이라고 설명한다.</p>
+  <p class="url"><a href="https://www.calcalistech.com/ctechnews/article/rk311lbypmg">https://www.calcalistech.com/ctechnews/article/rk311lbypmg</a></p>
+</article>
+<article class="entry cat-research">
+  <h2>AI Governance Addressing Data Poisoning, Drift, and Integrity Risks (2026.8.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="AI Governance Addressing Data Poisoning, Drift, and Integrity Risks (2026.8.16)
+
+이 연구는 인공지능(AI) 시스템이 직면한 데이터 오염, 데이터 드리프트, 데이터 무결성 문제 등을 통합적으로 관리하는 AI 거버넌스 프레임워크를 제시한다.
+
+주요 내용:
+- 기존 연구들이 데이터 오염, 드리프트, 무결성 문제를 각각 다루었지만, 이 논문은 이러한 위험 요소들을 하나의 거버넌스 관점에서 통합적으로 분석한다.
+- 공급망 사례를 통해 데이터 오염, 드리프트, 무결성 실패가 AI 성능과 조직의 회복력에 미치는 영향을 살펴본다.
+- 효과적인 AI 거버넌스는 기술적 방어 수단을 넘어서 지속적인 라이프사이클 보증, 강력한 데이터 관리, 조직의 책임성, 그리고 적절한 규제 감독을 포함해야 함을 강조한다.
+- 제안된 통합 AI 거버넌스 프레임워크는 기술적 보증, 조직적 거버넌스, 국제적으로 인정받은 거버넌스 원칙을 라이프사이클 모델 내에서 통합한다.
+- 이 연구는 복잡한 데이터 기반 환경에서 AI를 구현하는 조직들에게 지침을 제공한다.
+
+https://doi.org/10.1007/s44163-026-01959-w" onclick="copyEntry(this)">복사</button></div>
+  <p>이 연구는 인공지능(AI) 시스템이 직면한 데이터 오염, 데이터 드리프트, 데이터 무결성 문제 등을 통합적으로 관리하는 AI 거버넌스 프레임워크를 제시한다.</p>
+<p>주요 내용:
+- 기존 연구들이 데이터 오염, 드리프트, 무결성 문제를 각각 다루었지만, 이 논문은 이러한 위험 요소들을 하나의 거버넌스 관점에서 통합적으로 분석한다.
+- 공급망 사례를 통해 데이터 오염, 드리프트, 무결성 실패가 AI 성능과 조직의 회복력에 미치는 영향을 살펴본다.
+- 효과적인 AI 거버넌스는 기술적 방어 수단을 넘어서 지속적인 라이프사이클 보증, 강력한 데이터 관리, 조직의 책임성, 그리고 적절한 규제 감독을 포함해야 함을 강조한다.
+- 제안된 통합 AI 거버넌스 프레임워크는 기술적 보증, 조직적 거버넌스, 국제적으로 인정받은 거버넌스 원칙을 라이프사이클 모델 내에서 통합한다.
+- 이 연구는 복잡한 데이터 기반 환경에서 AI를 구현하는 조직들에게 지침을 제공한다.</p>
+  <p class="url"><a href="https://doi.org/10.1007/s44163-026-01959-w">https://doi.org/10.1007/s44163-026-01959-w</a></p>
+</article>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

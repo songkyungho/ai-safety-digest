@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-03-31</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
+       거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
+       됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
+       색상이 비슷한 리본이 있어도 톤 자체가 달라 서로 헷갈리지 않게 했다.
+       13개를 색상환에 27.7도 간격으로 고르게 배치(채도·명도 고정) —
+       처음엔 임의로 고른 값이라 3개(#3 #9 #13)가 우연히 거의 같은 색상(H≈29도)
+       으로 몰려서 명도/채도 차이로만 구분해야 했는데, 그건 눈으로 잘 안
+       구별돼서 균등 배치로 다시 잡았다. */
+    --coll-1: #905047; --coll-2: #907247; --coll-3: #8b9047;
+    --coll-4: #6a9047; --coll-5: #489047; --coll-6: #479067;
+    --coll-7: #479088; --coll-8: #477590; --coll-9: #475390;
+    --coll-10: #5c4790; --coll-11: #7d4790; --coll-12: #904780;
+    --coll-13: #90475f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
+      --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
+      --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
+      --coll-10: #b7a8dc; --coll-11: #cfa8dc; --coll-12: #dca8d1;
+      --coll-13: #dca8b9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-03-31 · 21/27건 요약</div>
+    <div class="nav"><a href="index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-aisi">
+  <h2>🇰🇷 [행사 안내] AI 안전 국민공감 토크 콘서트 (4/1, 서울)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">AISI-Korea</span></span><button type="button" class="copy-btn" data-copy="[행사 안내] AI 안전 국민공감 토크 콘서트 (4/1, 서울)
+
+요약불가
+
+https://www.aisi.re.kr/kor/article/view.do?articleId=96" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.aisi.re.kr/kor/article/view.do?articleId=96">https://www.aisi.re.kr/kor/article/view.do?articleId=96</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>호주 정부-앤트로픽, AI 안전·연구 협력 MOU 체결 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span></span><button type="button" class="copy-btn" data-copy="호주 정부-앤트로픽, AI 안전·연구 협력 MOU 체결 (2026.3.31)
+
+앤트로픽은 호주 정부와 AI 안전 연구 및 호주 국가 AI 계획 지원을 위한 양해각서(MOU)를 체결했으며, 다리오 아모데이 CEO가 앤서니 앨버니지 호주 총리와 협약을 공식화했다고 밝혔다. MOU의 핵심으로 호주의 AI 안전 연구기관(AI Safety Institute)과 함께 신흥 모델의 역량·위험 정보를 공유하고 공동 안전·보안 평가 및 학계 연구 협력을 진행한다. 또한 호주 경제 전반의 AI 도입과 경제·노동 영향 파악을 위해 ‘앤트로픽 경제지수’ 데이터를 공유하고, 호주 연구기관 4곳에 Claude 활용을 위한 AUD 300만 달러 투자 및 AI 교육·인력 양성, 데이터센터·에너지 인프라 투자 검토 등을 언급했다.
+
+https://www.anthropic.com/news/australia-MOU" onclick="copyEntry(this)">복사</button></div>
+  <p>앤트로픽은 호주 정부와 AI 안전 연구 및 호주 국가 AI 계획 지원을 위한 양해각서(MOU)를 체결했으며, 다리오 아모데이 CEO가 앤서니 앨버니지 호주 총리와 협약을 공식화했다고 밝혔다. MOU의 핵심으로 호주의 AI 안전 연구기관(AI Safety Institute)과 함께 신흥 모델의 역량·위험 정보를 공유하고 공동 안전·보안 평가 및 학계 연구 협력을 진행한다. 또한 호주 경제 전반의 AI 도입과 경제·노동 영향 파악을 위해 ‘앤트로픽 경제지수’ 데이터를 공유하고, 호주 연구기관 4곳에 Claude 활용을 위한 AUD 300만 달러 투자 및 AI 교육·인력 양성, 데이터센터·에너지 인프라 투자 검토 등을 언급했다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/australia-MOU">https://www.anthropic.com/news/australia-MOU</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>🇺🇸 호주에서 클라우데 활용 현황: 경제 지수 연구 결과 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span></span><button type="button" class="copy-btn" data-copy="호주에서 클라우데 활용 현황: 경제 지수 연구 결과 (2026.3.31)
+
+Anthropic은 호주에 신규 사무소를 개설하고 호주 정부와 AI 안전성 연구 협력을 위한 양해각서를 체결하며 호주 시장 진출을 확대하고 있습니다. 이번 연구는 호주에서 클라우데를 어떻게 활용하고 있는지 자세히 살펴봅니다. 호주는 글로벌 클라우데 트래픽의 1.6%를 차지하며, 인구 대비 클라우데 사용량은 기대치보다 네 배 이상 높습니다. 주요 발견 사항은 다음과 같습니다:
+
+- 호주는 글로벌 선두 채택국 중 하나로, 인구 대비 클라우데 사용량이 높습니다. 특히 뉴 사우스 웨일즈와 빅토리아 주에서 집중적으로 사용됩니다.
+- 호주에서의 클라우데 활용은 업무(46%), 학습(7%), 개인 사용(47%)에 주로 집중되어 있으며, 이는 고소득 채택 경제와 유사한 패턴입니다.
+- 호주 사용자들은 상대적으로 복잡한 작업을 클라우데에 요청하며, 이러한 작업의 수행 시간은 평균보다 약 20% 짧습니다.
+- 호주는 AI 자율성 측면에서 상대적으로 낮은 점수(3.38)를 기록하며, 이는 클라우데를 더 협력적인 방식으로 사용한다는 것을 시사합니다.
+- 클라우데의 활용 범위가 다양하며, 특히 코딩 관련 작업의 비중이 낮은 특징이 있습니다.
+
+https://www.anthropic.com/research/how-australia-uses-claude" onclick="copyEntry(this)">복사</button></div>
+  <p>Anthropic은 호주에 신규 사무소를 개설하고 호주 정부와 AI 안전성 연구 협력을 위한 양해각서를 체결하며 호주 시장 진출을 확대하고 있습니다. 이번 연구는 호주에서 클라우데를 어떻게 활용하고 있는지 자세히 살펴봅니다. 호주는 글로벌 클라우데 트래픽의 1.6%를 차지하며, 인구 대비 클라우데 사용량은 기대치보다 네 배 이상 높습니다. 주요 발견 사항은 다음과 같습니다:</p>
+<p>- 호주는 글로벌 선두 채택국 중 하나로, 인구 대비 클라우데 사용량이 높습니다. 특히 뉴 사우스 웨일즈와 빅토리아 주에서 집중적으로 사용됩니다.
+- 호주에서의 클라우데 활용은 업무(46%), 학습(7%), 개인 사용(47%)에 주로 집중되어 있으며, 이는 고소득 채택 경제와 유사한 패턴입니다.
+- 호주 사용자들은 상대적으로 복잡한 작업을 클라우데에 요청하며, 이러한 작업의 수행 시간은 평균보다 약 20% 짧습니다.
+- 호주는 AI 자율성 측면에서 상대적으로 낮은 점수(3.38)를 기록하며, 이는 클라우데를 더 협력적인 방식으로 사용한다는 것을 시사합니다.
+- 클라우데의 활용 범위가 다양하며, 특히 코딩 관련 작업의 비중이 낮은 특징이 있습니다.</p>
+  <p class="url"><a href="https://www.anthropic.com/research/how-australia-uses-claude">https://www.anthropic.com/research/how-australia-uses-claude</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 유럽연합 전역 및 인접국 독립 팩트체커 지원을 위한 500만 유로 그랜트(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">EU-Digital-Strategy</span></span><button type="button" class="copy-btn" data-copy="유럽연합 전역 및 인접국 독립 팩트체커 지원을 위한 500만 유로 그랜트(2026.3.31)
+
+유럽 집행위원회가 2026.3.31 독립 팩트체커를 지원하기 위한 500만 유로 그랜트 협약을 체결했다. 이 사업은 모든 EU 언어에서 팩트체킹 역량을 강화하고, 법률·사이버보안·심리 지원 등 보호 체계를 마련하며, 독립적인 유럽 팩트체크 저장소를 구축하는 것을 포함한다. 2025년 4월 시작된 유럽 팩트체커 네트워크 성장 지원 공모와 연계되며, 유럽 팩트체킹 표준 네트워크(EFCSN)와 7개 파트너가 유럽 디지털 미디어 관측소(EDMO) 등 기존 활동과 함께 EU 회원국 및 공식 언어, Digital Europe Programme(DEP) 연계국까지 커버리지를 확대하는 것을 목표로 한다.
+
+https://digital-strategy.ec.europa.eu/en/news/commission-boosts-independent-fact-checking-eu5-million-grant-under-european-democracy-shield" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽 집행위원회가 2026.3.31 독립 팩트체커를 지원하기 위한 500만 유로 그랜트 협약을 체결했다. 이 사업은 모든 EU 언어에서 팩트체킹 역량을 강화하고, 법률·사이버보안·심리 지원 등 보호 체계를 마련하며, 독립적인 유럽 팩트체크 저장소를 구축하는 것을 포함한다. 2025년 4월 시작된 유럽 팩트체커 네트워크 성장 지원 공모와 연계되며, 유럽 팩트체킹 표준 네트워크(EFCSN)와 7개 파트너가 유럽 디지털 미디어 관측소(EDMO) 등 기존 활동과 함께 EU 회원국 및 공식 언어, Digital Europe Programme(DEP) 연계국까지 커버리지를 확대하는 것을 목표로 한다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-boosts-independent-fact-checking-eu5-million-grant-under-european-democracy-shield">https://digital-strategy.ec.europa.eu/en/news/commission-boosts-independent-fact-checking-eu5-million-grant-under-european-democracy-shield</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>유럽 시민 대상 ‘유럽 TV·비디오 뉴스 포털’ 차기 개발을 위한 제안 공모(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">유럽연합 집행위원회(EU-Digital-Strategy)</span></span><button type="button" class="copy-btn" data-copy="유럽 시민 대상 ‘유럽 TV·비디오 뉴스 포털’ 차기 개발을 위한 제안 공모(2026.3.31)
+
+유럽 집행위원회는 시민이 이용하는 ‘유럽 TV·비디오 뉴스 포털’의 다음 단계 개발을 위한 제안 공모를 시작한다. 이 사업은 유럽 전역에서 다국어 AI 미디어 플랫폼을 시범 운영해 신뢰 가능한 뉴스와 공익 정보의 언어·국경 장벽을 낮추고, 미디어의 접근성과 활용성을 높이는 것을 목표로 한다. 번역을 넘어 사용성·검색 용이성 개선, 기존/아카이브 자료의 재사용·맥락화, 콘텐츠 제공자 간 풀링, 대화형·에이전트형 인터페이스 등 AI 기능도 지원한다. 또한 미디어 및 AI 분야 이해관계자 간 조정과 투명성·출처·비차별·언어·문화 다양성 촉진을 포함한다.
+
+https://digital-strategy.ec.europa.eu/en/news/supporting-multilingual-access-trusted-news-and-public-interest-information-across-europe" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽 집행위원회는 시민이 이용하는 ‘유럽 TV·비디오 뉴스 포털’의 다음 단계 개발을 위한 제안 공모를 시작한다. 이 사업은 유럽 전역에서 다국어 AI 미디어 플랫폼을 시범 운영해 신뢰 가능한 뉴스와 공익 정보의 언어·국경 장벽을 낮추고, 미디어의 접근성과 활용성을 높이는 것을 목표로 한다. 번역을 넘어 사용성·검색 용이성 개선, 기존/아카이브 자료의 재사용·맥락화, 콘텐츠 제공자 간 풀링, 대화형·에이전트형 인터페이스 등 AI 기능도 지원한다. 또한 미디어 및 AI 분야 이해관계자 간 조정과 투명성·출처·비차별·언어·문화 다양성 촉진을 포함한다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/supporting-multilingual-access-trusted-news-and-public-interest-information-across-europe">https://digital-strategy.ec.europa.eu/en/news/supporting-multilingual-access-trusted-news-and-public-interest-information-across-europe</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 AI 데이터 패러독스와 ‘스크래핑→윤리적 데이터 공유’ 전환 원칙(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">OECD-AI</span></span><button type="button" class="copy-btn" data-copy="AI 데이터 패러독스와 ‘스크래핑→윤리적 데이터 공유’ 전환 원칙(2026.3.31)
+
+인터넷에 데이터가 방대하게 쌓이지만(예: CommonCrawl 수십억 페이지) 실제로 AI 개발에 활용 가능한 고품질·적법 데이터가 부족하다는 ‘AI 데이터 패러독스’를 다룹니다. 보고서는 무단 스크래핑 중심의 데이터 수집이 저작권·데이터보호 소송, 기술·계약적 차단, 저품질 생성물 확산 등으로 한계가 커지고, 법·경제·기술을 함께 고려한 상호 이익의 데이터 공유로 전환해야 한다고 설명합니다. EU 법 체계에 따라 저작권 콘텐츠·개인정보·영업비밀·공공부문 데이터·오픈데이터 등 데이터 유형별 거버넌스가 다르며, 지속가능하고 책임 있는 공유를 위해 법 준수, 신뢰, 공정성의 3대 원칙과 디지털 자기결정(통제권), 보안·품질, 비용·가치 보상 같은 실행 제약을 강조합니다.
+
+https://oecd.ai/en/wonk/rethinking-ai-data-from-scraping-to-sustainable-and-ethical-data-sharing" onclick="copyEntry(this)">복사</button></div>
+  <p>인터넷에 데이터가 방대하게 쌓이지만(예: CommonCrawl 수십억 페이지) 실제로 AI 개발에 활용 가능한 고품질·적법 데이터가 부족하다는 ‘AI 데이터 패러독스’를 다룹니다. 보고서는 무단 스크래핑 중심의 데이터 수집이 저작권·데이터보호 소송, 기술·계약적 차단, 저품질 생성물 확산 등으로 한계가 커지고, 법·경제·기술을 함께 고려한 상호 이익의 데이터 공유로 전환해야 한다고 설명합니다. EU 법 체계에 따라 저작권 콘텐츠·개인정보·영업비밀·공공부문 데이터·오픈데이터 등 데이터 유형별 거버넌스가 다르며, 지속가능하고 책임 있는 공유를 위해 법 준수, 신뢰, 공정성의 3대 원칙과 디지털 자기결정(통제권), 보안·품질, 비용·가치 보상 같은 실행 제약을 강조합니다.</p>
+  <p class="url"><a href="https://oecd.ai/en/wonk/rethinking-ai-data-from-scraping-to-sustainable-and-ethical-data-sharing">https://oecd.ai/en/wonk/rethinking-ai-data-from-scraping-to-sustainable-and-ethical-data-sharing</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>AI 칩 판매량·출하량을 추정해 컴퓨팅 용량/전력/비용까지 시계열로 제공(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">Epoch AI</span></span><button type="button" class="copy-btn" data-copy="AI 칩 판매량·출하량을 추정해 컴퓨팅 용량/전력/비용까지 시계열로 제공(2026.3.31)
+
+Epoch AI는 2026.3.31 기준으로 데이터(다운로드 ZIP)를 업데이트했으며, 2022~2024년(칩 설계사별)까지 시계열 추정을 제공함
+
+Epoch AI는 기업 공시, 실적 코멘터리, 분석가·언론 추정 등을 바탕으로 주요 AI 가속기 칩의 판매/출하량을 추정하고, 이를 통해 H100e 환산 컴퓨팅 용량, 전력(TDP 기반), 비용(구매가격 추정) 등을 시간에 따라 산출한다. 데이터 탐색기는 칩 종류·설계사·기간(분기/연 단위) 등을 필터링해 그래프/표로 확인할 수 있으며, 추정치이므로 불확실성(90% 신뢰구간)을 툴팁/표에서 제공한다. 또한 네트워크된 클러스터 구성이나 실제 가동 여부까지는 직접 반영하지 않으며, 주요 설계사(NVIDIA·Google·Amazon·AMD·Huawei)에 집중하고 그 외는 현재 범위에서 제외한다고 밝힌다.
+
+https://epoch.ai/data/ai-chip-sales/" onclick="copyEntry(this)">복사</button></div>
+  <p>Epoch AI는 2026.3.31 기준으로 데이터(다운로드 ZIP)를 업데이트했으며, 2022~2024년(칩 설계사별)까지 시계열 추정을 제공함</p>
+<p>Epoch AI는 기업 공시, 실적 코멘터리, 분석가·언론 추정 등을 바탕으로 주요 AI 가속기 칩의 판매/출하량을 추정하고, 이를 통해 H100e 환산 컴퓨팅 용량, 전력(TDP 기반), 비용(구매가격 추정) 등을 시간에 따라 산출한다. 데이터 탐색기는 칩 종류·설계사·기간(분기/연 단위) 등을 필터링해 그래프/표로 확인할 수 있으며, 추정치이므로 불확실성(90% 신뢰구간)을 툴팁/표에서 제공한다. 또한 네트워크된 클러스터 구성이나 실제 가동 여부까지는 직접 반영하지 않으며, 주요 설계사(NVIDIA·Google·Amazon·AMD·Huawei)에 집중하고 그 외는 현재 범위에서 제외한다고 밝힌다.</p>
+  <p class="url"><a href="https://epoch.ai/data/ai-chip-sales/">https://epoch.ai/data/ai-chip-sales/</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>🇺🇸 CSET의 2025 연간 보고서 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">CSET-Georgetown</span></span><button type="button" class="copy-btn" data-copy="CSET의 2025 연간 보고서 (2026.3.31)
+
+CSET는 2025년에 인공지능과 기술 보안 분야의 정책 결정에 기여하기 위해 엄격한 증거 기반 분석을 통해 신흥 기술의 보안 영향을 연구했습니다. 주요 활동으로는 중국 인민해방군의 AI 관련 구매 동향 분석 보고서 발간, AI 연구 개발 자동화에 대한 전문가 워크숍 개최, 그리고 과학 데이터를 실용적으로 활용할 수 있도록 하는 프로젝트 ATLAS의 시작이 있습니다. 보고서는 CSET의 연구와 활동이 미래 기술 트렌드와 국가 안보에 미치는 영향을 강조하며, 향후 연구 우선순위로 미국과 중국의 기술 생태계 분석, 책임감 있는 AI 활용 방안 연구, 그리고 과학 데이터 분석을 통한 혁신 추적을 제시하고 있습니다.
+
+**마감일/시행일**: 명시되지 않음
+
+https://cset.georgetown.edu/publication/2025-annual-report/" onclick="copyEntry(this)">복사</button></div>
+  <p>CSET는 2025년에 인공지능과 기술 보안 분야의 정책 결정에 기여하기 위해 엄격한 증거 기반 분석을 통해 신흥 기술의 보안 영향을 연구했습니다. 주요 활동으로는 중국 인민해방군의 AI 관련 구매 동향 분석 보고서 발간, AI 연구 개발 자동화에 대한 전문가 워크숍 개최, 그리고 과학 데이터를 실용적으로 활용할 수 있도록 하는 프로젝트 ATLAS의 시작이 있습니다. 보고서는 CSET의 연구와 활동이 미래 기술 트렌드와 국가 안보에 미치는 영향을 강조하며, 향후 연구 우선순위로 미국과 중국의 기술 생태계 분석, 책임감 있는 AI 활용 방안 연구, 그리고 과학 데이터 분석을 통한 혁신 추적을 제시하고 있습니다.</p>
+<p>**마감일/시행일**: 명시되지 않음</p>
+  <p class="url"><a href="https://cset.georgetown.edu/publication/2025-annual-report/">https://cset.georgetown.edu/publication/2025-annual-report/</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>캘리포니아의 A.I. 관련 행정명령 핵심 내용 정리(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">뉴욕타임스(nytimes.com)</span></span><button type="button" class="copy-btn" data-copy="캘리포니아의 A.I. 관련 행정명령 핵심 내용 정리(2026.3.31)
+
+뉴욕타임스는 캘리포니아의 A.I. 관련 행정명령에 대해 알아야 할 핵심 사항을 정리한 기사로 보입니다. 다만 제공된 정보에는 본문 내용이 없어 구체적인 조항, 시행 시점, 규제 범위 등은 확인이 필요합니다.
+
+https://www.nytimes.com/2026.com/03/30/technology/california-ai-executive-order.htm" onclick="copyEntry(this)">복사</button></div>
+  <p>뉴욕타임스는 캘리포니아의 A.I. 관련 행정명령에 대해 알아야 할 핵심 사항을 정리한 기사로 보입니다. 다만 제공된 정보에는 본문 내용이 없어 구체적인 조항, 시행 시점, 규제 범위 등은 확인이 필요합니다.</p>
+  <p class="url"><a href="https://www.nytimes.com/2026.com/03/30/technology/california-ai-executive-order.htm">https://www.nytimes.com/2026.com/03/30/technology/california-ai-executive-order.htm</a></p>
+</article>
+<article class="entry cat-blog">
+  <h2>(2026.3.31) ‘에이전틱 AI’와 차세대 지능 폭발을 다룬 구글 새 논문 소개</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-blog">블로그/SNS</span> · <span class="source">linkedin.com</span></span><button type="button" class="copy-btn" data-copy="(2026.3.31) ‘에이전틱 AI’와 차세대 지능 폭발을 다룬 구글 새 논문 소개
+
+구글이 소개한 논문( arXiv: 2603.20639 )은 ‘AI 특이점’이 단일 초지능 존재가 아니라 사회적으로 분산된 지능으로 나타날 것이라고 주장한다. 고성능 모델이 내부에서 토론·시뮬레이션을 수행하는 ‘사고의 사회’를 통해 복잡한 문제를 푼다는 점, 지능의 진화가 개인 성능 향상보다 집단 조직(언어·관료제 등)에서 크게 일어났다는 관점을 제시한다. 또한 인간과 AI 에이전트가 혼합 팀으로 협업하는 ‘센타우르’ 형태와, 피드백 중심의 ‘양육’만이 아니라 AI 감사자·헌법적 제약 같은 디지털 제도적 거버넌스가 필요하다고 강조한다.
+
+https://www.linkedin.com/posts/ceosaisoma_agentic-ai-and-the-next-intelligence-explosion-ugcPost-7443625366742654976-CRsM?rcm=ACoAABNWa7YBYzzYJeBJVjwQfP_OORjs0P1yTtA" onclick="copyEntry(this)">복사</button></div>
+  <p>구글이 소개한 논문( arXiv: 2603.20639 )은 ‘AI 특이점’이 단일 초지능 존재가 아니라 사회적으로 분산된 지능으로 나타날 것이라고 주장한다. 고성능 모델이 내부에서 토론·시뮬레이션을 수행하는 ‘사고의 사회’를 통해 복잡한 문제를 푼다는 점, 지능의 진화가 개인 성능 향상보다 집단 조직(언어·관료제 등)에서 크게 일어났다는 관점을 제시한다. 또한 인간과 AI 에이전트가 혼합 팀으로 협업하는 ‘센타우르’ 형태와, 피드백 중심의 ‘양육’만이 아니라 AI 감사자·헌법적 제약 같은 디지털 제도적 거버넌스가 필요하다고 강조한다.</p>
+  <p class="url"><a href="https://www.linkedin.com/posts/ceosaisoma_agentic-ai-and-the-next-intelligence-explosion-ugcPost-7443625366742654976-CRsM?rcm=ACoAABNWa7YBYzzYJeBJVjwQfP_OORjs0P1yTtA">https://www.linkedin.com/posts/ceosaisoma_agentic-ai-and-the-next-intelligence-explosion-ugcPost-7443625366742654976-CRsM?rcm=ACoAABNWa7YBYzzYJeBJVjwQfP_OORjs0P1yTtA</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>AI 채용 스타트업 Mercor, 오픈소스 LiteLLM 공급망 공격 연계 보안사고 확인 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">테크크런치(TechCrunch)</span></span><button type="button" class="copy-btn" data-copy="AI 채용 스타트업 Mercor, 오픈소스 LiteLLM 공급망 공격 연계 보안사고 확인 (2026.3.31)
+
+Mercor는 오픈소스 프로젝트 LiteLLM이 해킹 그룹 TeamPCP와 연계된 공격을 받아 다수 기업이 영향을 받았다고 밝히며 보안사고를 확인했다. 동시에 몸값 요구(extortion) 해킹 그룹 Lapsus$가 Mercor를 표적으로 삼아 데이터 접근을 했다고 주장한 상황이다. 다만 Lapsus$가 Mercor에서 어떤 경로로 탈취 데이터를 확보했는지는 즉시 명확하지 않으며, LiteLLM 관련 사고로 인해 영향을 받은 기업 수나 데이터 노출 여부도 조사 중이라고 전했다.
+
+https://techcrunch.com/2026/03/31/mercor-says-it-was-hit-by-cyberattack-tied-to-compromise-of-open-source-litellm-project/" onclick="copyEntry(this)">복사</button></div>
+  <p>Mercor는 오픈소스 프로젝트 LiteLLM이 해킹 그룹 TeamPCP와 연계된 공격을 받아 다수 기업이 영향을 받았다고 밝히며 보안사고를 확인했다. 동시에 몸값 요구(extortion) 해킹 그룹 Lapsus$가 Mercor를 표적으로 삼아 데이터 접근을 했다고 주장한 상황이다. 다만 Lapsus$가 Mercor에서 어떤 경로로 탈취 데이터를 확보했는지는 즉시 명확하지 않으며, LiteLLM 관련 사고로 인해 영향을 받은 기업 수나 데이터 노출 여부도 조사 중이라고 전했다.</p>
+  <p class="url"><a href="https://techcrunch.com/2026/03/31/mercor-says-it-was-hit-by-cyberattack-tied-to-compromise-of-open-source-litellm-project/">https://techcrunch.com/2026/03/31/mercor-says-it-was-hit-by-cyberattack-tied-to-compromise-of-open-source-litellm-project/</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 인공지능서비스 이용자보호 관련 이슈·법제 검토와 향후 과제 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="인공지능서비스 이용자보호 관련 이슈·법제 검토와 향후 과제 (2026.3.31)
+
+요약불가
+
+https://www.kisdi.re.kr/report/fileView.do?key=m2101113025377&amp;arrMasterId=4333446&amp;id=1932896" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.kisdi.re.kr/report/fileView.do?key=m2101113025377&amp;arrMasterId=4333446&amp;id=1932896">https://www.kisdi.re.kr/report/fileView.do?key=m2101113025377&amp;arrMasterId=4333446&amp;id=1932896</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 AI 학습을 위한 저작물 이용은 공정이용인가 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="AI 학습을 위한 저작물 이용은 공정이용인가 (2026.3.31)
+
+요약불가
+
+https://www.kisdi.re.kr/report/fileView.do?key=m2101113025377&amp;arrMasterId=4333446&amp;id=1932897" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.kisdi.re.kr/report/fileView.do?key=m2101113025377&amp;arrMasterId=4333446&amp;id=1932897">https://www.kisdi.re.kr/report/fileView.do?key=m2101113025377&amp;arrMasterId=4333446&amp;id=1932897</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 AI와 사회적 감지 기반의 재난 정보 공유 체계 구축을 위한 데이터 윤리 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="AI와 사회적 감지 기반의 재난 정보 공유 체계 구축을 위한 데이터 윤리 (2026.3.31)
+
+요약불가
+
+https://www.kisdi.re.kr/report/fileView.do?key=m2101113025377&amp;arrMasterId=4333446&amp;id=1932916" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.kisdi.re.kr/report/fileView.do?key=m2101113025377&amp;arrMasterId=4333446&amp;id=1932916">https://www.kisdi.re.kr/report/fileView.do?key=m2101113025377&amp;arrMasterId=4333446&amp;id=1932916</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>🇪🇺 ELSA 총회(2026.5.5~5.7) 최신 업데이트 및 등록 안내 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">CISPA(시스파) ELSA 뉴스레터</span></span><button type="button" class="copy-btn" data-copy="ELSA 총회(2026.5.5~5.7) 최신 업데이트 및 등록 안내 (2026.3.31)
+
+등록 마감: 2026.4.17 / SME·스타트업 오픈콜 신청 마감: 2026.4.7 / 워크숍 의제 제안(확장 초록) 마감: 2026.4.26 / 포스터 제출 마감: 2026.4.26
+
+ELSA 총회가 2026년 5월 5~7일 사르브뤼켄에서 개최되며, 행사 일정과 변경사항을 공유한다. 5월 5일에는 유럽위원회·EU AI Office·헬름홀츠 브뤼셀의 기조연설과 포스터 피치/전시, 소셜 디너가 포함된다. 5월 6일에는 SME 및 스타트업 피치와 ‘Best Poster Award’ 시상, 보안·안전한 AI 관련 기조연설 및 패널이 진행되며, 5월 7일에는 ‘신뢰할 수 있는 AI의 통합적 이해’ 등 워크숍이 열린다. 또한 워크숍 의제 제안(확장 초록), SME·스타트업 오픈콜, 포스터 세션/포스터 어워드 제출 마감일을 안내한다.
+
+https://cispa.de/elsa/newsletter/12_March26-GA-Sondernewsletter/GA-Update.html" onclick="copyEntry(this)">복사</button></div>
+  <p>등록 마감: 2026.4.17 / SME·스타트업 오픈콜 신청 마감: 2026.4.7 / 워크숍 의제 제안(확장 초록) 마감: 2026.4.26 / 포스터 제출 마감: 2026.4.26</p>
+<p>ELSA 총회가 2026년 5월 5~7일 사르브뤼켄에서 개최되며, 행사 일정과 변경사항을 공유한다. 5월 5일에는 유럽위원회·EU AI Office·헬름홀츠 브뤼셀의 기조연설과 포스터 피치/전시, 소셜 디너가 포함된다. 5월 6일에는 SME 및 스타트업 피치와 ‘Best Poster Award’ 시상, 보안·안전한 AI 관련 기조연설 및 패널이 진행되며, 5월 7일에는 ‘신뢰할 수 있는 AI의 통합적 이해’ 등 워크숍이 열린다. 또한 워크숍 의제 제안(확장 초록), SME·스타트업 오픈콜, 포스터 세션/포스터 어워드 제출 마감일을 안내한다.</p>
+  <p class="url"><a href="https://cispa.de/elsa/newsletter/12_March26-GA-Sondernewsletter/GA-Update.html">https://cispa.de/elsa/newsletter/12_March26-GA-Sondernewsletter/GA-Update.html</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 [초점] 중국 미단극(숏폼 드라마) 산업의 생성형 AI 활용에 따른 콘텐츠 제작 생태계 변화 분석</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="[초점] 중국 미단극(숏폼 드라마) 산업의 생성형 AI 활용에 따른 콘텐츠 제작 생태계 변화 분석
+
+요약불가
+
+https://www.kisdi.re.kr/report/fileView.do?key=m2102058837181&amp;arrMasterId=4334696&amp;id=1935156" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.kisdi.re.kr/report/fileView.do?key=m2102058837181&amp;arrMasterId=4334696&amp;id=1935156">https://www.kisdi.re.kr/report/fileView.do?key=m2102058837181&amp;arrMasterId=4334696&amp;id=1935156</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 [제33권 제1호] 에이전틱 AI 시대의 인간-기계 상호작용 재구성에 관한 이론적 고찰 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="[제33권 제1호] 에이전틱 AI 시대의 인간-기계 상호작용 재구성에 관한 이론적 고찰 (2026.3.31)
+
+생성형 AI 이후 등장한 에이전틱 AI가 목표 설정과 자율적 인지 과정을 통해 인간-기계 상호작용 양상을 바꾼다는 내용을 다룹니다. 기존의 ‘도구적 통제’ 중심 이론이 자율성을 가진 AI 환경에서 한계에 직면함을 문헌 고찰로 비판하고, CASA와 행위자-네트워크 이론(ANT)을 통합해 인간이 AI를 파트너로 인식하는 심리적·구조적 기제를 정리합니다. 또한 최신 협업 프레임워크들을 구조·소통·행위자성 차원에서 범주화해 분석 틀을 제안하며, 인간-AI 관계가 명령-수행에서 권한 위임과 상호 조율 기반의 공진화 파트너십으로 전환된다고 결론냅니다.
+
+https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29192" onclick="copyEntry(this)">복사</button></div>
+  <p>생성형 AI 이후 등장한 에이전틱 AI가 목표 설정과 자율적 인지 과정을 통해 인간-기계 상호작용 양상을 바꾼다는 내용을 다룹니다. 기존의 ‘도구적 통제’ 중심 이론이 자율성을 가진 AI 환경에서 한계에 직면함을 문헌 고찰로 비판하고, CASA와 행위자-네트워크 이론(ANT)을 통합해 인간이 AI를 파트너로 인식하는 심리적·구조적 기제를 정리합니다. 또한 최신 협업 프레임워크들을 구조·소통·행위자성 차원에서 범주화해 분석 틀을 제안하며, 인간-AI 관계가 명령-수행에서 권한 위임과 상호 조율 기반의 공진화 파트너십으로 전환된다고 결론냅니다.</p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29192">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29192</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 (정보화정책 저널 제33권 제1호) 국민의 공공데이터 인식 및 데이터 리터러시가 데이터 기반 행정 인식에 미치는 영향(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="(정보화정책 저널 제33권 제1호) 국민의 공공데이터 인식 및 데이터 리터러시가 데이터 기반 행정 인식에 미치는 영향(2026.3.31)
+
+한국지능정보사회진흥원 정보화정책 저널 제33권 제1호 논문은 국민 관점에서 데이터 기반 행정 인식에 영향을 주는 요인을 실증했다. 분석 결과 공공데이터 개방 인식, 공공데이터 품질 인식, 공공데이터 이용현황, 데이터 리터러시는 데이터 기반 행정 인식에 긍정적 영향을 미쳤다. 또한 데이터 기반 정책 및 공공서비스 인식은 데이터 기반 행정 인식에 직접적으로도, 공공데이터 개방 인식과의 관계에서도 긍정적으로 조절하는 것으로 나타났다. 연구는 수요자 중심의 활용도 높은 공공데이터 발굴과 국민의 데이터 역량 증진, 양질의 데이터 기반 산출물 확대를 제언했다.
+
+https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29193" onclick="copyEntry(this)">복사</button></div>
+  <p>한국지능정보사회진흥원 정보화정책 저널 제33권 제1호 논문은 국민 관점에서 데이터 기반 행정 인식에 영향을 주는 요인을 실증했다. 분석 결과 공공데이터 개방 인식, 공공데이터 품질 인식, 공공데이터 이용현황, 데이터 리터러시는 데이터 기반 행정 인식에 긍정적 영향을 미쳤다. 또한 데이터 기반 정책 및 공공서비스 인식은 데이터 기반 행정 인식에 직접적으로도, 공공데이터 개방 인식과의 관계에서도 긍정적으로 조절하는 것으로 나타났다. 연구는 수요자 중심의 활용도 높은 공공데이터 발굴과 국민의 데이터 역량 증진, 양질의 데이터 기반 산출물 확대를 제언했다.</p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29193">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29193</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 [제33권 제1호] 프라이버시 규제와 디지털 담론의 구조적 전환: GDPR 전후 이용자 집단의 참여 구조 변화와 이슈–관심 주기 분석 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="[제33권 제1호] 프라이버시 규제와 디지털 담론의 구조적 전환: GDPR 전후 이용자 집단의 참여 구조 변화와 이슈–관심 주기 분석 (2026.3.31)
+
+한국지능정보사회진흥원 정보화정책 저널 제33권 제1호에 실린 논문으로, GDPR 시행이 온라인 프라이버시 담론의 참여 구조에 미친 영향을 Reddit r/privacy 커뮤니티 게시글·댓글(2016~2023년) 분석으로 살폈다. GDPR 이후 댓글 수의 유의한 증가는 없었지만, 댓글 점수는 참여 규모와 긍정적으로 상호작용하며 질적 집중성이 강화된 것으로 나타났다. 또한 댓글 길이는 짧아지는 경향이 관찰되며, GDPR이 법·기술·인식 수준에서 담론 구조를 재편하는 사회기술적 사건임을 시사한다고 정리했다.
+
+https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29194" onclick="copyEntry(this)">복사</button></div>
+  <p>한국지능정보사회진흥원 정보화정책 저널 제33권 제1호에 실린 논문으로, GDPR 시행이 온라인 프라이버시 담론의 참여 구조에 미친 영향을 Reddit r/privacy 커뮤니티 게시글·댓글(2016~2023년) 분석으로 살폈다. GDPR 이후 댓글 수의 유의한 증가는 없었지만, 댓글 점수는 참여 규모와 긍정적으로 상호작용하며 질적 집중성이 강화된 것으로 나타났다. 또한 댓글 길이는 짧아지는 경향이 관찰되며, GDPR이 법·기술·인식 수준에서 담론 구조를 재편하는 사회기술적 사건임을 시사한다고 정리했다.</p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29194">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29194</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 [제33권 제1호] GovTech 기업의 공공가치 창출 모델 사례 연구: 공공문제 해결, 기술, 거버넌스를 중심으로 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="[제33권 제1호] GovTech 기업의 공공가치 창출 모델 사례 연구: 공공문제 해결, 기술, 거버넌스를 중심으로 (2026.3.31)
+
+본 연구는 GovTech(정부+기술) 개념과 작동 메커니즘을 규명하고, 국내 GovTech 기업 사례를 통해 공공문제 해결 기여도와 민간기술 활용 수준, 이해관계자 참여 수준을 종합 분석했다. 분석 결과 교통약자 이동권 보장, 해양오염 방제, 장애인 디지털 접근성 강화, 돌봄 서비스 혁신, 규제 대응 지원 등 다양한 공공문제 해결 성과가 제시된다. 또한 AI·클라우드·빅데이터·자율주행 등 민간기술이 공공서비스 혁신의 핵심 도구로 작동하며, 정부·지자체·기업·시민의 다층 참여와 거버넌스가 성과 확산에 필수 조건임을 확인한다. 연구는 스타트업 지원, 공공조달 혁신, 데이터 기반 협력체계 확립 등 정책 보완 필요성을 시사한다.
+
+https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29195" onclick="copyEntry(this)">복사</button></div>
+  <p>본 연구는 GovTech(정부+기술) 개념과 작동 메커니즘을 규명하고, 국내 GovTech 기업 사례를 통해 공공문제 해결 기여도와 민간기술 활용 수준, 이해관계자 참여 수준을 종합 분석했다. 분석 결과 교통약자 이동권 보장, 해양오염 방제, 장애인 디지털 접근성 강화, 돌봄 서비스 혁신, 규제 대응 지원 등 다양한 공공문제 해결 성과가 제시된다. 또한 AI·클라우드·빅데이터·자율주행 등 민간기술이 공공서비스 혁신의 핵심 도구로 작동하며, 정부·지자체·기업·시민의 다층 참여와 거버넌스가 성과 확산에 필수 조건임을 확인한다. 연구는 스타트업 지원, 공공조달 혁신, 데이터 기반 협력체계 확립 등 정책 보완 필요성을 시사한다.</p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29195">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29195</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 [제33권 제1호] 중국 웨이보 소프트 선전 확산 메커니즘 분석(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="[제33권 제1호] 중국 웨이보 소프트 선전 확산 메커니즘 분석(2026.3.31)
+
+본 연구는 2023년 후쿠시마 핵오염수 방류 사건을 중심으로, 중국 웨이보에서 형성된 소프트 선전 담론의 전파 구조를 네트워크 관점과 의제설정 이론으로 분석했다. 259,494건 게시글을 수집해 정보 통제자·정보 확산자·의견 주도자·일반공중 등 전파 주체를 구분하고 토픽 모델링과 상관·시기 교차 분석을 수행했으며, 의제는 ‘사건보도’와 ‘방류반대’를 중심으로 전개된 것으로 나타났다. 또한 2차 방류 시기에 감정형 의제 속성이 강화되고, 엘리트 계정의 의제 속성이 정보 확산자를 매개로 공중 담론으로 전이되는 구조적 전파 사슬이 확인됐다. 의견 주도자는 의제설정 과정에서 상대적으로 고립되는 양상이 보고됐다.
+
+https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29196" onclick="copyEntry(this)">복사</button></div>
+  <p>본 연구는 2023년 후쿠시마 핵오염수 방류 사건을 중심으로, 중국 웨이보에서 형성된 소프트 선전 담론의 전파 구조를 네트워크 관점과 의제설정 이론으로 분석했다. 259,494건 게시글을 수집해 정보 통제자·정보 확산자·의견 주도자·일반공중 등 전파 주체를 구분하고 토픽 모델링과 상관·시기 교차 분석을 수행했으며, 의제는 ‘사건보도’와 ‘방류반대’를 중심으로 전개된 것으로 나타났다. 또한 2차 방류 시기에 감정형 의제 속성이 강화되고, 엘리트 계정의 의제 속성이 정보 확산자를 매개로 공중 담론으로 전이되는 구조적 전파 사슬이 확인됐다. 의견 주도자는 의제설정 과정에서 상대적으로 고립되는 양상이 보고됐다.</p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29196">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=29196</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>V Scheming in the wild detecting real world AI scheming incidents through open source intelligence (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">longtermresilience.org</span></span><button type="button" class="copy-btn" data-copy="V Scheming in the wild detecting real world AI scheming incidents through open source intelligence (2026.3.31)
+
+요약불가
+
+https://www.longtermresilience.org/wp-content/uploads/2026/03/v5-Scheming-in-the-wild_-detecting-real-world-AI-scheming-incidents-through-open-source-intelligence.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.longtermresilience.org/wp-content/uploads/2026/03/v5-Scheming-in-the-wild_-detecting-real-world-AI-scheming-incidents-through-open-source-intelligence.pdf">https://www.longtermresilience.org/wp-content/uploads/2026/03/v5-Scheming-in-the-wild_-detecting-real-world-AI-scheming-incidents-through-open-source-intelligence.pdf</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 (The LENS 2026-1) 미국 AI 관련 인력개발 정책 현황 분석(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="(The LENS 2026-1) 미국 AI 관련 인력개발 정책 현황 분석(2026.3.31)
+
+한국지능정보사회진흥원은 제119대 미국 의회(2025년~) 발의 AI 관련 인력개발 법안 6건을 분석해 정책 쟁점과 시사점을 정리했다. 분석 결과, 세액공제 등 간접 지원은 비교적 합의가 있었으나 취약계층 대상 직접 보조금 방식은 입법화 가능성이 낮을 수 있다고 본다. 또한 AI 고용 충격을 측정·예측하고 직무·역량 표준화를 구축하는 것이 실증적 인력개발 정책의 선결 조건으로 제시되며, 연방-주 분절로 인한 지원 공백과 AI 대체 고위험 직종 재훈련 체계의 부재가 문제로 지적된다.
+
+https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=66361&amp;bcIdx=29205" onclick="copyEntry(this)">복사</button></div>
+  <p>한국지능정보사회진흥원은 제119대 미국 의회(2025년~) 발의 AI 관련 인력개발 법안 6건을 분석해 정책 쟁점과 시사점을 정리했다. 분석 결과, 세액공제 등 간접 지원은 비교적 합의가 있었으나 취약계층 대상 직접 보조금 방식은 입법화 가능성이 낮을 수 있다고 본다. 또한 AI 고용 충격을 측정·예측하고 직무·역량 표준화를 구축하는 것이 실증적 인력개발 정책의 선결 조건으로 제시되며, 연방-주 분절로 인한 지원 공백과 AI 대체 고위험 직종 재훈련 체계의 부재가 문제로 지적된다.</p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=66361&amp;bcIdx=29205">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=66361&amp;bcIdx=29205</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 (The LENS 2026-2) 중국 「‘AI+ 제조’ 특별 행동계획」: AI 기반 제조 전환과 기술 자립 전략 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="(The LENS 2026-2) 중국 「‘AI+ 제조’ 특별 행동계획」: AI 기반 제조 전환과 기술 자립 전략 (2026.3.31)
+
+중국은 2027년까지 안전·신뢰성 확보 AI 기술을 산업 전반에 공급하고, 산업 규모와 활용 수준을 세계 최고 수준으로 끌어올리는 목표를 제시함
+
+중국은 국무원 「’AI+‘ 행동 심화 실시 의견」을 이행하기 위해 ‘AI+ 제조’ 특별 행동계획 실시 의견을 발표하고, AI-제조 융합을 가속해 신질 생산력과 신형 공업화를 추진한다. 핵심은 2027년까지 안전성과 신뢰성을 갖춘 AI 기술을 산업 전반에 공급하고, 개발부터 정책 지원까지 전 주기를 포괄하는 과제를 제시하는 것이다. NIA는 중국의 국무원 주도 하향식 통합 구조와 함께 미국(안보·공급망 중심 분산형 생태계), 한국(국가 AI 전략 중심 통합 추진 및 민관 협력·실증 확산)을 비교하고, 표준 체계화·K-제조 특화 모델 개발·제조 데이터 확보·중소기업 진입장벽 완화 등 시사점을 도출했다.
+
+https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=66361&amp;bcIdx=29206" onclick="copyEntry(this)">복사</button></div>
+  <p>중국은 2027년까지 안전·신뢰성 확보 AI 기술을 산업 전반에 공급하고, 산업 규모와 활용 수준을 세계 최고 수준으로 끌어올리는 목표를 제시함</p>
+<p>중국은 국무원 「’AI+‘ 행동 심화 실시 의견」을 이행하기 위해 ‘AI+ 제조’ 특별 행동계획 실시 의견을 발표하고, AI-제조 융합을 가속해 신질 생산력과 신형 공업화를 추진한다. 핵심은 2027년까지 안전성과 신뢰성을 갖춘 AI 기술을 산업 전반에 공급하고, 개발부터 정책 지원까지 전 주기를 포괄하는 과제를 제시하는 것이다. NIA는 중국의 국무원 주도 하향식 통합 구조와 함께 미국(안보·공급망 중심 분산형 생태계), 한국(국가 AI 전략 중심 통합 추진 및 민관 협력·실증 확산)을 비교하고, 표준 체계화·K-제조 특화 모델 개발·제조 데이터 확보·중소기업 진입장벽 완화 등 시사점을 도출했다.</p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=66361&amp;bcIdx=29206">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=66361&amp;bcIdx=29206</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 (The LENS 2026-3) 「호라이즌 유럽」 디지털 분야 변화 동향과 한-EU 협력 시사점 (2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="(The LENS 2026-3) 「호라이즌 유럽」 디지털 분야 변화 동향과 한-EU 협력 시사점 (2026.3.31)
+
+한국지능정보사회진흥원은 호라이즌 유럽 준회원국 가입 이후 연구 과제 참여 기회 확대에 맞춰, 2026~2027년 주요 변화와 2028~2034년 차기 프로그램(FP10) 논의 현황을 분석했다. 분석 결과, 기술 개발 중심에서 현장 문제 해결에 즉각 투입하는 실행 중심 체계로의 패러다임 전환과 함께, FP10의 예산 확대에 더해 EU 역외 국가에 대한 상호주의 및 안보 강화가 주요 쟁점으로 부상할 것으로 전망했다. 이에 따라 차기 프로그램 기획 단계부터 한국 강점 기술이 반영될 수 있는 선제적 의제 설정, 상호주의 강화에 대응한 전략적 R&amp;D 개방, 유럽 디지털 공급망 내재화를 위한 지원, 급변하는 연구 행정에 대한 밀착형 전문 지원이 필요하다고 제시했다.
+
+https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=66361&amp;bcIdx=29207" onclick="copyEntry(this)">복사</button></div>
+  <p>한국지능정보사회진흥원은 호라이즌 유럽 준회원국 가입 이후 연구 과제 참여 기회 확대에 맞춰, 2026~2027년 주요 변화와 2028~2034년 차기 프로그램(FP10) 논의 현황을 분석했다. 분석 결과, 기술 개발 중심에서 현장 문제 해결에 즉각 투입하는 실행 중심 체계로의 패러다임 전환과 함께, FP10의 예산 확대에 더해 EU 역외 국가에 대한 상호주의 및 안보 강화가 주요 쟁점으로 부상할 것으로 전망했다. 이에 따라 차기 프로그램 기획 단계부터 한국 강점 기술이 반영될 수 있는 선제적 의제 설정, 상호주의 강화에 대응한 전략적 R&amp;D 개방, 유럽 디지털 공급망 내재화를 위한 지원, 급변하는 연구 행정에 대한 밀착형 전문 지원이 필요하다고 제시했다.</p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=66361&amp;bcIdx=29207">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=66361&amp;bcIdx=29207</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>🇪🇺 EU AI Act 제5장(GPAI 모델) 집행 관련 의무·감독 권한 및 주요 절차(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">artificialintelligenceact.eu</span></span><button type="button" class="copy-btn" data-copy="EU AI Act 제5장(GPAI 모델) 집행 관련 의무·감독 권한 및 주요 절차(2026.3.31)
+
+2 August 2025부터 GPAI 모델 제공자 의무는 적용되나, 집행(감독·제재) 권한은 2026.8.2부터 발동, 2025.8.2 이전 출시 모델은 2027.8.2까지 준수 필요
+
+EU AI Act 제5장에 따른 일반목적 AI(GPAI) 모델 제공자는 기술문서 작성·갱신, 하위 제공자에 대한 정보 제공, 저작권 정책 및 학습 콘텐츠 요약 게시 등 실질적 의무와 함께 AI Office/국가기관과의 협조, 문서·정보 요청에 대한 응답, 모델 접근 제공 등 절차적 의무를 부담한다. 다만 집행을 위한 유럽집행위원회의 감독·집행 권한은 2026년 8월 2일에 발효되며, 그 전까지는 1년의 조정기간이 주어진다. 집행 권한에는 문서·정보 요구, 평가 수행, 시정조치·위험완화조치 요구, 시장 제공 제한·철회·리콜 요청이 포함되고, 위반 시 연간 전세계 매출의 3% 또는 1,500만 유로 중 큰 금액까지 과징금 부과가 가능하다고 설명한다. 또한 국가 시장감시 당국, 하위 제공자(불만 제기), 과학 패널(위험 경고) 등도 집행 과정에서 역할을 할 수 있다고 안내한다.
+
+https://artificialintelligenceact.eu/enforcement-of-chapter-v-under-the-eu-ai-act" onclick="copyEntry(this)">복사</button></div>
+  <p>2 August 2025부터 GPAI 모델 제공자 의무는 적용되나, 집행(감독·제재) 권한은 2026.8.2부터 발동, 2025.8.2 이전 출시 모델은 2027.8.2까지 준수 필요</p>
+<p>EU AI Act 제5장에 따른 일반목적 AI(GPAI) 모델 제공자는 기술문서 작성·갱신, 하위 제공자에 대한 정보 제공, 저작권 정책 및 학습 콘텐츠 요약 게시 등 실질적 의무와 함께 AI Office/국가기관과의 협조, 문서·정보 요청에 대한 응답, 모델 접근 제공 등 절차적 의무를 부담한다. 다만 집행을 위한 유럽집행위원회의 감독·집행 권한은 2026년 8월 2일에 발효되며, 그 전까지는 1년의 조정기간이 주어진다. 집행 권한에는 문서·정보 요구, 평가 수행, 시정조치·위험완화조치 요구, 시장 제공 제한·철회·리콜 요청이 포함되고, 위반 시 연간 전세계 매출의 3% 또는 1,500만 유로 중 큰 금액까지 과징금 부과가 가능하다고 설명한다. 또한 국가 시장감시 당국, 하위 제공자(불만 제기), 과학 패널(위험 경고) 등도 집행 과정에서 역할을 할 수 있다고 안내한다.</p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/enforcement-of-chapter-v-under-the-eu-ai-act">https://artificialintelligenceact.eu/enforcement-of-chapter-v-under-the-eu-ai-act</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>🇯🇵 유권자들이 정치 조언자로 AI를 더 자주 쓰며, 정보접근 환경이 편향을 좌우(2026.3.31)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">스탠퍼드대학교 프리먼 스포글 국제연구소(FSI)</span></span><button type="button" class="copy-btn" data-copy="유권자들이 정치 조언자로 AI를 더 자주 쓰며, 정보접근 환경이 편향을 좌우(2026.3.31)
+
+스탠퍼드 연구진이 2026년 2월 일본 중의원 선거 직전 실험을 실시한 결과, 정책 성향이 입력된 경우 5개 AI 모델이 일본공산당(JCP)을 지지하도록 크게 쏠렸고(정당 선택 변동 50~98%p), 인구통계 변수의 영향(0.5~7%p)은 훨씬 작았다. 이러한 결과는 모델이 검색으로 참조하는 정보원 환경에서 JCP 측 공개 웹사이트(아카하타 등)가 많이 인용되지만, 일본 주요 언론은 robots.txt 등 접근 제한으로 AI 크롤링이 막히는 비대칭이 작동했기 때문이라고 분석했다. 연구는 AI가 선거에서 중개자 역할을 할수록 콘텐츠 접근 정책과 AI의 ‘중립성’ 문제가 함께 다뤄져야 하며, 선거관리기구·뉴스조직·정치행위자·이용자 모두 주의가 필요하다고 제시한다.
+
+https://fsi.stanford.edu/news/voters-increasingly-use-ai-political-advisor-new-study-shows-risks" onclick="copyEntry(this)">복사</button></div>
+  <p>스탠퍼드 연구진이 2026년 2월 일본 중의원 선거 직전 실험을 실시한 결과, 정책 성향이 입력된 경우 5개 AI 모델이 일본공산당(JCP)을 지지하도록 크게 쏠렸고(정당 선택 변동 50~98%p), 인구통계 변수의 영향(0.5~7%p)은 훨씬 작았다. 이러한 결과는 모델이 검색으로 참조하는 정보원 환경에서 JCP 측 공개 웹사이트(아카하타 등)가 많이 인용되지만, 일본 주요 언론은 robots.txt 등 접근 제한으로 AI 크롤링이 막히는 비대칭이 작동했기 때문이라고 분석했다. 연구는 AI가 선거에서 중개자 역할을 할수록 콘텐츠 접근 정책과 AI의 ‘중립성’ 문제가 함께 다뤄져야 하며, 선거관리기구·뉴스조직·정치행위자·이용자 모두 주의가 필요하다고 제시한다.</p>
+  <p class="url"><a href="https://fsi.stanford.edu/news/voters-increasingly-use-ai-political-advisor-new-study-shows-risks">https://fsi.stanford.edu/news/voters-increasingly-use-ai-political-advisor-new-study-shows-risks</a></p>
+</article>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

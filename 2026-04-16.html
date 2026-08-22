@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-04-16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
+       거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
+       됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
+       색상이 비슷한 리본이 있어도 톤 자체가 달라 서로 헷갈리지 않게 했다.
+       13개를 색상환에 27.7도 간격으로 고르게 배치(채도·명도 고정) —
+       처음엔 임의로 고른 값이라 3개(#3 #9 #13)가 우연히 거의 같은 색상(H≈29도)
+       으로 몰려서 명도/채도 차이로만 구분해야 했는데, 그건 눈으로 잘 안
+       구별돼서 균등 배치로 다시 잡았다. */
+    --coll-1: #905047; --coll-2: #907247; --coll-3: #8b9047;
+    --coll-4: #6a9047; --coll-5: #489047; --coll-6: #479067;
+    --coll-7: #479088; --coll-8: #477590; --coll-9: #475390;
+    --coll-10: #5c4790; --coll-11: #7d4790; --coll-12: #904780;
+    --coll-13: #90475f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
+      --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
+      --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
+      --coll-10: #b7a8dc; --coll-11: #cfa8dc; --coll-12: #dca8d1;
+      --coll-13: #dca8b9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-04-16 · 14/14건 요약</div>
+    <div class="nav"><a href="index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-frontier">
+  <h2>🇨🇳 Qwen3.6 35B-A3B (Alibaba/Qwen) (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3.6 35B-A3B (Alibaba/Qwen) (2026.4.16)
+
+Reasoning · Open · 262K ctx
+
+GPQA 86% · SWE 73.4% · MMLU 85.2% · AIME 92.7% · HLE 21.4%
+
+MoE - 3B active / 35B total, 256 experts. Runs on a laptop. 73.4% SWE-bench Verified. Natively multimodal. Extensible to 1M context. Apache 2.0.
+
+https://qwen.ai/blog?id=qwen3.6-35b-a3b" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Open · 262K ctx</p>
+<p>GPQA 86% · SWE 73.4% · MMLU 85.2% · AIME 92.7% · HLE 21.4%</p>
+<p>MoE - 3B active / 35B total, 256 experts. Runs on a laptop. 73.4% SWE-bench Verified. Natively multimodal. Extensible to 1M context. Apache 2.0.</p>
+  <p class="url"><a href="https://qwen.ai/blog?id=qwen3.6-35b-a3b">https://qwen.ai/blog?id=qwen3.6-35b-a3b</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Opus 4.7 (Anthropic) (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.7 (Anthropic) (2026.4.16)
+
+Reasoning · Closed · 1000K ctx · $5/M · $25/M
+
+GPQA 94.2% · SWE 87.6%
+
+#1 SWE-bench Verified (87.6%). #1 SWE-bench Pro (64.3%). 94.2% GPQA Diamond. High-res vision (3.75MP). New xhigh effort level. Agentic task budgets. $5/$25 per 1M tokens.
+
+https://www.anthropic.com/news/claude-opus-4-7" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $5/M · $25/M</p>
+<p>GPQA 94.2% · SWE 87.6%</p>
+<p>#1 SWE-bench Verified (87.6%). #1 SWE-bench Pro (64.3%). 94.2% GPQA Diamond. High-res vision (3.75MP). New xhigh effort level. Agentic task budgets. $5/$25 per 1M tokens.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-opus-4-7">https://www.anthropic.com/news/claude-opus-4-7</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-Rosalind (OpenAI) (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-Rosalind (OpenAI) (2026.4.16)
+
+Reasoning · Closed
+
+벤치마크 미공개
+
+First domain-specific OpenAI model. Life sciences: genomics, protein engineering, drug discovery. Research preview for qualified US enterprise customers. Partners: Amgen, Moderna, Allen Institute, Thermo Fisher.
+
+https://openai.com/index/introducing-gpt-rosalind/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed</p>
+<p>벤치마크 미공개</p>
+<p>First domain-specific OpenAI model. Life sciences: genomics, protein engineering, drug discovery. Research preview for qualified US enterprise customers. Partners: Amgen, Moderna, Allen Institute, Thermo Fisher.</p>
+  <p class="url"><a href="https://openai.com/index/introducing-gpt-rosalind/">https://openai.com/index/introducing-gpt-rosalind/</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>Claude Opus 4.7 일반 제공(2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.7 일반 제공(2026.4.16)
+
+Claude Opus 4.7은 2026.4.16부터 Claude 전 제품 및 API, Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry에서 제공됩니다.
+
+앤트로픽은 최신 모델 ‘Claude Opus 4.7’을 일반 제공한다고 밝혔습니다. Opus 4.6 대비 고난도 소프트웨어 엔지니어링에서 계획 단계의 논리 오류를 잡고 복잡한 장시간 작업을 더 일관되게 수행하며, 지시를 더 정확히 따르고 스스로 결과를 검증하는 방식이 개선됐다고 설명합니다. 또한 비전 성능이 향상되어 더 높은 해상도의 이미지를 볼 수 있고, 사이버보안 관련 고위험 요청은 자동 감지·차단하는 안전장치를 포함한다고 했습니다. 가격은 Opus 4.6과 동일하며(입력 100만 토큰당 5달러, 출력 100만 토큰당 25달러), API 및 여러 클라우드 플랫폼을 통해 이용 가능하다고 안내했습니다.
+
+https://www.anthropic.com/news/claude-opus-4-7" onclick="copyEntry(this)">복사</button></div>
+  <p>Claude Opus 4.7은 2026.4.16부터 Claude 전 제품 및 API, Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry에서 제공됩니다.</p>
+<p>앤트로픽은 최신 모델 ‘Claude Opus 4.7’을 일반 제공한다고 밝혔습니다. Opus 4.6 대비 고난도 소프트웨어 엔지니어링에서 계획 단계의 논리 오류를 잡고 복잡한 장시간 작업을 더 일관되게 수행하며, 지시를 더 정확히 따르고 스스로 결과를 검증하는 방식이 개선됐다고 설명합니다. 또한 비전 성능이 향상되어 더 높은 해상도의 이미지를 볼 수 있고, 사이버보안 관련 고위험 요청은 자동 감지·차단하는 안전장치를 포함한다고 했습니다. 가격은 Opus 4.6과 동일하며(입력 100만 토큰당 5달러, 출력 100만 토큰당 25달러), API 및 여러 클라우드 플랫폼을 통해 이용 가능하다고 안내했습니다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-opus-4-7">https://www.anthropic.com/news/claude-opus-4-7</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 유럽 집행위, EU 사안 독립적 범유럽 보도를 지원하는 공모(2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">EU 디지털 전략(유럽 집행위원회)</span></span><button type="button" class="copy-btn" data-copy="유럽 집행위, EU 사안 독립적 범유럽 보도를 지원하는 공모(2026.4.16)
+
+유럽 집행위원회는 유럽 언론이 EU 사안에 대해 독립적으로 범유럽 수준의 오디오비주얼·디지털 보도를 할 수 있도록 지원하는 제안 공모를 시작했다. 이번 공모 예산은 총 1,660만 유로이며, 오디오비주얼 뉴스 보도 확대(8.5백만 유로), 특정 회원국에서 국제 오디오비주얼 뉴스 미디어 제공 개발(3.1백만 유로), 신뢰할 수 있고 전문적으로 제작된 온라인 정보 접근성 제고(5백만 유로)로 나뉜다. 단일 신청 또는 컨소시엄 형태가 가능하며, 활동은 EU 회원국에 설립된 조직이 수행해야 하고 언론 수혜자는 완전한 편집 독립성을 유지해야 한다.
+
+https://digital-strategy.ec.europa.eu/en/news/commission-invests-eu16-million-pan-european-reporting" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽 집행위원회는 유럽 언론이 EU 사안에 대해 독립적으로 범유럽 수준의 오디오비주얼·디지털 보도를 할 수 있도록 지원하는 제안 공모를 시작했다. 이번 공모 예산은 총 1,660만 유로이며, 오디오비주얼 뉴스 보도 확대(8.5백만 유로), 특정 회원국에서 국제 오디오비주얼 뉴스 미디어 제공 개발(3.1백만 유로), 신뢰할 수 있고 전문적으로 제작된 온라인 정보 접근성 제고(5백만 유로)로 나뉜다. 단일 신청 또는 컨소시엄 형태가 가능하며, 활동은 EU 회원국에 설립된 조직이 수행해야 하고 언론 수혜자는 완전한 편집 독립성을 유지해야 한다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-invests-eu16-million-pan-european-reporting">https://digital-strategy.ec.europa.eu/en/news/commission-invests-eu16-million-pan-european-reporting</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 (2026.4.16) EU 집행위, 디지털시장법에 따른 구글의 검색엔진 데이터 제3자 공유 조치 제안</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">EU-Digital-Strategy</span></span><button type="button" class="copy-btn" data-copy="(2026.4.16) EU 집행위, 디지털시장법에 따른 구글의 검색엔진 데이터 제3자 공유 조치 제안
+
+공개협의(의견수렴) 2026.4.17(금) 시작
+
+유럽연합 집행위원회가 구글에 디지털시장법(DMA) 준수를 위한 예비 조사 결과와 제안 조치를 전달했다. 제안에 따르면 구글은 제3자 검색엔진이 순위·검색질의·클릭·열람 데이터 등 검색 데이터를 공정·합리·차별금지 조건으로 접근할 수 있도록 해야 한다. 조치는 데이터 수혜자 자격(검색 기능을 가진 AI 챗봇 포함), 공유 범위·방식·주기, 개인정보 익명화, 가격 산정 기준, 접근 절차 등을 포함하며, 집행위는 2026.4.17부터 공개협의를 통해 의견을 받는다.
+
+https://digital-strategy.ec.europa.eu/en/news/commission-proposes-measures-google-sharing-search-engine-data-third-parties-under-digital-markets" onclick="copyEntry(this)">복사</button></div>
+  <p>공개협의(의견수렴) 2026.4.17(금) 시작</p>
+<p>유럽연합 집행위원회가 구글에 디지털시장법(DMA) 준수를 위한 예비 조사 결과와 제안 조치를 전달했다. 제안에 따르면 구글은 제3자 검색엔진이 순위·검색질의·클릭·열람 데이터 등 검색 데이터를 공정·합리·차별금지 조건으로 접근할 수 있도록 해야 한다. 조치는 데이터 수혜자 자격(검색 기능을 가진 AI 챗봇 포함), 공유 범위·방식·주기, 개인정보 익명화, 가격 산정 기준, 접근 절차 등을 포함하며, 집행위는 2026.4.17부터 공개협의를 통해 의견을 받는다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-proposes-measures-google-sharing-search-engine-data-third-parties-under-digital-markets">https://digital-strategy.ec.europa.eu/en/news/commission-proposes-measures-google-sharing-search-engine-data-third-parties-under-digital-markets</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 (2026.4.16) 아동 온라인 안전 자문 특별패널 2차 회의 개최</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">EU-Digital-Strategy</span></span><button type="button" class="copy-btn" data-copy="(2026.4.16) 아동 온라인 안전 자문 특별패널 2차 회의 개최
+
+EU 집행위원장 폰데어라이엔의 아동 온라인 안전 자문을 맡은 특별패널이 2차 회의를 열었다. 이번 회의에서는 전문가들이 회원국에 공유한 현행 EU 규정과 아동 보호 관련 이니셔티브, 그리고 호주의 소셜미디어 최소 연령 등 국제 접근이 논의됐다. 전날 집행위가 발표한 EU 연령확인 앱(프라이버시 보호 중심의 도구)과 관련해, 회원국이 앱을 맞춤화해 조속히 시민들이 사용할 수 있도록 독려하는 내용도 포함됐다.
+
+https://digital-strategy.ec.europa.eu/en/news/second-meeting-special-panel-advise-president-von-der-leyen-child-online-safety" onclick="copyEntry(this)">복사</button></div>
+  <p>EU 집행위원장 폰데어라이엔의 아동 온라인 안전 자문을 맡은 특별패널이 2차 회의를 열었다. 이번 회의에서는 전문가들이 회원국에 공유한 현행 EU 규정과 아동 보호 관련 이니셔티브, 그리고 호주의 소셜미디어 최소 연령 등 국제 접근이 논의됐다. 전날 집행위가 발표한 EU 연령확인 앱(프라이버시 보호 중심의 도구)과 관련해, 회원국이 앱을 맞춤화해 조속히 시민들이 사용할 수 있도록 독려하는 내용도 포함됐다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/second-meeting-special-panel-advise-president-von-der-leyen-child-online-safety">https://digital-strategy.ec.europa.eu/en/news/second-meeting-special-panel-advise-president-von-der-leyen-child-online-safety</a></p>
+</article>
+<article class="entry cat-gov">
+  <h2>인도 정부, 국가 AI 거버넌스 전략을 이끌 AI 거버넌스·경제그룹(AIGEG) 구성 (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">인도 전자정보기술부(Press Information Bureau, PIB)</span></span><button type="button" class="copy-btn" data-copy="인도 정부, 국가 AI 거버넌스 전략을 이끌 AI 거버넌스·경제그룹(AIGEG) 구성 (2026.4.16)
+
+인도 정부는 AI 거버넌스 정책 개발과 부처·규제기관 간 조정을 담당할 고위급 범부처 기구 ‘AI Governance and Economic Group(AIGEG)’을 구성했다고 밝혔다. AIGEG는 인도의 AI 거버넌스 가이드라인과 경제조사의 제도적 권고를 공식화한 것으로, 노동시장 영향과 사회 안정 우선순위를 고려해 AI 도입을 조율하는 역할을 한다. AIGEG는 아슈위니 바이슈나우 전자정보기술·철도·정보방송 장관이 의장을 맡고, 지틴 프라사다 전자정보기술·상공업 담당 국무장관이 부의장을 맡는다. 또한 글로벌 기술·위험·규제 등 AI 정책·거버넌스 관련 사안을 자문할 ‘기술·정책 전문가위원회(TPEC)’가 지원한다.
+
+https://www.pib.gov.in/PressReleasePage.aspx?PRID=2252739&amp;reg=3&amp;lang=2" onclick="copyEntry(this)">복사</button></div>
+  <p>인도 정부는 AI 거버넌스 정책 개발과 부처·규제기관 간 조정을 담당할 고위급 범부처 기구 ‘AI Governance and Economic Group(AIGEG)’을 구성했다고 밝혔다. AIGEG는 인도의 AI 거버넌스 가이드라인과 경제조사의 제도적 권고를 공식화한 것으로, 노동시장 영향과 사회 안정 우선순위를 고려해 AI 도입을 조율하는 역할을 한다. AIGEG는 아슈위니 바이슈나우 전자정보기술·철도·정보방송 장관이 의장을 맡고, 지틴 프라사다 전자정보기술·상공업 담당 국무장관이 부의장을 맡는다. 또한 글로벌 기술·위험·규제 등 AI 정책·거버넌스 관련 사안을 자문할 ‘기술·정책 전문가위원회(TPEC)’가 지원한다.</p>
+  <p class="url"><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2252739&amp;reg=3&amp;lang=2">https://www.pib.gov.in/PressReleasePage.aspx?PRID=2252739&amp;reg=3&amp;lang=2</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>(2026.4.16) 트럼프의 AI ‘킬 스위치’ 지지에 대한 FLI 아귀레 CEO 성명</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">퓨처 오브 라이프 인스티튜트(Future of Life Institute)</span></span><button type="button" class="copy-btn" data-copy="(2026.4.16) 트럼프의 AI ‘킬 스위치’ 지지에 대한 FLI 아귀레 CEO 성명
+
+퓨처 오브 라이프 인스티튜트(FLI) 아귀레(Anthony Aguirre) 대표는 트럼프가 AI에 대한 ‘킬 스위치’ 같은 강력한 안전장치가 필요하다는 취지로 말한 데 대해 “정확하다”고 평가했다. 그는 Claude의 Mythos 모델이 최신 AI의 공격적 사이버 역량에 의해 경제·금융 시스템이 취약할 수 있음을 보여줬고, 사전 테스트에서 제로데이 취약점을 여러 주요 운영체제와 웹 브라우저에서 자율적으로 찾아냈다고 밝혔다. 또한 소프트웨어 기반 안전조치만으로는 통제가 어렵기 때문에 AI 칩 등 하드웨어 수준에서 모델을 격리·중단할 수 있는 오프 스위치가 필요하며, FLI가 관련 기능을 시제품으로 개발했다고 설명했다.
+
+https://futureoflife.org/statement/trumps-support-for-an-ai-kill-switch/" onclick="copyEntry(this)">복사</button></div>
+  <p>퓨처 오브 라이프 인스티튜트(FLI) 아귀레(Anthony Aguirre) 대표는 트럼프가 AI에 대한 ‘킬 스위치’ 같은 강력한 안전장치가 필요하다는 취지로 말한 데 대해 “정확하다”고 평가했다. 그는 Claude의 Mythos 모델이 최신 AI의 공격적 사이버 역량에 의해 경제·금융 시스템이 취약할 수 있음을 보여줬고, 사전 테스트에서 제로데이 취약점을 여러 주요 운영체제와 웹 브라우저에서 자율적으로 찾아냈다고 밝혔다. 또한 소프트웨어 기반 안전조치만으로는 통제가 어렵기 때문에 AI 칩 등 하드웨어 수준에서 모델을 격리·중단할 수 있는 오프 스위치가 필요하며, FLI가 관련 기능을 시제품으로 개발했다고 설명했다.</p>
+  <p class="url"><a href="https://futureoflife.org/statement/trumps-support-for-an-ai-kill-switch/">https://futureoflife.org/statement/trumps-support-for-an-ai-kill-switch/</a></p>
+</article>
+<article class="entry cat-aiid">
+  <h2>메타의 케냐 자회사 사마, 메타와의 계약 종료로 1,108명 해고 예정 (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aiid">AIID</span> · <span class="source">AP News</span></span><button type="button" class="copy-btn" data-copy="메타의 케냐 자회사 사마, 메타와의 계약 종료로 1,108명 해고 예정 (2026.4.16)
+
+메타의 자회사인 사마는 메타와의 계약 종료로 인해 케냐의 나이지로비 사무실에서 1,108명의 직원을 해고할 예정이라고 발표했습니다. 이 결정은 2022년부터 진행된 메타와의 법적 분쟁 이후 이루어졌으며, 이 분쟁은 과거 콘텐츠 모더레이터들이 저임금과 부족한 정신 건강 지원을 이유로 제기했습니다. 사마는 콘텐츠 모더레이션 서비스를 중단하고 AI 데이터 라벨링 등 다른 서비스에 집중하고 있지만, 이번 해고는 계약 종료에 따른 조치입니다. 해고 대상 직원들에 대한 지원도 제공할 계획입니다.
+
+https://apnews.com/article/kenya-meta-facebook-sama-content-moderators-902716b8037bc4063dd1101e2dbd4c3a" onclick="copyEntry(this)">복사</button></div>
+  <p>메타의 자회사인 사마는 메타와의 계약 종료로 인해 케냐의 나이지로비 사무실에서 1,108명의 직원을 해고할 예정이라고 발표했습니다. 이 결정은 2022년부터 진행된 메타와의 법적 분쟁 이후 이루어졌으며, 이 분쟁은 과거 콘텐츠 모더레이터들이 저임금과 부족한 정신 건강 지원을 이유로 제기했습니다. 사마는 콘텐츠 모더레이션 서비스를 중단하고 AI 데이터 라벨링 등 다른 서비스에 집중하고 있지만, 이번 해고는 계약 종료에 따른 조치입니다. 해고 대상 직원들에 대한 지원도 제공할 계획입니다.</p>
+  <p class="url"><a href="https://apnews.com/article/kenya-meta-facebook-sama-content-moderators-902716b8037bc4063dd1101e2dbd4c3a">https://apnews.com/article/kenya-meta-facebook-sama-content-moderators-902716b8037bc4063dd1101e2dbd4c3a</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>🇺🇸 OpenAI, 생물학 연구용 ‘GPT-Rosalind’ 공개 (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="OpenAI, 생물학 연구용 ‘GPT-Rosalind’ 공개 (2026.4.16)
+
+OpenAI가 생물학 연구를 위한 모델 ‘GPT-Rosalind’를 소개했다는 내용이다. 다만 제공된 정보에는 본문 세부 내용(기능, 사용 범위, 배포 방식 등)이 없어 구체 사항은 확인이 필요하다.
+
+https://openai.com/index/introducing-gpt-rosalind/" onclick="copyEntry(this)">복사</button></div>
+  <p>OpenAI가 생물학 연구를 위한 모델 ‘GPT-Rosalind’를 소개했다는 내용이다. 다만 제공된 정보에는 본문 세부 내용(기능, 사용 범위, 배포 방식 등)이 없어 구체 사항은 확인이 필요하다.</p>
+  <p class="url"><a href="https://openai.com/index/introducing-gpt-rosalind/">https://openai.com/index/introducing-gpt-rosalind/</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>(2026.4.16) LLM 그루밍: AI 학습데이터를 오염시키는 새로운 형태의 허위정보 확산</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">blog.ogunlana.net</span></span><button type="button" class="copy-btn" data-copy="(2026.4.16) LLM 그루밍: AI 학습데이터를 오염시키는 새로운 형태의 허위정보 확산
+
+AI 보안 연구자들이 ‘LLM grooming’이라는 허위정보 전략을 소개했으며, 인간을 속이기보다 AI가 학습하는 웹 데이터 자체를 오염시키는 방식이라고 설명한다. 러시아 기반 ‘프라우다 네트워크’ 사례로, 수백 개 도메인에 대량의 허위·선전성 콘텐츠를 다국어로 게시하고 인간 방문 없이 주로 AI 크롤러가 수집하도록 설계된 정황이 제시된다. NewsGuard(2025년 3월) 테스트에서는 프라우다 네트워크가 겨냥한 주제에 대해 주요 챗봇 응답의 33%가 러시아 선전 서사를 포함했다고 언급하며, 허위가 사실처럼 섞여 구분이 어려울 수 있다고 경고한다.
+
+https://blog.ogunlana.net/2025/07/31/understanding-llm-grooming-the-new-frontier-of-ai-powered-disinformation" onclick="copyEntry(this)">복사</button></div>
+  <p>AI 보안 연구자들이 ‘LLM grooming’이라는 허위정보 전략을 소개했으며, 인간을 속이기보다 AI가 학습하는 웹 데이터 자체를 오염시키는 방식이라고 설명한다. 러시아 기반 ‘프라우다 네트워크’ 사례로, 수백 개 도메인에 대량의 허위·선전성 콘텐츠를 다국어로 게시하고 인간 방문 없이 주로 AI 크롤러가 수집하도록 설계된 정황이 제시된다. NewsGuard(2025년 3월) 테스트에서는 프라우다 네트워크가 겨냥한 주제에 대해 주요 챗봇 응답의 33%가 러시아 선전 서사를 포함했다고 언급하며, 허위가 사실처럼 섞여 구분이 어려울 수 있다고 경고한다.</p>
+  <p class="url"><a href="https://blog.ogunlana.net/2025/07/31/understanding-llm-grooming-the-new-frontier-of-ai-powered-disinformation">https://blog.ogunlana.net/2025/07/31/understanding-llm-grooming-the-new-frontier-of-ai-powered-disinformation</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>(LLM04:2025 Data and Model Poisoning, 2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">OWASP(GenAI LLM Risk) 공식 웹사이트</span></span><button type="button" class="copy-btn" data-copy="(LLM04:2025 Data and Model Poisoning, 2026.4.16)
+
+데이터 포이즈닝은 사전학습·미세조정·임베딩 단계의 데이터가 조작되어 취약점, 백도어, 편향을 주입하는 공격으로, 모델의 보안·성능·윤리적 동작을 훼손할 수 있다고 설명한다. 외부/검증되지 않은 데이터 소스나 오픈소스 저장소를 통해 배포된 모델은 악성 콘텐츠(예: 악성 pickling으로 인한 코드 실행) 등 데이터 포이즈닝 외의 공급망 위험도 함께 가질 수 있으며, 트리거가 발생하기 전까지는 행동 변화가 드러나지 않는 백도어(슬리퍼 에이전트) 가능성도 언급한다. 예방·대응으로는 데이터 출처/변환 추적(CycloneDX, ML-BOM), 데이터 벤더 검증, 샌드박싱과 이상탐지, 데이터 버전관리(DVC), 레드팀 기반 강건성 테스트, 학습 중 손실·행동 모니터링, 추론 시 RAG/그라운딩 적용 등이 제시된다.
+
+https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/" onclick="copyEntry(this)">복사</button></div>
+  <p>데이터 포이즈닝은 사전학습·미세조정·임베딩 단계의 데이터가 조작되어 취약점, 백도어, 편향을 주입하는 공격으로, 모델의 보안·성능·윤리적 동작을 훼손할 수 있다고 설명한다. 외부/검증되지 않은 데이터 소스나 오픈소스 저장소를 통해 배포된 모델은 악성 콘텐츠(예: 악성 pickling으로 인한 코드 실행) 등 데이터 포이즈닝 외의 공급망 위험도 함께 가질 수 있으며, 트리거가 발생하기 전까지는 행동 변화가 드러나지 않는 백도어(슬리퍼 에이전트) 가능성도 언급한다. 예방·대응으로는 데이터 출처/변환 추적(CycloneDX, ML-BOM), 데이터 벤더 검증, 샌드박싱과 이상탐지, 데이터 버전관리(DVC), 레드팀 기반 강건성 테스트, 학습 중 손실·행동 모니터링, 추론 시 RAG/그라운딩 적용 등이 제시된다.</p>
+  <p class="url"><a href="https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/">https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>LLM 그루밍·프롬프트 조작이 기업에 위협이 될 수 있음 (2026.4.16)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">fairedih.fi</span></span><button type="button" class="copy-btn" data-copy="LLM 그루밍·프롬프트 조작이 기업에 위협이 될 수 있음 (2026.4.16)
+
+본문 요약: 연구에 따르면 LLM을 통한 조작(예: 그루밍·프롬프트 조작)은 실험적으로 가능하며 비교적 쉽게 수행될 수 있다고 설명한다. 특히 소멸된 도메인을 구매하는 데 약 60달러 정도의 예산만으로도 공격이 가능하다는 사례가 제시된다. 그 결과, 사용자가 의심하지 못한 채 중립 전문가의 목소리로 허위정보를 반복 생성하도록 AI가 유도될 가능성도 있다고 본문은 경고한다.
+
+https://www.fairedih.fi/en/2025/06/01/llm-grooming-and-prompt-manipulation-ai-vulnerabilities-that-threaten-businesses/" onclick="copyEntry(this)">복사</button></div>
+  <p>본문 요약: 연구에 따르면 LLM을 통한 조작(예: 그루밍·프롬프트 조작)은 실험적으로 가능하며 비교적 쉽게 수행될 수 있다고 설명한다. 특히 소멸된 도메인을 구매하는 데 약 60달러 정도의 예산만으로도 공격이 가능하다는 사례가 제시된다. 그 결과, 사용자가 의심하지 못한 채 중립 전문가의 목소리로 허위정보를 반복 생성하도록 AI가 유도될 가능성도 있다고 본문은 경고한다.</p>
+  <p class="url"><a href="https://www.fairedih.fi/en/2025/06/01/llm-grooming-and-prompt-manipulation-ai-vulnerabilities-that-threaten-businesses/">https://www.fairedih.fi/en/2025/06/01/llm-grooming-and-prompt-manipulation-ai-vulnerabilities-that-threaten-businesses/</a></p>
+</article>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

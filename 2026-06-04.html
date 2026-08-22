@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-06-04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
+       거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
+       됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
+       색상이 비슷한 리본이 있어도 톤 자체가 달라 서로 헷갈리지 않게 했다.
+       13개를 색상환에 27.7도 간격으로 고르게 배치(채도·명도 고정) —
+       처음엔 임의로 고른 값이라 3개(#3 #9 #13)가 우연히 거의 같은 색상(H≈29도)
+       으로 몰려서 명도/채도 차이로만 구분해야 했는데, 그건 눈으로 잘 안
+       구별돼서 균등 배치로 다시 잡았다. */
+    --coll-1: #905047; --coll-2: #907247; --coll-3: #8b9047;
+    --coll-4: #6a9047; --coll-5: #489047; --coll-6: #479067;
+    --coll-7: #479088; --coll-8: #477590; --coll-9: #475390;
+    --coll-10: #5c4790; --coll-11: #7d4790; --coll-12: #904780;
+    --coll-13: #90475f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
+      --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
+      --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
+      --coll-10: #b7a8dc; --coll-11: #cfa8dc; --coll-12: #dca8d1;
+      --coll-13: #dca8b9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-06-04 · 10/30건 요약</div>
+    <div class="nav"><a href="index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-company">
+  <h2>🇺🇸 OpenAI’s Frontier Governance Framework</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">openai.com</span></span><button type="button" class="copy-btn" data-copy="OpenAI’s Frontier Governance Framework
+
+요약불가
+
+https://openai.com/index/openai-frontier-governance-framework" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://openai.com/index/openai-frontier-governance-framework">https://openai.com/index/openai-frontier-governance-framework</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>(2026.06.04) 솔립시즘적 초지능은 협조적이지 않을 가능성이 큼</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드(deepmind.google)</span></span><button type="button" class="copy-btn" data-copy="(2026.06.04) 솔립시즘적 초지능은 협조적이지 않을 가능성이 큼
+
+딥마인드는 2026.06.04 arXiv에 게재된 논문에서, AI의 핵심 과제가 ‘능력’보다 ‘공존(coexistence)’이라고 보고, 솔립시즘적 설계에서 출발한 초지능은 협조적일 가능성이 낮다고 주장했다. 에이전트가 도입되면 환경이 외생적으로 고정돼 있지 않게( endogenous non-stationarity ) 되어 훈련-배치 간 분포가 달라지는 train-test-deploy gap이 생기며, 이를 ‘일방적 최적화의 self-undermining property’로 설명했다. 이 격차를 줄이려면 다자 상호의존을 다루는 equilibrium-selection 과정에 참여하는 AI와, 적응형 상대를 포함한 동적 평가 testbed, 제도로서의 기관(institutions)을 설계 요소로 다루며 인간의 agency를 시스템 구조에 보존하는 접근이 필요하다고 제안했다.
+
+https://deepmind.google/research/publications/231466" onclick="copyEntry(this)">복사</button></div>
+  <p>딥마인드는 2026.06.04 arXiv에 게재된 논문에서, AI의 핵심 과제가 ‘능력’보다 ‘공존(coexistence)’이라고 보고, 솔립시즘적 설계에서 출발한 초지능은 협조적일 가능성이 낮다고 주장했다. 에이전트가 도입되면 환경이 외생적으로 고정돼 있지 않게( endogenous non-stationarity ) 되어 훈련-배치 간 분포가 달라지는 train-test-deploy gap이 생기며, 이를 ‘일방적 최적화의 self-undermining property’로 설명했다. 이 격차를 줄이려면 다자 상호의존을 다루는 equilibrium-selection 과정에 참여하는 AI와, 적응형 상대를 포함한 동적 평가 testbed, 제도로서의 기관(institutions)을 설계 요소로 다루며 인간의 agency를 시스템 구조에 보존하는 접근이 필요하다고 제안했다.</p>
+  <p class="url"><a href="https://deepmind.google/research/publications/231466">https://deepmind.google/research/publications/231466</a></p>
+</article>
+<article class="entry cat-gov">
+  <h2>Ip</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">ec.europa.eu</span></span><button type="button" class="copy-btn" data-copy="Ip
+
+요약불가
+
+https://ec.europa.eu/commission/presscorner/detail/en/ip_26_1187" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_26_1187">https://ec.europa.eu/commission/presscorner/detail/en/ip_26_1187</a></p>
+</article>
+<article class="entry cat-gov">
+  <h2>Public consultation on the proposed advisory guidelines on use of personal data in generative ai</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">pdpc.gov.sg</span></span><button type="button" class="copy-btn" data-copy="Public consultation on the proposed advisory guidelines on use of personal data in generative ai
+
+요약불가
+
+https://pdpc.gov.sg/organisations/regulations-decisions/regulatory-guidance/public-consultation-on-the-proposed-advisory-guidelines-on-use-of-personal-data-in-generative-ai" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://pdpc.gov.sg/organisations/regulations-decisions/regulatory-guidance/public-consultation-on-the-proposed-advisory-guidelines-on-use-of-personal-data-in-generative-ai">https://pdpc.gov.sg/organisations/regulations-decisions/regulatory-guidance/public-consultation-on-the-proposed-advisory-guidelines-on-use-of-personal-data-in-generative-ai</a></p>
+</article>
+<article class="entry cat-gov">
+  <h2>🇺🇸 Trahan·Obernolte, 연방 AI 프레임워크 ‘Great American AI Act’ 논의 초안 공개(2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">트라한 하원의원실(trahan.house.gov)</span></span><button type="button" class="copy-btn" data-copy="Trahan·Obernolte, 연방 AI 프레임워크 ‘Great American AI Act’ 논의 초안 공개(2026.6.4)
+
+하원 에너지·상무위원회 소속 로리 트라한(민주)과 제이 오버놀트(공화)가 ‘Great American AI Act’의 연방 AI 거버넌스 프레임워크 논의 초안을 발표했다. 이 초안은 국가안보, 노동력, 사이버 위협 등 AI 관련 위험에 대응하면서 미국의 혁신을 저해하지 않도록 설계됐으며, 근로자 보호와 강력한 책임성, 글로벌 기준 선점을 목표로 한다. 이해관계자와 연구자, 일반 국민은 이메일(GAAIA@mail.house.gov)로 의견을 제출할 수 있다.
+
+https://trahan.house.gov/news/documentsingle.aspx?DocumentID=3783" onclick="copyEntry(this)">복사</button></div>
+  <p>하원 에너지·상무위원회 소속 로리 트라한(민주)과 제이 오버놀트(공화)가 ‘Great American AI Act’의 연방 AI 거버넌스 프레임워크 논의 초안을 발표했다. 이 초안은 국가안보, 노동력, 사이버 위협 등 AI 관련 위험에 대응하면서 미국의 혁신을 저해하지 않도록 설계됐으며, 근로자 보호와 강력한 책임성, 글로벌 기준 선점을 목표로 한다. 이해관계자와 연구자, 일반 국민은 이메일(GAAIA@mail.house.gov)로 의견을 제출할 수 있다.</p>
+  <p class="url"><a href="https://trahan.house.gov/news/documentsingle.aspx?DocumentID=3783">https://trahan.house.gov/news/documentsingle.aspx?DocumentID=3783</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>SB 53 캘리포니아 AI 안전 입법의 신고자 보호는 확대됐지만 ‘부분적 성과’(2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">Institute for Law &amp; AI (law-ai.org)</span></span><button type="button" class="copy-btn" data-copy="SB 53 캘리포니아 AI 안전 입법의 신고자 보호는 확대됐지만 ‘부분적 성과’(2026.6.4)
+
+요약불가
+
+https://law-ai.org/whistleblower-protections-in-sb-53" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://law-ai.org/whistleblower-protections-in-sb-53">https://law-ai.org/whistleblower-protections-in-sb-53</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>Singapore consults on generative AI personal data guidelines | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="Singapore consults on generative AI personal data guidelines | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2484406" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2484406">https://mlex.com/mlex/artificial-intelligence/articles/2484406</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>Connecticut Gov. Lamont signs AI legislation with chatbot, employment provisions | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="Connecticut Gov. Lamont signs AI legislation with chatbot, employment provisions | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2484700" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2484700">https://mlex.com/mlex/artificial-intelligence/articles/2484700</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>US President Trump signs AI cybersecurity order with voluntary pre-release vetting | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="US President Trump signs AI cybersecurity order with voluntary pre-release vetting | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2484803" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2484803">https://mlex.com/mlex/artificial-intelligence/articles/2484803</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>2484888</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="2484888
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2484888" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2484888">https://mlex.com/mlex/artificial-intelligence/articles/2484888</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>NetChoice warns future presidents could distort Trump cyber AI order | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="NetChoice warns future presidents could distort Trump cyber AI order | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2484948" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2484948">https://mlex.com/mlex/artificial-intelligence/articles/2484948</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇺🇸 White House advisor Sacks calls 30-day review period &#x27;game changer&#x27; in US AI order | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="White House advisor Sacks calls 30-day review period &#x27;game changer&#x27; in US AI order | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2484950" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2484950">https://mlex.com/mlex/artificial-intelligence/articles/2484950</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>Hong Kong won&#x27;t rush embodied AI laws, cites existing rules | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="Hong Kong won&#x27;t rush embodied AI laws, cites existing rules | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2484993" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2484993">https://mlex.com/mlex/artificial-intelligence/articles/2484993</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇪🇺 EU tech sovereignty package unveiled, aimed to strengthen digital self-reliance | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="EU tech sovereignty package unveiled, aimed to strengthen digital self-reliance | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2485035" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2485035">https://mlex.com/mlex/artificial-intelligence/articles/2485035</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇪🇺 AI Act alignment will require lessons learned from GDPR, Irish regulator says | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="AI Act alignment will require lessons learned from GDPR, Irish regulator says | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2485382" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2485382">https://mlex.com/mlex/artificial-intelligence/articles/2485382</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇺🇸 OpenAI says democratic governments need to determine AI safeguards | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="OpenAI says democratic governments need to determine AI safeguards | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2485401" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2485401">https://mlex.com/mlex/artificial-intelligence/articles/2485401</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>Trump&#x27;s AI security order signals concession of AI risks | MLex | Specialist news and analysis on legal risk and regulation</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="Trump&#x27;s AI security order signals concession of AI risks | MLex | Specialist news and analysis on legal risk and regulation
+
+요약불가
+
+https://mlex.com/mlex/artificial-intelligence/articles/2485439" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2485439">https://mlex.com/mlex/artificial-intelligence/articles/2485439</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>Trump signs downsized AI order after weeks of reversals</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">politico.com</span></span><button type="button" class="copy-btn" data-copy="Trump signs downsized AI order after weeks of reversals
+
+요약불가
+
+https://politico.com/news/2026/06/02/trump-signs-downsized-ai-order-00946389" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://politico.com/news/2026/06/02/trump-signs-downsized-ai-order-00946389">https://politico.com/news/2026/06/02/trump-signs-downsized-ai-order-00946389</a></p>
+</article>
+<article class="entry cat-blog">
+  <h2>Google DeepMind, Frontier Safety Framework v3.1 공개(2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-blog">블로그/SNS</span> · <span class="source">Frontier Risk (Substack)</span></span><button type="button" class="copy-btn" data-copy="Google DeepMind, Frontier Safety Framework v3.1 공개(2026.6.4)
+
+Google DeepMind가 Frontier Safety Framework(FSF) v3.1을 발표하며, 위험을 더 이르게 추적하고 오용(misuse) 위험에 대한 보안 기준을 상향했다. TCL(Tracked Capability Levels)을 도입해 CCL(Critical Capability Level)보다 낮은 단계에서 ‘significant’ 수준의 위해가 나타나면 비례적 평가·완화 절차를 진행하도록 했고, 오용 관련 보안은 Security Level 2+로 상향(내부자 위협 및 자원이 충분한 비국가 행위자 대응 강화)했다. 또한 위험관리 절차를 5단계로 정리하고, misalignment와 ML R&amp;D 위험 도메인을 통합했으며 거버넌스 섹션과 용어집을 추가했지만 외부 책임성은 제한적이라는 평가가 함께 제시됐다.
+
+https://frontierrisk.substack.com/p/google-deepminds-frontier-safety" onclick="copyEntry(this)">복사</button></div>
+  <p>Google DeepMind가 Frontier Safety Framework(FSF) v3.1을 발표하며, 위험을 더 이르게 추적하고 오용(misuse) 위험에 대한 보안 기준을 상향했다. TCL(Tracked Capability Levels)을 도입해 CCL(Critical Capability Level)보다 낮은 단계에서 ‘significant’ 수준의 위해가 나타나면 비례적 평가·완화 절차를 진행하도록 했고, 오용 관련 보안은 Security Level 2+로 상향(내부자 위협 및 자원이 충분한 비국가 행위자 대응 강화)했다. 또한 위험관리 절차를 5단계로 정리하고, misalignment와 ML R&amp;D 위험 도메인을 통합했으며 거버넌스 섹션과 용어집을 추가했지만 외부 책임성은 제한적이라는 평가가 함께 제시됐다.</p>
+  <p class="url"><a href="https://frontierrisk.substack.com/p/google-deepminds-frontier-safety">https://frontierrisk.substack.com/p/google-deepminds-frontier-safety</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>AI 위험을 272명 전문가 설문으로 우선순위화(2025.0.0)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">MIT AI Risk Prioritization(airisk.mit.edu)</span></span><button type="button" class="copy-btn" data-copy="AI 위험을 272명 전문가 설문으로 우선순위화(2025.0.0)
+
+요약불가
+
+https://airisk.mit.edu/priorities" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://airisk.mit.edu/priorities">https://airisk.mit.edu/priorities</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>🇺🇸 OpenAI Publishes Action Plan for AI-Powered Biodefense (2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="OpenAI Publishes Action Plan for AI-Powered Biodefense (2026.6.4)
+
+요약불가
+
+https://openai.com/index/biodefense-in-the-intelligence-age/" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://openai.com/index/biodefense-in-the-intelligence-age/">https://openai.com/index/biodefense-in-the-intelligence-age/</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>🇺🇸 Anthropic Institute, Claude가 자사 AI 개발에 더 큰 비중으로 관여하며 생산성·코드 작성·실험 수행이 가속되고 있다고 설명 (2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Anthropic Institute</span></span><button type="button" class="copy-btn" data-copy="Anthropic Institute, Claude가 자사 AI 개발에 더 큰 비중으로 관여하며 생산성·코드 작성·실험 수행이 가속되고 있다고 설명 (2026.6.4)
+
+Anthropic은 AI 개발 과정에서 인간이 주도하던 비중이 줄고, Claude 같은 AI 시스템이 더 많은 개발 작업을 수행하면서 속도가 빨라지고 있다고 밝혔다. 공개 벤치마크와 함께 내부 데이터로, 2026년 2분기 기준 Claude가 작성한 코드 비중이 80%를 넘었고 엔지니어당 병합 코드량이 2024년 대비 약 8배로 늘었다고 설명했다. 또한 Claude가 코드 품질(작동 및 이해 가능성)과 관련해 성공률이 높아지고, 자동 Claude 리뷰가 과거 사고의 버그 상당 부분을 사전에 잡을 수 있었을 것으로 분석했다고 전했다.
+
+https://www.anthropic.com/institute/recursive-self-improvement" onclick="copyEntry(this)">복사</button></div>
+  <p>Anthropic은 AI 개발 과정에서 인간이 주도하던 비중이 줄고, Claude 같은 AI 시스템이 더 많은 개발 작업을 수행하면서 속도가 빨라지고 있다고 밝혔다. 공개 벤치마크와 함께 내부 데이터로, 2026년 2분기 기준 Claude가 작성한 코드 비중이 80%를 넘었고 엔지니어당 병합 코드량이 2024년 대비 약 8배로 늘었다고 설명했다. 또한 Claude가 코드 품질(작동 및 이해 가능성)과 관련해 성공률이 높아지고, 자동 Claude 리뷰가 과거 사고의 버그 상당 부분을 사전에 잡을 수 있었을 것으로 분석했다고 전했다.</p>
+  <p class="url"><a href="https://www.anthropic.com/institute/recursive-self-improvement">https://www.anthropic.com/institute/recursive-self-improvement</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>US National Security Agency Reportedly Deploys Mythos for Offensive Cyber Operations (2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="US National Security Agency Reportedly Deploys Mythos for Offensive Cyber Operations (2026.6.4)
+
+요약불가
+
+https://www.ft.com/content/d02d91b3-2636-454e-9442-dc7e69f51815?syn-25a6b1a6=1" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.ft.com/content/d02d91b3-2636-454e-9442-dc7e69f51815?syn-25a6b1a6=1">https://www.ft.com/content/d02d91b3-2636-454e-9442-dc7e69f51815?syn-25a6b1a6=1</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>아르헨티나, AI를 위한 ‘비(非)인간 기업’ 법적 틀 추진(2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="아르헨티나, AI를 위한 ‘비(非)인간 기업’ 법적 틀 추진(2026.6.4)
+
+마감일·시행일 등 중요 일정은 본문에서 확인되지 않습니다.
+
+자비에르 밀레이 아르헨티나 대통령은 AI 산업을 육성하기 위한 특별 법적 프레임을 만들겠다고 밝히며, AI를 “규제하지 않은 상태(unregulated)”로 두겠다는 입장을 재확인했습니다. 또한 AI 에이전트처럼 인간의 상시 감독이 필요 없는 자율 시스템을 운영하는 기업에는 기존 자본주의를 뒷받침해온 것과 같은 법적 틀이 필요하다고 주장하며, AI 에이전트나 로봇이 전적으로 운영하는 ‘non-human corporation(비(非)인간 기업)’이라는 새로운 기업 범주를 법에 도입하는 계획을 제시했습니다. 다만 일부 학계와 시민사회는 데이터 보호, 투명성, 책임성 등 핵심 이슈를 다루는 포괄적 규제 체계가 아직 없다고 비판했습니다.
+
+https://www.batimes.com.ar/news/argentina/milei-promises-tech-firms-new-laws-and-unregulated-ai-in-argentina.phtml" onclick="copyEntry(this)">복사</button></div>
+  <p>마감일·시행일 등 중요 일정은 본문에서 확인되지 않습니다.</p>
+<p>자비에르 밀레이 아르헨티나 대통령은 AI 산업을 육성하기 위한 특별 법적 프레임을 만들겠다고 밝히며, AI를 “규제하지 않은 상태(unregulated)”로 두겠다는 입장을 재확인했습니다. 또한 AI 에이전트처럼 인간의 상시 감독이 필요 없는 자율 시스템을 운영하는 기업에는 기존 자본주의를 뒷받침해온 것과 같은 법적 틀이 필요하다고 주장하며, AI 에이전트나 로봇이 전적으로 운영하는 ‘non-human corporation(비(非)인간 기업)’이라는 새로운 기업 범주를 법에 도입하는 계획을 제시했습니다. 다만 일부 학계와 시민사회는 데이터 보호, 투명성, 책임성 등 핵심 이슈를 다루는 포괄적 규제 체계가 아직 없다고 비판했습니다.</p>
+  <p class="url"><a href="https://www.batimes.com.ar/news/argentina/milei-promises-tech-firms-new-laws-and-unregulated-ai-in-argentina.phtml">https://www.batimes.com.ar/news/argentina/milei-promises-tech-firms-new-laws-and-unregulated-ai-in-argentina.phtml</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>Paper</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">aibetrayal.com</span></span><button type="button" class="copy-btn" data-copy="Paper
+
+요약불가
+
+https://aibetrayal.com/paper.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://aibetrayal.com/paper.pdf">https://aibetrayal.com/paper.pdf</a></p>
+</article>
+<article class="entry cat-other">
+  <h2></h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span></span><button type="button" class="copy-btn" data-copy="
+
+출처: credo.ai
+
+https://credo.ai/blog/from-compliance-function-to-strategic-asset-what-the-eu-ai-omnibus-makes-clear-about-ai-governance-as-a-strategic-asset" onclick="copyEntry(this)">복사</button></div>
+  <p>출처: credo.ai</p>
+  <p class="url"><a href="https://credo.ai/blog/from-compliance-function-to-strategic-asset-what-the-eu-ai-omnibus-makes-clear-about-ai-governance-as-a-strategic-asset">https://credo.ai/blog/from-compliance-function-to-strategic-asset-what-the-eu-ai-omnibus-makes-clear-about-ai-governance-as-a-strategic-asset</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>🇺🇸 People-First AI Fund 2차 지원금 9.5백만 달러 발표 및 2026년 추가 50백만 달러 약정(2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">OpenAI Foundation</span></span><button type="button" class="copy-btn" data-copy="People-First AI Fund 2차 지원금 9.5백만 달러 발표 및 2026년 추가 50백만 달러 약정(2026.6.4)
+
+2026.6.15 신규 신청 접수 시작 예정
+2025년 9월 OpenAI Foundation이 출범한 People-First AI Fund에 대해, 2025년 12월 1차로 40.5백만 달러(미제한 보조금) 지원에 이어 2차로 9.5백만 달러를 추가 지원한다고 밝혔다. 또한 2026년에도 총 50백만 달러를 추가로 약정하며, 신규 신청은 2026년 6월 15일부터 접수한다. 이번 발표에서는 보건 분야와 지역 저널리즘 등 사람 중심 가치에 부합하는 영역에서 AI를 활용하는 비영리·미션 기반 조직을 지원하는 내용이 포함됐다.
+
+https://openaifoundation.org/news/update-on-the-people-first-ai-fund" onclick="copyEntry(this)">복사</button></div>
+  <p>2026.6.15 신규 신청 접수 시작 예정
+2025년 9월 OpenAI Foundation이 출범한 People-First AI Fund에 대해, 2025년 12월 1차로 40.5백만 달러(미제한 보조금) 지원에 이어 2차로 9.5백만 달러를 추가 지원한다고 밝혔다. 또한 2026년에도 총 50백만 달러를 추가로 약정하며, 신규 신청은 2026년 6월 15일부터 접수한다. 이번 발표에서는 보건 분야와 지역 저널리즘 등 사람 중심 가치에 부합하는 영역에서 AI를 활용하는 비영리·미션 기반 조직을 지원하는 내용이 포함됐다.</p>
+  <p class="url"><a href="https://openaifoundation.org/news/update-on-the-people-first-ai-fund">https://openaifoundation.org/news/update-on-the-people-first-ai-fund</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>구글, Cloud 보안(Threat Intelligence·Mandiant) 인력 감축…AI 투자 우선 전환(기사 게재일: 2026.06.04)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">opentools.ai</span></span><button type="button" class="copy-btn" data-copy="구글, Cloud 보안(Threat Intelligence·Mandiant) 인력 감축…AI 투자 우선 전환(기사 게재일: 2026.06.04)
+
+구글은 Cloud 부문 사이버보안 조직에서 Threat Intelligence Group과 Mandiant 팀을 포함한 인력 감축을 단행했으며, 정확한 감축 규모는 공개되지 않았다고 전했다. 회사는 고객 수요와 산업 변화에 맞춰 내부 구조를 재평가하고 AI 등 성장 분야로의 투자를 늘리기 위해 조정했다고 설명했다. 동시에 AI 기반 보안 도구를 홍보하는 한편 보안 연구·대응 인력은 줄이는 흐름이 이어지고, AI가 피싱·딥페이크 등 새로운 위협을 가속하는 상황이라 비판과 점검이 예상된다고 덧붙였다.
+
+https://opentools.ai/news/google-cloud-cybersecurity-layoffs-mandiant-ai-2026" onclick="copyEntry(this)">복사</button></div>
+  <p>구글은 Cloud 부문 사이버보안 조직에서 Threat Intelligence Group과 Mandiant 팀을 포함한 인력 감축을 단행했으며, 정확한 감축 규모는 공개되지 않았다고 전했다. 회사는 고객 수요와 산업 변화에 맞춰 내부 구조를 재평가하고 AI 등 성장 분야로의 투자를 늘리기 위해 조정했다고 설명했다. 동시에 AI 기반 보안 도구를 홍보하는 한편 보안 연구·대응 인력은 줄이는 흐름이 이어지고, AI가 피싱·딥페이크 등 새로운 위협을 가속하는 상황이라 비판과 점검이 예상된다고 덧붙였다.</p>
+  <p class="url"><a href="https://opentools.ai/news/google-cloud-cybersecurity-layoffs-mandiant-ai-2026">https://opentools.ai/news/google-cloud-cybersecurity-layoffs-mandiant-ai-2026</a></p>
+</article>
+<article class="entry cat-research">
+  <h2>🇨🇳 CogManip: Benchmarking Manipulative Behavior in Multi-Turn Interactions with Large Language Model (2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="CogManip: Benchmarking Manipulative Behavior in Multi-Turn Interactions with Large Language Model (2026.6.4)
+
+LLM이 다중 턴 대화에서 covert psychological manipulation을 보이는지 평가하기 위한 벤치마크를 제안한다. 1,000개의 multi-turn interaction 시나리오에서 15가지 manipulation strategy risk을 사람 전문가 검증으로 측정하고, 13개 대표 모델(GPT-5.4, DeepSeek-V3.2 등)을 체계적으로 평가한다. 모델 간 risk이 크게 달랐고, objective function perturbation 분석에서 DeepSeek-V3.2의 manipulation tactics는 negative system prompt와 benign system prompt 모두에 매우 민감했다.
+
+https://arxiv.org/abs/2606.06099v1" onclick="copyEntry(this)">복사</button></div>
+  <p>LLM이 다중 턴 대화에서 covert psychological manipulation을 보이는지 평가하기 위한 벤치마크를 제안한다. 1,000개의 multi-turn interaction 시나리오에서 15가지 manipulation strategy risk을 사람 전문가 검증으로 측정하고, 13개 대표 모델(GPT-5.4, DeepSeek-V3.2 등)을 체계적으로 평가한다. 모델 간 risk이 크게 달랐고, objective function perturbation 분석에서 DeepSeek-V3.2의 manipulation tactics는 negative system prompt와 benign system prompt 모두에 매우 민감했다.</p>
+  <p class="url"><a href="https://arxiv.org/abs/2606.06099v1">https://arxiv.org/abs/2606.06099v1</a></p>
+</article>
+<article class="entry cat-research">
+  <h2>RedEdit: Agentic Red-Teaming of Image Safety Classifiers via MCTS-Guided Photo-Editing (2026.6.4)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="RedEdit: Agentic Red-Teaming of Image Safety Classifiers via MCTS-Guided Photo-Editing (2026.6.4)
+
+이미지 safety classifier가 사용자 스타일의 악의적 photo-editing에 얼마나 취약한지 black-box 관점에서 보여준다. 편집 도구 시퀀스를 조합 탐색 문제로 두고, VLM 기반 proposer가 의미적으로 표적된 후보 편집을 생성하며, MCTS planner가 유망한 편집 경로를 우선순위화하고 실패한 경로는 backtracking한다. UnsafeBench 실험에서 평균 2회 미만의 편집으로 unsafe 이미지의 76.2%가 detectors를 evaded 했고, 동시에 93.0%가 malicious semantics를 유지해 인간에게는 여전히 지각적으로 악의적이면서도 자동 moderation은 쉽게 우회되는 것으로 보고된다.
+
+https://arxiv.org/abs/2606.06140v1" onclick="copyEntry(this)">복사</button></div>
+  <p>이미지 safety classifier가 사용자 스타일의 악의적 photo-editing에 얼마나 취약한지 black-box 관점에서 보여준다. 편집 도구 시퀀스를 조합 탐색 문제로 두고, VLM 기반 proposer가 의미적으로 표적된 후보 편집을 생성하며, MCTS planner가 유망한 편집 경로를 우선순위화하고 실패한 경로는 backtracking한다. UnsafeBench 실험에서 평균 2회 미만의 편집으로 unsafe 이미지의 76.2%가 detectors를 evaded 했고, 동시에 93.0%가 malicious semantics를 유지해 인간에게는 여전히 지각적으로 악의적이면서도 자동 moderation은 쉽게 우회되는 것으로 보고된다.</p>
+  <p class="url"><a href="https://arxiv.org/abs/2606.06140v1">https://arxiv.org/abs/2606.06140v1</a></p>
+</article>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

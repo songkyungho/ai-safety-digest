@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-07-09</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
+       거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
+       됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
+       색상이 비슷한 리본이 있어도 톤 자체가 달라 서로 헷갈리지 않게 했다.
+       13개를 색상환에 27.7도 간격으로 고르게 배치(채도·명도 고정) —
+       처음엔 임의로 고른 값이라 3개(#3 #9 #13)가 우연히 거의 같은 색상(H≈29도)
+       으로 몰려서 명도/채도 차이로만 구분해야 했는데, 그건 눈으로 잘 안
+       구별돼서 균등 배치로 다시 잡았다. */
+    --coll-1: #905047; --coll-2: #907247; --coll-3: #8b9047;
+    --coll-4: #6a9047; --coll-5: #489047; --coll-6: #479067;
+    --coll-7: #479088; --coll-8: #477590; --coll-9: #475390;
+    --coll-10: #5c4790; --coll-11: #7d4790; --coll-12: #904780;
+    --coll-13: #90475f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
+      --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
+      --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
+      --coll-10: #b7a8dc; --coll-11: #cfa8dc; --coll-12: #dca8d1;
+      --coll-13: #dca8b9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-07-09 · 18/24건 요약</div>
+    <div class="nav"><a href="index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.6 Sol (OpenAI) (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.6 Sol (OpenAI) (2026.7.9)
+
+Reasoning · Closed · 1000K ctx · $5/M · $30/M
+
+벤치마크 미공개
+
+Flagship of the GPT-5.6 family (Sol, Terra, Luna) and OpenAI&#x27;s most capable tier. State of the art on Terminal-Bench 2.1. Adds programmatic tool calling in the Responses API. Went public July 9 after a gated preview that opened June 25. $5/$30 per 1M tokens, priced like the prior GPT-5.5. 1M context.
+
+https://openai.com/index/previewing-gpt-5-6-sol/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $5/M · $30/M</p>
+<p>벤치마크 미공개</p>
+<p>Flagship of the GPT-5.6 family (Sol, Terra, Luna) and OpenAI&#x27;s most capable tier. State of the art on Terminal-Bench 2.1. Adds programmatic tool calling in the Responses API. Went public July 9 after a gated preview that opened June 25. $5/$30 per 1M tokens, priced like the prior GPT-5.5. 1M context.</p>
+  <p class="url"><a href="https://openai.com/index/previewing-gpt-5-6-sol/">https://openai.com/index/previewing-gpt-5-6-sol/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.6 Terra (OpenAI) (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.6 Terra (OpenAI) (2026.7.9)
+
+Reasoning · Closed · 1000K ctx · $2.5/M · $15/M
+
+벤치마크 미공개
+
+Balanced mid-tier of the GPT-5.6 family. OpenAI positions it at GPT-5.5-class quality at about half the cost. $2.50/$15 per 1M tokens. 1M context.
+
+https://openai.com/index/previewing-gpt-5-6-sol/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $2.5/M · $15/M</p>
+<p>벤치마크 미공개</p>
+<p>Balanced mid-tier of the GPT-5.6 family. OpenAI positions it at GPT-5.5-class quality at about half the cost. $2.50/$15 per 1M tokens. 1M context.</p>
+  <p class="url"><a href="https://openai.com/index/previewing-gpt-5-6-sol/">https://openai.com/index/previewing-gpt-5-6-sol/</a></p>
+</article>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 GPT-5.6 Luna (OpenAI) (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.6 Luna (OpenAI) (2026.7.9)
+
+Reasoning · Closed · 1000K ctx · $1/M · $6/M
+
+벤치마크 미공개
+
+Fastest and cheapest tier of the GPT-5.6 family. $1/$6 per 1M tokens. 1M context.
+
+https://openai.com/index/previewing-gpt-5-6-sol/" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $1/M · $6/M</p>
+<p>벤치마크 미공개</p>
+<p>Fastest and cheapest tier of the GPT-5.6 family. $1/$6 per 1M tokens. 1M context.</p>
+  <p class="url"><a href="https://openai.com/index/previewing-gpt-5-6-sol/">https://openai.com/index/previewing-gpt-5-6-sol/</a></p>
+</article>
+<article class="entry cat-aisi">
+  <h2></h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span></span><button type="button" class="copy-btn" data-copy="
+
+출처: SG-AISI
+
+세부적으로는 위험 식별과 테스트 범위 조정, 실제 운영과 유사한 테스트 환경 구축(API·도구·가드레일·세션 상태·샌드박싱), 목적에 맞는 대표적 데이터셋/상호작용 모드 설계, 출력·결과뿐 아니라 궤적(에이전트의 단계별 수행·도구 사용·부분 성공/일관성)까지 아우르는 지표·평가기법을 제시한다. 리더보드 성능만으로는 배포 적합성을 보장하기 어렵고, 도메인 데이터·검색/RAG·가드레일·멀티턴 워크플로에 내재된 실패 양상이 실제로 드러날 수 있다고 설명한다. 또한 결과를 분석해 개선과 완화책(조치 방향)을 도출하는 접근의 필요성을 강조한다.
+
+https://sgaisi.sg/resources/how-should-evaluators-test-ai-systems-as-opposed-to-models/" onclick="copyEntry(this)">복사</button></div>
+  <p>출처: SG-AISI</p>
+<p>세부적으로는 위험 식별과 테스트 범위 조정, 실제 운영과 유사한 테스트 환경 구축(API·도구·가드레일·세션 상태·샌드박싱), 목적에 맞는 대표적 데이터셋/상호작용 모드 설계, 출력·결과뿐 아니라 궤적(에이전트의 단계별 수행·도구 사용·부분 성공/일관성)까지 아우르는 지표·평가기법을 제시한다. 리더보드 성능만으로는 배포 적합성을 보장하기 어렵고, 도메인 데이터·검색/RAG·가드레일·멀티턴 워크플로에 내재된 실패 양상이 실제로 드러날 수 있다고 설명한다. 또한 결과를 분석해 개선과 완화책(조치 방향)을 도출하는 접근의 필요성을 강조한다.</p>
+  <p class="url"><a href="https://sgaisi.sg/resources/how-should-evaluators-test-ai-systems-as-opposed-to-models/">https://sgaisi.sg/resources/how-should-evaluators-test-ai-systems-as-opposed-to-models/</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>🇺🇸 Ben Bernanke, Anthropic Long-Term Benefit Trust 신임 위원으로 선임(2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="Ben Bernanke, Anthropic Long-Term Benefit Trust 신임 위원으로 선임(2026.7.9)
+
+Anthropic의 Long-Term Benefit Trust(LTBT)는 벤 버냉키(Ben Bernanke) 박사를 신규 위원으로 임명했다고 밝혔다. 버냉키는 브루킹스 연구소 Distinguished Fellow이며 연준 의장(2006~2014) 출신으로, 2008년 글로벌 금융위기와 회복 국면을 이끈 경험이 있다고 설명했다. LTBT는 회사가 장기적으로 AI를 인류의 장기적 이익을 위해 책임 있게 개발·배치하도록 견제하는 독립 기구이며, 버냉키는 AI가 경제와 노동시장에 미치는 영향을 예측·대응하는 데 도움을 줄 것이라고 전했다.
+
+https://www.anthropic.com/news/ben-bernanke" onclick="copyEntry(this)">복사</button></div>
+  <p>Anthropic의 Long-Term Benefit Trust(LTBT)는 벤 버냉키(Ben Bernanke) 박사를 신규 위원으로 임명했다고 밝혔다. 버냉키는 브루킹스 연구소 Distinguished Fellow이며 연준 의장(2006~2014) 출신으로, 2008년 글로벌 금융위기와 회복 국면을 이끈 경험이 있다고 설명했다. LTBT는 회사가 장기적으로 AI를 인류의 장기적 이익을 위해 책임 있게 개발·배치하도록 견제하는 독립 기구이며, 버냉키는 AI가 경제와 노동시장에 미치는 영향을 예측·대응하는 데 도움을 줄 것이라고 전했다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/ben-bernanke">https://www.anthropic.com/news/ben-bernanke</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>🇺🇸 강한 질문을 받아 공개적으로 점검하겠다는 Anthropic(기사·공고 게재일 2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span></span><button type="button" class="copy-btn" data-copy="강한 질문을 받아 공개적으로 점검하겠다는 Anthropic(기사·공고 게재일 2026.7.9)
+
+앤트로픽은 AI가 사회에 미칠 영향(일자리, 사회·가정, 과학·의학 발전, 위험의 가능성 등)에 대해 대중이 가진 ‘어려운 질문’을 수집하고, 이를 바탕으로 공익 목적 달성 현황을 투명하게 추적·보고하겠다고 밝혔다. 앤트로픽은 이미 52,000명 대상 공공 설문(Anthropic Public Record), 159개국·70개 언어의 81,000명 Claude 사용자 설문(Anthropic Interviewer), 대면 포커스그룹 및 익명 실사용 데이터 연구 등을 통해 우려와 기대를 파악해 왔다. 또한 오남용 위험을 줄이기 위한 AI safeguards 투자, 모델의 행동·내부 작동 연구, 과학자 대상 모델 무료 제공, 펠로우십 프로그램 등 공익 목적의 조치를 이어가며, 질문에 대한 대응에서 목표에 미치지 못할 가능성도 명확히 하겠다고 설명했다.
+
+https://www.anthropic.com/news/hard-questions" onclick="copyEntry(this)">복사</button></div>
+  <p>앤트로픽은 AI가 사회에 미칠 영향(일자리, 사회·가정, 과학·의학 발전, 위험의 가능성 등)에 대해 대중이 가진 ‘어려운 질문’을 수집하고, 이를 바탕으로 공익 목적 달성 현황을 투명하게 추적·보고하겠다고 밝혔다. 앤트로픽은 이미 52,000명 대상 공공 설문(Anthropic Public Record), 159개국·70개 언어의 81,000명 Claude 사용자 설문(Anthropic Interviewer), 대면 포커스그룹 및 익명 실사용 데이터 연구 등을 통해 우려와 기대를 파악해 왔다. 또한 오남용 위험을 줄이기 위한 AI safeguards 투자, 모델의 행동·내부 작동 연구, 과학자 대상 모델 무료 제공, 펠로우십 프로그램 등 공익 목적의 조치를 이어가며, 질문에 대한 대응에서 목표에 미치지 못할 가능성도 명확히 하겠다고 설명했다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/hard-questions">https://www.anthropic.com/news/hard-questions</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>🇺🇸 Claude 사용 방식을 돌아보고 조정하는 기능 ‘reflect’(2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="Claude 사용 방식을 돌아보고 조정하는 기능 ‘reflect’(2026.7.9)
+
+Anthropic은 Claude 웹/데스크톱 앱의 Settings에서 ‘reflect’(베타) 대시보드를 제공해 이용 패턴과 주로 다루는 작업 유형을 요약·시각화하고, AI 사용 시간이 사용자의 목표와 맞는지 점검할 수 있게 할 계획이다. 사용자는 최근 1/3/6/12개월 치 채팅 활동을 확인할 수 있으며, 조용한 시간(quiet hours) 설정이나 일정 시간 후 사용 중단을 상기하는 nudge도 설정·해제할 수 있다. ‘reflect’는 incognito 채팅이나 연결된 도구의 원본 파일을 기반으로 하지 않으며, 민감한 주제(예: 헬스 통합 관련)는 통찰에서 제외된다고 밝혔다. 또한 4D AI Fluency Framework(Delegation, Discernment, Diligence)에 따라 사용자의 활동을 차원별로 요약하고 실용적 제안을 제공하며, Memory가 켜진 Free/Pro/Max 사용자에게 베타로 제공된다.
+
+https://www.anthropic.com/news/reflect-with-claude" onclick="copyEntry(this)">복사</button></div>
+  <p>Anthropic은 Claude 웹/데스크톱 앱의 Settings에서 ‘reflect’(베타) 대시보드를 제공해 이용 패턴과 주로 다루는 작업 유형을 요약·시각화하고, AI 사용 시간이 사용자의 목표와 맞는지 점검할 수 있게 할 계획이다. 사용자는 최근 1/3/6/12개월 치 채팅 활동을 확인할 수 있으며, 조용한 시간(quiet hours) 설정이나 일정 시간 후 사용 중단을 상기하는 nudge도 설정·해제할 수 있다. ‘reflect’는 incognito 채팅이나 연결된 도구의 원본 파일을 기반으로 하지 않으며, 민감한 주제(예: 헬스 통합 관련)는 통찰에서 제외된다고 밝혔다. 또한 4D AI Fluency Framework(Delegation, Discernment, Diligence)에 따라 사용자의 활동을 차원별로 요약하고 실용적 제안을 제공하며, Memory가 켜진 Free/Pro/Max 사용자에게 베타로 제공된다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/reflect-with-claude">https://www.anthropic.com/news/reflect-with-claude</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>🇺🇸 UST가 물리 AI 생산·검증 공정에 Claude를 도입하며 2만명 교육 (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="UST가 물리 AI 생산·검증 공정에 Claude를 도입하며 2만명 교육 (2026.7.9)
+
+UST가 반도체·제조 검증 플랫폼 iDEC 등 생산 파이프라인에 Claude Code를 통합하고, 설계 핀아웃/회로도 기반 회귀 테스트와 디지털 트윈 대비 실데이터 분석으로 결함을 더 이르게 탐지해 검증 주기를 단축한다고 밝혔다. 또한 헬스케어(CarePath), 통신(IntelliOps), 금융(FinX) 플랫폼에서도 Claude를 연결해 청구·진료 후속, 네트워크 장애 예측/대응 워크플로, 코어 시스템 현대화 지원용 AI 에이전트 기능을 제공한다. UST는 전 세계 엔지니어·컨설턴트 등 2만명을 Claude에 대해 교육하고 Claude Partner Network를 통해 배치·인증을 지원받는다고 전했다.
+
+https://www.anthropic.com/news/ust-claude" onclick="copyEntry(this)">복사</button></div>
+  <p>UST가 반도체·제조 검증 플랫폼 iDEC 등 생산 파이프라인에 Claude Code를 통합하고, 설계 핀아웃/회로도 기반 회귀 테스트와 디지털 트윈 대비 실데이터 분석으로 결함을 더 이르게 탐지해 검증 주기를 단축한다고 밝혔다. 또한 헬스케어(CarePath), 통신(IntelliOps), 금융(FinX) 플랫폼에서도 Claude를 연결해 청구·진료 후속, 네트워크 장애 예측/대응 워크플로, 코어 시스템 현대화 지원용 AI 에이전트 기능을 제공한다. UST는 전 세계 엔지니어·컨설턴트 등 2만명을 Claude에 대해 교육하고 Claude Partner Network를 통해 배치·인증을 지원받는다고 전했다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/ust-claude">https://www.anthropic.com/news/ust-claude</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>🇺🇸 Anthropic 연구: 언어 모델의 로봇 제어 능력 평가 (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="Anthropic 연구: 언어 모델의 로봇 제어 능력 평가 (2026.7.9)
+
+언어 모델이 로봇 제어 분야에서 얼마나 효과적인지 평가한 연구 결과, 모델의 성능은 로봇 몸과 제어 인터페이스에 크게 의존한다. 직접적인 모터 제어는 대부분 실패하지만, 사전 훈련된 정책을 감독하거나 간단한 방향 지시를 제공할 때는 실제 환경 내에서의 이동과 조작 작업을 수행할 수 있다. 특히 최신 모델들은 이미지와 감각 정보를 적절한 동작으로 전환하는 능력에서 눈에 띄는 발전을 보이고 있으며, 향후 모델들은 더욱 향상될 것으로 예상된다. 로봇 제어에서의 이러한 발전은 안전한 언어 모델 개발과 배포에 중요한 의미를 가진다.
+
+https://www.anthropic.com/research/claude-plays-robotics" onclick="copyEntry(this)">복사</button></div>
+  <p>언어 모델이 로봇 제어 분야에서 얼마나 효과적인지 평가한 연구 결과, 모델의 성능은 로봇 몸과 제어 인터페이스에 크게 의존한다. 직접적인 모터 제어는 대부분 실패하지만, 사전 훈련된 정책을 감독하거나 간단한 방향 지시를 제공할 때는 실제 환경 내에서의 이동과 조작 작업을 수행할 수 있다. 특히 최신 모델들은 이미지와 감각 정보를 적절한 동작으로 전환하는 능력에서 눈에 띄는 발전을 보이고 있으며, 향후 모델들은 더욱 향상될 것으로 예상된다. 로봇 제어에서의 이러한 발전은 안전한 언어 모델 개발과 배포에 중요한 의미를 가진다.</p>
+  <p class="url"><a href="https://www.anthropic.com/research/claude-plays-robotics">https://www.anthropic.com/research/claude-plays-robotics</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>🇪🇺 EU-호주, 제3차 디지털 대화에서 AI·사이버·온라인 안전 등 공동 우선순위 논의(2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">유럽연합 집행위원회(European Commission)</span></span><button type="button" class="copy-btn" data-copy="EU-호주, 제3차 디지털 대화에서 AI·사이버·온라인 안전 등 공동 우선순위 논의(2026.7.9)
+
+유럽연합(EU)과 호주가 온라인으로 제3차 Digital Economy and Technology Policy 대화를 열고 디지털·기술 분야 협력 지속 방안을 논의했다. 대화에서는 AI 인프라·역량·안전, 보안 있는 국제 연결 및 인프라, 사이버보안, 온라인 안전과 데이터 정책이 다뤄졌으며 특히 미성년자 보호에 초점을 둔 온라인 안전 협력 현황도 점검했다. 양측은 논의 주제를 바탕으로 추가 대화를 이어가고, 호주의 EU Horizon Europe 프로그램 연계로 비롯될 수 있는 협력 기회도 모색하기로 했다.
+
+https://digital-strategy.ec.europa.eu/en/news/eu-and-australia-discuss-shared-priorities-third-digital-dialogue" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽연합(EU)과 호주가 온라인으로 제3차 Digital Economy and Technology Policy 대화를 열고 디지털·기술 분야 협력 지속 방안을 논의했다. 대화에서는 AI 인프라·역량·안전, 보안 있는 국제 연결 및 인프라, 사이버보안, 온라인 안전과 데이터 정책이 다뤄졌으며 특히 미성년자 보호에 초점을 둔 온라인 안전 협력 현황도 점검했다. 양측은 논의 주제를 바탕으로 추가 대화를 이어가고, 호주의 EU Horizon Europe 프로그램 연계로 비롯될 수 있는 협력 기회도 모색하기로 했다.</p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/eu-and-australia-discuss-shared-priorities-third-digital-dialogue">https://digital-strategy.ec.europa.eu/en/news/eu-and-australia-discuss-shared-priorities-third-digital-dialogue</a></p>
+</article>
+<article class="entry cat-intl-org">
+  <h2>ITU, AI 에이전트 행동·디지털 신원 신뢰 보장을 위한 글로벌 표준 이니셔티브(2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">국제전기통신연합(ITU)</span></span><button type="button" class="copy-btn" data-copy="ITU, AI 에이전트 행동·디지털 신원 신뢰 보장을 위한 글로벌 표준 이니셔티브(2026.7.9)
+
+ITU는 UN 디지털 기술 전문기구로서 ‘사람과 agentic AI를 위한 신뢰·신원(Trust and Identity for Humans and Agentic AI)’ 분야 ITU 포커스 그룹을 새로 출범한다고 밝혔다. 이 포커스 그룹은 AI 에이전트가 자율적으로 행동하는 과정에서 디지털 신원과 신뢰성(책임성·통제가능성)을 확보할 수 있는 프레임워크를 개발하고, 사람의 의미 있는 통제 유지 방안을 포함해 공통 토대를 마련하는 것을 목표로 한다. 또한 공통 용어·정의, 신원·신뢰·에이전트 발견·상호운용 참조아키텍처, 신뢰 프레임워크 및 생애주기(assurance) 모델, 상호운용 메커니즘, 보안 기준과 지속평가 벤치마크, 표준화 로드맵 등을 개발하기 위해 정책·법·기술 전문가의 참여를 받을 예정이다.
+
+https://itu.int/en/mediacentre/Pages/PR-2026-07-09-focus-group-agentic-AI.aspx" onclick="copyEntry(this)">복사</button></div>
+  <p>ITU는 UN 디지털 기술 전문기구로서 ‘사람과 agentic AI를 위한 신뢰·신원(Trust and Identity for Humans and Agentic AI)’ 분야 ITU 포커스 그룹을 새로 출범한다고 밝혔다. 이 포커스 그룹은 AI 에이전트가 자율적으로 행동하는 과정에서 디지털 신원과 신뢰성(책임성·통제가능성)을 확보할 수 있는 프레임워크를 개발하고, 사람의 의미 있는 통제 유지 방안을 포함해 공통 토대를 마련하는 것을 목표로 한다. 또한 공통 용어·정의, 신원·신뢰·에이전트 발견·상호운용 참조아키텍처, 신뢰 프레임워크 및 생애주기(assurance) 모델, 상호운용 메커니즘, 보안 기준과 지속평가 벤치마크, 표준화 로드맵 등을 개발하기 위해 정책·법·기술 전문가의 참여를 받을 예정이다.</p>
+  <p class="url"><a href="https://itu.int/en/mediacentre/Pages/PR-2026-07-09-focus-group-agentic-AI.aspx">https://itu.int/en/mediacentre/Pages/PR-2026-07-09-focus-group-agentic-AI.aspx</a></p>
+</article>
+<article class="entry cat-gov">
+  <h2>https://www.warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts/ (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">warren.senate.gov</span></span><button type="button" class="copy-btn" data-copy="https://www.warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts/ (2026.7.9)
+
+요약불가
+
+https://warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts">https://warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>Beyond Targeting: 군 의사결정에서 AI의 역할과 확산장애(2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">조지타운대 CSET( Center for Security and Emerging Technology )</span></span><button type="button" class="copy-btn" data-copy="Beyond Targeting: 군 의사결정에서 AI의 역할과 확산장애(2026.7.9)
+
+
+
+https://cset.georgetown.edu/publication/beyond-targeting" onclick="copyEntry(this)">복사</button></div>
+  
+  <p class="url"><a href="https://cset.georgetown.edu/publication/beyond-targeting">https://cset.georgetown.edu/publication/beyond-targeting</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>🇺🇸 Stanford Scientists Develop AI Lab Partner Biomni (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">Stanford HAI-News</span></span><button type="button" class="copy-btn" data-copy="Stanford Scientists Develop AI Lab Partner Biomni (2026.7.9)
+
+스탠포드 과학자들이 인간 과학자들과 함께 연구를 진행할 수 있는 가상의 AI 생물학자인 Biomni를 개발했습니다. Biomni는 방대한 의학 데이터를 분석하고 인간이 놓칠 수 있는 패턴을 찾아내며, 심지어 실험을 설계하는 기능을 갖추고 있어 질병 치료를 위한 과학적 발견을 가속화합니다. 이 오픈소스 플랫폼은 스탠포드의 컴퓨터 과학, 유전학, 병리학, 의학, 소아과 등 다양한 학과의 전문 지식을 통합하여, 복잡한 실험과 방대한 데이터셋을 처리하는 데 어려움을 겪는 연구자들을 지원합니다. 초기 테스트에서 Biomni는 다양한 복잡한 작업에서 뛰어난 성능을 보여주었으며, 현재는 스타트업 Phylo의 일환으로 상용화되어 있습니다. 이 플랫폼은 과학적 발견 과정을 혁신적으로 변화시키는 잠재력을 가지고 있습니다.
+
+https://hai.stanford.edu/news/stanford-scientists-build-an-ai-lab-partner" onclick="copyEntry(this)">복사</button></div>
+  <p>스탠포드 과학자들이 인간 과학자들과 함께 연구를 진행할 수 있는 가상의 AI 생물학자인 Biomni를 개발했습니다. Biomni는 방대한 의학 데이터를 분석하고 인간이 놓칠 수 있는 패턴을 찾아내며, 심지어 실험을 설계하는 기능을 갖추고 있어 질병 치료를 위한 과학적 발견을 가속화합니다. 이 오픈소스 플랫폼은 스탠포드의 컴퓨터 과학, 유전학, 병리학, 의학, 소아과 등 다양한 학과의 전문 지식을 통합하여, 복잡한 실험과 방대한 데이터셋을 처리하는 데 어려움을 겪는 연구자들을 지원합니다. 초기 테스트에서 Biomni는 다양한 복잡한 작업에서 뛰어난 성능을 보여주었으며, 현재는 스타트업 Phylo의 일환으로 상용화되어 있습니다. 이 플랫폼은 과학적 발견 과정을 혁신적으로 변화시키는 잠재력을 가지고 있습니다.</p>
+  <p class="url"><a href="https://hai.stanford.edu/news/stanford-scientists-build-an-ai-lab-partner">https://hai.stanford.edu/news/stanford-scientists-build-an-ai-lab-partner</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>🇺🇸 High Bandwidth Memory 분석: 기술 및 시장 동향 (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="High Bandwidth Memory 분석: 기술 및 시장 동향 (2026.7.9)
+
+이 보고서는 High Bandwidth Memory (HBM)의 기술적 작동 원리와 생산 과정을 설명하며, HBM 생산을 주도하는 기업과 시설에 초점을 맞춥니다. 특히 HBM은 주요 인공지능 칩에서 사용되지만, 생산은 동아시아의 몇몇 시설에 집중되어 있으며, 이 분야는 세 개의 기업이 글로벌 경쟁을 통해 주도하고 있습니다. 정책 입안자와 연구자들에게 다양한 정책 논의에 참고할 수 있는 지침서 역할을 하도록 작성되었습니다.
+
+https://www.rand.org/pubs/perspectives/PEA4748-1.html" onclick="copyEntry(this)">복사</button></div>
+  <p>이 보고서는 High Bandwidth Memory (HBM)의 기술적 작동 원리와 생산 과정을 설명하며, HBM 생산을 주도하는 기업과 시설에 초점을 맞춥니다. 특히 HBM은 주요 인공지능 칩에서 사용되지만, 생산은 동아시아의 몇몇 시설에 집중되어 있으며, 이 분야는 세 개의 기업이 글로벌 경쟁을 통해 주도하고 있습니다. 정책 입안자와 연구자들에게 다양한 정책 논의에 참고할 수 있는 지침서 역할을 하도록 작성되었습니다.</p>
+  <p class="url"><a href="https://www.rand.org/pubs/perspectives/PEA4748-1.html">https://www.rand.org/pubs/perspectives/PEA4748-1.html</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>🇺🇸 로봇 혁명이 전쟁 가능성에 미치는 영향 (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="로봇 혁명이 전쟁 가능성에 미치는 영향 (2026.7.9)
+
+연구에 따르면, 자율 무기 시스템의 혁신은 세 가지 메커니즘을 통해 전쟁 가능성을 높일 수 있습니다: (1) 전쟁 성공 가능성 향상, (2) 전쟁 비용 감소, (3) 전쟁의 정치적 이익 증가. 이러한 효과는 보장되지 않지만, 각각 미국의 경쟁자들이 제3국에 대한 무력 사용을 약간 더 유인할 수 있습니다. 미국은 전쟁에서 성공 가능성을 높이고 동원 비용을 줄이는 기술 발전을 통해 이러한 위험을 완화할 수 있습니다. 연구 결과, 러시아 대중의 군사 개입 지지는 로봇 기술에 큰 영향을 받지 않지만, 도덕적 논거가 가장 큰 영향을 미칠 것으로 나타났습니다.
+
+https://www.rand.org/pubs/rgs_dissertations/RGSDA5114-1.html" onclick="copyEntry(this)">복사</button></div>
+  <p>연구에 따르면, 자율 무기 시스템의 혁신은 세 가지 메커니즘을 통해 전쟁 가능성을 높일 수 있습니다: (1) 전쟁 성공 가능성 향상, (2) 전쟁 비용 감소, (3) 전쟁의 정치적 이익 증가. 이러한 효과는 보장되지 않지만, 각각 미국의 경쟁자들이 제3국에 대한 무력 사용을 약간 더 유인할 수 있습니다. 미국은 전쟁에서 성공 가능성을 높이고 동원 비용을 줄이는 기술 발전을 통해 이러한 위험을 완화할 수 있습니다. 연구 결과, 러시아 대중의 군사 개입 지지는 로봇 기술에 큰 영향을 받지 않지만, 도덕적 논거가 가장 큰 영향을 미칠 것으로 나타났습니다.</p>
+  <p class="url"><a href="https://www.rand.org/pubs/rgs_dissertations/RGSDA5114-1.html">https://www.rand.org/pubs/rgs_dissertations/RGSDA5114-1.html</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇨🇳 Beijing is looking at curbing overseas access to China&#x27;s top AI models, sources say</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">reuters.com</span></span><button type="button" class="copy-btn" data-copy="Beijing is looking at curbing overseas access to China&#x27;s top AI models, sources say
+
+요약불가
+
+https://reuters.com/world/beijing-is-looking-curbing-overseas-access-chinas-top-ai-models-sources-say-2026-07-07" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://reuters.com/world/beijing-is-looking-curbing-overseas-access-chinas-top-ai-models-sources-say-2026-07-07">https://reuters.com/world/beijing-is-looking-curbing-overseas-access-chinas-top-ai-models-sources-say-2026-07-07</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>(Over $130B in U.S. AI Data Center Projects Face Local Opposition (2026.7.9))</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Yahoo Finance</span></span><button type="button" class="copy-btn" data-copy="(Over $130B in U.S. AI Data Center Projects Face Local Opposition (2026.7.9))
+
+요약불가
+
+https://finance.yahoo.com/technology/ai/articles/130-billion-ai-data-centers-000000041.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAACjyXLxPXf_hb8rvenUY5fGyU5HpqAQl-3ndjonXXq1VySzKaB5FwVZkmTP5lWJEzbi_fnd4EgSAvVn-hQsSIlFKIo9pbTlkgHMiU4R-9Q9WFYjMVpvy1ugBLDMmafOQwJPSkYvMdCpNX9nisO-kKNHe7GQDkHw4T4Q0TCRtnMWP" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://finance.yahoo.com/technology/ai/articles/130-billion-ai-data-centers-000000041.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAACjyXLxPXf_hb8rvenUY5fGyU5HpqAQl-3ndjonXXq1VySzKaB5FwVZkmTP5lWJEzbi_fnd4EgSAvVn-hQsSIlFKIo9pbTlkgHMiU4R-9Q9WFYjMVpvy1ugBLDMmafOQwJPSkYvMdCpNX9nisO-kKNHe7GQDkHw4T4Q0TCRtnMWP">https://finance.yahoo.com/technology/ai/articles/130-billion-ai-data-centers-000000041.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAACjyXLxPXf_hb8rvenUY5fGyU5HpqAQl-3ndjonXXq1VySzKaB5FwVZkmTP5lWJEzbi_fnd4EgSAvVn-hQsSIlFKIo9pbTlkgHMiU4R-9Q9WFYjMVpvy1ugBLDMmafOQwJPSkYvMdCpNX9nisO-kKNHe7GQDkHw4T4Q0TCRtnMWP</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>Stanford Introduces AI Agent for End-to-End Biomedical Research (2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Stanford Introduces AI Agent for End-to-End Biomedical Research (2026.7.9)
+
+요약불가
+
+https://news.stanford.edu/stories/2026/07/biomni-ai-powered-biomedical-co-scientist" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://news.stanford.edu/stories/2026/07/biomni-ai-powered-biomedical-co-scientist">https://news.stanford.edu/stories/2026/07/biomni-ai-powered-biomedical-co-scientist</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>Biomni AI agent가 다양한 생의학 연구 작업을 자율적으로 수행한다(2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">PubMed (미국 국립보건원, NCBI)</span></span><button type="button" class="copy-btn" data-copy="Biomni AI agent가 다양한 생의학 연구 작업을 자율적으로 수행한다(2026.7.9)
+
+Biomni는 반복적·분절된 연구 워크플로를 줄이기 위해 설계된 범용 생의학 AI 에이전트로, 도구·데이터베이스·프로토콜을 다수 논문에서 추출해 통합된 에이전틱 환경을 구축한다. LLM 추론과 retrieval-augmented planning, 코드 기반 실행을 결합해 사전 템플릿 없이 워크플로를 동적으로 조합하며, 유전자/약물 재창출/희귀질환 진단/마이크로바이옴/분자 클로닝 등 이질적 과제에서 task-specific tuning 없이도 일반화 성능이 높다고 보고한다. 또한 다중모달 데이터 해석, 단백질 안정성 최적화, 습식 실험 장비 오케스트레이션, 실험적으로 검증 가능한 프로토콜 생성 등의 사례를 제시한다.
+
+https://pubmed.ncbi.nlm.nih.gov/42424436/" onclick="copyEntry(this)">복사</button></div>
+  <p>Biomni는 반복적·분절된 연구 워크플로를 줄이기 위해 설계된 범용 생의학 AI 에이전트로, 도구·데이터베이스·프로토콜을 다수 논문에서 추출해 통합된 에이전틱 환경을 구축한다. LLM 추론과 retrieval-augmented planning, 코드 기반 실행을 결합해 사전 템플릿 없이 워크플로를 동적으로 조합하며, 유전자/약물 재창출/희귀질환 진단/마이크로바이옴/분자 클로닝 등 이질적 과제에서 task-specific tuning 없이도 일반화 성능이 높다고 보고한다. 또한 다중모달 데이터 해석, 단백질 안정성 최적화, 습식 실험 장비 오케스트레이션, 실험적으로 검증 가능한 프로토콜 생성 등의 사례를 제시한다.</p>
+  <p class="url"><a href="https://pubmed.ncbi.nlm.nih.gov/42424436/">https://pubmed.ncbi.nlm.nih.gov/42424436/</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>🇰🇷 Seoul Alignment Workshop Open Roles</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">docs.google.com</span></span><button type="button" class="copy-btn" data-copy="Seoul Alignment Workshop Open Roles
+
+요약불가
+
+https://docs.google.com/spreadsheets/d/1srQcA4GwYs5o26u3OjEWJGd6uiWeuK5FrphSnX3CrI8/htmlview" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://docs.google.com/spreadsheets/d/1srQcA4GwYs5o26u3OjEWJGd6uiWeuK5FrphSnX3CrI8/htmlview">https://docs.google.com/spreadsheets/d/1srQcA4GwYs5o26u3OjEWJGd6uiWeuK5FrphSnX3CrI8/htmlview</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>Building an AI inventory is your first governance intervention</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">governance.aicareer.pro</span></span><button type="button" class="copy-btn" data-copy="Building an AI inventory is your first governance intervention
+
+요약불가
+
+https://governance.aicareer.pro/blog/building-ai-inventory-first-governance-intervention" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://governance.aicareer.pro/blog/building-ai-inventory-first-governance-intervention">https://governance.aicareer.pro/blog/building-ai-inventory-first-governance-intervention</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>🇰🇷 ‘2026 세계한인과학기술인대회’서 서울선언 2.0 채택(2026.7.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">파이낸셜뉴스(fnnews.com)</span></span><button type="button" class="copy-btn" data-copy="‘2026 세계한인과학기술인대회’서 서울선언 2.0 채택(2026.7.9)
+
+2026 세계한인과학기술인대회가 8일 성료하며 ‘서울선언 2.0’을 공식 발표했다. 과학기술정보통신부가 주최하고 과총 및 20개 재외한인과학기술자협회가 공동 주관했으며, 국내외 과학기술인 1040여명이 AI 시대 혁신과 국제협력, 글로벌 인재 순환, 과학기술외교 등을 논의했다. 서울선언 2.0은 국경을 넘나드는 한인 과학기술인의 ‘인재 순환’을 성장 축으로 삼고 국제사회의 과학기술 규범 형성에 주도적으로 참여한다는 내용이다.
+
+https://fnnews.com/news/202607091817223409" onclick="copyEntry(this)">복사</button></div>
+  <p>2026 세계한인과학기술인대회가 8일 성료하며 ‘서울선언 2.0’을 공식 발표했다. 과학기술정보통신부가 주최하고 과총 및 20개 재외한인과학기술자협회가 공동 주관했으며, 국내외 과학기술인 1040여명이 AI 시대 혁신과 국제협력, 글로벌 인재 순환, 과학기술외교 등을 논의했다. 서울선언 2.0은 국경을 넘나드는 한인 과학기술인의 ‘인재 순환’을 성장 축으로 삼고 국제사회의 과학기술 규범 형성에 주도적으로 참여한다는 내용이다.</p>
+  <p class="url"><a href="https://fnnews.com/news/202607091817223409">https://fnnews.com/news/202607091817223409</a></p>
+</article>
+<article class="entry cat-research">
+  <h2>Bridging Causal Reasoning and Fuzzy Calibration for Trustworthy AI Risk Assessment **2026.7.9**</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Bridging Causal Reasoning and Fuzzy Calibration for Trustworthy AI Risk Assessment **2026.7.9**
+
+고위험 도메인에서 AI 리스크 평가의 신뢰도를 높이기 위해, LLM의 원인 추론 부족과 출력 과잉확신/부정확한 집계를 동시에 다루는 2계층 프레임워크를 제안한다.  
+구체적으로 (1) 알려진 위해 메커니즘을 트리거 조건-인과 단계-근거로 문서화한 causal risk patterns로 추론 입력을 구조화하고, (2) 여러 LLM 평가를 출처가 아니라 순위에 따라 가중하는 Ordered Weighted Averaging(OWA)로 결과를 전문가 보정 타깃에 맞춘다.  
+5개 부동산 AI 배치에서 125개 case-pattern pair를 3개 frontier LLM이 평가했을 때, 개별 모델은 0–1 스케일 기준 전문가 타깃보다 +0.07~+0.16 높게(과대평가) 나타났고 OWA( orness=0.6 ) 집계는 최선 단일 모델 대비 mean absolute error를 7.7% 줄였다(p=0.023).  
+또한 추론 레이어를 fuzzy scaffolding으로 강제하면 오류가 34.8% 증가한 반면, 출력 레이어의 fuzzy aggregation은 보정(calibration)을 개선해 “추론 단계의 fuzzy 강제는 악화, 출력 단계의 fuzzy는 개선”의 비대칭이 관찰되었다.
+
+https://doi.org/10.1007/978-981-92-2497-5_18" onclick="copyEntry(this)">복사</button></div>
+  <p>고위험 도메인에서 AI 리스크 평가의 신뢰도를 높이기 위해, LLM의 원인 추론 부족과 출력 과잉확신/부정확한 집계를 동시에 다루는 2계층 프레임워크를 제안한다.  
+구체적으로 (1) 알려진 위해 메커니즘을 트리거 조건-인과 단계-근거로 문서화한 causal risk patterns로 추론 입력을 구조화하고, (2) 여러 LLM 평가를 출처가 아니라 순위에 따라 가중하는 Ordered Weighted Averaging(OWA)로 결과를 전문가 보정 타깃에 맞춘다.  
+5개 부동산 AI 배치에서 125개 case-pattern pair를 3개 frontier LLM이 평가했을 때, 개별 모델은 0–1 스케일 기준 전문가 타깃보다 +0.07~+0.16 높게(과대평가) 나타났고 OWA( orness=0.6 ) 집계는 최선 단일 모델 대비 mean absolute error를 7.7% 줄였다(p=0.023).  
+또한 추론 레이어를 fuzzy scaffolding으로 강제하면 오류가 34.8% 증가한 반면, 출력 레이어의 fuzzy aggregation은 보정(calibration)을 개선해 “추론 단계의 fuzzy 강제는 악화, 출력 단계의 fuzzy는 개선”의 비대칭이 관찰되었다.</p>
+  <p class="url"><a href="https://doi.org/10.1007/978-981-92-2497-5_18">https://doi.org/10.1007/978-981-92-2497-5_18</a></p>
+</article>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

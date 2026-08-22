@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-02-17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
+       거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
+       됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
+       색상이 비슷한 리본이 있어도 톤 자체가 달라 서로 헷갈리지 않게 했다.
+       13개를 색상환에 27.7도 간격으로 고르게 배치(채도·명도 고정) —
+       처음엔 임의로 고른 값이라 3개(#3 #9 #13)가 우연히 거의 같은 색상(H≈29도)
+       으로 몰려서 명도/채도 차이로만 구분해야 했는데, 그건 눈으로 잘 안
+       구별돼서 균등 배치로 다시 잡았다. */
+    --coll-1: #905047; --coll-2: #907247; --coll-3: #8b9047;
+    --coll-4: #6a9047; --coll-5: #489047; --coll-6: #479067;
+    --coll-7: #479088; --coll-8: #477590; --coll-9: #475390;
+    --coll-10: #5c4790; --coll-11: #7d4790; --coll-12: #904780;
+    --coll-13: #90475f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
+      --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
+      --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
+      --coll-10: #b7a8dc; --coll-11: #cfa8dc; --coll-12: #dca8d1;
+      --coll-13: #dca8b9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-02-17 · 9/11건 요약</div>
+    <div class="nav"><a href="index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-frontier">
+  <h2>🇺🇸 Claude Sonnet 4.6 (Anthropic) (2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 4.6 (Anthropic) (2026.2.17)
+
+General · Closed · 1000K ctx · $3/M · $15/M
+
+GPQA 87.4% · SWE 79.6% · MMLU 83% · HE 94.5% · MATH 89% · AIME 83%
+
+Current production Sonnet. Frontier coding and agent performance. Top Arena-Code Elo for everyday use.
+
+https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)">복사</button></div>
+  <p>General · Closed · 1000K ctx · $3/M · $15/M</p>
+<p>GPQA 87.4% · SWE 79.6% · MMLU 83% · HE 94.5% · MATH 89% · AIME 83%</p>
+<p>Current production Sonnet. Frontier coding and agent performance. Top Arena-Code Elo for everyday use.</p>
+  <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
+</article>
+<article class="entry cat-aisi">
+  <h2>CAISI, 의료·금융·교육 분야 AI 도입 장벽 파악 위한 청취(리스닝) 세션 개최(**2026.2.17**)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">미국 국립표준기술연구소(NIST)</span></span><button type="button" class="copy-btn" data-copy="CAISI, 의료·금융·교육 분야 AI 도입 장벽 파악 위한 청취(리스닝) 세션 개최(**2026.2.17**)
+
+NIST의 CAISI는 의료, 금융 서비스, 교육 분야에서 AI 및 AI agent 시스템 도입을 가로막는 요인과 촉진 요인을 파악하기 위한 가상 워크숍(청취 세션)을 개최한다. 성공·실패 사례와 그 차이를 만든 맥락적 요인을 수집하며, 특히 조달·평가·통합 관련 분야 전문가 참여를 권장한다. 참가 의사는 2026년 3월 31일까지 이메일로 제출해야 하며, 워크숍은 2026년 5월 중 단계적으로 진행될 예정이다.
+
+https://www.nist.gov/news-events/news/2026/02/caisi-host-listening-sessions-barriers-ai-adoption" onclick="copyEntry(this)">복사</button></div>
+  <p>NIST의 CAISI는 의료, 금융 서비스, 교육 분야에서 AI 및 AI agent 시스템 도입을 가로막는 요인과 촉진 요인을 파악하기 위한 가상 워크숍(청취 세션)을 개최한다. 성공·실패 사례와 그 차이를 만든 맥락적 요인을 수집하며, 특히 조달·평가·통합 관련 분야 전문가 참여를 권장한다. 참가 의사는 2026년 3월 31일까지 이메일로 제출해야 하며, 워크숍은 2026년 5월 중 단계적으로 진행될 예정이다.</p>
+  <p class="url"><a href="https://www.nist.gov/news-events/news/2026/02/caisi-host-listening-sessions-barriers-ai-adoption">https://www.nist.gov/news-events/news/2026/02/caisi-host-listening-sessions-barriers-ai-adoption</a></p>
+</article>
+<article class="entry cat-aisi">
+  <h2>🇬🇧 (2026.2.17) Boundary Point Jailbreaking: black-box LLM 방어를 단일 비트(분류 플래그)만으로 우회하는 자동 공격</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="(2026.2.17) Boundary Point Jailbreaking: black-box LLM 방어를 단일 비트(분류 플래그)만으로 우회하는 자동 공격
+
+BPJ는 ‘jailbreak’로 불리는 위해 정보 추출 시도를 방어하는 Constitutional Classifiers 등 강한 분류 기반 방어를, 완전한 black-box 조건에서 단일 비트(해당 상호작용이 플래그되는지 여부)만 활용해 우회하는 자동 공격 방식이다. 공격 문자열을 직접 타깃으로 최적화하지 않고 중간 단계 타깃(curriculum)으로 바꾼 뒤, 공격 강도의 미세한 변화(“boundary points”)를 가장 잘 드러내는 평가 지점을 선택해 개선 여부를 판단한다. 본문은 BPJ가 Constitutional Classifiers에 대한 universal jailbreak를 자동으로 개발하고, 인간이 제공한 attack seed 없이 GPT-5의 input classifier에서도 성공했다고 주장하며, 개별 상호작용에서는 방어가 어려워도 최적화 과정에서 플래그가 많이 발생하므로 배치 수준 모니터링이 필요하다고 제시한다.
+
+https://www.aisi.gov.uk/research/boundary-point-jailbreaking-of-black-box-llms" onclick="copyEntry(this)">복사</button></div>
+  <p>BPJ는 ‘jailbreak’로 불리는 위해 정보 추출 시도를 방어하는 Constitutional Classifiers 등 강한 분류 기반 방어를, 완전한 black-box 조건에서 단일 비트(해당 상호작용이 플래그되는지 여부)만 활용해 우회하는 자동 공격 방식이다. 공격 문자열을 직접 타깃으로 최적화하지 않고 중간 단계 타깃(curriculum)으로 바꾼 뒤, 공격 강도의 미세한 변화(“boundary points”)를 가장 잘 드러내는 평가 지점을 선택해 개선 여부를 판단한다. 본문은 BPJ가 Constitutional Classifiers에 대한 universal jailbreak를 자동으로 개발하고, 인간이 제공한 attack seed 없이 GPT-5의 input classifier에서도 성공했다고 주장하며, 개별 상호작용에서는 방어가 어려워도 최적화 과정에서 플래그가 많이 발생하므로 배치 수준 모니터링이 필요하다고 제시한다.</p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/boundary-point-jailbreaking-of-black-box-llms">https://www.aisi.gov.uk/research/boundary-point-jailbreaking-of-black-box-llms</a></p>
+</article>
+<article class="entry cat-gov">
+  <h2>🇺🇸 NIST, ‘AI Agent Standards Initiative’ 출범(2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">미국 국립표준기술연구소(NIST)</span></span><button type="button" class="copy-btn" data-copy="NIST, ‘AI Agent Standards Initiative’ 출범(2026.2.17)
+
+NIST의 CAISI는 자율적으로 행동하는 차세대 AI 에이전트의 신뢰성·보안·상호운용성을 높이기 위한 ‘AI Agent Standards Initiative’를 출범한다고 밝혔다. NIST는 ITL 및 타 연방 파트너와 함께 산업 주도의 표준 개발, 오픈소스 프로토콜의 커뮤니티 기반 유지보수, AI agent 보안 및 identity 연구를 3대 추진축으로 진행할 계획이다. 또한 공개 의견 수렴을 위해 CAISI의 AI Agent Security RFI(마감 3월 9일)와 ITL의 AI Agent Identity and Authorization Concept Paper(마감 4월 2일)를 받으며, 4월부터는 분야별 도입 장벽을 주제로 청취 세션을 개최할 예정이다.
+
+https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure" onclick="copyEntry(this)">복사</button></div>
+  <p>NIST의 CAISI는 자율적으로 행동하는 차세대 AI 에이전트의 신뢰성·보안·상호운용성을 높이기 위한 ‘AI Agent Standards Initiative’를 출범한다고 밝혔다. NIST는 ITL 및 타 연방 파트너와 함께 산업 주도의 표준 개발, 오픈소스 프로토콜의 커뮤니티 기반 유지보수, AI agent 보안 및 identity 연구를 3대 추진축으로 진행할 계획이다. 또한 공개 의견 수렴을 위해 CAISI의 AI Agent Security RFI(마감 3월 9일)와 ITL의 AI Agent Identity and Authorization Concept Paper(마감 4월 2일)를 받으며, 4월부터는 분야별 도입 장벽을 주제로 청취 세션을 개최할 예정이다.</p>
+  <p class="url"><a href="https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure">https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure</a></p>
+</article>
+<article class="entry cat-gov">
+  <h2>AI Agent Standards Initiative로 에이전트의 신뢰·상호운용·보안을 위한 자발적 표준과 프로토콜을 추진 (**기사·공고 게재일** 2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">미국 국립표준기술연구소(NIST)</span></span><button type="button" class="copy-btn" data-copy="AI Agent Standards Initiative로 에이전트의 신뢰·상호운용·보안을 위한 자발적 표준과 프로토콜을 추진 (**기사·공고 게재일** 2026.2.17)
+
+NIST는 자율적으로 행동하는 AI 에이전트의 안전한 채택과 디지털 환경 전반에서의 상호운용을 목표로 AI Agent Standards Initiative를 추진한다고 밝혔다. 업계 주도 표준을 위한 기술 컨벤빙·갭 분석, 상호운용 가능한 에이전트 프로토콜의 장벽을 줄이기 위한 커뮤니티 참여, 에이전트 인증·신원 인프라 및 보안 평가 연구를 핵심 축으로 제시했다. 또한 AI agent security 관련 RFI와 소프트웨어·AI agent identity 및 authorization 개념 논문, 분야별 리스닝 세션 등 이해관계자 의견 수렴 활동을 진행한다.
+
+https://www.nist.gov/caisi/ai-agent-standards-initiative" onclick="copyEntry(this)">복사</button></div>
+  <p>NIST는 자율적으로 행동하는 AI 에이전트의 안전한 채택과 디지털 환경 전반에서의 상호운용을 목표로 AI Agent Standards Initiative를 추진한다고 밝혔다. 업계 주도 표준을 위한 기술 컨벤빙·갭 분석, 상호운용 가능한 에이전트 프로토콜의 장벽을 줄이기 위한 커뮤니티 참여, 에이전트 인증·신원 인프라 및 보안 평가 연구를 핵심 축으로 제시했다. 또한 AI agent security 관련 RFI와 소프트웨어·AI agent identity 및 authorization 개념 논문, 분야별 리스닝 세션 등 이해관계자 의견 수렴 활동을 진행한다.</p>
+  <p class="url"><a href="https://www.nist.gov/caisi/ai-agent-standards-initiative">https://www.nist.gov/caisi/ai-agent-standards-initiative</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>🇺🇸 METR의 기밀 정보 보호 방법 (2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="METR의 기밀 정보 보호 방법 (2026.2.17)
+
+METR는 AI 개발자, 정부 기관, 연구 단체들과 협력하며, 때때로 비공개 모델 접근과 기밀 정보를 제공받습니다. 이 글에서는 이러한 정보와 접근을 보호하기 위한 METR의 접근 방식을 설명합니다. 주요 내용은 다음과 같습니다:
+
+- **정책**: 정보를 민감도에 따라 6단계의 기밀 수준으로 분류하여 관리합니다. 비공개 모델 정보는 직접 관련 연구자들만 접근 가능하며, 코드명으로만 언급됩니다.
+- **설정**: 기밀 수준을 플랫폼 전반에 걸쳐 사용하여 기대치를 명확히 합니다. 기술적 제어를 통해 우발적인 공유를 방지하고, 프로젝트별로 민감한 정보를 분리합니다.
+- **규범**: 코드명 사용, 민감한 정보에 대한 신중한 대화, 그리고 잠재적 실수를 감지하고 보고하는 문화를 유지합니다.
+- **보안 조치**: 중앙 인증 제공자, 다중 계층 접근 제어, 모바일 기기 관리, 모니터링 및 응답 시스템 등을 통해 보안을 강화합니다.
+
+METR는 이러한 조치들로 인해 SOC 2 Type I 인증을 획득하였습니다. 자세한 내용은 보안 담당자에게 문의하실 수 있습니다. (security@metr.org)
+
+https://metr.org/blog/2026-02-17-how-we-protect-confidential-information/" onclick="copyEntry(this)">복사</button></div>
+  <p>METR는 AI 개발자, 정부 기관, 연구 단체들과 협력하며, 때때로 비공개 모델 접근과 기밀 정보를 제공받습니다. 이 글에서는 이러한 정보와 접근을 보호하기 위한 METR의 접근 방식을 설명합니다. 주요 내용은 다음과 같습니다:</p>
+<p>- **정책**: 정보를 민감도에 따라 6단계의 기밀 수준으로 분류하여 관리합니다. 비공개 모델 정보는 직접 관련 연구자들만 접근 가능하며, 코드명으로만 언급됩니다.
+- **설정**: 기밀 수준을 플랫폼 전반에 걸쳐 사용하여 기대치를 명확히 합니다. 기술적 제어를 통해 우발적인 공유를 방지하고, 프로젝트별로 민감한 정보를 분리합니다.
+- **규범**: 코드명 사용, 민감한 정보에 대한 신중한 대화, 그리고 잠재적 실수를 감지하고 보고하는 문화를 유지합니다.
+- **보안 조치**: 중앙 인증 제공자, 다중 계층 접근 제어, 모바일 기기 관리, 모니터링 및 응답 시스템 등을 통해 보안을 강화합니다.</p>
+<p>METR는 이러한 조치들로 인해 SOC 2 Type I 인증을 획득하였습니다. 자세한 내용은 보안 담당자에게 문의하실 수 있습니다. (security@metr.org)</p>
+  <p class="url"><a href="https://metr.org/blog/2026-02-17-how-we-protect-confidential-information/">https://metr.org/blog/2026-02-17-how-we-protect-confidential-information/</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>🇺🇸 AI 코딩 에이전트 사용으로 인한 생산성 향상 추정을 위한 코딩 에이전트 대화록 분석 (2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="AI 코딩 에이전트 사용으로 인한 생산성 향상 추정을 위한 코딩 에이전트 대화록 분석 (2026.2.17)
+
+메타(METR)의 연구 노트에 따르면, 코딩 에이전트의 대화록을 분석하여 AI 에이전트의 생산성 향상을 추정하는 방법을 탐구했다. 7명의 METR 기술 직원의 5305개 클로디어 코드 대화록을 기반으로 분석한 결과, 코딩 에이전트 지원 작업의 시간 절약 요인이 약 1.5배에서 13배 사이로 나타났다. 그러나 이 결과는 여러 제약 조건으로 인해 실제 생산성 향상의 하한값으로 해석되어야 한다. 주요 제약 조건으로는:
+
+1. **작업 대체 효과**: AI 지원으로 인해 수행되는 일부 작업이 원래 수행되지 않았을 수 있어 실제 가치가 낮을 수 있다.
+2. **작업 선택 효과**: 직원들이 AI를 사용하지 않는 작업은 수행하지 않으므로 전체적인 생산성 향상을 과대평가할 수 있다.
+3. **사전 작업자 전문성**: 개별 직원들이 특화된 작업을 수행하여 경험 있는 소프트웨어 엔지니어보다 빠르게 작업을 완료할 수 있다.
+4. **LLM 판단의 제한성**: 판단 모델이 제한된 데이터로 검증되었으며, 일반화 능력이 불확실하다.
+5. **데이터 범위 제한**: 클로디어 코드 대화록만 분석하여 다른 코딩 에이전트나 채팅 인터페이스를 통한 작업은 제외되었다.
+
+결론적으로, 코딩 에이전트 지원 작업의 시간 절약 요인은 실제 생산성 향상의 상한값으로 보아야 하며, 전체 작업 범위에서의 실제 효과는 더 낮을 가능성이 크다.
+
+https://metr.org/notes/2026-02-17-exploratory-transcript-analysis-for-estimating-time-savings-from-coding-agents/" onclick="copyEntry(this)">복사</button></div>
+  <p>메타(METR)의 연구 노트에 따르면, 코딩 에이전트의 대화록을 분석하여 AI 에이전트의 생산성 향상을 추정하는 방법을 탐구했다. 7명의 METR 기술 직원의 5305개 클로디어 코드 대화록을 기반으로 분석한 결과, 코딩 에이전트 지원 작업의 시간 절약 요인이 약 1.5배에서 13배 사이로 나타났다. 그러나 이 결과는 여러 제약 조건으로 인해 실제 생산성 향상의 하한값으로 해석되어야 한다. 주요 제약 조건으로는:</p>
+<p>1. **작업 대체 효과**: AI 지원으로 인해 수행되는 일부 작업이 원래 수행되지 않았을 수 있어 실제 가치가 낮을 수 있다.
+2. **작업 선택 효과**: 직원들이 AI를 사용하지 않는 작업은 수행하지 않으므로 전체적인 생산성 향상을 과대평가할 수 있다.
+3. **사전 작업자 전문성**: 개별 직원들이 특화된 작업을 수행하여 경험 있는 소프트웨어 엔지니어보다 빠르게 작업을 완료할 수 있다.
+4. **LLM 판단의 제한성**: 판단 모델이 제한된 데이터로 검증되었으며, 일반화 능력이 불확실하다.
+5. **데이터 범위 제한**: 클로디어 코드 대화록만 분석하여 다른 코딩 에이전트나 채팅 인터페이스를 통한 작업은 제외되었다.</p>
+<p>결론적으로, 코딩 에이전트 지원 작업의 시간 절약 요인은 실제 생산성 향상의 상한값으로 보아야 하며, 전체 작업 범위에서의 실제 효과는 더 낮을 가능성이 크다.</p>
+  <p class="url"><a href="https://metr.org/notes/2026-02-17-exploratory-transcript-analysis-for-estimating-time-savings-from-coding-agents/">https://metr.org/notes/2026-02-17-exploratory-transcript-analysis-for-estimating-time-savings-from-coding-agents/</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>Startup Launches Platform for Self-Sustaining AI Agents (2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Startup Launches Platform for Self-Sustaining AI Agents (2026.2.17)
+
+요약불가
+
+https://web4.ai/" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://web4.ai/">https://web4.ai/</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>Claude Sonnet 4.6 Is Released (2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 4.6 Is Released (2026.2.17)
+
+요약불가
+
+https://www-cdn.anthropic.com/78073f739564e986ff3e28522761a7a0b4484f84.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www-cdn.anthropic.com/78073f739564e986ff3e28522761a7a0b4484f84.pdf">https://www-cdn.anthropic.com/78073f739564e986ff3e28522761a7a0b4484f84.pdf</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>Every Eval Ever, AI 평가 결과를 공통 스키마·크라우드소싱 DB로 표준화(2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">evalevalai.com</span></span><button type="button" class="copy-btn" data-copy="Every Eval Ever, AI 평가 결과를 공통 스키마·크라우드소싱 DB로 표준화(2026.2.17)
+
+Every Eval Ever는 서로 다른 평가 프레임워크가 제각각 결과를 내는 문제를 해결하기 위해, 평가 결과를 기술하는 공통 스키마와 크라우드소싱 eval 데이터베이스를 제공하는 프로젝트다. 벤치마크·모델·평가 실행(run) 단위로 메타데이터(누가/어떤 설정으로/어떤 모델을/점수 의미)를 함께 저장하고, schema 검증 및 Inspect AI·HELM·lm-eval-harness 등 기존 도구 로그를 표준 형식으로 변환하는 컨버터도 제공한다. 또한 평가 설정 차이로 점수가 달라질 수 있어(예: MMLU에서 프롬프트·추출 방식 차이) 실행별 UUID로 개별 run을 보존하되 중복 제거·그룹핑은 분석 단계에서 하도록 설계했다.
+
+https://evalevalai.com/infrastructure/2026/02/17/everyevalever-launch/" onclick="copyEntry(this)">복사</button></div>
+  <p>Every Eval Ever는 서로 다른 평가 프레임워크가 제각각 결과를 내는 문제를 해결하기 위해, 평가 결과를 기술하는 공통 스키마와 크라우드소싱 eval 데이터베이스를 제공하는 프로젝트다. 벤치마크·모델·평가 실행(run) 단위로 메타데이터(누가/어떤 설정으로/어떤 모델을/점수 의미)를 함께 저장하고, schema 검증 및 Inspect AI·HELM·lm-eval-harness 등 기존 도구 로그를 표준 형식으로 변환하는 컨버터도 제공한다. 또한 평가 설정 차이로 점수가 달라질 수 있어(예: MMLU에서 프롬프트·추출 방식 차이) 실행별 UUID로 개별 run을 보존하되 중복 제거·그룹핑은 분석 단계에서 하도록 설계했다.</p>
+  <p class="url"><a href="https://evalevalai.com/infrastructure/2026/02/17/everyevalever-launch/">https://evalevalai.com/infrastructure/2026/02/17/everyevalever-launch/</a></p>
+</article>
+<article class="entry cat-research">
+  <h2>Deep Ignorance: Filtering Pretraining Data Builds Tamper-Resistant Safeguards into Open-Weight LLMs (2026.2.17)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv.org</span></span><button type="button" class="copy-btn" data-copy="Deep Ignorance: Filtering Pretraining Data Builds Tamper-Resistant Safeguards into Open-Weight LLMs (2026.2.17)
+
+오픈 웨이트 LLM이 tampering 공격에 취약하다는 문제의식에서, 사전학습 데이터에서 dual-use 주제 관련 텍스트를 필터링하면 위험 역량을 줄이면서도 모델을 더 tamper-resistant하게 만들 수 있는지 연구했다. 6.9B 파라미터 모델을 처음부터 여러 개 사전학습해, biothreat 관련 텍스트에 대해 최대 10,000 스텝의 adversarial fine-tuning과 300M 토큰 규모에서도 기존 post-training 기반 대비 1자릿수 이상 더 잘 버틴다고 보고했다. 다만 필터링된 모델은 내부에 위험 지식을 “내재화”하지는 못하지만, 검색 도구 등으로 컨텍스트에 제공되면 해당 정보를 활용할 수 있어 defense-in-depth가 필요하다고 결론냈다.
+
+https://arxiv.org/abs/2508.06601" onclick="copyEntry(this)">복사</button></div>
+  <p>오픈 웨이트 LLM이 tampering 공격에 취약하다는 문제의식에서, 사전학습 데이터에서 dual-use 주제 관련 텍스트를 필터링하면 위험 역량을 줄이면서도 모델을 더 tamper-resistant하게 만들 수 있는지 연구했다. 6.9B 파라미터 모델을 처음부터 여러 개 사전학습해, biothreat 관련 텍스트에 대해 최대 10,000 스텝의 adversarial fine-tuning과 300M 토큰 규모에서도 기존 post-training 기반 대비 1자릿수 이상 더 잘 버틴다고 보고했다. 다만 필터링된 모델은 내부에 위험 지식을 “내재화”하지는 못하지만, 검색 도구 등으로 컨텍스트에 제공되면 해당 정보를 활용할 수 있어 defense-in-depth가 필요하다고 결론냈다.</p>
+  <p class="url"><a href="https://arxiv.org/abs/2508.06601">https://arxiv.org/abs/2508.06601</a></p>
+</article>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

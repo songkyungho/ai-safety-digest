@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-04-06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
+       거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
+       됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
+       색상이 비슷한 리본이 있어도 톤 자체가 달라 서로 헷갈리지 않게 했다.
+       13개를 색상환에 27.7도 간격으로 고르게 배치(채도·명도 고정) —
+       처음엔 임의로 고른 값이라 3개(#3 #9 #13)가 우연히 거의 같은 색상(H≈29도)
+       으로 몰려서 명도/채도 차이로만 구분해야 했는데, 그건 눈으로 잘 안
+       구별돼서 균등 배치로 다시 잡았다. */
+    --coll-1: #905047; --coll-2: #907247; --coll-3: #8b9047;
+    --coll-4: #6a9047; --coll-5: #489047; --coll-6: #479067;
+    --coll-7: #479088; --coll-8: #477590; --coll-9: #475390;
+    --coll-10: #5c4790; --coll-11: #7d4790; --coll-12: #904780;
+    --coll-13: #90475f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
+      --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
+      --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
+      --coll-10: #b7a8dc; --coll-11: #cfa8dc; --coll-12: #dca8d1;
+      --coll-13: #dca8b9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-04-06 · 9/10건 요약</div>
+    <div class="nav"><a href="index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-company">
+  <h2>🇺🇸 Anthropic, Google·Broadcom과 차세대 TPU 용량 다수 GW 규모로 확장(2026.4.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="Anthropic, Google·Broadcom과 차세대 TPU 용량 다수 GW 규모로 확장(2026.4.6)
+
+Anthropic은 Google 및 Broadcom과 차세대 TPU 용량을 ‘다수 기가와트’ 규모로 확보하는 신규 계약을 체결했으며, 해당 용량은 2027년부터 순차 가동될 것으로 전망했다. 이번 인프라 확대로 프론티어 Claude 모델을 구동하고 전 세계 고객 수요 증가에 대응한다는 계획이다. 또한 2026년 Claude 고객 수요가 빠르게 늘어 연 매출(런레이트)이 300억 달러를 넘어섰고, 연간 100만 달러 이상 지출하는 기업 고객 수도 1,000곳을 초과했다고 밝혔다. 대부분의 신규 컴퓨트는 미국에 배치되며, 2025년 11월 발표한 미국 컴퓨팅 인프라 투자 확대(500억 달러)와 연계된다고 설명했다.
+
+https://www.anthropic.com/news/google-broadcom-partnership-compute" onclick="copyEntry(this)">복사</button></div>
+  <p>Anthropic은 Google 및 Broadcom과 차세대 TPU 용량을 ‘다수 기가와트’ 규모로 확보하는 신규 계약을 체결했으며, 해당 용량은 2027년부터 순차 가동될 것으로 전망했다. 이번 인프라 확대로 프론티어 Claude 모델을 구동하고 전 세계 고객 수요 증가에 대응한다는 계획이다. 또한 2026년 Claude 고객 수요가 빠르게 늘어 연 매출(런레이트)이 300억 달러를 넘어섰고, 연간 100만 달러 이상 지출하는 기업 고객 수도 1,000곳을 초과했다고 밝혔다. 대부분의 신규 컴퓨트는 미국에 배치되며, 2025년 11월 발표한 미국 컴퓨팅 인프라 투자 확대(500억 달러)와 연계된다고 설명했다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/google-broadcom-partnership-compute">https://www.anthropic.com/news/google-broadcom-partnership-compute</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇺🇸 AI 에이전트 구독/서비스 관련 경쟁 구도 변화(2026.4.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">axios.com</span></span><button type="button" class="copy-btn" data-copy="AI 에이전트 구독/서비스 관련 경쟁 구도 변화(2026.4.6)
+
+본문 확인 필요: 제공된 정보로는 기사 내용(누가 무엇을 구독/제공하고, OpenAI·Anthropic 간 어떤 변화가 있는지)을 특정할 수 없습니다. 다만 제목과 URL로 볼 때 AI 에이전트(또는 관련 서비스) 구독/제공 방식에 대한 논의가 포함된 것으로 보이며, 구체적 사실관계는 확인이 필요합니다.
+
+https://www.axios.com/2026/04/06/anthropic-openclaw-subscription-openai" onclick="copyEntry(this)">복사</button></div>
+  <p>본문 확인 필요: 제공된 정보로는 기사 내용(누가 무엇을 구독/제공하고, OpenAI·Anthropic 간 어떤 변화가 있는지)을 특정할 수 없습니다. 다만 제목과 URL로 볼 때 AI 에이전트(또는 관련 서비스) 구독/제공 방식에 대한 논의가 포함된 것으로 보이며, 구체적 사실관계는 확인이 필요합니다.</p>
+  <p class="url"><a href="https://www.axios.com/2026/04/06/anthropic-openclaw-subscription-openai">https://www.axios.com/2026/04/06/anthropic-openclaw-subscription-openai</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇺🇸🇨🇳 OpenAI·Anthropic·Google, 중국에서의 모델 복제(카피) 대응 공조(2026.4.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">블룸버그(Bloomberg)</span></span><button type="button" class="copy-btn" data-copy="OpenAI·Anthropic·Google, 중국에서의 모델 복제(카피) 대응 공조(2026.4.6)
+
+블룸버그 보도에 따르면 OpenAI, Anthropic, Google이 중국에서의 모델 복제(카피) 문제를 줄이기 위한 대응 공조를 추진하는 것으로 알려졌습니다. 다만 본문 내용(구체적 조치, 협력 방식, 일정)은 제공되지 않아 세부 내용은 확인이 필요합니다.
+
+https://www.bloomberg.com/news/articles/2026-04-06/openai-anthropic-google-unite-to-combat-model-copying-in-china" onclick="copyEntry(this)">복사</button></div>
+  <p>블룸버그 보도에 따르면 OpenAI, Anthropic, Google이 중국에서의 모델 복제(카피) 문제를 줄이기 위한 대응 공조를 추진하는 것으로 알려졌습니다. 다만 본문 내용(구체적 조치, 협력 방식, 일정)은 제공되지 않아 세부 내용은 확인이 필요합니다.</p>
+  <p class="url"><a href="https://www.bloomberg.com/news/articles/2026-04-06/openai-anthropic-google-unite-to-combat-model-copying-in-china">https://www.bloomberg.com/news/articles/2026-04-06/openai-anthropic-google-unite-to-combat-model-copying-in-china</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇺🇸 OpenAI, 머스크의 ‘반경쟁적 행위’ 조사 촉구(2026.4.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">CNBC</span></span><button type="button" class="copy-btn" data-copy="OpenAI, 머스크의 ‘반경쟁적 행위’ 조사 촉구(2026.4.6)
+
+오픈AI는 엘론 머스크와 측근의 ‘부적절하고 반경쟁적인 행위’를 조사해 달라며 캘리포니아·델라웨어 법무장관에게 서한을 보냈다. 오픈AI 전략 책임자 제이슨 콴은 머스크가 오픈AI를 약화시키기 위해 메타의 마크 저커버그와의 공조를 포함한 여러 ‘공격’을 해왔다고 주장했다. 양측 간 고액 소송 재판의 배심원 선정은 4월 27일 캘리포니아 북부지방법원에서 시작될 예정이다.
+
+https://www.cnbc.com/2026/04/06/openai-asks-california-ag-to-probe-musks-anti-competitive-behavior-.html" onclick="copyEntry(this)">복사</button></div>
+  <p>오픈AI는 엘론 머스크와 측근의 ‘부적절하고 반경쟁적인 행위’를 조사해 달라며 캘리포니아·델라웨어 법무장관에게 서한을 보냈다. 오픈AI 전략 책임자 제이슨 콴은 머스크가 오픈AI를 약화시키기 위해 메타의 마크 저커버그와의 공조를 포함한 여러 ‘공격’을 해왔다고 주장했다. 양측 간 고액 소송 재판의 배심원 선정은 4월 27일 캘리포니아 북부지방법원에서 시작될 예정이다.</p>
+  <p class="url"><a href="https://www.cnbc.com/2026/04/06/openai-asks-california-ag-to-probe-musks-anti-competitive-behavior-.html">https://www.cnbc.com/2026/04/06/openai-asks-california-ag-to-probe-musks-anti-competitive-behavior-.html</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>AI 도입이 고용에 미친 영향: 대체는 일자리 감소, 인간의 AI 활용은 일부 보완(2026.4.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">야후 파이낸스(Yahoo Finance)</span></span><button type="button" class="copy-btn" data-copy="AI 도입이 고용에 미친 영향: 대체는 일자리 감소, 인간의 AI 활용은 일부 보완(2026.4.6)
+
+골드만삭스 분석에 따르면 지난 1년간 AI 대체로 월간 일자리 증가가 약 25,000명 감소하고 실업률이 0.16%p 상승했으며, 반면 AI 증강(인간의 AI 도구 활용)은 월간 일자리 증가를 9,000명 늘리고 실업률을 0.06%p 낮췄다. 종합하면 AI가 월간 고용 증가에 16,000명 규모의 부담을 주고 실업률을 0.1%p 높인 것으로 제시됐다. 또한 영향은 상대적으로 경력이 적은 근로자에게 더 크게 나타났고, ChatGPT 이후 AI 대체 점수가 높은 직군에서 고용 감소와 실업 증가가 더 두드러졌다고 전했다.
+
+https://finance.yahoo.com/news/ai-agents-have-stolen-a-lot-of-jobs-from-humans-over-the-past-year-chart-114816365.html" onclick="copyEntry(this)">복사</button></div>
+  <p>골드만삭스 분석에 따르면 지난 1년간 AI 대체로 월간 일자리 증가가 약 25,000명 감소하고 실업률이 0.16%p 상승했으며, 반면 AI 증강(인간의 AI 도구 활용)은 월간 일자리 증가를 9,000명 늘리고 실업률을 0.06%p 낮췄다. 종합하면 AI가 월간 고용 증가에 16,000명 규모의 부담을 주고 실업률을 0.1%p 높인 것으로 제시됐다. 또한 영향은 상대적으로 경력이 적은 근로자에게 더 크게 나타났고, ChatGPT 이후 AI 대체 점수가 높은 직군에서 고용 감소와 실업 증가가 더 두드러졌다고 전했다.</p>
+  <p class="url"><a href="https://finance.yahoo.com/news/ai-agents-have-stolen-a-lot-of-jobs-from-humans-over-the-past-year-chart-114816365.html">https://finance.yahoo.com/news/ai-agents-have-stolen-a-lot-of-jobs-from-humans-over-the-past-year-chart-114816365.html</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>🇺🇸 OpenAI, AI 경제 정책 제안…공공 부(wealth) 펀드·로봇세·주 4일 근무 보조(2026.4.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">테크크런치(TechCrunch)</span></span><button type="button" class="copy-btn" data-copy="OpenAI, AI 경제 정책 제안…공공 부(wealth) 펀드·로봇세·주 4일 근무 보조(2026.4.6)
+
+OpenAI가 초지능 기계로 인한 경제 충격에 대응하기 위한 정책 제안들을 공개했다. 제안에는 공공 부(wealth) 펀드로 AI 기업·인프라에 대한 시민의 자동 지분을 만들고, 노동에서 자본으로 세 부담을 옮기며(법인세·자본이득 등 상향), 대체 노동에 대한 로봇세 도입 가능성도 포함된다. 또한 임금 삭감 없이 주 4일 근무를 보조하고 퇴직·의료·돌봄 비용 지원을 확대하는 방안, 위험한 AI에 대한 격리·감독 체계와 고위험 사용에 대한 안전장치 마련, AI 전력·인프라 확충을 위한 보조금·세액공제·지분 인센티브 등이 제시됐다.
+
+https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/" onclick="copyEntry(this)">복사</button></div>
+  <p>OpenAI가 초지능 기계로 인한 경제 충격에 대응하기 위한 정책 제안들을 공개했다. 제안에는 공공 부(wealth) 펀드로 AI 기업·인프라에 대한 시민의 자동 지분을 만들고, 노동에서 자본으로 세 부담을 옮기며(법인세·자본이득 등 상향), 대체 노동에 대한 로봇세 도입 가능성도 포함된다. 또한 임금 삭감 없이 주 4일 근무를 보조하고 퇴직·의료·돌봄 비용 지원을 확대하는 방안, 위험한 AI에 대한 격리·감독 체계와 고위험 사용에 대한 안전장치 마련, AI 전력·인프라 확충을 위한 보조금·세액공제·지분 인센티브 등이 제시됐다.</p>
+  <p class="url"><a href="https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/">https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>🇺🇸 OpenAI Proposes Economic Policies for a Superintelligent AI Future (2026.4.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="OpenAI Proposes Economic Policies for a Superintelligent AI Future (2026.4.6)
+
+요약불가
+
+https://www.wsj.com/tech/ai/what-to-know-about-openais-ideas-for-a-world-with-superintelligence-e97d6e7b" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.wsj.com/tech/ai/what-to-know-about-openais-ideas-for-a-world-with-superintelligence-e97d6e7b">https://www.wsj.com/tech/ai/what-to-know-about-openais-ideas-for-a-world-with-superintelligence-e97d6e7b</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>Study Warns Web “Agent Traps” Can Hijack Autonomous AI Agents (2026.4.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Study Warns Web “Agent Traps” Can Hijack Autonomous AI Agents (2026.4.6)
+
+확인 필요: 본문(초록/내용)에서 구체적인 연구 결과·사례·권고사항(예: “agent traps”의 유형, 영향 범위, 대응책)이 무엇인지 확인 필요
+
+웹에서 ‘에이전트 트랩(agent traps)’이 자율 AI 에이전트를 가로채는 방식의 위험을 경고하는 연구/보고를 다루는 것으로 보인다. 다만 제공된 정보에는 본문 내용이 없어, 구체적인 공격 메커니즘이나 실증 결과, 완화 방법은 확인이 필요하다.
+
+https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6372438" onclick="copyEntry(this)">복사</button></div>
+  <p>확인 필요: 본문(초록/내용)에서 구체적인 연구 결과·사례·권고사항(예: “agent traps”의 유형, 영향 범위, 대응책)이 무엇인지 확인 필요</p>
+<p>웹에서 ‘에이전트 트랩(agent traps)’이 자율 AI 에이전트를 가로채는 방식의 위험을 경고하는 연구/보고를 다루는 것으로 보인다. 다만 제공된 정보에는 본문 내용이 없어, 구체적인 공격 메커니즘이나 실증 결과, 완화 방법은 확인이 필요하다.</p>
+  <p class="url"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6372438">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6372438</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>🇨🇳 중국 AI 정책 커뮤니티에서 ‘일자리 대체’ 우려가 크게 확대됨(2026.4.6)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Matt Sheehan 뉴스레터(서브스택)</span></span><button type="button" class="copy-btn" data-copy="중국 AI 정책 커뮤니티에서 ‘일자리 대체’ 우려가 크게 확대됨(2026.4.6)
+
+중국 AI 정책 관련 인사들을 대상으로 한 소규모 설문(포커스그룹)에서 2024년에는 AI의 일자리 영향이 우려 항목 중 낮은 편이었으나, 2026년에는 ‘일자리 영향’이 최상위권으로 올라섰다고 전했다. 지난 2년간 중국 전반에서 AI가 노동자를 대체해 구조적 실업을 초래할 수 있다는 우려가 커졌고, 정책 문서·국영매체·대중의 기술 인식에도 반영되고 있다고 설명한다. 특히 2024년 우한 로봇택시 이슈가 온라인에서 ‘생계 위협’ 논쟁을 촉발하며 정책 커뮤니티의 인식 전환에 영향을 줬을 가능성을 제시한다. 이후 중국은 ‘AI+’ 계획 등에서 AI 고용위험 평가와 고용 영향 완화 같은 대응을 언급했으며, 생성형 AI의 고용영향 평가 방법을 다루는 국가표준도 마련됐다고 밝혔다.
+
+https://mattsheehan.substack.com/p/china-is-getting-worried-about-ai" onclick="copyEntry(this)">복사</button></div>
+  <p>중국 AI 정책 관련 인사들을 대상으로 한 소규모 설문(포커스그룹)에서 2024년에는 AI의 일자리 영향이 우려 항목 중 낮은 편이었으나, 2026년에는 ‘일자리 영향’이 최상위권으로 올라섰다고 전했다. 지난 2년간 중국 전반에서 AI가 노동자를 대체해 구조적 실업을 초래할 수 있다는 우려가 커졌고, 정책 문서·국영매체·대중의 기술 인식에도 반영되고 있다고 설명한다. 특히 2024년 우한 로봇택시 이슈가 온라인에서 ‘생계 위협’ 논쟁을 촉발하며 정책 커뮤니티의 인식 전환에 영향을 줬을 가능성을 제시한다. 이후 중국은 ‘AI+’ 계획 등에서 AI 고용위험 평가와 고용 영향 완화 같은 대응을 언급했으며, 생성형 AI의 고용영향 평가 방법을 다루는 국가표준도 마련됐다고 밝혔다.</p>
+  <p class="url"><a href="https://mattsheehan.substack.com/p/china-is-getting-worried-about-ai">https://mattsheehan.substack.com/p/china-is-getting-worried-about-ai</a></p>
+</article>
+<article class="entry cat-kr-gov">
+  <h2>🇰🇷 AI 기본사회 구현을 위한 가상융합(XR·디지털 트윈) 활용 방안 제시 (2026.04.06)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">소프트웨어정책연구소(SPRi)</span></span><button type="button" class="copy-btn" data-copy="AI 기본사회 구현을 위한 가상융합(XR·디지털 트윈) 활용 방안 제시 (2026.04.06)
+
+SPRi는 AI가 전기·수도·인터넷처럼 보편 인프라로 기능하는 ‘AI 기본사회’를 목표로, XR과 디지털 트윈 등 가상융합이 실행 인프라·정책 실험 플랫폼 역할을 할 수 있다고 설명했다. 가상공간에서 AI 정책 영향을 시뮬레이션하고 아바타 토론 공론장을 구축해 사회적 합의를 높이며, 디지털 트윈 기반 리빙랩으로 사회문제 해결을 검증할 수 있다고 제안했다. 또한 가상 직무훈련·가상 오피스로 일자리 전환과 재교육을 지원하고, 의료·돌봄(인지훈련, 원격 협진, 환자 디지털 트윈) 및 범죄 대응 교육(딥페이크·금융사기 상황 체험)과 교육 격차 완화(가상 캠퍼스·산업 공정 디지털 트윈)까지 활용 가능하다고 밝혔다. 다만 과거 일회성·전시성 사업 반복을 피하기 위해 지속 가능한 운영모델과 성과 중심 설계가 필요하다고 강조했다.
+
+https://www.spri.kr/posts/view/23965?code=issue_reports&amp;study_type=&amp;board_type=&amp;flg=0" onclick="copyEntry(this)">복사</button></div>
+  <p>SPRi는 AI가 전기·수도·인터넷처럼 보편 인프라로 기능하는 ‘AI 기본사회’를 목표로, XR과 디지털 트윈 등 가상융합이 실행 인프라·정책 실험 플랫폼 역할을 할 수 있다고 설명했다. 가상공간에서 AI 정책 영향을 시뮬레이션하고 아바타 토론 공론장을 구축해 사회적 합의를 높이며, 디지털 트윈 기반 리빙랩으로 사회문제 해결을 검증할 수 있다고 제안했다. 또한 가상 직무훈련·가상 오피스로 일자리 전환과 재교육을 지원하고, 의료·돌봄(인지훈련, 원격 협진, 환자 디지털 트윈) 및 범죄 대응 교육(딥페이크·금융사기 상황 체험)과 교육 격차 완화(가상 캠퍼스·산업 공정 디지털 트윈)까지 활용 가능하다고 밝혔다. 다만 과거 일회성·전시성 사업 반복을 피하기 위해 지속 가능한 운영모델과 성과 중심 설계가 필요하다고 강조했다.</p>
+  <p class="url"><a href="https://www.spri.kr/posts/view/23965?code=issue_reports&amp;study_type=&amp;board_type=&amp;flg=0">https://www.spri.kr/posts/view/23965?code=issue_reports&amp;study_type=&amp;board_type=&amp;flg=0</a></p>
+</article>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

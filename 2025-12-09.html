@@ -18,6 +18,7 @@
     --gold: #9c6c22; --gold-strong: #7e561a;
     --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
     --hairline-strong: #d5c9ab;
+    --g1: #e3cf9a; --g2: #d3ac52;
     --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
     --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
     --cat-other: #6b7280;
@@ -49,6 +50,7 @@
       --gold: #e3b563; --gold-strong: #f0c876;
       --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
       --hairline-strong: #384049;
+      --g1: #4a3d24; --g2: #7a5c26;
       --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
       --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
       --cat-other: #9ca3af;
@@ -172,6 +174,15 @@
   .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
   .url a { color: var(--muted); text-decoration: none; }
   .url a:hover { color: var(--link); }
+  .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .day-nav-btn {
+    display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    font-weight: 600; text-decoration: none; color: var(--fg); border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .day-nav-btn:hover { border-color: var(--gold); color: var(--gold-strong); }
+  .day-nav-btn.disabled { color: var(--muted); cursor: default; }
+  .day-nav-btn.disabled:hover { border-color: var(--border); color: var(--muted); }
   footer.site-footer {
     background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
     color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
@@ -199,6 +210,26 @@
   .archive-month summary::before { content: "▸ "; color: var(--muted); }
   .archive-month[open] summary::before { content: "▾ "; }
   .archive-month .archive-list { padding-left: 14px; }
+  /* 아카이브 격자(옵션 B) — 요일 정렬 없이 1일부터 촘촘히, 건수는 4단계
+     골드 톤으로. 배경이 밝을 때(g3·g4)는 --bg를, 옅을 때(g1·g2)는 --fg를
+     글자색으로 써서 라이트/다크 모드 둘 다 자동으로 대비가 맞게 한다. */
+  .archive-month-current { margin: 10px 0 4px; }
+  .month-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 10px; }
+  .archive-month .archive-grid { margin-top: 8px; padding-left: 14px; }
+  .archive-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .archive-cell {
+    width: 42px; height: 42px; border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 0.78rem; text-decoration: none;
+    border: 1px solid var(--border);
+  }
+  .archive-cell .n { font-weight: 700; line-height: 1.15; }
+  .archive-cell .c { font-size: 0.62rem; opacity: 0.85; line-height: 1.1; }
+  .archive-cell.empty { color: var(--muted); }
+  .archive-cell.g1 { background: var(--g1); color: var(--fg); border-color: transparent; }
+  .archive-cell.g2 { background: var(--g2); color: var(--fg); border-color: transparent; }
+  .archive-cell.g3 { background: var(--gold); color: var(--bg); border-color: transparent; }
+  .archive-cell.g4 { background: var(--gold-strong); color: var(--bg); border-color: transparent; }
+  .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -294,7 +325,7 @@ https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/
   <p>여러 대형 기초 모델 개발자들이 모델의 심각한 위험을 평가하고 정보 보안 조치, 배포 안전 조치, 책임성 실천을 통해 이러한 위험을 완화하기 위한 기업 프로토콜에 서약하고 있다. 2023년 9월부터 일부 AI 기업들이 자발적으로 이러한 프로토콜을 공개하기 시작했으며, 2024년 5월에는 AI 서울 정상회의에서 16개 기업이 Frontier AI Safety Commitments에 참여하여 추가로 4개 기업이 합류했다. 현재까지 12개 기업이 Frontier AI 안전 정책을 공개했다: Anthropic, OpenAI, Google DeepMind, Magic, Naver, Meta, G42, Cohere, Microsoft, Amazon, xAI, Nvidia.</p>
 <p>정책들은 모델이 생물학 무기 개발이나 사이버 공격을 용이하게 하거나 자율적 복제나 자동화된 AI 연구 개발에 이르는 능력 임계치에 접근하는지 평가하는 것을 포함한다. 임계치에 근접할 경우, 모델 가중치 보안과 모델 배포 완화 조치를 명시한다. 또한, 위험 관리를 위해 개발과 배포를 중단할 조건을 설정하고, 모델의 전체 능력을 평가하기 위한 평가 설계와 평가의 시기와 빈도를 정의한다. 정책들은 제3자 또는 이사회에 의한 감독을 포함한 책임성 메커니즘 탐구도 포함한다. 정책들은 시간이 지남에 따라 AI 위험에 대한 이해가 깊어짐에 따라 업데이트될 예정이다.</p>
   <p class="url"><a href="https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/">https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/</a></p>
-</article>
+</article><nav class="day-nav"><a class="day-nav-btn" href="2025-12-05.html">← 2025-12-05</a><a class="day-nav-btn" href="2025-12-10.html">2025-12-10 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
 <script>

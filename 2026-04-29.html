@@ -18,6 +18,7 @@
     --gold: #9c6c22; --gold-strong: #7e561a;
     --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
     --hairline-strong: #d5c9ab;
+    --g1: #e3cf9a; --g2: #d3ac52;
     --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
     --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
     --cat-other: #6b7280;
@@ -49,6 +50,7 @@
       --gold: #e3b563; --gold-strong: #f0c876;
       --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
       --hairline-strong: #384049;
+      --g1: #4a3d24; --g2: #7a5c26;
       --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
       --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
       --cat-other: #9ca3af;
@@ -172,6 +174,15 @@
   .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
   .url a { color: var(--muted); text-decoration: none; }
   .url a:hover { color: var(--link); }
+  .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .day-nav-btn {
+    display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    font-weight: 600; text-decoration: none; color: var(--fg); border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .day-nav-btn:hover { border-color: var(--gold); color: var(--gold-strong); }
+  .day-nav-btn.disabled { color: var(--muted); cursor: default; }
+  .day-nav-btn.disabled:hover { border-color: var(--border); color: var(--muted); }
   footer.site-footer {
     background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
     color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
@@ -199,6 +210,26 @@
   .archive-month summary::before { content: "▸ "; color: var(--muted); }
   .archive-month[open] summary::before { content: "▾ "; }
   .archive-month .archive-list { padding-left: 14px; }
+  /* 아카이브 격자(옵션 B) — 요일 정렬 없이 1일부터 촘촘히, 건수는 4단계
+     골드 톤으로. 배경이 밝을 때(g3·g4)는 --bg를, 옅을 때(g1·g2)는 --fg를
+     글자색으로 써서 라이트/다크 모드 둘 다 자동으로 대비가 맞게 한다. */
+  .archive-month-current { margin: 10px 0 4px; }
+  .month-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 10px; }
+  .archive-month .archive-grid { margin-top: 8px; padding-left: 14px; }
+  .archive-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .archive-cell {
+    width: 42px; height: 42px; border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 0.78rem; text-decoration: none;
+    border: 1px solid var(--border);
+  }
+  .archive-cell .n { font-weight: 700; line-height: 1.15; }
+  .archive-cell .c { font-size: 0.62rem; opacity: 0.85; line-height: 1.1; }
+  .archive-cell.empty { color: var(--muted); }
+  .archive-cell.g1 { background: var(--g1); color: var(--fg); border-color: transparent; }
+  .archive-cell.g2 { background: var(--g2); color: var(--fg); border-color: transparent; }
+  .archive-cell.g3 { background: var(--gold); color: var(--bg); border-color: transparent; }
+  .archive-cell.g4 { background: var(--gold-strong); color: var(--bg); border-color: transparent; }
+  .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -742,7 +773,7 @@ https://arxiv.org/abs/2604.26880v1" onclick="copyEntry(this)">복사</button></d
   <p>분야: 안전</p>
 <p>환자 포털이 EHR에 대한 접근을 제공하더라도, 환자가 복잡한 임상 정보를 이해하고 적절히 활용하는 데는 여전히 문제가 남아 있다. 본 연구는 ArchEHR-QA 2026 공유과제의 목표인 EHR에 근거한(grounded) 임상 질의응답을 위해, Gemini 2.5 Pro 기반의 다단계 캐스케이드 파이프라인을 제안한다. 핵심 기여는 (1) 환자 작성 질의를 few-shot으로 요약·재구성하는 유닛, (2) 휴리스틱 기반 문장 점수화로 근거 문장을 우선순위화하는 evidence scorer, (3) 식별된 근거에만 엄격히 제한해 답을 생성하는 grounded response generator, (4) 생성 답변과 근거 문장을 고정밀로 정렬하는 many-to-many alignment 프레임워크로 구성된 4모듈 통합이다. 평가/사례로는 ArchEHR-QA 2026 공유과제의 트랙별 성적을 제시하며, 질문 해석 1위, 답변 생성 5위, 근거 식별 7위, 답-근거 정렬 9위를 기록했다. 한계로는 임상 문서의 길이·노이즈 및 근거 식별 오류가 이후 단계의 품질에 연쇄적으로 영향을 줄 수 있으며, 향후에는 근거 검색/정렬의 견고성 향상과 안전한 임상 커뮤니케이션을 위한 추가 검증이 필요하다. 정책/규제·국가 전략 측면에서는 환자 대상 의료정보 제공에서 “근거 제한(grounding)과 정렬 검증”을 시스템 요구사항으로 포함시키는 접근이 유효하며, 재현가능한 코드 공개는 감사·평가 체계 구축에 기여할 수 있다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2604.26880v1">https://arxiv.org/abs/2604.26880v1</a></p>
-</article>
+</article><nav class="day-nav"><a class="day-nav-btn" href="2026-04-28.html">← 2026-04-28</a><a class="day-nav-btn" href="2026-04-30.html">2026-04-30 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
 <script>

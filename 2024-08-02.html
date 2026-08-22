@@ -18,6 +18,7 @@
     --gold: #9c6c22; --gold-strong: #7e561a;
     --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
     --hairline-strong: #d5c9ab;
+    --g1: #e3cf9a; --g2: #d3ac52;
     --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
     --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
     --cat-other: #6b7280;
@@ -49,6 +50,7 @@
       --gold: #e3b563; --gold-strong: #f0c876;
       --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
       --hairline-strong: #384049;
+      --g1: #4a3d24; --g2: #7a5c26;
       --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
       --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
       --cat-other: #9ca3af;
@@ -172,6 +174,15 @@
   .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
   .url a { color: var(--muted); text-decoration: none; }
   .url a:hover { color: var(--link); }
+  .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .day-nav-btn {
+    display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    font-weight: 600; text-decoration: none; color: var(--fg); border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .day-nav-btn:hover { border-color: var(--gold); color: var(--gold-strong); }
+  .day-nav-btn.disabled { color: var(--muted); cursor: default; }
+  .day-nav-btn.disabled:hover { border-color: var(--border); color: var(--muted); }
   footer.site-footer {
     background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
     color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
@@ -199,6 +210,26 @@
   .archive-month summary::before { content: "▸ "; color: var(--muted); }
   .archive-month[open] summary::before { content: "▾ "; }
   .archive-month .archive-list { padding-left: 14px; }
+  /* 아카이브 격자(옵션 B) — 요일 정렬 없이 1일부터 촘촘히, 건수는 4단계
+     골드 톤으로. 배경이 밝을 때(g3·g4)는 --bg를, 옅을 때(g1·g2)는 --fg를
+     글자색으로 써서 라이트/다크 모드 둘 다 자동으로 대비가 맞게 한다. */
+  .archive-month-current { margin: 10px 0 4px; }
+  .month-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 10px; }
+  .archive-month .archive-grid { margin-top: 8px; padding-left: 14px; }
+  .archive-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .archive-cell {
+    width: 42px; height: 42px; border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 0.78rem; text-decoration: none;
+    border: 1px solid var(--border);
+  }
+  .archive-cell .n { font-weight: 700; line-height: 1.15; }
+  .archive-cell .c { font-size: 0.62rem; opacity: 0.85; line-height: 1.1; }
+  .archive-cell.empty { color: var(--muted); }
+  .archive-cell.g1 { background: var(--g1); color: var(--fg); border-color: transparent; }
+  .archive-cell.g2 { background: var(--g2); color: var(--fg); border-color: transparent; }
+  .archive-cell.g3 { background: var(--gold); color: var(--bg); border-color: transparent; }
+  .archive-cell.g4 { background: var(--gold-strong); color: var(--bg); border-color: transparent; }
+  .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -291,7 +322,7 @@
 https://law-ai.org/the-limits-of-liability/" onclick="copyEntry(this)">복사</button></div>
   <p>책임 제도는 AI 관리의 핵심 요소가 될 수 있지만, 공공 이익 문제나 구조적 피해, 매우 간접적인 인과 관계를 가진 위험 등에는 효과적이지 못하다. 특히, AI를 통한 허위 정보 확산이나 선거 개입과 같은 문제는 책임 청구로 해결하기 어렵다. 또한, 보상이 불가능한 위험(예: 너무 큰 피해로 인해 보상이 실질적으로 집행 불가능한 위험)은 책임 제도로 다루기 어렵다. 책임 제도는 정부 기관의 행동을 변화시키는 데도 제한적이며, 민간 부문에서 벗어나 국가화된 AI 기술의 사용을 규제하기 위해서는 추가적인 접근 방식이 필요하다. 국제적인 협력과 법 준수형 AI 개발 등이 고려될 수 있다.</p>
   <p class="url"><a href="https://law-ai.org/the-limits-of-liability/">https://law-ai.org/the-limits-of-liability/</a></p>
-</article>
+</article><nav class="day-nav"><a class="day-nav-btn" href="2024-08-01.html">← 2024-08-01</a><a class="day-nav-btn" href="2024-08-06.html">2024-08-06 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="about.html">파이프라인</a></div></footer>
 <script>

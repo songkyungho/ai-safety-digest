@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,6 +122,7 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -160,6 +161,7 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -317,22 +319,6 @@
     <div class="nav"><a href="index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-frontier">
-  <h2>🇺🇸 Claude Opus 5 (Anthropic) (2026.7.24)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 5 (Anthropic) (2026.7.24)
-
-Reasoning · Closed · 1000K ctx · $5/M · $25/M
-
-벤치마크 미공개
-
-Anthropic&#x27;s new flagship, released July 24 and positioned as a daily-driver Opus that rivals Fable 5 at half the price ($5/$25 vs $10/$50). Anthropic reports it more than doubles Opus 4.8 on Frontier-Bench v0.1 and surpasses all other models there; lands within 0.5% of Fable 5&#x27;s peak on CursorBench 3.2 at half the cost; scores roughly 3x the next-best model on ARC-AGI 3; and beats Fable 5&#x27;s best OSWorld 2.0 result at about one-third the cost. Standard SWE-bench / GPQA figures were not published at launch. 1M context, multimodal, adaptive thinking. Closed, via the Anthropic API.
-
-https://www.anthropic.com/news/claude-opus-5" onclick="copyEntry(this)">복사</button></div>
-  <p>Reasoning · Closed · 1000K ctx · $5/M · $25/M</p>
-<p>벤치마크 미공개</p>
-<p>Anthropic&#x27;s new flagship, released July 24 and positioned as a daily-driver Opus that rivals Fable 5 at half the price ($5/$25 vs $10/$50). Anthropic reports it more than doubles Opus 4.8 on Frontier-Bench v0.1 and surpasses all other models there; lands within 0.5% of Fable 5&#x27;s peak on CursorBench 3.2 at half the cost; scores roughly 3x the next-best model on ARC-AGI 3; and beats Fable 5&#x27;s best OSWorld 2.0 result at about one-third the cost. Standard SWE-bench / GPQA figures were not published at launch. 1M context, multimodal, adaptive thinking. Closed, via the Anthropic API.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/claude-opus-5">https://www.anthropic.com/news/claude-opus-5</a></p>
-</article>
 <article class="entry cat-aisi">
   <h2>🇬🇧 (How our new Control Red Team is stress-testing frontier monitors) (2026.07.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="(How our new Control Red Team is stress-testing frontier monitors) (2026.07.24)
@@ -361,6 +347,22 @@ Claude Opus 5는 기존 모델 대비 성능이 크게 향상되었으며, 가�
 
 https://www.anthropic.com/news/claude-opus-5" onclick="copyEntry(this)">복사</button></div>
   <p>Claude Opus 5는 기존 모델 대비 성능이 크게 향상되었으며, 가격은 절반으로 책정되었습니다. 이 모델은 코딩 및 지식 작업 평가에서 뛰어난 성과를 보여주며, 특히 소프트웨어 엔지니어링 작업에서 뛰어난 효율성을 발휘합니다. Opus 5는 다양한 평가 지표에서 Fable 5와 견줄 만한 성능을 보이면서도 비용 효율성이 높아, 개발자와 연구원들에게 유용한 도구로 자리매김하고 있습니다. 안전 측면에서도 가장 잘 정렬된 모델로 평가되어, 사용 시 더 안전한 선택이 될 것으로 보입니다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-opus-5">https://www.anthropic.com/news/claude-opus-5</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>🇺🇸 Claude Opus 5 (Anthropic) (2026.7.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 5 (Anthropic) (2026.7.24)
+
+Reasoning · Closed · 1000K ctx · $5/M · $25/M
+
+벤치마크 미공개
+
+Anthropic&#x27;s new flagship, released July 24 and positioned as a daily-driver Opus that rivals Fable 5 at half the price ($5/$25 vs $10/$50). Anthropic reports it more than doubles Opus 4.8 on Frontier-Bench v0.1 and surpasses all other models there; lands within 0.5% of Fable 5&#x27;s peak on CursorBench 3.2 at half the cost; scores roughly 3x the next-best model on ARC-AGI 3; and beats Fable 5&#x27;s best OSWorld 2.0 result at about one-third the cost. Standard SWE-bench / GPQA figures were not published at launch. 1M context, multimodal, adaptive thinking. Closed, via the Anthropic API.
+
+https://www.anthropic.com/news/claude-opus-5" onclick="copyEntry(this)">복사</button></div>
+  <p>Reasoning · Closed · 1000K ctx · $5/M · $25/M</p>
+<p>벤치마크 미공개</p>
+<p>Anthropic&#x27;s new flagship, released July 24 and positioned as a daily-driver Opus that rivals Fable 5 at half the price ($5/$25 vs $10/$50). Anthropic reports it more than doubles Opus 4.8 on Frontier-Bench v0.1 and surpasses all other models there; lands within 0.5% of Fable 5&#x27;s peak on CursorBench 3.2 at half the cost; scores roughly 3x the next-best model on ARC-AGI 3; and beats Fable 5&#x27;s best OSWorld 2.0 result at about one-third the cost. Standard SWE-bench / GPQA figures were not published at launch. 1M context, multimodal, adaptive thinking. Closed, via the Anthropic API.</p>
   <p class="url"><a href="https://www.anthropic.com/news/claude-opus-5">https://www.anthropic.com/news/claude-opus-5</a></p>
 </article>
 <article class="entry cat-company">

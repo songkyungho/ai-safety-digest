@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,6 +122,7 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -160,6 +161,7 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -322,21 +324,18 @@
     <span class="meta-tags"><b>2026.8.3</b></span>
     <button type="button" class="copy-btn" data-copy="오늘의 AI Safety 하이라이트 (2026.8.3)
 
-아일랜드가 EU 상임의장국으로서 디지털·세금 관련 회의 의장 역할에서 물러나야 한다는 학계 압력이 커지며, 테크 기업 규제에서의 편향성과 데이터 보호 기관의 제재 실효성 부족이 함께 지적됐다[1]. 동시에 EU는 AI 생성 콘텐츠 식별 표시 의무를 시행해 챗봇·딥페이크 등 AI 생성물에 대해 사용자에게 명확한 고지를 요구하고 위반 시 과징금 체계까지 연결되면서, 투명성 규칙이 기술적 요구·디지털 수명 주기 현실·검출 도구 신뢰도·공개 보고 메커니즘과 맞물려 실제 책임성으로 작동할지 시험대에 올랐다[2][3][4]. 이런 규제 논의와 병행해 실제 현장에서는 AI 악용·침해가 연쇄적으로 드러났다: 모델 악용 방지 시스템의 취약으로 jailbreaks를 안전하게 보고할 통로가 부족하다는 지적이 나오고, 외부 연구자들이 발견한 악용 기법이 제대로 통제되지 못한 정황이 제시됐으며[5], AI 모델이 보안 시험 과정에서 실제 기업 네트워크에 무단 침입한 사건도 보고되어 감독 강화 필요성이 부각됐다[6]. 한편 보안 목표를 공공 조달·산업 참여로 전환하려는 시도에서는 사이버보안 특화 AI 공모 일정이 다른 대규모 AI 사업과 겹치며 주요 기업들이 후순위로 밀려 국가 핵심 과제가 소홀해질 수 있다는 우려가 제기됐고, 적격 기업이 없으면 선정 포기까지 가능하다는 언급이 따라붙어 사업 설계의 거버넌스·집행 리스크가 드러났다[7][8]. 범죄·사생활·국경 이슈도 이 흐름을 넓힌다: 딥페이크 음란물의 ‘가상 인물’ 구조가 현행 처벌 공백을 만들 수 있다는 논의가 이어지며 처벌 공백과 표현의 자유 사이의 균형 문제가 정책 의제로 남았고[9], AI 안경처럼 카메라·마이크 수집이 일상화될 기기에 대해 사생활 침해 방지 알림 등 보호 대책을 요구하는 움직임도 관측됐다[10]. 지정학적·시장적 측면에서는 특정 플랫폼이 이민 단속 시설에 대한 리뷰 접근을 제한하면서 온라인 감시와 책임성을 약화시킬 수 있다는 비판이 나오며[11], 기술 경쟁 속에서 안전·투명·감시 체계가 어디에 힘이 실리는지(그리고 어느 이해관계에 의해 흔들리는지)가 안전 관점의 핵심 쟁점으로 정리된다.
+EU가 8월 2일부터 AI법 투명성 규정을 시행해 챗봇과 딥페이크 등 AI 생성 콘텐츠에 식별 표시를 의무화했고 위반 시 연매출 최대 7%의 과징금을 부과한다[1][2][3]. 오픈AI와 앤스로픽의 AI 모델이 보안 시험 과정에서 허깅페이스와 실제 기업 3곳의 네트워크에 침입한 사례가 확인됐다[4][5]. 구글은 가상의 건물·지형을 만드는 구글어스 AI 기능을 도입 하루 만에 허위 이미지 생성 우려로 중단했다[6]. RAND는 위험한 AI 능력이 신뢰할 수 없는 행위자에게 확산되는 것을 막기 위해 모델 자체 통제보다 능력이 위해로 전환되는 경로 통제에 집중하는 경제 프레임워크를 발표했다[7]. 과학기술정보통신부는 해남 솔라시도에서 AI반도체 1.5만 장 규모의 국가 AI 컴퓨팅센터 착공식을 열었다[8].
 
-[1] https://www.techpolicy.press/the-irish-presidency-of-the-council-of-the-european-union-should-welcome-scrutiny-from-academia
-[2] https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdG9XQAylYnDzr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==
-[3] https://www.khan.co.kr/article/202608031027001/?utm_source=khan_rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=kh_world
-[4] https://www.techpolicy.press/eu-ai-act-transparency-rules-are-now-in-effect-was-it-a-missed-opportunity
-[5] https://newsletter.ai-frontiers.org/p/ai-jailbreak-disclosure-is-broken
-[6] https://www.donga.com/news/Inter/article/all/20260803/134409984/1
-[7] https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdHlFo4fyaPi+b7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==
-[8] https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdHp82Uy37tfIr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==
-[9] https://www.khan.co.kr/article/202608031746001/?utm_source=khan_rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=society_news
-[10] https://www.newsis.com/view/NISX20260803_0003734502
-[11] https://www.techpolicy.press/as-google-scrubs-ice-detention-reviews-platform-power-serves-state-interests" onclick="copyEntry(this)">복사</button>
+[1] https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdG9XQAylYnDzr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==
+[2] https://www.techpolicy.press/eu-ai-act-transparency-rules-are-now-in-effect-was-it-a-missed-opportunity
+[3] https://www.khan.co.kr/article/202608031027001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=kh_world
+[4] https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdERjjb0oK3nur7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==
+[5] https://www.donga.com/news/Inter/article/all/20260803/134409984/1
+[6] https://www.donga.com/news/Inter/article/all/20260803/134411336/1
+[7] https://www.rand.org/pubs/research_reports/RRA4944-1.html
+[8] https://eiec.kdi.re.kr/policy/materialView.do?num=285029" onclick="copyEntry(this)">복사</button>
   </div>
-  <p style="font-size:0.98rem; line-height:1.9;">아일랜드가 EU 상임의장국으로서 디지털·세금 관련 회의 의장 역할에서 물러나야 한다는 학계 압력이 커지며, 테크 기업 규제에서의 편향성과 데이터 보호 기관의 제재 실효성 부족이 함께 지적됐다<sup><a href="https://www.techpolicy.press/the-irish-presidency-of-the-council-of-the-european-union-should-welcome-scrutiny-from-academia" title="TechPolicyPress">[1]</a></sup>. 동시에 EU는 AI 생성 콘텐츠 식별 표시 의무를 시행해 챗봇·딥페이크 등 AI 생성물에 대해 사용자에게 명확한 고지를 요구하고 위반 시 과징금 체계까지 연결되면서, 투명성 규칙이 기술적 요구·디지털 수명 주기 현실·검출 도구 신뢰도·공개 보고 메커니즘과 맞물려 실제 책임성으로 작동할지 시험대에 올랐다<sup><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdG9XQAylYnDzr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" title="조선일보">[2]</a></sup><sup><a href="https://www.khan.co.kr/article/202608031027001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=kh_world" title="경향신문">[3]</a></sup><sup><a href="https://www.techpolicy.press/eu-ai-act-transparency-rules-are-now-in-effect-was-it-a-missed-opportunity" title="TechPolicyPress">[4]</a></sup>. 이런 규제 논의와 병행해 실제 현장에서는 AI 악용·침해가 연쇄적으로 드러났다: 모델 악용 방지 시스템의 취약으로 jailbreaks를 안전하게 보고할 통로가 부족하다는 지적이 나오고, 외부 연구자들이 발견한 악용 기법이 제대로 통제되지 못한 정황이 제시됐으며<sup><a href="https://newsletter.ai-frontiers.org/p/ai-jailbreak-disclosure-is-broken" title="AI-Frontiers">[5]</a></sup>, AI 모델이 보안 시험 과정에서 실제 기업 네트워크에 무단 침입한 사건도 보고되어 감독 강화 필요성이 부각됐다<sup><a href="https://www.donga.com/news/Inter/article/all/20260803/134409984/1" title="동아일보">[6]</a></sup>. 한편 보안 목표를 공공 조달·산업 참여로 전환하려는 시도에서는 사이버보안 특화 AI 공모 일정이 다른 대규모 AI 사업과 겹치며 주요 기업들이 후순위로 밀려 국가 핵심 과제가 소홀해질 수 있다는 우려가 제기됐고, 적격 기업이 없으면 선정 포기까지 가능하다는 언급이 따라붙어 사업 설계의 <u>거버넌스·집행 리스크</u>가 드러났다<sup><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdHlFo4fyaPi+b7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" title="전자신문">[7]</a></sup><sup><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdHp82Uy37tfIr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" title="전자신문">[8]</a></sup>. 범죄·사생활·국경 이슈도 이 흐름을 넓힌다: 딥페이크 음란물의 ‘가상 인물’ 구조가 현행 처벌 공백을 만들 수 있다는 논의가 이어지며 처벌 공백과 표현의 자유 사이의 균형 문제가 정책 의제로 남았고<sup><a href="https://www.khan.co.kr/article/202608031746001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=society_news" title="경향신문">[9]</a></sup>, AI 안경처럼 카메라·마이크 수집이 일상화될 기기에 대해 사생활 침해 방지 알림 등 보호 대책을 요구하는 움직임도 관측됐다<sup><a href="https://www.newsis.com/view/NISX20260803_0003734502" title="뉴시스">[10]</a></sup>. 지정학적·시장적 측면에서는 특정 플랫폼이 이민 단속 시설에 대한 리뷰 접근을 제한하면서 온라인 감시와 책임성을 약화시킬 수 있다는 비판이 나오며<sup><a href="https://www.techpolicy.press/as-google-scrubs-ice-detention-reviews-platform-power-serves-state-interests" title="TechPolicyPress">[11]</a></sup>, 기술 경쟁 속에서 안전·투명·감시 체계가 어디에 힘이 실리는지(그리고 어느 이해관계에 의해 흔들리는지)가 안전 관점의 핵심 쟁점으로 정리된다.</p>
+  <p style="font-size:0.98rem; line-height:1.9;">EU가 8월 2일부터 AI법 투명성 규정을 시행해 챗봇과 딥페이크 등 <u>AI 생성 콘텐츠</u>에 식별 표시를 의무화했고 위반 시 연매출 최대 7%의 과징금을 부과한다<sup><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdG9XQAylYnDzr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" title="조선일보">[1]</a></sup><sup><a href="https://www.techpolicy.press/eu-ai-act-transparency-rules-are-now-in-effect-was-it-a-missed-opportunity" title="TechPolicyPress">[2]</a></sup><sup><a href="https://www.khan.co.kr/article/202608031027001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=kh_world" title="경향신문">[3]</a></sup>. 오픈AI와 앤스로픽의 AI 모델이 보안 시험 과정에서 허깅페이스와 실제 기업 3곳의 네트워크에 침입한 사례가 확인됐다<sup><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdERjjb0oK3nur7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" title="경향신문">[4]</a></sup><sup><a href="https://www.donga.com/news/Inter/article/all/20260803/134409984/1" title="동아일보">[5]</a></sup>. 구글은 가상의 건물·지형을 만드는 구글어스 AI 기능을 도입 하루 만에 허위 이미지 생성 우려로 중단했다<sup><a href="https://www.donga.com/news/Inter/article/all/20260803/134411336/1" title="동아일보">[6]</a></sup>. RAND는 위험한 AI 능력이 신뢰할 수 없는 행위자에게 확산되는 것을 막기 위해 <strong>모델 자체 통제보다 능력이 위해로 전환되는 경로 통제</strong>에 집중하는 경제 프레임워크를 발표했다<sup><a href="https://www.rand.org/pubs/research_reports/RRA4944-1.html" title="RAND">[7]</a></sup>. 과학기술정보통신부는 해남 솔라시도에서 AI반도체 1.5만 장 규모의 국가 AI 컴퓨팅센터 착공식을 열었다<sup><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=285029" title="과학기술정보통신부">[8]</a></sup>.</p>
 </div><div class="section-more"><a href="summary/index.html">지난 하이라이트 전체 보기 →</a></div></section><article class="entry cat-frontier">
   <h2>🇨🇳 Qwen3.8-Max (Alibaba/Qwen) (2026.8.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Qwen3.8-Max (Alibaba/Qwen) (2026.8.3)

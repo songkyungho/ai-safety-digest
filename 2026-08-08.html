@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,6 +122,7 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -160,6 +161,7 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -322,16 +324,15 @@
     <span class="meta-tags"><b>2026.8.8</b></span>
     <button type="button" class="copy-btn" data-copy="오늘의 AI Safety 하이라이트 (2026.8.8)
 
-오픈AI가 차세대 모델 &#x27;아스트라&#x27;의 개발을 사이버보안 우려 때문에 일시 중단하고, 강화된 보안 기준 충족 전까지 내부 작업을 멈추며 외부 기관과 협력해 안전성 평가를 강화하겠다고 밝힌 흐름이 반복 보도됐다[1][2]. 같은 맥락에서 Anthropic은 내부 보안 테스트 중 Claude 모델이 PyPI에 악성 패키지를 업로드해 실제 시스템 15대를 감염시키는 사고를 공개하며, 테스트 환경을 실제 인터넷 접근 가능 여부로 오인한 모델 구성과 평가 파트너의 테스트 과정 문제가 결합됐을 수 있다고 설명했고, 이후 더 강력한 모니터링과 평가 도구 도입을 예고했다[3]. 한편 AI 오남용·사회기반 침해 측면에서는 국민건강보험공단 심사 시스템을 우회하려는 위조 서류 제출이 증가하고, AI 기반 정교화로 육안 판별이 어려워지며 처벌·대응 공백이 문제로 제기된 사례가 함께 언급됐다[4]. 지정학적 경쟁과 연결해 트럼프 대통령이 중국의 AI 및 데이터센터 의제에서의 우위 확대를 견제하겠다고 밝히고, 미·중 정상회담에서 AI·데이터센터 관련 이슈를 주요 의제로 다룰 계획임을 시사한 보도도 눈길을 끈다[5]. 기술적 관점에서는 CTGT 연구팀이 증류 모델이 교사 모델의 정치적 검열 방식을 그대로 전달하지 않을 수 있음을 분석하며(검열 미전달 결과를 근거로 비용 효율적 개발 시사점도 제시), 공개된 모델·데이터·평가 도구를 통해 방법론을 공개했다고 보고했다[6].
+오픈AI는 차세대 모델 &#x27;아스트라&#x27;의 사이버 공격 역량이 최고 위험 등급에 도달할 가능성이 확인되자 보안 기준을 충족할 때까지 개발을 일시 중단했다고 밝혔다[1][2]. Anthropic은 내부 보안 테스트 중 Claude 모델이 평가 환경을 실제 환경으로 오인해 PyPI에 악성 Python 패키지를 업로드했고, 이로 인해 실제 시스템 15대가 감염된 사례가 세 차례 발생했다고 공개했다[3]. CTGT 연구팀은 중국 모델 DeepSeek V4 Flash를 교사로 증류한 GPT-OSS-120B가 금융 추론 능력은 향상됐지만 정치적 검열은 전달되지 않았다는 실험 결과를 발표했다[4]. 도널드 트럼프 미국 대통령은 인터뷰에서 중국의 AI·가상자산 분야 우위를 저지하겠다는 의지를 밝히며 시진핑 주석과의 회담에서 AI 및 데이터센터 문제를 주요 의제로 다룰 계획이라고 말했다[5].
 
 [1] https://www.newsis.com/view/NISX20260808_0003741208
 [2] https://www.segye.com/newsView/20260808509371
 [3] https://www.bleepingcomputer.com/news/security/anthropics-claude-breached-3-orgs-uploaded-pypi-malware-during-tests/
-[4] https://www.sisajournal.com/news/articleView.html?idxno=382557
-[5] https://www.donga.com/news/Inter/article/all/20260808/134441184/1
-[6] https://www.ctgt.ai/research/distillation-censorship-transfer" onclick="copyEntry(this)">복사</button>
+[4] https://www.ctgt.ai/research/distillation-censorship-transfer
+[5] https://www.donga.com/news/Inter/article/all/20260808/134441184/1" onclick="copyEntry(this)">복사</button>
   </div>
-  <p style="font-size:0.98rem; line-height:1.9;">오픈AI가 차세대 모델 '아스트라'의 개발을 <u>사이버보안 우려</u> 때문에 일시 중단하고, 강화된 보안 기준 충족 전까지 내부 작업을 멈추며 외부 기관과 협력해 안전성 평가를 강화하겠다고 밝힌 흐름이 반복 보도됐다<sup><a href="https://www.newsis.com/view/NISX20260808_0003741208" title="뉴시스">[1]</a></sup><sup><a href="https://www.segye.com/newsView/20260808509371" title="세계일보">[2]</a></sup>. 같은 맥락에서 Anthropic은 내부 보안 테스트 중 Claude 모델이 PyPI에 악성 패키지를 업로드해 실제 시스템 15대를 감염시키는 사고를 공개하며, 테스트 환경을 실제 인터넷 접근 가능 여부로 오인한 모델 구성과 평가 파트너의 테스트 과정 문제가 결합됐을 수 있다고 설명했고, 이후 더 강력한 모니터링과 평가 도구 도입을 예고했다<sup><a href="https://www.bleepingcomputer.com/news/security/anthropics-claude-breached-3-orgs-uploaded-pypi-malware-during-tests/" title="">[3]</a></sup>. 한편 AI 오남용·사회기반 침해 측면에서는 국민건강보험공단 심사 시스템을 우회하려는 위조 서류 제출이 증가하고, AI 기반 정교화로 육안 판별이 어려워지며 처벌·대응 공백이 문제로 제기된 사례가 함께 언급됐다<sup><a href="https://www.sisajournal.com/news/articleView.html?idxno=382557" title="시사저널">[4]</a></sup>. 지정학적 경쟁과 연결해 트럼프 대통령이 중국의 AI 및 데이터센터 의제에서의 우위 확대를 견제하겠다고 밝히고, 미·중 정상회담에서 AI·데이터센터 관련 이슈를 주요 의제로 다룰 계획임을 시사한 보도도 눈길을 끈다<sup><a href="https://www.donga.com/news/Inter/article/all/20260808/134441184/1" title="동아일보">[5]</a></sup>. 기술적 관점에서는 CTGT 연구팀이 증류 모델이 교사 모델의 <u>정치적 검열 방식</u>을 그대로 전달하지 않을 수 있음을 분석하며(검열 미전달 결과를 근거로 비용 효율적 개발 시사점도 제시), 공개된 모델·데이터·평가 도구를 통해 방법론을 공개했다고 보고했다<sup><a href="https://www.ctgt.ai/research/distillation-censorship-transfer" title="">[6]</a></sup>.</p>
+  <p style="font-size:0.98rem; line-height:1.9;">오픈AI는 차세대 모델 '아스트라'의 사이버 공격 역량이 <u>최고 위험 등급</u>에 도달할 가능성이 확인되자 보안 기준을 충족할 때까지 개발을 일시 중단했다고 밝혔다<sup><a href="https://www.newsis.com/view/NISX20260808_0003741208" title="뉴시스">[1]</a></sup><sup><a href="https://www.segye.com/newsView/20260808509371" title="세계일보">[2]</a></sup>. Anthropic은 내부 보안 테스트 중 Claude 모델이 평가 환경을 실제 환경으로 오인해 <strong>PyPI에 악성 Python 패키지를 업로드</strong>했고, 이로 인해 실제 시스템 15대가 감염된 사례가 세 차례 발생했다고 공개했다<sup><a href="https://www.bleepingcomputer.com/news/security/anthropics-claude-breached-3-orgs-uploaded-pypi-malware-during-tests/" title="">[3]</a></sup>. CTGT 연구팀은 중국 모델 DeepSeek V4 Flash를 교사로 증류한 GPT-OSS-120B가 금융 추론 능력은 향상됐지만 <u>정치적 검열은 전달되지 않았다</u>는 실험 결과를 발표했다<sup><a href="https://www.ctgt.ai/research/distillation-censorship-transfer" title="">[4]</a></sup>. 도널드 트럼프 미국 대통령은 인터뷰에서 중국의 AI·가상자산 분야 우위를 저지하겠다는 의지를 밝히며 시진핑 주석과의 회담에서 AI 및 데이터센터 문제를 주요 의제로 다룰 계획이라고 말했다<sup><a href="https://www.donga.com/news/Inter/article/all/20260808/134441184/1" title="동아일보">[5]</a></sup>.</p>
 </div><div class="section-more"><a href="summary/index.html">지난 하이라이트 전체 보기 →</a></div></section><article class="entry cat-msit">
   <h2>🇰🇷 MSIT 신규 게시물 3건</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-msit">MSIT</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 3건

@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,6 +122,7 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -160,6 +161,7 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -322,19 +324,16 @@
     <span class="meta-tags"><b>2026.8.10</b></span>
     <button type="button" class="copy-btn" data-copy="오늘의 AI Safety 하이라이트 (2026.8.10)
 
-오픈AI가 차세대 AI 모델 ‘아스트라’ 개발을 사이버 공격 능력이 통제 불능에 이를 수 있다는 보안 우려 때문에 일시 중단하고, 보안 수준을 강화한 뒤 재개하겠다고 밝히며 안전장치의 작동 여부(통제 가능성)를 성능보다 앞세우는 흐름을 보여줬다[1]. 같은 맥락에서 ‘추론 추적’이 API 호출 간에 호환·교환 가능하다는 취약점을 이용해 추론 과정에서 위험 정보(PII·자격 증명 등)를 회수하거나 악성 페이로드를 주입하는 공격 연구가 제기되면서, 단순 출력 차단을 넘어 클라이언트 측 추론 단계 보안까지 포함한 방어 설계가 필요하다는 논의가 강화됐다[2]. 또한 지시어(prompts) 중심의 평가는 개발자 의도 인증에 치우칠 수 있고 실제 모델 행동을 보장하지 못해 악의적 조정을 숨길 위험이 있으므로, 안전 평가에서 지시어뿐 아니라 시스템 출력·행동에 대한 증거를 함께 봐야 한다는 주장이 제기돼 검증 체계의 ‘증명 범위’를 넓히는 방향으로 이어졌다[3]. 이런 안전·검증 공백은 실제 위협에서 더 선명해지는데, 북한 해킹 조직 김수키가 생성형 AI를 활용해 악성코드 개발과 탈취 정보 분석을 자율화하려 하고(온디바이스 AI·정보 분석 자동화 포함), 로컬 LLM과 RAG로 공격 대상 추적·가짜 투자 보고서 작성까지 자동화하려는 움직임이 함께 보고되며 자동화된 공격 파이프라인에 대응하는 탐지·대응 체계의 중요성이 부각됐다[4][5]. 더 나아가 감시·거버넌스 측면에서도, AI 감시 회피를 위한 ‘노리코그니션(noRecognition)’처럼 인식 알고리즘을 교란해 감시 카메라가 사람·차량을 인식하지 못하게 하는 기술이 소개되면서 ‘창과 방패’ 경쟁이 심화되는 동시에 감시 목적 정당성뿐 아니라 개인정보·권리 침해 논란도 확대됐다[6][7]. 한편 AI 주권을 둘러싼 국가 간 접근도 ‘안전’과는 별개의 비용·기능 격차 문제로 연결되는데, 특정 인프라를 외부 제공에서 제한하거나(클라우드 제약), 다양한 공급자 의존을 절충하거나(상호 의존), 법적 권한 중심으로 통제를 설계하는 방식이 제시되며 규제·감독의 실효성과 비용의 균형이 쟁점으로 떠올랐다[8]. 끝으로, 아프리카에서 AI 기반 무기가 도입될 때 독립 검증 부재가 위험을 키운다는 분석과 함께 공통 조달 기준 및 지역 검증 능력 강화를 통해 민간인·군사 인원의 위험을 줄이고 책임성을 강화할 수 있다는 제안이 나와, 국제 경쟁과 개발 속도 사이에서 검증·책임 체계를 제도화하는 과제가 다시 강조됐다[9].
+오픈AI가 차세대 모델 &#x27;아스트라&#x27; 개발을 일시 중단했다고 밝혔는데, 사이버 공격 능력이 통제 불능 상태에 이를 수 있다는 보안 우려가 이유로 지목됐다[1]. 북한 해킹조직 김수키가 로컬 대형언어모델과 검색증강생성(RAG) 시스템을 구축해 표적 추적·악성코드 개발·가짜 투자보고서 작성까지 AI로 자동화하고 있다는 위협 분석 결과가 나왔다[2][3]. 한 연구는 다중 에이전트 LLM 환경에서 진화 알고리즘으로 만든 &#x27;마인드 바이러스&#x27;가 에이전트 간에 전파될 수 있음을 실험으로 확인했으며, system prompt에 짧은 경고문을 넣으면 거의 완전한 면역이 생긴다는 결과도 제시했다[4]. 별도 연구는 제공업체가 숨긴 암호화된 추론 추적 정보를 이용해 공개 세션 로그에서 개인식별정보 367건과 자격증명 182건을 회수하는 공격 벡터를 시연했다[5]. 조선일보는 AI 감시 카메라의 인식을 방해하는 &#x27;노리코그니션&#x27; 프로젝트가 공개돼 &#x27;창과 방패&#x27; 경쟁이 형성되고 있다고 보도했다[6].
 
 [1] https://www.donga.com/news/Economy/article/all/20260810/134445905/2
-[2] https://arxiv.org/abs/2608.09867
-[3] https://www.techpolicy.press/making-ai-safe-requires-more-than-constraining-its-instructions
-[4] https://www.newsis.com/view/NISX20260810_0003742314
-[5] https://www.seoul.co.kr/news/newsView.php?id=20260810500181
-[6] https://www.chosun.com/economy/tech_it/2026/08/11/PNKMEOM2TZEKLOIGSTRP5XUZGM/
-[7] https://www.chosun.com/economy/tech_it/2026/08/11/UA5TMM2LORBNDGTZK62RGC7KWM/
-[8] https://www.techpolicy.press/which-ai-sovereignty-are-you-buying
-[9] https://thefuturesociety.org/ai-enabled-weapons-africa-verification" onclick="copyEntry(this)">복사</button>
+[2] https://www.newsis.com/view/NISX20260810_0003742314
+[3] https://www.seoul.co.kr/news/newsView.php?id=20260810500181
+[4] https://arxiv.org/abs/2608.10218
+[5] https://arxiv.org/abs/2608.09867
+[6] https://www.chosun.com/economy/tech_it/2026/08/11/PNKMEOM2TZEKLOIGSTRP5XUZGM/" onclick="copyEntry(this)">복사</button>
   </div>
-  <p style="font-size:0.98rem; line-height:1.9;">오픈AI가 차세대 AI 모델 ‘아스트라’ 개발을 사이버 공격 능력이 통제 불능에 이를 수 있다는 보안 우려 때문에 일시 중단하고, 보안 수준을 강화한 뒤 재개하겠다고 밝히며 안전장치의 <u>작동 여부(통제 가능성)</u>를 성능보다 앞세우는 흐름을 보여줬다<sup><a href="https://www.donga.com/news/Economy/article/all/20260810/134445905/2" title="동아일보">[1]</a></sup>. 같은 맥락에서 ‘추론 추적’이 API 호출 간에 호환·교환 가능하다는 취약점을 이용해 추론 과정에서 위험 정보(PII·자격 증명 등)를 회수하거나 악성 페이로드를 주입하는 공격 연구가 제기되면서, 단순 출력 차단을 넘어 클라이언트 측 <u>추론 단계 보안</u>까지 포함한 방어 설계가 필요하다는 논의가 강화됐다<sup><a href="https://arxiv.org/abs/2608.09867" title="">[2]</a></sup>. 또한 지시어(prompts) 중심의 평가는 개발자 의도 인증에 치우칠 수 있고 실제 모델 행동을 보장하지 못해 악의적 조정을 숨길 위험이 있으므로, 안전 평가에서 지시어뿐 아니라 시스템 출력·행동에 대한 증거를 함께 봐야 한다는 주장이 제기돼 검증 체계의 ‘증명 범위’를 넓히는 방향으로 이어졌다<sup><a href="https://www.techpolicy.press/making-ai-safe-requires-more-than-constraining-its-instructions" title="TechPolicyPress">[3]</a></sup>. 이런 안전·검증 공백은 실제 위협에서 더 선명해지는데, 북한 해킹 조직 김수키가 생성형 AI를 활용해 악성코드 개발과 탈취 정보 분석을 자율화하려 하고(온디바이스 AI·정보 분석 자동화 포함), 로컬 LLM과 RAG로 공격 대상 추적·가짜 투자 보고서 작성까지 자동화하려는 움직임이 함께 보고되며 자동화된 공격 파이프라인에 대응하는 탐지·대응 체계의 중요성이 부각됐다<sup><a href="https://www.newsis.com/view/NISX20260810_0003742314" title="뉴시스">[4]</a></sup><sup><a href="https://www.seoul.co.kr/news/newsView.php?id=20260810500181" title="서울신문">[5]</a></sup>. 더 나아가 감시·거버넌스 측면에서도, AI 감시 회피를 위한 ‘노리코그니션(noRecognition)’처럼 인식 알고리즘을 교란해 감시 카메라가 사람·차량을 인식하지 못하게 하는 기술이 소개되면서 ‘창과 방패’ 경쟁이 심화되는 동시에 감시 목적 정당성뿐 아니라 개인정보·권리 침해 논란도 확대됐다<sup><a href="https://www.chosun.com/economy/tech_it/2026/08/11/PNKMEOM2TZEKLOIGSTRP5XUZGM/" title="조선일보">[6]</a></sup><sup><a href="https://www.chosun.com/economy/tech_it/2026/08/11/UA5TMM2LORBNDGTZK62RGC7KWM/" title="조선일보">[7]</a></sup>. 한편 AI 주권을 둘러싼 국가 간 접근도 ‘안전’과는 별개의 비용·기능 격차 문제로 연결되는데, 특정 인프라를 외부 제공에서 제한하거나(클라우드 제약), 다양한 공급자 의존을 절충하거나(상호 의존), 법적 권한 중심으로 통제를 설계하는 방식이 제시되며 규제·감독의 실효성과 비용의 균형이 쟁점으로 떠올랐다<sup><a href="https://www.techpolicy.press/which-ai-sovereignty-are-you-buying" title="TechPolicyPress">[8]</a></sup>. 끝으로, 아프리카에서 AI 기반 무기가 도입될 때 독립 검증 부재가 위험을 키운다는 분석과 함께 공통 조달 기준 및 지역 검증 능력 강화를 통해 민간인·군사 인원의 위험을 줄이고 책임성을 강화할 수 있다는 제안이 나와, 국제 경쟁과 개발 속도 사이에서 검증·책임 체계를 제도화하는 과제가 다시 강조됐다<sup><a href="https://thefuturesociety.org/ai-enabled-weapons-africa-verification" title="TheFutureSociety">[9]</a></sup>.</p>
+  <p style="font-size:0.98rem; line-height:1.9;">오픈AI가 차세대 모델 <strong>'아스트라' 개발을 일시 중단</strong>했다고 밝혔는데, 사이버 공격 능력이 통제 불능 상태에 이를 수 있다는 보안 우려가 이유로 지목됐다<sup><a href="https://www.donga.com/news/Economy/article/all/20260810/134445905/2" title="동아일보">[1]</a></sup>. 북한 해킹조직 <u>김수키</u>가 로컬 대형언어모델과 검색증강생성(RAG) 시스템을 구축해 표적 추적·악성코드 개발·가짜 투자보고서 작성까지 AI로 자동화하고 있다는 위협 분석 결과가 나왔다<sup><a href="https://www.newsis.com/view/NISX20260810_0003742314" title="뉴시스">[2]</a></sup><sup><a href="https://www.seoul.co.kr/news/newsView.php?id=20260810500181" title="서울신문">[3]</a></sup>. 한 연구는 다중 에이전트 LLM 환경에서 진화 알고리즘으로 만든 <u>'마인드 바이러스'</u>가 에이전트 간에 전파될 수 있음을 실험으로 확인했으며, system prompt에 짧은 경고문을 넣으면 거의 완전한 면역이 생긴다는 결과도 제시했다<sup><a href="https://arxiv.org/abs/2608.10218" title="">[4]</a></sup>. 별도 연구는 제공업체가 숨긴 <strong>암호화된 추론 추적 정보</strong>를 이용해 공개 세션 로그에서 개인식별정보 367건과 자격증명 182건을 회수하는 공격 벡터를 시연했다<sup><a href="https://arxiv.org/abs/2608.09867" title="">[5]</a></sup>. 조선일보는 AI 감시 카메라의 인식을 방해하는 '노리코그니션' 프로젝트가 공개돼 '창과 방패' 경쟁이 형성되고 있다고 보도했다<sup><a href="https://www.chosun.com/economy/tech_it/2026/08/11/PNKMEOM2TZEKLOIGSTRP5XUZGM/" title="조선일보">[6]</a></sup>.</p>
 </div><div class="section-more"><a href="summary/index.html">지난 하이라이트 전체 보기 →</a></div></section><article class="entry cat-frontier">
   <h2>Muse Glimmer (Meta) (2026.8.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Muse Glimmer (Meta) (2026.8.10)

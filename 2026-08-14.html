@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,6 +122,7 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -160,6 +161,7 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -322,17 +324,16 @@
     <span class="meta-tags"><b>2026.8.14</b></span>
     <button type="button" class="copy-btn" data-copy="오늘의 AI Safety 하이라이트 (2026.8.14)
 
-브라질이 아동 보호법의 첫 시행으로 디스코드의 디스코드 라이브 스트리밍 기능을 일시 중지한 조치는 13세 소녀 리비아의 자살 방송 사건을 계기로 플랫폼의 아동 보호 책임과 안전 조치 실패가 쟁점이 되었음을 보여줍니다[1]. 같은 맥락에서 정부가 AI 개발·활용을 위한 7대 원칙을 담은 AI 윤리원칙을 이달 중 공표하겠다고 밝힌 흐름은 규제보다는 자율규범 형태로 프라이버시 보호·공정성·책임성·투명성 등을 안전·신뢰성 강화 장치로 삼으려는 시도로 읽힙니다[2][3]. EU AI Act 준수를 위해 특정 모델 텍스트 출력에 워터마킹을 도입하겠다는 발표는 생성형 AI 콘텐츠의 출처 확인과 투명성 요구를 기술적으로 충족하려는 접근이지만, 독자 감지는 어렵고 특정 키를 가진 사용자만 확인할 수 있다는 설계가 결국 감시·검증 권한의 배분 문제로도 이어질 수 있다는 점을 함께 시사합니다[4]. 한편 LLM이 사이버 취약점 발견을 포함한 일부 발견 영역에서 가속화를 보였다는 관찰은 오남용 가능성이 커지는 속도와, 동시에 보안·연구 성과를 끌어올리는 안전의 양면성을 함께 고려하게 만들며[5], 생성형 AI를 활용해 스마트 안경의 촬영 흔적을 재구성하고 딥페이크·사기 증거 추적에 쓸 수 있다는 솔루션 공개는 디지털 증거의 신뢰성과 사생활 침해 위험이 동시에 커질 수 있음을 경고합니다[6]. 마지막으로 일본이 모델 능력 발전에 맞춰 2026년까지 더 강력한 AI 보호 조치와 생성형 AI 공개 요구 강화를 준비한다는 계획은 능력 향상과 함께 안전장치·공개 의무를 단계적으로 강화하려는 거버넌스 방향성을 보여줍니다[7].
+한국 정부와 KISDI가 인간중심성·프라이버시·공정성 등 7대 원칙을 담은 AI 윤리원칙 초안을 공개하고 이달 중 자율규범 형태로 최종 공표할 예정이다[1][2]. Anthropic은 EU AI Act 준수를 위해 Claude 모델 텍스트 출력에 감지되지 않는 워터마킹 기술을 도입한다고 발표했다[3]. 일본 정부는 생성형 AI에 대한 공개 요구를 강화하는 새 규제 패키지를 2026년까지 마련하고 있다[4]. METR은 최근 6개월간 약 7,100만 달러의 후원 약정을 확보해 자율 능력·재귀적 자기개선 모니터링 연구에 투입할 계획을 밝혔다[5]. 미국 코네티컷 법원은 소송 서류에 숨은 prompt injection 지시문을 삽입한 남성에게 향후 전자 제출을 금지하는 제재를 내렸다[6].
 
-[1] https://www.techpolicy.press/brazil-suspends-discords-livestreams-in-first-enforcement-test-of-child-protection-law
-[2] https://www.newsis.com/view/NISX20260814_0003748967
-[3] https://www.newsis.com/view/NISX20260814_0003749401
-[4] https://www.anthropic.com/news/claude-text-watermark
-[5] https://metr.org/notes/2026-08-14-llm-contribution-to-discoveries/
-[6] https://www.newsis.com/view/NISX20260813_0003747890
-[7] https://asia.nikkei.com/business/technology/artificial-intelligence/japan-to-deploy-stronger-ai-safeguards-as-model-capabilities-advance" onclick="copyEntry(this)">복사</button>
+[1] https://www.newsis.com/view/NISX20260814_0003748967
+[2] https://www.newsis.com/view/NISX20260814_0003749401
+[3] https://www.anthropic.com/news/claude-text-watermark
+[4] https://asia.nikkei.com/business/technology/artificial-intelligence/japan-to-deploy-stronger-ai-safeguards-as-model-capabilities-advance
+[5] https://metr.org/blog/2026-08-14-funding-update/
+[6] https://arstechnica.com/tech-policy/2026/08/suspecting-court-of-using-ai-man-injected-prompts-in-filings-to-try-to-win-case/" onclick="copyEntry(this)">복사</button>
   </div>
-  <p style="font-size:0.98rem; line-height:1.9;">브라질이 아동 보호법의 첫 시행으로 디스코드의 디스코드 라이브 스트리밍 기능을 일시 중지한 조치는 13세 소녀 리비아의 자살 방송 사건을 계기로 플랫폼의 <u>아동 보호 책임</u>과 안전 조치 실패가 쟁점이 되었음을 보여줍니다<sup><a href="https://www.techpolicy.press/brazil-suspends-discords-livestreams-in-first-enforcement-test-of-child-protection-law" title="TechPolicyPress">[1]</a></sup>. 같은 맥락에서 정부가 AI 개발·활용을 위한 7대 원칙을 담은 AI 윤리원칙을 이달 중 공표하겠다고 밝힌 흐름은 규제보다는 자율규범 형태로 <u>프라이버시 보호</u>·공정성·책임성·투명성 등을 안전·신뢰성 강화 장치로 삼으려는 시도로 읽힙니다<sup><a href="https://www.newsis.com/view/NISX20260814_0003748967" title="뉴시스">[2]</a></sup><sup><a href="https://www.newsis.com/view/NISX20260814_0003749401" title="뉴시스">[3]</a></sup>. EU AI Act 준수를 위해 특정 모델 텍스트 출력에 워터마킹을 도입하겠다는 발표는 생성형 AI 콘텐츠의 출처 확인과 투명성 요구를 기술적으로 충족하려는 접근이지만, 독자 감지는 어렵고 특정 키를 가진 사용자만 확인할 수 있다는 설계가 결국 감시·검증 권한의 배분 문제로도 이어질 수 있다는 점을 함께 시사합니다<sup><a href="https://www.anthropic.com/news/claude-text-watermark" title="Anthropic">[4]</a></sup>. 한편 LLM이 사이버 취약점 발견을 포함한 일부 발견 영역에서 가속화를 보였다는 관찰은 오남용 가능성이 커지는 속도와, 동시에 보안·연구 성과를 끌어올리는 안전의 양면성을 함께 고려하게 만들며<sup><a href="https://metr.org/notes/2026-08-14-llm-contribution-to-discoveries/" title="METR">[5]</a></sup>, 생성형 AI를 활용해 스마트 안경의 촬영 흔적을 재구성하고 딥페이크·사기 증거 추적에 쓸 수 있다는 솔루션 공개는 디지털 증거의 신뢰성과 사생활 침해 위험이 동시에 커질 수 있음을 경고합니다<sup><a href="https://www.newsis.com/view/NISX20260813_0003747890" title="뉴시스">[6]</a></sup>. 마지막으로 일본이 모델 능력 발전에 맞춰 2026년까지 더 강력한 AI 보호 조치와 생성형 AI 공개 요구 강화를 준비한다는 계획은 능력 향상과 함께 안전장치·공개 의무를 단계적으로 강화하려는 거버넌스 방향성을 보여줍니다<sup><a href="https://asia.nikkei.com/business/technology/artificial-intelligence/japan-to-deploy-stronger-ai-safeguards-as-model-capabilities-advance" title="GlobalAIRegTracker">[7]</a></sup>.</p>
+  <p style="font-size:0.98rem; line-height:1.9;">한국 정부와 KISDI가 인간중심성·프라이버시·공정성 등 <u>7대 원칙</u>을 담은 AI 윤리원칙 초안을 공개하고 이달 중 자율규범 형태로 최종 공표할 예정이다<sup><a href="https://www.newsis.com/view/NISX20260814_0003748967" title="뉴시스">[1]</a></sup><sup><a href="https://www.newsis.com/view/NISX20260814_0003749401" title="뉴시스">[2]</a></sup>. Anthropic은 EU AI Act 준수를 위해 Claude 모델 텍스트 출력에 감지되지 않는 <u>워터마킹</u> 기술을 도입한다고 발표했다<sup><a href="https://www.anthropic.com/news/claude-text-watermark" title="Anthropic">[3]</a></sup>. 일본 정부는 생성형 AI에 대한 공개 요구를 강화하는 새 규제 패키지를 2026년까지 마련하고 있다<sup><a href="https://asia.nikkei.com/business/technology/artificial-intelligence/japan-to-deploy-stronger-ai-safeguards-as-model-capabilities-advance" title="GlobalAIRegTracker">[4]</a></sup>. METR은 최근 6개월간 <strong>약 7,100만 달러</strong>의 후원 약정을 확보해 자율 능력·재귀적 자기개선 모니터링 연구에 투입할 계획을 밝혔다<sup><a href="https://metr.org/blog/2026-08-14-funding-update/" title="METR">[5]</a></sup>. 미국 코네티컷 법원은 소송 서류에 숨은 prompt injection 지시문을 삽입한 남성에게 향후 전자 제출을 금지하는 제재를 내렸다<sup><a href="https://arstechnica.com/tech-policy/2026/08/suspecting-court-of-using-ai-man-injected-prompts-in-filings-to-try-to-win-case/" title="아스 테크니카">[6]</a></sup>.</p>
 </div><div class="section-more"><a href="summary/index.html">지난 하이라이트 전체 보기 →</a></div></section><article class="entry cat-msit">
   <h2>🇰🇷 MSIT 신규 게시물 8건</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-msit">MSIT</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 8건

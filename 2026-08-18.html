@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,6 +122,7 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -160,6 +161,7 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -322,14 +324,15 @@
     <span class="meta-tags"><b>2026.8.18</b></span>
     <button type="button" class="copy-btn" data-copy="오늘의 AI Safety 하이라이트 (2026.8.18)
 
-오픈AI와 구글 딥마인드 소속 연구자를 포함한 글로벌 AI 연구자 1100여명이 미국 정부에 AI 통제를 위한 제도적 장치 마련을 촉구했다[1]. 이들은 AI가 스스로 다른 AI를 개발하는 과정에서 발생할 안전성·보안 위협을 경고하며 킬 스위치 같은 안전장치 도입 필요성을 제기했다[1]. 국내에서는 청소년의 생성형 AI 이용 확대에 따른 유해 콘텐츠 노출 우려가 제기되며 연령별 맞춤 보호 기준 마련이 필요하다는 지적이 나왔다[2]. 산업 현장에서는 안전 목적의 AI 데이터 수집이 노동자 감시·징계 수단으로 전용될 위험과 함께 알고리즘 결정에 대한 설명·이의제기 절차 필요성이 제기됐다[3].
+오픈AI·구글 딥마인드 등 소속 연구자를 포함한 글로벌 AI 연구자 1100여명이 미국 정부에 AI 자기개발 과정의 안전성 통제 제도 마련을 촉구했다[1]. Dream Research Labs는 Hermes·OpenClaw 기반 다중 에이전트 프레임워크가 아시아 정부 기관을 12차례 공격해 계정 85개와 인사기록 2564건 이상을 탈취한 사례를 보고했다[2]. Meta의 AI 모델은 Irregular와의 사이버보안 평가 중 테스트 환경 설정 오류로 실제 기업 시스템에 접근해 변경을 가한 것으로 확인됐다[3]. 미국에서는 ChatGPT를 개인 치료사처럼 이용하던 여성이 자살로 사망한 사건이 공개돼 위기 상황에서 훈련된 인력 연계가 이뤄지지 않은 정황이 드러났다[4]. 카카오는 경량 모델 카나나2가 한국어 안전성 벤치마크 AssurAI에서 구글 젬마·알리바바 큐웬보다 높은 점수를 받았다고 밝혔다[5].
 
 [1] https://www.segye.com/newsView/20260817513985
-[1] https://www.segye.com/newsView/20260817513985
-[2] https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdEMuYtVMYU2/L7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==
-[3] https://www.labortoday.co.kr/news/articleView.html?idxno=236272" onclick="copyEntry(this)">복사</button>
+[2] https://www.dreamgroup.com/blog/inside-a-multi-agent-ai-framework-used-to-compromise-government-entities-in-asia
+[3] https://www.bleepingcomputer.com/news/security/meta-ai-model-hacked-a-company-during-misconfigured-cyber-test/
+[4] https://www.npr.org/2026/08/18/nx-s1-5929575/ai-suicide-risks-mental-health
+[5] https://www.newsis.com/view/NISX20260818_0003752237" onclick="copyEntry(this)">복사</button>
   </div>
-  <p style="font-size:0.98rem; line-height:1.9;">오픈AI와 구글 딥마인드 소속 연구자를 포함한 <strong>글로벌 AI 연구자 1100여명</strong>이 미국 정부에 AI 통제를 위한 제도적 장치 마련을 촉구했다<sup><a href="https://www.segye.com/newsView/20260817513985" title="세계일보">[1]</a></sup>. 이들은 AI가 스스로 다른 AI를 개발하는 과정에서 발생할 안전성·보안 위협을 경고하며 <u>킬 스위치</u> 같은 안전장치 도입 필요성을 제기했다<sup><a href="https://www.segye.com/newsView/20260817513985" title="세계일보">[1]</a></sup>. 국내에서는 청소년의 생성형 AI 이용 확대에 따른 유해 콘텐츠 노출 우려가 제기되며 연령별 맞춤 보호 기준 마련이 필요하다는 지적이 나왔다<sup><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdEMuYtVMYU2/L7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" title="머니투데이">[2]</a></sup>. 산업 현장에서는 안전 목적의 AI 데이터 수집이 노동자 감시·징계 수단으로 전용될 위험과 함께 알고리즘 결정에 대한 설명·이의제기 절차 필요성이 제기됐다<sup><a href="https://www.labortoday.co.kr/news/articleView.html?idxno=236272" title="매일노동뉴스">[3]</a></sup>.</p>
+  <p style="font-size:0.98rem; line-height:1.9;">오픈AI·구글 딥마인드 등 소속 연구자를 포함한 글로벌 AI 연구자 1100여명이 미국 정부에 <strong>AI 자기개발 과정의 안전성 통제 제도</strong> 마련을 촉구했다<sup><a href="https://www.segye.com/newsView/20260817513985" title="세계일보">[1]</a></sup>. Dream Research Labs는 Hermes·OpenClaw 기반 다중 에이전트 프레임워크가 아시아 정부 기관을 12차례 공격해 계정 85개와 인사기록 2564건 이상을 탈취한 사례를 보고했다<sup><a href="https://www.dreamgroup.com/blog/inside-a-multi-agent-ai-framework-used-to-compromise-government-entities-in-asia" title="AIID">[2]</a></sup>. Meta의 AI 모델은 Irregular와의 사이버보안 평가 중 <u>테스트 환경 설정 오류</u>로 실제 기업 시스템에 접근해 변경을 가한 것으로 확인됐다<sup><a href="https://www.bleepingcomputer.com/news/security/meta-ai-model-hacked-a-company-during-misconfigured-cyber-test/" title="AIID">[3]</a></sup>. 미국에서는 ChatGPT를 개인 치료사처럼 이용하던 여성이 자살로 사망한 사건이 공개돼 위기 상황에서 훈련된 인력 연계가 이뤄지지 않은 정황이 드러났다<sup><a href="https://www.npr.org/2026/08/18/nx-s1-5929575/ai-suicide-risks-mental-health" title="미국 공영 라디오 NPR">[4]</a></sup>. 카카오는 경량 모델 카나나2가 한국어 안전성 벤치마크 AssurAI에서 구글 젬마·알리바바 큐웬보다 높은 점수를 받았다고 밝혔다<sup><a href="https://www.newsis.com/view/NISX20260818_0003752237" title="뉴시스">[5]</a></sup>.</p>
 </div><div class="section-more"><a href="summary/index.html">지난 하이라이트 전체 보기 →</a></div></section><article class="entry cat-msit">
   <h2>🇰🇷 MSIT 신규 게시물 1건</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-msit">MSIT</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 1건

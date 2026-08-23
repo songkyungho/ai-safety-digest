@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,6 +122,7 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -160,6 +161,7 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -322,19 +324,15 @@
     <span class="meta-tags"><b>2026.8.12</b></span>
     <button type="button" class="copy-btn" data-copy="오늘의 AI Safety 하이라이트 (2026.8.12)
 
-기술패권 시대에 국가 연구개발 성과 유출을 막기 위한 조치가 과기정통부 차원에서 예고되었고[1], 같은 맥락에서 공공 AI 학습 데이터의 중복 구축과 품질 관리 부실이 감사원 감사에서 확인되며 데이터 공유·품질 기준의 거버넌스 공백이 안전 및 성능 리스크로 이어질 수 있다는 경고가 나왔다[2]. 사이버보안 영역에서도 AI가 승인(ATO)·제출·평가의 병목을 줄이기 위한 방안으로 자동화된 AI 레드팀과 표준화된 ATO 제출 같은 개선안이 제시되는 한편[3], 재외동포청은 AI 기반 사이버안전센터를 가동해 실시간 위협 탐지·분석으로 디지털 행정서비스 보안을 강화하며 가시적 침해 피해가 없었다고 밝혀 대응 역량을 실증하려는 흐름이 관측된다[4]. 한편, 다중 에이전트 AI는 조정 불확실성과 시스템적 실패 가능성을 동반할 수 있다는 연구가 제기되어, 에이전트 간 일관된 결정이 시스템 붕괴 위험으로 이어질 수 있다는 점이 안전장치 설계의 핵심 쟁점으로 부상했다[5]. 교육·복지·산업 현장에서도 SL2T 같은 손동작→텍스트 변환 기술로 접근성을 높이는 시도[6]가 이어지는 반면, K-12 학교에서 AI 도구 사용이 늘며 비판적 사고력 저하 우려와 함께 학교 단위의 가이드라인 부재가 문제로 지적되어[7] 사용 정책·검증 체계가 안전한 도입의 조건임을 시사한다. 국제 경쟁과 규제의 긴장도 계속되는데, 메타의 중국 AI 스타트업 인수가 기술 유출 우려로 최종 무산되며 투자·데이터·규제 준수의 마찰이 실제 사업 결정으로 이어지는 장면이 드러났고[8], 지정학적으로 AI 우위 경쟁이 국가 안보 전략에 새로운 위험을 만들 수 있다는 분석도 제기되어[9] 기술·데이터·거버넌스가 분리되지 않는다는 점을 강화한다.
+마크 저커버그 메타 CEO는 강력한 AI가 소수에게 독점되면 위험하다며 초인공지능의 힘을 모두에게 개방해야 한다고 주장했다[1]. 메타의 중국 AI 스타트업 마누스 인수는 중국 당국의 기술 유출 우려로 최종 무산됐다[2]. 감사원은 정부가 1조6천억원 이상 투입한 AI 학습 데이터에서 공공기관 간 중복 구축과 품질 관리 부실을 확인하고 과기부에 개선을 권고했다[3]. 중국 해커로 추정되는 공격자들이 오픈소스 AI 모델과 Hermes·OpenClaw 프레임워크를 이용해 대만 정부 기관을 공격, 2,500건 이상의 인사기록을 탈취한 준자율 AI 공격 사례가 보고됐다[4]. Anthropic 연구팀은 다중 에이전트 AI 시스템에서 에이전트 간 조정 실패가 시스템 전체 붕괴 위험을 높일 수 있다는 점을 지적했다[5].
 
-[1] https://www.msit.go.kr/bbs/list.do?sCode=user&amp;amp;mPid=208&amp;amp;mId=307
-[2] https://www.khan.co.kr/article/202608121808001/?utm_source=khan_rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=politic_news
-[3] https://cset.georgetown.edu/publication/outpaced-ai-and-policys-role-in-transforming-cybersecurity-compliance/
-[4] https://www.segye.com/newsView/20260812525819
-[5] https://www.anthropic.com/research/multiagent-systems
-[6] https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/
-[7] https://www.rand.org/pubs/podcasts/policy-minded/2026/back-to-school-three-big-challenges.html
-[8] https://www.khan.co.kr/article/202608121052011/?utm_source=khan_rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=kh_world
-[9] https://www.rand.org/pubs/commentary/2026/08/ai-china-and-the-new-risks-to-us-security-qa-with-matan.html" onclick="copyEntry(this)">복사</button>
+[1] https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdEjTyQoN1ggDr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==
+[2] https://www.khan.co.kr/article/202608121052011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=kh_world
+[3] https://www.khan.co.kr/article/202608121808001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=politic_news
+[4] https://cyberscoop.com/near-autonomous-ai-attack-government-target-taiwan/
+[5] https://www.anthropic.com/research/multiagent-systems" onclick="copyEntry(this)">복사</button>
   </div>
-  <p style="font-size:0.98rem; line-height:1.9;">기술패권 시대에 국가 연구개발 성과 유출을 막기 위한 조치가 과기정통부 차원에서 예고되었고<sup><a href="https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307" title="MSIT">[1]</a></sup>, 같은 맥락에서 공공 AI 학습 데이터의 중복 구축과 품질 관리 부실이 감사원 감사에서 확인되며 데이터 공유·품질 기준의 거버넌스 공백이 안전 및 성능 리스크로 이어질 수 있다는 경고가 나왔다<sup><a href="https://www.khan.co.kr/article/202608121808001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=politic_news" title="경향신문">[2]</a></sup>. 사이버보안 영역에서도 AI가 승인(ATO)·제출·평가의 병목을 줄이기 위한 방안으로 <u>자동화된 AI 레드팀</u>과 <u>표준화된 ATO 제출</u> 같은 개선안이 제시되는 한편<sup><a href="https://cset.georgetown.edu/publication/outpaced-ai-and-policys-role-in-transforming-cybersecurity-compliance/" title="CSET-Georgetown">[3]</a></sup>, 재외동포청은 AI 기반 사이버안전센터를 가동해 실시간 위협 탐지·분석으로 디지털 행정서비스 보안을 강화하며 가시적 침해 피해가 없었다고 밝혀 대응 역량을 실증하려는 흐름이 관측된다<sup><a href="https://www.segye.com/newsView/20260812525819" title="세계일보">[4]</a></sup>. 한편, 다중 에이전트 AI는 조정 불확실성과 시스템적 실패 가능성을 동반할 수 있다는 연구가 제기되어, 에이전트 간 일관된 결정이 <u>시스템 붕괴 위험</u>으로 이어질 수 있다는 점이 안전장치 설계의 핵심 쟁점으로 부상했다<sup><a href="https://www.anthropic.com/research/multiagent-systems" title="AI-Risk-Explorer">[5]</a></sup>. 교육·복지·산업 현장에서도 SL2T 같은 손동작→텍스트 변환 기술로 접근성을 높이는 시도<sup><a href="https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/" title="DeepMind">[6]</a></sup>가 이어지는 반면, K-12 학교에서 AI 도구 사용이 늘며 비판적 사고력 저하 우려와 함께 학교 단위의 가이드라인 부재가 문제로 지적되어<sup><a href="https://www.rand.org/pubs/podcasts/policy-minded/2026/back-to-school-three-big-challenges.html" title="RAND">[7]</a></sup> 사용 정책·검증 체계가 안전한 도입의 조건임을 시사한다. 국제 경쟁과 규제의 긴장도 계속되는데, 메타의 중국 AI 스타트업 인수가 기술 유출 우려로 최종 무산되며 투자·데이터·규제 준수의 마찰이 실제 사업 결정으로 이어지는 장면이 드러났고<sup><a href="https://www.khan.co.kr/article/202608121052011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=kh_world" title="경향신문">[8]</a></sup>, 지정학적으로 AI 우위 경쟁이 국가 안보 전략에 새로운 위험을 만들 수 있다는 분석도 제기되어<sup><a href="https://www.rand.org/pubs/commentary/2026/08/ai-china-and-the-new-risks-to-us-security-qa-with-matan.html" title="RAND">[9]</a></sup> 기술·데이터·거버넌스가 분리되지 않는다는 점을 강화한다.</p>
+  <p style="font-size:0.98rem; line-height:1.9;">마크 저커버그 메타 CEO는 강력한 AI가 소수에게 독점되면 위험하다며 <strong>초인공지능의 힘을 모두에게 개방</strong>해야 한다고 주장했다<sup><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdEjTyQoN1ggDr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" title="매일경제">[1]</a></sup>. 메타의 중국 AI 스타트업 <u>마누스</u> 인수는 중국 당국의 기술 유출 우려로 최종 무산됐다<sup><a href="https://www.khan.co.kr/article/202608121052011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=kh_world" title="경향신문">[2]</a></sup>. 감사원은 정부가 1조6천억원 이상 투입한 AI 학습 데이터에서 공공기관 간 중복 구축과 품질 관리 부실을 확인하고 과기부에 개선을 권고했다<sup><a href="https://www.khan.co.kr/article/202608121808001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=politic_news" title="경향신문">[3]</a></sup>. 중국 해커로 추정되는 공격자들이 오픈소스 AI 모델과 <u>Hermes·OpenClaw</u> 프레임워크를 이용해 대만 정부 기관을 공격, 2,500건 이상의 인사기록을 탈취한 <strong>준자율 AI 공격</strong> 사례가 보고됐다<sup><a href="https://cyberscoop.com/near-autonomous-ai-attack-government-target-taiwan/" title="AIID">[4]</a></sup>. Anthropic 연구팀은 다중 에이전트 AI 시스템에서 에이전트 간 조정 실패가 시스템 전체 붕괴 위험을 높일 수 있다는 점을 지적했다<sup><a href="https://www.anthropic.com/research/multiagent-systems" title="AI-Risk-Explorer">[5]</a></sup>.</p>
 </div><div class="section-more"><a href="summary/index.html">지난 하이라이트 전체 보기 →</a></div></section><article class="entry cat-msit">
   <h2>🇰🇷 MSIT 신규 게시물 4건</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-msit">MSIT</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 4건

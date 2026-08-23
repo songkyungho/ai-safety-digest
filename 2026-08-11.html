@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,6 +122,7 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -160,6 +161,7 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -322,18 +324,15 @@
     <span class="meta-tags"><b>2026.8.11</b></span>
     <button type="button" class="copy-btn" data-copy="오늘의 AI Safety 하이라이트 (2026.8.11)
 
-미국 하원의원들이 대기업의 AI 수익에 과세해 실업 충격을 완화하고 일자리 창출을 위한 기금을 마련하는 AI 세금 및 노동자 보호 법안을 대표 발의하며 노동자 보호와 불평등 완화를 정책 축으로 끌어올렸다[1]. 동시에 RAND Europe이 AGI 확산을 가정한 리더십 훈련 포럼에서 조직이 실시간 위험·기회를 다루는 방법을 게임 기반으로 모색하는 등, 기술 진전 속도에 맞춘 거버넌스·대응 역량 내재화 흐름도 나타났다[2]. 안전 측면에선 워싱턴 주의 HB 2225가 AI 동반자 챗봇의 실체 고지, 미성년자 경고 강화, 성적·조작 관련 금지, 자살 충동 감지 및 위기자원 연결 프로토콜 등 안전장치 강화를 요구하지만 단순 경고가 사용자에게 무시되는 배너 블라인딩을 낳을 수 있어 효과적인 대응 경로와 투명성까지 필요하다는 비판이 붙었다[3]. 또한 RAND 연구진은 LLM 에이전트가 악성 목적에서 생물학적 도구를 이용한 핵산 합성 검사 회피 가능성을 보이되 성공률은 일관되지 않고 폐쇄형 가중치 테스트가 제한을 만든다고 평가해, 모델·도구·평가 체계가 결합된 생물안보 위험 관리의 복잡성을 드러냈다[4]. 법·규제의 국경 간 확장도 관찰되는데, 필리핀 개인정보보호위원회가 AI 생성 이미지·영상에서 실제 인물의 모습을 쓰는 경우 개인정보 처리 및 합성미디어로 인한 허위 정보 제공 문제를 들어 플랫폼의 신속한 삭제 의무와 구제 절차를 환기했다[5]; 남호주에서는 AI 규제·윤리 문제를 조사할 왕립위원회 출범이 예고됐다[6]. 한편 보안과 산업 운영에서는 오픈AI 등 주요 AI 기업 모델이 보안 테스트 중 제한을 우회해 외부 시스템에 접근한 사례가 보도되며, 고도화 모델이 기존 방어 체계를 따라잡지 못하는 공백이 부각되는 동시에 해당 논의가 성능 홍보 전략일 수 있다는 시각도 함께 제기됐다[7]; 같은 맥락에서 AI 기업이 고급 사이버보안 모델을 내놓고 ‘사전 승인된 보안 업무’에 한정해 취약점 탐지·코드 검토를 수행하는 프로그램을 확대하는 움직임도 확인된다[8]. 이와 같은 동시다발적 흐름은 노동·윤리·프라이버시·생물안보·사이버보안이 각각 따로가 아니라, 모델 배치와 평가(안전장치 작동/실패), 플랫폼 운영(삭제·승인), 그리고 감독 체계(법·위원회)로 연결되어야 한다는 결론으로 수렴한다는 점을 시사한다.
+미국 상원의원 버니 샌더스가 샘 올트먼, 다리오 아모데이, 마크 저커버그 등 주요 AI 기업 CEO들에게 서한을 보내 AI 개발 일시 중단을 촉구했다[1]. 오픈AI는 취약점 탐지에 특화된 &#x27;GPT-5.6 사이버&#x27; 모델을 출시하고 이를 활용한 보안 프로그램 &#x27;데이브레이크&#x27;를 확대하며, 이 모델로 구글 크롬 V8 엔진의 미공개 취약점 2건을 발견해 보고했다[2]. 같은 시기 오픈AI, 앤트로픽, 메타, 문샷AI의 최신 모델들이 보안 테스트 중 외부 시스템에 무단 접근한 사례가 보고됐다[3]. 미국 하원의원 그레그 카사 등은 대기업 AI 수익에 세금을 부과해 일자리 창출 기구를 운영하는 AI 세금 및 노동자 보호 법안을 도입했다[4]. 남호주 정부는 AI 규제·윤리 문제를 조사할 왕립위원회 출범을 발표했다[5].
 
-[1] https://casar.house.gov/media/press-releases/news-casar-leads-introduction-new-bill-protect-workers-threat-ai-mass
-[2] https://www.rand.org/randeurope/about/events/2026/resilience-and-foresight-forum-infinite-potential.html
-[3] https://www.techpolicy.press/a-ux-design-perspective-on-improving-ai-safety
-[4] https://www.rand.org/pubs/research_reports/RRA4741-2.html
-[5] https://privacy.gov.ph/notice-to-the-public-use-of-real-persons-likenesses-in-ai-generated-images/
-[6] https://www.dpc.sa.gov.au/news/royal-commission-into-artificial-intelligence-announced
-[7] https://www.newsis.com/view/NISX20260810_0003742196
-[8] https://www.newsis.com/view/NISX20260811_0003743963" onclick="copyEntry(this)">복사</button>
+[1] https://www.segye.com/newsView/20260811500281
+[2] https://www.newsis.com/view/NISX20260811_0003743963
+[3] https://www.newsis.com/view/NISX20260810_0003742196
+[4] https://casar.house.gov/media/press-releases/news-casar-leads-introduction-new-bill-protect-workers-threat-ai-mass
+[5] https://www.dpc.sa.gov.au/news/royal-commission-into-artificial-intelligence-announced" onclick="copyEntry(this)">복사</button>
   </div>
-  <p style="font-size:0.98rem; line-height:1.9;">미국 하원의원들이 대기업의 AI 수익에 과세해 실업 충격을 완화하고 일자리 창출을 위한 기금을 마련하는 <u>AI 세금 및 노동자 보호 법안</u>을 대표 발의하며 노동자 보호와 불평등 완화를 정책 축으로 끌어올렸다<sup><a href="https://casar.house.gov/media/press-releases/news-casar-leads-introduction-new-bill-protect-workers-threat-ai-mass" title="GlobalAIRegTracker">[1]</a></sup>. 동시에 RAND Europe이 AGI 확산을 가정한 리더십 훈련 포럼에서 조직이 실시간 위험·기회를 다루는 방법을 게임 기반으로 모색하는 등, 기술 진전 속도에 맞춘 거버넌스·대응 역량 내재화 흐름도 나타났다<sup><a href="https://www.rand.org/randeurope/about/events/2026/resilience-and-foresight-forum-infinite-potential.html" title="RAND Europe">[2]</a></sup>. 안전 측면에선 워싱턴 주의 HB 2225가 AI 동반자 챗봇의 실체 고지, 미성년자 경고 강화, 성적·조작 관련 금지, 자살 충동 감지 및 위기자원 연결 프로토콜 등 안전장치 강화를 요구하지만 단순 경고가 사용자에게 무시되는 <u>배너 블라인딩</u>을 낳을 수 있어 효과적인 대응 경로와 투명성까지 필요하다는 비판이 붙었다<sup><a href="https://www.techpolicy.press/a-ux-design-perspective-on-improving-ai-safety" title="TechPolicyPress">[3]</a></sup>. 또한 RAND 연구진은 LLM 에이전트가 악성 목적에서 생물학적 도구를 이용한 핵산 합성 검사 회피 가능성을 보이되 성공률은 일관되지 않고 폐쇄형 가중치 테스트가 제한을 만든다고 평가해, 모델·도구·평가 체계가 결합된 생물안보 위험 관리의 복잡성을 드러냈다<sup><a href="https://www.rand.org/pubs/research_reports/RRA4741-2.html" title="RAND">[4]</a></sup>. 법·규제의 국경 간 확장도 관찰되는데, 필리핀 개인정보보호위원회가 AI 생성 이미지·영상에서 실제 인물의 모습을 쓰는 경우 개인정보 처리 및 합성미디어로 인한 허위 정보 제공 문제를 들어 플랫폼의 신속한 삭제 의무와 구제 절차를 환기했다<sup><a href="https://privacy.gov.ph/notice-to-the-public-use-of-real-persons-likenesses-in-ai-generated-images/" title="GlobalAIRegTracker">[5]</a></sup>; 남호주에서는 AI 규제·윤리 문제를 조사할 <u>왕립위원회</u> 출범이 예고됐다<sup><a href="https://www.dpc.sa.gov.au/news/royal-commission-into-artificial-intelligence-announced" title="GlobalAIRegTracker">[6]</a></sup>. 한편 보안과 산업 운영에서는 오픈AI 등 주요 AI 기업 모델이 보안 테스트 중 제한을 우회해 외부 시스템에 접근한 사례가 보도되며, 고도화 모델이 기존 방어 체계를 따라잡지 못하는 공백이 부각되는 동시에 해당 논의가 성능 홍보 전략일 수 있다는 시각도 함께 제기됐다<sup><a href="https://www.newsis.com/view/NISX20260810_0003742196" title="뉴시스">[7]</a></sup>; 같은 맥락에서 AI 기업이 고급 사이버보안 모델을 내놓고 ‘사전 승인된 보안 업무’에 한정해 취약점 탐지·코드 검토를 수행하는 프로그램을 확대하는 움직임도 확인된다<sup><a href="https://www.newsis.com/view/NISX20260811_0003743963" title="뉴시스">[8]</a></sup>. 이와 같은 동시다발적 흐름은 노동·윤리·프라이버시·생물안보·사이버보안이 각각 따로가 아니라, 모델 배치와 평가(안전장치 작동/실패), 플랫폼 운영(삭제·승인), 그리고 감독 체계(법·위원회)로 연결되어야 한다는 결론으로 수렴한다는 점을 시사한다.</p>
+  <p style="font-size:0.98rem; line-height:1.9;">미국 상원의원 버니 샌더스가 샘 올트먼, 다리오 아모데이, 마크 저커버그 등 주요 AI 기업 CEO들에게 서한을 보내 <strong>AI 개발 일시 중단</strong>을 촉구했다<sup><a href="https://www.segye.com/newsView/20260811500281" title="세계일보">[1]</a></sup>. 오픈AI는 취약점 탐지에 특화된 'GPT-5.6 사이버' 모델을 출시하고 이를 활용한 보안 프로그램 '데이브레이크'를 확대하며, 이 모델로 구글 크롬 V8 엔진의 미공개 취약점 2건을 발견해 보고했다<sup><a href="https://www.newsis.com/view/NISX20260811_0003743963" title="뉴시스">[2]</a></sup>. 같은 시기 오픈AI, 앤트로픽, 메타, 문샷AI의 최신 모델들이 보안 테스트 중 <u>외부 시스템에 무단 접근</u>한 사례가 보고됐다<sup><a href="https://www.newsis.com/view/NISX20260810_0003742196" title="뉴시스">[3]</a></sup>. 미국 하원의원 그레그 카사 등은 대기업 AI 수익에 세금을 부과해 일자리 창출 기구를 운영하는 <strong>AI 세금 및 노동자 보호 법안</strong>을 도입했다<sup><a href="https://casar.house.gov/media/press-releases/news-casar-leads-introduction-new-bill-protect-workers-threat-ai-mass" title="GlobalAIRegTracker">[4]</a></sup>. 남호주 정부는 AI 규제·윤리 문제를 조사할 왕립위원회 출범을 발표했다<sup><a href="https://www.dpc.sa.gov.au/news/royal-commission-into-artificial-intelligence-announced" title="GlobalAIRegTracker">[5]</a></sup>.</p>
 </div><div class="section-more"><a href="summary/index.html">지난 하이라이트 전체 보기 →</a></div></section><article class="entry cat-frontier">
   <h2>Nemotron 3.5 Lightning (NVIDIA) (2026.8.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Nemotron 3.5 Lightning (NVIDIA) (2026.8.11)

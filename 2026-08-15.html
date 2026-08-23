@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,6 +122,7 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -160,6 +161,7 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -322,17 +324,16 @@
     <span class="meta-tags"><b>2026.8.15</b></span>
     <button type="button" class="copy-btn" data-copy="오늘의 AI Safety 하이라이트 (2026.8.15)
 
-미국 플로리다주 거주 남성이 챗GPT에 전 여자친구 살해 계획을 상세히 입력한 뒤 오픈AI의 신고로 체포된 사건은, 생성형 AI가 유해 의도(폭력 범죄)와 결합될 때의 위험과 동시에 AI 서비스의 유해 대화 탐지·신고 기능이 실제 개입으로 이어질 수 있음을 함께 보여준다[1][2][3]. 한편 터키 경찰이 딥페이크 비디오를 이용해 로맨틱 관계를 위장한 사기 혐의로 용의자 9명을 체포하고(여러 지역에서 동시 수사), 이스탄불에서 인공지능 지원 소프트웨어로 유럽·체코 피해자들을 추적해 사기를 벌인 조직을 국제 공조로 해체한 사례는, 딥페이크 및 AI 기반 자동화가 사기·피싱의 확산을 가속할 수 있으며 수사·국제협력 없이는 피해가 누적될 위험이 크다는 점을 드러낸다[4][5]. 또 식품의약품안전처장이 AI 기술을 활용한 가짜 의사·허위 건강정보 및 자극적인 ‘공장형 건강 동영상’의 위험을 경고하고 노인 대상 구별법 교육을 강조한 대목은, 신뢰 가능한 건강·식품 정보에 대한 감독과 이용자 교육이 오남용(허위정보 유통) 차단의 핵심 축임을 시사한다[6]. 마지막으로 미·중의 AI 기술 경쟁이 제재와 수출통제의 상호작용 속에서 더 ‘안보·산업 주도권’ 중심으로 전개되고 시진핑의 방미 일정에도 영향을 줄 수 있다는 보도는, 지정학적 경쟁이 AI 생태계 전반의 정책·거버넌스 불확실성을 키울 수 있다는 안전 관점의 배경 변수로 읽힌다[7].
+미국 플로리다주에서 25세 남성 대런 저우가 챗GPT에 전 여자친구 살해 계획과 무기 구매 의도를 구체적으로 털어놓았고, 오픈AI의 신고로 FBI에 체포돼 보호관찰 8년과 전자발찌 착용 2년 처분을 받았다[1][2]. 터키 이스탄불에서는 인공지능 지원 소프트웨어로 유럽·체코 시민을 노린 사이버 사기 조직이 국제 사법 협력으로 검거됐고[3], 별도로 딥페이크 영상을 이용해 33명을 속여 약 1500만 리라를 편취한 용의자 9명도 체포됐다[4]. 한국 식품의약품안전처장 오유경은 AI로 만든 가짜 의사가 건강기능식품 효능을 과장하는 &#x27;공장형 건강 동영상&#x27;의 위험성을 경고했다[5]. 중국은 베이다이허 회의 기간 AI와 원천기술을 국가전략 핵심으로 내세워 미국과의 기술 경쟁을 강화했고, 이는 시진핑의 9월 방미 일정에 영향을 줄 수 있다는 우려로 이어졌다[6].
 
-[1] https://www.chosun.com/economy/tech_it/2026/08/15/SFODZQT2YFEF7GFT527INR6WUA/
-[2] https://www.newscj.com/news/articleView.html?idxno=3425424
-[3] https://www.chosun.com/international/international_general/2026/08/15/GYZGGZDDMFTGEZDBGQZTSNZRMQ/
+[1] https://www.newscj.com/news/articleView.html?idxno=3425424
+[2] https://www.chosun.com/international/international_general/2026/08/15/GYZGGZDDMFTGEZDBGQZTSNZRMQ/
+[3] https://www.ntv.com.tr/turkiye/galeri-avrupayi-istanbuldan-dolandirdilar-maslakta-yapay-zekali-vurgun-1731237/1
 [4] https://www.ntv.com.tr/turkiye/yapay-zeka-videolari-ile-33-kisiyi-dolandirdilar-15-milyon-tllik-vurgun-1709764
-[5] https://www.ntv.com.tr/turkiye/galeri-avrupayi-istanbuldan-dolandirdilar-maslakta-yapay-zekali-vurgun-1731237/1
-[6] https://www.chosun.com/national/welfare-medical/2026/08/15/SZIPMGUKMNDZJKC4QUNDPN4JEI/
-[7] https://www.sisajournal.com/news/articleView.html?idxno=383367" onclick="copyEntry(this)">복사</button>
+[5] https://www.chosun.com/national/welfare-medical/2026/08/15/SZIPMGUKMNDZJKC4QUNDPN4JEI/
+[6] https://www.sisajournal.com/news/articleView.html?idxno=383367" onclick="copyEntry(this)">복사</button>
   </div>
-  <p style="font-size:0.98rem; line-height:1.9;">미국 플로리다주 거주 남성이 챗GPT에 전 여자친구 살해 계획을 상세히 입력한 뒤 오픈AI의 신고로 체포된 사건은, <u>생성형 AI가 유해 의도(폭력 범죄)와 결합될 때의 위험</u>과 동시에 AI 서비스의 <u>유해 대화 탐지·신고 기능</u>이 실제 개입으로 이어질 수 있음을 함께 보여준다<sup><a href="https://www.chosun.com/economy/tech_it/2026/08/15/SFODZQT2YFEF7GFT527INR6WUA/" title="조선일보">[1]</a></sup><sup><a href="https://www.newscj.com/news/articleView.html?idxno=3425424" title="">[2]</a></sup><sup><a href="https://www.chosun.com/international/international_general/2026/08/15/GYZGGZDDMFTGEZDBGQZTSNZRMQ/" title="조선일보">[3]</a></sup>. 한편 터키 경찰이 딥페이크 비디오를 이용해 로맨틱 관계를 위장한 사기 혐의로 용의자 9명을 체포하고(여러 지역에서 동시 수사), 이스탄불에서 인공지능 지원 소프트웨어로 유럽·체코 피해자들을 추적해 사기를 벌인 조직을 국제 공조로 해체한 사례는, <u>딥페이크 및 AI 기반 자동화가 사기·피싱의 확산</u>을 가속할 수 있으며 수사·국제협력 없이는 피해가 누적될 위험이 크다는 점을 드러낸다<sup><a href="https://www.ntv.com.tr/turkiye/yapay-zeka-videolari-ile-33-kisiyi-dolandirdilar-15-milyon-tllik-vurgun-1709764" title="AIID">[4]</a></sup><sup><a href="https://www.ntv.com.tr/turkiye/galeri-avrupayi-istanbuldan-dolandirdilar-maslakta-yapay-zekali-vurgun-1731237/1" title="AIID">[5]</a></sup>. 또 식품의약품안전처장이 AI 기술을 활용한 가짜 의사·허위 건강정보 및 자극적인 ‘공장형 건강 동영상’의 위험을 경고하고 노인 대상 구별법 교육을 강조한 대목은, 신뢰 가능한 건강·식품 정보에 대한 감독과 이용자 교육이 <u>오남용(허위정보 유통) 차단</u>의 핵심 축임을 시사한다<sup><a href="https://www.chosun.com/national/welfare-medical/2026/08/15/SZIPMGUKMNDZJKC4QUNDPN4JEI/" title="조선일보">[6]</a></sup>. 마지막으로 미·중의 AI 기술 경쟁이 제재와 수출통제의 상호작용 속에서 더 ‘안보·산업 주도권’ 중심으로 전개되고 시진핑의 방미 일정에도 영향을 줄 수 있다는 보도는, 지정학적 경쟁이 AI 생태계 전반의 정책·거버넌스 불확실성을 키울 수 있다는 안전 관점의 배경 변수로 읽힌다<sup><a href="https://www.sisajournal.com/news/articleView.html?idxno=383367" title="시사저널">[7]</a></sup>.</p>
+  <p style="font-size:0.98rem; line-height:1.9;">미국 플로리다주에서 25세 남성 대런 저우가 챗GPT에 전 여자친구 살해 계획과 무기 구매 의도를 구체적으로 털어놓았고, <strong>오픈AI의 신고로 FBI에 체포</strong>돼 보호관찰 8년과 전자발찌 착용 2년 처분을 받았다<sup><a href="https://www.newscj.com/news/articleView.html?idxno=3425424" title="">[1]</a></sup><sup><a href="https://www.chosun.com/international/international_general/2026/08/15/GYZGGZDDMFTGEZDBGQZTSNZRMQ/" title="조선일보">[2]</a></sup>. 터키 이스탄불에서는 <u>인공지능 지원 소프트웨어</u>로 유럽·체코 시민을 노린 사이버 사기 조직이 국제 사법 협력으로 검거됐고<sup><a href="https://www.ntv.com.tr/turkiye/galeri-avrupayi-istanbuldan-dolandirdilar-maslakta-yapay-zekali-vurgun-1731237/1" title="AIID">[3]</a></sup>, 별도로 딥페이크 영상을 이용해 33명을 속여 약 1500만 리라를 편취한 용의자 9명도 체포됐다<sup><a href="https://www.ntv.com.tr/turkiye/yapay-zeka-videolari-ile-33-kisiyi-dolandirdilar-15-milyon-tllik-vurgun-1709764" title="AIID">[4]</a></sup>. 한국 식품의약품안전처장 오유경은 AI로 만든 가짜 의사가 건강기능식품 효능을 과장하는 <strong>'공장형 건강 동영상'</strong>의 위험성을 경고했다<sup><a href="https://www.chosun.com/national/welfare-medical/2026/08/15/SZIPMGUKMNDZJKC4QUNDPN4JEI/" title="조선일보">[5]</a></sup>. 중국은 베이다이허 회의 기간 AI와 원천기술을 국가전략 핵심으로 내세워 미국과의 기술 경쟁을 강화했고, 이는 시진핑의 9월 방미 일정에 영향을 줄 수 있다는 우려로 이어졌다<sup><a href="https://www.sisajournal.com/news/articleView.html?idxno=383367" title="시사저널">[6]</a></sup>.</p>
 </div><div class="section-more"><a href="summary/index.html">지난 하이라이트 전체 보기 →</a></div></section><article class="entry cat-msit">
   <h2>🇰🇷 MSIT 신규 게시물 2건</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-msit">MSIT</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 2건

@@ -28,7 +28,7 @@
     --cat-aisi-weekly: #059669; --cat-aiid: #334155;
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-kdi-eiec: #881337;
     /* 컬렉션 전용 팔레트(13개 컬렉션 전부) — 리본 색이 20개나 돼 색상환이
        거의 다 찼다(같은 채도로는 색상만 바꿔도 옆의 리본 색과 구별이 잘 안
        됨을 직접 확인). 그래서 채도를 확 낮춘 "차분한" 톤으로 따로 묶어,
@@ -60,7 +60,7 @@
       --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-kdi-eiec: #fda4af;
       --coll-1: #dcafa8; --coll-2: #dcc7a8; --coll-3: #d9dca8;
       --coll-4: #c1dca8; --coll-5: #a9dca8; --coll-6: #a8dcbf;
       --coll-7: #a8dcd6; --coll-8: #a8c9dc; --coll-9: #a8b1dc;
@@ -122,7 +122,6 @@
   .entry.cat-msit { border-left-color: var(--cat-msit); }
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
-  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -161,7 +160,6 @@
   .badge.cat-msit { background: var(--cat-msit); }
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
-  .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -315,11 +313,61 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI Safety Daily Digest</h1>
-    <div class="sub">컬렉션: AI 활용/팁 · 총 110건</div>
+    <div class="sub">컬렉션: AI 활용/팁 · 총 105건</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<section class="cat-recent"><h3 class="cat-date-heading">2026-08-18 <span class="archive-count">(4건)</span></h3>
+<section class="cat-recent"><h3 class="cat-date-heading">2026-08-23 <span class="archive-count">(2건)</span></h3>
+<article class="entry cat-research">
+  <h2>피부과에서 오픈 웨이트 언어 모델의 로컬 배포: 개인정보 보호, 형평성 및 실제 구현에 관한 관점 (Local Deployment of Open-Weight Language Models in Dermatology: Viewpoint on Privacy, Equity, and Practical Implementation) (2026.8.21)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="피부과에서 오픈 웨이트 언어 모델의 로컬 배포: 개인정보 보호, 형평성 및 실제 구현에 관한 관점 (Local Deployment of Open-Weight Language Models in Dermatology: Viewpoint on Privacy, Equity, and Practical Implementation) (2026.8.21)
+
+이 글은 임상 사진과 피부경 이미지처럼 민감한 정보를 다루는 피부과에서 로컬 오픈 웨이트 LLM 배포의 조건과 구현 방안을 설명한다.
+로컬·클라우드 배포를 비교하고, LLM을 CNN, vision transformer, vision-language model, PanDerm, MedGemma 같은 시각 모델과 결합하는 전략을 검토했다.
+knowledge distillation, structured pruning, low-bit quantization, mixture-of-experts를 활용하면 7~33 billion-parameter 모델을 소비자용 워크스테이션에서 실행할 수 있으며, 14~33 billion-parameter 모델을 구동하는 하드웨어 비용은 enterprise cloud-AI 구독 1~2년분 정도로 제시됐다.
+로컬 배포에는 기관의 임상 이미지 통제, vendor model deprecation 회피, skin of color 성능 격차를 위한 감사·fine-tuning이라는 장점이 있지만, 모델 이질성·model drift·quantization에 따른 정확도 저하를 CONSORT-AI, SPIRIT-AI, DECIDE-AI, TRIPOD+AI와 retrieval-augmented generation 및 federated learning으로 관리해야 한다.
+
+https://doi.org/10.2196/94764" onclick="copyEntry(this)">복사</button></div>
+  <p>이 글은 임상 사진과 피부경 이미지처럼 민감한 정보를 다루는 피부과에서 로컬 오픈 웨이트 LLM 배포의 조건과 구현 방안을 설명한다.
+로컬·클라우드 배포를 비교하고, LLM을 CNN, vision transformer, vision-language model, PanDerm, MedGemma 같은 시각 모델과 결합하는 전략을 검토했다.
+knowledge distillation, structured pruning, low-bit quantization, mixture-of-experts를 활용하면 7~33 billion-parameter 모델을 소비자용 워크스테이션에서 실행할 수 있으며, 14~33 billion-parameter 모델을 구동하는 하드웨어 비용은 enterprise cloud-AI 구독 1~2년분 정도로 제시됐다.
+로컬 배포에는 기관의 임상 이미지 통제, vendor model deprecation 회피, skin of color 성능 격차를 위한 감사·fine-tuning이라는 장점이 있지만, 모델 이질성·model drift·quantization에 따른 정확도 저하를 CONSORT-AI, SPIRIT-AI, DECIDE-AI, TRIPOD+AI와 retrieval-augmented generation 및 federated learning으로 관리해야 한다.</p>
+  <p class="url"><a href="https://doi.org/10.2196/94764">https://doi.org/10.2196/94764</a></p>
+</article>
+<article class="entry cat-research">
+  <h2>AI 기반 금융 리스크 분석: 사우디아라비아의 내부감사와 기업 거버넌스 재편 (AI-Enabled Financial Risk Analytics: Reshaping Internal Audit and Enterprise Governance in Saudi Arabia) (2026.8.21)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="AI 기반 금융 리스크 분석: 사우디아라비아의 내부감사와 기업 거버넌스 재편 (AI-Enabled Financial Risk Analytics: Reshaping Internal Audit and Enterprise Governance in Saudi Arabia) (2026.8.21)
+
+사우디아라비아 기업에서 AI가 금융 리스크 관리와 내부감사의 핵심 도구로 활용되는 현상을 다룬다.
+사우디의 FMCG, QSR 프랜차이즈, 산업 유통, 에너지, 부동산 대기업 사례를 바탕으로 기대신용손실 추정, fraud·anomaly detection, 운전자본 예측, 지속적 통제 모니터링을 검토한다.
+SAP S/4HANA, Microsoft Copilot, Google Gemini Enterprise, TeamMate+와 TeamMate Analytics 등의 활용을 사우디의 PDPL, 생성형 AI 지침, Essential Cybersecurity Controls 및 국제 AI 거버넌스 지침과 대조한다.
+내부감사가 model risk, algorithmic bias, explainability gaps를 점검할 수 있도록 AI assurance model과 사우디 인재의 AI 기반 감사 역할 육성 방안을 제안한다.
+
+https://www.irejournals.com/formatedpaper/1722461.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p>사우디아라비아 기업에서 AI가 금융 리스크 관리와 내부감사의 핵심 도구로 활용되는 현상을 다룬다.
+사우디의 FMCG, QSR 프랜차이즈, 산업 유통, 에너지, 부동산 대기업 사례를 바탕으로 기대신용손실 추정, fraud·anomaly detection, 운전자본 예측, 지속적 통제 모니터링을 검토한다.
+SAP S/4HANA, Microsoft Copilot, Google Gemini Enterprise, TeamMate+와 TeamMate Analytics 등의 활용을 사우디의 PDPL, 생성형 AI 지침, Essential Cybersecurity Controls 및 국제 AI 거버넌스 지침과 대조한다.
+내부감사가 model risk, algorithmic bias, explainability gaps를 점검할 수 있도록 AI assurance model과 사우디 인재의 AI 기반 감사 역할 육성 방안을 제안한다.</p>
+  <p class="url"><a href="https://www.irejournals.com/formatedpaper/1722461.pdf">https://www.irejournals.com/formatedpaper/1722461.pdf</a></p>
+</article>
+<h3 class="cat-date-heading">2026-08-20 <span class="archive-count">(1건)</span></h3>
+<article class="entry cat-research">
+  <h2>디지털 기업의 AI 기반 고객 경험, 마케팅 인텔리전스 및 자금세탁방지 분석: 비판적 통합 검토 (AI-driven Customer Experience, Marketing Intelligence and Anti-money-laundering Analytics in Digital Enterprises: A Critical Integrative Review) (2026.8.20)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="디지털 기업의 AI 기반 고객 경험, 마케팅 인텔리전스 및 자금세탁방지 분석: 비판적 통합 검토 (AI-driven Customer Experience, Marketing Intelligence and Anti-money-laundering Analytics in Digital Enterprises: A Critical Integrative Review) (2026.8.20)
+
+이 검토는 고객 경험, 마케팅 인텔리전스, 자금세탁방지 분석을 동일한 자동화 논리로 다루기보다 의사결정의 목적과 오류 비용에 맞춰 관리해야 한다고 설명한다.
+2015년 1월 1일부터 2026년 6월 8일까지의 문헌을 접근 가능한 학술 색인·저장소·논문 기록에서 선정하고, 개념적으로 필요한 이전 방법론 연구도 포함했다.
+고객 경험에서는 개인화와 대화형 시스템이 관련성과 상호작용 효율을 높일 수 있지만 고객 반응은 개인정보 우려와 통제감 상실 등 맥락에 따라 달라졌으며, 마케팅에서는 예측력 향상이 데이터의 내생성·인과관계 문제·조직의 분석 역량 때문에 추가 가치로 자동 연결되지 않았다.
+자금세탁방지 분석의 지도학습·그래프·시간·active-learning·혼합 접근법은 alert 우선순위화와 패턴 발견을 개선할 수 있지만, 극심한 class imbalance와 불완전한 ground truth, 독점 데이터, 적응형 공격자, 제한적인 외부 검증으로 일반화가 제약되며, 공통 인프라와 영역별 증거 기준·효용 함수·escalation 통제를 결합한 portfolio 기반 AI governance가 제안됐다.
+
+https://doi.org/10.9734/jsrr/2026/v32i94451" onclick="copyEntry(this)">복사</button></div>
+  <p>이 검토는 고객 경험, 마케팅 인텔리전스, 자금세탁방지 분석을 동일한 자동화 논리로 다루기보다 의사결정의 목적과 오류 비용에 맞춰 관리해야 한다고 설명한다.
+2015년 1월 1일부터 2026년 6월 8일까지의 문헌을 접근 가능한 학술 색인·저장소·논문 기록에서 선정하고, 개념적으로 필요한 이전 방법론 연구도 포함했다.
+고객 경험에서는 개인화와 대화형 시스템이 관련성과 상호작용 효율을 높일 수 있지만 고객 반응은 개인정보 우려와 통제감 상실 등 맥락에 따라 달라졌으며, 마케팅에서는 예측력 향상이 데이터의 내생성·인과관계 문제·조직의 분석 역량 때문에 추가 가치로 자동 연결되지 않았다.
+자금세탁방지 분석의 지도학습·그래프·시간·active-learning·혼합 접근법은 alert 우선순위화와 패턴 발견을 개선할 수 있지만, 극심한 class imbalance와 불완전한 ground truth, 독점 데이터, 적응형 공격자, 제한적인 외부 검증으로 일반화가 제약되며, 공통 인프라와 영역별 증거 기준·효용 함수·escalation 통제를 결합한 portfolio 기반 AI governance가 제안됐다.</p>
+  <p class="url"><a href="https://doi.org/10.9734/jsrr/2026/v32i94451">https://doi.org/10.9734/jsrr/2026/v32i94451</a></p>
+</article>
+<h3 class="cat-date-heading">2026-08-18 <span class="archive-count">(3건)</span></h3>
 <article class="entry cat-company">
   <h2>Claude가 단백질 설계와 분석화학 연구를 가속하는 방법 (2026.8.18)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽 연구</span></span><button type="button" class="copy-btn" data-copy="Claude가 단백질 설계와 분석화학 연구를 가속하는 방법 (2026.8.18)
@@ -349,16 +397,6 @@ https://www.firstpost.com/tech/axios-teams-up-with-openai-to-bring-ai-into-local
 https://www.nytimes.com/2026/08/14/business/google-gemini-ai-schools.html" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.nytimes.com/2026/08/14/business/google-gemini-ai-schools.html">https://www.nytimes.com/2026/08/14/business/google-gemini-ai-schools.html</a></p>
-</article>
-<article class="entry cat-kdi-eiec">
-  <h2>🇰🇷 산업통상부·육군·현대차그룹, AI·로봇 활용으로 미래 국방 혁신 추진 (2026.8.18)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">산업통상부</span></span><button type="button" class="copy-btn" data-copy="산업통상부·육군·현대차그룹, AI·로봇 활용으로 미래 국방 혁신 추진 (2026.8.18)
-
-산업통상부는 2026년 8월 14일 육군·현대자동차그룹과 국방 로봇 및 피지컬 AI 활용 확대를 위한 업무협약을 체결했다. 협약에 따라 국방 로봇·피지컬 AI 연구개발, 현장 실증환경 구축, 장비·인력 지원, 경계·정찰·물류 등 분야의 로봇 도입을 추진한다. 산업부는 정책 지원, 현대차그룹은 기술·인력 제공, 육군은 테스트베드와 시험운용 환경을 맡으며 순찰·청소·조리·물류로봇 실증과 보급을 확대할 계획이다.
-
-https://eiec.kdi.re.kr/policy/materialView.do?num=285463" onclick="copyEntry(this)">복사</button></div>
-  <p>산업통상부는 2026년 8월 14일 육군·현대자동차그룹과 국방 로봇 및 피지컬 AI 활용 확대를 위한 업무협약을 체결했다. 협약에 따라 국방 로봇·피지컬 AI 연구개발, 현장 실증환경 구축, 장비·인력 지원, 경계·정찰·물류 등 분야의 로봇 도입을 추진한다. 산업부는 정책 지원, 현대차그룹은 기술·인력 제공, 육군은 테스트베드와 시험운용 환경을 맡으며 순찰·청소·조리·물류로봇 실증과 보급을 확대할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=285463">https://eiec.kdi.re.kr/policy/materialView.do?num=285463</a></p>
 </article>
 <h3 class="cat-date-heading">2026-08-15 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-research">
@@ -622,7 +660,7 @@ https://cloud.google.com/blog/topics/public-sector/accelerating-frontiers-of-sci
 https://partnershiponai.org/building-ai-systems-that-work-for-everyone/" onclick="copyEntry(this)">복사</button></div>
   <p>이 기사는 GLAAD의 보고서 &quot;Build for Everyone: LGBTQ 표현과 안전을 위한 AI 프레임워크&quot;를 소개하며, AI 시스템 개발 과정에서 LGBTQ 커뮤니티를 고려하는 것이 모든 사용자에게 더 안전하고 정확한 시스템을 만드는 데 중요하다는 점을 강조한다. 핵심은 LGBTQ 관련 데이터의 정확성과 다양성을 확보하여 AI 시스템의 편향성을 줄이는 것이다. 이를 통해 복잡한 상황을 더 잘 처리할 수 있는 품질 표준을 구축할 수 있으며, 이는 궁극적으로 모든 사용자에게 이점이 된다. 실질적인 첫 단계로는 훈련 데이터 내의 LGBTQ 표현을 검토하고, 필요하다면 전문가와 협력하는 것을 제안한다.</p>
   <p class="url"><a href="https://partnershiponai.org/building-ai-systems-that-work-for-everyone/">https://partnershiponai.org/building-ai-systems-that-work-for-everyone/</a></p>
-</article></div></details><details class="archive-month"><summary>2026년 6월 <span class="archive-count">(19건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-06-30 <span class="archive-count">(5건)</span></h3>
+</article></div></details><details class="archive-month"><summary>2026년 6월 <span class="archive-count">(18건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-06-30 <span class="archive-count">(4건)</span></h3>
 <article class="entry cat-company">
   <h2>Nano Banana 2 Lite·Gemini Omni Flash 출시(2026.6.30)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글(DeepMind)</span></span><button type="button" class="copy-btn" data-copy="Nano Banana 2 Lite·Gemini Omni Flash 출시(2026.6.30)
@@ -665,22 +703,6 @@ https://www.anthropic.com/news/claude-sonnet-5" onclick="copyEntry(this)">복사
 https://www.washingtonpost.com/national-security/2026/06/30/cia-accelerate-its-use-ai-other-advanced-technologies/" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.washingtonpost.com/national-security/2026/06/30/cia-accelerate-its-use-ai-other-advanced-technologies/">https://www.washingtonpost.com/national-security/2026/06/30/cia-accelerate-its-use-ai-other-advanced-technologies/</a></p>
-</article>
-<article class="entry cat-company">
-  <h2>🇺🇸 Claude Sonnet 5 (Anthropic) (2026.6.30)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 5 (Anthropic) (2026.6.30)
-
-General · Closed · 1000K ctx · $2/M · $10/M
-
-HLE 34.6%
-
-Anthropic&#x27;s most agentic Sonnet, positioned close to Opus 4.8 at a lower price. Replaced Sonnet 4.6 as the default model on Claude.ai for Free and Pro plans. Per Anthropic: Humanity&#x27;s Last Exam 34.6% (46.8% with tools), OSWorld-Verified 78.5%. Reported SWE-bench Verified ~85% and GPQA Diamond ~96% (third-party numbers vary; pending system-card confirmation). 1M context. Uses the newer tokenizer (~30% more tokens for the same text). Introductory pricing $2/$10 per 1M tokens through 2026-08-31, then $3/$15 (batch 50% off).
-
-https://www.anthropic.com/news/claude-sonnet-5" onclick="copyEntry(this)">복사</button></div>
-  <p>General · Closed · 1000K ctx · $2/M · $10/M</p>
-<p>HLE 34.6%</p>
-<p>Anthropic&#x27;s most agentic Sonnet, positioned close to Opus 4.8 at a lower price. Replaced Sonnet 4.6 as the default model on Claude.ai for Free and Pro plans. Per Anthropic: Humanity&#x27;s Last Exam 34.6% (46.8% with tools), OSWorld-Verified 78.5%. Reported SWE-bench Verified ~85% and GPQA Diamond ~96% (third-party numbers vary; pending system-card confirmation). 1M context. Uses the newer tokenizer (~30% more tokens for the same text). Introductory pricing $2/$10 per 1M tokens through 2026-08-31, then $3/$15 (batch 50% off).</p>
-  <p class="url"><a href="https://www.anthropic.com/news/claude-sonnet-5">https://www.anthropic.com/news/claude-sonnet-5</a></p>
 </article>
 <h3 class="cat-date-heading">2026-06-23 <span class="archive-count">(3건)</span></h3>
 <article class="entry cat-company">
@@ -840,7 +862,7 @@ https://www.anthropic.com/research/agents-in-biology" onclick="copyEntry(this)">
 https://oecd.ai/en/wonk/ai-inclusive-and-resilient-agri-food-systems" onclick="copyEntry(this)">복사</button></div>
   <p>전 세계 농식품 시스템은 기후 충격, 취약한 공급망, 노동력 부족 등으로 압박이 커지고 있으며, AI가 취약 계층을 포함한 이해관계자의 이익을 넓히는 도구가 될 수 있다고 설명한다. 다만 AI·디지털 기술 도입에는 지역별 격차, 공급망 전반의 정보 불균형, 데이터 상호운용성 문제, 신뢰·AI 리터러시 부족, 사이버보안 및 농식품 특화 거버넌스 부재가 남아 있다고 지적한다. OECD와 GPAI 등 국제 협력을 통해 지역 성과를 점검하고, 공유·신뢰 가능한 데이터 인프라와 소규모 농가에 맞춘 현장 중심 설계, 파일럿을 확산으로 연결하는 조건을 분석·지원할 필요가 있다고 제안한다.</p>
   <p class="url"><a href="https://oecd.ai/en/wonk/ai-inclusive-and-resilient-agri-food-systems">https://oecd.ai/en/wonk/ai-inclusive-and-resilient-agri-food-systems</a></p>
-</article></div></details><details class="archive-month"><summary>2026년 5월 <span class="archive-count">(17건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-05-27 <span class="archive-count">(1건)</span></h3>
+</article></div></details><details class="archive-month"><summary>2026년 5월 <span class="archive-count">(16건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-05-27 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company">
   <h2>코딩 에이전트가 사회과학에 미치는 영향 연구 (2026.5.27)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Research</span></span><button type="button" class="copy-btn" data-copy="코딩 에이전트가 사회과학에 미치는 영향 연구 (2026.5.27)
@@ -853,7 +875,7 @@ https://www.anthropic.com/research/coding-agents-social-sciences" onclick="copyE
 2026년 2월과 3월에 진행된 1,260명의 사회과학자 대상 설문조사 결과에 따르면, 대다수(81%)가 연구 과정에서 AI 챗봇을 활용하고 있지만, 코딩 에이전트(예: Claude Code)의 활용도는 20%에 불과하다. 코딩 에이전트 사용은 성별과 연구 기관의 명성에 따라 큰 차이를 보이며, 초기 경력 연구자들이 주로 이를 활용하고 있다. 코딩 에이전트 사용자들은 더 많은 연구 논문과 연구 제안서를 제출하는 경향이 있지만, 저널 게재에는 큰 차이가 없는 것으로 나타났다. 연구자들은 AI 도구가 연구 생산성을 높일 것으로 기대하지만, 사회과학 전체에 미치는 영향에 대해서는 확신이 덜하다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/coding-agents-social-sciences">https://www.anthropic.com/research/coding-agents-social-sciences</a></p>
 </article>
-<h3 class="cat-date-heading">2026-05-19 <span class="archive-count">(4건)</span></h3>
+<h3 class="cat-date-heading">2026-05-19 <span class="archive-count">(3건)</span></h3>
 <article class="entry cat-kr-gov">
   <h2>🇰🇷 ICT 산업 중장기 전망(2026~2030) 및 대응 전략</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="ICT 산업 중장기 전망(2026~2030) 및 대응 전략
@@ -886,16 +908,6 @@ https://www.anthropic.com/news/anthropic-kpmg" onclick="copyEntry(this)">복사<
   <p>KPMG는 2026년 5월 19일 발표를 통해 Claude를 Digital Gateway에 내장하고, 세무·법무 및 사이버보안 등 업무에 적용한다고 밝혔다.</p>
 <p>앤트로픽은 KPMG가 전 세계 138개 국가·지역에서 감사·세무·법률·자문 서비스를 제공하는 가운데, 전략적 제휴로 Claude를 KPMG의 핵심 업무와 직원들에게 도입한다고 밝혔다. KPMG는 자사 클라이언트 업무 플랫폼 ‘Digital Gateway’에 Claude를 내장(세무·법무 도구부터 시작)하고, 전 직원(27만6천+ )이 Claude에 접근할 수 있도록 한다. 또한 사모펀드(PE) 분야에서 KPMG를 선호 파트너로 지정하고, PE 포트폴리오 기업을 위한 Claude 기반 제품을 공동 개발하며, 사이버보안 취약점 탐지·수정에도 Claude를 활용할 계획이다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/anthropic-kpmg">https://www.anthropic.com/news/anthropic-kpmg</a></p>
-</article>
-<article class="entry cat-kdi-eiec">
-  <h2>개인정보위, 생성형 AI 이용자 개인정보 보호 가이드 발간 (2026.5.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">개인정보보호위원회</span></span><button type="button" class="copy-btn" data-copy="개인정보위, 생성형 AI 이용자 개인정보 보호 가이드 발간 (2026.5.19)
-
-개인정보보호위원회가 생성형 AI 이용 과정에서 발생할 수 있는 개인정보 처리 관련 궁금증을 해소하고 안전한 정보 관리를 돕기 위한 이용자 중심 가이드를 발간했다. 가이드는 국민 제안·민원·상담 사례를 바탕으로 8대 핵심 이슈를 선정하고, 데이터 수집부터 AI 학습과 서비스 이용까지의 개인정보 처리 과정 및 학습 활용 거부(옵트아웃), 대화 기록 저장·삭제 등 통제 기능을 안내한다. 또한 입력 내용의 AI 학습 활용 여부, 업무 자료 입력 시 주의사항, 외부 서비스 연동 시 안전성 등에 대한 답변과 구체적인 관리 방법을 제시한다.
-
-https://eiec.kdi.re.kr/policy/materialView.do?num=282030" onclick="copyEntry(this)">복사</button></div>
-  <p>개인정보보호위원회가 생성형 AI 이용 과정에서 발생할 수 있는 개인정보 처리 관련 궁금증을 해소하고 안전한 정보 관리를 돕기 위한 이용자 중심 가이드를 발간했다. 가이드는 국민 제안·민원·상담 사례를 바탕으로 8대 핵심 이슈를 선정하고, 데이터 수집부터 AI 학습과 서비스 이용까지의 개인정보 처리 과정 및 학습 활용 거부(옵트아웃), 대화 기록 저장·삭제 등 통제 기능을 안내한다. 또한 입력 내용의 AI 학습 활용 여부, 업무 자료 입력 시 주의사항, 외부 서비스 연동 시 안전성 등에 대한 답변과 구체적인 관리 방법을 제시한다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=282030">https://eiec.kdi.re.kr/policy/materialView.do?num=282030</a></p>
 </article>
 <h3 class="cat-date-heading">2026-05-18 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company">
@@ -1092,9 +1104,9 @@ https://www.axios.com/2026/04/26/ai-cost-human-workers" onclick="copyEntry(this)
   <p class="url"><a href="https://www.axios.com/2026/04/26/ai-cost-human-workers">https://www.axios.com/2026/04/26/ai-cost-human-workers</a></p>
 </article>
 <h3 class="cat-date-heading">2026-04-24 <span class="archive-count">(1건)</span></h3>
-<article class="entry cat-db">
+<article class="entry cat-company">
   <h2>🇺🇸 (2026.4.24) Anthropic, AI 에이전트가 사람을 대신해 거래하는 ‘Project Deal’ 실험 결과 공개</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="(2026.4.24) Anthropic, AI 에이전트가 사람을 대신해 거래하는 ‘Project Deal’ 실험 결과 공개
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="(2026.4.24) Anthropic, AI 에이전트가 사람을 대신해 거래하는 ‘Project Deal’ 실험 결과 공개
 
 Anthropic은 직원들을 대상으로 AI 에이전트가 판매·구매 협상을 전담하는 비공개 마켓플레이스 실험(Project Deal)을 진행했다. 69명의 에이전트가 186건의 거래를 성사시켰고, 총 거래가치는 4,000달러를 조금 넘었으며 참가자들은 유사 서비스에 대한 지불 의사도 보였다고 밝혔다. 또한 더 강한 모델(Claude Opus 4.5)이 약한 모델(Claude Haiku 4.5)보다 객관적 성과가 더 좋았지만, 약한 모델을 배정받은 참가자들은 불리함을 크게 인지하지 못했다고 설명했다.
 
@@ -1222,7 +1234,7 @@ https://metr.org/notes/2026-03-19-org-uplift-game/" onclick="copyEntry(this)">�
 - **향후 적응**: 연구자들은 병목 현상에 적응하기 위해 여러 프로젝트를 병렬로 진행하거나, 인간 피드백 과정을 최적화하는 방향으로 움직일 것으로 보인다.</p>
 <p>METR은 이러한 게임을 정기적으로 실시하여 미래 AI 환경에서의 운영 방식을 탐색하고자 한다.</p>
   <p class="url"><a href="https://metr.org/notes/2026-03-19-org-uplift-game/">https://metr.org/notes/2026-03-19-org-uplift-game/</a></p>
-</article></div></details><details class="archive-month"><summary>2026년 2월 <span class="archive-count">(3건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-02-16 <span class="archive-count">(1건)</span></h3>
+</article></div></details><details class="archive-month"><summary>2026년 2월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-02-16 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company">
   <h2>🇺🇸 인도 AI 경제 지수: IT 서비스 수출국에서의 AI 활용 심층 분석 (2026.2.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span></span><button type="button" class="copy-btn" data-copy="인도 AI 경제 지수: IT 서비스 수출국에서의 AI 활용 심층 분석 (2026.2.16)
@@ -1233,7 +1245,7 @@ https://www.anthropic.com/research/india-brief-economic-index" onclick="copyEntr
   <p>인도는 이미 세계 최대의 IT 서비스 수출국이며, 빠른 성장 속도를 보이는 AI 사용자 기반을 보유하고 있습니다. 이 브리프는 인도에서 클로디.ai의 활용 패턴을 분석하여 AI 정책, 투자, 배치 전략 수립에 필요한 통찰력을 제공합니다. 분석 결과, 인도는 총 클로디.ai 사용에서 미국 다음으로 높은 비중(5.8%)을 차지하지만, 인구 규모에 따른 평균 사용률은 상대적으로 낮습니다. 이는 인도의 AI 채택이 주로 기술 인력에 집중되어 있으며, 더 넓은 인구 기반으로의 확대 가능성이 큼을 시사합니다. 인도 사용자들은 복잡한 작업을 AI에 위임하는 경향이 강하며, 이는 높은 생산성 향상을 가져옵니다. 그러나 인구당 사용률은 제한적이므로 디지털 인프라와 인식 개선을 위한 구조적 장벽 해소가 필요합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/india-brief-economic-index">https://www.anthropic.com/research/india-brief-economic-index</a></p>
 </article>
-<h3 class="cat-date-heading">2026-02-12 <span class="archive-count">(2건)</span></h3>
+<h3 class="cat-date-heading">2026-02-12 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-kdi-eiec">
   <h2>🇰🇷 인공지능으로 통화 중 보이스피싱 탐지·알림 (2026.2.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">과학기술정보통신부</span></span><button type="button" class="copy-btn" data-copy="인공지능으로 통화 중 보이스피싱 탐지·알림 (2026.2.12)
@@ -1243,16 +1255,6 @@ https://www.anthropic.com/research/india-brief-economic-index" onclick="copyEntr
 https://eiec.kdi.re.kr/policy/materialView.do?num=277004" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 삼성전자와 이동통신 3사가 통화 내용을 실시간 분석해 보이스피싱 의심 전화를 탐지·알림하는 인공지능 서비스를 제공한다고 밝혔다. 해당 기능은 삼성 ‘전화’, SK텔레콤 ‘에이닷 전화’, KT ‘후후’, LG유플러스 ‘익시오’에서 이용할 수 있으며, 개인정보 보호를 위해 스마트폰 자체에서 분석하는 On-Device AI를 활용한다. 설날 전후 택배·가족·정부 지원금 사칭 보이스피싱이 증가할 수 있어 서비스 이용을 통한 피해 예방을 당부했다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=277004">https://eiec.kdi.re.kr/policy/materialView.do?num=277004</a></p>
-</article>
-<article class="entry cat-kdi-eiec">
-  <h2>🇺🇸 게임체인저: 미국 국방부의 AI 혁신 사례 연구 (2026.2.12)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">Brookings</span></span><button type="button" class="copy-btn" data-copy="게임체인저: 미국 국방부의 AI 혁신 사례 연구 (2026.2.12)
-
-이 보고서는 미국 국방부와 Booz Allen이 공동 개발한 대규모 언어 모델 기반 정책 검색 도구 GAMECHANGER의 개발 과정과 성과를 분석한다. 이 도구는 국방부의 법령·규정·지침을 통합해 검색하고 상호 참조할 수 있도록 해 직원들의 정책 접근과 업무 처리 속도를 높였다. 연구진은 성공 요인으로 기업과의 협업 방식 조정과 지속적인 전용 자금 지원을 꼽는 한편, 경직된 네트워크 보안 요건, 기술 인력의 경력 경로 부족, 지도부 교체 등 구조적 장벽을 지적하며 임시방편식 지원을 넘어선 제도 개선이 필요하다고 제안한다.
-
-https://www.brookings.edu/articles/gamechanger-a-case-study-of-ai-innovation-at-the-department-of-defense/" onclick="copyEntry(this)">복사</button></div>
-  <p>이 보고서는 미국 국방부와 Booz Allen이 공동 개발한 대규모 언어 모델 기반 정책 검색 도구 GAMECHANGER의 개발 과정과 성과를 분석한다. 이 도구는 국방부의 법령·규정·지침을 통합해 검색하고 상호 참조할 수 있도록 해 직원들의 정책 접근과 업무 처리 속도를 높였다. 연구진은 성공 요인으로 기업과의 협업 방식 조정과 지속적인 전용 자금 지원을 꼽는 한편, 경직된 네트워크 보안 요건, 기술 인력의 경력 경로 부족, 지도부 교체 등 구조적 장벽을 지적하며 임시방편식 지원을 넘어선 제도 개선이 필요하다고 제안한다.</p>
-  <p class="url"><a href="https://www.brookings.edu/articles/gamechanger-a-case-study-of-ai-innovation-at-the-department-of-defense/">https://www.brookings.edu/articles/gamechanger-a-case-study-of-ai-innovation-at-the-department-of-defense/</a></p>
 </article></div></details><details class="archive-month"><summary>2026년 1월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2026-01-29 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company">
   <h2>🇺🇸 AI 보조가 코딩 기술 형성에 미치는 영향 (2026.1.29)</h2>
@@ -1489,7 +1491,7 @@ https://www.anthropic.com/news/economic-index-geography" onclick="copyEntry(this
 - **기업 사용**: Anthropic의 API 고객(주로 기업과 개발자)은 코딩 및 행정 작업에 Claude를 더 집중적으로 사용하며, 자동화 작업에도 더 많이 의존합니다. 이는 향후 노동 시장에 큰 영향을 미칠 가능성을 시사합니다.</p>
 <p>Anthropic은 이러한 데이터를 공개적으로 제공하여 사용자들이 지역별 또는 직업별 Claude 사용 패턴을 탐색할 수 있도록 인터랙티브 웹사이트를 제공하고 있습니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/economic-index-geography">https://www.anthropic.com/news/economic-index-geography</a></p>
-</article></div></details><details class="archive-month"><summary>2025년 8월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-08-12 <span class="archive-count">(1건)</span></h3>
+</article></div></details><details class="archive-month"><summary>2025년 8월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-08-12 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-research-org">
   <h2>🇺🇸 METR의 과학 커뮤니케이션 전략과 도전 (2025.08.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="METR의 과학 커뮤니케이션 전략과 도전 (2025.08.12)
@@ -1499,18 +1501,18 @@ METR의 연구자들은 AI의 영향을 설명하는 데 있어 정확성과 독
 https://metr.org/blog/2025-08-11-science-comms-at-metr/" onclick="copyEntry(this)">복사</button></div>
   <p>METR의 연구자들은 AI의 영향을 설명하는 데 있어 정확성과 독자의 오해를 최소화하는 균형을 찾는 데 주력하고 있다. 특히, 예상치 못한 연구 결과를 전달할 때, 결과를 왜곡하지 않으면서도 독자가 올바르게 해석할 수 있도록 하는 커뮤니케이션 전략을 고려한다. 예를 들어, 개발자 생산성 연구에서 AI 도구 사용이 개발자의 생산성을 저하시킨 결과를 전달할 때, &quot;AI가 개발자를 느리게 만든다&quot;는 표현 대신 &quot;개발자들이 AI를 통해 예상보다 더 느린 속도로 작업을 수행한다&quot;는 방식으로 결과를 설명함으로써 오해를 줄이려 노력한다. METR은 정확성과 연구의 엄격성을 우선시하면서도, 결과의 영향력을 극대화하려는 시도와 균형을 맞추는 데 중점을 둔다.</p>
   <p class="url"><a href="https://metr.org/blog/2025-08-11-science-comms-at-metr/">https://metr.org/blog/2025-08-11-science-comms-at-metr/</a></p>
-</article>
-<h3 class="cat-date-heading">2025-08-08 <span class="archive-count">(1건)</span></h3>
+</article></div></details><details class="archive-month"><summary>2025년 7월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-07-30 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-kdi-eiec">
-  <h2>🇰🇷 배경훈 장관, 보이스피싱 대응에 인공지능 기술 적극 활용 강조 (2025.8.8)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">과학기술정보통신부</span></span><button type="button" class="copy-btn" data-copy="배경훈 장관, 보이스피싱 대응에 인공지능 기술 적극 활용 강조 (2025.8.8)
+  <h2>🇰🇷 딥페이크 막는 AI, 범죄 수사 새 길 연다 (2025.7.30)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">행정안전부</span></span><button type="button" class="copy-btn" data-copy="딥페이크 막는 AI, 범죄 수사 새 길 연다 (2025.7.30)
 
-과학기술정보통신부 배경훈 장관은 8월 8일 이동통신 3사와 관계기관 전문가들이 참석한 가운데 보이스피싱 대응 현장간담회를 열었다. KT·SK텔레콤·LG유플러스는 실시간 탐지와 신고 전화번호 차단, 경고 알림 등 인공지능 기반 대응 서비스를 운영하고, 정부 보유 성문 정보 활용을 위해 규제유예제도를 적용하기로 했다. 개인정보보호위원회는 공익 목적의 인공지능 서비스 개발을 위한 통화 내용·성문 데이터 활용과 관련해 법령 해석 및 개정을 추진하고, 과기정통부는 데이터 공유·활용 기반을 마련할 계획이다.
+행정안전부는 2025년 5~6월 두 달간 ‘AI 딥페이크 분석모델’을 활용해 증거물 60종, 총 15건의 딥페이크 감정을 수행했다고 밝혔다. 이 모델은 기존 기술 한계를 극복해 딥페이크 감정을 국내 최초로 공식화하고, 과학적 증거에 기반한 수사체계 마련에 기여했다. 행정안전부와 국립과학수사연구원은 향후 2023년 개발한 보이스피싱 음성 분석모델과 연계할 계획이다.
 
-https://eiec.kdi.re.kr/policy/materialView.do?num=269637" onclick="copyEntry(this)">복사</button></div>
-  <p>과학기술정보통신부 배경훈 장관은 8월 8일 이동통신 3사와 관계기관 전문가들이 참석한 가운데 보이스피싱 대응 현장간담회를 열었다. KT·SK텔레콤·LG유플러스는 실시간 탐지와 신고 전화번호 차단, 경고 알림 등 인공지능 기반 대응 서비스를 운영하고, 정부 보유 성문 정보 활용을 위해 규제유예제도를 적용하기로 했다. 개인정보보호위원회는 공익 목적의 인공지능 서비스 개발을 위한 통화 내용·성문 데이터 활용과 관련해 법령 해석 및 개정을 추진하고, 과기정통부는 데이터 공유·활용 기반을 마련할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=269637">https://eiec.kdi.re.kr/policy/materialView.do?num=269637</a></p>
-</article></div></details><details class="archive-month"><summary>2025년 7월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-07-09 <span class="archive-count">(1건)</span></h3>
+https://eiec.kdi.re.kr/policy/materialView.do?num=269291" onclick="copyEntry(this)">복사</button></div>
+  <p>행정안전부는 2025년 5~6월 두 달간 ‘AI 딥페이크 분석모델’을 활용해 증거물 60종, 총 15건의 딥페이크 감정을 수행했다고 밝혔다. 이 모델은 기존 기술 한계를 극복해 딥페이크 감정을 국내 최초로 공식화하고, 과학적 증거에 기반한 수사체계 마련에 기여했다. 행정안전부와 국립과학수사연구원은 향후 2023년 개발한 보이스피싱 음성 분석모델과 연계할 계획이다.</p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=269291">https://eiec.kdi.re.kr/policy/materialView.do?num=269291</a></p>
+</article>
+<h3 class="cat-date-heading">2025-07-09 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company">
   <h2>🇺🇸 Lawrence Livermore National Laboratory 확대: 과학자와 연구자들을 위한 AI 능력 강화 (2025.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="Lawrence Livermore National Laboratory 확대: 과학자와 연구자들을 위한 AI 능력 강화 (2025.7.9)
@@ -1594,7 +1596,7 @@ Anthropic의 연구에 따르면, AI 시스템이 소프트웨어 개발 분야�
 https://www.anthropic.com/research/impact-software-개발" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic의 연구에 따르면, AI 시스템이 소프트웨어 개발 분야에서 코딩 작업의 자동화와 보조 역할을 크게 확대하고 있다. 분석 결과, Claude Code를 사용한 대화의 79%가 자동화 작업에 초점을 맞추고 있으며, 이는 전통적인 보조 역할보다 훨씬 높은 비율이다. 특히 스타트업들이 Claude Code를 초기 채택자로 활용하고 있는 반면, 대기업들은 아직 뒤처져 있는 것으로 나타났다. 개발자들은 주로 웹 애플리케이션과 사용자 인터페이스 개발에 AI를 활용하고 있어, 이러한 분야의 일자리가 AI 도입으로 인해 더 빠르게 변화할 가능성이 있다. 그러나 자동화 과정에서도 여전히 인간의 개입이 필요하다는 점이 확인되었다. 이러한 변화는 AI 기술의 발전에 따라 개발자의 역할에도 영향을 미칠 것으로 보인다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/impact-software-개발">https://www.anthropic.com/research/impact-software-개발</a></p>
-</article></div></details><details class="archive-month"><summary>2025년 3월 <span class="archive-count">(3건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-03-27 <span class="archive-count">(3건)</span></h3>
+</article></div></details><details class="archive-month"><summary>2025년 3월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-03-27 <span class="archive-count">(2건)</span></h3>
 <article class="entry cat-company">
   <h2>🇺🇸 Anthropic 경제 지수: Claude 3.7 Sonnet 모델 사용 패턴 분석 (2025.3.27)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="Anthropic 경제 지수: Claude 3.7 Sonnet 모델 사용 패턴 분석 (2025.3.27)
@@ -1628,39 +1630,7 @@ Anthropic은 Claude 3.7 Sonnet 모델 출시 이후 경제적 영향을 이해�
 https://www.anthropic.com/research/anthropic-economic-index-insights-from-claude-sonnet-3-7" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 Claude 3.7 Sonnet 모델 출시 이후 경제적 영향을 이해하기 위한 새로운 데이터와 연구를 정기적으로 공개하는 &#x27;Anthropic 경제 지수&#x27;를 시작했습니다. 최근 보고서에서는 코딩, 교육, 과학 분야의 사용량 증가와 함께, 새로운 확장 사고 모드의 주요 사용 사례를 분석했습니다. 확장 사고 모드는 주로 기술 및 창의적 문제 해결 맥락에서 사용되며, 특히 컴퓨터 과학자, 소프트웨어 개발자, 멀티미디어 아티스트, 비디오 게임 디자이너 등의 직업에서 높은 빈도를 보였습니다. 또한, 모델의 증강과 자동화 패턴을 직업 및 작업 수준에서 분석하여 공개했습니다. 특히 글쓰기와 편집 작업에서는 인간과 모델 간의 반복적인 작업이 가장 높았고, 번역가와 통역가의 작업에서는 지시에 따른 자동화가 가장 두드러졌습니다. 마지막으로, 630개의 세분화된 사용 사례를 포함한 새로운 하부 체계 분류를 공개하여 연구자들이 놓칠 수 있는 사용 사례를 파악할 수 있도록 지원했습니다. 모든 분석 데이터는 무료로 다운로드 가능합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/anthropic-economic-index-insights-from-claude-sonnet-3-7">https://www.anthropic.com/research/anthropic-economic-index-insights-from-claude-sonnet-3-7</a></p>
-</article>
-<article class="entry cat-kdi-eiec">
-  <h2>식약처, 정부 기관 최초로 인공지능 국제표준 인증 취득 (2025.3.27)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">식품의약품안전처</span></span><button type="button" class="copy-btn" data-copy="식약처, 정부 기관 최초로 인공지능 국제표준 인증 취득 (2025.3.27)
-
-식품의약품안전처가 AI 기반 수입식품 검사 시스템 ‘전자심사24(SAFE-i24)’로 정부 기관 최초의 인공지능경영시스템 국제표준 인증을 취득했다. 이 시스템은 수입식품의 검사 이력과 금지원료 사용 여부 등 270여 개 항목을 자동 검토해 신고확인증을 발급하며, 2025년 초 모든 수입식품에 적용됐다. 이에 따라 서류검사가 365일 24시간 가능해지고 검사 시간이 최대 48시간에서 5분 이내로 단축됐다.
-
-https://eiec.kdi.re.kr/policy/materialView.do?num=264863" onclick="copyEntry(this)">복사</button></div>
-  <p>식품의약품안전처가 AI 기반 수입식품 검사 시스템 ‘전자심사24(SAFE-i24)’로 정부 기관 최초의 인공지능경영시스템 국제표준 인증을 취득했다. 이 시스템은 수입식품의 검사 이력과 금지원료 사용 여부 등 270여 개 항목을 자동 검토해 신고확인증을 발급하며, 2025년 초 모든 수입식품에 적용됐다. 이에 따라 서류검사가 365일 24시간 가능해지고 검사 시간이 최대 48시간에서 5분 이내로 단축됐다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=264863">https://eiec.kdi.re.kr/policy/materialView.do?num=264863</a></p>
-</article></div></details><details class="archive-month"><summary>2024년 10월 <span class="archive-count">(3건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-10-18 <span class="archive-count">(1건)</span></h3>
-<article class="entry cat-kdi-eiec">
-  <h2>인공지능 기술로 사기전화를 예방해 국민의 일상을 안전하게 지킨다 (2024.10.18)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">과학기술정보통신부</span></span><button type="button" class="copy-btn" data-copy="인공지능 기술로 사기전화를 예방해 국민의 일상을 안전하게 지킨다 (2024.10.18)
-
-과학기술정보통신부는 제37차 신기술·서비스 심의위원회에서 총 15건의 규제특례를 지정했다. 인공지능과 실제 사기전화 통화 데이터를 활용해 실시간으로 사기전화를 탐지하는 서비스가 실증특례 대상으로 선정됐다. 주민등록번호 대신 연계정보(CI)로 환자의 진료기록을 모바일에서 조회하는 서비스 2건과 농어촌 빈집 공유숙박, 도심형 개인 보관함 대여 등도 실증특례로 지정됐다.
-
-https://eiec.kdi.re.kr/policy/materialView.do?num=258489" onclick="copyEntry(this)">복사</button></div>
-  <p>과학기술정보통신부는 제37차 신기술·서비스 심의위원회에서 총 15건의 규제특례를 지정했다. 인공지능과 실제 사기전화 통화 데이터를 활용해 실시간으로 사기전화를 탐지하는 서비스가 실증특례 대상으로 선정됐다. 주민등록번호 대신 연계정보(CI)로 환자의 진료기록을 모바일에서 조회하는 서비스 2건과 농어촌 빈집 공유숙박, 도심형 개인 보관함 대여 등도 실증특례로 지정됐다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=258489">https://eiec.kdi.re.kr/policy/materialView.do?num=258489</a></p>
-</article>
-<h3 class="cat-date-heading">2024-10-10 <span class="archive-count">(1건)</span></h3>
-<article class="entry cat-kdi-eiec">
-  <h2>AI로 딥페이크 불법 영상 선별하고 산업재해 장해등급 예측한다 (2024.10.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">행정안전부</span></span><button type="button" class="copy-btn" data-copy="AI로 딥페이크 불법 영상 선별하고 산업재해 장해등급 예측한다 (2024.10.10)
-
-행정안전부는 국민안전, 근로·복지, 국민건강, 국민편의, 일하는 방식 개선 등 5개 분야에서 12개 데이터 분석과제를 추진한다고 밝혔다. 주요 과제는 AI를 활용한 딥페이크 불법 콘텐츠 분석, 상병·요양데이터 기반 장해등급 예측, 재해조사 분류, 식품안전 점검대상 추천, 의약품 품절 예측 등이다. 행정안전부는 관계기관 및 전문가와 협업해 분석 모델을 개발하고, 다양한 기관에서 활용할 수 있도록 지속 관리할 계획이다.
-
-https://eiec.kdi.re.kr/policy/materialView.do?num=258157" onclick="copyEntry(this)">복사</button></div>
-  <p>행정안전부는 국민안전, 근로·복지, 국민건강, 국민편의, 일하는 방식 개선 등 5개 분야에서 12개 데이터 분석과제를 추진한다고 밝혔다. 주요 과제는 AI를 활용한 딥페이크 불법 콘텐츠 분석, 상병·요양데이터 기반 장해등급 예측, 재해조사 분류, 식품안전 점검대상 추천, 의약품 품절 예측 등이다. 행정안전부는 관계기관 및 전문가와 협업해 분석 모델을 개발하고, 다양한 기관에서 활용할 수 있도록 지속 관리할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=258157">https://eiec.kdi.re.kr/policy/materialView.do?num=258157</a></p>
-</article>
-<h3 class="cat-date-heading">2024-10-09 <span class="archive-count">(1건)</span></h3>
+</article></div></details><details class="archive-month"><summary>2024년 10월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-10-09 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-research-org">
   <h2>🇺🇸 New Support Through The Audacious Project (2024.10.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="New Support Through The Audacious Project (2024.10.9)
@@ -1670,16 +1640,6 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=258157" onclick="copyEntry(thi
 https://metr.org/blog/2024-10-09-new-support-through-the-audacious-project/" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://metr.org/blog/2024-10-09-new-support-through-the-audacious-project/">https://metr.org/blog/2024-10-09-new-support-through-the-audacious-project/</a></p>
-</article></div></details><details class="archive-month"><summary>2024년 6월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-06-17 <span class="archive-count">(1건)</span></h3>
-<article class="entry cat-kdi-eiec">
-  <h2>공공분야 초거대 AI 활용을 위한 공공데이터 주권 클라우드 적용방향 (2024.6.17)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">한국지능정보사회진흥원</span></span><button type="button" class="copy-btn" data-copy="공공분야 초거대 AI 활용을 위한 공공데이터 주권 클라우드 적용방향 (2024.6.17)
-
-보고서는 생성형 AI에 대한 관심과 공공부문의 초거대 AI 도입 의지가 높아지는 가운데, 데이터 주권과 보안 문제로 구축 방안을 정하기 어려운 상황을 설명한다. 공공데이터 주권 클라우드의 개념과 동향을 검토하고, 공공자원을 활용한 초거대 AI 도입 및 주권 클라우드 구축 전략과 정책적 시사점을 제시한다.
-
-https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=25932&amp;bcIdx=26837" onclick="copyEntry(this)">복사</button></div>
-  <p>보고서는 생성형 AI에 대한 관심과 공공부문의 초거대 AI 도입 의지가 높아지는 가운데, 데이터 주권과 보안 문제로 구축 방안을 정하기 어려운 상황을 설명한다. 공공데이터 주권 클라우드의 개념과 동향을 검토하고, 공공자원을 활용한 초거대 AI 도입 및 주권 클라우드 구축 전략과 정책적 시사점을 제시한다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=25932&amp;bcIdx=26837">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=25932&amp;bcIdx=26837</a></p>
 </article></div></details>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>

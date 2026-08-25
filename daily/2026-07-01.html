@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-07-01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --g1: #e3cf9a; --g2: #d3ac52;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --g1: #4a3d24; --g2: #7a5c26;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .day-nav-btn {
+    display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    font-weight: 600; text-decoration: none; color: var(--fg); border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .day-nav-btn:hover { border-color: var(--gold); color: var(--gold-strong); }
+  .day-nav-btn.disabled { color: var(--muted); cursor: default; }
+  .day-nav-btn.disabled:hover { border-color: var(--border); color: var(--muted); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+  /* 아카이브 격자(옵션 B) — 요일 정렬 없이 1일부터 촘촘히, 건수는 4단계
+     골드 톤으로. 배경이 밝을 때(g3·g4)는 --bg를, 옅을 때(g1·g2)는 --fg를
+     글자색으로 써서 라이트/다크 모드 둘 다 자동으로 대비가 맞게 한다. */
+  .archive-month-current { margin: 10px 0 4px; }
+  .month-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 10px; }
+  .archive-month .archive-grid { margin-top: 8px; padding-left: 14px; }
+  .archive-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .archive-cell {
+    width: 42px; height: 42px; border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 0.78rem; text-decoration: none;
+    border: 1px solid var(--border);
+  }
+  .archive-cell .n { font-weight: 700; line-height: 1.15; }
+  .archive-cell .c { font-size: 0.62rem; opacity: 0.85; line-height: 1.1; }
+  .archive-cell.empty { color: var(--muted); }
+  .archive-cell.g1 { background: var(--g1); color: var(--fg); border-color: transparent; }
+  .archive-cell.g2 { background: var(--g2); color: var(--fg); border-color: transparent; }
+  .archive-cell.g3 { background: var(--gold); color: var(--bg); border-color: transparent; }
+  .archive-cell.g4 { background: var(--gold-strong); color: var(--bg); border-color: transparent; }
+  .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-07-01 · 18/21건 요약</div>
+    <div class="nav"><a href="../index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-kdi-eiec">
+  <h2>🇰🇷 글로벌 개인정보 감독기구에 인공지능(AI) 대응 ‘실전해법’ 제시 (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">개인정보보호위원회</span></span><button type="button" class="copy-btn" data-copy="글로벌 개인정보 감독기구에 인공지능(AI) 대응 ‘실전해법’ 제시 (2026.7.1)
+
+개인정보보호위원회는 글로벌 개인정보 감독기구를 대상으로 인공지능 프라이버시 정책과 대응 경험을 공유하는 온라인 회의를 개최했다. 한국을 포함한 5개국 감독기구가 각국의 도전과제, 법제화 동향, 규제 유예 제도와 기관 내부 사례를 논의했다. 개인정보보호위원회는 인공지능 프라이버시 리스크 관리 모델, 생성형 인공지능 개발·활용 가이드라인, 혁신 지원사례와 특례 제도 및 개인정보보호법 개정안의 입법 절차를 소개했다. 앞으로도 안전과 혁신이 조화를 이루는 국제 인공지능 프라이버시 규범 형성을 위해 협력을 이어갈 계획이다.
+
+https://eiec.kdi.re.kr/policy/materialView.do?num=283613" onclick="copyEntry(this)">복사</button></div>
+  <p>개인정보보호위원회는 글로벌 개인정보 감독기구를 대상으로 인공지능 프라이버시 정책과 대응 경험을 공유하는 온라인 회의를 개최했다. 한국을 포함한 5개국 감독기구가 각국의 도전과제, 법제화 동향, 규제 유예 제도와 기관 내부 사례를 논의했다. 개인정보보호위원회는 인공지능 프라이버시 리스크 관리 모델, 생성형 인공지능 개발·활용 가이드라인, 혁신 지원사례와 특례 제도 및 개인정보보호법 개정안의 입법 절차를 소개했다. 앞으로도 안전과 혁신이 조화를 이루는 국제 인공지능 프라이버시 규범 형성을 위해 협력을 이어갈 계획이다.</p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=283613">https://eiec.kdi.re.kr/policy/materialView.do?num=283613</a></p>
+</article>
+<article class="entry cat-aisi">
+  <h2>🇰🇷 제2회 인공지능안전서울포럼(Seoul Forum on Artificial Intelligence Safety and Security, SFASS) 개최 안내 (7.7~7.8)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">AISI-Korea</span></span><button type="button" class="copy-btn" data-copy="제2회 인공지능안전서울포럼(Seoul Forum on Artificial Intelligence Safety and Security, SFASS) 개최 안내 (7.7~7.8)
+
+요약불가
+
+https://www.aisi.re.kr/kor/article/view.do?articleId=110" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.aisi.re.kr/kor/article/view.do?articleId=110">https://www.aisi.re.kr/kor/article/view.do?articleId=110</a></p>
+</article>
+<article class="entry cat-aisi-weekly">
+  <h2>🇺🇸 Anthropic, Fable 5 및 Mythos 5 모델 수출 통제 해제 (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">The Guardian</span></span><button type="button" class="copy-btn" data-copy="Anthropic, Fable 5 및 Mythos 5 모델 수출 통제 해제 (2026.7.1)
+
+미국 상무부는 사이버 공격 악용 우려로 앤스로픽의 최신 AI 모델인 Fable 5와 Mythos 5에 내렸던 수출 통제 조치를 해제. 앤스로픽이 모델의 보안 위험을 선제적으로 감지 및 해결하고 정부와 협력하기로 합의함에 따라, 신뢰할 수 있는 파트너에 한해 모델 접근이 다시 허용.
+
+https://www.theguardian.com/technology/2026/jul/01/anthropic-fable-mythos-ai-models-us-export-controls-lifted" onclick="copyEntry(this)">복사</button></div>
+  <p>미국 상무부는 사이버 공격 악용 우려로 앤스로픽의 최신 AI 모델인 Fable 5와 Mythos 5에 내렸던 수출 통제 조치를 해제. 앤스로픽이 모델의 보안 위험을 선제적으로 감지 및 해결하고 정부와 협력하기로 합의함에 따라, 신뢰할 수 있는 파트너에 한해 모델 접근이 다시 허용.</p>
+  <p class="url"><a href="https://www.theguardian.com/technology/2026/jul/01/anthropic-fable-mythos-ai-models-us-export-controls-lifted">https://www.theguardian.com/technology/2026/jul/01/anthropic-fable-mythos-ai-models-us-export-controls-lifted</a></p>
+</article>
+<article class="entry cat-aisi-weekly">
+  <h2>Brookings, G7에 강제력 있는 다자간 AI 표준 도입 촉구 (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Brookings</span></span><button type="button" class="copy-btn" data-copy="Brookings, G7에 강제력 있는 다자간 AI 표준 도입 촉구 (2026.7.1)
+
+Brookings 연구소는 G7 정상들이 거대 AI 기업들이 제안한 공동 표준 설정 프레임워크를 수용하되, 이를 강제력 있는 규제로 발전시켜야 한다고 주장. 기업 이익만을 대변하는 기술적 표준에 그치지 않도록 정부와 시민사회가 참여해야 하며, 기존 금융권 규제(바젤 III 등)처럼 규정 준수를 의무화하는 장치를 마련해야 한다고 제언.
+
+https://www.brookings.edu/articles/g7-should-accept-ai-standards-offer-but-make-it-enforceable/" onclick="copyEntry(this)">복사</button></div>
+  <p>Brookings 연구소는 G7 정상들이 거대 AI 기업들이 제안한 공동 표준 설정 프레임워크를 수용하되, 이를 강제력 있는 규제로 발전시켜야 한다고 주장. 기업 이익만을 대변하는 기술적 표준에 그치지 않도록 정부와 시민사회가 참여해야 하며, 기존 금융권 규제(바젤 III 등)처럼 규정 준수를 의무화하는 장치를 마련해야 한다고 제언.</p>
+  <p class="url"><a href="https://www.brookings.edu/articles/g7-should-accept-ai-standards-offer-but-make-it-enforceable/">https://www.brookings.edu/articles/g7-should-accept-ai-standards-offer-but-make-it-enforceable/</a></p>
+</article>
+<article class="entry cat-aisi-weekly">
+  <h2>UN AI 과학 패널, 예비 보고서 발간 (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">UN</span></span><button type="button" class="copy-btn" data-copy="UN AI 과학 패널, 예비 보고서 발간 (2026.7.1)
+
+UN AI 독립 국제 과학 패널은 AI 기술의 급격한 성장에 따른 전 세계적 기회와 위험, 영향을 과학적으로 진단한 첫 독립적 평가서를 발표. 보고서는 과학, 보건, 경제, 인권, 아동 안전 등 7대 핵심 분야를 다루며, 증거가 확실해졌을 때는 이미 대응하기에 너무 늦을 수 있다는 &#x27;증거의 한계&#x27;를 지적.
+
+https://www.un.org/independent-international-scientific-panel-ai/sites/default/files/2026-07/en_Preliminary%20Report_.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p>UN AI 독립 국제 과학 패널은 AI 기술의 급격한 성장에 따른 전 세계적 기회와 위험, 영향을 과학적으로 진단한 첫 독립적 평가서를 발표. 보고서는 과학, 보건, 경제, 인권, 아동 안전 등 7대 핵심 분야를 다루며, 증거가 확실해졌을 때는 이미 대응하기에 너무 늦을 수 있다는 &#x27;증거의 한계&#x27;를 지적.</p>
+  <p class="url"><a href="https://www.un.org/independent-international-scientific-panel-ai/sites/default/files/2026-07/en_Preliminary%20Report_.pdf">https://www.un.org/independent-international-scientific-panel-ai/sites/default/files/2026-07/en_Preliminary%20Report_.pdf</a></p>
+</article>
+<article class="entry cat-aisi-weekly">
+  <h2>🇺🇸 RAND, 유럽 내 AI 안전 및 사이버 오용 모의 훈련 결과 발표 (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="RAND, 유럽 내 AI 안전 및 사이버 오용 모의 훈련 결과 발표 (2026.7.1)
+
+RAND는 유럽 고위 관료들과 AI 기반 사이버 공격 위기 대응 모의 훈련(TTX)을 실시하고, 위기 대응을 위한 거버넌스 과제와 필수 역량을 도출. 국가적 위기로 판단할 명확한 기준(임계값) 마련, 정부의 독립적인 기술 평가 역량 확보, 그리고 다자간 규제 프레임워크 구축 등이 필요하다 결론.
+
+https://www.rand.org/pubs/research_reports/RRA5082-1.html" onclick="copyEntry(this)">복사</button></div>
+  <p>RAND는 유럽 고위 관료들과 AI 기반 사이버 공격 위기 대응 모의 훈련(TTX)을 실시하고, 위기 대응을 위한 거버넌스 과제와 필수 역량을 도출. 국가적 위기로 판단할 명확한 기준(임계값) 마련, 정부의 독립적인 기술 평가 역량 확보, 그리고 다자간 규제 프레임워크 구축 등이 필요하다 결론.</p>
+  <p class="url"><a href="https://www.rand.org/pubs/research_reports/RRA5082-1.html">https://www.rand.org/pubs/research_reports/RRA5082-1.html</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>구글, DOE ‘Genesis Mission’ 지원 위해 AI tokens·클라우드 크레딧 4,000만 달러 확장(2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">딥마인드(DeepMind)</span></span><button type="button" class="copy-btn" data-copy="구글, DOE ‘Genesis Mission’ 지원 위해 AI tokens·클라우드 크레딧 4,000만 달러 확장(2026.7.1)
+
+구글 딥마인드는 DOE(미 에너지부) ‘Genesis Mission Summit 2026’에서 연구자들을 위한 AI tokens 및 클라우드 크레딧 4,000만 달러 규모의 지원을 확대하겠다고 밝혔다. 이번 지원은 Genesis Mission 수상자에게 AlphaEvolve·AlphaFold 3·AlphaGenome·WeatherNext·AlphaEarth Foundations 등 ‘for science’ 포트폴리오의 무상 인텔리전스 액세스를 제공하고, DOE 국립연구소 운영·연구·관리팀 다수 사용자에게 Gemini for Government 자리와 1년간의 토큰을 제공하는 내용이다. 또한 PNNL에서는 AlphaEvolve로 복잡한 수학 시스템 탐색을 자동화해 발견 시간을 단축하고, NLR에서는 Gemini를 계측 장비에 적용해 현미경 캘리브레이션 시간을 90분 이상에서 약 13분(8배 빠름)으로 줄였으며 수동 단계도 크게 감소했다고 전했다.
+
+https://cloud.google.com/blog/topics/public-sector/accelerating-frontiers-of-scientific-discovery-40-million-dollar-commitment-genesis-mission" onclick="copyEntry(this)">복사</button></div>
+  <p>구글 딥마인드는 DOE(미 에너지부) ‘Genesis Mission Summit 2026’에서 연구자들을 위한 AI tokens 및 클라우드 크레딧 4,000만 달러 규모의 지원을 확대하겠다고 밝혔다. 이번 지원은 Genesis Mission 수상자에게 AlphaEvolve·AlphaFold 3·AlphaGenome·WeatherNext·AlphaEarth Foundations 등 ‘for science’ 포트폴리오의 무상 인텔리전스 액세스를 제공하고, DOE 국립연구소 운영·연구·관리팀 다수 사용자에게 Gemini for Government 자리와 1년간의 토큰을 제공하는 내용이다. 또한 PNNL에서는 AlphaEvolve로 복잡한 수학 시스템 탐색을 자동화해 발견 시간을 단축하고, NLR에서는 Gemini를 계측 장비에 적용해 현미경 캘리브레이션 시간을 90분 이상에서 약 13분(8배 빠름)으로 줄였으며 수동 단계도 크게 감소했다고 전했다.</p>
+  <p class="url"><a href="https://cloud.google.com/blog/topics/public-sector/accelerating-frontiers-of-scientific-discovery-40-million-dollar-commitment-genesis-mission">https://cloud.google.com/blog/topics/public-sector/accelerating-frontiers-of-scientific-discovery-40-million-dollar-commitment-genesis-mission</a></p>
+</article>
+<article class="entry cat-gov">
+  <h2>FTC, AI 정확성·객관성 훼손 우려 정책초안에 대한 대국민 의견수렴(2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">미국 연방거래위원회(FTC)</span></span><button type="button" class="copy-btn" data-copy="FTC, AI 정확성·객관성 훼손 우려 정책초안에 대한 대국민 의견수렴(2026.7.1)
+
+미 연방거래위원회(FTC)는 AI 기업이 소비자가 기대하는 객관성·정확성과 달리 AI 시스템의 동작을 조작할 수 있다는 우려와 관련해 정책 성명(안)에 대한 공개 의견을 받는다. FTC Act상 ‘부당하거나 기만적인(unfair or deceptive)’ 행위를 금지하며, 회사가 비공개된 이념적 목표를 달성하기 위해 AI의 출력 결과를 왜곡하는 경우 소비자를 기만해 FTC Act 제5조 위반이 될 수 있다고 설명한다. 또한 소비자에게 특정 작업에서 AI가 효과적·적합하다고 한 명시적·암묵적 표현과 어긋날 수 있다고 밝혔다. 해당 정책 성명은 연방관보(Federal Register)에 게재되며, 의견은 Regulations.gov에 게시될 예정이다.
+
+https://ftc.gov/news-events/news/press-releases/2026/07/ftc-seeks-public-comment-policy-statement-addressing-ai-accuracy" onclick="copyEntry(this)">복사</button></div>
+  <p>미 연방거래위원회(FTC)는 AI 기업이 소비자가 기대하는 객관성·정확성과 달리 AI 시스템의 동작을 조작할 수 있다는 우려와 관련해 정책 성명(안)에 대한 공개 의견을 받는다. FTC Act상 ‘부당하거나 기만적인(unfair or deceptive)’ 행위를 금지하며, 회사가 비공개된 이념적 목표를 달성하기 위해 AI의 출력 결과를 왜곡하는 경우 소비자를 기만해 FTC Act 제5조 위반이 될 수 있다고 설명한다. 또한 소비자에게 특정 작업에서 AI가 효과적·적합하다고 한 명시적·암묵적 표현과 어긋날 수 있다고 밝혔다. 해당 정책 성명은 연방관보(Federal Register)에 게재되며, 의견은 Regulations.gov에 게시될 예정이다.</p>
+  <p class="url"><a href="https://ftc.gov/news-events/news/press-releases/2026/07/ftc-seeks-public-comment-policy-statement-addressing-ai-accuracy">https://ftc.gov/news-events/news/press-releases/2026/07/ftc-seeks-public-comment-policy-statement-addressing-ai-accuracy</a></p>
+</article>
+<article class="entry cat-research-org">
+  <h2>IASEAI - International Association for Safe and Ethical AI</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">iaseai.org</span></span><button type="button" class="copy-btn" data-copy="IASEAI - International Association for Safe and Ethical AI
+
+요약불가
+
+https://iaseai.org/working-groups/red-lines-policy-brief-july-2026" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://iaseai.org/working-groups/red-lines-policy-brief-july-2026">https://iaseai.org/working-groups/red-lines-policy-brief-july-2026</a></p>
+</article>
+<article class="entry cat-ngo">
+  <h2>🇺🇸 Building AI for Inclusive Outcomes (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-ngo">NGO</span> · <span class="source">PartnershipOnAI</span></span><button type="button" class="copy-btn" data-copy="Building AI for Inclusive Outcomes (2026.7.1)
+
+이 기사는 GLAAD의 보고서 &quot;Build for Everyone: LGBTQ 표현과 안전을 위한 AI 프레임워크&quot;를 소개하며, AI 시스템 개발 과정에서 LGBTQ 커뮤니티를 고려하는 것이 모든 사용자에게 더 안전하고 정확한 시스템을 만드는 데 중요하다는 점을 강조한다. 핵심은 LGBTQ 관련 데이터의 정확성과 다양성을 확보하여 AI 시스템의 편향성을 줄이는 것이다. 이를 통해 복잡한 상황을 더 잘 처리할 수 있는 품질 표준을 구축할 수 있으며, 이는 궁극적으로 모든 사용자에게 이점이 된다. 실질적인 첫 단계로는 훈련 데이터 내의 LGBTQ 표현을 검토하고, 필요하다면 전문가와 협력하는 것을 제안한다.
+
+https://partnershiponai.org/building-ai-systems-that-work-for-everyone/" onclick="copyEntry(this)">복사</button></div>
+  <p>이 기사는 GLAAD의 보고서 &quot;Build for Everyone: LGBTQ 표현과 안전을 위한 AI 프레임워크&quot;를 소개하며, AI 시스템 개발 과정에서 LGBTQ 커뮤니티를 고려하는 것이 모든 사용자에게 더 안전하고 정확한 시스템을 만드는 데 중요하다는 점을 강조한다. 핵심은 LGBTQ 관련 데이터의 정확성과 다양성을 확보하여 AI 시스템의 편향성을 줄이는 것이다. 이를 통해 복잡한 상황을 더 잘 처리할 수 있는 품질 표준을 구축할 수 있으며, 이는 궁극적으로 모든 사용자에게 이점이 된다. 실질적인 첫 단계로는 훈련 데이터 내의 LGBTQ 표현을 검토하고, 필요하다면 전문가와 협력하는 것을 제안한다.</p>
+  <p class="url"><a href="https://partnershiponai.org/building-ai-systems-that-work-for-everyone/">https://partnershiponai.org/building-ai-systems-that-work-for-everyone/</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>Opt-In Surveillance Approaching (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">AI-Frontiers</span></span><button type="button" class="copy-btn" data-copy="Opt-In Surveillance Approaching (2026.7.1)
+
+본문에서 논의된 주요 내용은 AI 기술의 발전으로 인해 개인 데이터에 대한 광범위한 접근이 가능해짐에 따라, 사람들이 자발적으로 AI를 통한 개인 평가를 공유하는 문화가 확산될 가능성이 있다는 점입니다. 초기에는 실용적인 이점을 위해 개인 정보를 공유하는 것이지만, 미래의 AI는 사용자의 일상 활동을 기반으로 한 신뢰성 있는 평가를 제공할 수 있습니다. 이러한 평가는 클릭 한 번으로 생성될 수 있으며, 초기 채택자들이 긍정적인 평가를 공유하면 다른 사람들도 비슷한 이점을 얻기 위해 따라할 압력이 생깁니다. 이 과정은 사회 전반에 걸쳐 자발적인 감시 문화로 이어질 수 있습니다. 기술적 진보와 함께, 개인 정보 보호 법률만으로는 이러한 자발적 감시 현상을 막기 어려울 수 있습니다.
+
+https://newsletter.ai-frontiers.org/p/opt-in-surveillance-is-approaching" onclick="copyEntry(this)">복사</button></div>
+  <p>본문에서 논의된 주요 내용은 AI 기술의 발전으로 인해 개인 데이터에 대한 광범위한 접근이 가능해짐에 따라, 사람들이 자발적으로 AI를 통한 개인 평가를 공유하는 문화가 확산될 가능성이 있다는 점입니다. 초기에는 실용적인 이점을 위해 개인 정보를 공유하는 것이지만, 미래의 AI는 사용자의 일상 활동을 기반으로 한 신뢰성 있는 평가를 제공할 수 있습니다. 이러한 평가는 클릭 한 번으로 생성될 수 있으며, 초기 채택자들이 긍정적인 평가를 공유하면 다른 사람들도 비슷한 이점을 얻기 위해 따라할 압력이 생깁니다. 이 과정은 사회 전반에 걸쳐 자발적인 감시 문화로 이어질 수 있습니다. 기술적 진보와 함께, 개인 정보 보호 법률만으로는 이러한 자발적 감시 현상을 막기 어려울 수 있습니다.</p>
+  <p class="url"><a href="https://newsletter.ai-frontiers.org/p/opt-in-surveillance-is-approaching">https://newsletter.ai-frontiers.org/p/opt-in-surveillance-is-approaching</a></p>
+</article>
+<article class="entry cat-blog">
+  <h2>🇺🇸 미국 정부의 AI security 정책에서 “누가 무엇을 하는지” 개관(2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-blog">블로그/SNS</span> · <span class="source">Horizon Launchpad(Substack)</span></span><button type="button" class="copy-btn" data-copy="미국 정부의 AI security 정책에서 “누가 무엇을 하는지” 개관(2026.7.1)
+
+이 글은 백악관의 EO(Advancing AI innovation and security)와 NSPM-11, 그리고 관련 전문가들이 본 정부 내 AI 보안 역할 분담을 정리한다. 백악관은 조정·컨설팅 중심이며 ONCD가 EO 작성에 크게 관여하고, OSTP는 분류된 분기점 지표(benchmark) 및 compute roadmap 관련 역할을 한다고 전한다. NSA는 ‘covered frontier model’ 지정과 파트너십·AI Security Center 등을 통한 평가/보안 강화에 관여하며, 상무부 CAISI는 평가 역할의 범위가 제한되거나 향후 축이 바뀔 가능성이 언급된다.
+
+https://horizonlaunchpad.substack.com/p/whos-doing-what-on-ai-security" onclick="copyEntry(this)">복사</button></div>
+  <p>이 글은 백악관의 EO(Advancing AI innovation and security)와 NSPM-11, 그리고 관련 전문가들이 본 정부 내 AI 보안 역할 분담을 정리한다. 백악관은 조정·컨설팅 중심이며 ONCD가 EO 작성에 크게 관여하고, OSTP는 분류된 분기점 지표(benchmark) 및 compute roadmap 관련 역할을 한다고 전한다. NSA는 ‘covered frontier model’ 지정과 파트너십·AI Security Center 등을 통한 평가/보안 강화에 관여하며, 상무부 CAISI는 평가 역할의 범위가 제한되거나 향후 축이 바뀔 가능성이 언급된다.</p>
+  <p class="url"><a href="https://horizonlaunchpad.substack.com/p/whos-doing-what-on-ai-security">https://horizonlaunchpad.substack.com/p/whos-doing-what-on-ai-security</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>ARToken ‘EvilTokens’ 제휴형 PhaaS 패널로 Microsoft 365 대상 phishing·토큰 지속·SharePoint 유출(2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">시스코 탈로스(Cisco Talos)</span></span><button type="button" class="copy-btn" data-copy="ARToken ‘EvilTokens’ 제휴형 PhaaS 패널로 Microsoft 365 대상 phishing·토큰 지속·SharePoint 유출(2026.7.1)
+
+시스코 탈로스는 ‘ARToken’이라는 phishing-as-a-service(PhaaS) 제휴자용 패널을 분석해, EvilTokens와 API 계약·운용 방식이 공유된다고 밝혔다. ARToken 패널은 장치 코드 phishing, Primary Refresh Token(PRT) 기반 지속성, BEC(메일함 장악) 및 SharePoint/OneDrive 유출에 이르는 기능을 80개+ API 엔드포인트와 대시보드를 통해 제공하며, Cloudflare Workers에 템플릿을 배포하는 구조라고 설명했다. 또한 클라이언트 측 7단계 anti-analysis(행동·타이밍 기반 봇 차단, XOR 암호화 payload)를 포함하고, 스푸핑 이메일은 SharePoint 링크의 평판을 이용하되 실제 목적지는 look-alike 테넌트로 유도하는 정교한 회피 방식을 사용한 것으로 제시했다.
+
+https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/" onclick="copyEntry(this)">복사</button></div>
+  <p>시스코 탈로스는 ‘ARToken’이라는 phishing-as-a-service(PhaaS) 제휴자용 패널을 분석해, EvilTokens와 API 계약·운용 방식이 공유된다고 밝혔다. ARToken 패널은 장치 코드 phishing, Primary Refresh Token(PRT) 기반 지속성, BEC(메일함 장악) 및 SharePoint/OneDrive 유출에 이르는 기능을 80개+ API 엔드포인트와 대시보드를 통해 제공하며, Cloudflare Workers에 템플릿을 배포하는 구조라고 설명했다. 또한 클라이언트 측 7단계 anti-analysis(행동·타이밍 기반 봇 차단, XOR 암호화 payload)를 포함하고, 스푸핑 이메일은 SharePoint 링크의 평판을 이용하되 실제 목적지는 look-alike 테넌트로 유도하는 정교한 회피 방식을 사용한 것으로 제시했다.</p>
+  <p class="url"><a href="https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/">https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>LLM Agent JADEPUFFER Executes Autonomous Ransomware Operation (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="LLM Agent JADEPUFFER Executes Autonomous Ransomware Operation (2026.7.1)
+
+요약불가
+
+https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion">https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>유엔 독립 국제 과학 패널, AI 역량 성장 속도에 현재 AI 안전장치가 못 미친다고 경고 (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">유엔(UN) 독립 국제 과학 패널 on AI</span></span><button type="button" class="copy-btn" data-copy="유엔 독립 국제 과학 패널, AI 역량 성장 속도에 현재 AI 안전장치가 못 미친다고 경고 (2026.7.1)
+
+본 보고서는 유엔 5개 지역의 독립 과학자와 전문가로 구성된 패널이 AI의 기회·위험·영향을 과학적 근거로 평가한 첫 독립 과학 보고서라고 밝힌다. 핵심 경고는 “현재의 safeguards가 AI 역량 성장 속도를 따라가지 못한다”는 점이며, 정책결정자는 필요 시점에 맞는 과학적 증거를 확보해야 하지만 증거가 명확해질 때는 이미 조치가 늦을 수 있다는 증거 격차 문제를 제시한다. 보고서는 7개 핵심 영역(과학·사회 적용·경제·보안/시스템/환경·인권/정보/민주주의·자율성과 아동 안전·관리/거버넌스/신뢰성)으로 결과를 정리하며, 예비보고서 이후에도 협의와 과학계 참여를 통해 근거를 심화하고 2026년 7월 제네바 글로벌 다이얼로그의 공통 과학적 출발점으로 활용될 예정이라고 한다.
+
+https://www.un.org/independent-international-scientific-panel-ai/en/preliminary-report" onclick="copyEntry(this)">복사</button></div>
+  <p>본 보고서는 유엔 5개 지역의 독립 과학자와 전문가로 구성된 패널이 AI의 기회·위험·영향을 과학적 근거로 평가한 첫 독립 과학 보고서라고 밝힌다. 핵심 경고는 “현재의 safeguards가 AI 역량 성장 속도를 따라가지 못한다”는 점이며, 정책결정자는 필요 시점에 맞는 과학적 증거를 확보해야 하지만 증거가 명확해질 때는 이미 조치가 늦을 수 있다는 증거 격차 문제를 제시한다. 보고서는 7개 핵심 영역(과학·사회 적용·경제·보안/시스템/환경·인권/정보/민주주의·자율성과 아동 안전·관리/거버넌스/신뢰성)으로 결과를 정리하며, 예비보고서 이후에도 협의와 과학계 참여를 통해 근거를 심화하고 2026년 7월 제네바 글로벌 다이얼로그의 공통 과학적 출발점으로 활용될 예정이라고 한다.</p>
+  <p class="url"><a href="https://www.un.org/independent-international-scientific-panel-ai/en/preliminary-report">https://www.un.org/independent-international-scientific-panel-ai/en/preliminary-report</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>🇺🇸 OpenAI LLM harness, 이론 CS·수학 9개 미해결 문제 해결(2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">CryptoBriefing</span></span><button type="button" class="copy-btn" data-copy="OpenAI LLM harness, 이론 CS·수학 9개 미해결 문제 해결(2026.7.1)
+
+OpenAI LLM harness는 GPT-5.5 Pro가 후보 증명/해법을 만들고 Claude Opus 4.8이 검증하는 prover-verifier 루프를 통해 이론적 컴퓨터과학·수학의 9개 공개 문제를 해결했다고 전했다. 9개 문제 중 4개는 COLT 문제 목록, 1개는 FOCS, 4개는 가환대수 분야에서 왔다고 하며, 결과는 2026년 6월 27~30일 무렵 공개된 것으로 설명했다. 연구진은 이 방식의 적용 범위를 다른 과학 분야 전반으로 확대할 계획도 밝혔다.
+
+https://cryptobriefing.com/openai-llm-harness-solves-theoretical-cs-problems/" onclick="copyEntry(this)">복사</button></div>
+  <p>OpenAI LLM harness는 GPT-5.5 Pro가 후보 증명/해법을 만들고 Claude Opus 4.8이 검증하는 prover-verifier 루프를 통해 이론적 컴퓨터과학·수학의 9개 공개 문제를 해결했다고 전했다. 9개 문제 중 4개는 COLT 문제 목록, 1개는 FOCS, 4개는 가환대수 분야에서 왔다고 하며, 결과는 2026년 6월 27~30일 무렵 공개된 것으로 설명했다. 연구진은 이 방식의 적용 범위를 다른 과학 분야 전반으로 확대할 계획도 밝혔다.</p>
+  <p class="url"><a href="https://cryptobriefing.com/openai-llm-harness-solves-theoretical-cs-problems/">https://cryptobriefing.com/openai-llm-harness-solves-theoretical-cs-problems/</a></p>
+</article>
+<article class="entry cat-db">
+  <h2>🇺🇸 Anthropic, Abnormal AI를 상대로 상표권 침해 소송 제기 (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI 소송 추적기</span></span><button type="button" class="copy-btn" data-copy="Anthropic, Abnormal AI를 상대로 상표권 침해 소송 제기 (2026.7.1)
+
+Anthropic PBC는 Abnormal AI가 자사 로고를 복제하고 유사한 이름과 브랜딩을 사용해 고객 혼동을 일으켰다며 상표권 침해 소송을 제기했다. 소송 근거는 미국 상거래에서 상표권 침해와 출처의 허위 표시를 금지하는 랜햄법(15 U.S.C. § 1125)이다. 사건은 캘리포니아 북부 연방지방법원에 접수됐으며, 사건번호는 3:26-cv-06754이고 현재 진행 중이다. изложાયેલા 내용은 법원의 사실 인정이 아니라 소장과 신청서에 담긴 주장이다.
+
+https://ailawsuittracker.com/cases/anthropic-pbc-v-abnormal-ai-inc-3-26-cv-06754/" onclick="copyEntry(this)">복사</button></div>
+  <p>Anthropic PBC는 Abnormal AI가 자사 로고를 복제하고 유사한 이름과 브랜딩을 사용해 고객 혼동을 일으켰다며 상표권 침해 소송을 제기했다. 소송 근거는 미국 상거래에서 상표권 침해와 출처의 허위 표시를 금지하는 랜햄법(15 U.S.C. § 1125)이다. 사건은 캘리포니아 북부 연방지방법원에 접수됐으며, 사건번호는 3:26-cv-06754이고 현재 진행 중이다. изложાયેલા 내용은 법원의 사실 인정이 아니라 소장과 신청서에 담긴 주장이다.</p>
+  <p class="url"><a href="https://ailawsuittracker.com/cases/anthropic-pbc-v-abnormal-ai-inc-3-26-cv-06754/">https://ailawsuittracker.com/cases/anthropic-pbc-v-abnormal-ai-inc-3-26-cv-06754/</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>AI 규제 동향 구독형 Global AI Regulation Tracker API를 Python/CLI로 조회·렌더링하는 패키지 (본문 발행일: 2026.07.01)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">GitHub (aegis-blue-ai)</span></span><button type="button" class="copy-btn" data-copy="AI 규제 동향 구독형 Global AI Regulation Tracker API를 Python/CLI로 조회·렌더링하는 패키지 (본문 발행일: 2026.07.01)
+
+github.com의 ai-reg-tracker는 Raymond Sun의 Global AI Regulation Tracker API에 대한 Python client로, 약 100+ 관할의 AI 규제 발전 정보를 구독(구매) 기반으로 조회할 수 있다. API 키는 결제 후 발급받아 AI_REG_TRACKER_API_KEY 환경변수로 설정하거나 클라이언트에 직접 전달하며, market(국가/그룹 코드), category(예: latest_news 등), date(스냅샷/일별 조회) 및 lang(eng/chn)로 질의한다. 응답은 RegulationResponse(평탄화된 entries, 메시지, 원문 raw) 형태이며, entries에는 label/desc/href 등 필드가 제공되고 global+date 응답은 market 코드별 dict로 온다. 결과를 markdown으로 저장하는 렌더러/CLI(예: ai-reg-render)와 pytest 기반 단위/실통합 테스트, 라이선스는 MIT로 안내된다.
+
+https://github.com/aegis-blue-ai/ai-reg-tracker" onclick="copyEntry(this)">복사</button></div>
+  <p>github.com의 ai-reg-tracker는 Raymond Sun의 Global AI Regulation Tracker API에 대한 Python client로, 약 100+ 관할의 AI 규제 발전 정보를 구독(구매) 기반으로 조회할 수 있다. API 키는 결제 후 발급받아 AI_REG_TRACKER_API_KEY 환경변수로 설정하거나 클라이언트에 직접 전달하며, market(국가/그룹 코드), category(예: latest_news 등), date(스냅샷/일별 조회) 및 lang(eng/chn)로 질의한다. 응답은 RegulationResponse(평탄화된 entries, 메시지, 원문 raw) 형태이며, entries에는 label/desc/href 등 필드가 제공되고 global+date 응답은 market 코드별 dict로 온다. 결과를 markdown으로 저장하는 렌더러/CLI(예: ai-reg-render)와 pytest 기반 단위/실통합 테스트, 라이선스는 MIT로 안내된다.</p>
+  <p class="url"><a href="https://github.com/aegis-blue-ai/ai-reg-tracker">https://github.com/aegis-blue-ai/ai-reg-tracker</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>Moonlight, 연구논문 읽기를 돕는 AI PDF 리더 및 2주년 프로모션(2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">themoonlight.io</span></span><button type="button" class="copy-btn" data-copy="Moonlight, 연구논문 읽기를 돕는 AI PDF 리더 및 2주년 프로모션(2026.7.1)
+
+Moonlight은 PDF 뷰어와 같은 화면에서 번역·질문(Q&amp;A)·설명(수식/도표/이론)·인용 확인·요약·미리보기·라이브러리 정리·자동 하이라이트·마크업 등을 제공하는 AI 기능을 강조했다. 또한 2nd Anniversary Celebration을 통해 7월 1일까지 할인 쿠폰 및 구독 보상 제공을 안내하며, 사용자 사례로 논문 이해 부담 완화와 요약 기반 독서 효율 향상을 제시했다.
+
+https://themoonlight.io/en" onclick="copyEntry(this)">복사</button></div>
+  <p>Moonlight은 PDF 뷰어와 같은 화면에서 번역·질문(Q&amp;A)·설명(수식/도표/이론)·인용 확인·요약·미리보기·라이브러리 정리·자동 하이라이트·마크업 등을 제공하는 AI 기능을 강조했다. 또한 2nd Anniversary Celebration을 통해 7월 1일까지 할인 쿠폰 및 구독 보상 제공을 안내하며, 사용자 사례로 논문 이해 부담 완화와 요약 기반 독서 효율 향상을 제시했다.</p>
+  <p class="url"><a href="https://themoonlight.io/en">https://themoonlight.io/en</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>The week AI sovereignty became an engineering discipline (2026.07.01)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">thealliance.ai (AI Alliance)</span></span><button type="button" class="copy-btn" data-copy="The week AI sovereignty became an engineering discipline (2026.07.01)
+
+UN Open Source Week 기간 뉴욕에서 열린 행사에서 ‘AI sovereignty’를 정책 구호가 아닌 구축 가능한 기술 과제로 다뤘다고 전했다. AI Alliance는 분산된 모델 개발을 통해 커뮤니티가 소유하고 frontier급 역량을 갖춘 sovereign AI를 만들기 위한 Project Tapestry를 소개했으며, 국가·기관별로 데이터/컴퓨트/인재를 제공하되 각 참여 주체의 소유권은 유지하는 방식을 강조했다. 또한 공개 데이터 고갈 우려, federated learning 및 DP-SGD 기반 학습/평가 필요성, 언어·문화 데이터 과소대표 문제와 비용·효율 이슈, 추론 시 AI가 콘텐츠를 직접 질의해 통제·귀속을 확보하는 접근 등을 함께 논의했다. 마지막으로는 AI 플랫폼 여정은 벤더에 선점되기 전에 기업이 스택을 소유하고 거버넌스를 설계해야 한다는 제언이 제시됐다.
+
+https://thealliance.ai/blog/the-week-ai-sovereignty-became-an-engineering-discipline" onclick="copyEntry(this)">복사</button></div>
+  <p>UN Open Source Week 기간 뉴욕에서 열린 행사에서 ‘AI sovereignty’를 정책 구호가 아닌 구축 가능한 기술 과제로 다뤘다고 전했다. AI Alliance는 분산된 모델 개발을 통해 커뮤니티가 소유하고 frontier급 역량을 갖춘 sovereign AI를 만들기 위한 Project Tapestry를 소개했으며, 국가·기관별로 데이터/컴퓨트/인재를 제공하되 각 참여 주체의 소유권은 유지하는 방식을 강조했다. 또한 공개 데이터 고갈 우려, federated learning 및 DP-SGD 기반 학습/평가 필요성, 언어·문화 데이터 과소대표 문제와 비용·효율 이슈, 추론 시 AI가 콘텐츠를 직접 질의해 통제·귀속을 확보하는 접근 등을 함께 논의했다. 마지막으로는 AI 플랫폼 여정은 벤더에 선점되기 전에 기업이 스택을 소유하고 거버넌스를 설계해야 한다는 제언이 제시됐다.</p>
+  <p class="url"><a href="https://thealliance.ai/blog/the-week-ai-sovereignty-became-an-engineering-discipline">https://thealliance.ai/blog/the-week-ai-sovereignty-became-an-engineering-discipline</a></p>
+</article>
+<article class="entry cat-other">
+  <h2>🇪🇺 ADRF26 포르투에서 2026.10.13~14 개최 예정(2026.10.13)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">ADRF(adrforum.eu)</span></span><button type="button" class="copy-btn" data-copy="ADRF26 포르투에서 2026.10.13~14 개최 예정(2026.10.13)
+
+ADRF26은 2026년 10월 13~14일 포르투갈 포르투에서 개최되는 유럽 고위임팩트 포럼으로, AI·Data·Robotics 분야의 산업·학계·정책 주요 참여자 500여 명을 모아 기술 혁신과 실용적 전환을 가속하는 것을 목표로 한다. INESC TEC가 주관하며, 유럽 AI·데이터·로보틱스 파트너십의 민간 측 ADRA와 유럽연합 집행위원회의 참여가 언급된다. 기조연설, 고위 패널, 병렬 세션, 전시 및 프로젝트 쇼케이스, 구조화 네트워킹을 통해 전략적·산업·사회적 과제와 유망 트렌드 및 파트너십 기회를 다룬다.
+
+https://adrforum.eu/about-adrf26" onclick="copyEntry(this)">복사</button></div>
+  <p>ADRF26은 2026년 10월 13~14일 포르투갈 포르투에서 개최되는 유럽 고위임팩트 포럼으로, AI·Data·Robotics 분야의 산업·학계·정책 주요 참여자 500여 명을 모아 기술 혁신과 실용적 전환을 가속하는 것을 목표로 한다. INESC TEC가 주관하며, 유럽 AI·데이터·로보틱스 파트너십의 민간 측 ADRA와 유럽연합 집행위원회의 참여가 언급된다. 기조연설, 고위 패널, 병렬 세션, 전시 및 프로젝트 쇼케이스, 구조화 네트워킹을 통해 전략적·산업·사회적 과제와 유망 트렌드 및 파트너십 기회를 다룬다.</p>
+  <p class="url"><a href="https://adrforum.eu/about-adrf26">https://adrforum.eu/about-adrf26</a></p>
+</article><nav class="day-nav"><a class="day-nav-btn" href="2026-06-30.html">← 2026-06-30</a><a class="day-nav-btn" href="2026-07-02.html">2026-07-02 →</a></nav>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

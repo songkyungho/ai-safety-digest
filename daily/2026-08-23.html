@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-08-23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --g1: #e3cf9a; --g2: #d3ac52;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --g1: #4a3d24; --g2: #7a5c26;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .day-nav-btn {
+    display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    font-weight: 600; text-decoration: none; color: var(--fg); border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .day-nav-btn:hover { border-color: var(--gold); color: var(--gold-strong); }
+  .day-nav-btn.disabled { color: var(--muted); cursor: default; }
+  .day-nav-btn.disabled:hover { border-color: var(--border); color: var(--muted); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+  /* 아카이브 격자(옵션 B) — 요일 정렬 없이 1일부터 촘촘히, 건수는 4단계
+     골드 톤으로. 배경이 밝을 때(g3·g4)는 --bg를, 옅을 때(g1·g2)는 --fg를
+     글자색으로 써서 라이트/다크 모드 둘 다 자동으로 대비가 맞게 한다. */
+  .archive-month-current { margin: 10px 0 4px; }
+  .month-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 10px; }
+  .archive-month .archive-grid { margin-top: 8px; padding-left: 14px; }
+  .archive-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .archive-cell {
+    width: 42px; height: 42px; border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 0.78rem; text-decoration: none;
+    border: 1px solid var(--border);
+  }
+  .archive-cell .n { font-weight: 700; line-height: 1.15; }
+  .archive-cell .c { font-size: 0.62rem; opacity: 0.85; line-height: 1.1; }
+  .archive-cell.empty { color: var(--muted); }
+  .archive-cell.g1 { background: var(--g1); color: var(--fg); border-color: transparent; }
+  .archive-cell.g2 { background: var(--g2); color: var(--fg); border-color: transparent; }
+  .archive-cell.g3 { background: var(--gold); color: var(--bg); border-color: transparent; }
+  .archive-cell.g4 { background: var(--gold-strong); color: var(--bg); border-color: transparent; }
+  .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-08-23 · 59/59 수집 성공, 9/9건 요약</div>
+    <div class="nav"><a href="../index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-media">
+  <h2>친밀한 AI 챗봇과 정신 건강 (2026.8.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">AI 윤리 레터</span></span><button type="button" class="copy-btn" data-copy="친밀한 AI 챗봇과 정신 건강 (2026.8.23)
+
+AI 컴패니언은 이용자가 고민과 감정을 털어놓거나 애착을 형성하는 등 챗봇과 정서적으로 교류하는 방식이다. 연구에 따르면 이용자들은 이를 실재하는 타자보다 안전하게 속내를 말할 수 있고 통제 가능한 공간으로 인식하지만, 이러한 통제성이 자기반복적 메아리와 프라이버시 문제로 이어질 수 있다. 글은 AI 컴패니언 이용을 정신질환이나 의존으로만 규정하기보다, 외로움과 의미 있는 소통을 원하는 인간의 욕구 및 돌봄의 사회적 조건 속에서 이해해야 한다고 설명한다.
+
+https://ai-ethics.kr/ai-companion-mental-health-2026-08-24/" onclick="copyEntry(this)">복사</button></div>
+  <p>AI 컴패니언은 이용자가 고민과 감정을 털어놓거나 애착을 형성하는 등 챗봇과 정서적으로 교류하는 방식이다. 연구에 따르면 이용자들은 이를 실재하는 타자보다 안전하게 속내를 말할 수 있고 통제 가능한 공간으로 인식하지만, 이러한 통제성이 자기반복적 메아리와 프라이버시 문제로 이어질 수 있다. 글은 AI 컴패니언 이용을 정신질환이나 의존으로만 규정하기보다, 외로움과 의미 있는 소통을 원하는 인간의 욕구 및 돌봄의 사회적 조건 속에서 이해해야 한다고 설명한다.</p>
+  <p class="url"><a href="https://ai-ethics.kr/ai-companion-mental-health-2026-08-24/">https://ai-ethics.kr/ai-companion-mental-health-2026-08-24/</a></p>
+</article>
+<article class="entry cat-media">
+  <h2>‘검열 산업 복합체’ 서사가 주변부에서 트럼프 정책으로 확산된 과정 (2026.8.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">테크 폴리시 프레스</span></span><button type="button" class="copy-btn" data-copy="‘검열 산업 복합체’ 서사가 주변부에서 트럼프 정책으로 확산된 과정 (2026.8.23)
+
+Tech Policy Press는 MIT Technology Review가 보도한 ‘검열 산업 복합체’ 서사의 형성과 트럼프 행정부 정책에 미친 영향을 다룬 팟캐스트를 공개했다. 대담에서는 이에 동조하는 우파 세력의 협력 과정과, 관련 연구를 수행한 시민사회단체 및 독립 기술 연구자들이 소송·조사·비자 제한·각종 괴롭힘의 대상이 된 상황을 설명한다.
+
+https://www.techpolicy.press/how-the-censorship-industrial-complex-narrative-went-from-fringe-to-trump-policy" onclick="copyEntry(this)">복사</button></div>
+  <p>Tech Policy Press는 MIT Technology Review가 보도한 ‘검열 산업 복합체’ 서사의 형성과 트럼프 행정부 정책에 미친 영향을 다룬 팟캐스트를 공개했다. 대담에서는 이에 동조하는 우파 세력의 협력 과정과, 관련 연구를 수행한 시민사회단체 및 독립 기술 연구자들이 소송·조사·비자 제한·각종 괴롭힘의 대상이 된 상황을 설명한다.</p>
+  <p class="url"><a href="https://www.techpolicy.press/how-the-censorship-industrial-complex-narrative-went-from-fringe-to-trump-policy">https://www.techpolicy.press/how-the-censorship-industrial-complex-narrative-went-from-fringe-to-trump-policy</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>에이전틱 AI로 고도화되는 온라인 사기 위협 (2026.8.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">뉴시스</span></span><button type="button" class="copy-btn" data-copy="에이전틱 AI로 고도화되는 온라인 사기 위협 (2026.8.23)
+
+스스로 목표를 세우고 작업을 실행하는 에이전틱 AI가 온라인 사기 조직에 활용되면서 다국적 피해자를 겨냥한 범죄가 더욱 정교해질 수 있다는 경고가 나왔다. 사이버 범죄 전문가는 에이전틱 AI가 사기꾼 10명에 해당하는 역할을 대신해 원격 범죄 조직 운영을 가능하게 하고, 피해자 정보를 바탕으로 고도화된 딥페이크 공격을 수행할 수 있다고 설명했다. 유엔에 따르면 지난해 아시아·태평양 지역의 국경 간 온라인 사기 피해액은 1140억 달러로 2023년보다 약 3배 증가했으며, 대응을 위해 국가 간 협력과 공공·민간의 AI 기반 공조가 필요하다고 강조했다.
+
+https://www.newsis.com/view/NISX20260821_0003757958" onclick="copyEntry(this)">복사</button></div>
+  <p>스스로 목표를 세우고 작업을 실행하는 에이전틱 AI가 온라인 사기 조직에 활용되면서 다국적 피해자를 겨냥한 범죄가 더욱 정교해질 수 있다는 경고가 나왔다. 사이버 범죄 전문가는 에이전틱 AI가 사기꾼 10명에 해당하는 역할을 대신해 원격 범죄 조직 운영을 가능하게 하고, 피해자 정보를 바탕으로 고도화된 딥페이크 공격을 수행할 수 있다고 설명했다. 유엔에 따르면 지난해 아시아·태평양 지역의 국경 간 온라인 사기 피해액은 1140억 달러로 2023년보다 약 3배 증가했으며, 대응을 위해 국가 간 협력과 공공·민간의 AI 기반 공조가 필요하다고 강조했다.</p>
+  <p class="url"><a href="https://www.newsis.com/view/NISX20260821_0003757958">https://www.newsis.com/view/NISX20260821_0003757958</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>전북교육청, 전국 최초 AI 교육 가이드라인 마련…생기부 정성평가 활용 금지 (2026.8.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">경향신문</span></span><button type="button" class="copy-btn" data-copy="전북교육청, 전국 최초 AI 교육 가이드라인 마련…생기부 정성평가 활용 금지 (2026.8.23)
+
+전북교육청은 생성형 AI의 활용 범위와 책임을 규정한 ‘전북 AI리터러시 교육 가이드라인’을 마련해 9월부터 학교에 적용한다. 학교생활기록부 등 정성적 평가 기록에 AI서비스를 활용하는 것을 금지하고, 동의 없는 얼굴·음성 합성 딥페이크도 금지한다. AI 활용 시 최종 판단과 책임은 사람이 맡도록 하며, 학생의 정보 교차 검증과 AI 활용 범위·목적 공개도 요구한다. 가이드라인은 법적 강제력 없이 학교가 자율적으로 적용하며, 전북교육청은 매년 한 차례 이상 내용을 검토·보완할 계획이다.
+
+https://www.khan.co.kr/article/202608232054015/" onclick="copyEntry(this)">복사</button></div>
+  <p>전북교육청은 생성형 AI의 활용 범위와 책임을 규정한 ‘전북 AI리터러시 교육 가이드라인’을 마련해 9월부터 학교에 적용한다. 학교생활기록부 등 정성적 평가 기록에 AI서비스를 활용하는 것을 금지하고, 동의 없는 얼굴·음성 합성 딥페이크도 금지한다. AI 활용 시 최종 판단과 책임은 사람이 맡도록 하며, 학생의 정보 교차 검증과 AI 활용 범위·목적 공개도 요구한다. 가이드라인은 법적 강제력 없이 학교가 자율적으로 적용하며, 전북교육청은 매년 한 차례 이상 내용을 검토·보완할 계획이다.</p>
+  <p class="url"><a href="https://www.khan.co.kr/article/202608232054015/">https://www.khan.co.kr/article/202608232054015/</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>🇺🇸 AI 슬롭 잡으려다 사람 잡는다…‘AI 감별기’의 두 얼굴[AI슬롭 비상③] (2026.8.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">뉴시스</span></span><button type="button" class="copy-btn" data-copy="AI 슬롭 잡으려다 사람 잡는다…‘AI 감별기’의 두 얼굴[AI슬롭 비상③] (2026.8.23)
+
+생성형 AI로 대량 생산된 저품질 콘텐츠인 AI 슬롭이 확산하면서 텍스트와 이미지의 AI 생성 여부를 판별하는 감별기 시장이 성장하고 있다. 미국 AI 탐지 스타트업 판그램은 최근 900만 달러를 유치했으며, AI가 일부 개입한 혼합형 글과 AI 생성 이미지를 판별하는 모델을 공개했다. 그러나 사람이 쓴 글을 AI 생성물로 잘못 판단하는 오탐 가능성이 남아 있고, AI 생성 여부만으로 콘텐츠의 품질을 판단하기 어렵다는 지적도 나온다.
+
+https://www.newsis.com/view/NISX20260821_0003757862" onclick="copyEntry(this)">복사</button></div>
+  <p>생성형 AI로 대량 생산된 저품질 콘텐츠인 AI 슬롭이 확산하면서 텍스트와 이미지의 AI 생성 여부를 판별하는 감별기 시장이 성장하고 있다. 미국 AI 탐지 스타트업 판그램은 최근 900만 달러를 유치했으며, AI가 일부 개입한 혼합형 글과 AI 생성 이미지를 판별하는 모델을 공개했다. 그러나 사람이 쓴 글을 AI 생성물로 잘못 판단하는 오탐 가능성이 남아 있고, AI 생성 여부만으로 콘텐츠의 품질을 판단하기 어렵다는 지적도 나온다.</p>
+  <p class="url"><a href="https://www.newsis.com/view/NISX20260821_0003757862">https://www.newsis.com/view/NISX20260821_0003757862</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>🇰🇷 가짜가 진짜를 밀어낸다…일상 파고드는 ‘AI 슬롭’ (2026.8.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">뉴시스</span></span><button type="button" class="copy-btn" data-copy="가짜가 진짜를 밀어낸다…일상 파고드는 ‘AI 슬롭’ (2026.8.23)
+
+AI가 만든 저품질·허위 콘텐츠인 ‘AI 슬롭’이 유튜브와 틱톡 추천 알고리즘을 통해 일상적으로 확산하고 있다. 캡윙 조사에서 한국의 상위 유튜브 채널 100개 중 11개가 AI 슬롭 채널로 분류됐고, 누적 조회수는 84억5000만 회에 달했으며 신규 쇼츠의 21%, 틱톡 추천 영상의 59%가 AI 슬롭으로 나타났다. 잘못된 건강 정보나 등산 지도처럼 실제 선택과 행동에 피해를 줄 수 있고, 검색·추천 영역에서 양질의 콘텐츠를 밀어내 온라인 정보에 대한 신뢰를 훼손할 우려가 제기된다. 다만 AI 활용 창작물 전체를 AI 슬롭으로 볼 수는 없으며, 품질·생산 규모·의도·피해 가능성 등을 종합해 판단해야 한다.
+
+https://www.newsis.com/view/NISX20260821_0003757942" onclick="copyEntry(this)">복사</button></div>
+  <p>AI가 만든 저품질·허위 콘텐츠인 ‘AI 슬롭’이 유튜브와 틱톡 추천 알고리즘을 통해 일상적으로 확산하고 있다. 캡윙 조사에서 한국의 상위 유튜브 채널 100개 중 11개가 AI 슬롭 채널로 분류됐고, 누적 조회수는 84억5000만 회에 달했으며 신규 쇼츠의 21%, 틱톡 추천 영상의 59%가 AI 슬롭으로 나타났다. 잘못된 건강 정보나 등산 지도처럼 실제 선택과 행동에 피해를 줄 수 있고, 검색·추천 영역에서 양질의 콘텐츠를 밀어내 온라인 정보에 대한 신뢰를 훼손할 우려가 제기된다. 다만 AI 활용 창작물 전체를 AI 슬롭으로 볼 수는 없으며, 품질·생산 규모·의도·피해 가능성 등을 종합해 판단해야 한다.</p>
+  <p class="url"><a href="https://www.newsis.com/view/NISX20260821_0003757942">https://www.newsis.com/view/NISX20260821_0003757942</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>빅테크, AI 슬롭 수익화·노출 제한하며 퇴출 나서 (2026.8.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">뉴시스</span></span><button type="button" class="copy-btn" data-copy="빅테크, AI 슬롭 수익화·노출 제한하며 퇴출 나서 (2026.8.23)
+
+유튜브는 대량·반복적인 비진정성 콘텐츠의 수익화를 제한하고, 구글은 검색 순위 조작을 위한 저품질·비독창적 콘텐츠의 노출을 낮추거나 제외한다. 메타와 틱톡은 AI 생성·변형 콘텐츠에 라벨을 붙이고 탐지·교육을 강화하며, 틱톡은 올해 1분기에 8600만 개 이상의 허위 계정을 삭제했다고 밝혔다. 플랫폼별 AI 슬롭 기준과 제재 방식이 달라 콘텐츠가 다른 플랫폼으로 이동할 수 있어, C2PA 등 출처 기술과 플랫폼 간 정보 공유가 과제로 남아 있다.
+
+https://www.newsis.com/view/NISX20260821_0003757983" onclick="copyEntry(this)">복사</button></div>
+  <p>유튜브는 대량·반복적인 비진정성 콘텐츠의 수익화를 제한하고, 구글은 검색 순위 조작을 위한 저품질·비독창적 콘텐츠의 노출을 낮추거나 제외한다. 메타와 틱톡은 AI 생성·변형 콘텐츠에 라벨을 붙이고 탐지·교육을 강화하며, 틱톡은 올해 1분기에 8600만 개 이상의 허위 계정을 삭제했다고 밝혔다. 플랫폼별 AI 슬롭 기준과 제재 방식이 달라 콘텐츠가 다른 플랫폼으로 이동할 수 있어, C2PA 등 출처 기술과 플랫폼 간 정보 공유가 과제로 남아 있다.</p>
+  <p class="url"><a href="https://www.newsis.com/view/NISX20260821_0003757983">https://www.newsis.com/view/NISX20260821_0003757983</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>🇰🇷 AI 에이전트 시대, 소버린 AI 2.0은 운용 주권 중심이어야 (2026.8.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">뉴시스</span></span><button type="button" class="copy-btn" data-copy="AI 에이전트 시대, 소버린 AI 2.0은 운용 주권 중심이어야 (2026.8.23)
+
+최종현학술원과 서울대학교 미래전연구센터는 독자 파운데이션 모델 확보를 넘어 안정적인 AI 접근·운용 역량을 중시하는 ‘소버린 AI 2.0’ 보고서를 공동 발간했다. 외부 서비스가 차단돼도 대체 체계로 전환해 AI 기능을 중단 없이 유지하는 능력을 새로운 국가안보 기준으로 제시했다. 한국에는 기술 완전 자립보다 메모리 반도체와 데이터센터 등 산업적 강점을 활용해 선택과 집중하고, 외부와 연결되면서도 핵심 기능이 종속되지 않는 구조를 구축할 것을 제안했다.
+
+https://www.newsis.com/view/NISX20260823_0003758760" onclick="copyEntry(this)">복사</button></div>
+  <p>최종현학술원과 서울대학교 미래전연구센터는 독자 파운데이션 모델 확보를 넘어 안정적인 AI 접근·운용 역량을 중시하는 ‘소버린 AI 2.0’ 보고서를 공동 발간했다. 외부 서비스가 차단돼도 대체 체계로 전환해 AI 기능을 중단 없이 유지하는 능력을 새로운 국가안보 기준으로 제시했다. 한국에는 기술 완전 자립보다 메모리 반도체와 데이터센터 등 산업적 강점을 활용해 선택과 집중하고, 외부와 연결되면서도 핵심 기능이 종속되지 않는 구조를 구축할 것을 제안했다.</p>
+  <p class="url"><a href="https://www.newsis.com/view/NISX20260823_0003758760">https://www.newsis.com/view/NISX20260823_0003758760</a></p>
+</article>
+<article class="entry cat-news-rss">
+  <h2>🇰🇷 ‘AI 편향’ 보도 4년 새 4배… 생성형 AI 시대, ‘편견 없는 AI’ 만들려면 (2026.8.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-news-rss">뉴스RSS</span> · <span class="source">여성신문</span></span><button type="button" class="copy-btn" data-copy="‘AI 편향’ 보도 4년 새 4배… 생성형 AI 시대, ‘편견 없는 AI’ 만들려면 (2026.8.23)
+
+국내 언론의 ‘AI 편향’ 보도는 2022년 212건에서 2025년 876건으로 증가했으며, 공정한 의사결정, 허위정보, 젠더 편향 등이 주요 쟁점으로 분석됐다. 전문가들은 알고리즘과 데이터 설계뿐 아니라 수집·학습·배포·사용 전 과정에서 편향을 평가하고 관리해야 한다고 강조했다. 생성형 AI의 편향 측정에는 임베딩·확률·생성 텍스트 기반 방식이 활용되며, 안전성·공정성·유용성 사이의 균형과 지속적인 모니터링이 필요하다고 지적했다.
+
+https://www.womennews.co.kr/news/articleView.html?idxno=281199" onclick="copyEntry(this)">복사</button></div>
+  <p>국내 언론의 ‘AI 편향’ 보도는 2022년 212건에서 2025년 876건으로 증가했으며, 공정한 의사결정, 허위정보, 젠더 편향 등이 주요 쟁점으로 분석됐다. 전문가들은 알고리즘과 데이터 설계뿐 아니라 수집·학습·배포·사용 전 과정에서 편향을 평가하고 관리해야 한다고 강조했다. 생성형 AI의 편향 측정에는 임베딩·확률·생성 텍스트 기반 방식이 활용되며, 안전성·공정성·유용성 사이의 균형과 지속적인 모니터링이 필요하다고 지적했다.</p>
+  <p class="url"><a href="https://www.womennews.co.kr/news/articleView.html?idxno=281199">https://www.womennews.co.kr/news/articleView.html?idxno=281199</a></p>
+</article><nav class="day-nav"><a class="day-nav-btn" href="2026-08-22.html">← 2026-08-22</a><a class="day-nav-btn" href="2026-08-24.html">2026-08-24 →</a></nav>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

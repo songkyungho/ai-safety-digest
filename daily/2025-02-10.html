@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2025-02-10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
+       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
+    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
+    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
+    --navy: #0c2035; --navy-2: #143049;
+    --gold: #9c6c22; --gold-strong: #7e561a;
+    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
+    --hairline-strong: #d5c9ab;
+    --g1: #e3cf9a; --g2: #d3ac52;
+    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
+    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
+    --cat-other: #6b7280;
+    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
+    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
+    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
+    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
+    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
+    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
+    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
+      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
+      --navy: #060d15; --navy-2: #0b1a29;
+      --gold: #e3b563; --gold-strong: #f0c876;
+      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
+      --hairline-strong: #384049;
+      --g1: #4a3d24; --g2: #7a5c26;
+      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
+      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
+      --cat-other: #9ca3af;
+      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
+      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
+      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
+      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
+      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
+      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; color: #fff;
+  }
+  .badge.cat-research { background: var(--cat-research); }
+  .badge.cat-aisi { background: var(--cat-aisi); }
+  .badge.cat-company { background: var(--cat-company); }
+  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
+  .badge.cat-intl { background: var(--cat-intl); }
+  .badge.cat-notice { background: var(--cat-notice); }
+  .badge.cat-other { background: var(--cat-other); }
+  .badge.cat-intl-org { background: var(--cat-intl-org); }
+  .badge.cat-gov { background: var(--cat-gov); }
+  .badge.cat-research-org { background: var(--cat-research-org); }
+  .badge.cat-ngo { background: var(--cat-ngo); }
+  .badge.cat-media { background: var(--cat-media); }
+  .badge.cat-news-rss { background: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
+  .badge.cat-db { background: var(--cat-db); }
+  .badge.cat-blog { background: var(--cat-blog); }
+  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { background: var(--cat-aiid); }
+  .badge.cat-frontier { background: var(--cat-frontier); }
+  .badge.cat-msit { background: var(--cat-msit); }
+  .badge.cat-iitp { background: var(--cat-iitp); }
+  .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .day-nav-btn {
+    display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    font-weight: 600; text-decoration: none; color: var(--fg); border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .day-nav-btn:hover { border-color: var(--gold); color: var(--gold-strong); }
+  .day-nav-btn.disabled { color: var(--muted); cursor: default; }
+  .day-nav-btn.disabled:hover { border-color: var(--border); color: var(--muted); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+  /* 아카이브 격자(옵션 B) — 요일 정렬 없이 1일부터 촘촘히, 건수는 4단계
+     골드 톤으로. 배경이 밝을 때(g3·g4)는 --bg를, 옅을 때(g1·g2)는 --fg를
+     글자색으로 써서 라이트/다크 모드 둘 다 자동으로 대비가 맞게 한다. */
+  .archive-month-current { margin: 10px 0 4px; }
+  .month-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 10px; }
+  .archive-month .archive-grid { margin-top: 8px; padding-left: 14px; }
+  .archive-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .archive-cell {
+    width: 42px; height: 42px; border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 0.78rem; text-decoration: none;
+    border: 1px solid var(--border);
+  }
+  .archive-cell .n { font-weight: 700; line-height: 1.15; }
+  .archive-cell .c { font-size: 0.62rem; opacity: 0.85; line-height: 1.1; }
+  .archive-cell.empty { color: var(--muted); }
+  .archive-cell.g1 { background: var(--g1); color: var(--fg); border-color: transparent; }
+  .archive-cell.g2 { background: var(--g2); color: var(--fg); border-color: transparent; }
+  .archive-cell.g3 { background: var(--gold); color: var(--bg); border-color: transparent; }
+  .archive-cell.g4 { background: var(--gold-strong); color: var(--bg); border-color: transparent; }
+  .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2025-02-10 · 5/5건 요약</div>
+    <div class="nav"><a href="../index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<article class="entry cat-kdi-eiec">
+  <h2>인공지능 세계 3대 강국 도약 위한 국가 AI컴퓨팅 센터 사업설명회 개최 (2025.2.10)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">과학기술정보통신부</span></span><button type="button" class="copy-btn" data-copy="인공지능 세계 3대 강국 도약 위한 국가 AI컴퓨팅 센터 사업설명회 개최 (2025.2.10)
+
+과학기술정보통신부는 인공지능 세계 3대 강국 도약을 위한 국가 AI컴퓨팅 센터 구축 사업설명회를 2월 7일 개최했다. 정부는 첨단 반도체 기반의 AI 컴퓨팅 인프라를 인재·소프트웨어 혁신과 결합해 인공지능 경쟁력을 강화할 계획이다. 민간 참여자는 2월 28일 오후 5시까지 사업참여의향서를 제출해야 하며, 공모지침서는 의향서 제출 기업에 제공된다.
+
+https://eiec.kdi.re.kr/policy/materialView.do?num=263069" onclick="copyEntry(this)">복사</button></div>
+  <p>과학기술정보통신부는 인공지능 세계 3대 강국 도약을 위한 국가 AI컴퓨팅 센터 구축 사업설명회를 2월 7일 개최했다. 정부는 첨단 반도체 기반의 AI 컴퓨팅 인프라를 인재·소프트웨어 혁신과 결합해 인공지능 경쟁력을 강화할 계획이다. 민간 참여자는 2월 28일 오후 5시까지 사업참여의향서를 제출해야 하며, 공모지침서는 의향서 제출 기업에 제공된다.</p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263069">https://eiec.kdi.re.kr/policy/materialView.do?num=263069</a></p>
+</article>
+<article class="entry cat-kdi-eiec">
+  <h2>🇺🇸🇪🇺 AI 일상화 시대의 위협, 딥페이크 대응 방안 (2025.2.10)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-kdi-eiec">KDI 경제정보센터</span> · <span class="source">한국지능정보사회진흥원</span></span><button type="button" class="copy-btn" data-copy="AI 일상화 시대의 위협, 딥페이크 대응 방안 (2025.2.10)
+
+딥페이크 기술은 접근성과 제작 편의성이 높아지면서 영화·교육·의료 등 긍정적 활용과 함께 디지털 성범죄, 금융 사기, 가짜뉴스·정치적 조작 등 사회적 위협을 확산시키고 있다. 보고서는 미국·EU·영국·중국 등의 법·제도 및 플랫폼 규제 현황과 국내 대응을 검토하고, 처벌 강화와 피해자 보호, AI 탐지·워터마킹·디지털 포렌식, 플랫폼 사전 차단을 제안한다. 특히 청소년 피해와 가해가 많은 만큼 미디어·디지털 리터러시 교육과 출처 표시·팩트체크를 포함한 법·기술·교육의 종합 대응이 필요하다고 강조한다.
+
+https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27675&amp;parentSeq=27675" onclick="copyEntry(this)">복사</button></div>
+  <p>딥페이크 기술은 접근성과 제작 편의성이 높아지면서 영화·교육·의료 등 긍정적 활용과 함께 디지털 성범죄, 금융 사기, 가짜뉴스·정치적 조작 등 사회적 위협을 확산시키고 있다. 보고서는 미국·EU·영국·중국 등의 법·제도 및 플랫폼 규제 현황과 국내 대응을 검토하고, 처벌 강화와 피해자 보호, AI 탐지·워터마킹·디지털 포렌식, 플랫폼 사전 차단을 제안한다. 특히 청소년 피해와 가해가 많은 만큼 미디어·디지털 리터러시 교육과 출처 표시·팩트체크를 포함한 법·기술·교육의 종합 대응이 필요하다고 강조한다.</p>
+  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27675&amp;parentSeq=27675">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27675&amp;parentSeq=27675</a></p>
+</article>
+<article class="entry cat-aisi">
+  <h2>🇬🇧 Safety Cases: Frontier AI safety를 위한 확장 가능한 접근 (**2025.02.10**)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="Safety Cases: Frontier AI safety를 위한 확장 가능한 접근 (**2025.02.10**)
+
+Frontier AI 개발에서 안전사례(safety case)의 활용이 의사결정자에게 AI 안전성을 보여주는 데 도움이 된다는 내용을 다룹니다. 또한 안전사례가 Frontier AI Safety Commitments을 뒷받침할 수 있으며, 방법론과 실행 측면에서 남아 있는 연구 질문들을 제시합니다.
+
+https://www.aisi.gov.uk/research/safety-cases-a-scalable-approach-to-frontier-ai-safety" onclick="copyEntry(this)">복사</button></div>
+  <p>Frontier AI 개발에서 안전사례(safety case)의 활용이 의사결정자에게 AI 안전성을 보여주는 데 도움이 된다는 내용을 다룹니다. 또한 안전사례가 Frontier AI Safety Commitments을 뒷받침할 수 있으며, 방법론과 실행 측면에서 남아 있는 연구 질문들을 제시합니다.</p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/safety-cases-a-scalable-approach-to-frontier-ai-safety">https://www.aisi.gov.uk/research/safety-cases-a-scalable-approach-to-frontier-ai-safety</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>🇺🇸 Anthropic 경제 지수 발표 (2025.2.10)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="Anthropic 경제 지수 발표 (2025.2.10)
+
+Anthropic은 AI가 노동 시장과 경제에 미치는 영향을 이해하기 위한 경제 지수를 발표했습니다. 이 지수는 약 100만 건의 익명화된 Claude.ai 대화를 분석하여, AI가 현대 경제의 실제 작업에 어떻게 통합되고 있는지를 보여줍니다. 주요 발견은 다음과 같습니다:
+
+- 소프트웨어 개발 및 기술 작성과 같은 특정 직업군에서 AI 사용이 집중되어 있으며, 약 36%의 직업이 연관된 작업의 최소 25%에서 AI를 사용하고 있습니다.
+- AI 활용은 협업과 능력 강화(증강) 형태가 직접 작업 수행(자동화)보다 더 흔합니다 (각각 57%와 43%).
+- 중간 수준에서 높은 급여를 받는 직업군에서 AI 사용이 더 흔하며, 반면 가장 낮거나 높은 급여를 받는 직업에서는 사용이 적습니다.
+
+데이터셋은 공개되어 연구자들이 추가 분석을 진행할 수 있도록 지원하며, 경제학자와 정책 전문가들에게 피드백을 요청하여 더 포괄적인 이해를 도모하고 있습니다. 향후 연구에서는 시간 경과에 따른 변화를 추적하여 노동 시장의 변화를 예측할 계획입니다.
+
+https://www.anthropic.com/news/the-anthropic-economic-index" onclick="copyEntry(this)">복사</button></div>
+  <p>Anthropic은 AI가 노동 시장과 경제에 미치는 영향을 이해하기 위한 경제 지수를 발표했습니다. 이 지수는 약 100만 건의 익명화된 Claude.ai 대화를 분석하여, AI가 현대 경제의 실제 작업에 어떻게 통합되고 있는지를 보여줍니다. 주요 발견은 다음과 같습니다:</p>
+<p>- 소프트웨어 개발 및 기술 작성과 같은 특정 직업군에서 AI 사용이 집중되어 있으며, 약 36%의 직업이 연관된 작업의 최소 25%에서 AI를 사용하고 있습니다.
+- AI 활용은 협업과 능력 강화(증강) 형태가 직접 작업 수행(자동화)보다 더 흔합니다 (각각 57%와 43%).
+- 중간 수준에서 높은 급여를 받는 직업군에서 AI 사용이 더 흔하며, 반면 가장 낮거나 높은 급여를 받는 직업에서는 사용이 적습니다.</p>
+<p>데이터셋은 공개되어 연구자들이 추가 분석을 진행할 수 있도록 지원하며, 경제학자와 정책 전문가들에게 피드백을 요청하여 더 포괄적인 이해를 도모하고 있습니다. 향후 연구에서는 시간 경과에 따른 변화를 추적하여 노동 시장의 변화를 예측할 계획입니다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/the-anthropic-economic-index">https://www.anthropic.com/news/the-anthropic-economic-index</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>🇺🇸 Anthropic 경제 지수 발표 (2025.2.10)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Research</span></span><button type="button" class="copy-btn" data-copy="Anthropic 경제 지수 발표 (2025.2.10)
+
+Anthropic 연구기관은 AI가 노동 시장과 경제에 미치는 영향을 이해하기 위한 &#x27;Anthropic 경제 지수&#x27;를 발표했습니다. 이 지수는 약 100만 건의 익명화된 Claude.ai 대화를 분석하여 실제 경제 활동에서 AI의 통합 양상을 보여줍니다. 주요 발견은 다음과 같습니다:
+
+- 현재 AI 사용은 소프트웨어 개발과 기술 글쓰기와 같은 분야에 집중되어 있으며, 약 36%의 직업에서 최소 25%의 작업에 AI가 활용되고 있습니다.
+- AI 활용은 협업을 통한 능력 강화(증강) 형태가 직접 작업 수행(자동화)보다 더 흔합니다 (각각 57%와 43%).
+- 중간 수준에서 높은 임금을 받는 직업에서 AI 활용이 더 빈번하지만, 가장 낮거나 높은 임금을 받는 직업에서는 그렇지 않습니다.
+- 연구 결과는 공개 데이터셋과 함께 공유되며, 경제학자와 정책 전문가 등 연구자들의 피드백을 요청하고 있습니다.
+
+향후 연구에서는 이러한 분석을 시간에 따라 반복하여 사회적 및 경제적 변화를 추적할 계획입니다. 자세한 내용은 전체 논문을 참조하세요.
+
+**요약불가**
+
+https://www.anthropic.com/research/the-anthropic-economic-index" onclick="copyEntry(this)">복사</button></div>
+  <p>Anthropic 연구기관은 AI가 노동 시장과 경제에 미치는 영향을 이해하기 위한 &#x27;Anthropic 경제 지수&#x27;를 발표했습니다. 이 지수는 약 100만 건의 익명화된 Claude.ai 대화를 분석하여 실제 경제 활동에서 AI의 통합 양상을 보여줍니다. 주요 발견은 다음과 같습니다:</p>
+<p>- 현재 AI 사용은 소프트웨어 개발과 기술 글쓰기와 같은 분야에 집중되어 있으며, 약 36%의 직업에서 최소 25%의 작업에 AI가 활용되고 있습니다.
+- AI 활용은 협업을 통한 능력 강화(증강) 형태가 직접 작업 수행(자동화)보다 더 흔합니다 (각각 57%와 43%).
+- 중간 수준에서 높은 임금을 받는 직업에서 AI 활용이 더 빈번하지만, 가장 낮거나 높은 임금을 받는 직업에서는 그렇지 않습니다.
+- 연구 결과는 공개 데이터셋과 함께 공유되며, 경제학자와 정책 전문가 등 연구자들의 피드백을 요청하고 있습니다.</p>
+<p>향후 연구에서는 이러한 분석을 시간에 따라 반복하여 사회적 및 경제적 변화를 추적할 계획입니다. 자세한 내용은 전체 논문을 참조하세요.</p>
+<p>**요약불가**</p>
+  <p class="url"><a href="https://www.anthropic.com/research/the-anthropic-economic-index">https://www.anthropic.com/research/the-anthropic-economic-index</a></p>
+</article><nav class="day-nav"><a class="day-nav-btn" href="2025-02-06.html">← 2025-02-06</a><a class="day-nav-btn" href="2025-02-11.html">2025-02-11 →</a></nav>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+</script>
+</body>
+</html>

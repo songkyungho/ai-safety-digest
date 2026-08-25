@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,9 +305,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi">
+<article class="entry cat-public">
   <h2>AISI, Claude Mythos Preview 사이버 역량 평가 결과 공개(2025.4.7)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">AI Security Institute (AISI-UK)</span></span><button type="button" class="copy-btn" data-copy="AISI, Claude Mythos Preview 사이버 역량 평가 결과 공개(2025.4.7)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AI Security Institute (AISI-UK)</span></span><button type="button" class="copy-btn" data-copy="AISI, Claude Mythos Preview 사이버 역량 평가 결과 공개(2025.4.7)
 
 AI Security Institute(AISI)가 Anthropic의 Claude Mythos Preview(2025년 4월 7일 발표)를 대상으로 사이버 보안 역량 평가를 수행했다. CTF(캡처더플래그)에서는 전문가 수준 과제에서 73% 성공을 보였고, 네트워크 공격 시뮬레이션(32단계)에서는 10회 시도 중 3회에 걸쳐 처음부터 끝까지 완료했으며 평균 22/32단계를 수행했다. 다만 AISI의 OT(운영기술) 중심 범위인 ‘Cooling Tower’는 IT 구간에서 막혀 완료하지 못했으며, 평가 환경이 실제 환경보다 방어 기능과 보안 경고 트리거가 부족해 잘 방어된 시스템에 대한 확실한 결론은 어렵다고 밝혔다.
 

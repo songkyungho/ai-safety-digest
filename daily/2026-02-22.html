@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,9 +305,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-research-org">
+<article class="entry cat-public">
   <h2>(스탠퍼드 HAI 기사 게재일: 2026.02.22) AI 챗봇의 당일 뉴스 응답은 전반적으로 높지만 지역·언어별 편차와 오답 취약성이 큼</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">스탠퍼드 HAI(Stanford HAI)</span></span><button type="button" class="copy-btn" data-copy="(스탠퍼드 HAI 기사 게재일: 2026.02.22) AI 챗봇의 당일 뉴스 응답은 전반적으로 높지만 지역·언어별 편차와 오답 취약성이 큼
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">스탠퍼드 HAI(Stanford HAI)</span></span><button type="button" class="copy-btn" data-copy="(스탠퍼드 HAI 기사 게재일: 2026.02.22) AI 챗봇의 당일 뉴스 응답은 전반적으로 높지만 지역·언어별 편차와 오답 취약성이 큼
 
 스탠퍼드 HAI 연구진은 6개 상용 AI 챗봇을 6개 지역·언어의 당일 뉴스 2,100개(총 12,600개 응답) 객관식 질문으로 평가해 대체로 90%대 정확도를 보였다고 밝혔다. 다만 지역 간 성능 격차가 컸으며 특히 Hindi는 최저로, 오류율이 다른 지역 대비 크게 높게 나타났다. 또한 질문의 전제가 약간 틀리면 견고성이 급격히 떨어져, 적대적 조건에서 Grok 4는 70.0% 정확도인 반면 GPT-5는 19.0%까지 하락했다. 오류는 추론 자체보다 ‘증거 검색 실패’와 ‘출처 대체로 인한 사실 불일치’ 비중이 높고, 인용 URL 또한 합의되지 않은 방식으로 영어권 소스에 의존하는 경향이 관찰됐다.
 

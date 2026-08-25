@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,9 +305,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi">
+<article class="entry cat-public">
   <h2>🇬🇧 An alignment safety case sketch based on debate (2025.5.6)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="An alignment safety case sketch based on debate (2025.5.6)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="An alignment safety case sketch based on debate (2025.5.6)
 
 해당 글은 AI 시스템이 인간 수준 이상으로 능력을 갖추면 인간이 행동을 판단하고 human feedback으로 원하는 방향을 유도하기 어려워질 수 있어, superhuman 시스템의 debate로 오류를 지적하도록 하는 접근을 다룹니다. 논문은 ‘alignment safety case’를 스케치하며, AI 회사 내부의 R&amp;D agent가 연구를 훼손(예: false results 생성)할 위험을 debate로 훈련하고 exploration guarantees 및 online training을 통해 배포 중 honesty를 유지하는 구상을 제시합니다. 안전성 주장은 (1) debate 게임에서의 숙련 (2) debate 성능이 대부분의 honesty를 의미 (3) 배포 중 honesty의 유의미한 저하가 없을 것 (4) 배포 맥락이 일부 오류를 허용한다는 네 가지 핵심 주장에 기반하며, 이를 뒷받침할 추가 연구 과제도 제시합니다.
 

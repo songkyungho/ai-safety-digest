@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,9 +305,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-frontier">
+<article class="entry cat-company">
   <h2>Kimi K2.5 (Moonshot AI) (2026.1.27)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Kimi K2.5 (Moonshot AI) (2026.1.27)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Kimi K2.5 (Moonshot AI) (2026.1.27)
 
 Reasoning · Open · 262K ctx · $0.6/M · $2.5/M
 
@@ -317,9 +321,9 @@ https://kimi.ai" onclick="copyEntry(this)">복사</button></div>
 <p>Multimodal K2 with native vision, video. Agent Swarm: up to 100 parallel sub-agents. Modified MIT.</p>
   <p class="url"><a href="https://kimi.ai">https://kimi.ai</a></p>
 </article>
-<article class="entry cat-research-org">
+<article class="entry cat-public">
   <h2>컴퓨트 기반 AI 정책의 한계: reasoning training·distillation·synthetic data·reward models가 FLOP 합산 지표를 왜곡함(2026.1.27)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">Epoch AI(Gradient Updates)</span></span><button type="button" class="copy-btn" data-copy="컴퓨트 기반 AI 정책의 한계: reasoning training·distillation·synthetic data·reward models가 FLOP 합산 지표를 왜곡함(2026.1.27)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Epoch AI(Gradient Updates)</span></span><button type="button" class="copy-btn" data-copy="컴퓨트 기반 AI 정책의 한계: reasoning training·distillation·synthetic data·reward models가 FLOP 합산 지표를 왜곡함(2026.1.27)
 
 현재의 컴퓨트(사전학습+사후학습) 합산 방식은 모델 능력을 설명하는 대리변수로 점점 덜 신뢰할 만해지고 있다. 사후학습의 reasoning training은 단위 FLOP당 능력 향상이 더 클 수 있고, distillation·synthetic data 생성·reward model 학습처럼 사전/사후학습 밖의 컴퓨트 투입도 능력에 직접 영향을 주지만 규제 지표에 충분히 반영되지 않는다고 지적한다. 또한 실제 배포 시 코딩 환경·웹 검색 접근 등 도구/시스템 요인이 하위 능력을 크게 좌우해, 학습 컴퓨트만으로는 결과를 예측하기 어렵다고 요약한다.
 

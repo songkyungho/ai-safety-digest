@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,9 +305,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-frontier">
+<article class="entry cat-company">
   <h2>Hermes 4 70B (Nous Research) (2025.8.26)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Hermes 4 70B (Nous Research) (2025.8.26)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Hermes 4 70B (Nous Research) (2025.8.26)
 
 Reasoning · Open · 131K ctx · $0.13/M · $0.4/M
 
@@ -317,9 +321,9 @@ https://huggingface.co/NousResearch/Hermes-4-70B" onclick="copyEntry(this)">복�
 <p>Hybrid reasoning on Llama 3.1 70B. Toggle &lt;think&gt; traces per-request. SOTA RefusalBench (57.1%). Neutral alignment. $0.13/$0.40 via OpenRouter.</p>
   <p class="url"><a href="https://huggingface.co/NousResearch/Hermes-4-70B">https://huggingface.co/NousResearch/Hermes-4-70B</a></p>
 </article>
-<article class="entry cat-frontier">
+<article class="entry cat-company">
   <h2>Hermes 4 405B (Nous Research) (2025.8.26)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Hermes 4 405B (Nous Research) (2025.8.26)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Hermes 4 405B (Nous Research) (2025.8.26)
 
 Reasoning · Open · 131K ctx · $1/M · $3/M
 
@@ -375,7 +379,7 @@ https://www.nbcnews.com/tech/tech-news/family-teenager-died-suicide-alleges-open
 </article>
 <article class="entry cat-media">
   <h2>🇺🇸 스탠퍼드 분석: AI 노출 직무에서 22~25세 고용이 16% 감소, “entry-level 타격” (2025.8.26)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">TIME</span></span><button type="button" class="copy-btn" data-copy="스탠퍼드 분석: AI 노출 직무에서 22~25세 고용이 16% 감소, “entry-level 타격” (2025.8.26)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TIME</span></span><button type="button" class="copy-btn" data-copy="스탠퍼드 분석: AI 노출 직무에서 22~25세 고용이 16% 감소, “entry-level 타격” (2025.8.26)
 
 스탠퍼드 Digital Economy Lab의 보고서는 ADP(미국 최대 급여 소프트웨어) 데이터를 바탕으로, 2022년 말 이후 AI 자동화에 가장 노출된 직무(소프트웨어 엔지니어링, 고객서비스 등)에서 22~25세 고용이 상대적으로 16% 감소했다고 밝혔다. 반면 건강보조, 정비, 택시기사 등 ‘현장형’ 직무는 고용이 유지되거나 증가한 것으로 나타났다. 연구진은 변화가 COVID-19로 인한 원격근무나 교육 변화 때문이라는 다른 가설은 배제할 수 있었다고 설명했으며, AI를 업무를 대체하기보다 보완(augment)하는 방식에서는 대체 위험이 낮을 수 있다고 덧붙였다. 또한 보고서 작성 과정에서 연구진이 데이터 처리·그래프 제작 등에 AI를 활용했다고 전했다.
 
@@ -385,7 +389,7 @@ https://time.com/7312205/ai-jobs-stanford/" onclick="copyEntry(this)">복사</bu
 </article>
 <article class="entry cat-media">
   <h2>🇨🇳 중국, ‘AI Plus’ 정책(2025.8.26) 발표…2027·2030·2035 로드맵 제시</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">Geopolitechs</span></span><button type="button" class="copy-btn" data-copy="중국, ‘AI Plus’ 정책(2025.8.26) 발표…2027·2030·2035 로드맵 제시
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">Geopolitechs</span></span><button type="button" class="copy-btn" data-copy="중국, ‘AI Plus’ 정책(2025.8.26) 발표…2027·2030·2035 로드맵 제시
 
 2027년까지 6개 핵심 분야에서 AI 통합(지능형 단말·에이전트 이용률 70%+), 2030년 90%+로 확대, 2035년 지능경제·지능사회로 전환을 목표로 함
 

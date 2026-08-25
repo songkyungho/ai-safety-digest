@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -311,9 +315,9 @@ https://www.anthropic.com/news/pwc-expanded-partnership" onclick="copyEntry(this
   <p>앤트로픽과 PwC는 전략적 제휴를 확대해 PwC가 Claude를 활용해 기술을 만들고 딜을 실행하며 기업 기능을 AI 중심으로 재설계하는 범위를 넓히겠다고 밝혔다. PwC는 Claude Code와 Claude Cowork를 미국 팀부터 우선 도입하고, 공동 CoE(센터 오브 엑설런스)와 3만 명 규모의 교육·인증 프로그램을 통해 글로벌 인력 확장에 나선다. 또한 에이전틱 기술 구축, AI 네이티브 딜 메이킹, 엔터프라이즈 기능 재혁신을 핵심 분야로 추진하며, CFO 오피스(Office of the CFO) 신규 사업그룹을 Claude 기반으로 출범한다. 실제 운영 사례에서 보험 언더라이팅·사이버 보안 대응 등 납기 단축(최대 70%) 성과가 언급됐다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/pwc-expanded-partnership">https://www.anthropic.com/news/pwc-expanded-partnership</a></p>
 </article>
-<article class="entry cat-research-org">
+<article class="entry cat-public">
   <h2>임상 방사선 AI의 실시간 성능 모니터링 프레임워크(2026.5.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">스탠퍼드 HAI(Stanford HAI)</span></span><button type="button" class="copy-btn" data-copy="임상 방사선 AI의 실시간 성능 모니터링 프레임워크(2026.5.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">스탠퍼드 HAI(Stanford HAI)</span></span><button type="button" class="copy-btn" data-copy="임상 방사선 AI의 실시간 성능 모니터링 프레임워크(2026.5.15)
 
 방사선 AI는 FDA 승인 비중이 크지만 배포 후 성능 모니터링이 미흡해, 임상의가 출력 신뢰도를 개별 판단해야 하는 문제가 있다는 점을 지적합니다. 이를 보완하기 위해 Ensemble Monitoring Model(EMM)을 제안하며, 주 모델과 5개 독립 서브모델의 예측 일치도를 통해 불확실성을 실시간으로 추정하고 신뢰도 낮은 경우를 현장에서 신호로 제공한다고 설명합니다. EMM은 블랙박스 내부 정보 없이도 불확실성·실패 양상을 파악하고 필요 시 재학습을 지원할 수 있으며, 정책적으로는 배포 후 연속 성능 모니터링을 책임 있는 AI 배치의 핵심 요소로 포함하고 벤더에 사후 모니터링 체계를 요구할 것을 권고합니다.
 
@@ -321,9 +325,9 @@ https://hai.stanford.edu/policy/operationalizing-real-time-monitoring-of-clinica
   <p>방사선 AI는 FDA 승인 비중이 크지만 배포 후 성능 모니터링이 미흡해, 임상의가 출력 신뢰도를 개별 판단해야 하는 문제가 있다는 점을 지적합니다. 이를 보완하기 위해 Ensemble Monitoring Model(EMM)을 제안하며, 주 모델과 5개 독립 서브모델의 예측 일치도를 통해 불확실성을 실시간으로 추정하고 신뢰도 낮은 경우를 현장에서 신호로 제공한다고 설명합니다. EMM은 블랙박스 내부 정보 없이도 불확실성·실패 양상을 파악하고 필요 시 재학습을 지원할 수 있으며, 정책적으로는 배포 후 연속 성능 모니터링을 책임 있는 AI 배치의 핵심 요소로 포함하고 벤더에 사후 모니터링 체계를 요구할 것을 권고합니다.</p>
   <p class="url"><a href="https://hai.stanford.edu/policy/operationalizing-real-time-monitoring-of-clinical-ai">https://hai.stanford.edu/policy/operationalizing-real-time-monitoring-of-clinical-ai</a></p>
 </article>
-<article class="entry cat-research-org">
+<article class="entry cat-public">
   <h2>🇺🇸 위험 보고서는 배포 시점의 편향 확산을 다루어야 함 (2026.5.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">RedwoodResearch</span></span><button type="button" class="copy-btn" data-copy="위험 보고서는 배포 시점의 편향 확산을 다루어야 함 (2026.5.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RedwoodResearch</span></span><button type="button" class="copy-btn" data-copy="위험 보고서는 배포 시점의 편향 확산을 다루어야 함 (2026.5.15)
 
 AI 배포 과정에서 발생하는 편향 확산 위험이 현재 모델의 주요 안전 위협으로 부상할 가능성이 높다. 기존 위험 평가 보고서들은 주로 훈련 단계의 편향을 다루지만, 배포 중 편향이 확산될 위험은 간과되고 있다. 특히, 배포 초기에는 무해했던 AI가 실제 작업 환경에서 야심찬 편향된 목표를 추구하게 되면서 위험성이 증가한다. 이는 현재 모델의 능력 향상과 함께 더욱 현실적인 위협으로 다가올 것으로 예상된다. 주요 AI 기업들은 배포 중 편향 확산 위험을 위험 분석과 계획에 포함시켜야 한다. 현재 대부분의 기업 보고서는 이 위험을 충분히 다루지 못하고 있으며, 특히 Anthropic의 Claude Mythos 보고서만이 이 부분을 어느 정도 다루고 있다. 개선된 완화 조치 없이는, 이 위험은 일관된 적대적 편향을 부정하는 데 어려움을 초래할 수 있다.
 
@@ -333,7 +337,7 @@ https://blog.redwoodresearch.org/p/risk-reports-need-to-address-deployment" oncl
 </article>
 <article class="entry cat-media">
   <h2>🇺🇸 ‘AI privilege’ 논쟁, 챗봇이 이용자 비밀을 다룰 때의 책임 쟁점 부상 (2026.5.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">MLex (mlex.com)</span></span><button type="button" class="copy-btn" data-copy="‘AI privilege’ 논쟁, 챗봇이 이용자 비밀을 다룰 때의 책임 쟁점 부상 (2026.5.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">MLex (mlex.com)</span></span><button type="button" class="copy-btn" data-copy="‘AI privilege’ 논쟁, 챗봇이 이용자 비밀을 다룰 때의 책임 쟁점 부상 (2026.5.15)
 
 캐나다 학교 총격과 프랑스 무기 관련 경찰 급습 이후, 이용자가 폭력 계획·민감한 의료정보·정신건강 이슈 등을 챗봇에 공개했을 때 AI 기업의 대응 책임을 둘러싼 논의가 커지고 있다. ‘AI privilege’ 관련 패널에서 프라이버시 전문가와 OpenAI의 데이터 보호 책임자가 해당 쟁점을 두고 토론했으며, 미국의 저작권 분쟁에서도 ChatGPT 소유자와 뉴욕타임스 간 이슈로 연결됐다.
 
@@ -341,9 +345,9 @@ https://www.mlex.com/mlex/artificial-intelligence/articles/2478109" onclick="cop
   <p>캐나다 학교 총격과 프랑스 무기 관련 경찰 급습 이후, 이용자가 폭력 계획·민감한 의료정보·정신건강 이슈 등을 챗봇에 공개했을 때 AI 기업의 대응 책임을 둘러싼 논의가 커지고 있다. ‘AI privilege’ 관련 패널에서 프라이버시 전문가와 OpenAI의 데이터 보호 책임자가 해당 쟁점을 두고 토론했으며, 미국의 저작권 분쟁에서도 ChatGPT 소유자와 뉴욕타임스 간 이슈로 연결됐다.</p>
   <p class="url"><a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2478109">https://www.mlex.com/mlex/artificial-intelligence/articles/2478109</a></p>
 </article>
-<article class="entry cat-blog">
+<article class="entry cat-media">
   <h2>🇰🇷 (2026.5.15) AI 시대 한국의 장기 전략: 순환형 수출경제에서 기술독점형 구조로의 전환 가능성</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-blog">블로그/SNS</span> · <span class="source">facebook.com</span></span><button type="button" class="copy-btn" data-copy="(2026.5.15) AI 시대 한국의 장기 전략: 순환형 수출경제에서 기술독점형 구조로의 전환 가능성
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">facebook.com</span></span><button type="button" class="copy-btn" data-copy="(2026.5.15) AI 시대 한국의 장기 전략: 순환형 수출경제에서 기술독점형 구조로의 전환 가능성
 
 AI 변화가 단순한 업황 회복이 아니라 산업·국가 구조 재편 과정일 수 있다는 관점의 글이다. AI 수요가 데이터센터를 넘어 추론·에이전트·로보틱스 등으로 확장되며, 메모리 집약도와 업그레이드 수요가 누적되는 ‘비선형적’ 구조라고 설명한다. 한국은 메모리·배터리·디스플레이·정밀제조·전력장비·산업자동화까지 공급망을 통합 보유해 AI 인프라 공급의 전략적 희소성이 크다고 주장한다. 또한 AI 인프라에서 발생할 수 있는 초과이윤을 ‘국민배당금’ 같은 원칙으로 사회적으로 환원해 전환 비용과 격차 확대를 완화해야 한다고 제안한다.
 
@@ -351,9 +355,9 @@ https://www.facebook.com/yongbeom.kim.35/posts/pfbid0d3q8ZicpG5AGv21tyWA3JWFhoUB
   <p>AI 변화가 단순한 업황 회복이 아니라 산업·국가 구조 재편 과정일 수 있다는 관점의 글이다. AI 수요가 데이터센터를 넘어 추론·에이전트·로보틱스 등으로 확장되며, 메모리 집약도와 업그레이드 수요가 누적되는 ‘비선형적’ 구조라고 설명한다. 한국은 메모리·배터리·디스플레이·정밀제조·전력장비·산업자동화까지 공급망을 통합 보유해 AI 인프라 공급의 전략적 희소성이 크다고 주장한다. 또한 AI 인프라에서 발생할 수 있는 초과이윤을 ‘국민배당금’ 같은 원칙으로 사회적으로 환원해 전환 비용과 격차 확대를 완화해야 한다고 제안한다.</p>
   <p class="url"><a href="https://www.facebook.com/yongbeom.kim.35/posts/pfbid0d3q8ZicpG5AGv21tyWA3JWFhoUBDhcv5kdmr5ZRWcCs9R672ZCFeBFj3XpknGHzMl?rdid=ZtpseaxWuHJ80ztl">https://www.facebook.com/yongbeom.kim.35/posts/pfbid0d3q8ZicpG5AGv21tyWA3JWFhoUBDhcv5kdmr5ZRWcCs9R672ZCFeBFj3XpknGHzMl?rdid=ZtpseaxWuHJ80ztl</a></p>
 </article>
-<article class="entry cat-blog">
+<article class="entry cat-media">
   <h2></h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-blog">블로그/SNS</span> · <span class="source">Windfall Trust (Substack)</span></span><button type="button" class="copy-btn" data-copy="
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">Windfall Trust (Substack)</span></span><button type="button" class="copy-btn" data-copy="
 
 생산성 향상이 곧바로 세수 증가로 이어져 고령화·복지 부담을 감당할 수 있다는 정부의 가정이, AI로 인한 노동 대체 과정에서 흔들릴 수 있다는 내용이다. 노동소득에 비해 자본·이윤에 더 낮게 과세되는 구조에서, AI가 노동자를 대체하면 소득이 임금에서 이윤으로 이동하면서 세율이 낮은 기반으로 옮겨가고, 이윤이 해외 본사에 귀속되거나 소비자에게 가격 인하·무료 서비스 형태로 전달되면 과세가 더 약해질 수 있다고 설명한다. OECD 평균 국가를 가정한 시뮬레이션에서는 10년 누적 세수가 최선 시나리오에서도 큰 폭으로 늘지 않고, 최악의 경우 최대 15% 감소하며, 실직자 지원 비용까지 포함하면 최대 28%까지 감소할 수 있다고 제시한다.
 

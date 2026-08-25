@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,9 +305,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-frontier">
+<article class="entry cat-company">
   <h2>Inkling (Thinking Machines Lab) (2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Inkling (Thinking Machines Lab) (2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Inkling (Thinking Machines Lab) (2026.7.15)
 
 Reasoning · Open · 1000K ctx
 
@@ -317,9 +321,9 @@ https://thinkingmachines.ai/news/introducing-inkling/" onclick="copyEntry(this)"
 <p>Thinking Machines Lab&#x27;s debut model and first public release (Mira Murati&#x27;s team). Sparse Mixture-of-Experts with 975B total / 41B active parameters (256 routed plus 2 shared experts, 6 routed active per token), pretrained on 45T tokens of text, image, audio, and video. 1M context with efficient thinking-mode reasoning. Open weights on Hugging Face, fine-tunable via the lab&#x27;s Tinker platform. The lab is candid that it is &#x27;not the strongest overall model available today, open or closed,&#x27; emphasizing multimodal breadth and efficient reasoning instead. Self-reported benchmarks at effort=0.99 (not independently verified): GPQA Diamond 87.2, AIME 2026 97.1, SWE-bench Verified 77.6, Global-MMLU-Lite 88.7, and HLE with tools 46.0. Served on Tinker (limited-time 50% off, with 64K and 256K context tiers) and via TogetherAI, Fireworks, Modal, Databricks, and Baseten; no first-party per-token pricing disclosed yet. A companion Inkling-Small preview (276B total / 12B active) was announced alongside it.</p>
   <p class="url"><a href="https://thinkingmachines.ai/news/introducing-inkling/">https://thinkingmachines.ai/news/introducing-inkling/</a></p>
 </article>
-<article class="entry cat-aisi">
+<article class="entry cat-public">
   <h2>🇯🇵🇺🇸 AI 정책동향 월간 정보(2026.6.1~6.30): 일본·해외 주요 AI 정책/행사 업데이트(2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">일본 AISI-Japan</span></span><button type="button" class="copy-btn" data-copy="AI 정책동향 월간 정보(2026.6.1~6.30): 일본·해외 주요 AI 정책/행사 업데이트(2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">일본 AISI-Japan</span></span><button type="button" class="copy-btn" data-copy="AI 정책동향 월간 정보(2026.6.1~6.30): 일본·해외 주요 AI 정책/행사 업데이트(2026.7.15)
 
 2026.6.1~6.30 기간에 걸쳐 일본과 해외의 AI 정책·행사 관련 주요 발표가 정리됐다. 일본은 ROUTE06 관련 AI 후속 정책 공표, 국가·전문가 회의 및 ‘일본 제조업 전략’ 관련 AI 정책 추진이 언급되며, 해외로는 미국의 advanced AI 혁신·보안 관련 지시/조치, EU의 tech 주권·AI 규정 관련 발표, 영국-독일 공동성명, 싱가포르·인도·한국 등에서의 AI 안전·보안 또는 AI 기술·활용 관련 협력/보고가 포함된다. 또한 연구·기술 동향으로 NIST의 강화학습 기반 대피 경로 연구, AISI의 AI 정체성 공개 관련 연구/발표, JST CRDS의 AI 시대 연구 관련 계획 등도 함께 소개된다.
 
@@ -327,9 +331,9 @@ https://aisi.go.jp/activity/activity_information/260715/" onclick="copyEntry(thi
   <p>2026.6.1~6.30 기간에 걸쳐 일본과 해외의 AI 정책·행사 관련 주요 발표가 정리됐다. 일본은 ROUTE06 관련 AI 후속 정책 공표, 국가·전문가 회의 및 ‘일본 제조업 전략’ 관련 AI 정책 추진이 언급되며, 해외로는 미국의 advanced AI 혁신·보안 관련 지시/조치, EU의 tech 주권·AI 규정 관련 발표, 영국-독일 공동성명, 싱가포르·인도·한국 등에서의 AI 안전·보안 또는 AI 기술·활용 관련 협력/보고가 포함된다. 또한 연구·기술 동향으로 NIST의 강화학습 기반 대피 경로 연구, AISI의 AI 정체성 공개 관련 연구/발표, JST CRDS의 AI 시대 연구 관련 계획 등도 함께 소개된다.</p>
   <p class="url"><a href="https://aisi.go.jp/activity/activity_information/260715/">https://aisi.go.jp/activity/activity_information/260715/</a></p>
 </article>
-<article class="entry cat-aisi">
+<article class="entry cat-public">
   <h2>AI Office, 100명 이상 전문가 보고서로 EU의 프런티어 AI 경쟁력·주권·안보 강화 방안 제시 (2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">유럽연합(EU) 디지털 전략(Digital Strategy) 웹사이트</span></span><button type="button" class="copy-btn" data-copy="AI Office, 100명 이상 전문가 보고서로 EU의 프런티어 AI 경쟁력·주권·안보 강화 방안 제시 (2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽연합(EU) 디지털 전략(Digital Strategy) 웹사이트</span></span><button type="button" class="copy-btn" data-copy="AI Office, 100명 이상 전문가 보고서로 EU의 프런티어 AI 경쟁력·주권·안보 강화 방안 제시 (2026.7.15)
 
 AI Office는 100명 이상의 전문가 의견을 바탕으로, EU가 프런티어 AI 역량을 강화해 경쟁력·주권·안보를 높이기 위한 핵심 시사점을 담은 보고서를 발표했다. 전문가들은 프런티어 AI 역량이 최근 약 3년 사이 빠르게 발전했으나, EU의 시장·연산 인프라와 성장 단계 자본 규모는 아직 필요 수준에 못 미친다고 지적했다. 또한 컴퓨팅·에너지, 성장자본 및 학습데이터에 대한 법적 확실성, 인재 유치·유지 같은 구조적 장벽을 우선 해소하고, 신뢰할 수 있는 파트너와의 협력 및 2030년까지의 목표 달성 등 ‘기술 속도·규모에 맞춘’ 전략 실행이 중요하다고 밝혔다.
 
@@ -357,9 +361,9 @@ https://aisecuritymapping.com/" onclick="copyEntry(this)">복사</button></div>
   <p>영국 정부의 의뢰로 Copper Horse는 글로벌 AI 보안 요건과 표준을 유럽 통신 표준(ETSI EN 304 223)에 맵핑한 웹사이트를 발표. 2,100여 개의 글로벌 AI 보안 요구사항을 13개 원칙과 수명 주기 단계에 따라 분석하여, 인터랙티브 마인드맵과 오픈 데이터 형태로 실무자 및 정책 입안자에게 제공.</p>
   <p class="url"><a href="https://aisecuritymapping.com/">https://aisecuritymapping.com/</a></p>
 </article>
-<article class="entry cat-intl-org">
+<article class="entry cat-public">
   <h2>유럽 집행위, DSA 투명성 및 연구자 데이터 접근 관련 X의 시정조치 이행계획 수용(2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">유럽연합 집행위원회 디지털 전략(EU-Digital-Strategy)</span></span><button type="button" class="copy-btn" data-copy="유럽 집행위, DSA 투명성 및 연구자 데이터 접근 관련 X의 시정조치 이행계획 수용(2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽연합 집행위원회 디지털 전략(EU-Digital-Strategy)</span></span><button type="button" class="copy-btn" data-copy="유럽 집행위, DSA 투명성 및 연구자 데이터 접근 관련 X의 시정조치 이행계획 수용(2026.7.15)
 
 X는 광고 저장소 검색 기능 개선, 검색 결과 인터페이스 내 직접 표시, 응답속도(200초→기술적으로 최소) 개선, 광고 전체 내용·전환 URL 등 정보 추가, API로 저장소 접근 허용을 포함한 시정조치를 이행하기로 했다. 또한 연구자 공공데이터 접근 관련 위반에 대해 신청 심사 절차 수정, 자격 있는 연구자에 대한 무료 데이터 제공, 처리시간 단축과 적정 데이터 볼륨의 적시 제공, 공개 데이터 스크래핑을 계약상 금지하지 않도록 이용약관을 명확히 하는 조치를 한다. 이 변경은 외부·독립 감사를 거치며, X는 조치 이행 후 6개월 내 감사보고서를 제출하고 권고사항의 효과적 이행을 위해 집행위와 후속 협의를 진행한다.
 
@@ -367,9 +371,9 @@ https://digital-strategy.ec.europa.eu/en/news/commission-accepts-xs-corrective-m
   <p>X는 광고 저장소 검색 기능 개선, 검색 결과 인터페이스 내 직접 표시, 응답속도(200초→기술적으로 최소) 개선, 광고 전체 내용·전환 URL 등 정보 추가, API로 저장소 접근 허용을 포함한 시정조치를 이행하기로 했다. 또한 연구자 공공데이터 접근 관련 위반에 대해 신청 심사 절차 수정, 자격 있는 연구자에 대한 무료 데이터 제공, 처리시간 단축과 적정 데이터 볼륨의 적시 제공, 공개 데이터 스크래핑을 계약상 금지하지 않도록 이용약관을 명확히 하는 조치를 한다. 이 변경은 외부·독립 감사를 거치며, X는 조치 이행 후 6개월 내 감사보고서를 제출하고 권고사항의 효과적 이행을 위해 집행위와 후속 협의를 진행한다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-accepts-xs-corrective-measures-terminate-breaches-dsa">https://digital-strategy.ec.europa.eu/en/news/commission-accepts-xs-corrective-measures-terminate-breaches-dsa</a></p>
 </article>
-<article class="entry cat-intl-org">
+<article class="entry cat-public">
   <h2>🇪🇺 EU-인도, 제3차 Trade and Technology Council로 전략적 파트너십 강화(2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">유럽연합(EU) 디지털 전략(EU-Digital-Strategy)</span></span><button type="button" class="copy-btn" data-copy="EU-인도, 제3차 Trade and Technology Council로 전략적 파트너십 강화(2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽연합(EU) 디지털 전략(EU-Digital-Strategy)</span></span><button type="button" class="copy-btn" data-copy="EU-인도, 제3차 Trade and Technology Council로 전략적 파트너십 강화(2026.7.15)
 
 EU와 인도는 브뤼셀에서 제3차 Trade and Technology Council(TTC)을 개최하고 무역·기술·안보 협력의 핵심 플랫폼으로 재확인했다. 양측은 전략 가치사슬 강화와 민간 참여 확대에 집중하고, 연말까지 TTC 업그레이드를 완료하기로 합의했다. 구체적으로 2026년 말까지 Horizon Europe 관련 인도 준회원 협정 협상을 시작·마무리 추진, 전기차 충전 기술 혁신허브·스타트업 파트너십 신설, 반도체·HPC·양자·AI·6G 협력 확대, 농식품·API·청정에너지 등에서 회복력 있는 가치사슬 협력을 강화하기로 했다.
 
@@ -377,9 +381,9 @@ https://digital-strategy.ec.europa.eu/en/news/eu-and-india-strengthen-strategic-
   <p>EU와 인도는 브뤼셀에서 제3차 Trade and Technology Council(TTC)을 개최하고 무역·기술·안보 협력의 핵심 플랫폼으로 재확인했다. 양측은 전략 가치사슬 강화와 민간 참여 확대에 집중하고, 연말까지 TTC 업그레이드를 완료하기로 합의했다. 구체적으로 2026년 말까지 Horizon Europe 관련 인도 준회원 협정 협상을 시작·마무리 추진, 전기차 충전 기술 혁신허브·스타트업 파트너십 신설, 반도체·HPC·양자·AI·6G 협력 확대, 농식품·API·청정에너지 등에서 회복력 있는 가치사슬 협력을 강화하기로 했다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/eu-and-india-strengthen-strategic-partnership-third-trade-and-technology-council">https://digital-strategy.ec.europa.eu/en/news/eu-and-india-strengthen-strategic-partnership-third-trade-and-technology-council</a></p>
 </article>
-<article class="entry cat-gov">
+<article class="entry cat-public">
   <h2>AI 보안 분야의 최근 5년(2021.1~2026.1) 연구를 PRISMA 방식으로 검토해 12개 주제와 5개 연구 공백을 제시함 (2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-gov">정부기관</span> · <span class="source">영국 DSIT(Department for Science, Innovation and Technology)·gov.uk</span></span><button type="button" class="copy-btn" data-copy="AI 보안 분야의 최근 5년(2021.1~2026.1) 연구를 PRISMA 방식으로 검토해 12개 주제와 5개 연구 공백을 제시함 (2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">영국 DSIT(Department for Science, Innovation and Technology)·gov.uk</span></span><button type="button" class="copy-btn" data-copy="AI 보안 분야의 최근 5년(2021.1~2026.1) 연구를 PRISMA 방식으로 검토해 12개 주제와 5개 연구 공백을 제시함 (2026.7.15)
 
 공백/추가연구가 필요한 분야로는 훈련데이터·모델 가중치 무결성에 대한 보증/검증, 제3자 모델의 provenance 추적, 모델 공격면과 전통 IT 공격면의 연계, end user 행위로 인한 보안위협 완화, 모델의 안전한 폐기(특히 frontier AI)가 제시됨
 
@@ -390,9 +394,9 @@ https://gov.uk/government/publications/thematic-review-and-gap-analysis-on-ai-se
 <p>Lancaster University가 DSIT 의뢰로 2021년 1월~2026년 1월 사이(영어·peer-reviewed) AI 보안 관련 문헌을 Scopus와 Web of Science에서 PRISMA 접근으로 선별해 총 9,109편을 분석했다. 문헌은 데이터 기반 필터링과 semantic matching을 통해 12개 테마로 분류됐으며, 동시에 5개 분야에서 추가 연구 필요 공백이 확인됐다. 특히 Agentic-AI 시스템의 사이버보안(에이전트 자체 보안, 환경과 상호작용하는 도구, 에이전트 간 통신/운영)에서 공백이 크다고 보고, 배치가 늘어날수록 해당 영역의 연구가 더 집중될 것으로 예상했다.</p>
   <p class="url"><a href="https://gov.uk/government/publications/thematic-review-and-gap-analysis-on-ai-security/thematic-review-and-gap-analysis-on-ai-security">https://gov.uk/government/publications/thematic-review-and-gap-analysis-on-ai-security/thematic-review-and-gap-analysis-on-ai-security</a></p>
 </article>
-<article class="entry cat-research-org">
+<article class="entry cat-public">
   <h2>🇰🇷 (기사 2026.7.15) 상업적 ‘AI sovereignty’ 시장을 점검하며 완전한 자급보다 상호의존 조정 강조</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">스탠포드 HAI(Stanford HAI)</span></span><button type="button" class="copy-btn" data-copy="(기사 2026.7.15) 상업적 ‘AI sovereignty’ 시장을 점검하며 완전한 자급보다 상호의존 조정 강조
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">스탠포드 HAI(Stanford HAI)</span></span><button type="button" class="copy-btn" data-copy="(기사 2026.7.15) 상업적 ‘AI sovereignty’ 시장을 점검하며 완전한 자급보다 상호의존 조정 강조
 
 스탠포드 HAI는 상업적 AI sovereignty 상품을 AI 스택 전반에서 조사하며, 정책은 ‘완전 자급’ 추구가 아니라 상호의존(interdependence)을 정교하게 조정하는 데 초점을 둬야 한다고 제안했다. Nvidia, Microsoft, Google, AWS, OpenAI의 사례는 컴퓨팅 인프라·데이터 거버넌스·현지 모델 배포에서 국내 통제 역량을 높이는 방식을 제공하지만, 의존을 제거하기보다는 재구성하는 측면이 크다고 밝혔다. 또한 소규모 업체들이 ‘주권’을 내세우더라도 대체로 해외 파운데이션 위에 구축되어 있어, sovereignty가 사실상 전략적 분산(diversification)으로 운영되는 경향이 있음을 지적했다.
 
@@ -400,9 +404,9 @@ https://hai.stanford.edu/policy/the-commercial-landscape-of-ai-sovereignty-offer
   <p>스탠포드 HAI는 상업적 AI sovereignty 상품을 AI 스택 전반에서 조사하며, 정책은 ‘완전 자급’ 추구가 아니라 상호의존(interdependence)을 정교하게 조정하는 데 초점을 둬야 한다고 제안했다. Nvidia, Microsoft, Google, AWS, OpenAI의 사례는 컴퓨팅 인프라·데이터 거버넌스·현지 모델 배포에서 국내 통제 역량을 높이는 방식을 제공하지만, 의존을 제거하기보다는 재구성하는 측면이 크다고 밝혔다. 또한 소규모 업체들이 ‘주권’을 내세우더라도 대체로 해외 파운데이션 위에 구축되어 있어, sovereignty가 사실상 전략적 분산(diversification)으로 운영되는 경향이 있음을 지적했다.</p>
   <p class="url"><a href="https://hai.stanford.edu/policy/the-commercial-landscape-of-ai-sovereignty-offerings">https://hai.stanford.edu/policy/the-commercial-landscape-of-ai-sovereignty-offerings</a></p>
 </article>
-<article class="entry cat-research-org">
+<article class="entry cat-public">
   <h2>🇨🇳 중국 산업 고품질 데이터셋 구축 촉진 계획 (피드백 초안) (2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">CSET-George타운</span></span><button type="button" class="copy-btn" data-copy="중국 산업 고품질 데이터셋 구축 촉진 계획 (피드백 초안) (2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">CSET-George타운</span></span><button type="button" class="copy-btn" data-copy="중국 산업 고품질 데이터셋 구축 촉진 계획 (피드백 초안) (2026.7.15)
 
 중국 정부의 초안 정책은 다양한 산업의 AI 모델 훈련을 위한 고품질 데이터셋의 양과 질을 향상시키는 것을 목표로 합니다. 이 계획은 AI 발전에서 데이터가 점점 더 중요한 제약 요소로 작용하고 있다는 인식 하에 수립되었으며, 특히 물리적 세계와 상호작용하는 AI 시스템(예: 로봇) 훈련에 필요한 데이터셋에 초점을 맞춥니다. 
 
@@ -418,9 +422,9 @@ https://cset.georgetown.edu/publication/china-industrial-dataset-plan-draft/" on
 중국 정부는 고품질 산업 데이터셋 구축을 위한 계획을 발표하여 AI 발전을 촉진하고자 합니다. 이 계획은 데이터 공급 확대, 라벨링 개선, 품질 향상 등을 통해 2028년까지 핵심 산업 분야의 검증된 데이터셋을 구축하고, 이를 통해 AI 혁신을 가속화하려 합니다.</p>
   <p class="url"><a href="https://cset.georgetown.edu/publication/china-industrial-dataset-plan-draft/">https://cset.georgetown.edu/publication/china-industrial-dataset-plan-draft/</a></p>
 </article>
-<article class="entry cat-research-org">
+<article class="entry cat-public">
   <h2>🇺🇸 인공지능 시대의 전략적 자율성 (2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="인공지능 시대의 전략적 자율성 (2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="인공지능 시대의 전략적 자율성 (2026.7.15)
 
 인공지능의 급속한 발전은 국가들의 전략적 자율성 추구를 어렵게 만들 것으로 보인다. 연구는 AI를 활용한 국가 권력 강화 전략의 다층적 능력 구조인 &#x27;지정학적 AI 스택&#x27; 개념을 제시하며, 현재의 전략적 가정들을 도전한다. 주요 강대국과 신흥 강대국 모두 외부 의존도 관리와 내부 경쟁력 강화의 어려움에 직면할 것으로 예상된다. 핵심 과제는 의존성을 피하는 것이 아니라 지혜롭게 관리하는 데 있으며, 이를 위해 국가 역량을 강화하고 협력적 아키텍처를 구축해야 한다.
 
@@ -428,9 +432,9 @@ https://www.rand.org/pubs/external_publications/EP71418.html" onclick="copyEntry
   <p>인공지능의 급속한 발전은 국가들의 전략적 자율성 추구를 어렵게 만들 것으로 보인다. 연구는 AI를 활용한 국가 권력 강화 전략의 다층적 능력 구조인 &#x27;지정학적 AI 스택&#x27; 개념을 제시하며, 현재의 전략적 가정들을 도전한다. 주요 강대국과 신흥 강대국 모두 외부 의존도 관리와 내부 경쟁력 강화의 어려움에 직면할 것으로 예상된다. 핵심 과제는 의존성을 피하는 것이 아니라 지혜롭게 관리하는 데 있으며, 이를 위해 국가 역량을 강화하고 협력적 아키텍처를 구축해야 한다.</p>
   <p class="url"><a href="https://www.rand.org/pubs/external_publications/EP71418.html">https://www.rand.org/pubs/external_publications/EP71418.html</a></p>
 </article>
-<article class="entry cat-research-org">
+<article class="entry cat-public">
   <h2>🇺🇸 AI 전략가: 국가 전략 주도의 미래 시나리오 (2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="AI 전략가: 국가 전략 주도의 미래 시나리오 (2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="AI 전략가: 국가 전략 주도의 미래 시나리오 (2026.7.15)
 
 이 논문은 인공 지능(AI)이 국가 전략 수립 과정에 어떻게 통합될 수 있는지에 대한 극단적인 미래 시나리오를 탐구한다. 저자는 Moltbook이라는 AI 전용 포럼 사례를 통해 실제 AI 모델 간의 전략적 상호작용을 상상한다. 이러한 상황에서 AI는 빠르고 지속적인 전략적 움직임을 통해 국가 간 경쟁에서 우위를 점하려 시도할 수 있다. 실험을 통해 얻은 통찰력은 AI가 전략 게임에서 빠르게 움직이고 상호작용하며 갈등으로 이어질 수 있는 위험성을 보여준다. 핵심 우려는 인간 의사결정자가 이러한 기계 속도의 전략 과정에서 무력한 관찰자로 전락할 가능성이다.
 
@@ -440,7 +444,7 @@ https://www.rand.org/pubs/external_publications/EP71419.html" onclick="copyEntry
 </article>
 <article class="entry cat-media">
   <h2>🇨🇳 중국, ‘인간 같은(의인화) AI 감정 상호작용 서비스’ 임시 규정 발표(2026.7.15 시행)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">geopolitechs.org</span></span><button type="button" class="copy-btn" data-copy="중국, ‘인간 같은(의인화) AI 감정 상호작용 서비스’ 임시 규정 발표(2026.7.15 시행)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">geopolitechs.org</span></span><button type="button" class="copy-btn" data-copy="중국, ‘인간 같은(의인화) AI 감정 상호작용 서비스’ 임시 규정 발표(2026.7.15 시행)
 
 2026.7.15 시행(중국 관계부처 공동 발표일: 2026.4.10)
 
@@ -453,7 +457,7 @@ https://www.geopolitechs.org/p/china-rolls-out-interim-regulations" onclick="cop
 </article>
 <article class="entry cat-media">
   <h2>🇺🇸 미국의 수출 통제 조치가 유럽의 첨단 AI 모델 접근성에 미치는 영향 (2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">AI-Frontiers</span></span><button type="button" class="copy-btn" data-copy="미국의 수출 통제 조치가 유럽의 첨단 AI 모델 접근성에 미치는 영향 (2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AI-Frontiers</span></span><button type="button" class="copy-btn" data-copy="미국의 수출 통제 조치가 유럽의 첨단 AI 모델 접근성에 미치는 영향 (2026.7.15)
 
 미국 트럼프 행정부가 Anthropic의 가장 발전된 AI 모델인 Fable 5와 Mythos 5에 대한 비미국 국민의 접근을 제한하는 조치를 취함으로써 유럽은 AI 주권에 대한 경각심을 갖게 되었다. 이 조치는 유럽의 첨단 AI 모델 접근성에 즉각적인 영향을 미쳤으나, 장기적으로는 유럽이 자체 AI 개발에 더 집중하고 협력해야 함을 강조한다. 유럽은 현재의 상황에서 제한적인 영향을 받을 것으로 예상되나, 장기적으로는 첨단 AI 모델에 대한 접근성 확보가 경제적 경쟁력과 사이버 보안을 위해 필수적이다. 이를 위해 유럽은 공동 조달과 인프라 투자 등을 통해 미국 기업들과의 협상력을 강화해야 한다.
 
@@ -463,7 +467,7 @@ https://newsletter.ai-frontiers.org/p/what-export-controls-on-anthropics" onclic
 </article>
 <article class="entry cat-media">
   <h2>🇨🇳🇺🇸 Apple Wins Chinese Approval for On-Device AI Deployment (2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">미디어</span> · <span class="source">GeopoliTechs</span></span><button type="button" class="copy-btn" data-copy="Apple Wins Chinese Approval for On-Device AI Deployment (2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">GeopoliTechs</span></span><button type="button" class="copy-btn" data-copy="Apple Wins Chinese Approval for On-Device AI Deployment (2026.7.15)
 
 애플이 중국에서 애플 인텔리전스의 배포를 위한 규제 승인을 획득했다. 이는 중국 본토 스마트폰에 내장된 AI 기능의 첫 단계로, 규제 절차를 완료한 후에도 보안 평가와 기능 현지화가 남아 있다. 알리바바의 퀴엔이 애플 인텔리전스의 핵심 AI 기능을 제공하며, 애플은 다변화된 공급업체 전략을 통해 규제 준수와 공급망 유연성을 확보하고 있다. 이 승인은 애플의 중국 내 아이폰 판매량 증가에 긍정적 영향을 미칠 것으로 예상되나, 미국 제재와 데이터 로컬라이제이션 요구 사항 등 불확실성도 존재한다. 이 사례는 외국 AI 기업들이 중국 시장에 진출하는 데 참고할 수 있는 모델이 될 수 있다.
 
@@ -494,9 +498,9 @@ https://openai.com/index/unlocking-self-improvement-gpt-red/" onclick="copyEntry
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://openai.com/index/unlocking-self-improvement-gpt-red/">https://openai.com/index/unlocking-self-improvement-gpt-red/</a></p>
 </article>
-<article class="entry cat-kr-gov">
+<article class="entry cat-public">
   <h2>🇰🇷 다이어리 조사 방법론에 따른 미디어 이용량 편차 분석 (2026.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-kr-gov">한국 기관</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="다이어리 조사 방법론에 따른 미디어 이용량 편차 분석 (2026.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="다이어리 조사 방법론에 따른 미디어 이용량 편차 분석 (2026.7.15)
 
 요약불가
 

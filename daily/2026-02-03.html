@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,6 +305,19 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
+<article class="entry cat-media">
+  <h2>🇺🇸 백악관 국가사이버국이 AI 보안 정책 프레임워크를 개발(2026.2.3)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">Nextgov/FCW</span></span><button type="button" class="copy-btn" data-copy="백악관 국가사이버국이 AI 보안 정책 프레임워크를 개발(2026.2.3)
+
+국가사이버전략은 당초 예상보다 지연됐으나 “조만간” 공개될 예정이라고 언급됨(구체 일정 미제시)
+
+백악관 국가사이버국(ONCD) 최고 책임자 Sean Cairncross는 미국이 주도하는 AI 기술 스택에 보안 조치를 내재화하기 위한 AI 보안 정책 프레임워크를 개발 중이라고 밝혔다. 그는 AI 보안을 혁신의 ‘마찰 요소’로 보지 않고 AI 시스템의 기반 단계에서부터 포함시키려는 취지라고 설명했다. 또한 데이터 포이즈닝 같은 AI 관련 위험과, 에이전틱 보안 도구/자동화가 공격에 악용될 수 있다는 점이 사이버 커뮤니티에서 주요 이슈로 거론된다고 전했다.
+
+https://www.nextgov.com/cybersecurity/2026/02/white-house-cyber-shop-crafting-ai-security-policy-framework-top-official-says/411154/" onclick="copyEntry(this)">복사</button></div>
+  <p>국가사이버전략은 당초 예상보다 지연됐으나 “조만간” 공개될 예정이라고 언급됨(구체 일정 미제시)</p>
+<p>백악관 국가사이버국(ONCD) 최고 책임자 Sean Cairncross는 미국이 주도하는 AI 기술 스택에 보안 조치를 내재화하기 위한 AI 보안 정책 프레임워크를 개발 중이라고 밝혔다. 그는 AI 보안을 혁신의 ‘마찰 요소’로 보지 않고 AI 시스템의 기반 단계에서부터 포함시키려는 취지라고 설명했다. 또한 데이터 포이즈닝 같은 AI 관련 위험과, 에이전틱 보안 도구/자동화가 공격에 악용될 수 있다는 점이 사이버 커뮤니티에서 주요 이슈로 거론된다고 전했다.</p>
+  <p class="url"><a href="https://www.nextgov.com/cybersecurity/2026/02/white-house-cyber-shop-crafting-ai-security-policy-framework-top-official-says/411154/">https://www.nextgov.com/cybersecurity/2026/02/white-house-cyber-shop-crafting-ai-security-policy-framework-top-official-says/411154/</a></p>
+</article>
 <article class="entry cat-db">
   <h2>The International AI Safety Report 2026 Is Published (2026.2.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="The International AI Safety Report 2026 Is Published (2026.2.3)
@@ -320,19 +337,6 @@ SuperCLUE 2025 연례 평가에서 Claude-Opus-4.5-Reasoning(68.25점)이 종합
 https://mp.weixin.qq.com/s/w9Jyt5e3BR-lvaIMEjTAew" onclick="copyEntry(this)">복사</button></div>
   <p>SuperCLUE 2025 연례 평가에서 Claude-Opus-4.5-Reasoning(68.25점)이 종합 1위를 차지했으며, Gemini-3-Pro-Preview(65.59점)와 GPT-5.2(high)(64.32점)가 뒤를 이었습니다. 개방형 모델은 Kimi-K2.5-Thinking(61.50점)이 개방형 1위를 기록했고, 코드 생성·웹 코딩에서는 국내 모델의 강세가 두드러졌습니다. 반면 정밀 지시 준수와 환각 제어에서는 해외 모델이 전반적으로 우위를 보였고, 특히 정밀 지시 준수에서 점수 격차가 크게 나타났습니다. 또한 SuperCLUE 점수와 LMArena(인간 투표 기반) 간 상관계수(피어슨 0.8239, 스피어만 0.8321)로 평가 일관성이 높다고 제시했습니다.</p>
   <p class="url"><a href="https://mp.weixin.qq.com/s/w9Jyt5e3BR-lvaIMEjTAew">https://mp.weixin.qq.com/s/w9Jyt5e3BR-lvaIMEjTAew</a></p>
-</article>
-<article class="entry cat-other">
-  <h2>🇺🇸 백악관 국가사이버국이 AI 보안 정책 프레임워크를 개발(2026.2.3)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">Nextgov/FCW</span></span><button type="button" class="copy-btn" data-copy="백악관 국가사이버국이 AI 보안 정책 프레임워크를 개발(2026.2.3)
-
-국가사이버전략은 당초 예상보다 지연됐으나 “조만간” 공개될 예정이라고 언급됨(구체 일정 미제시)
-
-백악관 국가사이버국(ONCD) 최고 책임자 Sean Cairncross는 미국이 주도하는 AI 기술 스택에 보안 조치를 내재화하기 위한 AI 보안 정책 프레임워크를 개발 중이라고 밝혔다. 그는 AI 보안을 혁신의 ‘마찰 요소’로 보지 않고 AI 시스템의 기반 단계에서부터 포함시키려는 취지라고 설명했다. 또한 데이터 포이즈닝 같은 AI 관련 위험과, 에이전틱 보안 도구/자동화가 공격에 악용될 수 있다는 점이 사이버 커뮤니티에서 주요 이슈로 거론된다고 전했다.
-
-https://www.nextgov.com/cybersecurity/2026/02/white-house-cyber-shop-crafting-ai-security-policy-framework-top-official-says/411154/" onclick="copyEntry(this)">복사</button></div>
-  <p>국가사이버전략은 당초 예상보다 지연됐으나 “조만간” 공개될 예정이라고 언급됨(구체 일정 미제시)</p>
-<p>백악관 국가사이버국(ONCD) 최고 책임자 Sean Cairncross는 미국이 주도하는 AI 기술 스택에 보안 조치를 내재화하기 위한 AI 보안 정책 프레임워크를 개발 중이라고 밝혔다. 그는 AI 보안을 혁신의 ‘마찰 요소’로 보지 않고 AI 시스템의 기반 단계에서부터 포함시키려는 취지라고 설명했다. 또한 데이터 포이즈닝 같은 AI 관련 위험과, 에이전틱 보안 도구/자동화가 공격에 악용될 수 있다는 점이 사이버 커뮤니티에서 주요 이슈로 거론된다고 전했다.</p>
-  <p class="url"><a href="https://www.nextgov.com/cybersecurity/2026/02/white-house-cyber-shop-crafting-ai-security-policy-framework-top-official-says/411154/">https://www.nextgov.com/cybersecurity/2026/02/white-house-cyber-shop-crafting-ai-security-policy-framework-top-official-says/411154/</a></p>
 </article>
 <article class="entry cat-research">
   <h2>LLM 백도어 트리거를 메모리 추출과 출력/어텐션 패턴으로 스캐닝·복원(2026.02.03)</h2>

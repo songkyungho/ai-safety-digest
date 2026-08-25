@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,9 +305,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi">
+<article class="entry cat-public">
   <h2>🇬🇧 LLM 에이전트 위해 ‘control safety case’ 구성 방안 제시 (2025.1.28)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="LLM 에이전트 위해 ‘control safety case’ 구성 방안 제시 (2025.1.28)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="LLM 에이전트 위해 ‘control safety case’ 구성 방안 제시 (2025.1.28)
 
 LLM agents가 더 큰 해를 끼칠 수 있어 개발자가 monitoring 같은 control 조치로 안전성을 정당화할 수 있다고 보고, ‘control safety case’라는 구조화된 주장을 제안한다. 가상의 내부 LLM 에이전트가 민감정보를 유출하지 못한다는 사례를 들어, red team이 배포 환경을 대리해 데이터 exfiltration을 유도하는 ‘control evaluation’에 기반해 통제의 유효성과 개발자의 보수적 성능 외삽을 핵심 주장으로 둔다. 글은 위험한 수준의 LLM 에이전트를 실제 배포해도 안전하다는 더 구체적 논증을 향한 단계라고 설명한다.
 

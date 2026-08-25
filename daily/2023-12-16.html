@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,9 +305,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-research-org">
+<article class="entry cat-public">
   <h2>🇺🇸 METR 제안하는 LLM 에이전트 성능 측정을 위한 다양한 난이도의 어려운 작업 공모 (2023.12.16)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research-org">연구기관</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="METR 제안하는 LLM 에이전트 성능 측정을 위한 다양한 난이도의 어려운 작업 공모 (2023.12.16)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="METR 제안하는 LLM 에이전트 성능 측정을 위한 다양한 난이도의 어려운 작업 공모 (2023.12.16)
 
 METR (이전 ARC Evals)은 자율 LLM 에이전트의 성능을 측정하기 위한 아이디어, 상세 사양, 그리고 검증된 구현을 찾고 있습니다. 공모의 핵심 기준은 인간 전문가가 2시간 이상, 가능하다면 20시간 이상 소요되는 난이도 있는 작업을 포함하며, 위험 요소를 최소화하고 LLM 에이전트의 강점을 살릴 수 있는 작업을 선호합니다. 주요 목표는 다양한 난이도의 작업을 통해 에이전트의 능력을 연속적으로 측정하고, 특정 위협 모델(예: 사이버 범죄, 자기 개선)에 대한 정보를 제공하는 것입니다. 참여자들은 작업 아이디어, 사양, 구현을 제출할 수 있으며, 각 범주별로 보상이 주어집니다. 제출된 작업은 훈련 데이터에 포함되지 않아야 합니다.
 

@@ -29,6 +29,7 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +49,7 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
     }
   }
   * { box-sizing: border-box; }
@@ -105,6 +107,7 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -144,6 +147,7 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -301,9 +305,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-frontier">
+<article class="entry cat-company">
   <h2>🇺🇸 GPT-5.5 Instant (OpenAI) (2026.5.5)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-frontier">출시모델</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.5 Instant (OpenAI) (2026.5.5)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="GPT-5.5 Instant (OpenAI) (2026.5.5)
 
 Reasoning · Closed
 
@@ -317,9 +321,9 @@ https://openai.com/index/gpt-5-5-instant/" onclick="copyEntry(this)">복사</but
 <p>New ChatGPT default, replacing GPT-5.3 Instant. 52.5% fewer hallucinations on high-stakes prompts (medicine, law, finance). 81.2 AIME 2025 (vs 65.4 prior). Vision supported. API alias: chat-latest.</p>
   <p class="url"><a href="https://openai.com/index/gpt-5-5-instant/">https://openai.com/index/gpt-5-5-instant/</a></p>
 </article>
-<article class="entry cat-aisi">
+<article class="entry cat-public">
   <h2>🇺🇸 CAISI, Google DeepMind·Microsoft·xAI와 ‘최첨단 AI 국가안보 테스트’ 관련 협약 체결(2026.5.5)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi">AISI</span> · <span class="source">미국 국립표준기술연구소(NIST)</span></span><button type="button" class="copy-btn" data-copy="CAISI, Google DeepMind·Microsoft·xAI와 ‘최첨단 AI 국가안보 테스트’ 관련 협약 체결(2026.5.5)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">미국 국립표준기술연구소(NIST)</span></span><button type="button" class="copy-btn" data-copy="CAISI, Google DeepMind·Microsoft·xAI와 ‘최첨단 AI 국가안보 테스트’ 관련 협약 체결(2026.5.5)
 
 CAISI(미 상무부 NIST 산하)는 Google DeepMind, Microsoft, xAI와 최첨단(frontier) AI의 국가안보 관련 역량을 평가하기 위한 신규 협약을 발표했다. 협약에 따라 CAISI는 배포 전(pre-deployment) 평가와 표적 연구를 수행하고, 정부는 모델이 공개되기 전에도 평가할 수 있다. 또한 개발사들이 국가안보 관련 역량과 위험을 평가하기 위해 안전장치가 축소·제거된 모델을 제공할 수 있으며, 정부 평가자들은 TRAINS 태스크포스 등을 통해 정기적으로 피드백을 주고받는다고 밝혔다.
 
@@ -357,9 +361,9 @@ https://www.anthropic.com/news/finance-agents" onclick="copyEntry(this)">복사<
   <p>앤트로픽은 금융 서비스에서 시간이 많이 드는 업무(피치북 작성, KYC 파일 스크리닝, 월말 결산 등)를 위한 준비된 에이전트 템플릿 10종을 공개했다. 각 템플릿은 기술(스킬), 데이터에 대한 거버넌스 기반 커넥터, 하위 에이전트로 구성되며 Claude Cowork·Claude Code의 플러그인 또는 Claude Managed Agents의 쿠키북으로 제공된다. 또한 Claude의 Microsoft 365 연동을 Excel·PowerPoint·Word에 이어 Outlook까지 확장하고, FactSet·S&amp;P Capital IQ·MSCI·PitchBook 등과의 커넥터 및 MCP 앱을 추가해 금융 데이터/도구에 대한 접근성을 넓혔다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/finance-agents">https://www.anthropic.com/news/finance-agents</a></p>
 </article>
-<article class="entry cat-intl-org">
+<article class="entry cat-public">
   <h2>🇪🇺 EU-일본, AI·데이터·양자·반도체 등 디지털 분야 협력 심화(2026.5.5)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-intl-org">국제기구</span> · <span class="source">EU-Digital-Strategy</span></span><button type="button" class="copy-btn" data-copy="EU-일본, AI·데이터·양자·반도체 등 디지털 분야 협력 심화(2026.5.5)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">EU-Digital-Strategy</span></span><button type="button" class="copy-btn" data-copy="EU-일본, AI·데이터·양자·반도체 등 디지털 분야 협력 심화(2026.5.5)
 
 브뤼셀에서 열린 제4차 EU-일본 디지털 파트너십 협의회에서 양측은 데이터·AI·양자·반도체·디지털 인프라·온라인 플랫폼 분야의 규제, 연구, 산업 협력을 강화하기 위한 추가 조치를 합의했다. 이번 합의는 국경 간 데이터 흐름 개선, 상호운용 가능한 디지털 신원 발전, 연구·플랫폼 규제·디지털 인프라 협력 강화를 목표로 한다. 또한 시민과 기업이 체감할 수 있는 실질적 이익을 제공하겠다고 밝혔다.
 

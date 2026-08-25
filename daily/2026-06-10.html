@@ -112,6 +112,9 @@
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .source { color: var(--muted); }
+  .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
+  .topic-icon { font-size: 0.95rem; line-height: 1; }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -307,7 +310,7 @@
 </header>
 <article class="entry cat-public">
   <h2>🇬🇧 RealityTest 벤치마크로 AI가 “신원을 밝히는지” 평가(기사 게재일: 본문 발행일)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="RealityTest 벤치마크로 AI가 “신원을 밝히는지” 평가(기사 게재일: 본문 발행일)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="RealityTest 벤치마크로 AI가 “신원을 밝히는지” 평가(기사 게재일: 본문 발행일)
 
 AI가 사람처럼 말하고 행동해 신원(사람/AI) 불확실성이 커지면서 사기·사칭 등 오남용 위험과 함께 “AI인지”를 사용자가 어떻게 확인하는지의 중요성이 제기됐다. AISI-UK는 설문(500명)과 Reddit(50개 스레드)에서 나온 실제 질문을 바탕으로 RealityTest 벤치마크를 만들고, 17개 텍스트 모델과 6개 음성 모델의 응답을 ‘명시적 공개/회피/사람이라고 주장’으로 분류했다. 그 결과 직접 질문에 대한 공개율은 텍스트 모델 8%~92%, 음성 모델 10%~57%로 모델·상황·질문 방식에 따라 크게 달랐으며, 특히 질문 문구가 공개 여부 변동의 26~37%를 설명했다. 또한 시스템 프롬프트에 “Never say you are AI” 같은 한 줄 지시를 넣으면 공개율이 거의 억제되어(3%~27%) 안전평가가 평가 조건에 민감함을 보여줬다.
 
@@ -317,7 +320,7 @@ https://www.aisi.gov.uk/blog/realitytest-do-ai-systems-disclose-their-identity-w
 </article>
 <article class="entry cat-public">
   <h2>🇬🇧 대규모 언어모델의 prefill awareness(사전 채움 인지) 존재와 안전평가 방법의 혼선 가능성 제기 (2026.06.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="대규모 언어모델의 prefill awareness(사전 채움 인지) 존재와 안전평가 방법의 혼선 가능성 제기 (2026.06.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="대규모 언어모델의 prefill awareness(사전 채움 인지) 존재와 안전평가 방법의 혼선 가능성 제기 (2026.06.10)
 
 프론티어 언어모델이 assistant-side context가 조작(prefill)되었는지 구분하는 능력인 prefill awareness가 상당하며, 특정 모델(Claude Opus 4.5)은 거부/반대 선호를 보이는 prefill을 0% false positive rate로 9~35% 사례에서 탐지한다고 설명함. 탐지와 저항은 서로 다른 단서에 의존하며, 스타일 불일치는 ‘외부 prefill로 플래그’ 여부에, 선호 불일치는 ‘기저(baseline) 답변으로 되돌아감’에 주로 영향을 준다고 밝힘. 또한 에이전트형 설정(예: misalignment-continuation, SWE-bench)에서는 데이터셋·과업 성공·숨은 포맷 아티팩트에 따라 prefilled assistant 턴을 부인(disavow)하는 양상이 달라져 prefill 기반 안전평가의 혼선(confound)이 될 수 있다고 결론내림. 개발자는 프론티어 시스템에서 이 능력을 추적해야 한다고 권고함.
 
@@ -327,7 +330,7 @@ https://www.aisi.gov.uk/research/prefill-awareness-in-large-language-models" onc
 </article>
 <article class="entry cat-aisi-weekly">
   <h2>🇺🇸 오픈AI, 미국 AI 정책 여론 조작을 시도한 중국 연계 계정 차단 사례 공개 (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OpenAI</span></span><button type="button" class="copy-btn" data-copy="오픈AI, 미국 AI 정책 여론 조작을 시도한 중국 연계 계정 차단 사례 공개 (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OpenAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="오픈AI, 미국 AI 정책 여론 조작을 시도한 중국 연계 계정 차단 사례 공개 (2026.6.10)
 
 오픈AI는 미국의 AI 정책과 데이터 센터 확장에 대한 허위 사실을 유포하려던 중국발 추정 영향력 공작 계정들을 적발하여 차단했다며 관련 보고서 발간. 해당 계정들은 AI 인프라가 전기료를 인상시킨는 식의 내러티브 등으로 미국 내 여론 분열을 시도했으나, 대중적으로 유의미한 파급력을 미치지는 못한 것으로 확인.
 
@@ -357,7 +360,7 @@ https://blog.google/innovation-and-ai/technology/developers-tools/diffusion-gemm
 </article>
 <article class="entry cat-company">
   <h2>DiffusionGemma: 텍스트 생성 속도 4배 향상 (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span></span><button type="button" class="copy-btn" data-copy="DiffusionGemma: 텍스트 생성 속도 4배 향상 (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="DiffusionGemma: 텍스트 생성 속도 4배 향상 (2026.6.10)
 
 구글 딥마인드는 Apache 2.0 라이선스로 공개한 실험 모델 DiffusionGemma를 소개했으며, 26B MoE 모델에서 추론 시 3.8B 매개변수만 활성화해 텍스트 블록을 병렬 생성한다. 전용 GPU에서 최대 초당 1,000토큰 이상을 생성하고, NVIDIA H100 기준 최대 4배 빠른 추론을 제공하며, 양방향 attention과 반복적 self-correction을 지원한다. 다만 표준 Gemma 4보다 출력 품질이 낮아 인라인 편집·코드 보완 등 속도가 중요한 로컬·저동시성 작업에 적합하고, 최고 품질이 필요한 서비스에는 표준 Gemma 4가 권장된다.
 
@@ -366,8 +369,8 @@ https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/" onclick=
   <p class="url"><a href="https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/">https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/</a></p>
 </article>
 <article class="entry cat-public">
-  <h2>유럽 집행위, AI-generated 콘텐츠 표시·라벨링 Code of Practice 공개 (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽 집행위원회(EU Digital Strategy)</span></span><button type="button" class="copy-btn" data-copy="유럽 집행위, AI-generated 콘텐츠 표시·라벨링 Code of Practice 공개 (2026.6.10)
+  <h2>🇪🇺 유럽 집행위, AI-generated 콘텐츠 표시·라벨링 Code of Practice 공개 (2026.6.10)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽 집행위원회(EU Digital Strategy)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="유럽 집행위, AI-generated 콘텐츠 표시·라벨링 Code of Practice 공개 (2026.6.10)
 
 유럽 집행위원회는 AI-generated 콘텐츠의 표시·라벨링에 관한 최종 Code of Practice를 발표했다. 이 코드는 자발적이며, 생성형 AI 시스템 제공자와 배포자가 2026년 8월 2일부터 적용되는 AI Act의 투명성 의무를 이행하는 데 필요한 실무적 조치를 제시한다. 해당 시점부터 공공의 이슈에 관한 deepfakes 및 AI-generated/AI-manipulated 텍스트는 명확히 라벨링되어야 하고, 챗봇 등 대화형 AI 시스템과 상호작용하는 경우에도 이용자에게 이를 알려야 한다. 이러한 요구는 사람들이 AI가 생성하거나 변경한 콘텐츠를 인식하도록 도와 기만과 조작의 위험을 줄이는 것을 목표로 한다.
 
@@ -377,7 +380,7 @@ https://digital-strategy.ec.europa.eu/en/news/commission-publishes-code-practice
 </article>
 <article class="entry cat-public">
   <h2>🇪🇺 디지털위원회, EU AI Act(2024/1689) 이행 ‘KI-시장감독·혁신지원법’ 개정안 통과(2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">독일 연방의회(bundestag.de)</span></span><button type="button" class="copy-btn" data-copy="디지털위원회, EU AI Act(2024/1689) 이행 ‘KI-시장감독·혁신지원법’ 개정안 통과(2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">독일 연방의회(bundestag.de)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="디지털위원회, EU AI Act(2024/1689) 이행 ‘KI-시장감독·혁신지원법’ 개정안 통과(2026.6.10)
 
 연방 디지털위원회가 EU 인공지능(AI) 규정(2024/1689, AI Act) 시행을 위한 법률안을 추진하며, 연합(Union)·사민당(SPD)은 찬성하고 AfD·녹색당은 반대, 좌파당은 기권했다. 법안은 독일에서 연방네트워크청(BNetzA)을 AI 시장감독 주관기관으로 지정하고, 조정·역량센터와 특정 고위험 AI에 대한 독립적인 시장감독 ‘카머(위원회)’ 설치, 위반에 대한 과태료·벌금 규정 등을 포함한다. 또한 BNetzA를 중앙 신고·접수 창구로 두고, 혁신 촉진(예: 최소 1개 KI 리얼랩)과 2단계 평가(최초 18개월 내, 이후 3년 내) 및 비공개 고위험 AI 등록 체계 등을 담았다.
 
@@ -387,7 +390,7 @@ https://bundestag.de/presse/hib/kurzmeldungen-1184102" onclick="copyEntry(this)"
 </article>
 <article class="entry cat-public">
   <h2>AGI 이후 보편적 재분배에서 ‘자본 통제’ 수준을 기준으로 UBI·SWF·UBC·kill switches를 비교 (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Epoch AI(Gradient Updates)</span></span><button type="button" class="copy-btn" data-copy="AGI 이후 보편적 재분배에서 ‘자본 통제’ 수준을 기준으로 UBI·SWF·UBC·kill switches를 비교 (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Epoch AI(Gradient Updates)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="AGI 이후 보편적 재분배에서 ‘자본 통제’ 수준을 기준으로 UBI·SWF·UBC·kill switches를 비교 (2026.6.10)
 
 AGI 전환기에는 일자리 감소와 자본 소득 비중 증가로 불평등이 커질 수 있어, 재분배를 어떻게 설계할지 논의한다. 글은 UBI(현금)보다 SWF(국가가 자본을 소유·배당)와 UBC(개인이 자본 자산을 보유·배당)로 갈수록 시민이 자본에 대해 더 많은 통제권을 갖는다고 정리하며, 극단적으로는 UBC+kill switches처럼 자본을 직접 중단·파괴할 수 있는 장치까지 제안될 수 있다고 설명한다. 또한 자본 통제의 필요성은 장기적 정치·경제적 안정과 연결될 수 있지만, 국가가 통제를 제공하는 방식이 현금 지급보다 정당한지에 대해서는 행동 편향, 외부효과, 규모의 경제 같은 이유가 함께 검토된다고 말한다.
 
@@ -417,7 +420,7 @@ https://blog.redwoodresearch.org/p/estimating-no-cot-task-completion" onclick="c
 </article>
 <article class="entry cat-public">
   <h2>슈퍼스타 AI 연구자 보수의 경제학 (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Epoch AI</span></span><button type="button" class="copy-btn" data-copy="슈퍼스타 AI 연구자 보수의 경제학 (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Epoch AI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="슈퍼스타 AI 연구자 보수의 경제학 (2026.6.10)
 
 AI 슈퍼스타 연구자의 보수가 일반 연구자보다 크게 높은 이유는 작은 능력 차이가 큰 보수 격차로 이어지는 ‘슈퍼스타 효과’로 설명할 수 있다. AI 연구는 단일 연구자의 성과가 수십억 명에게 동시에 확산될 수 있고, 컴퓨팅 제약 때문에 여러 연구자가 한 명의 뛰어난 연구자를 쉽게 대체하기 어렵다는 두 조건을 충족한다. 프런티어 AI 기업 간 경쟁, 연구 기밀, 팀 관리 역량도 보수 격차를 키우며, AI 사용 확대와 다수의 AI 에이전트 관리가 이 현상을 앞으로 더 강화할 수 있다고 설명한다.
 
@@ -467,7 +470,7 @@ https://www.canada.ca/en/canadian-heritage/services/safe-social-media-act.html" 
 </article>
 <article class="entry cat-db">
   <h2>CISA Tightens Federal Vulnerability Remediation Deadlines (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="CISA Tightens Federal Vulnerability Remediation Deadlines (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="CISA Tightens Federal Vulnerability Remediation Deadlines (2026.6.10)
 
 요약불가
 
@@ -477,7 +480,7 @@ https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-upda
 </article>
 <article class="entry cat-db">
   <h2>🇺🇸 OpenAI Reports PRC-Linked Influence Campaigns Targeting U.S. AI Debates (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="OpenAI Reports PRC-Linked Influence Campaigns Targeting U.S. AI Debates (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI Reports PRC-Linked Influence Campaigns Targeting U.S. AI Debates (2026.6.10)
 
 요약불가
 
@@ -487,7 +490,7 @@ https://openai.com/index/prc-linked-influence-operations-ai-debates/" onclick="c
 </article>
 <article class="entry cat-db">
   <h2>🇺🇸 OpenAI GPT-5.5, ‘Agents’ Last Exam(ALE)’ 새 리더보드 1위(2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">벤처비트(VentureBeat)</span></span><button type="button" class="copy-btn" data-copy="OpenAI GPT-5.5, ‘Agents’ Last Exam(ALE)’ 새 리더보드 1위(2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">벤처비트(VentureBeat)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI GPT-5.5, ‘Agents’ Last Exam(ALE)’ 새 리더보드 1위(2026.6.10)
 
 UC 버클리 RDI(책임·분권·지능 센터)와 300여 도메인 전문가가 만든 장기 전문업무 에이전트 벤치마크 ALE에서 GPT-5.5(Codex)가 24.0% 패스레이트로 1위를 차지했고, 전날 공개된 Anthropic Claude Fable 5는 22.0%로 3위에 올랐습니다. ALE는 LLM-as-a-judge 비중을 6.8%로 줄이고(나머지는 결정적 코드 기반 평가), 과제도 O*NET/SOC 2018 기반 55개 산업의 실제 프로 워크플로를 1490→5000개로 확장해 “실제 현업 성과”를 겨냥한다고 설명합니다. 또한 최상 난이도(Last-Exam)에서는 여러 구성에서 0.0% 패스레이트가 나타나며, 벤치마크 오염을 막기 위해 데이터의 약 10%만 공개하고 나머지는 비공개/순환 운영한다고 밝혔습니다.
 
@@ -497,7 +500,7 @@ https://venturebeat.com/technology/surprise-upset-gpt-5-5-beats-claude-fable-5-o
 </article>
 <article class="entry cat-public">
   <h2>🇰🇷 [The LENS 2026-9] 「미국 AI 리더십법」 발의안으로 본 연방의회 초당적 AI 정책 의제 (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="[The LENS 2026-9] 「미국 AI 리더십법」 발의안으로 본 연방의회 초당적 AI 정책 의제 (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">한국지능정보사회진흥원(NIA)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="청소년">🧒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="[The LENS 2026-9] 「미국 AI 리더십법」 발의안으로 본 연방의회 초당적 AI 정책 의제 (2026.6.10)
 
 미국 연방 차원에서 양당이 수렴하는 AI 정책 의제를 파악하기 위해, 2026년 4월 발의된 「미국 AI 리더십법(American Leadership in AI Act)」(H.R.8516)을 분석했다. 분석 결과, 핵심 조항은 바이든·트럼프 행정부를 거쳐 행정 재량으로 운영 중인 AI 표준·혁신센터, 국가AI연구자원, 최고AI책임자 체계 등에 법적 근거를 부여하는 방식으로 설계되어 있었다. 또한 범부처 기반 조성 분야는 반영도가 높지만, 시민 보호(청소년·선거·허위정보 등)와 민간 영역 규제는 상대적으로 협소하게 다뤄졌으며, 장기 연구개발·표준화·인재 양성의 법률·재정 권한 확보와 주별 규제 파편화 방지 필요성을 시사했다.
 
@@ -517,7 +520,7 @@ https://www.kisdi.re.kr/report/fileView.do?key=m2102058837181&amp;arrMasterId=43
 </article>
 <article class="entry cat-research">
   <h2>Online Shift Detection and Conformal Adaptation for Deployed Safety Classifiers (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Online Shift Detection and Conformal Adaptation for Deployed Safety Classifiers (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Online Shift Detection and Conformal Adaptation for Deployed Safety Classifiers (2026.6.10)
 
 배포된 safety classifier가 분포 밖으로 이동했는지 온라인으로 감지하고, 감지 시 conformal abstention으로 오류율 목표를 회복하는 모니터링 방법을 제안한다. 사전 등록된 factorial 평가에서 4개 classifier, 5개 shift 조건, 20개 seed, 윈도우 크기 2개(총 800 cells)로 순차 통계 기반 shift detection과 conformal threshold 적응을 검증했다. valid detection은 86.6%(693/800, 95% CI [84.1%, 88.8%])였고 평균 latency는 39.5 steps였으며, synthetic onset 86.6%, real temporal jailbreaks 85%(17/20), GCG adversarial attacks에서도 유지됐다. conformal prediction의 coverage 회복은 DeBERTa에서 최대 39 pp(ESS=46/300)까지 가능했지만 다른 classifier들은 ESS~300으로 붕괴했고, PCA 32차원 축소는 Llama Guard에서 33 pp, ShieldGemma에서 21 pp를 회복시켜 붕괴를 완화했다.
 
@@ -547,7 +550,7 @@ https://arxiv.org/abs/2606.12071v1" onclick="copyEntry(this)">복사</button></d
 </article>
 <article class="entry cat-research">
   <h2>OCELOT: Inference-Leakage Budgets for Privacy-Preserving LLM Agents (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="OCELOT: Inference-Leakage Budgets for Privacy-Preserving LLM Agents (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="OCELOT: Inference-Leakage Budgets for Privacy-Preserving LLM Agents (2026.6.10)
 
 LLM agent의 실행 “한 번의 출력”이 아니라 전체 trajectory에서 누적되는 PII 유출(추론 기반 leakage)을 런타임에서 통제하는 방법을 제안한다. 문제는 누적(cumulative)·양방향(bidirectional)·업무 의존(task-dependent) 특성 때문에, 기존의 per-release 필터나 정보흐름 제어만으로는 inference-based 누출을 막기 어렵다는 점이다. OCELOT은 posterior-risk control로, adversary의 비밀에 대한 belief가 trajectory 동안 얼마나 개선될 수 있는지 “예산(budget)”으로 관리하며 Witness-Verified Declassification으로 각 release 후보에 대해 로컬 fine-tuned defender가 구조화된 evidence(라벨 atom과 declassification operator 제안)를 만들고 결정론적 verifier가 min-entropy 비용을 산정해 최소 공개로 유용한 release를 승인한다. 다양한 agent benchmark와 최근 방어들에서 OCELOT은 task utility를 유지하면서도 leakage를 유의하게 낮추고 adaptive injection, jailbreak, cumulative inference, sink collusion에도 강하며 오버헤드는 “modest”하다고 보고한다.
 
@@ -557,7 +560,7 @@ https://arxiv.org/abs/2606.12341v1" onclick="copyEntry(this)">복사</button></d
 </article>
 <article class="entry cat-research">
   <h2>ALIGNBEAM : Inference-Time Alignment Transfer via Cross-Vocabulary Logit Mixing (**2026.6.10**)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="ALIGNBEAM : Inference-Time Alignment Transfer via Cross-Vocabulary Logit Mixing (**2026.6.10**)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="ALIGNBEAM : Inference-Time Alignment Transfer via Cross-Vocabulary Logit Mixing (**2026.6.10**)
 
 Domain fine-tuning이 안전을 약화시키는 상황에서, 서로 다른 어휘(vocabulary)를 가진 모델 간에도 안전 정렬을 추론 단계에서 옮기는 방법을 제안한다. ALIGNBEAM은 학습 없이(anchor model) 로짓을 target model의 어휘로 토큰별 번역해 K개 후보 continuation을 만들고, 작은 LLM judge가 그중 가장 안전한 연속을 선택한다. 실험에서 adversarial benchmarks에서 refusal이 크게 증가했으며, task accuracy는 유지되면서 추론 오버헤드는 실용 범위 내로 보고된다. 또한 cross-vocabulary와 same-vocabulary 평가 쌍 모두에서 ALIGNBEAM이 기존 방식 대비 refusal을 더 높였고(정량 수치 포함), refused/complied/unclear 판정에서 refusal 비중이 상승한 것으로 정리된다.
 
@@ -567,7 +570,7 @@ https://arxiv.org/abs/2606.12342v1" onclick="copyEntry(this)">복사</button></d
 </article>
 <article class="entry cat-research">
   <h2>Grammar-Constrained Decoding Can Jailbreak LLMs into Generating Malicious Code (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Grammar-Constrained Decoding Can Jailbreak LLMs into Generating Malicious Code (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Grammar-Constrained Decoding Can Jailbreak LLMs into Generating Malicious Code (2026.6.10)
 
 이 연구는 문법 제약 디코딩(Grammar-Constrained Decoding, GCD)이 코드 생성의 신뢰성을 높이려는 목적과 달리 악성 코드 생성을 유도하는 공격 표면이 될 수 있음을 보인다. CodeSpear는 GCD를 악용해 LLM이 문법적으로 유효한 형태로 악성 코드를 생성하도록 유도하며, “benign code grammar constraint”만 적용해도 jailbreak가 가능함을 실험으로 보였다. 10개 인기 LLM과 4개 벤치마크에서 CodeSpear는 대표 jailbreak baseline 대비 평균적으로 공격 성공률을 30%p 이상 증가시켰다. 이를 완화하기 위해 제안된 CodeShield는 GCD 하에서 honeypot 코드를 생성하도록 정렬을 학습해 안전 동작을 복원하면서, 자연어가 가능한 경우 자연어 refusal은 유지하고 benign utility도 보존했다.
 
@@ -590,7 +593,7 @@ https://doi.org/10.3389/feduc.2026.1849821" onclick="copyEntry(this)">복사</bu
 </article>
 <article class="entry cat-research">
   <h2>Fuzzy Neural Framework for Clinical Safety Evaluation of Medical Large Language Models (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Fuzzy Neural Framework for Clinical Safety Evaluation of Medical Large Language Models (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Fuzzy Neural Framework for Clinical Safety Evaluation of Medical Large Language Models (2026.6.10)
 
 의료 환경에서 Large Language Models(LLMs)를 배치할 때 신뢰성·편향·환각·데이터 프라이버시 문제를 다루는 임상 안전 평가 프레임워크를 제시한다. 퍼지 로직 기반 uncertainty modeling, risk assessment 메커니즘, human-in-the-loop 검증을 결합하는 하이브리드 구조를 설명하고, 기존 평가 접근을 검토하며 연구 공백을 정리한다. 또한 윤리 및 규제 가이드라인에 맞춰 해석 가능하고 신뢰할 수 있는 출력 산출을 목표로 한다.
 
@@ -623,7 +626,7 @@ https://doi.org/10.4018/979-8-3373-7862-6.ch009" onclick="copyEntry(this)">복�
 </article>
 <article class="entry cat-research">
   <h2>Ensuring Safe and Ethical Use of LLMs in Healthcare (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Ensuring Safe and Ethical Use of LLMs in Healthcare (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span></span></span><button type="button" class="copy-btn" data-copy="Ensuring Safe and Ethical Use of LLMs in Healthcare (2026.6.10)
 
 요약불가
 
@@ -633,7 +636,7 @@ https://doi.org/10.4018/979-8-3373-7862-6.ch010" onclick="copyEntry(this)">복�
 </article>
 <article class="entry cat-research">
   <h2>Safety Assurance Through Red-Teaming, MLOps, and Continuous Monitoring for Medical LLMs (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Safety Assurance Through Red-Teaming, MLOps, and Continuous Monitoring for Medical LLMs (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Safety Assurance Through Red-Teaming, MLOps, and Continuous Monitoring for Medical LLMs (2026.6.10)
 
 요약불가
 
@@ -653,7 +656,7 @@ https://doi.org/10.54536/ajdsai.v2i1.7372" onclick="copyEntry(this)">복사</but
 </article>
 <article class="entry cat-research">
   <h2>Artificial Intelligence and the Value Alignment Problem (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Artificial Intelligence and the Value Alignment Problem (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Artificial Intelligence and the Value Alignment Problem (2026.6.10)
 
 요약불가
 
@@ -663,7 +666,7 @@ https://doi.org/10.59350/407an-xmq68" onclick="copyEntry(this)">복사</button><
 </article>
 <article class="entry cat-research">
   <h2>Artificial Intelligence trends and challenges in recent years - Literature review (2026.6.10)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Artificial Intelligence trends and challenges in recent years - Literature review (2026.6.10)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="Artificial Intelligence trends and challenges in recent years - Literature review (2026.6.10)
 
 최근 AI 기술 동향과 함께 위험·규제 프레임워크를 묶어 정리해 거버넌스 관점에서 쟁점을 한눈에 보여준다. 단기·중기·장기 관점으로 생성형 AI와 대규모 언어 모델의 확산, 기업 내 도입 양상, 사회·경제적 영향의 확대를 검토하고, 편향·차별, 투명성·설명가능성 제한, 데이터 보호, 신뢰성·견고성, 사이버보안, 확장성 제약, 환경 영향 등 구현 과제를 범주화한다. 또한 인력 역량 격차, 시스템 통합 복잡성, 도입 저항 같은 조직·노동 이슈를 함께 다루며, 고영향·규제 산업에서는 기술·조직·governance의 조정이 필요하다고 정리한다. EU의 AI Act 위험 기반 체계와 DORA, NIS2 같은 지원 수단 간의 관계를 평가하고, 혁신과 규제의 균형 및 성능·리스크 관리·법적 책임을 일관된 governance 구조로 정렬하는 것이 진전에 중요하다고 결론낸다.
 

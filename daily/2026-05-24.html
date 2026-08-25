@@ -112,6 +112,9 @@
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .source { color: var(--muted); }
+  .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
+  .topic-icon { font-size: 0.95rem; line-height: 1; }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -307,7 +310,7 @@
 </header>
 <article class="entry cat-research">
   <h2>RouteScan: MoE LLM 안전 감사를 GPU expert routing 텔레메트리로 수행 (저자 외 6명, arXiv, 2026.5.24)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="RouteScan: MoE LLM 안전 감사를 GPU expert routing 텔레메트리로 수행 (저자 외 6명, arXiv, 2026.5.24)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="RouteScan: MoE LLM 안전 감사를 GPU expert routing 텔레메트리로 수행 (저자 외 6명, arXiv, 2026.5.24)
 
 MoE LLM 운영 중 유해 행동을 감사하되, 기존 콘텐츠 기반 감사가 프롬프트/출력 접근으로 개인정보 노출 위험을 갖는 문제를 다룬다. RouteScan은 프리필링 단계에서 expert 모듈에 할당된 활성 GPU 스레드 수를 마이크로아키텍처 지문으로 사용하고, 경량 탐지 파이프라인으로 악성 프롬프트를 식별하도록 실험했다. 공개 MoE LLM들에서 AUROC가 미지 유해 도메인에서 0.93을 초과하고, 새로운 jailbreak wrapper에서는 0.96을 달성했으며, 텔레메트리 기반 프롬프트 복원(inversion) 정보는 제한적이라고 보고했다.
 
@@ -317,7 +320,7 @@ https://arxiv.org/abs/2605.24817v1" onclick="copyEntry(this)">복사</button></d
 </article>
 <article class="entry cat-research">
   <h2>Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24
 
 Reflect-Guard는 Llama Guard류 안전 분류기가 역할극/허구 프레이밍/간접 요청 등으로 악의 의도를 숨기는 적대적 프롬프트에 취약한 문제를 다룬다. GPT-4o-mini의 분석을 구조화된 논리적 self-reflection 어노테이션으로 증류한 뒤, QLoRA로 Llama-Guard-3-8B를 1000개 학습 예시와 약 0.5% 파라미터 업데이트(약 42M)로 파인튜닝하여 verdict 전 self-reflection을 생성하게 한다. WildGuardTest에서 F1 0.770→0.842(+7.2pp), 적대적 프롬프트 recall 0.513→0.921(+40.8pp)로 개선되고, JailbreakBench에서 공격 성공률 10.3%→1.8%로 82.5% 상대 감소한다.
 
@@ -347,7 +350,7 @@ https://arxiv.org/abs/2605.25073v1" onclick="copyEntry(this)">복사</button></d
 </article>
 <article class="entry cat-research">
   <h2>미디어 추천에서 자살 유발 에코체인을 차단하는 RankAid (저자 외 3명, arXiv, 2026.5.24)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="미디어 추천에서 자살 유발 에코체인을 차단하는 RankAid (저자 외 3명, arXiv, 2026.5.24)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="미디어 추천에서 자살 유발 에코체인을 차단하는 RankAid (저자 외 3명, arXiv, 2026.5.24)
 
 취약 사용자의 자살사고 징후가 있을 때 추천 시스템이 위험 콘텐츠 에코체인에 가두는 문제를 다루며, 기존 모델의 예측 관련성은 유지하면서 임상 안전을 우선하는 재랭킹을 제안한다. MovieLens 1M에서 LLM으로 임상 위험/치료 가치 라벨을 만든 뒤, RankAid를 기존 추천 모델 위의 add-on 레이어로 적용해 위기 피크 시 위험 아이템 추천을 차단하고 감정 완화를 돕는 피드 재구성을 시뮬레이션했다. 핵심 결과로 위기 피크 동안 유해 콘텐츠 추천을 성공적으로 차단하면서 NDCG 같은 표준 정확도 지표에서 “통제된 허용 수준의 하락”이 나타났고, 비대칭 하이퍼파라미터로 개입 강도를 임상 가이드라인에 맞춰 조정할 수 있다.
 

@@ -112,6 +112,9 @@
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .source { color: var(--muted); }
+  .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
+  .topic-icon { font-size: 0.95rem; line-height: 1; }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -307,7 +310,7 @@
 </header>
 <article class="entry cat-public">
   <h2>🇬🇧 LLM 데이터 중독(backdoor data poisoning)은 모델/데이터셋 규모와 무관하게 약 250개 독성 문서 수준이 필요(2025.10.8)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span></span><button type="button" class="copy-btn" data-copy="LLM 데이터 중독(backdoor data poisoning)은 모델/데이터셋 규모와 무관하게 약 250개 독성 문서 수준이 필요(2025.10.8)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="LLM 데이터 중독(backdoor data poisoning)은 모델/데이터셋 규모와 무관하게 약 250개 독성 문서 수준이 필요(2025.10.8)
 
 대규모 LLM에 대한 poisoning 공격은 학습 데이터에 악성 문서를 주입해 안전을 훼손할 수 있다고 설명한다. 기존 연구는 학습 코퍼스의 일정 비율을 공격자가 통제한다고 가정했지만, 본 연구는 dataset size와 무관하게 near-constant(거의 일정)한 문서 수가 필요하다는 결과를 제시한다. 600M~13B 파라미터 모델을 chinchilla-optimal 데이터셋(6B~260B 토큰)에서 사전학습하며 확인한 결과, 약 250개의 poisoned documents로 모델들이 유사하게 손상되었고, fine-tuning 중 poisoning에서도 유사한 동학이 관찰되었다. 또한 poisoned/clean 비율 변화나 poisoned 샘플의 비무작위 분포 등 요인의 영향도 추가 실험으로 점검했다.
 

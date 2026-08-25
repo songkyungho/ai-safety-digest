@@ -112,6 +112,9 @@
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .source { color: var(--muted); }
+  .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
+  .topic-icon { font-size: 0.95rem; line-height: 1; }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -327,7 +330,7 @@ https://ai-ethics.kr/jjgg-ghost-in-the-machine/" onclick="copyEntry(this)">복�
 </article>
 <article class="entry cat-db">
   <h2>🇺🇸🇨🇳 알리바바, 7월 10일부터 직원의 Claude Code 사용 금지(2026.7.4)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">테크크런치(TechCrunch)</span></span><button type="button" class="copy-btn" data-copy="알리바바, 7월 10일부터 직원의 Claude Code 사용 금지(2026.7.4)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">테크크런치(TechCrunch)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="알리바바, 7월 10일부터 직원의 Claude Code 사용 금지(2026.7.4)
 
 알리바바는 직원들이 앤트로픽(Anthropic)의 프로그래밍 도구 Claude Code를 사용하지 못하게 하고, 대신 자사 Qoder 도구를 쓰도록 지시한 것으로 전해졌다. 앤트로픽은 중국 기업 및 관련 소유 주체의 모델 사용을 이미 금지해 왔으며, 이를 우회하는 경로를 막기 위해 계정 남용 방지·distillation(다른 모델 출력으로 학습되는 방식) 대응 실험을 진행해왔다고 설명했다. 그럼에도 알리바바는 Claude Code를 고위험 소프트웨어로 분류한 것으로 보도됐다.
 
@@ -337,7 +340,7 @@ https://techcrunch.com/2026/07/04/alibaba-reportedly-bans-employees-from-using-c
 </article>
 <article class="entry cat-db">
   <h2>PACE Cuts the Cost of Evaluating AI Agent Capabilities (2026.7.4)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Hugging Face Papers (arXiv 2607.02032)</span></span><button type="button" class="copy-btn" data-copy="PACE Cuts the Cost of Evaluating AI Agent Capabilities (2026.7.4)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Hugging Face Papers (arXiv 2607.02032)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="PACE Cuts the Cost of Evaluating AI Agent Capabilities (2026.7.4)
 
 PACE는 비용이 큰 agentic LLM 벤치마크 성능을, 비싼 전체 평가를 대신할 수 있도록 소수의 atomic 평가 인스턴스로 예측하는 프레임워크다. SWE-Bench·GAIA 등 4개 agentic 벤치마크에 대해 proxy benchmark인 PACE-Bench를 구성·평가했으며, 14개 모델 대상 실험에서 leave-one-out cross-validation 기준 MAE 4% 미만, Spearman 상관 0.80 이상, 모델 순위 정확도 약 85%를 보고했다. 또한 전체 agentic 평가 비용의 1% 미만 수준으로 추정이 가능하다고 제시했다.
 
@@ -357,7 +360,7 @@ https://lilianweng.github.io/posts/2026-07-04-harness" onclick="copyEntry(this)"
 </article>
 <article class="entry cat-research">
   <h2>Safety Testing LLM Agents at Scale: From Risk Discovery to Evidence-Grounded Verification (2026.7.4)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Safety Testing LLM Agents at Scale: From Risk Discovery to Evidence-Grounded Verification (2026.7.4)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="Safety Testing LLM Agents at Scale: From Risk Discovery to Evidence-Grounded Verification (2026.7.4)
 
 LLM agent의 외부 도구 사용이 만드는 복잡한 안전 위험을, 확장 비용이 낮은 자동화된 시험 체계로 검증하는 방법을 제안한다. Vera는 문헌 기반 탐색으로 emerging risks를 안전 위험·공격 방법·tool execution environment의 택소노미로 구조화하고, 택소노미 차원을 조합해 safety goal·초기 상태·관찰 가능한 증거에 기반한 deterministic verification predicate를 포함한 executable safety case를 생성한다. 이어 isolated sandbox에서 control agent가 런타임 관찰로 multi-turn 상호작용을 이끌며, verifiers는 model self-report가 아니라 환경 상태와 tool-call evidence로 결과를 판정한다. Vera-Bench(1600개 안전 케이스, 124개 위험 범주, 3개 실행 설정) 평가에서 production 4개 agent 프레임워크( OpenClaw, Hermes, Codex, Claude Code )의 average attack success rate가 multi-channel attacks에서 93.9%에 도달해 취약점이 크고 광범위함을 보여준다.
 

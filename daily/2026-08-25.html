@@ -115,6 +115,26 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -308,21 +328,24 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="norms" data-search="MSIT 신규 게시물 3건 [2026-08-21] [Asia] South Korea formally adopts updated Artificial Intelligence Ethics Principles (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187686&amp;searchOpt=ALL&amp;searchTxt=)
+[2026-08-24] 신산업 규제, 생성형 인공지능으로 빠르고 간편하게 확인한다 (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187685)
+[2026-08-24] 미래기술의 씨앗을 성장동력으로첨단기술 실증·사업화와  인공지능 신뢰 기반 논의 (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187684) MSIT">
   <h2>🇰🇷 MSIT 신규 게시물 3건</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">MSIT</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 3건
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 3건
 
 [2026-08-21] [Asia] South Korea formally adopts updated Artificial Intelligence Ethics Principles (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187686&amp;searchOpt=ALL&amp;searchTxt=)
 [2026-08-24] 신산업 규제, 생성형 인공지능으로 빠르고 간편하게 확인한다 (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187685)
 [2026-08-24] 미래기술의 씨앗을 성장동력으로첨단기술 실증·사업화와  인공지능 신뢰 기반 논의 (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187684)
 
 https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307" onclick="copyEntry(this)">복사</button></div>
-  <p>[2026-08-21] [Asia] South Korea formally adopts updated Artificial Intelligence Ethics Principles (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187686&amp;searchOpt=ALL&amp;searchTxt=">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187686&amp;searchOpt=ALL&amp;searchTxt=</a>)
-[2026-08-24] 신산업 규제, 생성형 인공지능으로 빠르고 간편하게 확인한다 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187685">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187685</a>)
-[2026-08-24] 미래기술의 씨앗을 성장동력으로첨단기술 실증·사업화와  인공지능 신뢰 기반 논의 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187684">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187684</a>)</p>
+  <p><span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span> [2026-08-21] [Asia] South Korea formally adopts updated Artificial Intelligence Ethics Principles (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187686&amp;searchOpt=ALL&amp;searchTxt=">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187686&amp;searchOpt=ALL&amp;searchTxt=</a>)</p>
+<p>[2026-08-24] 신산업 규제, 생성형 인공지능으로 빠르고 간편하게 확인한다 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187685">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187685</a>)</p>
+<p>[2026-08-24] 미래기술의 씨앗을 성장동력으로첨단기술 실증·사업화와  인공지능 신뢰 기반 논의 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187684">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187684</a>)</p>
   <p class="url"><a href="https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307">https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307</a></p>
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="norms" data-search="대한민국 인공지능 윤리원칙 (2026.8.25)  과기부,KISDI,부처합동">
   <h2>🇰🇷 대한민국 인공지능 윤리원칙 (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">과기부,KISDI,부처합동</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="대한민국 인공지능 윤리원칙 (2026.8.25)
 
@@ -331,8 +354,9 @@ https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307" onclick=
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=173403604&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
   <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=173403604&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=173403604&amp;t=board</a></p>
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="aisi_topic cybersecurity norms" data-search="AI 정보통: 8월 24일 15시 정보 (2026.8.25) Anthropic은 Claude Security의 코드 스캔 기능에서 Claude Mythos 5를 활용해 코드 취약점 탐지 결과와 수정안을 제공하고, 오픈소스 보안 개선 조직 등에 총 3,500만 달러 상당의 이용 크레딧을 지원한다고 밝혔다. Adversa AI는 암호화된 악성 지시를 이용해 AI 안전 기능을 우회하는 Cryptographic Context Injection 공격을 소개했으며, Grok 실증에서 사용자 정보와 대화 내용이 외부로 전송될 수 있다고 보고했다. 이 밖에 유엔, NVIDIA, Google Cloud의 AI 관련 논의와 보안 원칙도 함께 소개됐다. AISI-Japan">
   <h2>🇯🇵 AI 정보통: 8월 24일 15시 정보 (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Japan AISI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="AI 정보통: 8월 24일 15시 정보 (2026.8.25)
 
@@ -341,8 +365,9 @@ Anthropic은 Claude Security의 코드 스캔 기능에서 Claude Mythos 5를 �
 https://aisi.go.jp/activity/activity_news/260825/" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 Claude Security의 코드 스캔 기능에서 Claude Mythos 5를 활용해 코드 취약점 탐지 결과와 수정안을 제공하고, 오픈소스 보안 개선 조직 등에 총 3,500만 달러 상당의 이용 크레딧을 지원한다고 밝혔다. Adversa AI는 암호화된 악성 지시를 이용해 AI 안전 기능을 우회하는 Cryptographic Context Injection 공격을 소개했으며, Grok 실증에서 사용자 정보와 대화 내용이 외부로 전송될 수 있다고 보고했다. 이 밖에 유엔, NVIDIA, Google Cloud의 AI 관련 논의와 보안 원칙도 함께 소개됐다.</p>
   <p class="url"><a href="https://aisi.go.jp/activity/activity_news/260825/">https://aisi.go.jp/activity/activity_news/260825/</a></p>
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="agentic_ai cybersecurity safety_research standards" data-search="제5회 첨단 AI 활용 자문위원회 회의 요지를 게재했습니다 (2026.8.25) 위원회는 2026년 7월 14일 각 부처의 생성 AI 활용 현황, 국내외 생성 AI 동향, 정부의 활용 사례와 AI 에이전트 거버넌스를 논의했다. 참석자들은 파악되지 않은 AI 기능과 공급업체 관리, AI 에이전트의 권한·정보 범위 통제, 정보 유출 및 사이버보안 위험, human-in-the-loop 적용 수준 등을 주요 과제로 제시했다. 또한 민관 협력, 중소기업 지원, AI 거버넌스 전문인력 육성, 국제 표준화와 alignment 관련 대응을 강화할 필요성이 논의됐다. Digital-Agency-JP">
   <h2>🇯🇵 제5회 첨단 AI 활용 자문위원회 회의 요지를 게재했습니다 (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Digital-Agency-JP</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="제5회 첨단 AI 활용 자문위원회 회의 요지를 게재했습니다 (2026.8.25)
 
@@ -351,8 +376,9 @@ https://aisi.go.jp/activity/activity_news/260825/" onclick="copyEntry(this)">복
 https://www.digital.go.jp/councils/ai-advisory-board/770d4c48-7f40-49a6-a49d-56a763800a42" onclick="copyEntry(this)">복사</button></div>
   <p>위원회는 2026년 7월 14일 각 부처의 생성 AI 활용 현황, 국내외 생성 AI 동향, 정부의 활용 사례와 AI 에이전트 거버넌스를 논의했다. 참석자들은 파악되지 않은 AI 기능과 공급업체 관리, AI 에이전트의 권한·정보 범위 통제, 정보 유출 및 사이버보안 위험, human-in-the-loop 적용 수준 등을 주요 과제로 제시했다. 또한 민관 협력, 중소기업 지원, AI 거버넌스 전문인력 육성, 국제 표준화와 alignment 관련 대응을 강화할 필요성이 논의됐다.</p>
   <p class="url"><a href="https://www.digital.go.jp/councils/ai-advisory-board/770d4c48-7f40-49a6-a49d-56a763800a42">https://www.digital.go.jp/councils/ai-advisory-board/770d4c48-7f40-49a6-a49d-56a763800a42</a></p>
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="cybersecurity national_security" data-search="이란 위기가 부각한 새로운 시대의 위협: 군사·시장을 지배하는 AI와 일본 에너지 안보의 진정한 약점 미국과 이스라엘의 대이란 군사작전은 AI 기반 자율무기의 압도적 성능을 보여주며 전쟁의 양상을 바꾸고 있으며, AI는 금융·에너지 시장에서도 지정학적 위험을 실시간으로 반영하고 있다. 일본은 석유 비축량이 충분해 단기적인 석유 공급 중단에는 대응할 수 있지만, 비축이 어려운 LNG 공급 중단이 도시가스와 산업 전반에 더 큰 취약점이 될 수 있다. 이에 따라 LNG 조달 경로 다변화, 유사시 도시가스 사용 제한 규칙 마련, 원자력·재생에너지의 안정적 가동 확보가 필요하다고 제안한다. RIETI">
   <h2>🇯🇵 이란 위기가 부각한 새로운 시대의 위협: 군사·시장을 지배하는 AI와 일본 에너지 안보의 진정한 약점</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RIETI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="이란 위기가 부각한 새로운 시대의 위협: 군사·시장을 지배하는 AI와 일본 에너지 안보의 진정한 약점
 
@@ -361,8 +387,9 @@ https://www.digital.go.jp/councils/ai-advisory-board/770d4c48-7f40-49a6-a49d-56a
 http://www.rieti.go.jp/jp/columns/a01_0804.html" onclick="copyEntry(this)">복사</button></div>
   <p>미국과 이스라엘의 대이란 군사작전은 AI 기반 자율무기의 압도적 성능을 보여주며 전쟁의 양상을 바꾸고 있으며, AI는 금융·에너지 시장에서도 지정학적 위험을 실시간으로 반영하고 있다. 일본은 석유 비축량이 충분해 단기적인 석유 공급 중단에는 대응할 수 있지만, 비축이 어려운 LNG 공급 중단이 도시가스와 산업 전반에 더 큰 취약점이 될 수 있다. 이에 따라 LNG 조달 경로 다변화, 유사시 도시가스 사용 제한 규칙 마련, 원자력·재생에너지의 안정적 가동 확보가 필요하다고 제안한다.</p>
   <p class="url"><a href="http://www.rieti.go.jp/jp/columns/a01_0804.html">http://www.rieti.go.jp/jp/columns/a01_0804.html</a></p>
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="AI 공급망의 지정학적 영향 반도체 산업이 AI와 심화되는 지정학적 경쟁으로 역사적인 재편기를 맞는 가운데, 공급망 취약성과 산업정책의 변화, AI의 전략적 중요성을 논의하는 온라인 세미나가 열린다. Chris Miller 터프츠대학교 플레처스쿨 국제사 교수와 경제산업성 관계자가 참여하며, 행사는 2026년 4월 2일 12시 15분부터 13시 15분까지 일본어가 아닌 영어로 무료 진행된다. RIETI">
   <h2>🇯🇵 AI 공급망의 지정학적 영향</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RIETI</span></span><button type="button" class="copy-btn" data-copy="AI 공급망의 지정학적 영향
 
@@ -371,8 +398,9 @@ http://www.rieti.go.jp/jp/columns/a01_0804.html" onclick="copyEntry(this)">복�
 http://www.rieti.go.jp/jp/events/26040201/info.html" onclick="copyEntry(this)">복사</button></div>
   <p>반도체 산업이 AI와 심화되는 지정학적 경쟁으로 역사적인 재편기를 맞는 가운데, 공급망 취약성과 산업정책의 변화, AI의 전략적 중요성을 논의하는 온라인 세미나가 열린다. Chris Miller 터프츠대학교 플레처스쿨 국제사 교수와 경제산업성 관계자가 참여하며, 행사는 2026년 4월 2일 12시 15분부터 13시 15분까지 일본어가 아닌 영어로 무료 진행된다.</p>
   <p class="url"><a href="http://www.rieti.go.jp/jp/events/26040201/info.html">http://www.rieti.go.jp/jp/events/26040201/info.html</a></p>
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="law safety_research youth" data-search="프랑스 헌법위원회, 아동·청소년 대상 소셜미디어 금지의 한계 지적 (2026.8.25) 프랑스 헌법위원회는 15세 미만의 소셜미디어 이용을 일괄 금지한 법률 조항이 서비스별 위험과 아동 개인별 상황을 고려하지 않아 비례성을 위반하고, 표현·통신의 자유를 과도하게 제한한다며 위헌 판단을 내렸다. 또한 성인까지 연령 확인을 받아야 할 수 있는데도 개인정보 보호를 위한 법적 안전장치가 부족하다고 지적했으며, 부모가 자녀의 성숙도와 서비스별 위험을 고려해 금지를 해제하거나 제한할 수 있는 절차도 필요하다고 봤다. 에마뉘엘 마크롱 대통령은 정부에 개정안 마련을 지시했으며, 새 법안은 2027년 봄까지 제시될 예정이다. TechPolicyPress">
   <h2>🇺🇸 프랑스 헌법위원회, 아동·청소년 대상 소셜미디어 금지의 한계 지적 (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TechPolicyPress</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="청소년">🧒</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="프랑스 헌법위원회, 아동·청소년 대상 소셜미디어 금지의 한계 지적 (2026.8.25)
 
@@ -381,8 +409,9 @@ http://www.rieti.go.jp/jp/events/26040201/info.html" onclick="copyEntry(this)">�
 https://www.techpolicy.press/frances-constitutional-council-ruling-tests-the-limits-of-social-media-bans" onclick="copyEntry(this)">복사</button></div>
   <p>프랑스 헌법위원회는 15세 미만의 소셜미디어 이용을 일괄 금지한 법률 조항이 서비스별 위험과 아동 개인별 상황을 고려하지 않아 비례성을 위반하고, 표현·통신의 자유를 과도하게 제한한다며 위헌 판단을 내렸다. 또한 성인까지 연령 확인을 받아야 할 수 있는데도 개인정보 보호를 위한 법적 안전장치가 부족하다고 지적했으며, 부모가 자녀의 성숙도와 서비스별 위험을 고려해 금지를 해제하거나 제한할 수 있는 절차도 필요하다고 봤다. 에마뉘엘 마크롱 대통령은 정부에 개정안 마련을 지시했으며, 새 법안은 2027년 봄까지 제시될 예정이다.</p>
   <p class="url"><a href="https://www.techpolicy.press/frances-constitutional-council-ruling-tests-the-limits-of-social-media-bans">https://www.techpolicy.press/frances-constitutional-council-ruling-tests-the-limits-of-social-media-bans</a></p>
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="norms" data-search="AI윤리, 정의로운 활용 첫걸음이다 (2026.8.25) 정부는 인간의 존엄성·사회적 공공선·인류의 지속 가능성을 3대 가치로 삼고, 인간 중심성·프라이버시 보호·공정성 및 포용성·책임성·안전성·신뢰성·투명성을 7대 원칙으로 하는 ‘대한민국 인공지능(AI) 윤리 원칙’을 확정·의결했다. 이 원칙은 개발자와 공급자뿐 아니라 이용자와 정부 등 사회 구성원 전체가 지켜야 할 자율 규범으로, AI의 편향·사생활 침해·오용 등 부작용을 예방하고 사회적 신뢰를 확보하는 기준을 제시한다. AI가 인류 공동의 목적에 기여하도록 국내 준수와 함께 국제 협력 및 글로벌 공조를 강화해야 한다는 점도 강조했다. 전자신문">
   <h2>🇰🇷 AI윤리, 정의로운 활용 첫걸음이다 (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">전자신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="AI윤리, 정의로운 활용 첫걸음이다 (2026.8.25)
 
@@ -391,8 +420,9 @@ https://www.techpolicy.press/frances-constitutional-council-ruling-tests-the-lim
 https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdFPlwOL/vGwEr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" onclick="copyEntry(this)">복사</button></div>
   <p>정부는 인간의 존엄성·사회적 공공선·인류의 지속 가능성을 3대 가치로 삼고, 인간 중심성·프라이버시 보호·공정성 및 포용성·책임성·안전성·신뢰성·투명성을 7대 원칙으로 하는 ‘대한민국 인공지능(AI) 윤리 원칙’을 확정·의결했다. 이 원칙은 개발자와 공급자뿐 아니라 이용자와 정부 등 사회 구성원 전체가 지켜야 할 자율 규범으로, AI의 편향·사생활 침해·오용 등 부작용을 예방하고 사회적 신뢰를 확보하는 기준을 제시한다. AI가 인류 공동의 목적에 기여하도록 국내 준수와 함께 국제 협력 및 글로벌 공조를 강화해야 한다는 점도 강조했다.</p>
   <p class="url"><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdFPlwOL/vGwEr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==">https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdFPlwOL/vGwEr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==</a></p>
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="norms" data-search="대한민국 AI 윤리 7대 원칙 확정 (2026.8.25) 정부가 AI기본법 제27조에 따라 인간의 존엄성·사회의 공공선·인류의 지속 가능성을 3대 가치로 삼은 ‘대한민국 인공지능 윤리 원칙’을 확정했다. 원칙은 인간 중심성, 프라이버시 보호, 공정성·포용성, 책임성, 안전성, 신뢰성, 투명성 등 7대 원칙으로 구성되며, 개발자·이용자·정부·사회 각 주체의 역할과 책임을 제시한다. 법적 구속력이 없는 자율 규범으로, 정부는 실효성을 높이기 위해 사례 중심 해설서와 분야별 자율점검표, 윤리 교육 교재를 마련해 보급할 계획이다. 전자신문">
   <h2>🇰🇷 대한민국 AI 윤리 7대 원칙 확정 (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">전자신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="대한민국 AI 윤리 7대 원칙 확정 (2026.8.25)
 
@@ -401,8 +431,9 @@ https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdFPlwOL/vGwEr7MRGIxZsL7KZ5
 https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdHXXKt55Fh1Wb7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" onclick="copyEntry(this)">복사</button></div>
   <p>정부가 AI기본법 제27조에 따라 인간의 존엄성·사회의 공공선·인류의 지속 가능성을 3대 가치로 삼은 ‘대한민국 인공지능 윤리 원칙’을 확정했다. 원칙은 인간 중심성, 프라이버시 보호, 공정성·포용성, 책임성, 안전성, 신뢰성, 투명성 등 7대 원칙으로 구성되며, 개발자·이용자·정부·사회 각 주체의 역할과 책임을 제시한다. 법적 구속력이 없는 자율 규범으로, 정부는 실효성을 높이기 위해 사례 중심 해설서와 분야별 자율점검표, 윤리 교육 교재를 마련해 보급할 계획이다.</p>
   <p class="url"><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdHXXKt55Fh1Wb7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==">https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdHXXKt55Fh1Wb7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==</a></p>
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="agentic_ai cybersecurity guideline law" data-search="AI 에이전트 노리는 신종 해킹 ‘메모리 포이즈닝’ 위협 부상 (2026.8.25) 메모리 포이즈닝은 AI의 장기 메모리에 가짜 정보나 악성 규칙을 주입해 이후 판단과 행동을 지속적으로 왜곡하는 공격이다. 대화나 외부 문서·웹페이지를 통해서도 악성 정보가 유입될 수 있으며, 일회성 입력을 조작하는 prompt injection과 달리 오염 정보가 장기간 남는다는 점이 특징이다. 안랩은 메모리 저장 범위와 기간을 제한하고, 외부 정보 검증 및 사용자별 메모리 분리를 적용하며, 송금·삭제·권한 변경 등 고위험 작업에는 사용자 승인을 받도록 권고했다. 개인정보보호위원회는 AI 에이전트 가이드라인을 하반기에 마련하고 관련 입법도 준비할 계획이라고 밝혔다. 동아일보">
   <h2>AI 에이전트 노리는 신종 해킹 ‘메모리 포이즈닝’ 위협 부상 (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">동아일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="AI 에이전트 노리는 신종 해킹 ‘메모리 포이즈닝’ 위협 부상 (2026.8.25)
 
@@ -411,8 +442,7 @@ https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdHXXKt55Fh1Wb7MRGIxZsL7KZ5
 https://www.donga.com/news/Economy/article/all/20260825/134536603/1" onclick="copyEntry(this)">복사</button></div>
   <p>메모리 포이즈닝은 AI의 장기 메모리에 가짜 정보나 악성 규칙을 주입해 이후 판단과 행동을 지속적으로 왜곡하는 공격이다. 대화나 외부 문서·웹페이지를 통해서도 악성 정보가 유입될 수 있으며, 일회성 입력을 조작하는 prompt injection과 달리 오염 정보가 장기간 남는다는 점이 특징이다. 안랩은 메모리 저장 범위와 기간을 제한하고, 외부 정보 검증 및 사용자별 메모리 분리를 적용하며, 송금·삭제·권한 변경 등 고위험 작업에는 사용자 승인을 받도록 권고했다. 개인정보보호위원회는 AI 에이전트 가이드라인을 하반기에 마련하고 관련 입법도 준비할 계획이라고 밝혔다.</p>
   <p class="url"><a href="https://www.donga.com/news/Economy/article/all/20260825/134536603/1">https://www.donga.com/news/Economy/article/all/20260825/134536603/1</a></p>
-</article>
-<article class="entry cat-media">
+  <details class="related-stories"><summary>같은 이슈 관련 1건</summary><article class="entry cat-media" data-cat="media" data-topics="agentic_ai cybersecurity guideline" data-search="AI도 ‘기억 조작’ 당한다…에이전트 노리는 신종 해킹 ‘메모리 포이즈닝’ (2026.8.25) 메모리 포이즈닝은 AI 에이전트의 장기 메모리에 가짜 정보나 악성 규칙을 주입해 이후 판단과 행동을 지속적으로 왜곡하는 공격이다. 현재 입력에 악성 지시를 넣는 prompt injection과 달리, 오염된 정보가 장기 메모리에 저장돼 이후 관련 작업마다 반복 활용될 수 있다. 안랩은 장기 메모리의 저장 범위와 기간을 제한하고 외부 정보의 검증 절차를 마련하며, 송금·환불·삭제·계정 권한 변경 등 핵심 작업에는 사용자 승인을 거치도록 권고했다. 개인정보보호위원회는 AI 에이전트 관련 가이드라인을 하반기에 마련할 계획이라고 밝혔다. 뉴시스">
   <h2>AI도 ‘기억 조작’ 당한다…에이전트 노리는 신종 해킹 ‘메모리 포이즈닝’ (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">뉴시스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="AI도 ‘기억 조작’ 당한다…에이전트 노리는 신종 해킹 ‘메모리 포이즈닝’ (2026.8.25)
 
@@ -421,8 +451,10 @@ https://www.donga.com/news/Economy/article/all/20260825/134536603/1" onclick="co
 https://www.newsis.com/view/NISX20260823_0003758907" onclick="copyEntry(this)">복사</button></div>
   <p>메모리 포이즈닝은 AI 에이전트의 장기 메모리에 가짜 정보나 악성 규칙을 주입해 이후 판단과 행동을 지속적으로 왜곡하는 공격이다. 현재 입력에 악성 지시를 넣는 prompt injection과 달리, 오염된 정보가 장기 메모리에 저장돼 이후 관련 작업마다 반복 활용될 수 있다. 안랩은 장기 메모리의 저장 범위와 기간을 제한하고 외부 정보의 검증 절차를 마련하며, 송금·환불·삭제·계정 권한 변경 등 핵심 작업에는 사용자 승인을 거치도록 권고했다. 개인정보보호위원회는 AI 에이전트 관련 가이드라인을 하반기에 마련할 계획이라고 밝혔다.</p>
   <p class="url"><a href="https://www.newsis.com/view/NISX20260823_0003758907">https://www.newsis.com/view/NISX20260823_0003758907</a></p>
+  
+</article></details>
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="national_security physical_ai" data-search="러시아, 엔비디아 칩 탑재 자율살상 AI 드론 우크라이나 투입 (2026.8.25) 뉴욕타임스는 러시아가 인간 조종사 개입 없이 표적을 식별·공격하는 AI 자율살상 드론을 우크라이나에 투입했다고 보도했다. 우크라이나 당국과 전문가들은 자포리자 주유소 공격 드론 잔해에서 엔비디아의 초소형 컴퓨터 Jetson Orin과 지형 인식·표적 식별 기능을 확인했으며, 당시 공격으로 민간인 3명이 숨졌다. 엔비디아는 해당 제품이 학생·개발자·스타트업 등에 판매되는 소비자용 제품이며 러시아에는 직접 판매하지 않는다고 밝혔다. 뉴시스">
   <h2>러시아, 엔비디아 칩 탑재 자율살상 AI 드론 우크라이나 투입 (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">뉴시스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="러시아, 엔비디아 칩 탑재 자율살상 AI 드론 우크라이나 투입 (2026.8.25)
 
@@ -431,8 +463,9 @@ https://www.newsis.com/view/NISX20260823_0003758907" onclick="copyEntry(this)">�
 https://www.newsis.com/view/NISX20260825_0003760782" onclick="copyEntry(this)">복사</button></div>
   <p>뉴욕타임스는 러시아가 인간 조종사 개입 없이 표적을 식별·공격하는 AI 자율살상 드론을 우크라이나에 투입했다고 보도했다. 우크라이나 당국과 전문가들은 자포리자 주유소 공격 드론 잔해에서 엔비디아의 초소형 컴퓨터 Jetson Orin과 지형 인식·표적 식별 기능을 확인했으며, 당시 공격으로 민간인 3명이 숨졌다. 엔비디아는 해당 제품이 학생·개발자·스타트업 등에 판매되는 소비자용 제품이며 러시아에는 직접 판매하지 않는다고 밝혔다.</p>
   <p class="url"><a href="https://www.newsis.com/view/NISX20260825_0003760782">https://www.newsis.com/view/NISX20260825_0003760782</a></p>
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="agentic_ai" data-search="라온시큐어, 에이전틱 AI 보안 해법 공개 예정 (2026.8.25) 라온시큐어는 9월 30일 서울 영등포구 페어몬트 앰배서더 서울에서 ‘2026 시큐업&amp;해커톤’을 열고 에이전틱 AI의 행동과 권한을 검증·통제하는 보안 전략을 공개한다. 행사에서는 AI 모의침투, LLM 가드레일, 양자내성암호, 분산신원인증(DID), 모바일 신분증 등 관련 기술과 적용 사례가 소개된다. ‘블록체인&amp;AI 해커톤’ 결선에는 예선 318개 팀 중 선발된 10개 팀이 참가하며, 수상팀에는 최대 10억 원의 창업 지원금 등이 제공된다. 뉴시스">
   <h2>🇰🇷 라온시큐어, 에이전틱 AI 보안 해법 공개 예정 (2026.8.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">뉴시스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="라온시큐어, 에이전틱 AI 보안 해법 공개 예정 (2026.8.25)
 
@@ -441,17 +474,19 @@ https://www.newsis.com/view/NISX20260825_0003760782" onclick="copyEntry(this)">�
 https://www.newsis.com/view/NISX20260825_0003761045" onclick="copyEntry(this)">복사</button></div>
   <p>라온시큐어는 9월 30일 서울 영등포구 페어몬트 앰배서더 서울에서 ‘2026 시큐업&amp;해커톤’을 열고 에이전틱 AI의 행동과 권한을 검증·통제하는 보안 전략을 공개한다. 행사에서는 AI 모의침투, LLM 가드레일, 양자내성암호, 분산신원인증(DID), 모바일 신분증 등 관련 기술과 적용 사례가 소개된다. ‘블록체인&amp;AI 해커톤’ 결선에는 예선 318개 팀 중 선발된 10개 팀이 참가하며, 수상팀에는 최대 10억 원의 창업 지원금 등이 제공된다.</p>
   <p class="url"><a href="https://www.newsis.com/view/NISX20260825_0003761045">https://www.newsis.com/view/NISX20260825_0003761045</a></p>
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="deepfake_disinfo guideline norms" data-search="정부 ‘AI 윤리’ 지침 확정…이용자도 책임 주체로 명시 (2026.8.25) 정부가 인간의 존엄성·사회의 공공선·인류의 지속가능성을 3대 가치로, 인간중심성·프라이버시 보호·공정성·책임성·안전성·신뢰성·투명성을 7대 원칙으로 하는 인공지능 윤리원칙을 확정했다. 이용자는 타인의 개인정보를 침해하는 입력과 허위 정보 유포, 기술 유출, 비동의 성적 합성물 제작 등을 피하고 AI 결과를 검토해야 한다. 이 원칙은 AI기본법에 따른 자율규범으로 법적 구속력은 없으며, 정부는 해설서와 자율점검표·윤리교육 교재를 보급할 예정이다. 서울신문">
   <h2>정부 ‘AI 윤리’ 지침 확정…이용자도 책임 주체로 명시 (2026.8.25)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">서울신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="정부 ‘AI 윤리’ 지침 확정…이용자도 책임 주체로 명시 (2026.8.25)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">서울신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="정부 ‘AI 윤리’ 지침 확정…이용자도 책임 주체로 명시 (2026.8.25)
 
 정부가 인간의 존엄성·사회의 공공선·인류의 지속가능성을 3대 가치로, 인간중심성·프라이버시 보호·공정성·책임성·안전성·신뢰성·투명성을 7대 원칙으로 하는 인공지능 윤리원칙을 확정했다. 이용자는 타인의 개인정보를 침해하는 입력과 허위 정보 유포, 기술 유출, 비동의 성적 합성물 제작 등을 피하고 AI 결과를 검토해야 한다. 이 원칙은 AI기본법에 따른 자율규범으로 법적 구속력은 없으며, 정부는 해설서와 자율점검표·윤리교육 교재를 보급할 예정이다.
 
 https://www.seoul.co.kr/news/newsView.php?id=20260825031002" onclick="copyEntry(this)">복사</button></div>
   <p>정부가 인간의 존엄성·사회의 공공선·인류의 지속가능성을 3대 가치로, 인간중심성·프라이버시 보호·공정성·책임성·안전성·신뢰성·투명성을 7대 원칙으로 하는 인공지능 윤리원칙을 확정했다. 이용자는 타인의 개인정보를 침해하는 입력과 허위 정보 유포, 기술 유출, 비동의 성적 합성물 제작 등을 피하고 AI 결과를 검토해야 한다. 이 원칙은 AI기본법에 따른 자율규범으로 법적 구속력은 없으며, 정부는 해설서와 자율점검표·윤리교육 교재를 보급할 예정이다.</p>
   <p class="url"><a href="https://www.seoul.co.kr/news/newsView.php?id=20260825031002">https://www.seoul.co.kr/news/newsView.php?id=20260825031002</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-08-24.html">← 2026-08-24</a><span class="day-nav-btn disabled">다음 날짜 없음 →</span></nav>
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-08-24.html">← 2026-08-24</a><span class="day-nav-btn disabled">다음 날짜 없음 →</span></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -487,6 +522,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

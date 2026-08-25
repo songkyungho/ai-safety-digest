@@ -301,7 +301,7 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI Safety Daily Digest</h1>
-    <div class="sub">2026-01-21 · 4/4건 요약</div>
+    <div class="sub">2026-01-21 · 5/5건 요약</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
@@ -324,6 +324,16 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=276125" onclick="copyEntry(thi
 https://eiec.kdi.re.kr/policy/materialView.do?num=276147" onclick="copyEntry(this)">복사</button></div>
   <p>「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법」이 2026년 1월 22일부터 시행된다. 법 시행으로 국가인공지능전략위원회와 분과위원회·지원단·인공지능책임관 등 국가 AI 정책 추진 체계의 법적 기반이 마련된다. 과학기술정보통신부는 기업의 제도 적응을 돕기 위해 규제를 최소 1년 이상 유예하고 지원데스크와 가이드라인을 운영하며, 산업계·학계·시민사회 의견을 반영해 제도를 보완할 계획이다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=276147">https://eiec.kdi.re.kr/policy/materialView.do?num=276147</a></p>
+</article>
+<article class="entry cat-company">
+  <h2>힙은 거짓말한다: vLLM 메모리 누수 디버깅 (2026.1.21)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">미스트랄</span></span><button type="button" class="copy-btn" data-copy="힙은 거짓말한다: vLLM 메모리 누수 디버깅 (2026.1.21)
+
+미스트랄은 Mistral Medium 3.1과 그래프 컴파일을 사용하는 vLLM의 Prefill/Decode 분리 환경에서 시스템 메모리가 분당 약 400MB씩 증가하는 문제를 조사했다. Heaptrack 등 기존 도구로는 누수를 찾지 못했으며, 분석 결과 문제는 힙이 아니라 NIXL·UCX를 통한 KVCache 전송 과정에서 커지는 익명 메모리 매핑 영역에 있는 것으로 좁혀졌다. 연구팀은 `pmap`과 BPFtrace를 사용해 `mmap`·`mremap` 같은 시스템 호출을 추적했으며, 해당 호출이 메모리를 적절히 해제하지 않는 정황을 확인했다.
+
+https://mistral.ai/news/debugging-memory-leak-in-vllm/" onclick="copyEntry(this)">복사</button></div>
+  <p>미스트랄은 Mistral Medium 3.1과 그래프 컴파일을 사용하는 vLLM의 Prefill/Decode 분리 환경에서 시스템 메모리가 분당 약 400MB씩 증가하는 문제를 조사했다. Heaptrack 등 기존 도구로는 누수를 찾지 못했으며, 분석 결과 문제는 힙이 아니라 NIXL·UCX를 통한 KVCache 전송 과정에서 커지는 익명 메모리 매핑 영역에 있는 것으로 좁혀졌다. 연구팀은 `pmap`과 BPFtrace를 사용해 `mmap`·`mremap` 같은 시스템 호출을 추적했으며, 해당 호출이 메모리를 적절히 해제하지 않는 정황을 확인했다.</p>
+  <p class="url"><a href="https://mistral.ai/news/debugging-memory-leak-in-vllm/">https://mistral.ai/news/debugging-memory-leak-in-vllm/</a></p>
 </article>
 <article class="entry cat-db">
   <h2>법원이 AI로 생성된 가짜 증거로 새로운 도전에 직면하다 (2026.1.21)</h2>

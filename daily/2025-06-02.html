@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="" data-search="국가 인공지능(AI) 컴퓨팅 센터 구축 사업 재공고 (2025.6.2) 과학기술정보통신부는 국가 인공지능(AI) 컴퓨팅 센터 구축 사업 재공고를 2025년 6월 2일부터 6월 13일까지 진행하며, 공모 요건은 변경하지 않는다고 밝혔다. 민·관 공동 출자로 특수목적법인을 설립해 센터를 구축하고, 산업·연구계에 GPU를 제공하며 국산 AI 반도체 수요 창출, 해외 기업 협력, 정부 연구개발 성과 연계 등을 지원할 계획이다. 과학기술정보통신부">
   <h2>국가 인공지능(AI) 컴퓨팅 센터 구축 사업 재공고 (2025.6.2)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">과학기술정보통신부</span></span><button type="button" class="copy-btn" data-copy="국가 인공지능(AI) 컴퓨팅 센터 구축 사업 재공고 (2025.6.2)
 
@@ -317,8 +369,10 @@
 https://eiec.kdi.re.kr/policy/materialView.do?num=267270" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 국가 인공지능(AI) 컴퓨팅 센터 구축 사업 재공고를 2025년 6월 2일부터 6월 13일까지 진행하며, 공모 요건은 변경하지 않는다고 밝혔다. 민·관 공동 출자로 특수목적법인을 설립해 센터를 구축하고, 산업·연구계에 GPU를 제공하며 국산 AI 반도체 수요 창출, 해외 기업 협력, 정부 연구개발 성과 연계 등을 지원할 계획이다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=267270">https://eiec.kdi.re.kr/policy/materialView.do?num=267270</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="law norms" data-search="AI가 사법에 도입될 때 혁신과 윤리·인권의 균형을 강조(2025.6.2) 유네스코는 96개국 사법 실무자 중 44%가 ChatGPT 등 AI 도구를 업무에 활용하고 있다고 밝히며, AI가 사건·문서 처리와 법률 연구를 더 빠르게 돕고 판례·입법 해석의 일관성에 기여할 수 있다고 설명했다. 다만 AI의 알고리즘 편향, 시스템의 불투명성, AI 의존으로 인한 판사의 독립성 약화 위험이 있어 ‘사람이 최종 결정에 관여(people-in-the-loop)’해야 한다고 강조했다. 모로코 사례로는 노동·교통사고 사건의 예비판결 작성 지원, 다국어 계약 초안 작성·번역을 위한 NLP, 과거 데이터를 기반으로 한 예측적 사건 분석 등이 언급됐다. 이를 위해 모로코는 EU AI Act 등 글로벌 모범을 참고한 포괄적 AI 거버넌스 법과 윤리·데이터보호·법적 영향에 대한 역량 강화가 필요하다고 제안했다. 유네스코(UNESCO)">
   <h2>🇪🇺 AI가 사법에 도입될 때 혁신과 윤리·인권의 균형을 강조(2025.6.2)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">유네스코(UNESCO)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="AI가 사법에 도입될 때 혁신과 윤리·인권의 균형을 강조(2025.6.2)
 
@@ -327,10 +381,14 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=267270" onclick="copyEntry(thi
 https://www.unesco.org/en/articles/ai-and-judiciary-balancing-innovation-integrity" onclick="copyEntry(this)">복사</button></div>
   <p>유네스코는 96개국 사법 실무자 중 44%가 ChatGPT 등 AI 도구를 업무에 활용하고 있다고 밝히며, AI가 사건·문서 처리와 법률 연구를 더 빠르게 돕고 판례·입법 해석의 일관성에 기여할 수 있다고 설명했다. 다만 AI의 알고리즘 편향, 시스템의 불투명성, AI 의존으로 인한 판사의 독립성 약화 위험이 있어 ‘사람이 최종 결정에 관여(people-in-the-loop)’해야 한다고 강조했다. 모로코 사례로는 노동·교통사고 사건의 예비판결 작성 지원, 다국어 계약 초안 작성·번역을 위한 NLP, 과거 데이터를 기반으로 한 예측적 사건 분석 등이 언급됐다. 이를 위해 모로코는 EU AI Act 등 글로벌 모범을 참고한 포괄적 AI 거버넌스 법과 윤리·데이터보호·법적 영향에 대한 역량 강화가 필요하다고 제안했다.</p>
   <p class="url"><a href="https://www.unesco.org/en/articles/ai-and-judiciary-balancing-innovation-integrity">https://www.unesco.org/en/articles/ai-and-judiciary-balancing-innovation-integrity</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="national_security norms" data-search="중국 대표, “군사 분야 AI의 책임 있는 사용이 인류 공동 미래와 직결” 주장(2025.06.02) 3일(4~5일) 스페인 라코루냐에서 열린 제3회 ‘군사 분야 책임 있는 AI 사용’ 정상회의 관련 내용으로, 중국은 AI 군사 적용의 위험 방지·안전 거버넌스와 다자주의를 강조했다.
+
+본문 요약: 중국 외교부 군축사 부사장 리치장(李驰江)은 군사 분야 AI의 책임 있는 사용이 국제 평화·안전과 직결된다고 밝혔다. 중국은 ‘사람 중심’ 군사 AI, 스마트가 선을 지향하도록 하는 원칙, 민첩한 거버넌스, 다자주의 등을 강조하며 각국이 신중한 책임의 바닥선을 지켜야 한다고 말했다. 또한 ‘15·5’ 계획 건의에 AI 거버넌스 강화를 포함하고, 다른 국가와 AI 군비 경쟁을 하지 않으며 정책 투명성을 유지하겠다고 전했다. 신화사(新华社)">
   <h2>🇨🇳 중국 대표, “군사 분야 AI의 책임 있는 사용이 인류 공동 미래와 직결” 주장(2025.06.02)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">신화사(新华社)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="중국 대표, “군사 분야 AI의 책임 있는 사용이 인류 공동 미래와 직결” 주장(2025.06.02)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">신화사(新华社)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="중국 대표, “군사 분야 AI의 책임 있는 사용이 인류 공동 미래와 직결” 주장(2025.06.02)
 
 3일(4~5일) 스페인 라코루냐에서 열린 제3회 ‘군사 분야 책임 있는 AI 사용’ 정상회의 관련 내용으로, 중국은 AI 군사 적용의 위험 방지·안전 거버넌스와 다자주의를 강조했다.
 
@@ -340,7 +398,9 @@ https://mp.weixin.qq.com/s/yzxJ8pM-mhp7pwLBzjlb3w" onclick="copyEntry(this)">복
   <p>3일(4~5일) 스페인 라코루냐에서 열린 제3회 ‘군사 분야 책임 있는 AI 사용’ 정상회의 관련 내용으로, 중국은 AI 군사 적용의 위험 방지·안전 거버넌스와 다자주의를 강조했다.</p>
 <p>본문 요약: 중국 외교부 군축사 부사장 리치장(李驰江)은 군사 분야 AI의 책임 있는 사용이 국제 평화·안전과 직결된다고 밝혔다. 중국은 ‘사람 중심’ 군사 AI, 스마트가 선을 지향하도록 하는 원칙, 민첩한 거버넌스, 다자주의 등을 강조하며 각국이 신중한 책임의 바닥선을 지켜야 한다고 말했다. 또한 ‘15·5’ 계획 건의에 AI 거버넌스 강화를 포함하고, 다른 국가와 AI 군비 경쟁을 하지 않으며 정책 투명성을 유지하겠다고 전했다.</p>
   <p class="url"><a href="https://mp.weixin.qq.com/s/yzxJ8pM-mhp7pwLBzjlb3w">https://mp.weixin.qq.com/s/yzxJ8pM-mhp7pwLBzjlb3w</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-05-31.html">← 2025-05-31</a><a class="day-nav-btn" href="2025-06-03.html">2025-06-03 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-31.html">← 2025-05-31</a><a class="day-nav-btn" href="2025-06-03.html">2025-06-03 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -376,6 +436,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="" data-search="Emmi AI, Mistral에 합류해 산업의 AI 전환 가속화 (2026.5.23) Mistral AI는 산업 분야의 AI 전환 역량을 강화하기 위해 Physics AI 기업 Emmi AI를 인수하는 최종 계약을 체결했다고 밝혔다. Emmi AI의 물리학 기반 대형 엔지니어링 모델은 실시간 시뮬레이션, 디지털 트윈, 엔지니어링 워크플로 개선 등에 활용되며, 공동 창업자와 30명 이상의 연구자·엔지니어가 5월 중 Mistral AI의 Science 및 Applied AI 팀에 합류한다. 양사는 항공우주·자동차·반도체 등 고위험 산업의 연구개발과 제품 설계를 지원하는 통합 AI 플랫폼 구축을 추진한다. Mistral AI">
   <h2>Emmi AI, Mistral에 합류해 산업의 AI 전환 가속화 (2026.5.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Mistral AI</span></span><button type="button" class="copy-btn" data-copy="Emmi AI, Mistral에 합류해 산업의 AI 전환 가속화 (2026.5.23)
 
@@ -317,10 +369,14 @@ Mistral AI는 산업 분야의 AI 전환 역량을 강화하기 위해 Physics A
 https://mistral.ai/news/accelerate-ai-native-industry/" onclick="copyEntry(this)">복사</button></div>
   <p>Mistral AI는 산업 분야의 AI 전환 역량을 강화하기 위해 Physics AI 기업 Emmi AI를 인수하는 최종 계약을 체결했다고 밝혔다. Emmi AI의 물리학 기반 대형 엔지니어링 모델은 실시간 시뮬레이션, 디지털 트윈, 엔지니어링 워크플로 개선 등에 활용되며, 공동 창업자와 30명 이상의 연구자·엔지니어가 5월 중 Mistral AI의 Science 및 Applied AI 팀에 합류한다. 양사는 항공우주·자동차·반도체 등 고위험 산업의 연구개발과 제품 설계를 지원하는 통합 AI 플랫폼 구축을 추진한다.</p>
   <p class="url"><a href="https://mistral.ai/news/accelerate-ai-native-industry/">https://mistral.ai/news/accelerate-ai-native-industry/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="norms" data-search="인도, AI 정책 3대 축(2026.5.23)으로 디지털 전환·경제효과 추진 인도 정부는 국가 AI 로드맵과 AI 윤리 관련 대통령령을 마무리 중이며, 데이터센터 전력용량을 2029년 2,000MW 이상으로 확대하는 목표를 제시했다.
+
+인도 통신·디지털부는 AI 정책의 3대 축을 통해 국가 디지털 전환을 지원하고 디지털 경제 파급을 확대하겠다고 밝혔다. 첫째는 혁신과 보호의 균형을 위한 규제로, AI 플랫폼의 투명성·책임성·보안과 함께 인도네시아 문화 가치 정합성을 요구한다. 둘째는 세계 수준의 디지털 인프라로, 마이크로소프트(1.7B달러) 등 글로벌 기업의 클라우드 투자와 데이터센터 확충(2026년 185개·총 274MW, 2029년 2,000MW+ 목표)을 추진한다. 셋째는 포용적 디지털 인재 양성으로, 디지털 인재 부족(약 300만 명)을 시급한 과제로 제시했다. 안타라뉴스(ANTARA News)">
   <h2>인도, AI 정책 3대 축(2026.5.23)으로 디지털 전환·경제효과 추진</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">안타라뉴스(ANTARA News)</span></span><button type="button" class="copy-btn" data-copy="인도, AI 정책 3대 축(2026.5.23)으로 디지털 전환·경제효과 추진
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">안타라뉴스(ANTARA News)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="인도, AI 정책 3대 축(2026.5.23)으로 디지털 전환·경제효과 추진
 
 인도 정부는 국가 AI 로드맵과 AI 윤리 관련 대통령령을 마무리 중이며, 데이터센터 전력용량을 2029년 2,000MW 이상으로 확대하는 목표를 제시했다.
 
@@ -330,8 +386,10 @@ https://en.antaranews.com/news/416755/indonesia-pushes-three-pillars-in-ai-polic
   <p>인도 정부는 국가 AI 로드맵과 AI 윤리 관련 대통령령을 마무리 중이며, 데이터센터 전력용량을 2029년 2,000MW 이상으로 확대하는 목표를 제시했다.</p>
 <p>인도 통신·디지털부는 AI 정책의 3대 축을 통해 국가 디지털 전환을 지원하고 디지털 경제 파급을 확대하겠다고 밝혔다. 첫째는 혁신과 보호의 균형을 위한 규제로, AI 플랫폼의 투명성·책임성·보안과 함께 인도네시아 문화 가치 정합성을 요구한다. 둘째는 세계 수준의 디지털 인프라로, 마이크로소프트(1.7B달러) 등 글로벌 기업의 클라우드 투자와 데이터센터 확충(2026년 185개·총 274MW, 2029년 2,000MW+ 목표)을 추진한다. 셋째는 포용적 디지털 인재 양성으로, 디지털 인재 부족(약 300만 명)을 시급한 과제로 제시했다.</p>
   <p class="url"><a href="https://en.antaranews.com/news/416755/indonesia-pushes-three-pillars-in-ai-policies-ministry">https://en.antaranews.com/news/416755/indonesia-pushes-three-pillars-in-ai-policies-ministry</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="open_weight" data-search="저자 외 5명, arXiv, 2026.5.23 공개 가중치(open-weight) 모델에서 윤리적 사용 제약을 “자발적 메타데이터 공시”로 구현할 때, 파생·재사용이 반복되는 딥 모델 라인리지에서 추적가능성이 유지되는지 점검한다. Hugging Face Hub의 2,142,823개 모델 저장소를 감사해 제한 증거가 라인리지 깊이에 따라 어떻게 감소하는지(반감기 1.31 derivation steps, R^2=0.98)와 “거버넌스 판정”에 필요한 공적 증거가 어느 시점부터 부족해지는지(7세대 이후 자손 모델의 최소 80%가 충분한 증거 부재)를 정량화한다. 또한 라이선스 메타데이터 복구를 위한 플랫폼 개입을 비교한 결과, 상속(inheritance)만 허용하는 설계는 강제 수준이 거의 완전해야 horizon이 이동하지만, 필수 선언(mandatory-declaration) 설계는 중간 수준의 강제에서도 horizon을 더 앞당겨 이동시키며, 상속 불가능한 “orphan” 라인리지 구조가 어떤 강제율에서도 판정 불가능을 만든다고 보고한다. arXiv">
   <h2>저자 외 5명, arXiv, 2026.5.23</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="오픈소스·오픈웨이트">🔓</span></span></span><button type="button" class="copy-btn" data-copy="저자 외 5명, arXiv, 2026.5.23
 
@@ -340,8 +398,8 @@ https://en.antaranews.com/news/416755/indonesia-pushes-three-pillars-in-ai-polic
 https://arxiv.org/abs/2605.24383v1" onclick="copyEntry(this)">복사</button></div>
   <p>공개 가중치(open-weight) 모델에서 윤리적 사용 제약을 “자발적 메타데이터 공시”로 구현할 때, 파생·재사용이 반복되는 딥 모델 라인리지에서 추적가능성이 유지되는지 점검한다. Hugging Face Hub의 2,142,823개 모델 저장소를 감사해 제한 증거가 라인리지 깊이에 따라 어떻게 감소하는지(반감기 1.31 derivation steps, R^2=0.98)와 “거버넌스 판정”에 필요한 공적 증거가 어느 시점부터 부족해지는지(7세대 이후 자손 모델의 최소 80%가 충분한 증거 부재)를 정량화한다. 또한 라이선스 메타데이터 복구를 위한 플랫폼 개입을 비교한 결과, 상속(inheritance)만 허용하는 설계는 강제 수준이 거의 완전해야 horizon이 이동하지만, 필수 선언(mandatory-declaration) 설계는 중간 수준의 강제에서도 horizon을 더 앞당겨 이동시키며, 상속 불가능한 “orphan” 라인리지 구조가 어떤 강제율에서도 판정 불가능을 만든다고 보고한다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.24383v1">https://arxiv.org/abs/2605.24383v1</a></p>
-</article>
-<article class="entry cat-research">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 4건 · arXiv</summary><article class="entry cat-research" data-cat="research" data-topics="safety_research" data-search="임시 재감금(temporary jailbreaking)과 Buffer-and-Reinforce로 유해 파인튜닝 업데이트를 완충·복원 (저자 외 3명, arXiv, 2026.5.23) 대상은 FaaS 환경에서 유해 파인튜닝 공격이 안전 정렬을 약화시키는 문제이며, 임시 jailbreaking이 어떤 그라디언트 수준 메커니즘으로 방어하는지 분석한다. BufferLoRA로 사용자 파인튜닝 동안 유해 업데이트를 줄이기 위해 제거 가능한 임시 jailbreaking 어댑터를 적용하고, 이후 ReinforceLoRA로 임시 jailbroken 상태에서 거절(refusal) 행동을 복원하도록 학습한 뒤 QR 분해 기반 병합으로 안전을 강화하면서 사용자 과제 성능을 보존하는 프레임워크를 제안한다. 실험에서 사용자 파인튜닝 중 추가 안전 데이터 없이도 안전성과 유틸리티를 더 높이고, 계산 비용은 최소 수준으로 유지된다고 보고한다. arXiv">
   <h2>임시 재감금(temporary jailbreaking)과 Buffer-and-Reinforce로 유해 파인튜닝 업데이트를 완충·복원 (저자 외 3명, arXiv, 2026.5.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="임시 재감금(temporary jailbreaking)과 Buffer-and-Reinforce로 유해 파인튜닝 업데이트를 완충·복원 (저자 외 3명, arXiv, 2026.5.23)
 
@@ -350,18 +408,10 @@ https://arxiv.org/abs/2605.24383v1" onclick="copyEntry(this)">복사</button></d
 https://arxiv.org/abs/2605.24550v1" onclick="copyEntry(this)">복사</button></div>
   <p>대상은 FaaS 환경에서 유해 파인튜닝 공격이 안전 정렬을 약화시키는 문제이며, 임시 jailbreaking이 어떤 그라디언트 수준 메커니즘으로 방어하는지 분석한다. BufferLoRA로 사용자 파인튜닝 동안 유해 업데이트를 줄이기 위해 제거 가능한 임시 jailbreaking 어댑터를 적용하고, 이후 ReinforceLoRA로 임시 jailbroken 상태에서 거절(refusal) 행동을 복원하도록 학습한 뒤 QR 분해 기반 병합으로 안전을 강화하면서 사용자 과제 성능을 보존하는 프레임워크를 제안한다. 실험에서 사용자 파인튜닝 중 추가 안전 데이터 없이도 안전성과 유틸리티를 더 높이고, 계산 비용은 최소 수준으로 유지된다고 보고한다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.24550v1">https://arxiv.org/abs/2605.24550v1</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
-  <h2>Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23)
-
-LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다.
-
-https://arxiv.org/abs/2605.24614v1" onclick="copyEntry(this)">복사</button></div>
-  <p>LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다.</p>
-  <p class="url"><a href="https://arxiv.org/abs/2605.24614v1">https://arxiv.org/abs/2605.24614v1</a></p>
-</article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="frontier" data-search="대규모 언어모델의 정서지능(EI)은 지각·인지·상호작용 축에서 분절됨 (저자 외 8명, arXiv, 2026.5.23) LLM이 감정에 민감한 영역에 통합될 때 정서지능이 안전·정렬 관점에서 어떻게 구성되는지(지각 정확도 vs 상호작용 효율) 구분해 평가하려는 문제를 다룬다. 480개 문항으로 구성된 FACET(정서지능 4-분기 모델에 기반)을 제안하고, GPT-5·Claude-Sonnet-4를 포함한 9개 프론티어 모델을 대상으로 지각/촉진/이해/관리 차원의 성능을 측정했다. 결과로 정서지능이 단일 능력이 아니라 인지 우세·상호작용 우세·맥락 의존의 3가지 프로파일로 분절되며, 모든 아키텍처에서 “hidden emotion recognition”이 보편적 병목으로 나타났다. arXiv">
   <h2>대규모 언어모델의 정서지능(EI)은 지각·인지·상호작용 축에서 분절됨 (저자 외 8명, arXiv, 2026.5.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="대규모 언어모델의 정서지능(EI)은 지각·인지·상호작용 축에서 분절됨 (저자 외 8명, arXiv, 2026.5.23)
 
@@ -370,8 +420,10 @@ LLM이 감정에 민감한 영역에 통합될 때 정서지능이 안전·정�
 https://arxiv.org/abs/2605.24686v1" onclick="copyEntry(this)">복사</button></div>
   <p>LLM이 감정에 민감한 영역에 통합될 때 정서지능이 안전·정렬 관점에서 어떻게 구성되는지(지각 정확도 vs 상호작용 효율) 구분해 평가하려는 문제를 다룬다. 480개 문항으로 구성된 FACET(정서지능 4-분기 모델에 기반)을 제안하고, GPT-5·Claude-Sonnet-4를 포함한 9개 프론티어 모델을 대상으로 지각/촉진/이해/관리 차원의 성능을 측정했다. 결과로 정서지능이 단일 능력이 아니라 인지 우세·상호작용 우세·맥락 의존의 3가지 프로파일로 분절되며, 모든 아키텍처에서 “hidden emotion recognition”이 보편적 병목으로 나타났다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.24686v1">https://arxiv.org/abs/2605.24686v1</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="safety_research" data-search="AI 설명의 근본적 한계(저자 외 0명, arXiv, 2026.5.23) 대규모 AI의 거동을 “완전하게 충실한” 설명으로 제공할 수 있는지에 대한 이론적 가능성을 수학적으로 다룬다. 환경 복잡도, AI 성능의 우수성, 설명의 해석가능성, 설명의 완전한 충실성의 네 조건을 동시에 만족할 수 없음을 정리한 “근본적 쿼드릴레마(사분딜레마)”를 증명한다. 핵심 결과는 네 조건(1~4)을 동시에 만족하는 설명은 이론적으로 불가능하다는 것으로, 거버넌스 설계는 설명 충실성이 항상 불완전하다는 전제 위에서 이루어져야 한다고 결론낸다. arXiv">
   <h2>AI 설명의 근본적 한계(저자 외 0명, arXiv, 2026.5.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="AI 설명의 근본적 한계(저자 외 0명, arXiv, 2026.5.23)
 
@@ -380,8 +432,10 @@ https://arxiv.org/abs/2605.24686v1" onclick="copyEntry(this)">복사</button></d
 https://arxiv.org/abs/2605.24727v1" onclick="copyEntry(this)">복사</button></div>
   <p>대규모 AI의 거동을 “완전하게 충실한” 설명으로 제공할 수 있는지에 대한 이론적 가능성을 수학적으로 다룬다. 환경 복잡도, AI 성능의 우수성, 설명의 해석가능성, 설명의 완전한 충실성의 네 조건을 동시에 만족할 수 없음을 정리한 “근본적 쿼드릴레마(사분딜레마)”를 증명한다. 핵심 결과는 네 조건(1~4)을 동시에 만족하는 설명은 이론적으로 불가능하다는 것으로, 거버넌스 설계는 설명 충실성이 항상 불완전하다는 전제 위에서 이루어져야 한다고 결론낸다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.24727v1">https://arxiv.org/abs/2605.24727v1</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="저자 외 0명, arXiv, 2026.5.23 연구는 배포 중 LLM의 규정 준수를 이진·감사 시점 판정이 아니라 런타임에서 연속 신호로 산출하는 세팅을 다룬다. govllm 프레임워크에서 규정별 LLM 평가자(“regulatory judges”) 패널의 상호 불일치를 규제 불확실성 신호로 두고, 누적 compliance score로 모델 라우팅/선택을 수행하는 방법을 제시하며 49개 주석 prompt/response 쌍을 5개 규정 기준에 대해 온프레미스 SLM(1.7B–7B) 4종으로 평가한다. 합의율은 51.5%(mistral:7b)~69.1%(phi4-mini)였고, judge-specific position bias로 3개 질문 순서 조건에서 합의가 최대 25%p까지 저하되며, 소형 규제 평가자에서 3가지 구조적 실패 모드가 보고된다. arXiv">
   <h2>저자 외 0명, arXiv, 2026.5.23</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="저자 외 0명, arXiv, 2026.5.23
 
@@ -390,7 +444,22 @@ https://arxiv.org/abs/2605.24727v1" onclick="copyEntry(this)">복사</button></d
 https://arxiv.org/abs/2605.24737v1" onclick="copyEntry(this)">복사</button></div>
   <p>연구는 배포 중 LLM의 규정 준수를 이진·감사 시점 판정이 아니라 런타임에서 연속 신호로 산출하는 세팅을 다룬다. govllm 프레임워크에서 규정별 LLM 평가자(“regulatory judges”) 패널의 상호 불일치를 규제 불확실성 신호로 두고, 누적 compliance score로 모델 라우팅/선택을 수행하는 방법을 제시하며 49개 주석 prompt/response 쌍을 5개 규정 기준에 대해 온프레미스 SLM(1.7B–7B) 4종으로 평가한다. 합의율은 51.5%(mistral:7b)~69.1%(phi4-mini)였고, judge-specific position bias로 3개 질문 순서 조건에서 합의가 최대 25%p까지 저하되며, 소형 규제 평가자에서 3가지 구조적 실패 모드가 보고된다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.24737v1">https://arxiv.org/abs/2605.24737v1</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-05-22.html">← 2026-05-22</a><a class="day-nav-btn" href="2026-05-24.html">2026-05-24 →</a></nav>
+  
+  
+</article></details>
+</article>
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23) LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다. arXiv">
+  <h2>Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23)
+
+LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다.
+
+https://arxiv.org/abs/2605.24614v1" onclick="copyEntry(this)">복사</button></div>
+  <p>LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다.</p>
+  <p class="url"><a href="https://arxiv.org/abs/2605.24614v1">https://arxiv.org/abs/2605.24614v1</a></p>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-05-22.html">← 2026-05-22</a><a class="day-nav-btn" href="2026-05-24.html">2026-05-24 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -426,6 +495,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Anthropic 연구: 대형 언어 모델 일반화 연구에서 영향력 함수 활용 (2023.8.8) 대형 언어 모델(LLM)의 일반화 특성을 이해하기 위해 영향력 함수를 활용한 연구가 소개되었다. 연구팀은 EK-FAC(Eigenvalue-corrected Kronecker-Factored Approximate Curvature) 방법을 통해 최대 520억 파라미터를 가진 LLM까지 영향력 함수를 확장하였다. 이를 통해 훈련 예시들이 모델의 행동에 미치는 영향을 분석하고, 일반화 패턴, 추상화 수준의 증가, 수학 및 프로그래밍 능력, 다국어 일반화 능력, 역할 연기 행동 등을 조사하였다. 특히, 핵심 구문 순서 변경 시 영향력이 급격히 감소하는 한계점을 발견하였다. 이 연구는 LLM의 일반화 속성을 연구하는 데 강력한 새로운 도구를 제공한다. Anthropic-Research">
   <h2>🇺🇸 Anthropic 연구: 대형 언어 모델 일반화 연구에서 영향력 함수 활용 (2023.8.8)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 연구: 대형 언어 모델 일반화 연구에서 영향력 함수 활용 (2023.8.8)
 
@@ -317,8 +369,10 @@
 https://www.anthropic.com/research/studying-large-language-model-generalization-with-influence-functions" onclick="copyEntry(this)">복사</button></div>
   <p>대형 언어 모델(LLM)의 일반화 특성을 이해하기 위해 영향력 함수를 활용한 연구가 소개되었다. 연구팀은 EK-FAC(Eigenvalue-corrected Kronecker-Factored Approximate Curvature) 방법을 통해 최대 520억 파라미터를 가진 LLM까지 영향력 함수를 확장하였다. 이를 통해 훈련 예시들이 모델의 행동에 미치는 영향을 분석하고, 일반화 패턴, 추상화 수준의 증가, 수학 및 프로그래밍 능력, 다국어 일반화 능력, 역할 연기 행동 등을 조사하였다. 특히, 핵심 구문 순서 변경 시 영향력이 급격히 감소하는 한계점을 발견하였다. 이 연구는 LLM의 일반화 속성을 연구하는 데 강력한 새로운 도구를 제공한다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/studying-large-language-model-generalization-with-influence-functions">https://www.anthropic.com/research/studying-large-language-model-generalization-with-influence-functions</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Anthropic 연구: 모델 훈련 데이터에서 모델 출력 추적 Anthropic의 최신 연구는 대규모 언어 모델의 출력이 훈련 데이터에 어떻게 영향을 받는지 분석한다. 연구팀은 통계학에서 유래한 &#x27;영향 함수(Influence Functions)&#x27; 기법을 활용해 훈련 데이터 중 모델 출력에 가장 큰 영향을 미치는 예시들을 식별한다. 모델 크기가 증가함에 따라 일반화 패턴이 더욱 추상적인 개념으로 변화하는 경향이 관찰되었다. 예를 들어, 더 큰 모델은 생존 본능과 인간적 감정과 같은 추상적인 주제를 반영하는 훈련 시퀀스에 더 큰 영향을 받는 것으로 나타났다. 이러한 접근법은 모델 내부 작동 원리를 이해하고 AI 시스템을 인간 선호도에 맞추는 방법을 모색하는 데 중요한 통찰력을 제공한다. 또한, 모델 출력이 순수한 메모리 기반이 아닌 더 복잡한 처리 과정을 통해 이루어진다는 증거를 제시한다. 연구는 사전 훈련 모델에 초점을 맞추고 있지만, 향후에는 미세 조정 과정에서도 영향 함수를 적용하여 더 깊은 이해를 도모할 계획이다. Anthropic-Research">
   <h2>🇺🇸 Anthropic 연구: 모델 훈련 데이터에서 모델 출력 추적</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 연구: 모델 훈련 데이터에서 모델 출력 추적
 
@@ -327,7 +381,9 @@ Anthropic의 최신 연구는 대규모 언어 모델의 출력이 훈련 데이
 https://www.anthropic.com/research/influence-functions" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic의 최신 연구는 대규모 언어 모델의 출력이 훈련 데이터에 어떻게 영향을 받는지 분석한다. 연구팀은 통계학에서 유래한 &#x27;영향 함수(Influence Functions)&#x27; 기법을 활용해 훈련 데이터 중 모델 출력에 가장 큰 영향을 미치는 예시들을 식별한다. 모델 크기가 증가함에 따라 일반화 패턴이 더욱 추상적인 개념으로 변화하는 경향이 관찰되었다. 예를 들어, 더 큰 모델은 생존 본능과 인간적 감정과 같은 추상적인 주제를 반영하는 훈련 시퀀스에 더 큰 영향을 받는 것으로 나타났다. 이러한 접근법은 모델 내부 작동 원리를 이해하고 AI 시스템을 인간 선호도에 맞추는 방법을 모색하는 데 중요한 통찰력을 제공한다. 또한, 모델 출력이 순수한 메모리 기반이 아닌 더 복잡한 처리 과정을 통해 이루어진다는 증거를 제시한다. 연구는 사전 훈련 모델에 초점을 맞추고 있지만, 향후에는 미세 조정 과정에서도 영향 함수를 적용하여 더 깊은 이해를 도모할 계획이다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/influence-functions">https://www.anthropic.com/research/influence-functions</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2023-08-04.html">← 2023-08-04</a><a class="day-nav-btn" href="2023-09-04.html">2023-09-04 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-08-04.html">← 2023-08-04</a><a class="day-nav-btn" href="2023-09-04.html">2023-09-04 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -363,6 +419,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

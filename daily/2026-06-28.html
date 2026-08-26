@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="제3차 AI 안전 정책 연구 세미나 안내 (7.6.) 요약불가 AISI-Korea">
   <h2>🇰🇷 제3차 AI 안전 정책 연구 세미나 안내 (7.6.)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-Korea</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="제3차 AI 안전 정책 연구 세미나 안내 (7.6.)
 
@@ -317,8 +369,10 @@
 https://www.aisi.re.kr/kor/article/view.do?articleId=109" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.aisi.re.kr/kor/article/view.do?articleId=109">https://www.aisi.re.kr/kor/article/view.do?articleId=109</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="Defining and evaluating political bias in llms 요약불가 openai.com">
   <h2>Defining and evaluating political bias in llms</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">openai.com</span></span><button type="button" class="copy-btn" data-copy="Defining and evaluating political bias in llms
 
@@ -327,8 +381,10 @@ https://www.aisi.re.kr/kor/article/view.do?articleId=109" onclick="copyEntry(thi
 https://openai.com/index/defining-and-evaluating-political-bias-in-llms" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://openai.com/index/defining-and-evaluating-political-bias-in-llms">https://openai.com/index/defining-and-evaluating-political-bias-in-llms</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="Five eyes cyber security agencies statement 요약불가 cyber.gov.au">
   <h2>Five eyes cyber security agencies statement</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">cyber.gov.au</span></span><button type="button" class="copy-btn" data-copy="Five eyes cyber security agencies statement
 
@@ -337,8 +393,10 @@ https://openai.com/index/defining-and-evaluating-political-bias-in-llms" onclick
 https://cyber.gov.au/about-us/view-all-content/news/five-eyes-cyber-security-agencies-statement" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://cyber.gov.au/about-us/view-all-content/news/five-eyes-cyber-security-agencies-statement">https://cyber.gov.au/about-us/view-all-content/news/five-eyes-cyber-security-agencies-statement</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="US House reaches bipartisan kids&#x27; safety deal absent duty of care | MLex | Specialist news and analysis on legal risk and regulation 요약불가 mlex.com">
   <h2>US House reaches bipartisan kids&#x27; safety deal absent duty of care | MLex | Specialist news and analysis on legal risk and regulation</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="US House reaches bipartisan kids&#x27; safety deal absent duty of care | MLex | Specialist news and analysis on legal risk and regulation
 
@@ -347,8 +405,10 @@ https://cyber.gov.au/about-us/view-all-content/news/five-eyes-cyber-security-age
 https://mlex.com/mlex/artificial-intelligence/articles/2492357" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2492357">https://mlex.com/mlex/artificial-intelligence/articles/2492357</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="2492437 요약불가 mlex.com">
   <h2>2492437</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">mlex.com</span></span><button type="button" class="copy-btn" data-copy="2492437
 
@@ -357,8 +417,10 @@ https://mlex.com/mlex/artificial-intelligence/articles/2492357" onclick="copyEnt
 https://mlex.com/mlex/artificial-intelligence/articles/2492437" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://mlex.com/mlex/artificial-intelligence/articles/2492437">https://mlex.com/mlex/artificial-intelligence/articles/2492437</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="law safety_research" data-search="동의 없는 개인정보 활용 법안 반대 청원 제기 (2026.6.28) 개인정보 보호법 개정안이 국회를 통과하면서, 동의 없이 수집된 개인정보를 AI 개발에 활용할 수 있는 특례 조항이 포함되어 논란이 되고 있다. 시민단체와 반대 청원인들은 이 법안이 개인정보 자기결정권을 침해하고, AI 예외주의를 초래할 수 있다고 비판하고 있다. 특히 개인정보보호위원회의 심의 과정이 충분한 안전장치가 될지에 대한 의문이 제기되고 있다. 이에 따라 국회 국민동의청원을 통해 법안 반대 의견이 모아져 진행 중이다. AI-Ethics-KR">
   <h2>🇰🇷 동의 없는 개인정보 활용 법안 반대 청원 제기 (2026.6.28)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AI-Ethics-KR</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="동의 없는 개인정보 활용 법안 반대 청원 제기 (2026.6.28)
 
@@ -367,8 +429,12 @@ https://mlex.com/mlex/artificial-intelligence/articles/2492437" onclick="copyEnt
 https://ai-ethics.kr/personal-info-consent-petition-2026-06-29/" onclick="copyEntry(this)">복사</button></div>
   <p>개인정보 보호법 개정안이 국회를 통과하면서, 동의 없이 수집된 개인정보를 AI 개발에 활용할 수 있는 특례 조항이 포함되어 논란이 되고 있다. 시민단체와 반대 청원인들은 이 법안이 개인정보 자기결정권을 침해하고, AI 예외주의를 초래할 수 있다고 비판하고 있다. 특히 개인정보보호위원회의 심의 과정이 충분한 안전장치가 될지에 대한 의문이 제기되고 있다. 이에 따라 국회 국민동의청원을 통해 법안 반대 의견이 모아져 진행 중이다.</p>
   <p class="url"><a href="https://ai-ethics.kr/personal-info-consent-petition-2026-06-29/">https://ai-ethics.kr/personal-info-consent-petition-2026-06-29/</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="Digital Constitutionalism: A Pancasila Framework in the Era of Artificial Intelligence (**2026.6.28**) 빈 줄
+
+요약불가 ">
   <h2>Digital Constitutionalism: A Pancasila Framework in the Era of Artificial Intelligence (**2026.6.28**)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Digital Constitutionalism: A Pancasila Framework in the Era of Artificial Intelligence (**2026.6.28**)
 
@@ -380,7 +446,9 @@ https://doi.org/10.15294/ijpgc.v5i1.48383" onclick="copyEntry(this)">복사</but
   <p>빈 줄</p>
 <p>요약불가</p>
   <p class="url"><a href="https://doi.org/10.15294/ijpgc.v5i1.48383">https://doi.org/10.15294/ijpgc.v5i1.48383</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-06-27.html">← 2026-06-27</a><a class="day-nav-btn" href="2026-06-29.html">2026-06-29 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-06-27.html">← 2026-06-27</a><a class="day-nav-btn" href="2026-06-29.html">2026-06-29 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -416,6 +484,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

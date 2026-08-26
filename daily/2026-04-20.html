@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -304,11 +356,15 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI Safety Daily Digest</h1>
-    <div class="sub">2026-04-20 · 24/25건 요약</div>
+    <div class="sub">2026-04-20 · 25/26건 요약</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Qwen3.6-Max-Preview (Alibaba/Qwen) (2026.4.20) Reasoning · Closed · 256K ctx
+
+벤치마크 미공개
+
+Most powerful Qwen model. Top scores on 6 programming benchmarks. Enhanced agent coding, world knowledge, instruction following vs Qwen3.6-Plus. Free preview on Bailian. DemandSphere">
   <h2>🇨🇳 Qwen3.6-Max-Preview (Alibaba/Qwen) (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Qwen3.6-Max-Preview (Alibaba/Qwen) (2026.4.20)
 
@@ -323,8 +379,10 @@ https://cntechpost.com/2026/04/20/alibaba-releases-qwen3-6-max-preview-stronger-
 <p>벤치마크 미공개</p>
 <p>Most powerful Qwen model. Top scores on 6 programming benchmarks. Enhanced agent coding, world knowledge, instruction following vs Qwen3.6-Plus. Free preview on Bailian.</p>
   <p class="url"><a href="https://cntechpost.com/2026/04/20/alibaba-releases-qwen3-6-max-preview-stronger-instruction-following-capabilities/">https://cntechpost.com/2026/04/20/alibaba-releases-qwen3-6-max-preview-stronger-instruction-following-capabilities/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="AI 생성 결과물의 지식재산권 보호 (2026.4.20) 생성형 AI가 혁신 투자 비용을 낮추지만, 지식재산권 보호에는 충분한 인간의 기여가 필요하고 AI 사용은 관찰하기 어렵다는 조건에서 기업의 투자 결정을 분석한다. 소비자가 인간이 개발한 제품을 선호할 경우 역선택으로 인적자본 투자가 왜곡될 수 있으며, 지식재산권 제도는 기업의 인간 자본 활용 의지를 신호로 전달하거나 비용이 높은 기업의 투자를 억제해 이를 완화할 수 있다. CEPR">
   <h2>AI 생성 결과물의 지식재산권 보호 (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">CEPR</span></span><button type="button" class="copy-btn" data-copy="AI 생성 결과물의 지식재산권 보호 (2026.4.20)
 
@@ -333,8 +391,10 @@ https://cntechpost.com/2026/04/20/alibaba-releases-qwen3-6-max-preview-stronger-
 https://cepr.org/publications/dp21399" onclick="copyEntry(this)">복사</button></div>
   <p>생성형 AI가 혁신 투자 비용을 낮추지만, 지식재산권 보호에는 충분한 인간의 기여가 필요하고 AI 사용은 관찰하기 어렵다는 조건에서 기업의 투자 결정을 분석한다. 소비자가 인간이 개발한 제품을 선호할 경우 역선택으로 인적자본 투자가 왜곡될 수 있으며, 지식재산권 제도는 기업의 인간 자본 활용 의지를 신호로 전달하거나 비용이 높은 기업의 투자를 억제해 이를 완화할 수 있다.</p>
   <p class="url"><a href="https://cepr.org/publications/dp21399">https://cepr.org/publications/dp21399</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="incidents" data-search="캘리포니아의 인공지능 안전법은 무엇인가? (2026.4.20) 캘리포니아의 SB 53은 최첨단 인공지능 모델 개발사에 안전·위험관리 체계 공개, 투명성 보고서 작성, 독립 평가, 내부 거버넌스 및 내부고발자 보호를 요구하는 미국 최초의 집행 가능한 주 단위 규제 체계다. 연 매출 5억 달러를 넘는 대형 개발사 등이 대상이며, 중대한 안전사고는 캘리포니아 응급서비스국에 15일 이내, 임박한 공공위협이 있으면 24시간 이내 보고해야 하고 위반 시 건당 최대 100만 달러의 민사제재가 부과될 수 있다. 이 법은 EU 인공지능법보다 적용 범위는 좁지만 안전 프레임워크를 공개하도록 하며, 캘리포니아가 연방 규제가 정체된 상황에서 투명성과 공공책임을 중심으로 프런티어 AI 거버넌스를 시험하는 역할을 하게 한다. Brookings">
   <h2>🇺🇸🇪🇺 캘리포니아의 인공지능 안전법은 무엇인가? (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Brookings</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="캘리포니아의 인공지능 안전법은 무엇인가? (2026.4.20)
 
@@ -343,8 +403,10 @@ https://cepr.org/publications/dp21399" onclick="copyEntry(this)">복사</button>
 https://www.brookings.edu/articles/what-is-californias-ai-safety-law/" onclick="copyEntry(this)">복사</button></div>
   <p>캘리포니아의 SB 53은 최첨단 인공지능 모델 개발사에 안전·위험관리 체계 공개, 투명성 보고서 작성, 독립 평가, 내부 거버넌스 및 내부고발자 보호를 요구하는 미국 최초의 집행 가능한 주 단위 규제 체계다. 연 매출 5억 달러를 넘는 대형 개발사 등이 대상이며, 중대한 안전사고는 캘리포니아 응급서비스국에 15일 이내, 임박한 공공위협이 있으면 24시간 이내 보고해야 하고 위반 시 건당 최대 100만 달러의 민사제재가 부과될 수 있다. 이 법은 EU 인공지능법보다 적용 범위는 좁지만 안전 프레임워크를 공개하도록 하며, 캘리포니아가 연방 규제가 정체된 상황에서 투명성과 공공책임을 중심으로 프런티어 AI 거버넌스를 시험하는 역할을 하게 한다.</p>
   <p class="url"><a href="https://www.brookings.edu/articles/what-is-californias-ai-safety-law/">https://www.brookings.edu/articles/what-is-californias-ai-safety-law/</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="MIT 연구진, AI 의존 심화로 인한 인간의 인지 능력 저하 및 창의성 상실 경고 (2026.4.20) MIT 연구진은 학생들이 챗GPT와 같은 생성형 AI에 사고 과정을 아웃소싱할 때 창의성 관련 뇌 활동이 최대 55% 감소하고, 정보 기억력 및 문제 해결 능력이 저하됨을 발견. 잦은 AI 의존은 비판적 사고를 무력화시키는 &#x27;인지적 항복&#x27; 상태를 유발할 수 있으며, 장기적으로 뇌 건강에 악영향을 미치고 치매 위험까지 높일 수 있어 주도적인 도구 활용이 필요. BBC">
   <h2>MIT 연구진, AI 의존 심화로 인한 인간의 인지 능력 저하 및 창의성 상실 경고 (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">BBC</span></span><button type="button" class="copy-btn" data-copy="MIT 연구진, AI 의존 심화로 인한 인간의 인지 능력 저하 및 창의성 상실 경고 (2026.4.20)
 
@@ -353,8 +415,10 @@ MIT 연구진은 학생들이 챗GPT와 같은 생성형 AI에 사고 과정을 
 https://www.bbc.com/future/article/20260417-ai-chatbots-could-be-making-you-stupider" onclick="copyEntry(this)">복사</button></div>
   <p>MIT 연구진은 학생들이 챗GPT와 같은 생성형 AI에 사고 과정을 아웃소싱할 때 창의성 관련 뇌 활동이 최대 55% 감소하고, 정보 기억력 및 문제 해결 능력이 저하됨을 발견. 잦은 AI 의존은 비판적 사고를 무력화시키는 &#x27;인지적 항복&#x27; 상태를 유발할 수 있으며, 장기적으로 뇌 건강에 악영향을 미치고 치매 위험까지 높일 수 있어 주도적인 도구 활용이 필요.</p>
   <p class="url"><a href="https://www.bbc.com/future/article/20260417-ai-chatbots-could-be-making-you-stupider">https://www.bbc.com/future/article/20260417-ai-chatbots-could-be-making-you-stupider</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Anthropic, Amazon과 협력 확대…최대 5GW 신규 컴퓨트 확보(2026.4.20) 앤트로픽은 이번 계약으로 Trainium2 신규 용량이 2026년 상반기(첫 6개월) 내 일부 가동되고, Trainium2·Trainium3 합산 약 1GW 규모는 2026년 말까지 순차적으로 들어올 예정이라고 밝혔다. 또한 향후 10년간 AWS 기술에 1000억 달러 이상을 투자하며 최대 5GW의 용량을 확보하고, Amazon Bedrock에서 Claude의 추론(inference) 용량도 아시아·유럽으로 확장한다. 아울러 AWS 내에서 동일 계정·통제·과금 체계로 Claude 플랫폼을 제공하는 방안이 포함되며, Amazon은 앤트로픽에 50억 달러를 투자하고 추가로 최대 200억 달러까지 투자할 계획이라고 전했다. 앤트로픽(Anthropic)">
   <h2>🇺🇸 Anthropic, Amazon과 협력 확대…최대 5GW 신규 컴퓨트 확보(2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic, Amazon과 협력 확대…최대 5GW 신규 컴퓨트 확보(2026.4.20)
 
@@ -363,8 +427,10 @@ https://www.bbc.com/future/article/20260417-ai-chatbots-could-be-making-you-stup
 https://www.anthropic.com/news/anthropic-amazon-compute" onclick="copyEntry(this)">복사</button></div>
   <p>앤트로픽은 이번 계약으로 Trainium2 신규 용량이 2026년 상반기(첫 6개월) 내 일부 가동되고, Trainium2·Trainium3 합산 약 1GW 규모는 2026년 말까지 순차적으로 들어올 예정이라고 밝혔다. 또한 향후 10년간 AWS 기술에 1000억 달러 이상을 투자하며 최대 5GW의 용량을 확보하고, Amazon Bedrock에서 Claude의 추론(inference) 용량도 아시아·유럽으로 확장한다. 아울러 AWS 내에서 동일 계정·통제·과금 체계로 Claude 플랫폼을 제공하는 방안이 포함되며, Amazon은 앤트로픽에 50억 달러를 투자하고 추가로 최대 200억 달러까지 투자할 계획이라고 전했다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/anthropic-amazon-compute">https://www.anthropic.com/news/anthropic-amazon-compute</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="cybersecurity law" data-search="유럽 집행위, 프랑스·핀란드와 함께 ‘안전하고 신뢰할 수 있는 연결성·디지털 인프라’ 고위급 연구 방문(2026.4.20) 유럽 집행위원회는 프랑스와 핀란드 정부와 협력해 안전하고 회복력 있으며 신뢰할 수 있는 연결성 및 디지털 인프라 관련 고위급 연구 방문을 브뤼셀에서 진행했다. 이 자리에는 이집트·인도네시아·요르단·케냐·필리핀·베트남의 정책결정자와 규제기관 관계자들이 참여해 보안·신뢰 기반 통신 인프라 구축과 해저 케이블 배치에 관한 정책 프레임워크를 논의했다. 참가자들은 유럽 집행위 및 EEAS와 함께 EU의 디지털 정책과 국제 디지털 협력, DG CONNECT에서 디지털 네트워크법 관련 입법 제안, 사이버보안, EU의 해저 케이블 보안 도구상자 등을 소개받았으며, 이후 아헨·앤트워프·파리·헬싱키에서 유럽 주요 기업들과도 만났다. EU-Digital-Strategy">
   <h2>🇪🇺 유럽 집행위, 프랑스·핀란드와 함께 ‘안전하고 신뢰할 수 있는 연결성·디지털 인프라’ 고위급 연구 방문(2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">EU-Digital-Strategy</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="유럽 집행위, 프랑스·핀란드와 함께 ‘안전하고 신뢰할 수 있는 연결성·디지털 인프라’ 고위급 연구 방문(2026.4.20)
 
@@ -373,18 +439,22 @@ https://www.anthropic.com/news/anthropic-amazon-compute" onclick="copyEntry(this
 https://digital-strategy.ec.europa.eu/en/news/commission-welcomes-high-level-study-group-connectivity-and-digital-infrastructure" onclick="copyEntry(this)">복사</button></div>
   <p>유럽 집행위원회는 프랑스와 핀란드 정부와 협력해 안전하고 회복력 있으며 신뢰할 수 있는 연결성 및 디지털 인프라 관련 고위급 연구 방문을 브뤼셀에서 진행했다. 이 자리에는 이집트·인도네시아·요르단·케냐·필리핀·베트남의 정책결정자와 규제기관 관계자들이 참여해 보안·신뢰 기반 통신 인프라 구축과 해저 케이블 배치에 관한 정책 프레임워크를 논의했다. 참가자들은 유럽 집행위 및 EEAS와 함께 EU의 디지털 정책과 국제 디지털 협력, DG CONNECT에서 디지털 네트워크법 관련 입법 제안, 사이버보안, EU의 해저 케이블 보안 도구상자 등을 소개받았으며, 이후 아헨·앤트워프·파리·헬싱키에서 유럽 주요 기업들과도 만났다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-welcomes-high-level-study-group-connectivity-and-digital-infrastructure">https://digital-strategy.ec.europa.eu/en/news/commission-welcomes-high-level-study-group-connectivity-and-digital-infrastructure</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="law national_security standards" data-search="국방인공지능의 안전·책임 있는 활용을 위한 법적 기반 마련(2026.4.20) 국방인공지능법안은 국방 분야 인공지능의 발전 방향을 국가 차원에서 정립하고, 안전하고 책임 있는 활용을 위한 법·제도 기반을 마련하려는 내용이다. 국방인공지능 기본계획(3년마다) 수립, 국방인공지능위원회 설치, 정책센터·안전연구소 설치, 표준화·학습데이터 확보 및 관리, 위험 관리 등 안전성 확보 시책을 포함한다. 또한 무기체계 획득 절차 특례와 규제 특례, 민간 인공지능기술 발굴·반영, 전문인력 양성 및 인프라 조성 등 전력화 지원 방안도 담고 있다. 국민참여입법센터(opinion.lawmaking.go.kr)">
   <h2>국방인공지능의 안전·책임 있는 활용을 위한 법적 기반 마련(2026.4.20)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국민참여입법센터(opinion.lawmaking.go.kr)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="표준">📏</span></span></span><button type="button" class="copy-btn" data-copy="국방인공지능의 안전·책임 있는 활용을 위한 법적 기반 마련(2026.4.20)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국민참여입법센터(opinion.lawmaking.go.kr)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="국방인공지능의 안전·책임 있는 활용을 위한 법적 기반 마련(2026.4.20)
 
 국방인공지능법안은 국방 분야 인공지능의 발전 방향을 국가 차원에서 정립하고, 안전하고 책임 있는 활용을 위한 법·제도 기반을 마련하려는 내용이다. 국방인공지능 기본계획(3년마다) 수립, 국방인공지능위원회 설치, 정책센터·안전연구소 설치, 표준화·학습데이터 확보 및 관리, 위험 관리 등 안전성 확보 시책을 포함한다. 또한 무기체계 획득 절차 특례와 규제 특례, 민간 인공지능기술 발굴·반영, 전문인력 양성 및 인프라 조성 등 전력화 지원 방안도 담고 있다.
 
 https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2216355/detailRP" onclick="copyEntry(this)">복사</button></div>
   <p>국방인공지능법안은 국방 분야 인공지능의 발전 방향을 국가 차원에서 정립하고, 안전하고 책임 있는 활용을 위한 법·제도 기반을 마련하려는 내용이다. 국방인공지능 기본계획(3년마다) 수립, 국방인공지능위원회 설치, 정책센터·안전연구소 설치, 표준화·학습데이터 확보 및 관리, 위험 관리 등 안전성 확보 시책을 포함한다. 또한 무기체계 획득 절차 특례와 규제 특례, 민간 인공지능기술 발굴·반영, 전문인력 양성 및 인프라 조성 등 전력화 지원 방안도 담고 있다.</p>
   <p class="url"><a href="https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2216355/detailRP">https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2216355/detailRP</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="safety_research standards" data-search="싱가포르, 생성형 AI 시험(테스트) 방법 국제표준 ISO/IEC 42119-8 제안(2026.4.20) 싱가포르는 생성형 AI 시스템의 신뢰성 있는 테스트를 위한 국제표준 ISO/IEC 42119-8을 제안했다. 이 표준은 벤치마킹과 레드팀(red teaming) 방법론을 포함해 표준화된 테스트 접근을 제공하며, 결과의 재현성과 비교 가능성을 높여 AI 배포·사용의 신뢰를 강화하는 것을 목표로 한다. 해당 표준은 2026년 4월 20~24일 싱가포르에서 열리는 ISO/IEC JTC 1/SC 42(17차) 총회에서 논의될 예정이며, IMDA와 엔터프라이즈SG가 공동 주최한다. 또한 IMDA와 EnterpriseSG는 총회 연계 역량강화 워크숍과 AI Assurance Exchange 등 관련 행사를 진행한다. 싱가포르 정보통신미디어개발청(IMDA)">
   <h2>싱가포르, 생성형 AI 시험(테스트) 방법 국제표준 ISO/IEC 42119-8 제안(2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">싱가포르 정보통신미디어개발청(IMDA)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="싱가포르, 생성형 AI 시험(테스트) 방법 국제표준 ISO/IEC 42119-8 제안(2026.4.20)
 
@@ -393,18 +463,22 @@ https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/2216355/detailRP" onclick="cop
 https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/singapore-champions-new-global-ai-testing-standardisation-efforts" onclick="copyEntry(this)">복사</button></div>
   <p>싱가포르는 생성형 AI 시스템의 신뢰성 있는 테스트를 위한 국제표준 ISO/IEC 42119-8을 제안했다. 이 표준은 벤치마킹과 레드팀(red teaming) 방법론을 포함해 표준화된 테스트 접근을 제공하며, 결과의 재현성과 비교 가능성을 높여 AI 배포·사용의 신뢰를 강화하는 것을 목표로 한다. 해당 표준은 2026년 4월 20~24일 싱가포르에서 열리는 ISO/IEC JTC 1/SC 42(17차) 총회에서 논의될 예정이며, IMDA와 엔터프라이즈SG가 공동 주최한다. 또한 IMDA와 EnterpriseSG는 총회 연계 역량강화 워크숍과 AI Assurance Exchange 등 관련 행사를 진행한다.</p>
   <p class="url"><a href="https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/singapore-champions-new-global-ai-testing-standardisation-efforts">https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/singapore-champions-new-global-ai-testing-standardisation-efforts</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="law national_security standards" data-search="(보고서) 기계에게 살상을 위임하는 국가 -「국방인공지능기본법」검토 보고서 (2026.4.20) 피스모모는 2026년 2월 발의된 「국방인공지능기본법」(안)이 국방 AI 도입을 체계화하는 동시에 자율살상무기체계(LAWS) 개발·운용을 사실상 가속할 수 있는 규범적 허점을 지닌다고 비판했다. 국제사회가 CCW 및 GGE 논의를 통해 AI 무기체계에 대한 인간 통제를 의무화하려는 흐름과 달리, 법안이 규제 공백을 제도화하고 연구개발 편의성을 우선할 수 있다고 지적한다. 또한 인적 개입·안전성 등의 표현이 구체적 통제 수단 없이 추상적일 수 있고, ‘규제 특례’ 조항이 엄격한 안전·인권 기준을 무력화할 소지라고 주장한다. 피스모모는 자율살상무기 금지·제한 명문화, IHL 적합성 평가 의무화, 독립적·민주적 거버넌스 구축 등을 재검토 제안으로 제시했다. 피스모모">
   <h2>(보고서) 기계에게 살상을 위임하는 국가 -「국방인공지능기본법」검토 보고서 (2026.4.20)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">피스모모</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="(보고서) 기계에게 살상을 위임하는 국가 -「국방인공지능기본법」검토 보고서 (2026.4.20)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">피스모모</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="(보고서) 기계에게 살상을 위임하는 국가 -「국방인공지능기본법」검토 보고서 (2026.4.20)
 
 피스모모는 2026년 2월 발의된 「국방인공지능기본법」(안)이 국방 AI 도입을 체계화하는 동시에 자율살상무기체계(LAWS) 개발·운용을 사실상 가속할 수 있는 규범적 허점을 지닌다고 비판했다. 국제사회가 CCW 및 GGE 논의를 통해 AI 무기체계에 대한 인간 통제를 의무화하려는 흐름과 달리, 법안이 규제 공백을 제도화하고 연구개발 편의성을 우선할 수 있다고 지적한다. 또한 인적 개입·안전성 등의 표현이 구체적 통제 수단 없이 추상적일 수 있고, ‘규제 특례’ 조항이 엄격한 안전·인권 기준을 무력화할 소지라고 주장한다. 피스모모는 자율살상무기 금지·제한 명문화, IHL 적합성 평가 의무화, 독립적·민주적 거버넌스 구축 등을 재검토 제안으로 제시했다.
 
 https://peacemomo.org/report-military-ai-act/" onclick="copyEntry(this)">복사</button></div>
   <p>피스모모는 2026년 2월 발의된 「국방인공지능기본법」(안)이 국방 AI 도입을 체계화하는 동시에 자율살상무기체계(LAWS) 개발·운용을 사실상 가속할 수 있는 규범적 허점을 지닌다고 비판했다. 국제사회가 CCW 및 GGE 논의를 통해 AI 무기체계에 대한 인간 통제를 의무화하려는 흐름과 달리, 법안이 규제 공백을 제도화하고 연구개발 편의성을 우선할 수 있다고 지적한다. 또한 인적 개입·안전성 등의 표현이 구체적 통제 수단 없이 추상적일 수 있고, ‘규제 특례’ 조항이 엄격한 안전·인권 기준을 무력화할 소지라고 주장한다. 피스모모는 자율살상무기 금지·제한 명문화, IHL 적합성 평가 의무화, 독립적·민주적 거버넌스 구축 등을 재검토 제안으로 제시했다.</p>
   <p class="url"><a href="https://peacemomo.org/report-military-ai-act/">https://peacemomo.org/report-military-ai-act/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="AI Office에 대한 충분한 예산·인력 확보와 행정 병목 제거 촉구(2026.4.20) 시민사회·산업계·개별 전문가들이 서명한 공동 서한으로, 유럽연합 집행위원회와 EU 정책결정자들에게 AI Office를 적절히 자원(예산·인력)해 달라고 요구한다. 또한 행정적 병목을 해소해 EU의 ‘최첨단(frontier) AI’ 전문성 중심이 미래에도 지속될 수 있도록 하자는 취지다. pourdemain.ngo">
   <h2>🇪🇺 AI Office에 대한 충분한 예산·인력 확보와 행정 병목 제거 촉구(2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">pourdemain.ngo</span></span><button type="button" class="copy-btn" data-copy="AI Office에 대한 충분한 예산·인력 확보와 행정 병목 제거 촉구(2026.4.20)
 
@@ -413,8 +487,10 @@ https://peacemomo.org/report-military-ai-act/" onclick="copyEntry(this)">복사<
 https://www.pourdemain.ngo/en/post/open-joint-letter-on-ai-office-resourcing" onclick="copyEntry(this)">복사</button></div>
   <p>시민사회·산업계·개별 전문가들이 서명한 공동 서한으로, 유럽연합 집행위원회와 EU 정책결정자들에게 AI Office를 적절히 자원(예산·인력)해 달라고 요구한다. 또한 행정적 병목을 해소해 EU의 ‘최첨단(frontier) AI’ 전문성 중심이 미래에도 지속될 수 있도록 하자는 취지다.</p>
   <p class="url"><a href="https://www.pourdemain.ngo/en/post/open-joint-letter-on-ai-office-resourcing">https://www.pourdemain.ngo/en/post/open-joint-letter-on-ai-office-resourcing</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="정부, 생성형 AI 오남용 대응 연구 패널 발족(2026.4.20) 재팬타임스는 정부가 생성형 AI의 오남용을 다루기 위한 연구 패널을 시작할 예정이라고 보도했다. 다만 본문 내용(패널 구성, 목적, 일정, 범위 등)은 제공되지 않아 구체 사항은 확인이 필요하다. 재팬타임스">
   <h2>정부, 생성형 AI 오남용 대응 연구 패널 발족(2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">재팬타임스</span></span><button type="button" class="copy-btn" data-copy="정부, 생성형 AI 오남용 대응 연구 패널 발족(2026.4.20)
 
@@ -423,8 +499,10 @@ https://www.pourdemain.ngo/en/post/open-joint-letter-on-ai-office-resourcing" on
 https://www.japantimes.co.jp/news/2026/04/17/japan/crime-legal/gov-ai-panel/" onclick="copyEntry(this)">복사</button></div>
   <p>재팬타임스는 정부가 생성형 AI의 오남용을 다루기 위한 연구 패널을 시작할 예정이라고 보도했다. 다만 본문 내용(패널 구성, 목적, 일정, 범위 등)은 제공되지 않아 구체 사항은 확인이 필요하다.</p>
   <p class="url"><a href="https://www.japantimes.co.jp/news/2026/04/17/japan/crime-legal/gov-ai-panel/">https://www.japantimes.co.jp/news/2026/04/17/japan/crime-legal/gov-ai-panel/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="AI 챗봇이 대화만으로 개인 정보를 추론해 익명성 위협이 커진다는 내용 (2026.4.20) AI 챗봇은 사용자가 몇 가지 질문만 해도 감정 상태, 관계 상태, 재정·직업적 제약, 건강 등 다양한 개인 속성을 언어에서 추론할 수 있다고 설명한다. 기존에는 대규모 데이터 수집 인프라가 필요했지만, 이제는 단일 대화에서도 유사한 프로필이 만들어질 수 있으며, 연구 사례로 위치·연령·직업·국적·취미 등을 맞히는 결과가 제시된다. 또한 익명 게시글의 작성자를 AI로 재식별(탈익명)하는 것이 가능해져 감시가 ‘민주화’될 수 있다는 우려와, 민감정보를 챗봇에 제공하지 말아야 한다는 대응 방향이 언급된다. 스트레이츠 타임스(Straitstimes)">
   <h2>AI 챗봇이 대화만으로 개인 정보를 추론해 익명성 위협이 커진다는 내용 (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">스트레이츠 타임스(Straitstimes)</span></span><button type="button" class="copy-btn" data-copy="AI 챗봇이 대화만으로 개인 정보를 추론해 익명성 위협이 커진다는 내용 (2026.4.20)
 
@@ -433,8 +511,10 @@ AI 챗봇은 사용자가 몇 가지 질문만 해도 감정 상태, 관계 상�
 https://www.straitstimes.com/multimedia/graphics/2026/04/ai-chatbots-privacy-risk/index.html" onclick="copyEntry(this)">복사</button></div>
   <p>AI 챗봇은 사용자가 몇 가지 질문만 해도 감정 상태, 관계 상태, 재정·직업적 제약, 건강 등 다양한 개인 속성을 언어에서 추론할 수 있다고 설명한다. 기존에는 대규모 데이터 수집 인프라가 필요했지만, 이제는 단일 대화에서도 유사한 프로필이 만들어질 수 있으며, 연구 사례로 위치·연령·직업·국적·취미 등을 맞히는 결과가 제시된다. 또한 익명 게시글의 작성자를 AI로 재식별(탈익명)하는 것이 가능해져 감시가 ‘민주화’될 수 있다는 우려와, 민감정보를 챗봇에 제공하지 말아야 한다는 대응 방향이 언급된다.</p>
   <p class="url"><a href="https://www.straitstimes.com/multimedia/graphics/2026/04/ai-chatbots-privacy-risk/index.html">https://www.straitstimes.com/multimedia/graphics/2026/04/ai-chatbots-privacy-risk/index.html</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="(2026.4.20) AI 안전을 ‘규제 공백’ 속에서 촉진하기 위한 촉매적 규제(catalytic regulation) 제안 글은 미국의 AI 규제 환경이 전반적으로 완화·철회되는 흐름 속에서, 강제·처벌 중심의 전통적 규제 대신 ‘보상형 인센티브’로 안전을 유도하는 촉매적 규제를 제안한다. 촉매적 규제는 안전 R&amp;D에 대한 세액공제, 검증된 안전 시스템 조달 인센티브, 안전을 경쟁의 핵심으로 만드는 ‘명성(프레스티지)’ 메커니즘 등을 통해 시장의 힘이 안전 쪽으로 이동하도록 설계한다. 또한 안전 문화는 규제보다 먼저 조직 내부에서 자리 잡을 수 있으며, 이를 위해 조직의 ‘안전 파벌’ 활동을 처벌이 아닌 보상으로 강화하는 접근이 필요하다고 설명한다. 구체 방안으로는 1983년 희귀질환 의약품법(Orphan Drug Act)처럼 안전 연구에 대한 연구개발 세액공제를 통해 자본이 충분한 기업의 자원 배분을 안전 쪽으로 전환하는 모델을 제시한다. AI Frontiers">
   <h2>🇺🇸 (2026.4.20) AI 안전을 ‘규제 공백’ 속에서 촉진하기 위한 촉매적 규제(catalytic regulation) 제안</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AI Frontiers</span></span><button type="button" class="copy-btn" data-copy="(2026.4.20) AI 안전을 ‘규제 공백’ 속에서 촉진하기 위한 촉매적 규제(catalytic regulation) 제안
 
@@ -443,8 +523,10 @@ https://www.straitstimes.com/multimedia/graphics/2026/04/ai-chatbots-privacy-ris
 https://aifrontiersmedia.substack.com/p/catalytic-regulation-incentivizing" onclick="copyEntry(this)">복사</button></div>
   <p>글은 미국의 AI 규제 환경이 전반적으로 완화·철회되는 흐름 속에서, 강제·처벌 중심의 전통적 규제 대신 ‘보상형 인센티브’로 안전을 유도하는 촉매적 규제를 제안한다. 촉매적 규제는 안전 R&amp;D에 대한 세액공제, 검증된 안전 시스템 조달 인센티브, 안전을 경쟁의 핵심으로 만드는 ‘명성(프레스티지)’ 메커니즘 등을 통해 시장의 힘이 안전 쪽으로 이동하도록 설계한다. 또한 안전 문화는 규제보다 먼저 조직 내부에서 자리 잡을 수 있으며, 이를 위해 조직의 ‘안전 파벌’ 활동을 처벌이 아닌 보상으로 강화하는 접근이 필요하다고 설명한다. 구체 방안으로는 1983년 희귀질환 의약품법(Orphan Drug Act)처럼 안전 연구에 대한 연구개발 세액공제를 통해 자본이 충분한 기업의 자원 배분을 안전 쪽으로 전환하는 모델을 제시한다.</p>
   <p class="url"><a href="https://aifrontiersmedia.substack.com/p/catalytic-regulation-incentivizing">https://aifrontiersmedia.substack.com/p/catalytic-regulation-incentivizing</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="safety_research standards" data-search="싱가포르, 생성형 AI 표준을 더 빠르게 만들기 위해 벤치마킹·레드팀 테스트 프레임워크를 국제표준으로 제안(2026.4.20) 싱가포르는 기술 변화 속도에 맞춰 AI 거버넌스 표준을 더 빠르게 정립하고, 테스트·검증(assurance) 체계를 강화해야 한다고 강조했다. 특히 생성형 AI 시스템의 벤치마킹과 레드팀을 위한 새로운 국제표준(ISO/IEC 42119-8) 제안을 통해 테스트 결과의 재현성과 비교 가능성을 높이려는 취지다. 또한 신뢰할 수 있는 인증·인정 체계와 신흥국을 포함한 포괄적 참여가 표준 채택에 중요하다고 언급했으며, 기술 표준과 규제 정책의 정합성이 커지고 있다고 설명했다. mlex.com">
   <h2>싱가포르, 생성형 AI 표준을 더 빠르게 만들기 위해 벤치마킹·레드팀 테스트 프레임워크를 국제표준으로 제안(2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">mlex.com</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="싱가포르, 생성형 AI 표준을 더 빠르게 만들기 위해 벤치마킹·레드팀 테스트 프레임워크를 국제표준으로 제안(2026.4.20)
 
@@ -453,8 +535,10 @@ https://aifrontiersmedia.substack.com/p/catalytic-regulation-incentivizing" oncl
 https://www.mlex.com/mlex/artificial-intelligence/articles/2467170?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7" onclick="copyEntry(this)">복사</button></div>
   <p>싱가포르는 기술 변화 속도에 맞춰 AI 거버넌스 표준을 더 빠르게 정립하고, 테스트·검증(assurance) 체계를 강화해야 한다고 강조했다. 특히 생성형 AI 시스템의 벤치마킹과 레드팀을 위한 새로운 국제표준(ISO/IEC 42119-8) 제안을 통해 테스트 결과의 재현성과 비교 가능성을 높이려는 취지다. 또한 신뢰할 수 있는 인증·인정 체계와 신흥국을 포함한 포괄적 참여가 표준 채택에 중요하다고 언급했으며, 기술 표준과 규제 정책의 정합성이 커지고 있다고 설명했다.</p>
   <p class="url"><a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2467170?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7">https://www.mlex.com/mlex/artificial-intelligence/articles/2467170?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="guideline" data-search="호주 연방법원, 생성형 AI 사용 허용하되 부정확·오해 소지 진술 및 기밀정보 업로드는 경고 (2026.4.20) 호주 연방법원은 법정 출석자 전반에 적용되는 실무지침(practice note)을 통해 생성형 AI 사용을 허용하되, 부정확하거나 오해를 유발하는 진술은 용납되지 않으며 그에 따른 재정적·법적 책임이 발생할 수 있다고 경고했다. 또한 이용자가 AI 도구에 업로드한 기밀정보의 접근자 등을 추적하기 어려울 수 있어 기밀정보를 올리지 말라고 주의했다. 이 지침은 호주 주(州) 법원의 AI 관련 자문·권고에 이어 나온 것으로 전해졌다. MLex (mlex.com)">
   <h2>호주 연방법원, 생성형 AI 사용 허용하되 부정확·오해 소지 진술 및 기밀정보 업로드는 경고 (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">MLex (mlex.com)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="호주 연방법원, 생성형 AI 사용 허용하되 부정확·오해 소지 진술 및 기밀정보 업로드는 경고 (2026.4.20)
 
@@ -463,8 +547,10 @@ https://www.mlex.com/mlex/artificial-intelligence/articles/2467170?nl_pk=98f1663
 https://www.mlex.com/mlex/artificial-intelligence/articles/2467173?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7" onclick="copyEntry(this)">복사</button></div>
   <p>호주 연방법원은 법정 출석자 전반에 적용되는 실무지침(practice note)을 통해 생성형 AI 사용을 허용하되, 부정확하거나 오해를 유발하는 진술은 용납되지 않으며 그에 따른 재정적·법적 책임이 발생할 수 있다고 경고했다. 또한 이용자가 AI 도구에 업로드한 기밀정보의 접근자 등을 추적하기 어려울 수 있어 기밀정보를 올리지 말라고 주의했다. 이 지침은 호주 주(州) 법원의 AI 관련 자문·권고에 이어 나온 것으로 전해졌다.</p>
   <p class="url"><a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2467173?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7">https://www.mlex.com/mlex/artificial-intelligence/articles/2467173?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="law" data-search="중국, AI 법제에 ‘맞춤형 접근’을 시사하며 새 위험 대응 우선순위 강조(2026.4.20) 중국 전국인민대표대회 상무위원회 산하 입법 관련 연구기관의 고위 입법 관계자가 AI 법제에 대해 ‘맞춤형(tailored) 접근’을 예고했다. 그는 2024년 발언을 바탕으로, 2026년 4월 20일자 MLex 보도에서 중국의 AI 입법이 기존 정책 기조의 연속성을 유지하면서도 새로운 우선순위를 반영한다고 설명했다. 해당 내용은 ‘Studies on Intelligent Society’에 게재된 글을 통해 소개된 것으로 전해졌다. MLex (법·규제 전문 매체)">
   <h2>🇨🇳 중국, AI 법제에 ‘맞춤형 접근’을 시사하며 새 위험 대응 우선순위 강조(2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">MLex (법·규제 전문 매체)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="중국, AI 법제에 ‘맞춤형 접근’을 시사하며 새 위험 대응 우선순위 강조(2026.4.20)
 
@@ -473,8 +559,10 @@ https://www.mlex.com/mlex/artificial-intelligence/articles/2467173?nl_pk=98f1663
 https://www.mlex.com/mlex/artificial-intelligence/articles/2467192?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7" onclick="copyEntry(this)">복사</button></div>
   <p>중국 전국인민대표대회 상무위원회 산하 입법 관련 연구기관의 고위 입법 관계자가 AI 법제에 대해 ‘맞춤형(tailored) 접근’을 예고했다. 그는 2024년 발언을 바탕으로, 2026년 4월 20일자 MLex 보도에서 중국의 AI 입법이 기존 정책 기조의 연속성을 유지하면서도 새로운 우선순위를 반영한다고 설명했다. 해당 내용은 ‘Studies on Intelligent Society’에 게재된 글을 통해 소개된 것으로 전해졌다.</p>
   <p class="url"><a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2467192?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7">https://www.mlex.com/mlex/artificial-intelligence/articles/2467192?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="law" data-search="EU, AI법 개정안에서 상대적으로 덜 논쟁적인 쟁점들에 합의 (2026.4.20) EU 정부와 입법자들이 EU의 AI 법(AI law) 개정 패키지 중 비교적 덜 논쟁적인 일부 조항에 합의했다는 내용이다. 합의된 쟁점으로는 AI 리터러시(교육·이해 관련), 민감정보 처리의 법적 근거, 그리고 제공자가 해당 AI 시스템을 고위험으로 보지 않는 경우 등록 요건을 다시 적용하는 방안이 포함된다. 또한 협상 현황 문서에는 ‘디지털 옴니버스(Digital Omnibus)’의 AI 관련 더 논쟁적인 쟁점에 대한 제안도 함께 담겨 있다고 전한다. mlex.com">
   <h2>🇪🇺 EU, AI법 개정안에서 상대적으로 덜 논쟁적인 쟁점들에 합의 (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">mlex.com</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="EU, AI법 개정안에서 상대적으로 덜 논쟁적인 쟁점들에 합의 (2026.4.20)
 
@@ -483,8 +571,10 @@ EU 정부와 입법자들이 EU의 AI 법(AI law) 개정 패키지 중 비교적
 https://www.mlex.com/mlex/artificial-intelligence/articles/2467259?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7" onclick="copyEntry(this)">복사</button></div>
   <p>EU 정부와 입법자들이 EU의 AI 법(AI law) 개정 패키지 중 비교적 덜 논쟁적인 일부 조항에 합의했다는 내용이다. 합의된 쟁점으로는 AI 리터러시(교육·이해 관련), 민감정보 처리의 법적 근거, 그리고 제공자가 해당 AI 시스템을 고위험으로 보지 않는 경우 등록 요건을 다시 적용하는 방안이 포함된다. 또한 협상 현황 문서에는 ‘디지털 옴니버스(Digital Omnibus)’의 AI 관련 더 논쟁적인 쟁점에 대한 제안도 함께 담겨 있다고 전한다.</p>
   <p class="url"><a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2467259?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7">https://www.mlex.com/mlex/artificial-intelligence/articles/2467259?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="agentic_ai frontier" data-search="AI의 ‘하네스 시대’를 위한 연합—MiniMax와 Alibaba Cloud (2026.4.20) 이 글은 인간이 방향을 정하고 AI 에이전트가 실행하는 ‘하네스 시대’의 부상과 중국 기업들의 대응을 소개하며, MiniMax의 MaxClaw와 Alibaba Cloud의 협력을 사례로 분석한다. 대규모 에이전트 운영의 핵심 과제로 보안 경계, 장기 작업의 상태 변동성, 다중 에이전트 스케줄링, 비용과 workload 변동 문제를 제시하고, Alibaba Cloud의 ACK·ACS 및 ACS Agent Sandbox가 prompt injection과 권한 상승 위험 격리 및 탄력적 컴퓨팅을 지원한다고 설명한다. 글은 에이전트 중심의 추론·실행 수요가 커지면서 클라우드 플랫폼과 컨테이너 서비스가 AI 슈퍼컴퓨터의 ‘클라우드 네이티브 운영체제’ 역할을 하게 될 것으로 전망한다. ChinAI">
   <h2>🇨🇳 AI의 ‘하네스 시대’를 위한 연합—MiniMax와 Alibaba Cloud (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">ChinAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="AI의 ‘하네스 시대’를 위한 연합—MiniMax와 Alibaba Cloud (2026.4.20)
 
@@ -493,8 +583,22 @@ https://www.mlex.com/mlex/artificial-intelligence/articles/2467259?nl_pk=98f1663
 https://chinai.substack.com/p/chinai-355-an-alliance-for-ais-harness" onclick="copyEntry(this)">복사</button></div>
   <p>이 글은 인간이 방향을 정하고 AI 에이전트가 실행하는 ‘하네스 시대’의 부상과 중국 기업들의 대응을 소개하며, MiniMax의 MaxClaw와 Alibaba Cloud의 협력을 사례로 분석한다. 대규모 에이전트 운영의 핵심 과제로 보안 경계, 장기 작업의 상태 변동성, 다중 에이전트 스케줄링, 비용과 workload 변동 문제를 제시하고, Alibaba Cloud의 ACK·ACS 및 ACS Agent Sandbox가 prompt injection과 권한 상승 위험 격리 및 탄력적 컴퓨팅을 지원한다고 설명한다. 글은 에이전트 중심의 추론·실행 수요가 커지면서 클라우드 플랫폼과 컨테이너 서비스가 AI 슈퍼컴퓨터의 ‘클라우드 네이티브 운영체제’ 역할을 하게 될 것으로 전망한다.</p>
   <p class="url"><a href="https://chinai.substack.com/p/chinai-355-an-alliance-for-ais-harness">https://chinai.substack.com/p/chinai-355-an-alliance-for-ais-harness</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-archive" data-cat="archive" data-topics="cybersecurity" data-search="EU AI 법 뉴스레터 100호: 유럽의 방식 (2026.4.20) 유럽연합 집행위원회는 인프라·데이터·기술·도입·간소화를 중심으로 AI Continent Action Plan을 추진하고 있으며, 19개 AI 팩토리와 76건의 AI 기가팩토리 관심 표명이 진행됐다고 밝혔다. 학계와 시민사회·업계는 GPAI 규정 해석과 EU AI Office의 인력·예산 확충을 촉구했고, Anthropic의 고성능 사이버보안 모델 접근이 유럽 규제기관보다 미국 기업과 영국 기관에 집중됐다는 지적도 나왔다. AI Omnibus 3자 협상은 2026년 8월 2일 고위험 AI 의무 적용 전에 마무리하는 일정으로 추진되며, 합의 시 5~7월에 위원회·본회의 표결과 관보 게재가 예정돼 있다. EU-AI-Act-Newsletter">
+  <h2>🇪🇺 EU AI 법 뉴스레터 100호: 유럽의 방식 (2026.4.20)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-archive">아카이브</span> · <span class="source">EU AI Act Newsletter</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="EU AI 법 뉴스레터 100호: 유럽의 방식 (2026.4.20)
+
+유럽연합 집행위원회는 인프라·데이터·기술·도입·간소화를 중심으로 AI Continent Action Plan을 추진하고 있으며, 19개 AI 팩토리와 76건의 AI 기가팩토리 관심 표명이 진행됐다고 밝혔다. 학계와 시민사회·업계는 GPAI 규정 해석과 EU AI Office의 인력·예산 확충을 촉구했고, Anthropic의 고성능 사이버보안 모델 접근이 유럽 규제기관보다 미국 기업과 영국 기관에 집중됐다는 지적도 나왔다. AI Omnibus 3자 협상은 2026년 8월 2일 고위험 AI 의무 적용 전에 마무리하는 일정으로 추진되며, 합의 시 5~7월에 위원회·본회의 표결과 관보 게재가 예정돼 있다.
+
+https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-100-the" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽연합 집행위원회는 인프라·데이터·기술·도입·간소화를 중심으로 AI Continent Action Plan을 추진하고 있으며, 19개 AI 팩토리와 76건의 AI 기가팩토리 관심 표명이 진행됐다고 밝혔다. 학계와 시민사회·업계는 GPAI 규정 해석과 EU AI Office의 인력·예산 확충을 촉구했고, Anthropic의 고성능 사이버보안 모델 접근이 유럽 규제기관보다 미국 기업과 영국 기관에 집중됐다는 지적도 나왔다. AI Omnibus 3자 협상은 2026년 8월 2일 고위험 AI 의무 적용 전에 마무리하는 일정으로 추진되며, 합의 시 5~7월에 위원회·본회의 표결과 관보 게재가 예정돼 있다.</p>
+  <p class="url"><a href="https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-100-the">https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-100-the</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="(2026.4.20) LinkedIn 계정 가입/개인정보 처리 동의 안내 LinkedIn 계정 생성 시 개인정보 처리 방식과 제3자 제공에 동의해야 하며, 이용약관·개인정보처리방침·쿠키정책에 동의하는 절차가 안내됩니다. 또한 이메일/비밀번호 입력, 개인정보 항목별 ‘Learn more’ 확인, ‘Agree &amp; Join’ 또는 기존 계정 로그인 옵션이 제시됩니다. linkedin.com">
   <h2>(2026.4.20) LinkedIn 계정 가입/개인정보 처리 동의 안내</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">linkedin.com</span></span><button type="button" class="copy-btn" data-copy="(2026.4.20) LinkedIn 계정 가입/개인정보 처리 동의 안내
 
@@ -503,18 +607,22 @@ LinkedIn 계정 생성 시 개인정보 처리 방식과 제3자 제공에 동�
 https://www.linkedin.com/posts/myriamayada_the-future-of-agentic-ai-drcf-ugcPost-7451910490211000320-vyRf?rcm=ACoAABNWa7YBYzzYJeBJVjwQfP_OORjs0P1yTtA" onclick="copyEntry(this)">복사</button></div>
   <p>LinkedIn 계정 생성 시 개인정보 처리 방식과 제3자 제공에 동의해야 하며, 이용약관·개인정보처리방침·쿠키정책에 동의하는 절차가 안내됩니다. 또한 이메일/비밀번호 입력, 개인정보 항목별 ‘Learn more’ 확인, ‘Agree &amp; Join’ 또는 기존 계정 로그인 옵션이 제시됩니다.</p>
   <p class="url"><a href="https://www.linkedin.com/posts/myriamayada_the-future-of-agentic-ai-drcf-ugcPost-7451910490211000320-vyRf?rcm=ACoAABNWa7YBYzzYJeBJVjwQfP_OORjs0P1yTtA">https://www.linkedin.com/posts/myriamayada_the-future-of-agentic-ai-drcf-ugcPost-7451910490211000320-vyRf?rcm=ACoAABNWa7YBYzzYJeBJVjwQfP_OORjs0P1yTtA</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="national_security" data-search="팔란티어의 ‘기술 공화국’ 매니페스토를 두고 권한은 확대하면서 책임·감시는 회피하려는 권력 엘리트의 시도라는 비판 (2026.4.20) 기술 기업들이 정부 서비스 전달과 계약을 통해 정치적 권력을 갖게 되는 흐름 속에서, 알렉스 카프(Alex Karp)의 팔란티어 ‘매니페스토’가 책임성 없는 권력 결합을 지향한다고 지적한다. 팔란티어가 정보·이민·치안·국방 등 다양한 분야에서 활동하며 감시 우려를 키웠고, 회사의 성장과 계약 확대가 특정 시기(트럼프 2기 등)와 맞물렸다는 점도 함께 언급된다. 또한 과거 윤리 가드레일 위반 논란과 함께, 매니페스토가 ‘서구/가치 방어’ 프레임을 통해 반대·비판을 제한하는 방식으로 받아들여질 수 있다고 비판한다. 돈 모이니한(Don Moynihan) Substack">
   <h2>팔란티어의 ‘기술 공화국’ 매니페스토를 두고 권한은 확대하면서 책임·감시는 회피하려는 권력 엘리트의 시도라는 비판 (2026.4.20)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">돈 모이니한(Don Moynihan) Substack</span></span><button type="button" class="copy-btn" data-copy="팔란티어의 ‘기술 공화국’ 매니페스토를 두고 권한은 확대하면서 책임·감시는 회피하려는 권력 엘리트의 시도라는 비판 (2026.4.20)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">돈 모이니한(Don Moynihan) Substack</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="팔란티어의 ‘기술 공화국’ 매니페스토를 두고 권한은 확대하면서 책임·감시는 회피하려는 권력 엘리트의 시도라는 비판 (2026.4.20)
 
 기술 기업들이 정부 서비스 전달과 계약을 통해 정치적 권력을 갖게 되는 흐름 속에서, 알렉스 카프(Alex Karp)의 팔란티어 ‘매니페스토’가 책임성 없는 권력 결합을 지향한다고 지적한다. 팔란티어가 정보·이민·치안·국방 등 다양한 분야에서 활동하며 감시 우려를 키웠고, 회사의 성장과 계약 확대가 특정 시기(트럼프 2기 등)와 맞물렸다는 점도 함께 언급된다. 또한 과거 윤리 가드레일 위반 논란과 함께, 매니페스토가 ‘서구/가치 방어’ 프레임을 통해 반대·비판을 제한하는 방식으로 받아들여질 수 있다고 비판한다.
 
 https://donmoynihan.substack.com/p/palantir-wants-power-without-accountability" onclick="copyEntry(this)">복사</button></div>
   <p>기술 기업들이 정부 서비스 전달과 계약을 통해 정치적 권력을 갖게 되는 흐름 속에서, 알렉스 카프(Alex Karp)의 팔란티어 ‘매니페스토’가 책임성 없는 권력 결합을 지향한다고 지적한다. 팔란티어가 정보·이민·치안·국방 등 다양한 분야에서 활동하며 감시 우려를 키웠고, 회사의 성장과 계약 확대가 특정 시기(트럼프 2기 등)와 맞물렸다는 점도 함께 언급된다. 또한 과거 윤리 가드레일 위반 논란과 함께, 매니페스토가 ‘서구/가치 방어’ 프레임을 통해 반대·비판을 제한하는 방식으로 받아들여질 수 있다고 비판한다.</p>
   <p class="url"><a href="https://donmoynihan.substack.com/p/palantir-wants-power-without-accountability">https://donmoynihan.substack.com/p/palantir-wants-power-without-accountability</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier open_weight" data-search="Kimi K2.6 오픈소스 공개…장기 코딩·에이전트 스웜·툴 호출 성능 개선 (2026.4.20) Kimi는 최신 오픈소스 모델 ‘Kimi K2.6’를 공개하며, 고성능 코딩과 장기 실행(long-horizon execution), 에이전트 스웜 기능을 강조했다. 내부 벤치마크 및 사례에서 Kimi K2.5 대비 장기 코딩 과제 성능이 개선되었고, 도구 호출 품질과 장시간 안정성도 향상됐다고 설명한다. 또한 에이전트 스웜을 통해 작업을 하위 에이전트로 분해해 병렬 실행하며, 300개 서브 에이전트·수천 단계 동시 수행까지 확장할 수 있다고 밝혔다. Kimi 공식 블로그">
   <h2>Kimi K2.6 오픈소스 공개…장기 코딩·에이전트 스웜·툴 호출 성능 개선 (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Kimi 공식 블로그</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="오픈소스·오픈웨이트">🔓</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Kimi K2.6 오픈소스 공개…장기 코딩·에이전트 스웜·툴 호출 성능 개선 (2026.4.20)
 
@@ -523,8 +631,10 @@ Kimi는 최신 오픈소스 모델 ‘Kimi K2.6’를 공개하며, 고성능 �
 https://www.kimi.com/blog/kimi-k2-6" onclick="copyEntry(this)">복사</button></div>
   <p>Kimi는 최신 오픈소스 모델 ‘Kimi K2.6’를 공개하며, 고성능 코딩과 장기 실행(long-horizon execution), 에이전트 스웜 기능을 강조했다. 내부 벤치마크 및 사례에서 Kimi K2.5 대비 장기 코딩 과제 성능이 개선되었고, 도구 호출 품질과 장시간 안정성도 향상됐다고 설명한다. 또한 에이전트 스웜을 통해 작업을 하위 에이전트로 분해해 병렬 실행하며, 300개 서브 에이전트·수천 단계 동시 수행까지 확장할 수 있다고 밝혔다.</p>
   <p class="url"><a href="https://www.kimi.com/blog/kimi-k2-6">https://www.kimi.com/blog/kimi-k2-6</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier" data-search="(2026.4.20) 스타일 변환을 통해 LLM 안전 거부를 우회할 수 있는지 평가한 ‘Adversarial Humanities Benchmark’ 결과 아드버서리얼 휴머니티스 벤치마크(AHB)는 익숙한 유해 프롬프트 형태에서 벗어나도 모델의 안전 거부가 유지되는지 평가한다. MLCommons AILuminate의 유해 과제를 동일한 의도를 유지한 채 인문학적(문체·표현) 변환을 적용해 재작성했으며, 원래 공격 ASR은 3.84%였지만 변환 방법은 36.8~65.0%로 크게 상승했다. 31개 프론티어 모델 기준 전체 ASR은 55.75%로, 문체적 견고성이 약해 안전 기법의 일반화가 취약하다는 점을 시사한다. arXiv">
   <h2>(2026.4.20) 스타일 변환을 통해 LLM 안전 거부를 우회할 수 있는지 평가한 ‘Adversarial Humanities Benchmark’ 결과</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="(2026.4.20) 스타일 변환을 통해 LLM 안전 거부를 우회할 수 있는지 평가한 ‘Adversarial Humanities Benchmark’ 결과
 
@@ -533,8 +643,10 @@ https://www.kimi.com/blog/kimi-k2-6" onclick="copyEntry(this)">복사</button></
 https://arxiv.org/abs/2604.18487" onclick="copyEntry(this)">복사</button></div>
   <p>아드버서리얼 휴머니티스 벤치마크(AHB)는 익숙한 유해 프롬프트 형태에서 벗어나도 모델의 안전 거부가 유지되는지 평가한다. MLCommons AILuminate의 유해 과제를 동일한 의도를 유지한 채 인문학적(문체·표현) 변환을 적용해 재작성했으며, 원래 공격 ASR은 3.84%였지만 변환 방법은 36.8~65.0%로 크게 상승했다. 31개 프론티어 모델 기준 전체 ASR은 55.75%로, 문체적 견고성이 약해 안전 기법의 일반화가 취약하다는 점을 시사한다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2604.18487">https://arxiv.org/abs/2604.18487</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="" data-search="Research Engineer - Societal Impacts 채용 공고(2026.4.20) AI Security Institute의 Societal Impacts 팀에서 전방 AI의 사회적 위험을 연구·평가하고 완화 전략을 제시할 Research Engineer를 모집합니다. 범죄 조장, 정보 신뢰 훼손, 심리적 웰빙 위해, 악의적 소셜 엔지니어링 등 위험 영역을 다루며, 인간-AI 상호작용 연구, 공개 구현체 분석 파이프라인 구축, 사회적 위험 관점의 모델 평가 및 데이터셋 개발 프로젝트를 수행합니다. 스케일 가능한 유지보수 가능한 Python 개발 경험과 데이터/ML/웹 개발 등 관련 역량, 사회적 영향에 대한 관심이 요구되며, 채용 전 형사기록 조회 및 BPSS 보안심사(가능 시 CTC 우대) 절차가 안내되어 있습니다. AI Security Institute(영국 정부 산하)">
   <h2>Research Engineer - Societal Impacts 채용 공고(2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">AI Security Institute(영국 정부 산하)</span></span><button type="button" class="copy-btn" data-copy="Research Engineer - Societal Impacts 채용 공고(2026.4.20)
 
@@ -543,8 +655,10 @@ AI Security Institute의 Societal Impacts 팀에서 전방 AI의 사회적 위�
 https://job-boards.eu.greenhouse.io/aisi/jobs/4803652101" onclick="copyEntry(this)">복사</button></div>
   <p>AI Security Institute의 Societal Impacts 팀에서 전방 AI의 사회적 위험을 연구·평가하고 완화 전략을 제시할 Research Engineer를 모집합니다. 범죄 조장, 정보 신뢰 훼손, 심리적 웰빙 위해, 악의적 소셜 엔지니어링 등 위험 영역을 다루며, 인간-AI 상호작용 연구, 공개 구현체 분석 파이프라인 구축, 사회적 위험 관점의 모델 평가 및 데이터셋 개발 프로젝트를 수행합니다. 스케일 가능한 유지보수 가능한 Python 개발 경험과 데이터/ML/웹 개발 등 관련 역량, 사회적 영향에 대한 관심이 요구되며, 채용 전 형사기록 조회 및 BPSS 보안심사(가능 시 CTC 우대) 절차가 안내되어 있습니다.</p>
   <p class="url"><a href="https://job-boards.eu.greenhouse.io/aisi/jobs/4803652101">https://job-boards.eu.greenhouse.io/aisi/jobs/4803652101</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="" data-search="(2026.4.20) 한국 데이터센터 가뭄취약성 현황 본 페이지는 한국 데이터센터의 가뭄취약성 현황을 지도 형태로 제공하며, 취약성 등급을 I~V로 나눠 표시한다. 전체 데이터센터 수와 하이퍼스케일 수 등 요약 지표가 함께 제시되며, 가뭄취약성 평가는 국토교통부 평가(공공누리 4유형)를 기반으로 한다. 출처로는 행정안전부·NIRS 및 각 공공기관 공시자료, DatacenterMap·언론보도 종합(2024~2026)이 명시돼 있다. data-center.listentothecity.org">
   <h2>🇰🇷 (2026.4.20) 한국 데이터센터 가뭄취약성 현황</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">data-center.listentothecity.org</span></span><button type="button" class="copy-btn" data-copy="(2026.4.20) 한국 데이터센터 가뭄취약성 현황
 
@@ -553,8 +667,10 @@ https://job-boards.eu.greenhouse.io/aisi/jobs/4803652101" onclick="copyEntry(thi
 https://data-center.listentothecity.org/" onclick="copyEntry(this)">복사</button></div>
   <p>본 페이지는 한국 데이터센터의 가뭄취약성 현황을 지도 형태로 제공하며, 취약성 등급을 I~V로 나눠 표시한다. 전체 데이터센터 수와 하이퍼스케일 수 등 요약 지표가 함께 제시되며, 가뭄취약성 평가는 국토교통부 평가(공공누리 4유형)를 기반으로 한다. 출처로는 행정안전부·NIRS 및 각 공공기관 공시자료, DatacenterMap·언론보도 종합(2024~2026)이 명시돼 있다.</p>
   <p class="url"><a href="https://data-center.listentothecity.org/">https://data-center.listentothecity.org/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="[초점] 수요자의 AI 기술 수용도 향상과 기술 프리미엄의 소멸: 프리랜서 노동 시장의 과업 재편 실증 분석 (2026.4.20) 요약불가 KISDI">
   <h2>🇰🇷 [초점] 수요자의 AI 기술 수용도 향상과 기술 프리미엄의 소멸: 프리랜서 노동 시장의 과업 재편 실증 분석 (2026.4.20)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="[초점] 수요자의 AI 기술 수용도 향상과 기술 프리미엄의 소멸: 프리랜서 노동 시장의 과업 재편 실증 분석 (2026.4.20)
 
@@ -563,7 +679,9 @@ https://data-center.listentothecity.org/" onclick="copyEntry(this)">복사</butt
 https://www.kisdi.re.kr/report/fileView.do?key=m2102058837181&amp;arrMasterId=4334696&amp;id=1939756" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.kisdi.re.kr/report/fileView.do?key=m2102058837181&amp;arrMasterId=4334696&amp;id=1939756">https://www.kisdi.re.kr/report/fileView.do?key=m2102058837181&amp;arrMasterId=4334696&amp;id=1939756</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-04-18.html">← 2026-04-18</a><a class="day-nav-btn" href="2026-04-21.html">2026-04-21 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-04-18.html">← 2026-04-18</a><a class="day-nav-btn" href="2026-04-21.html">2026-04-21 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -599,6 +717,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

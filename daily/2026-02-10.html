@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -304,11 +356,17 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI Safety Daily Digest</h1>
-    <div class="sub">2026-02-10 · 3/3건 요약</div>
+    <div class="sub">2026-02-10 · 4/4건 요약</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="" data-search="단순화된 AI 시기 예측 모델: 2032년경 AI 연구개발 자동화 99% 예측 (2026.2.10) 이 연구 노트는 AI 연구개발 자동화 시기를 예측하기 위한 단순화된 모델을 설명합니다. 이 모델은 현재의 컴퓨팅 파워 성장과 알고리즘 발전 속도를 기반으로, 2032년 말까지 AI 연구개발의 99%가 자동화될 것으로 예측합니다. 주요 특징은 다음과 같습니다:
+
+- **주요 예측**: 2035년까지 AI 효율성이 10,000배에서 100만 배 증가하고 연구 생산성이 300배에서 3,000배 증가할 것으로 예상됩니다.
+- **모델의 단순화**: 기존의 복잡한 AI Futures 모델(AIFM)에 비해 이해하기 쉽고 견고하며 보수적인 가정을 사용합니다.
+- **제한 사항**: 연구 취향과 소프트웨어 엔지니어링을 분리하지 않으며, 경제적 효과를 추적하지 않습니다. 또한 완전 자동화와 대체 불가능성 가정을 적용합니다.
+
+이 모델은 AI 연구개발의 자동화 시기를 예측하는데 초점을 맞추고 있으며, 현재 추세가 지속될 경우 2032년 중반까지 AI 연구개발의 거의 완전한 자동화가 이루어질 것으로 보입니다. METR">
   <h2>🇺🇸 단순화된 AI 시기 예측 모델: 2032년경 AI 연구개발 자동화 99% 예측 (2026.2.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="단순화된 AI 시기 예측 모델: 2032년경 AI 연구개발 자동화 99% 예측 (2026.2.10)
 
@@ -327,8 +385,10 @@ https://metr.org/notes/2026-02-10-simpler-ai-timelines-model/" onclick="copyEntr
 - **제한 사항**: 연구 취향과 소프트웨어 엔지니어링을 분리하지 않으며, 경제적 효과를 추적하지 않습니다. 또한 완전 자동화와 대체 불가능성 가정을 적용합니다.</p>
 <p>이 모델은 AI 연구개발의 자동화 시기를 예측하는데 초점을 맞추고 있으며, 현재 추세가 지속될 경우 2032년 중반까지 AI 연구개발의 거의 완전한 자동화가 이루어질 것으로 보입니다.</p>
   <p class="url"><a href="https://metr.org/notes/2026-02-10-simpler-ai-timelines-model/">https://metr.org/notes/2026-02-10-simpler-ai-timelines-model/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="frontier national_security" data-search="펜타곤 GenAI.mil에 ChatGPT 추가(2026.2.10) 펜타곤은 GenAI.mil 플랫폼에 OpenAI의 ChatGPT를 추가해, 국방부 소속 300만 명(군·민간·계약직) 사용자가 이용할 수 있게 했다고 밝혔다. GenAI.mil은 현재 Google Gemini와 xAI Grok도 제공하며, 세 모델은 민감하지만 비기밀(unclassified) 데이터에 대해 펜타곤이 승인한 수정 버전으로 운영된다. OpenAI는 GenAI.mil에서 처리되는 데이터가 정부 환경에 격리되며 OpenAI의 공개·상용 모델 학습에 사용되지 않는다고 설명했으며, 펜타곤 관계자는 향후 4번째 모델이 “potentially” 추가될 수 있다고 말했다. Breaking Defense">
   <h2>🇺🇸 펜타곤 GenAI.mil에 ChatGPT 추가(2026.2.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">Breaking Defense</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="펜타곤 GenAI.mil에 ChatGPT 추가(2026.2.10)
 
@@ -337,8 +397,22 @@ https://metr.org/notes/2026-02-10-simpler-ai-timelines-model/" onclick="copyEntr
 https://breakingdefense.com/2026/02/chatgpt-will-be-available-to-3-million-military-users-on-genai-mil/" onclick="copyEntry(this)">복사</button></div>
   <p>펜타곤은 GenAI.mil 플랫폼에 OpenAI의 ChatGPT를 추가해, 국방부 소속 300만 명(군·민간·계약직) 사용자가 이용할 수 있게 했다고 밝혔다. GenAI.mil은 현재 Google Gemini와 xAI Grok도 제공하며, 세 모델은 민감하지만 비기밀(unclassified) 데이터에 대해 펜타곤이 승인한 수정 버전으로 운영된다. OpenAI는 GenAI.mil에서 처리되는 데이터가 정부 환경에 격리되며 OpenAI의 공개·상용 모델 학습에 사용되지 않는다고 설명했으며, 펜타곤 관계자는 향후 4번째 모델이 “potentially” 추가될 수 있다고 말했다.</p>
   <p class="url"><a href="https://breakingdefense.com/2026/02/chatgpt-will-be-available-to-3-million-military-users-on-genai-mil/">https://breakingdefense.com/2026/02/chatgpt-will-be-available-to-3-million-military-users-on-genai-mil/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-archive" data-cat="archive" data-topics="law national_security norms" data-search="AI 정책 뉴스레터 2026.2.9 (2026.2.10) 미국에서는 노동계가 근로자 보호를 위한 AI 규제를 촉구했고, 교통부의 생성형 AI 기반 연방 규정 초안 작성과 캘리포니아의 변호사 AI 사용 규제 법안 등이 추진됐다. 중국은 AI 개발 확대와 규제 준수를 병행하면서 AI의 고용 영향을 다루는 정책을 준비하고 있으며, 우즈베키스탄·멕시코·인도네시아도 각각 AI 법제화, 윤리 원칙, 생성물 표시 규정을 추진했다. 국방부와 Anthropic은 군사·국내 감시 목적의 AI 사용 제한을 두고 협의 중이며, 제약업계의 AI 활용 확대와 Starlink의 고객 데이터 AI 학습 이용 허용도 다뤄졌다. Alisar-Mustafa">
+  <h2>🇺🇸 AI 정책 뉴스레터 2026.2.9 (2026.2.10)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-archive">아카이브</span> · <span class="source">Alisar Mustafa</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="AI 정책 뉴스레터 2026.2.9 (2026.2.10)
+
+미국에서는 노동계가 근로자 보호를 위한 AI 규제를 촉구했고, 교통부의 생성형 AI 기반 연방 규정 초안 작성과 캘리포니아의 변호사 AI 사용 규제 법안 등이 추진됐다. 중국은 AI 개발 확대와 규제 준수를 병행하면서 AI의 고용 영향을 다루는 정책을 준비하고 있으며, 우즈베키스탄·멕시코·인도네시아도 각각 AI 법제화, 윤리 원칙, 생성물 표시 규정을 추진했다. 국방부와 Anthropic은 군사·국내 감시 목적의 AI 사용 제한을 두고 협의 중이며, 제약업계의 AI 활용 확대와 Starlink의 고객 데이터 AI 학습 이용 허용도 다뤄졌다.
+
+https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-02092026" onclick="copyEntry(this)">복사</button></div>
+  <p>미국에서는 노동계가 근로자 보호를 위한 AI 규제를 촉구했고, 교통부의 생성형 AI 기반 연방 규정 초안 작성과 캘리포니아의 변호사 AI 사용 규제 법안 등이 추진됐다. 중국은 AI 개발 확대와 규제 준수를 병행하면서 AI의 고용 영향을 다루는 정책을 준비하고 있으며, 우즈베키스탄·멕시코·인도네시아도 각각 AI 법제화, 윤리 원칙, 생성물 표시 규정을 추진했다. 국방부와 Anthropic은 군사·국내 감시 목적의 AI 사용 제한을 두고 협의 중이며, 제약업계의 AI 활용 확대와 Starlink의 고객 데이터 AI 학습 이용 허용도 다뤄졌다.</p>
+  <p class="url"><a href="https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-02092026">https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-02092026</a></p>
+  
+  
+</article>
+<article class="entry cat-db" data-cat="db" data-topics="cybersecurity deepfake_disinfo" data-search="UNC1069, 암호화폐·DeFi 분야에 AI 기반 소셜엔지니어링 및 악성코드 다종 배포 (2026.2.10) Mandiant는 북한 연계로 의심되는 금전 목적 위협 행위자 UNC1069가 암호화폐·DeFi 분야를 대상으로 AI 기반 유인(딥페이크로 보이는 영상 등)과 소셜엔지니어링을 결합해 침투했다고 밝혔다. 피해자는 탈취된 텔레그램 계정으로 연락을 받은 뒤 가짜 Zoom 미팅(공격 인프라)으로 유도되며, 통화 중 “오디오 문제 해결”을 명목으로 ClickFix 방식의 명령 실행을 유도받아 감염이 시작된다. 이후 SILENCELIFT·DEEPBREATH·CHROMEPUSH 등 7종 악성코드가 호스트에서 자격증명/브라우저 데이터/텔레그램 데이터/키 입력 및 쿠키 등을 수집하고, 일부는 macOS 시작 시 실행되도록 런치 데몬 형태로 지속성을 확보하는 것으로 설명됐다. Google Cloud(구글 위협 인텔리전스) 블로그 / Mandiant">
   <h2>UNC1069, 암호화폐·DeFi 분야에 AI 기반 소셜엔지니어링 및 악성코드 다종 배포 (2026.2.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Google Cloud(구글 위협 인텔리전스) 블로그 / Mandiant</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="UNC1069, 암호화폐·DeFi 분야에 AI 기반 소셜엔지니어링 및 악성코드 다종 배포 (2026.2.10)
 
@@ -347,7 +421,9 @@ Mandiant는 북한 연계로 의심되는 금전 목적 위협 행위자 UNC1069
 https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering" onclick="copyEntry(this)">복사</button></div>
   <p>Mandiant는 북한 연계로 의심되는 금전 목적 위협 행위자 UNC1069가 암호화폐·DeFi 분야를 대상으로 AI 기반 유인(딥페이크로 보이는 영상 등)과 소셜엔지니어링을 결합해 침투했다고 밝혔다. 피해자는 탈취된 텔레그램 계정으로 연락을 받은 뒤 가짜 Zoom 미팅(공격 인프라)으로 유도되며, 통화 중 “오디오 문제 해결”을 명목으로 ClickFix 방식의 명령 실행을 유도받아 감염이 시작된다. 이후 SILENCELIFT·DEEPBREATH·CHROMEPUSH 등 7종 악성코드가 호스트에서 자격증명/브라우저 데이터/텔레그램 데이터/키 입력 및 쿠키 등을 수집하고, 일부는 macOS 시작 시 실행되도록 런치 데몬 형태로 지속성을 확보하는 것으로 설명됐다.</p>
   <p class="url"><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering">https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-02-09.html">← 2026-02-09</a><a class="day-nav-btn" href="2026-02-11.html">2026-02-11 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-09.html">← 2026-02-09</a><a class="day-nav-btn" href="2026-02-11.html">2026-02-11 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -383,6 +459,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

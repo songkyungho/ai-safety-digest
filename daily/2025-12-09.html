@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="" data-search="미스트랄 AI, Devstral 2와 Mistral Vibe CLI 출시 (2025.12.9) 미스트랄 AI가 123B 규모의 Devstral 2와 24B 규모의 Devstral Small 2를 공개했으며, 각각 SWE-bench Verified에서 72.2%와 68.0%를 기록했다. 두 모델은 각각 수정된 MIT 라이선스와 Apache 2.0 라이선스로 제공되며, Devstral 2는 데이터센터 GPU에서, Devstral Small 2는 소비자용 GPU나 CPU 환경에서 실행할 수 있다. 함께 공개된 오픈소스 명령줄 코딩 도구 Mistral Vibe CLI는 코드 탐색·수정·실행, 파일 검색, 버전 관리, 다중 파일 작업을 지원하며, Devstral 2 API는 무료 기간 이후 입력·출력 토큰 백만 개당 각각 0.40달러와 2달러로 제공될 예정이다. 미스트랄 AI">
   <h2>미스트랄 AI, Devstral 2와 Mistral Vibe CLI 출시 (2025.12.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">미스트랄 AI</span></span><button type="button" class="copy-btn" data-copy="미스트랄 AI, Devstral 2와 Mistral Vibe CLI 출시 (2025.12.9)
 
@@ -317,8 +369,12 @@
 https://mistral.ai/news/devstral-2-vibe-cli/" onclick="copyEntry(this)">복사</button></div>
   <p>미스트랄 AI가 123B 규모의 Devstral 2와 24B 규모의 Devstral Small 2를 공개했으며, 각각 SWE-bench Verified에서 72.2%와 68.0%를 기록했다. 두 모델은 각각 수정된 MIT 라이선스와 Apache 2.0 라이선스로 제공되며, Devstral 2는 데이터센터 GPU에서, Devstral Small 2는 소비자용 GPU나 CPU 환경에서 실행할 수 있다. 함께 공개된 오픈소스 명령줄 코딩 도구 Mistral Vibe CLI는 코드 탐색·수정·실행, 파일 검색, 버전 관리, 다중 파일 작업을 지원하며, Devstral 2 API는 무료 기간 이후 입력·출력 토큰 백만 개당 각각 0.40달러와 2달러로 제공될 예정이다.</p>
   <p class="url"><a href="https://mistral.ai/news/devstral-2-vibe-cli/">https://mistral.ai/news/devstral-2-vibe-cli/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="frontier norms open_weight" data-search="**Frontier AI 안전 정책의 공통 요소 (2025년 12월 업데이트)** (2025.12.9) 여러 대형 기초 모델 개발자들이 모델의 심각한 위험을 평가하고 정보 보안 조치, 배포 안전 조치, 책임성 실천을 통해 이러한 위험을 완화하기 위한 기업 프로토콜에 서약하고 있다. 2023년 9월부터 일부 AI 기업들이 자발적으로 이러한 프로토콜을 공개하기 시작했으며, 2024년 5월에는 AI 서울 정상회의에서 16개 기업이 Frontier AI Safety Commitments에 참여하여 추가로 4개 기업이 합류했다. 현재까지 12개 기업이 Frontier AI 안전 정책을 공개했다: Anthropic, OpenAI, Google DeepMind, Magic, Naver, Meta, G42, Cohere, Microsoft, Amazon, xAI, Nvidia.
+
+정책들은 모델이 생물학 무기 개발이나 사이버 공격을 용이하게 하거나 자율적 복제나 자동화된 AI 연구 개발에 이르는 능력 임계치에 접근하는지 평가하는 것을 포함한다. 임계치에 근접할 경우, 모델 가중치 보안과 모델 배포 완화 조치를 명시한다. 또한, 위험 관리를 위해 개발과 배포를 중단할 조건을 설정하고, 모델의 전체 능력을 평가하기 위한 평가 설계와 평가의 시기와 빈도를 정의한다. 정책들은 제3자 또는 이사회에 의한 감독을 포함한 책임성 메커니즘 탐구도 포함한다. 정책들은 시간이 지남에 따라 AI 위험에 대한 이해가 깊어짐에 따라 업데이트될 예정이다. METR">
   <h2>🇺🇸 Frontier AI 안전 정책의 공통 요소 (2025년 12월 업데이트) (2025.12.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="오픈소스·오픈웨이트">🔓</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="**Frontier AI 안전 정책의 공통 요소 (2025년 12월 업데이트)** (2025.12.9)
 
@@ -330,7 +386,9 @@ https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/
   <p>여러 대형 기초 모델 개발자들이 모델의 심각한 위험을 평가하고 정보 보안 조치, 배포 안전 조치, 책임성 실천을 통해 이러한 위험을 완화하기 위한 기업 프로토콜에 서약하고 있다. 2023년 9월부터 일부 AI 기업들이 자발적으로 이러한 프로토콜을 공개하기 시작했으며, 2024년 5월에는 AI 서울 정상회의에서 16개 기업이 Frontier AI Safety Commitments에 참여하여 추가로 4개 기업이 합류했다. 현재까지 12개 기업이 Frontier AI 안전 정책을 공개했다: Anthropic, OpenAI, Google DeepMind, Magic, Naver, Meta, G42, Cohere, Microsoft, Amazon, xAI, Nvidia.</p>
 <p>정책들은 모델이 생물학 무기 개발이나 사이버 공격을 용이하게 하거나 자율적 복제나 자동화된 AI 연구 개발에 이르는 능력 임계치에 접근하는지 평가하는 것을 포함한다. 임계치에 근접할 경우, 모델 가중치 보안과 모델 배포 완화 조치를 명시한다. 또한, 위험 관리를 위해 개발과 배포를 중단할 조건을 설정하고, 모델의 전체 능력을 평가하기 위한 평가 설계와 평가의 시기와 빈도를 정의한다. 정책들은 제3자 또는 이사회에 의한 감독을 포함한 책임성 메커니즘 탐구도 포함한다. 정책들은 시간이 지남에 따라 AI 위험에 대한 이해가 깊어짐에 따라 업데이트될 예정이다.</p>
   <p class="url"><a href="https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/">https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-12-05.html">← 2025-12-05</a><a class="day-nav-btn" href="2025-12-10.html">2025-12-10 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-12-05.html">← 2025-12-05</a><a class="day-nav-btn" href="2025-12-10.html">2025-12-10 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -366,6 +424,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

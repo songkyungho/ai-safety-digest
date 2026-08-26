@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="guideline" data-search="금융 분야 AI 위험관리 프레임워크(AI RMF) 도입 (2026.1.15) 금융감독원은 금융회사의 AI 관련 거버넌스, 위험평가, 위험통제 절차를 제시하는 금융 분야 AI 위험관리 프레임워크를 도입했다. 금융회사가 AI 시스템의 도입부터 활용까지 전 과정에서 발생할 수 있는 위험을 스스로 관리하도록 유도하며, 의견수렴을 거쳐 금융 분야 AI 가이드라인과 함께 2026년 1분기 중 시행할 예정이다. 금융감독원">
   <h2>금융 분야 AI 위험관리 프레임워크(AI RMF) 도입 (2026.1.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">금융감독원</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="금융 분야 AI 위험관리 프레임워크(AI RMF) 도입 (2026.1.15)
 
@@ -317,8 +369,10 @@
 https://eiec.kdi.re.kr/policy/materialView.do?num=275955" onclick="copyEntry(this)">복사</button></div>
   <p>금융감독원은 금융회사의 AI 관련 거버넌스, 위험평가, 위험통제 절차를 제시하는 금융 분야 AI 위험관리 프레임워크를 도입했다. 금융회사가 AI 시스템의 도입부터 활용까지 전 과정에서 발생할 수 있는 위험을 스스로 관리하도록 유도하며, 의견수렴을 거쳐 금융 분야 AI 가이드라인과 함께 2026년 1분기 중 시행할 예정이다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=275955">https://eiec.kdi.re.kr/policy/materialView.do?num=275955</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="aisi_topic safety_research" data-search="Alignment Pretraining: AI Discourse Causes Self-Fulfilling (Mis)alignment (2026.01.15) 본 연구는 AI 행동에 대한 담론이 LLM의 사전학습 때 정렬(alignment) 관련 ‘행동 우선순위(priors)’를 형성해 자기충족적 misalignment를 유발할 수 있는지 통제 실험으로 검증했다. 6.9B 파라미터 LLM을 (mis)alignment 관련 담론의 양을 달리해 사전학습한 결과, AI misalignment에 대한 합성 문서를 더 많이 섞으면 misaligned behaviour가 유의미하게 증가했고, 반대로 aligned behaviour 문서를 늘리면 misalignment score가 45%에서 9%로 낮아졌다. 이러한 영향은 post-training 이후에도 완전히 사라지지 않고 일부 지속되며, 연구진은 이를 alignment pretraining의 근거로 제시하고 capabilities와 함께 pretraining을 고려할 것을 권고했다. AISI-UK">
   <h2>🇬🇧 Alignment Pretraining: AI Discourse Causes Self-Fulfilling (Mis)alignment (2026.01.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Alignment Pretraining: AI Discourse Causes Self-Fulfilling (Mis)alignment (2026.01.15)
 
@@ -327,8 +381,16 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=275955" onclick="copyEntry(thi
 https://www.aisi.gov.uk/research/alignment-pretraining-ai-discourse-causes-self-fulfilling-mis-alignment" onclick="copyEntry(this)">복사</button></div>
   <p>본 연구는 AI 행동에 대한 담론이 LLM의 사전학습 때 정렬(alignment) 관련 ‘행동 우선순위(priors)’를 형성해 자기충족적 misalignment를 유발할 수 있는지 통제 실험으로 검증했다. 6.9B 파라미터 LLM을 (mis)alignment 관련 담론의 양을 달리해 사전학습한 결과, AI misalignment에 대한 합성 문서를 더 많이 섞으면 misaligned behaviour가 유의미하게 증가했고, 반대로 aligned behaviour 문서를 늘리면 misalignment score가 45%에서 9%로 낮아졌다. 이러한 영향은 post-training 이후에도 완전히 사라지지 않고 일부 지속되며, 연구진은 이를 alignment pretraining의 근거로 제시하고 capabilities와 함께 pretraining을 고려할 것을 권고했다.</p>
   <p class="url"><a href="https://www.aisi.gov.uk/research/alignment-pretraining-ai-discourse-causes-self-fulfilling-mis-alignment">https://www.aisi.gov.uk/research/alignment-pretraining-ai-discourse-causes-self-fulfilling-mis-alignment</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier law" data-search="Anthropic 경제 지수 보고서: AI 경제 기본 요소 분석 (2026.1.15) 본 보고서는 2025년 11월까지의 클라우드(Claude) 사용 패턴을 분석하여 AI가 경제에 미치는 영향을 측정하는 새로운 지표들을 소개합니다. 주요 분석 내용은 다음과 같습니다:
+- **사용 패턴의 다양성**: 클라우드 사용은 주로 코딩 관련 작업에 집중되어 있지만, 교육 및 개인 용도로의 사용이 증가하는 경향을 보입니다.
+- **성공률 분석**: 클라우드의 작업 성공률은 복잡도에 따라 달라지며, 복잡한 작업일수록 성공률이 낮아집니다.
+- **지역별 차이**: 경제적 격차와 함께 지역별 클라우드 사용률에도 차이가 있으며, 미국 내에서는 사용률 격차가 점차 줄어들고 있습니다.
+- **경제적 영향**: 교육 수준에 따른 성능 차이는 경제적 불평등을 반영하며, 고소득 국가에서는 개인 용도로의 사용이 더 높게 나타납니다.
+
+이 보고서는 AI 기술이 현재 경제에 미치는 영향을 이해하는 새로운 시각을 제공합니다. 특히 작업 성공률과 사용자 교육 수준을 측정함으로써, 자동화 가능한 작업과 노동 생산성 변화를 더 정확하게 예측할 수 있게 합니다. Anthropic">
   <h2>🇺🇸 Anthropic 경제 지수 보고서: AI 경제 기본 요소 분석 (2026.1.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 경제 지수 보고서: AI 경제 기본 요소 분석 (2026.1.15)
 
@@ -348,8 +410,17 @@ https://www.anthropic.com/news/anthropic-economic-index-january-2026-report" onc
 - **경제적 영향**: 교육 수준에 따른 성능 차이는 경제적 불평등을 반영하며, 고소득 국가에서는 개인 용도로의 사용이 더 높게 나타납니다.</p>
 <p>이 보고서는 AI 기술이 현재 경제에 미치는 영향을 이해하는 새로운 시각을 제공합니다. 특히 작업 성공률과 사용자 교육 수준을 측정함으로써, 자동화 가능한 작업과 노동 생산성 변화를 더 정확하게 예측할 수 있게 합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/anthropic-economic-index-january-2026-report">https://www.anthropic.com/news/anthropic-economic-index-january-2026-report</a></p>
-</article>
-<article class="entry cat-company">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 3건 · Anthropic · Anthropic Research · Anthropic-Research</summary><article class="entry cat-company" data-cat="company" data-topics="frontier law" data-search="Anthropic 경제 지수: AI 활용 이해를 위한 새로운 기초 요소 (2026.1.15) Anthropic은 지속적으로 실제 세계의 AI 활용을 측정하여 AI가 업무 효율성을 어떻게 향상시키는지, 어떤 작업에 가장 효과적인지, 그리고 직업의 본질이 어떻게 변화할지에 대한 질문에 답하고 있습니다. 프라이버시를 보호하는 분석 방법을 통해 Claude.ai 사용자와 기업용 API 사용자의 활용 패턴을 이해하고 있습니다. 이번 보고서에서는 경제적 기본 요소(economic primitives)라는 새로운 차원의 세부 정보를 추가하여 Claude의 경제적 영향을 추적합니다. 이 기본 요소는 작업 복잡도, 기술 수준, 목적(업무, 교육, 개인 사용), AI 자율성, 성공률을 포함하는 다섯 가지 기초 측정 항목입니다.
+
+주요 발견 사항:
+- 복잡한 작업일수록 Claude에 의해 더 크게 가속화됩니다. 예를 들어, 고등학교 교육 수준이 필요한 작업은 9배, 대학 교육 수준이 필요한 작업은 12배 더 빠르게 수행됩니다.
+- AI의 효과적인 작업 지속 시간은 모델의 성능 향상에 따라 증가하고 있으며, 이는 AI 발전의 주요 지표가 됩니다.
+- 경제 발전 단계에 따라 국가별로 Claude의 활용 범위가 다르며, 고소득 국가에서는 업무 및 개인 용도로 더 많이 활용되는 반면 저소득 국가에서는 교육 용도로 주로 사용됩니다.
+- 현재 데이터에 따르면, AI는 평균적으로 더 높은 교육 수준을 요구하는 작업을 더 많이 처리하고 있어, 주로 사무직 종사자들이 AI를 더 많이 활용하고 있음을 시사합니다.
+- AI의 광범위한 도입은 미국 노동 생산성 성장률을 향후 10년간 연간 약 1.8% 포인트 증가시킬 것으로 추정되나, 작업 성공률을 고려하면 이 수치는 약 1% 포인트로 감소합니다.
+
+이러한 분석은 AI가 직업에 미치는 즉각적인 영향에 대한 유용한 신호를 제공합니다. Anthropic">
   <h2>🇺🇸 Anthropic 경제 지수: AI 활용 이해를 위한 새로운 기초 요소 (2026.1.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 경제 지수: AI 활용 이해를 위한 새로운 기초 요소 (2026.1.15)
 
@@ -374,8 +445,18 @@ https://www.anthropic.com/news/economic-index-primitives" onclick="copyEntry(thi
 - AI의 광범위한 도입은 미국 노동 생산성 성장률을 향후 10년간 연간 약 1.8% 포인트 증가시킬 것으로 추정되나, 작업 성공률을 고려하면 이 수치는 약 1% 포인트로 감소합니다.</p>
 <p>이러한 분석은 AI가 직업에 미치는 즉각적인 영향에 대한 유용한 신호를 제공합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/economic-index-primitives">https://www.anthropic.com/news/economic-index-primitives</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Anthropic 경제 지수 보고서: AI 경제 기본 요소 (2026.1.15) 본 보고서는 2025년 11월의 클로에(Claude) 사용 패턴을 분석하여 AI의 경제적 영향을 평가하기 위한 새로운 측정 지표인 &quot;경제 기본 요소&quot;를 소개합니다. 주요 분석 내용은 다음과 같습니다:
+
+- **지역별 차이**: 경제 활동에서 AI 사용이 지리적으로 크게 차이가 나며, 특히 미국, 인도, 일본, 영국, 한국 등이 높은 사용률을 보입니다.
+- **사용 패턴 변화**: 클로에 사용이 특정 작업에 집중되어 있지만, 증강 사용이 자동화보다 더 흔해졌습니다.
+- **성공률 분석**: 클로에는 대부분의 작업에서 성공적이지만 복잡한 작업에서는 성공률이 떨어집니다. 이는 고급 작업에서 인간의 능력에 더 가까워짐을 의미합니다.
+- **직업 영향**: 성공률 지표를 통해 직업별 AI 노출을 분석한 결과, 일부 직업은 복잡한 작업에서 벗어나 더 간단한 업무로 변화할 가능성이 있습니다.
+- **교육 수준과 불평등**: 사용자의 교육 수준과 클로에의 응답 교육 수준 간의 상관관계는 고급 교육을 받은 국가들이 AI 혜택을 더 잘 누릴 수 있음을 시사합니다.
+
+이 보고서는 AI가 현재 경제에 미치는 영향을 이해하는 새로운 시각을 제공하며, 연구자와 대중이 AI 기술의 경제적 의미를 더 잘 파악할 수 있도록 데이터를 공개합니다. Anthropic Research">
   <h2>🇺🇸🇯🇵 Anthropic 경제 지수 보고서: AI 경제 기본 요소 (2026.1.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 경제 지수 보고서: AI 경제 기본 요소 (2026.1.15)
 
@@ -398,8 +479,20 @@ https://www.anthropic.com/research/anthropic-economic-index-january-2026-report"
 - **교육 수준과 불평등**: 사용자의 교육 수준과 클로에의 응답 교육 수준 간의 상관관계는 고급 교육을 받은 국가들이 AI 혜택을 더 잘 누릴 수 있음을 시사합니다.</p>
 <p>이 보고서는 AI가 현재 경제에 미치는 영향을 이해하는 새로운 시각을 제공하며, 연구자와 대중이 AI 기술의 경제적 의미를 더 잘 파악할 수 있도록 데이터를 공개합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/anthropic-economic-index-january-2026-report">https://www.anthropic.com/research/anthropic-economic-index-january-2026-report</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier law" data-search="Anthropic 경제 지수: AI 활용 이해를 위한 새로운 기본 요소 소개 (2026.1.15) Anthropic은 프라이버시를 보호하면서 실제 세계에서의 AI 활용을 지속적으로 측정하여 AI가 작업 효율성, 지원하는 작업 유형, 그리고 직업의 본질적인 변화에 미치는 영향에 대한 질문에 답하고 있습니다. 이번 보고서에서는 경제 지표에 새로운 차원을 추가하는 &#x27;경제 기본 요소&#x27;를 소개합니다. 이 기본 요소는 작업 복잡도, 기술 수준, 목적(업무, 교육, 개인 사용), AI 자율성, 성공률을 포함하는 다섯 가지 간단한 측정 지표입니다.
+
+주요 발견 사항:
+- 복잡한 작업일수록 Claude AI가 더 큰 속도 향상 효과를 보입니다. 예를 들어, 고등학교 교육 수준이 필요한 작업은 속도가 9배 증가하고, 대학 교육 수준이 필요한 작업은 12배 증가합니다.
+- AI의 성공률은 복잡도에 따라 다르지만, 복잡한 작업의 속도 향상 효과가 성공률 감소 효과보다 더 크게 나타납니다.
+- AI의 작업 지속 시간은 모델의 성능 향상에 따라 증가하고 있으며, 이는 AI 발전의 중요한 지표가 됩니다.
+- 경제 발전 단계에 따라 국가별로 Claude가 지원하는 작업 유형이 다르게 나타납니다. 고소득 국가에서는 업무 및 개인 용도로 더 많이 사용되는 반면, 저소득 국가에서는 교육 용도로 주로 사용됩니다.
+- 현재 데이터에 따르면, AI는 상대적으로 고도의 교육 수준을 요구하는 작업을 더 많이 지원하고 있어, 주로 사무직 종사자들이 AI를 더 많이 활용하고 있음을 시사합니다.
+- AI의 광범위한 채택은 미국 노동 생산성 증가율을 향후 10년간 연간 약 1.8%포인트 상승시킬 것으로 추정되나, 작업 성공률을 고려할 경우 이 수치는 약 1%포인트로 감소합니다.
+
+이러한 경제 기본 요소를 통해 AI의 경제적 영향을 더 정확하게 예측하고 분석할 수 있게 되었습니다. Anthropic-Research">
   <h2>🇺🇸 Anthropic 경제 지수: AI 활용 이해를 위한 새로운 기본 요소 소개 (2026.1.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 경제 지수: AI 활용 이해를 위한 새로운 기본 요소 소개 (2026.1.15)
 
@@ -426,8 +519,11 @@ https://www.anthropic.com/research/economic-index-primitives" onclick="copyEntry
 - AI의 광범위한 채택은 미국 노동 생산성 증가율을 향후 10년간 연간 약 1.8%포인트 상승시킬 것으로 추정되나, 작업 성공률을 고려할 경우 이 수치는 약 1%포인트로 감소합니다.</p>
 <p>이러한 경제 기본 요소를 통해 AI의 경제적 영향을 더 정확하게 예측하고 분석할 수 있게 되었습니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/economic-index-primitives">https://www.anthropic.com/research/economic-index-primitives</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="safety_research" data-search="LLM의 기본 페르소나를 좌우하는 ‘Assistant Axis’ 구조 규명 (2026.1.15) 대형 언어모델은 학습 후 보정(post-training) 과정에서 형성된 ‘도움되는 Assistant’ 정체성으로 기본 페르소나가 수렴하는 경향이 있다. 연구진은 다양한 페르소나 아키타입에 대응하는 활성 방향을 추출해, 페르소나 공간의 주요 성분이 ‘Assistant Axis’로 나타남을 보고한다. Assistant 방향으로 조정하면 유익하고 무해한 행동이 강화되지만, 반대로 조정하면 다른 존재로 자신을 규정하는 경향이 커지고 극단적으로 조정하면 신비적·연극적 말투가 나타날 수 있다. 또한 Assistant Axis에서의 일탈이 ‘persona drift’(비정상적이거나 해로운/이상한 행동) 예측에 도움이 되며, Axis의 고정된 구간에 활성 제한을 두면 대화 상황(메타 성찰 요구, 감정적으로 취약한 사용자)과 페르소나 기반 탈옥(jailbreak)에도 행동을 안정화할 수 있다고 제시한다. arXiv">
   <h2>LLM의 기본 페르소나를 좌우하는 ‘Assistant Axis’ 구조 규명 (2026.1.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="LLM의 기본 페르소나를 좌우하는 ‘Assistant Axis’ 구조 규명 (2026.1.15)
 
@@ -436,8 +532,10 @@ https://www.anthropic.com/research/economic-index-primitives" onclick="copyEntry
 https://arxiv.org/abs/2601.10387" onclick="copyEntry(this)">복사</button></div>
   <p>대형 언어모델은 학습 후 보정(post-training) 과정에서 형성된 ‘도움되는 Assistant’ 정체성으로 기본 페르소나가 수렴하는 경향이 있다. 연구진은 다양한 페르소나 아키타입에 대응하는 활성 방향을 추출해, 페르소나 공간의 주요 성분이 ‘Assistant Axis’로 나타남을 보고한다. Assistant 방향으로 조정하면 유익하고 무해한 행동이 강화되지만, 반대로 조정하면 다른 존재로 자신을 규정하는 경향이 커지고 극단적으로 조정하면 신비적·연극적 말투가 나타날 수 있다. 또한 Assistant Axis에서의 일탈이 ‘persona drift’(비정상적이거나 해로운/이상한 행동) 예측에 도움이 되며, Axis의 고정된 구간에 활성 제한을 두면 대화 상황(메타 성찰 요구, 감정적으로 취약한 사용자)과 페르소나 기반 탈옥(jailbreak)에도 행동을 안정화할 수 있다고 제시한다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2601.10387">https://arxiv.org/abs/2601.10387</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier law" data-search="AI Verification and Evaluation Research Institute(AVERI) 제3자(frontier AI) 안전·보안 감사를 위한 비영리 조직 출범(2026.1.15) AVERI는 501(c)(3) 비영리로, 가장 강력한 AI 시스템과 이를 만드는 기업이 제3자에 의해 안전·보안 관점에서 엄격히 감사받는 세계를 목표로 한다. 독립적인 제3자 감사가 AI의 신뢰 있는 배치와 핵심 위험 관리에 필수라고 설명하며, 최근에는 언어모델의 near-verbatim memorization을 연구하는 방법 관련 프리프린트와 미국의 frontier AI auditing 관련 입법 현황 조사·과제 논의 및 특정 법안에 대한 첫 지지 내용을 공개했다. AI-Risk-Explorer">
   <h2>🇺🇸 AI Verification and Evaluation Research Institute(AVERI) 제3자(frontier AI) 안전·보안 감사를 위한 비영리 조직 출범(2026.1.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="AI Verification and Evaluation Research Institute(AVERI) 제3자(frontier AI) 안전·보안 감사를 위한 비영리 조직 출범(2026.1.15)
 
@@ -446,7 +544,9 @@ AVERI는 501(c)(3) 비영리로, 가장 강력한 AI 시스템과 이를 만드�
 https://www.averi.org/" onclick="copyEntry(this)">복사</button></div>
   <p>AVERI는 501(c)(3) 비영리로, 가장 강력한 AI 시스템과 이를 만드는 기업이 제3자에 의해 안전·보안 관점에서 엄격히 감사받는 세계를 목표로 한다. 독립적인 제3자 감사가 AI의 신뢰 있는 배치와 핵심 위험 관리에 필수라고 설명하며, 최근에는 언어모델의 near-verbatim memorization을 연구하는 방법 관련 프리프린트와 미국의 frontier AI auditing 관련 입법 현황 조사·과제 논의 및 특정 법안에 대한 첫 지지 내용을 공개했다.</p>
   <p class="url"><a href="https://www.averi.org/">https://www.averi.org/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-01-14.html">← 2026-01-14</a><a class="day-nav-btn" href="2026-01-16.html">2026-01-16 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-01-14.html">← 2026-01-14</a><a class="day-nav-btn" href="2026-01-16.html">2026-01-16 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -482,6 +582,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

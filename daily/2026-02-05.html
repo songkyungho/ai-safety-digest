@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,11 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Claude Opus 4.6 (Anthropic) (2026.2.5) Reasoning · Closed · 1000K ctx · $5/M · $25/M
+
+GPQA 91.3% · SWE 80.8% · MMLU 89% · HE 96% · MATH 92% · AIME 99.8%
+
+Arena Code Elo 1548. 80.8% SWE-bench. 89.11% MMLU-Pro (vals.ai). Leads for coding and nuanced writing. DemandSphere">
   <h2>🇺🇸 Claude Opus 4.6 (Anthropic) (2026.2.5)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.6 (Anthropic) (2026.2.5)
 
@@ -323,8 +379,21 @@ https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)
 <p>GPQA 91.3% · SWE 80.8% · MMLU 89% · HE 96% · MATH 92% · AIME 99.8%</p>
 <p>Arena Code Elo 1548. 80.8% SWE-bench. 89.11% MMLU-Pro (vals.ai). Leads for coding and nuanced writing.</p>
   <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · AI-Risk-Explorer</summary><article class="entry cat-db" data-cat="db" data-topics="" data-search="Claude Opus 4.6 Is Released (2026.2.5) 요약불가 AI-Risk-Explorer">
+  <h2>Claude Opus 4.6 Is Released (2026.2.5)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.6 Is Released (2026.2.5)
+
+요약불가
+
+https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf">https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="guideline" data-search="멕시코, 윤리적 AI 선언 발표(2026.2.5) 멕시코의 과학·인문·기술·혁신 사무국(Secihti)과 디지털 전환·통신청(ATDT)이 AI의 사용·개발에 대한 윤리 및 모범사례 선언을 공개했다. 이 선언은 AI 설계·도입·평가의 원칙을 제시하며, 사회복지·포용·책임성·기술 주권을 촉진하는 것을 목표로 한다. 주요 내용으로는 권리를 확대하는 방식의 AI, AI가 뒷받침한 결정에 대한 명확한 인간 책임, 설명 불가능한 시스템의 자동화 금지, 데이터를 공공재로서 책임 있게 다루는 점 등이 포함된다. 또한 Chapultepec Principles에 기반해 집단 거버넌스와 문화·언어 다양성, 교육 및 공공가치 등을 강조한다. BABL AI">
   <h2>멕시코, 윤리적 AI 선언 발표(2026.2.5)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">BABL AI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="멕시코, 윤리적 AI 선언 발표(2026.2.5)
 
@@ -333,10 +402,16 @@ https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)
 https://babl.ai/mexico-unveils-national-declaration-on-ethical-ai-to-guide-public-policy-and-protect-human-rights" onclick="copyEntry(this)">복사</button></div>
   <p>멕시코의 과학·인문·기술·혁신 사무국(Secihti)과 디지털 전환·통신청(ATDT)이 AI의 사용·개발에 대한 윤리 및 모범사례 선언을 공개했다. 이 선언은 AI 설계·도입·평가의 원칙을 제시하며, 사회복지·포용·책임성·기술 주권을 촉진하는 것을 목표로 한다. 주요 내용으로는 권리를 확대하는 방식의 AI, AI가 뒷받침한 결정에 대한 명확한 인간 책임, 설명 불가능한 시스템의 자동화 금지, 데이터를 공공재로서 책임 있게 다루는 점 등이 포함된다. 또한 Chapultepec Principles에 기반해 집단 거버넌스와 문화·언어 다양성, 교육 및 공공가치 등을 강조한다.</p>
   <p class="url"><a href="https://babl.ai/mexico-unveils-national-declaration-on-ethical-ai-to-guide-public-policy-and-protect-human-rights">https://babl.ai/mexico-unveils-national-declaration-on-ethical-ai-to-guide-public-policy-and-protect-human-rights</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="cybersecurity safety_research" data-search="LLM 기반 사이버 취약점 평가 및 완화 전략 (2026.2.5) Anthropic은 새로운 AI 모델인 Claude Opus 4.6을 통해 LLM(대규모 언어 모델)이 발견한 사이버 취약점을 평가하고 완화하는 전략을 소개합니다. 이 모델은 기존의 자동화된 취약점 탐색 방법을 넘어서, 코드를 인간 연구자처럼 분석하여 높은 심각도의 취약점을 빠르게 찾아냅니다. 특히, 오픈소스 소프트웨어에서 취약점을 발견하고 수정하는 작업을 시작하여, 수많은 취약점 중 500개 이상을 확인하고 일부는 이미 수정되었습니다. 
+
+Claude는 기존 방법으로는 찾기 어려웠던 취약점들을 발견하는데 성공했습니다. 예를 들어, GhostScript, OpenSC, CGIF 등의 소프트웨어에서 취약점을 찾아냈습니다. 이는 전통적인 취약점 탐색 도구들이 다루기 어려운 복잡한 패턴을 이해하고 활용할 수 있는 LLM의 장점을 보여줍니다.
+
+또한, Anthropic은 이러한 강력한 사이버 분석 능력이 악용되지 않도록 새로운 안전 장치를 도입하고 있습니다. 이를 통해 사이버 악용을 감지하고 대응할 수 있는 체계를 강화하고 있습니다. 이 노력은 사이버 보안 분야에서 AI의 긍정적인 역할을 확대하기 위한 중요한 단계입니다. Anthropic Research">
   <h2>LLM 기반 사이버 취약점 평가 및 완화 전략 (2026.2.5)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="LLM 기반 사이버 취약점 평가 및 완화 전략 (2026.2.5)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="LLM 기반 사이버 취약점 평가 및 완화 전략 (2026.2.5)
 
 Anthropic은 새로운 AI 모델인 Claude Opus 4.6을 통해 LLM(대규모 언어 모델)이 발견한 사이버 취약점을 평가하고 완화하는 전략을 소개합니다. 이 모델은 기존의 자동화된 취약점 탐색 방법을 넘어서, 코드를 인간 연구자처럼 분석하여 높은 심각도의 취약점을 빠르게 찾아냅니다. 특히, 오픈소스 소프트웨어에서 취약점을 발견하고 수정하는 작업을 시작하여, 수많은 취약점 중 500개 이상을 확인하고 일부는 이미 수정되었습니다. 
 
@@ -349,10 +424,21 @@ https://www.anthropic.com/research/zero-days" onclick="copyEntry(this)">복사</
 <p>Claude는 기존 방법으로는 찾기 어려웠던 취약점들을 발견하는데 성공했습니다. 예를 들어, GhostScript, OpenSC, CGIF 등의 소프트웨어에서 취약점을 찾아냈습니다. 이는 전통적인 취약점 탐색 도구들이 다루기 어려운 복잡한 패턴을 이해하고 활용할 수 있는 LLM의 장점을 보여줍니다.</p>
 <p>또한, Anthropic은 이러한 강력한 사이버 분석 능력이 악용되지 않도록 새로운 안전 장치를 도입하고 있습니다. 이를 통해 사이버 악용을 감지하고 대응할 수 있는 체계를 강화하고 있습니다. 이 노력은 사이버 보안 분야에서 AI의 긍정적인 역할을 확대하기 위한 중요한 단계입니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/zero-days">https://www.anthropic.com/research/zero-days</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="guideline incidents national_security norms" data-search="&quot;2025 아테네 라운드테이블 보고서: 함께 AI 위험에 대응하기&quot; (2026.2.5) 2025년 12월 런던에서 열린 아테네 라운드테이블의 일곱 번째 에디션은 글로벌 리더와 전문가 140명이 참석하여 AI와 법치의 관점에서 &quot;함께 AI 위험에 대응하기: 공동 우려에서 공동 행동으로&quot;라는 주제를 다뤘다. 이 행사는 The Future Society가 주도하고 OECD 및 유네스코와 협력하여 진행되었다. 주요 논의 주제는 다음과 같다:
+
+1. **AI 위험의 현실화**: 현재 AI 위험이 빠르게 증가하고 있으며, 이에 대한 대응 능력이 뒤처지고 있다는 점이 강조되었다.
+2. **국제 정책 조화**: 유럽 연합의 일반 목적 AI 코드 실천 가이드라인과 같은 여러 국가의 AI 정책 프레임워크가 중요한 진전을 이루고 있지만, AI의 초국가적 특성으로 인해 단일 국가의 대응이 부족하다는 점이 지적되었다.
+3. **국제적인 AI 위험 &#x27;레드 라인&#x27; 설정**: 참가자들은 국제적으로 강제 가능한 위험 기준을 설정하는 것이 필요하다고 논의하였으며, 특히 사이버 공격, 자율 무기, 인프라 자율 제어 등 다양한 위험 클러스터를 다루었다.
+4. **AI 사고 대응 인프라 구축**: 기록적인 수의 AI 사고가 발생한 상황에서 공통된 보고 프레임워크와 정보 공유 메커니즘, 모니터링 시스템 등이 필요하다는 의견이 제기되었다.
+
+이 라운드테이블의 핵심 결론은 오늘날의 정책 선택이 미래의 AI 발전 방향을 결정한다는 점이며, 이를 위해서는 국제 협력과 지속적인 정치적 의지가 필요하다는 것이다.
+
+**요약불가** TheFutureSociety">
   <h2>🇬🇧 &quot;2025 아테네 라운드테이블 보고서: 함께 AI 위험에 대응하기&quot; (2026.2.5)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">TheFutureSociety</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="&quot;2025 아테네 라운드테이블 보고서: 함께 AI 위험에 대응하기&quot; (2026.2.5)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">TheFutureSociety</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="&quot;2025 아테네 라운드테이블 보고서: 함께 AI 위험에 대응하기&quot; (2026.2.5)
 
 2025년 12월 런던에서 열린 아테네 라운드테이블의 일곱 번째 에디션은 글로벌 리더와 전문가 140명이 참석하여 AI와 법치의 관점에서 &quot;함께 AI 위험에 대응하기: 공동 우려에서 공동 행동으로&quot;라는 주제를 다뤘다. 이 행사는 The Future Society가 주도하고 OECD 및 유네스코와 협력하여 진행되었다. 주요 논의 주제는 다음과 같다:
 
@@ -374,8 +460,11 @@ https://thefuturesociety.org/2025-athens-roundtable-report" onclick="copyEntry(t
 <p>이 라운드테이블의 핵심 결론은 오늘날의 정책 선택이 미래의 AI 발전 방향을 결정한다는 점이며, 이를 위해서는 국제 협력과 지속적인 정치적 의지가 필요하다는 것이다.</p>
 <p>**요약불가**</p>
   <p class="url"><a href="https://thefuturesociety.org/2025-athens-roundtable-report">https://thefuturesociety.org/2025-athens-roundtable-report</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="agentic_ai cybersecurity incidents" data-search="AI 기술과 문서 자동화: 현실과 이론의 경계 본문 요약:
+페이지는 주로 Affinda의 AI 기반 문서 자동화 플랫폼과 그 활용 사례에 초점을 맞추고 있습니다. AI 기술이 문서 처리, 특히 지능형 문서 처리(IDP)와 자동화된 문서 작업에 어떻게 적용되는지 설명하며, 이 플랫폼이 다양한 산업 분야에서 효율성을 높이고 비용을 절감하는 방법을 다룹니다. 예를 들어, 지능형 문서 처리는 물류, 금융 서비스, 보험 등에서 문서 자동화를 통해 실질적인 이점을 제공하며, AI 기술의 진화와 함께 더욱 정확하고 유연한 데이터 추출이 가능해지고 있습니다. 또한, Affinda의 솔루션이 어떻게 기존의 OCR 기술을 넘어 더 높은 정확도를 달성하는지와 함께, HR 분야에서의 이력서 파싱 기술 등 다양한 응용 사례를 소개하고 있습니다. 그러나 주어진 URL의 제목과 본문 내용이 주어진 지시사항과 정확히 일치하지 않으며, 주로 Affinda의 기술과 그 활용에 초점을 맞춘 내용으로 보입니다. 주어진 지시사항에 따른 특정 주제(&#x27;AI 에이전트 해킹과 관련된 내용&#x27;)는 본문에서 명확하게 다루어지지 않았습니다. AIID">
   <h2>AI 기술과 문서 자동화: 현실과 이론의 경계</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AIID</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="AI 기술과 문서 자동화: 현실과 이론의 경계
 
@@ -386,17 +475,9 @@ https://www.affinda.com/expert-insights/when-my-ai-agent-hacked-my-gym-mythos-st
   <p>본문 요약:
 페이지는 주로 Affinda의 AI 기반 문서 자동화 플랫폼과 그 활용 사례에 초점을 맞추고 있습니다. AI 기술이 문서 처리, 특히 지능형 문서 처리(IDP)와 자동화된 문서 작업에 어떻게 적용되는지 설명하며, 이 플랫폼이 다양한 산업 분야에서 효율성을 높이고 비용을 절감하는 방법을 다룹니다. 예를 들어, 지능형 문서 처리는 물류, 금융 서비스, 보험 등에서 문서 자동화를 통해 실질적인 이점을 제공하며, AI 기술의 진화와 함께 더욱 정확하고 유연한 데이터 추출이 가능해지고 있습니다. 또한, Affinda의 솔루션이 어떻게 기존의 OCR 기술을 넘어 더 높은 정확도를 달성하는지와 함께, HR 분야에서의 이력서 파싱 기술 등 다양한 응용 사례를 소개하고 있습니다. 그러나 주어진 URL의 제목과 본문 내용이 주어진 지시사항과 정확히 일치하지 않으며, 주로 Affinda의 기술과 그 활용에 초점을 맞춘 내용으로 보입니다. 주어진 지시사항에 따른 특정 주제(&#x27;AI 에이전트 해킹과 관련된 내용&#x27;)는 본문에서 명확하게 다루어지지 않았습니다.</p>
   <p class="url"><a href="https://www.affinda.com/expert-insights/when-my-ai-agent-hacked-my-gym-mythos-stopped-feeling-theoretical/">https://www.affinda.com/expert-insights/when-my-ai-agent-hacked-my-gym-mythos-stopped-feeling-theoretical/</a></p>
-</article>
-<article class="entry cat-db">
-  <h2>Claude Opus 4.6 Is Released (2026.2.5)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.6 Is Released (2026.2.5)
-
-요약불가
-
-https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf">https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-02-04.html">← 2026-02-04</a><a class="day-nav-btn" href="2026-02-06.html">2026-02-06 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-04.html">← 2026-02-04</a><a class="day-nav-btn" href="2026-02-06.html">2026-02-06 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -432,6 +513,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

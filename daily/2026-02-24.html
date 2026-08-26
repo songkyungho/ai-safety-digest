@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,11 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="GPT-5.3-Codex (OpenAI) (2026.2.24) General · Closed · 400K ctx · $1.75/M · $14/M
+
+벤치마크 미공개
+
+Agentic coding model. SOTA on SWE-Bench Pro, Terminal-Bench 2.0, OSWorld-Verified. 400K context. Combines Codex + GPT-5 training stacks. 25% faster than predecessor. DemandSphere">
   <h2>🇺🇸 GPT-5.3-Codex (OpenAI) (2026.2.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="GPT-5.3-Codex (OpenAI) (2026.2.24)
 
@@ -323,18 +379,22 @@ https://openai.com/index/introducing-gpt-5-3-codex/" onclick="copyEntry(this)">�
 <p>벤치마크 미공개</p>
 <p>Agentic coding model. SOTA on SWE-Bench Pro, Terminal-Bench 2.0, OSWorld-Verified. 400K context. Combines Codex + GPT-5 training stacks. 25% faster than predecessor.</p>
   <p class="url"><a href="https://openai.com/index/introducing-gpt-5-3-codex/">https://openai.com/index/introducing-gpt-5-3-codex/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="deepfake_disinfo youth" data-search="언론에 보도된 인공지능 사건·위험 동향 (2026.2.24) 이 보고서는 OECD.AI 사건·위험 모니터(AIM)의 실시간 데이터를 분석해 언론 보도에 나타난 인공지능 관련 피해의 유형·빈도·영향을 살폈다. 언론 보도를 14개 주제군으로 분류한 결과, 보도 비중은 증가형·간헐형·감소형의 세 가지 패턴으로 나타났다. 합성 미디어, 아동 안전, 사이버공격, 개인정보보호, 보건 등 주제별로 관심도가 변화했으며, 일부 위험은 상대적으로 주목도가 높아진 반면 다른 위험에 대한 보도는 감소했다. 경제협력개발기구(OECD)">
   <h2>언론에 보도된 인공지능 사건·위험 동향 (2026.2.24)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">경제협력개발기구(OECD)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="언론에 보도된 인공지능 사건·위험 동향 (2026.2.24)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">경제협력개발기구(OECD)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="언론에 보도된 인공지능 사건·위험 동향 (2026.2.24)
 
 이 보고서는 OECD.AI 사건·위험 모니터(AIM)의 실시간 데이터를 분석해 언론 보도에 나타난 인공지능 관련 피해의 유형·빈도·영향을 살폈다. 언론 보도를 14개 주제군으로 분류한 결과, 보도 비중은 증가형·간헐형·감소형의 세 가지 패턴으로 나타났다. 합성 미디어, 아동 안전, 사이버공격, 개인정보보호, 보건 등 주제별로 관심도가 변화했으며, 일부 위험은 상대적으로 주목도가 높아진 반면 다른 위험에 대한 보도는 감소했다.
 
 https://www.oecd.org/en/publications/trends-in-ai-incidents-and-hazards-reported-by-the-media_4f5ff43c-en.html" onclick="copyEntry(this)">복사</button></div>
   <p>이 보고서는 OECD.AI 사건·위험 모니터(AIM)의 실시간 데이터를 분석해 언론 보도에 나타난 인공지능 관련 피해의 유형·빈도·영향을 살폈다. 언론 보도를 14개 주제군으로 분류한 결과, 보도 비중은 증가형·간헐형·감소형의 세 가지 패턴으로 나타났다. 합성 미디어, 아동 안전, 사이버공격, 개인정보보호, 보건 등 주제별로 관심도가 변화했으며, 일부 위험은 상대적으로 주목도가 높아진 반면 다른 위험에 대한 보도는 감소했다.</p>
   <p class="url"><a href="https://www.oecd.org/en/publications/trends-in-ai-incidents-and-hazards-reported-by-the-media_4f5ff43c-en.html">https://www.oecd.org/en/publications/trends-in-ai-incidents-and-hazards-reported-by-the-media_4f5ff43c-en.html</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="미 정부 관계자, 중국 DeepSeek가 수출 금지된 엔비디아 칩으로 AI 모델를 훈련했다는 의혹 제기 (2026.2.24) 미국 정부 관계자는 중국 AI 기업 DeepSeek가 미국의 수출 금지 조치에도 불구하고 엔비디아의 최신 칩 &#x27;블랙웰&#x27;을 사용해 새 모델을 훈련했다고 주장. 이는 칩 수출 통제 위반 가능성을 시사하며, 중국의 AI 추격을 억제하려는 미국 정책의 실효성 및 미중 간 AI 패권 경쟁을 둘러싼 논쟁을 심화. Reuters">
   <h2>🇨🇳🇺🇸 미 정부 관계자, 중국 DeepSeek가 수출 금지된 엔비디아 칩으로 AI 모델를 훈련했다는 의혹 제기 (2026.2.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Reuters</span></span><button type="button" class="copy-btn" data-copy="미 정부 관계자, 중국 DeepSeek가 수출 금지된 엔비디아 칩으로 AI 모델를 훈련했다는 의혹 제기 (2026.2.24)
 
@@ -343,8 +403,10 @@ https://www.oecd.org/en/publications/trends-in-ai-incidents-and-hazards-reported
 https://finance.yahoo.com/news/exclusive-chinas-deepseek-trained-ai-001013556.html" onclick="copyEntry(this)">복사</button></div>
   <p>미국 정부 관계자는 중국 AI 기업 DeepSeek가 미국의 수출 금지 조치에도 불구하고 엔비디아의 최신 칩 &#x27;블랙웰&#x27;을 사용해 새 모델을 훈련했다고 주장. 이는 칩 수출 통제 위반 가능성을 시사하며, 중국의 AI 추격을 억제하려는 미국 정책의 실효성 및 미중 간 AI 패권 경쟁을 둘러싼 논쟁을 심화.</p>
   <p class="url"><a href="https://finance.yahoo.com/news/exclusive-chinas-deepseek-trained-ai-001013556.html">https://finance.yahoo.com/news/exclusive-chinas-deepseek-trained-ai-001013556.html</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier national_security" data-search="미 국방부, 앤트로픽에 &#x27;국방물자생산법&#x27; 발동을 위협하며 AI 기술 강제 공유 압박 (2026.2.24) Pete Hegseth 미 국방장관은 자율 무기나 대량 감시에 자사 AI를 사용하는 것을 꺼리는 Anthropic에 &#x27;국방물자생산법(DPA)&#x27;을 발동해 기술을 강제 징발하겠다고 경고. Anthropic CEO Dario Amodei는 윤리적 한계를 준수할 것을 요구했으며, 합의가 이루어지지 않을 경우 2억 달러 규모의 국방부 계약을 파기할 것으로 추측. The Washington Post">
   <h2>🇺🇸 미 국방부, 앤트로픽에 &#x27;국방물자생산법&#x27; 발동을 위협하며 AI 기술 강제 공유 압박 (2026.2.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">The Washington Post</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="미 국방부, 앤트로픽에 &#x27;국방물자생산법&#x27; 발동을 위협하며 AI 기술 강제 공유 압박 (2026.2.24)
 
@@ -353,8 +415,10 @@ Pete Hegseth 미 국방장관은 자율 무기나 대량 감시에 자사 AI를 
 https://www.washingtonpost.com/technology/2026/02/24/pentagon-demands-ai-access/" onclick="copyEntry(this)">복사</button></div>
   <p>Pete Hegseth 미 국방장관은 자율 무기나 대량 감시에 자사 AI를 사용하는 것을 꺼리는 Anthropic에 &#x27;국방물자생산법(DPA)&#x27;을 발동해 기술을 강제 징발하겠다고 경고. Anthropic CEO Dario Amodei는 윤리적 한계를 준수할 것을 요구했으며, 합의가 이루어지지 않을 경우 2억 달러 규모의 국방부 계약을 파기할 것으로 추측.</p>
   <p class="url"><a href="https://www.washingtonpost.com/technology/2026/02/24/pentagon-demands-ai-access/">https://www.washingtonpost.com/technology/2026/02/24/pentagon-demands-ai-access/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="Trojan SurxRAT이 Hugging Face에서 대형 LLM 모듈을 내려받아 악성 작업 자동화를 시도한다(2026.2.24) 본문 내용 확인 필요. 다만 제공된 제목 기준으로는 SurxRAT이 LLM을 활용해 악성 행위를 자동화하는 구성 요소를 도입한 정황이 언급되는 것으로 보인다. 구체적인 다운로드 방식, 악용 시나리오, 영향 범위는 본문 확인이 필요하다. AI-Risk-Explorer">
   <h2>Trojan SurxRAT이 Hugging Face에서 대형 LLM 모듈을 내려받아 악성 작업 자동화를 시도한다(2026.2.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Trojan SurxRAT이 Hugging Face에서 대형 LLM 모듈을 내려받아 악성 작업 자동화를 시도한다(2026.2.24)
 
@@ -363,8 +427,10 @@ https://www.washingtonpost.com/technology/2026/02/24/pentagon-demands-ai-access/
 https://cyble.com/blog/surxrat-downloads-large-llm-module-from-hugging-face/" onclick="copyEntry(this)">복사</button></div>
   <p>본문 내용 확인 필요. 다만 제공된 제목 기준으로는 SurxRAT이 LLM을 활용해 악성 행위를 자동화하는 구성 요소를 도입한 정황이 언급되는 것으로 보인다. 구체적인 다운로드 방식, 악용 시나리오, 영향 범위는 본문 확인이 필요하다.</p>
   <p class="url"><a href="https://cyble.com/blog/surxrat-downloads-large-llm-module-from-hugging-face/">https://cyble.com/blog/surxrat-downloads-large-llm-module-from-hugging-face/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="METR, 개발자 생산성 실험 설계 변경…AI 사용 효과 추정 신호 신뢰도 낮아짐 (2026.2.24) METR은 2025년 2~6월 데이터로 AI 도구 사용이 숙련 오픈소스 개발자의 작업 완료를 약 20% 지연시킨다는 결과를 발표했으나, 이를 시간에 따라 보기 위해 2025년 8월부터 더 많은 개발자를 대상으로 새 실험을 진행했다. 다만 참가자 피드백과 설문을 근거로, AI 없이 일하기를 원치 않아 참여를 포기하는 개발자가 늘어 선택 편향이 커져 현재 실험 데이터가 AI의 생산성 효과를 “신뢰할 만한 신호”로 제공하기 어렵다고 밝혔다. 초기 결과와 비교해 일부 하위집단에서는 속도 개선 추정이 음수(지연)로 나타났지만, 실제 효과는 더 클 수 있으며 편향 때문에 추정치가 하한일 가능성이 크다고 설명했다. METR은 향후 더 짧고 집중적인 실험, 관찰 데이터, 설문, 고정 과제 실험, 에이전트 평가, 개발자 단위 무작위 배정 등 대안적 방법으로 측정 설계를 재검토할 계획이다. METR(Machine Intelligence Research Institute)">
   <h2>METR, 개발자 생산성 실험 설계 변경…AI 사용 효과 추정 신호 신뢰도 낮아짐 (2026.2.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">METR(Machine Intelligence Research Institute)</span></span><button type="button" class="copy-btn" data-copy="METR, 개발자 생산성 실험 설계 변경…AI 사용 효과 추정 신호 신뢰도 낮아짐 (2026.2.24)
 
@@ -373,7 +439,9 @@ METR은 2025년 2~6월 데이터로 AI 도구 사용이 숙련 오픈소스 개�
 https://metr.org/blog/2026-02-24-uplift-update/" onclick="copyEntry(this)">복사</button></div>
   <p>METR은 2025년 2~6월 데이터로 AI 도구 사용이 숙련 오픈소스 개발자의 작업 완료를 약 20% 지연시킨다는 결과를 발표했으나, 이를 시간에 따라 보기 위해 2025년 8월부터 더 많은 개발자를 대상으로 새 실험을 진행했다. 다만 참가자 피드백과 설문을 근거로, AI 없이 일하기를 원치 않아 참여를 포기하는 개발자가 늘어 선택 편향이 커져 현재 실험 데이터가 AI의 생산성 효과를 “신뢰할 만한 신호”로 제공하기 어렵다고 밝혔다. 초기 결과와 비교해 일부 하위집단에서는 속도 개선 추정이 음수(지연)로 나타났지만, 실제 효과는 더 클 수 있으며 편향 때문에 추정치가 하한일 가능성이 크다고 설명했다. METR은 향후 더 짧고 집중적인 실험, 관찰 데이터, 설문, 고정 과제 실험, 에이전트 평가, 개발자 단위 무작위 배정 등 대안적 방법으로 측정 설계를 재검토할 계획이다.</p>
   <p class="url"><a href="https://metr.org/blog/2026-02-24-uplift-update/">https://metr.org/blog/2026-02-24-uplift-update/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-02-23.html">← 2026-02-23</a><a class="day-nav-btn" href="2026-02-25.html">2026-02-25 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-23.html">← 2026-02-23</a><a class="day-nav-btn" href="2026-02-25.html">2026-02-25 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -409,6 +477,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

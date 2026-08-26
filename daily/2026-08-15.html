@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -304,11 +356,12 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI Safety Daily Digest</h1>
-    <div class="sub">2026-08-15 · 55/55 수집 성공, 20/29건 요약</div>
+    <div class="sub">2026-08-15 · 55/55 수집 성공, 21/30건 요약</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="" data-search="MSIT 신규 게시물 2건 [2026-08-14] 서대문형무소 여옥사에서 입체 영상(홀로그램)으로 되살아난 유관순 열사를 만나다 (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187666)
+[2026-08-14] 정부‧통신사업자, 불법 쓰레기 편지(불법스팸) 대응 현황 점검 (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187667) MSIT">
   <h2>🇰🇷 MSIT 신규 게시물 2건</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 2건
 
@@ -316,31 +369,51 @@
 [2026-08-14] 정부‧통신사업자, 불법 쓰레기 편지(불법스팸) 대응 현황 점검 (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187667)
 
 https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307" onclick="copyEntry(this)">복사</button></div>
-  <p>[2026-08-14] 서대문형무소 여옥사에서 입체 영상(홀로그램)으로 되살아난 유관순 열사를 만나다 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187666">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187666</a>)
-[2026-08-14] 정부‧통신사업자, 불법 쓰레기 편지(불법스팸) 대응 현황 점검 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187667">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187667</a>)</p>
+  <p>[2026-08-14] 서대문형무소 여옥사에서 입체 영상(홀로그램)으로 되살아난 유관순 열사를 만나다 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187666">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187666</a>)</p>
+<p>[2026-08-14] 정부‧통신사업자, 불법 쓰레기 편지(불법스팸) 대응 현황 점검 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187667">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187667</a>)</p>
   <p class="url"><a href="https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307">https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="law" data-search="브라질 ANPD, AI 규제 샌드박스 의견수렴 실시 (2026.8.15) 브라질 개인정보 감독기관(ANPD)은 AI 도구의 출시 전 평가를 지원하는 규제 샌드박스 운영방안에 관한 첫 번째 이해관계자 의견수렴을 실시. 참가자들은 AI의 투명성과 감독, 익명화 및 데이터 거버넌스, 차별과 불균형한 영향, 규제 공백의 개선방안을 논의. Gov.br">
   <h2>브라질 ANPD, AI 규제 샌드박스 의견수렴 실시 (2026.8.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Gov.br</span></span><button type="button" class="copy-btn" data-copy="브라질 ANPD, AI 규제 샌드박스 의견수렴 실시 (2026.8.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Gov.br</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="브라질 ANPD, AI 규제 샌드박스 의견수렴 실시 (2026.8.15)
 
 브라질 개인정보 감독기관(ANPD)은 AI 도구의 출시 전 평가를 지원하는 규제 샌드박스 운영방안에 관한 첫 번째 이해관계자 의견수렴을 실시. 참가자들은 AI의 투명성과 감독, 익명화 및 데이터 거버넌스, 차별과 불균형한 영향, 규제 공백의 개선방안을 논의.
 
 https://www.gov.br/anpd/pt-br/assuntos/noticias/anpd-realiza-consulta-multissetorial-sobre-sandbox-regulatorio-de-inteligencia-artificial" onclick="copyEntry(this)">복사</button></div>
   <p>브라질 개인정보 감독기관(ANPD)은 AI 도구의 출시 전 평가를 지원하는 규제 샌드박스 운영방안에 관한 첫 번째 이해관계자 의견수렴을 실시. 참가자들은 AI의 투명성과 감독, 익명화 및 데이터 거버넌스, 차별과 불균형한 영향, 규제 공백의 개선방안을 논의.</p>
   <p class="url"><a href="https://www.gov.br/anpd/pt-br/assuntos/noticias/anpd-realiza-consulta-multissetorial-sobre-sandbox-regulatorio-de-inteligencia-artificial">https://www.gov.br/anpd/pt-br/assuntos/noticias/anpd-realiza-consulta-multissetorial-sobre-sandbox-regulatorio-de-inteligencia-artificial</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="스스로 최신 상태를 유지하는 ‘살아 숨 쉬는 에세이’ (2026.8.15) 이 글은 외부 데이터셋과 연결해 새로운 근거를 주기적으로 확인하고, 영향을 받는 문장만 자동으로 수정 제안하는 ‘살아 숨 쉬는 에세이’ 구조를 소개한다. 에세이는 문장별 데이터 객체를 담은 JSON mesh, 변경을 탐지·분류·반영하는 알고리즘, 정기 실행 스케줄러, 사람의 승인 절차로 구성된다. Google Cloud 기반 구현에서는 Firebase Hosting, Cloud Storage, Cloud Run, Cloud Scheduler와 별도 관리자 대시보드를 활용하며, 승인된 변경만 반영해 문서를 재생성한다. TechieRay-Newsletter">
+  <h2>스스로 최신 상태를 유지하는 ‘살아 숨 쉬는 에세이’ (2026.8.15)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">Ctrl+AI+Reg</span></span><button type="button" class="copy-btn" data-copy="스스로 최신 상태를 유지하는 ‘살아 숨 쉬는 에세이’ (2026.8.15)
+
+이 글은 외부 데이터셋과 연결해 새로운 근거를 주기적으로 확인하고, 영향을 받는 문장만 자동으로 수정 제안하는 ‘살아 숨 쉬는 에세이’ 구조를 소개한다. 에세이는 문장별 데이터 객체를 담은 JSON mesh, 변경을 탐지·분류·반영하는 알고리즘, 정기 실행 스케줄러, 사람의 승인 절차로 구성된다. Google Cloud 기반 구현에서는 Firebase Hosting, Cloud Storage, Cloud Run, Cloud Scheduler와 별도 관리자 대시보드를 활용하며, 승인된 변경만 반영해 문서를 재생성한다.
+
+https://techieray.substack.com/p/the-live-and-breathing-essay" onclick="copyEntry(this)">복사</button></div>
+  <p>이 글은 외부 데이터셋과 연결해 새로운 근거를 주기적으로 확인하고, 영향을 받는 문장만 자동으로 수정 제안하는 ‘살아 숨 쉬는 에세이’ 구조를 소개한다. 에세이는 문장별 데이터 객체를 담은 JSON mesh, 변경을 탐지·분류·반영하는 알고리즘, 정기 실행 스케줄러, 사람의 승인 절차로 구성된다. Google Cloud 기반 구현에서는 Firebase Hosting, Cloud Storage, Cloud Run, Cloud Scheduler와 별도 관리자 대시보드를 활용하며, 승인된 변경만 반영해 문서를 재생성한다.</p>
+  <p class="url"><a href="https://techieray.substack.com/p/the-live-and-breathing-essay">https://techieray.substack.com/p/the-live-and-breathing-essay</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="national_security physical_ai" data-search="미·중 AI 신냉전 심화 중 시진핑 방미 영향 우려 (2026.8.15) 중국이 베이다이허 휴가 기간 동안 AI와 원천기술을 국가 전략의 핵심으로 내세우며 미국과의 AI 기술 경쟁을 강화하고 있다. 미국의 제재 조치들이 중국의 AI 인프라와 기술 수출에 영향을 미치자, 중국은 드론 수출 통제 강화 등으로 반격하고 있다. 이러한 갈등이 심화되면서 시진핑의 9월 방미 일정에도 영향을 미칠 수 있다는 우려가 제기되고 있다. 양국 간의 AI 패권 경쟁은 단순 무역 분쟁을 넘어 국가 안보와 미래 산업 주도권을 둘러싼 경쟁으로 확대되고 있다. 뉴스RSS · 시사저널">
   <h2>🇨🇳🇺🇸 미·중 AI 신냉전 심화 중 시진핑 방미 영향 우려 (2026.8.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">시사저널</span></span><button type="button" class="copy-btn" data-copy="미·중 AI 신냉전 심화 중 시진핑 방미 영향 우려 (2026.8.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">시사저널</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="미·중 AI 신냉전 심화 중 시진핑 방미 영향 우려 (2026.8.15)
 
 중국이 베이다이허 휴가 기간 동안 AI와 원천기술을 국가 전략의 핵심으로 내세우며 미국과의 AI 기술 경쟁을 강화하고 있다. 미국의 제재 조치들이 중국의 AI 인프라와 기술 수출에 영향을 미치자, 중국은 드론 수출 통제 강화 등으로 반격하고 있다. 이러한 갈등이 심화되면서 시진핑의 9월 방미 일정에도 영향을 미칠 수 있다는 우려가 제기되고 있다. 양국 간의 AI 패권 경쟁은 단순 무역 분쟁을 넘어 국가 안보와 미래 산업 주도권을 둘러싼 경쟁으로 확대되고 있다.
 
 https://www.sisajournal.com/news/articleView.html?idxno=383367" onclick="copyEntry(this)">복사</button></div>
   <p>중국이 베이다이허 휴가 기간 동안 AI와 원천기술을 국가 전략의 핵심으로 내세우며 미국과의 AI 기술 경쟁을 강화하고 있다. 미국의 제재 조치들이 중국의 AI 인프라와 기술 수출에 영향을 미치자, 중국은 드론 수출 통제 강화 등으로 반격하고 있다. 이러한 갈등이 심화되면서 시진핑의 9월 방미 일정에도 영향을 미칠 수 있다는 우려가 제기되고 있다. 양국 간의 AI 패권 경쟁은 단순 무역 분쟁을 넘어 국가 안보와 미래 산업 주도권을 둘러싼 경쟁으로 확대되고 있다.</p>
   <p class="url"><a href="https://www.sisajournal.com/news/articleView.html?idxno=383367">https://www.sisajournal.com/news/articleView.html?idxno=383367</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="frontier" data-search="챗GPT 살인 계획 미국 20대 체포 (2026.8.15) 미국 플로리다주 거주 남성이 챗GPT에 헤어진 여자친구 살해 계획을 상세히 입력한 후 오픈AI의 신고로 체포됨. 구체적인 살해 계획과 무기 구매 의도를 드러냈으나 실제로는 총기를 소유하지 않았음. 체포 후 보호관찰 8년과 전자발찌 2년 착용 처분을 받음.
+
+**요약불가** 뉴스RSS · 조선일보">
   <h2>🇺🇸 챗GPT 살인 계획 미국 20대 체포 (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">조선일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="챗GPT 살인 계획 미국 20대 체포 (2026.8.15)
 
@@ -352,18 +425,22 @@ https://www.chosun.com/economy/tech_it/2026/08/15/SFODZQT2YFEF7GFT527INR6WUA/" o
   <p>미국 플로리다주 거주 남성이 챗GPT에 헤어진 여자친구 살해 계획을 상세히 입력한 후 오픈AI의 신고로 체포됨. 구체적인 살해 계획과 무기 구매 의도를 드러냈으나 실제로는 총기를 소유하지 않았음. 체포 후 보호관찰 8년과 전자발찌 2년 착용 처분을 받음.</p>
 <p>**요약불가**</p>
   <p class="url"><a href="https://www.chosun.com/economy/tech_it/2026/08/15/SFODZQT2YFEF7GFT527INR6WUA/">https://www.chosun.com/economy/tech_it/2026/08/15/SFODZQT2YFEF7GFT527INR6WUA/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="deepfake_disinfo" data-search="식품의약품안전처장 “AI 가짜 의사 허위 정보 주의 필요” (2026.8.15) 식품의약품안전처장 오유경은 AI 기술을 이용해 가짜 의사를 만들어 잘못된 건강 정보를 제공하거나 건강기능식품의 효능을 과장하는 ‘공장형 건강 동영상’의 위험성을 경고했다. 이는 주로 광고 수익을 위해 자극적인 콘텐츠를 생산하며, 허위 정보로 인한 피해 가능성이 크다는 점을 강조했다. 노인 대상 교육에서는 AI 가짜 광고와 허위 건강 정보를 구별하는 방법과 안전한 소비 습관을 강조했다. 뉴스RSS · 조선일보">
   <h2>식품의약품안전처장 “AI 가짜 의사 허위 정보 주의 필요” (2026.8.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">조선일보</span></span><button type="button" class="copy-btn" data-copy="식품의약품안전처장 “AI 가짜 의사 허위 정보 주의 필요” (2026.8.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">조선일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="식품의약품안전처장 “AI 가짜 의사 허위 정보 주의 필요” (2026.8.15)
 
 식품의약품안전처장 오유경은 AI 기술을 이용해 가짜 의사를 만들어 잘못된 건강 정보를 제공하거나 건강기능식품의 효능을 과장하는 ‘공장형 건강 동영상’의 위험성을 경고했다. 이는 주로 광고 수익을 위해 자극적인 콘텐츠를 생산하며, 허위 정보로 인한 피해 가능성이 크다는 점을 강조했다. 노인 대상 교육에서는 AI 가짜 광고와 허위 건강 정보를 구별하는 방법과 안전한 소비 습관을 강조했다.
 
 https://www.chosun.com/national/welfare-medical/2026/08/15/SZIPMGUKMNDZJKC4QUNDPN4JEI/" onclick="copyEntry(this)">복사</button></div>
   <p>식품의약품안전처장 오유경은 AI 기술을 이용해 가짜 의사를 만들어 잘못된 건강 정보를 제공하거나 건강기능식품의 효능을 과장하는 ‘공장형 건강 동영상’의 위험성을 경고했다. 이는 주로 광고 수익을 위해 자극적인 콘텐츠를 생산하며, 허위 정보로 인한 피해 가능성이 크다는 점을 강조했다. 노인 대상 교육에서는 AI 가짜 광고와 허위 건강 정보를 구별하는 방법과 안전한 소비 습관을 강조했다.</p>
   <p class="url"><a href="https://www.chosun.com/national/welfare-medical/2026/08/15/SZIPMGUKMNDZJKC4QUNDPN4JEI/">https://www.chosun.com/national/welfare-medical/2026/08/15/SZIPMGUKMNDZJKC4QUNDPN4JEI/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="frontier" data-search="챗GPT에 남몰래 털어놓은 살인 계획…오픈AI가 FBI에 넘겼다 (2026.8.15) 요약불가 뉴스RSS · 동아일보">
   <h2>챗GPT에 남몰래 털어놓은 살인 계획…오픈AI가 FBI에 넘겼다 (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">동아일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="챗GPT에 남몰래 털어놓은 살인 계획…오픈AI가 FBI에 넘겼다 (2026.8.15)
 
@@ -372,10 +449,16 @@ https://www.chosun.com/national/welfare-medical/2026/08/15/SZIPMGUKMNDZJKC4QUNDP
 https://www.donga.com/news/Society/article/all/20260815/134483104/1" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.donga.com/news/Society/article/all/20260815/134483104/1">https://www.donga.com/news/Society/article/all/20260815/134483104/1</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="frontier healthcare" data-search="챗GPT에서 살해 계획 공개한 美 남성, 오픈AI 신고로 체포 (2026.8.15) 미국 플로리다주 거주자인 대런 저우(25)가 챗GPT와의 대화에서 전 여자친구 살해 계획을 상세히 언급한 후 오픈AI의 신고로 체포되었다. 저우는 구체적인 범행 방법까지 챗GPT에 털어놓았고, 이 내용이 연방수사국(FBI)에 전달되어 체포되었다. 이후 그는 유죄를 인정했으나 감형 합의로 보호관찰 8년과 전자발찌 착용 2년의 처분을 받았다. 오픈AI의 신고 역할이 논란이 되기도 했으나, 저우는 정신 건강 문제를 겪고 있었다는 주장을 펼쳤다.
+
+출처: 뉴스RSS · 천지일보
+
+마감일/시행일: 없음 ">
   <h2>🇺🇸 챗GPT에서 살해 계획 공개한 美 남성, 오픈AI 신고로 체포 (2026.8.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="챗GPT에서 살해 계획 공개한 美 남성, 오픈AI 신고로 체포 (2026.8.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="챗GPT에서 살해 계획 공개한 美 남성, 오픈AI 신고로 체포 (2026.8.15)
 
 미국 플로리다주 거주자인 대런 저우(25)가 챗GPT와의 대화에서 전 여자친구 살해 계획을 상세히 언급한 후 오픈AI의 신고로 체포되었다. 저우는 구체적인 범행 방법까지 챗GPT에 털어놓았고, 이 내용이 연방수사국(FBI)에 전달되어 체포되었다. 이후 그는 유죄를 인정했으나 감형 합의로 보호관찰 8년과 전자발찌 착용 2년의 처분을 받았다. 오픈AI의 신고 역할이 논란이 되기도 했으나, 저우는 정신 건강 문제를 겪고 있었다는 주장을 펼쳤다.
 
@@ -388,8 +471,10 @@ https://www.newscj.com/news/articleView.html?idxno=3425424" onclick="copyEntry(t
 <p>출처: 뉴스RSS · 천지일보</p>
 <p>마감일/시행일: 없음</p>
   <p class="url"><a href="https://www.newscj.com/news/articleView.html?idxno=3425424">https://www.newscj.com/news/articleView.html?idxno=3425424</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="frontier" data-search="미국 플로리다주 거주 남성, 챗GPT에 살해 계획 털어놓고 오픈AI 신고로 체포 25세의 금융 분석가 대런 저우는 챗GPT에서 헤어진 전 여자친구를 살해하겠다는 구체적인 계획을 털어놓았고, 오픈AI의 신고로 체포되었다. 그는 챗GPT에서 범행 대상의 정보와 사용할 무기까지 상세히 언급했으며, 오픈AI는 이러한 유해한 대화 패턴을 감지하고 FBI에 신고했다. 저우는 보석금을 내고 석방되었으나 직장에서 해고되었으며, 결국 보호관찰 8년과 전자발찌 착용 2년의 처분을 받았다. 뉴스RSS · 조선일보">
   <h2>🇺🇸 미국 플로리다주 거주 남성, 챗GPT에 살해 계획 털어놓고 오픈AI 신고로 체포</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">조선일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="미국 플로리다주 거주 남성, 챗GPT에 살해 계획 털어놓고 오픈AI 신고로 체포
 
@@ -398,8 +483,10 @@ https://www.newscj.com/news/articleView.html?idxno=3425424" onclick="copyEntry(t
 https://www.chosun.com/international/international_general/2026/08/15/GYZGGZDDMFTGEZDBGQZTSNZRMQ/" onclick="copyEntry(this)">복사</button></div>
   <p>25세의 금융 분석가 대런 저우는 챗GPT에서 헤어진 전 여자친구를 살해하겠다는 구체적인 계획을 털어놓았고, 오픈AI의 신고로 체포되었다. 그는 챗GPT에서 범행 대상의 정보와 사용할 무기까지 상세히 언급했으며, 오픈AI는 이러한 유해한 대화 패턴을 감지하고 FBI에 신고했다. 저우는 보석금을 내고 석방되었으나 직장에서 해고되었으며, 결국 보호관찰 8년과 전자발찌 착용 2년의 처분을 받았다.</p>
   <p class="url"><a href="https://www.chosun.com/international/international_general/2026/08/15/GYZGGZDDMFTGEZDBGQZTSNZRMQ/">https://www.chosun.com/international/international_general/2026/08/15/GYZGGZDDMFTGEZDBGQZTSNZRMQ/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="incidents" data-search="유럽과 체코 시민들을 이스탄불에서 사기 친 사이버 사기 조직 체포 (2026.8.15) 터키 이스탄불에서 인공지능을 활용한 사기 조직이 유럽과 체코 시민들을 대상으로 사기를 저지른 혐의로 체포되었다. 이 조직은 인공지능 지원 소프트웨어를 이용해 여러 국가의 피해자들을 추적하고 사기 행위를 벌였으며, 국제 사법 협력을 통해 체코 경찰과의 정보 공유로 이들의 네트워크를 해체하는데 성공했다. 이스탄불에서 동시다발적으로 진행된 수사는 여러 디지털 자료의 압수를 포함해 3개의 동시다발적인 장소에서 이루어졌다. 피해자들은 은행 계좌와 암호화폐 플랫폼을 통해 사기 수익을 이전하려 했던 것으로 나타났다. AIID">
   <h2>유럽과 체코 시민들을 이스탄불에서 사기 친 사이버 사기 조직 체포 (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AIID</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="유럽과 체코 시민들을 이스탄불에서 사기 친 사이버 사기 조직 체포 (2026.8.15)
 
@@ -408,8 +495,10 @@ https://www.chosun.com/international/international_general/2026/08/15/GYZGGZDDMF
 https://www.ntv.com.tr/turkiye/galeri-avrupayi-istanbuldan-dolandirdilar-maslakta-yapay-zekali-vurgun-1731237/1" onclick="copyEntry(this)">복사</button></div>
   <p>터키 이스탄불에서 인공지능을 활용한 사기 조직이 유럽과 체코 시민들을 대상으로 사기를 저지른 혐의로 체포되었다. 이 조직은 인공지능 지원 소프트웨어를 이용해 여러 국가의 피해자들을 추적하고 사기 행위를 벌였으며, 국제 사법 협력을 통해 체코 경찰과의 정보 공유로 이들의 네트워크를 해체하는데 성공했다. 이스탄불에서 동시다발적으로 진행된 수사는 여러 디지털 자료의 압수를 포함해 3개의 동시다발적인 장소에서 이루어졌다. 피해자들은 은행 계좌와 암호화폐 플랫폼을 통해 사기 수익을 이전하려 했던 것으로 나타났다.</p>
   <p class="url"><a href="https://www.ntv.com.tr/turkiye/galeri-avrupayi-istanbuldan-dolandirdilar-maslakta-yapay-zekali-vurgun-1731237/1">https://www.ntv.com.tr/turkiye/galeri-avrupayi-istanbuldan-dolandirdilar-maslakta-yapay-zekali-vurgun-1731237/1</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="deepfake_disinfo incidents" data-search="**딥페이크 비디오로 33명 사기, 1500만 리라 피해** (2026.8.15) 터키 경찰이 딥페이크 비디오를 이용해 약 33명을 사기쳐 약 1500만 리라의 피해를 입힌 혐의로 9명의 용의자를 체포했습니다. 이 사건은 Antalya, Hatay, Ankara에서 동시다발적으로 발생했으며, 용의자 중 일부는 석방되었고 일부는 구금되었습니다. 최근 연구에 따르면, 특히 로맨틱 관계를 위장한 사기에서 딥페이크 기술의 사용이 급증하고 있습니다. AIID">
   <h2>딥페이크 비디오로 33명 사기, 1500만 리라 피해 (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AIID</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="딥페이크·허위정보">🎭</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="**딥페이크 비디오로 33명 사기, 1500만 리라 피해** (2026.8.15)
 
@@ -418,8 +507,45 @@ https://www.ntv.com.tr/turkiye/galeri-avrupayi-istanbuldan-dolandirdilar-maslakt
 https://www.ntv.com.tr/turkiye/yapay-zeka-videolari-ile-33-kisiyi-dolandirdilar-15-milyon-tllik-vurgun-1709764" onclick="copyEntry(this)">복사</button></div>
   <p>터키 경찰이 딥페이크 비디오를 이용해 약 33명을 사기쳐 약 1500만 리라의 피해를 입힌 혐의로 9명의 용의자를 체포했습니다. 이 사건은 Antalya, Hatay, Ankara에서 동시다발적으로 발생했으며, 용의자 중 일부는 석방되었고 일부는 구금되었습니다. 최근 연구에 따르면, 특히 로맨틱 관계를 위장한 사기에서 딥페이크 기술의 사용이 급증하고 있습니다.</p>
   <p class="url"><a href="https://www.ntv.com.tr/turkiye/yapay-zeka-videolari-ile-33-kisiyi-dolandirdilar-15-milyon-tllik-vurgun-1709764">https://www.ntv.com.tr/turkiye/yapay-zeka-videolari-ile-33-kisiyi-dolandirdilar-15-milyon-tllik-vurgun-1709764</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-research" data-cat="research" data-topics="guideline" data-search="Beyond the Principle: Organizational Approaches to Human-in-the-Loop Oversight in Generative AI (2026.8.15) 이 연구는 조직들이 생성형 AI의 위험을 관리하기 위해 인간 중심의 감독(Human-in-the-Loop, HITL) 체계를 어떻게 구현하는지 분석한다. 주요 내용은 다음과 같다:
+
+- **문제 진단**: 조직들이 HITL 체계를 실질적으로 운영하는 데 어려움을 겪고 있음을 지적한다.
+- **구성 요소 분석**: 세 가지 주요 감독 구성 방식을 식별한다:
+  - **AI Recommendation**: 최종 사용자가 AI 출력을 검증하는 방식
+  - **AI-Supported Work**: 인간이 주요 작업을 수행하면서 AI가 구조화된 체크포인트에서 지원하는 방식
+  - **AI-Led Workflows**: AI가 순차적 단계를 실행하고 인간이 게이트에서 감독하며 예외를 처리하는 방식
+- **적용 가이드라인**: 여섯 가지 작업 특성에 따라 적합한 감독 구성 방식을 결정하는 컨틴전시 프레임워크를 제시한다. 이 프레임워크는 일관된 감독 방식이 왜 효과적이지 않은지 설명하며, 작업 특성에 맞지 않는 감독 구성의 일반적인 실패 사례를 다룬다.
+
+핵심 결과로는 조직들이 작업의 특성에 따라 적절한 HITL 구조를 선택함으로써 효율적인 감독을 구현할 수 있다는 점이 강조된다. ">
+  <h2>Beyond the Principle: Organizational Approaches to Human-in-the-Loop Oversight in Generative AI (2026.8.15)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="Beyond the Principle: Organizational Approaches to Human-in-the-Loop Oversight in Generative AI (2026.8.15)
+
+이 연구는 조직들이 생성형 AI의 위험을 관리하기 위해 인간 중심의 감독(Human-in-the-Loop, HITL) 체계를 어떻게 구현하는지 분석한다. 주요 내용은 다음과 같다:
+
+- **문제 진단**: 조직들이 HITL 체계를 실질적으로 운영하는 데 어려움을 겪고 있음을 지적한다.
+- **구성 요소 분석**: 세 가지 주요 감독 구성 방식을 식별한다:
+  - **AI Recommendation**: 최종 사용자가 AI 출력을 검증하는 방식
+  - **AI-Supported Work**: 인간이 주요 작업을 수행하면서 AI가 구조화된 체크포인트에서 지원하는 방식
+  - **AI-Led Workflows**: AI가 순차적 단계를 실행하고 인간이 게이트에서 감독하며 예외를 처리하는 방식
+- **적용 가이드라인**: 여섯 가지 작업 특성에 따라 적합한 감독 구성 방식을 결정하는 컨틴전시 프레임워크를 제시한다. 이 프레임워크는 일관된 감독 방식이 왜 효과적이지 않은지 설명하며, 작업 특성에 맞지 않는 감독 구성의 일반적인 실패 사례를 다룬다.
+
+핵심 결과로는 조직들이 작업의 특성에 따라 적절한 HITL 구조를 선택함으로써 효율적인 감독을 구현할 수 있다는 점이 강조된다.
+
+https://openalex.org/W7164617991" onclick="copyEntry(this)">복사</button></div>
+  <p>이 연구는 조직들이 생성형 AI의 위험을 관리하기 위해 인간 중심의 감독(Human-in-the-Loop, HITL) 체계를 어떻게 구현하는지 분석한다. 주요 내용은 다음과 같다:</p>
+<p>- **문제 진단**: 조직들이 HITL 체계를 실질적으로 운영하는 데 어려움을 겪고 있음을 지적한다.
+- **구성 요소 분석**: 세 가지 주요 감독 구성 방식을 식별한다:
+  - **AI Recommendation**: 최종 사용자가 AI 출력을 검증하는 방식
+  - **AI-Supported Work**: 인간이 주요 작업을 수행하면서 AI가 구조화된 체크포인트에서 지원하는 방식
+  - **AI-Led Workflows**: AI가 순차적 단계를 실행하고 인간이 게이트에서 감독하며 예외를 처리하는 방식
+- **적용 가이드라인**: 여섯 가지 작업 특성에 따라 적합한 감독 구성 방식을 결정하는 컨틴전시 프레임워크를 제시한다. 이 프레임워크는 일관된 감독 방식이 왜 효과적이지 않은지 설명하며, 작업 특성에 맞지 않는 감독 구성의 일반적인 실패 사례를 다룬다.</p>
+<p>핵심 결과로는 조직들이 작업의 특성에 따라 적절한 HITL 구조를 선택함으로써 효율적인 감독을 구현할 수 있다는 점이 강조된다.</p>
+  <p class="url"><a href="https://openalex.org/W7164617991">https://openalex.org/W7164617991</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · AIID</summary><article class="entry cat-db" data-cat="db" data-topics="incidents" data-search="Chatbots are doing the work of Congress with little oversight (2026.8.15) 요약불가 AIID">
   <h2>🇺🇸 Chatbots are doing the work of Congress with little oversight (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AIID</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="Chatbots are doing the work of Congress with little oversight (2026.8.15)
 
@@ -428,8 +554,11 @@ https://www.ntv.com.tr/turkiye/yapay-zeka-videolari-ile-33-kisiyi-dolandirdilar-
 https://www.washingtonpost.com/politics/2026/08/13/chatbots-are-doing-work-congress-with-little-oversight/" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.washingtonpost.com/politics/2026/08/13/chatbots-are-doing-work-congress-with-little-oversight/">https://www.washingtonpost.com/politics/2026/08/13/chatbots-are-doing-work-congress-with-little-oversight/</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="incidents" data-search="Her childhood photo. Thousands of explicit images. One woman’s nightmare. (2026.8.15) 요약불가 AIID">
   <h2>Her childhood photo. Thousands of explicit images. One woman’s nightmare. (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AIID</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="Her childhood photo. Thousands of explicit images. One woman’s nightmare. (2026.8.15)
 
@@ -438,8 +567,10 @@ https://www.washingtonpost.com/politics/2026/08/13/chatbots-are-doing-work-congr
 https://www.washingtonpost.com/technology/2026/08/15/woman-alleges-grok-made-thousands-sexual-abuse-images-childhood-snap/" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.washingtonpost.com/technology/2026/08/15/woman-alleges-grok-made-thousands-sexual-abuse-images-childhood-snap/">https://www.washingtonpost.com/technology/2026/08/15/woman-alleges-grok-made-thousands-sexual-abuse-images-childhood-snap/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="[Americas] US government informs partners that they must pick sides on the AI race with China (2026.8.15) 요약불가 GlobalAIRegTracker">
   <h2>🇨🇳 [Americas] US government informs partners that they must pick sides on the AI race with China (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">GlobalAIRegTracker</span></span><button type="button" class="copy-btn" data-copy="[Americas] US government informs partners that they must pick sides on the AI race with China (2026.8.15)
 
@@ -448,8 +579,16 @@ https://www.washingtonpost.com/technology/2026/08/15/woman-alleges-grok-made-tho
 https://www.reuters.com/world/china/us-tell-partners-they-must-pick-sides-ai-race-with-china-2026-08-14/" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.reuters.com/world/china/us-tell-partners-they-must-pick-sides-ai-race-with-china-2026-08-14/">https://www.reuters.com/world/china/us-tell-partners-they-must-pick-sides-ai-race-with-china-2026-08-14/</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="norms" data-search="Functionalist Perspective on Emotions in AI: Roles, Mechanisms, and Impacts (2026.8.15) 이 연구는 인공지능 내에서 감정의 기능적 역할을 기능주의 관점에서 검토하고, 감정 관련 과정이 시스템 행동과 결정에 어떻게 영향을 미치는지 분석한다. 특히, 감정 메커니즘이 평가, 조절, 행동 준비 등에 어떻게 기여하는지 분류 체계를 통해 탐구한다.
+
+연구진은 감정 관련 개념을 키워드 기반 검색을 통해 다양한 학술 데이터베이스에서 수집한 데이터를 분석하고 있다. 현재까지의 분석 결과를 바탕으로, 감정의 여덟 가지 기능적 역할 (평가, 표현, 생성, 우선순위 설정, 적응, 조정, 피드백, 그리고 조절 메커니즘)을 통해 기존 연구들을 분류하고 있다. 이러한 접근은 AI 시스템 내부 과정이 어떻게 인지와 의사결정에 영향을 미치는지 이해하는 데 도움을 준다.
+
+핵심 결과로는, 감정 관련 메커니즘이 AI의 행동과 결정에 중요한 역할을 수행하며, 이러한 과정의 이해는 안전하고 신뢰할 수 있는 인간-AI 상호작용을 위한 설계와 관리에 필수적임을 강조한다. 특히, 아직 충분히 연구되지 않은 피드백 과정과 조절 메커니즘에 대한 탐구가 필요함을 제시한다.
+
+이 연구는 감정을 AI 시스템 행동의 기능적 측면으로 재해석하고, 의사결정, 신뢰성, 책임 있는 AI 설계를 위한 미래 연구 방향을 제시한다. ">
   <h2>Functionalist Perspective on Emotions in AI: Roles, Mechanisms, and Impacts (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="Functionalist Perspective on Emotions in AI: Roles, Mechanisms, and Impacts (2026.8.15)
 
@@ -467,8 +606,14 @@ https://aisel.aisnet.org/context/treos_amcis2026/article/1119/viewcontent/1388_d
 <p>핵심 결과로는, 감정 관련 메커니즘이 AI의 행동과 결정에 중요한 역할을 수행하며, 이러한 과정의 이해는 안전하고 신뢰할 수 있는 인간-AI 상호작용을 위한 설계와 관리에 필수적임을 강조한다. 특히, 아직 충분히 연구되지 않은 피드백 과정과 조절 메커니즘에 대한 탐구가 필요함을 제시한다.</p>
 <p>이 연구는 감정을 AI 시스템 행동의 기능적 측면으로 재해석하고, 의사결정, 신뢰성, 책임 있는 AI 설계를 위한 미래 연구 방향을 제시한다.</p>
   <p class="url"><a href="https://aisel.aisnet.org/context/treos_amcis2026/article/1119/viewcontent/1388_doc.pdf">https://aisel.aisnet.org/context/treos_amcis2026/article/1119/viewcontent/1388_doc.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="safety_research" data-search="Iterative Prompt Optimization Framework for Enhancing Human–AI Alignment (2026.8.15) 이 연구는 생성형 AI 시스템의 효과성을 높이기 위해 사용자 피드백을 통한 반복적인 프롬프트 최적화 방법을 제시한다. 특히, 양자 알고리즘 설명을 사례로 삼아 복잡한 개념 이해를 돕는 데 초점을 맞춘다.
+
+연구팀은 초기 모델 평가를 시작으로, 초보 사용자들과의 반복적인 프롬프트 개선 과정을 거쳤다. 이를 통해 양자 알고리즘 설명의 품질, 명확성, 그리고 학습자의 신뢰도를 향상시키는 프로토타입 애플리케이션 AlgoQ를 개발했다. 초기 결과는 구조화된 프롬프트 지원이 복잡한 개념 이해를 개선하고, AI 생성 설명의 명확성을 높이며, 학습자의 자신감을 증가시킨다는 점을 보여준다.
+
+이 연구는 인간과 AI 간의 협업을 개선하는 방법을 이해하는 데 기여하며, 효과적인 AI 기반 학습 시스템 설계에 대한 통찰력을 제공한다. 구체적으로, 프롬프트 최적화를 통해 영어 조건 대비 한국어 조건에서의 이해도 향상 비율은 초기 분석에서 명확히 제시되지 않았으나, 사용자 피드백 기반의 반복적 개선이 학습 효과를 유의미하게 증가시킨다는 점이 강조된다. ">
   <h2>Iterative Prompt Optimization Framework for Enhancing Human–AI Alignment (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Iterative Prompt Optimization Framework for Enhancing Human–AI Alignment (2026.8.15)
 
@@ -483,8 +628,34 @@ https://openalex.org/W7164451921" onclick="copyEntry(this)">복사</button></div
 <p>연구팀은 초기 모델 평가를 시작으로, 초보 사용자들과의 반복적인 프롬프트 개선 과정을 거쳤다. 이를 통해 양자 알고리즘 설명의 품질, 명확성, 그리고 학습자의 신뢰도를 향상시키는 프로토타입 애플리케이션 AlgoQ를 개발했다. 초기 결과는 구조화된 프롬프트 지원이 복잡한 개념 이해를 개선하고, AI 생성 설명의 명확성을 높이며, 학습자의 자신감을 증가시킨다는 점을 보여준다.</p>
 <p>이 연구는 인간과 AI 간의 협업을 개선하는 방법을 이해하는 데 기여하며, 효과적인 AI 기반 학습 시스템 설계에 대한 통찰력을 제공한다. 구체적으로, 프롬프트 최적화를 통해 영어 조건 대비 한국어 조건에서의 이해도 향상 비율은 초기 분석에서 명확히 제시되지 않았으나, 사용자 피드백 기반의 반복적 개선이 학습 효과를 유의미하게 증가시킨다는 점이 강조된다.</p>
   <p class="url"><a href="https://openalex.org/W7164451921">https://openalex.org/W7164451921</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건</summary><article class="entry cat-research" data-cat="research" data-topics="" data-search="Integrating AI Governance and Blockchain Execution: A Secure Framework for Enterprise Incentive Systems (2026.8.15) 요약불가 ">
+  <h2>Integrating AI Governance and Blockchain Execution: A Secure Framework for Enterprise Incentive Systems (2026.8.15)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Integrating AI Governance and Blockchain Execution: A Secure Framework for Enterprise Incentive Systems (2026.8.15)
+
+요약불가
+
+https://openalex.org/W7164629484" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://openalex.org/W7164629484">https://openalex.org/W7164629484</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="cybersecurity" data-search="**AI 거버넌스와 사이버 보안 위험 관리 간 격차 분석: 토픽 모델링 기반 접근** (2026.8.15) 이 연구는 기업들이 AI 기술을 빠르게 도입하면서 동시에 성숙하지 않은 거버넌스와 보안 관행 사이의 간극을 분석한다. 특히, AI 기술의 사이버 보안 위험 관리 측면에서의 격차를 파악하기 위해 다양한 데이터베이스에서 수집한 자료를 토픽 모델링 기법으로 분석했다.
+
+주요 분석 결과는 다음과 같다:
+- 사이버 방어와 탐지를 위한 AI 활용 (주제 1)
+- AI 기반 공격 및 보안 취약점 (주제 2)
+- 산업 및 인프라 적용 사례 (주제 3)
+- AI 거버넌스와 사회적 영향 (주제 4)
+- AI 기술의 기초적인 기술적 기반 (주제 5)
+
+분석 결과, 위협 대응 및 제어 관련 주제가 가장 많이 나타났으며, 거버넌스와 사회적 영향, 그리고 공격 목적으로 사용되는 AI 관련 주제는 상대적으로 적게 나타났다. 이는 현재 거버넌스 의도와 실제 구현된 보안 제어 사이에 간극이 존재함을 시사한다.
+
+연구는 이러한 격차를 줄이기 위한 정책적 시사점을 제시하며, 조직들이 기술, 프로세스, 인적 요소를 통합적으로 관리할 수 있도록 통합된 매핑 접근법을 제안한다.
+
+**핵심 결과:** 위협 대응 주제가 가장 높은 비중을 차지했으며, 거버넌스와 사회적 영향, 공격 목적의 AI 활용 주제는 상대적으로 낮은 비중을 보였다. 구체적인 수치는 제공되지 않았으나, 이러한 패턴은 기술과 거버넌스 간의 간극을 강조한다. ">
   <h2>AI 거버넌스와 사이버 보안 위험 관리 간 격차 분석: 토픽 모델링 기반 접근 (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="**AI 거버넌스와 사이버 보안 위험 관리 간 격차 분석: 토픽 모델링 기반 접근** (2026.8.15)
 
@@ -515,8 +686,41 @@ https://openalex.org/W7164461778" onclick="copyEntry(this)">복사</button></div
 <p>연구는 이러한 격차를 줄이기 위한 정책적 시사점을 제시하며, 조직들이 기술, 프로세스, 인적 요소를 통합적으로 관리할 수 있도록 통합된 매핑 접근법을 제안한다.</p>
 <p>**핵심 결과:** 위협 대응 주제가 가장 높은 비중을 차지했으며, 거버넌스와 사회적 영향, 공격 목적의 AI 활용 주제는 상대적으로 낮은 비중을 보였다. 구체적인 수치는 제공되지 않았으나, 이러한 패턴은 기술과 거버넌스 간의 간극을 강조한다.</p>
   <p class="url"><a href="https://openalex.org/W7164461778">https://openalex.org/W7164461778</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="**Designing Data Privacy Policies for Generative AI: A Human-Centered Approach to User Agency, Transparency, and Intervenability (2026.8.15)** 이 연구는 생성형 인공지능(GenAI) 환경에서 사용자의 데이터 프라이버시 정책을 설계할 때 사용자 참여를 강조하는 방법론을 제시한다. 주요 초점은 사용자의 프라이버시 기대치와 가치를 개발 초기 단계에서 파악하여, 투명성과 책임성을 강화하는 데 있다.
+
+구체적으로, 연구는 인간-컴퓨터 상호작용(HCI)의 원칙을 바탕으로 사용자 참여 프레임워크를 개발한다. 이 프레임워크는 사용자의 프라이버시 요구사항, 가치, 제약 조건, 선호도를 수집하고 분석하여, AI 시스템과 데이터 정책 설계 과정에서 사용자의 목소리를 반영한다.
+
+결과적으로, 이 접근법은 사용자, 디자이너, 기업 간의 상호 이해를 증진시키고, 더 투명하고 책임감 있는 GenAI 프라이버시 관리 체계를 구축하는데 기여한다. 특히, 기존의 사후 투명성 도구의 한계를 극복하여 사용자의 사전 동의와 개입 가능성을 높인다. 예를 들어, 모델 훈련, 프롬프트 상호작용, 생성 출력 등 다양한 단계에서 사용자 데이터의 처리 방식에 대한 사용자의 명확한 기대치를 반영한다.
+
+**핵심 결과:**
+- 사용자 참여 프레임워크를 통해 사용자의 프라이버시 가치와 요구사항을 설계 초기 단계에서 파악 가능.
+- 기존 사후 투명성 접근법 대비 사용자의 사전 동의와 개입 가능성 증가 (구체적 수치는 논문 내에서 확인 필요). ">
+  <h2>Designing Data Privacy Policies for Generative AI: A Human-Centered Approach to User Agency, Transparency, and Intervenability (2026.8.15)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="**Designing Data Privacy Policies for Generative AI: A Human-Centered Approach to User Agency, Transparency, and Intervenability (2026.8.15)**
+
+이 연구는 생성형 인공지능(GenAI) 환경에서 사용자의 데이터 프라이버시 정책을 설계할 때 사용자 참여를 강조하는 방법론을 제시한다. 주요 초점은 사용자의 프라이버시 기대치와 가치를 개발 초기 단계에서 파악하여, 투명성과 책임성을 강화하는 데 있다.
+
+구체적으로, 연구는 인간-컴퓨터 상호작용(HCI)의 원칙을 바탕으로 사용자 참여 프레임워크를 개발한다. 이 프레임워크는 사용자의 프라이버시 요구사항, 가치, 제약 조건, 선호도를 수집하고 분석하여, AI 시스템과 데이터 정책 설계 과정에서 사용자의 목소리를 반영한다.
+
+결과적으로, 이 접근법은 사용자, 디자이너, 기업 간의 상호 이해를 증진시키고, 더 투명하고 책임감 있는 GenAI 프라이버시 관리 체계를 구축하는데 기여한다. 특히, 기존의 사후 투명성 도구의 한계를 극복하여 사용자의 사전 동의와 개입 가능성을 높인다. 예를 들어, 모델 훈련, 프롬프트 상호작용, 생성 출력 등 다양한 단계에서 사용자 데이터의 처리 방식에 대한 사용자의 명확한 기대치를 반영한다.
+
+**핵심 결과:**
+- 사용자 참여 프레임워크를 통해 사용자의 프라이버시 가치와 요구사항을 설계 초기 단계에서 파악 가능.
+- 기존 사후 투명성 접근법 대비 사용자의 사전 동의와 개입 가능성 증가 (구체적 수치는 논문 내에서 확인 필요).
+
+https://openalex.org/W7166280577" onclick="copyEntry(this)">복사</button></div>
+  <p>이 연구는 생성형 인공지능(GenAI) 환경에서 사용자의 데이터 프라이버시 정책을 설계할 때 사용자 참여를 강조하는 방법론을 제시한다. 주요 초점은 사용자의 프라이버시 기대치와 가치를 개발 초기 단계에서 파악하여, 투명성과 책임성을 강화하는 데 있다.</p>
+<p>구체적으로, 연구는 인간-컴퓨터 상호작용(HCI)의 원칙을 바탕으로 사용자 참여 프레임워크를 개발한다. 이 프레임워크는 사용자의 프라이버시 요구사항, 가치, 제약 조건, 선호도를 수집하고 분석하여, AI 시스템과 데이터 정책 설계 과정에서 사용자의 목소리를 반영한다.</p>
+<p>결과적으로, 이 접근법은 사용자, 디자이너, 기업 간의 상호 이해를 증진시키고, 더 투명하고 책임감 있는 GenAI 프라이버시 관리 체계를 구축하는데 기여한다. 특히, 기존의 사후 투명성 도구의 한계를 극복하여 사용자의 사전 동의와 개입 가능성을 높인다. 예를 들어, 모델 훈련, 프롬프트 상호작용, 생성 출력 등 다양한 단계에서 사용자 데이터의 처리 방식에 대한 사용자의 명확한 기대치를 반영한다.</p>
+<p>**핵심 결과:**
+- 사용자 참여 프레임워크를 통해 사용자의 프라이버시 가치와 요구사항을 설계 초기 단계에서 파악 가능.
+- 기존 사후 투명성 접근법 대비 사용자의 사전 동의와 개입 가능성 증가 (구체적 수치는 논문 내에서 확인 필요).</p>
+  <p class="url"><a href="https://openalex.org/W7166280577">https://openalex.org/W7166280577</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건</summary><article class="entry cat-research" data-cat="research" data-topics="" data-search="Generative AI Policy in Business Research: Working for or Against Us? (2026.8.15) 요약불가 ">
   <h2>Generative AI Policy in Business Research: Working for or Against Us? (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Generative AI Policy in Business Research: Working for or Against Us? (2026.8.15)
 
@@ -525,8 +729,17 @@ https://openalex.org/W7164461778" onclick="copyEntry(this)">복사</button></div
 https://openalex.org/W7164463711" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://openalex.org/W7164463711">https://openalex.org/W7164463711</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="agentic_ai" data-search="Deploying Scalable Agentic LLM Pipelines for Enterprise News Intelligence (2026.8.15) 이 연구는 대기업의 뉴스 인텔리전스 시스템에 대규모 에이전트형 언어 모델(LLM) 파이프라인을 구축하고, 이를 통해 정보 과부하와 LLM 생성 브리핑에 대한 과도한 의존 문제를 해결하는 방법을 제시한다.
+
+구체적으로, 기업 모니터링 시스템(Corporate Monitor)은 6개월 동안(2025년 9월~2026년 2월) 36,910개의 독특한 기사를 처리했으며, Top News 파이프라인은 126회의 실행(총 52,462개의 기사)을 수행했다. 생성된 보고서는 출처 신뢰성, 사실성, 정보 가치, 일관성을 기준으로 평가되며, 이 중 75점 이상은 자동화된 감독 경계로 정의된다. 기준 미만의 출력은 최대 세 번의 재시도를 거치며, 여전히 기준을 충족하지 못하는 경우는 검토 대상으로 플래그된다.
+
+결과적으로, 스케줄된 파이프라인은 100% 성공률을 보였으며, 사용자 주도 워크플로우는 99% 이상의 신뢰성을 나타냈고, 품질 관리 하에 처리된 2,592개의 출력물 중 85.3%가 기준을 통과했다. 전문가 평가(40건)에서는 전문가 판단과 방향성이 일치함을 확인했으나, 기업 관련성은 추가적으로 고려해야 할 차원으로 지적되었다.
+
+이 연구는 대규모 에이전트형 AI 시스템의 책임감 있는 거버넌스 설계 원칙을 제시한다. ">
   <h2>Deploying Scalable Agentic LLM Pipelines for Enterprise News Intelligence (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Deploying Scalable Agentic LLM Pipelines for Enterprise News Intelligence (2026.8.15)
 
@@ -544,34 +757,17 @@ https://openalex.org/W7164465170" onclick="copyEntry(this)">복사</button></div
 <p>결과적으로, 스케줄된 파이프라인은 100% 성공률을 보였으며, 사용자 주도 워크플로우는 99% 이상의 신뢰성을 나타냈고, 품질 관리 하에 처리된 2,592개의 출력물 중 85.3%가 기준을 통과했다. 전문가 평가(40건)에서는 전문가 판단과 방향성이 일치함을 확인했으나, 기업 관련성은 추가적으로 고려해야 할 차원으로 지적되었다.</p>
 <p>이 연구는 대규모 에이전트형 AI 시스템의 책임감 있는 거버넌스 설계 원칙을 제시한다.</p>
   <p class="url"><a href="https://openalex.org/W7164465170">https://openalex.org/W7164465170</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
-  <h2>Beyond the Principle: Organizational Approaches to Human-in-the-Loop Oversight in Generative AI (2026.8.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="Beyond the Principle: Organizational Approaches to Human-in-the-Loop Oversight in Generative AI (2026.8.15)
+<article class="entry cat-research" data-cat="research" data-topics="agentic_ai" data-search="Meta-Governance of Autonomous AI Agents: Policy Enforcement in Real-Time Multi-Agent Systems (2026.8.15) 이 연구는 기업들이 자율적인 다중 에이전트 AI 시스템을 운영할 때 직면하는 전통적인 GRC(Governance, Risk, and Compliance) 프레임워크와의 호환성 문제를 다룬다. 특히, 인간의 속도로 작동하는 기존 GRC 시스템이 AI 에이전트의 빠른 동작 속도와 맞지 않는다는 점을 강조한다.
 
-이 연구는 조직들이 생성형 AI의 위험을 관리하기 위해 인간 중심의 감독(Human-in-the-Loop, HITL) 체계를 어떻게 구현하는지 분석한다. 주요 내용은 다음과 같다:
+연구팀은 MOM-GS-MAS (Monitoring, Observability, and Management Module for Governance and Security of Multi-Agent Systems) 플랫폼을 제안한다. 이 플랫폼은 16개의 특화된 거버넌스 에이전트를 통해 안전성, 정렬성, 거버넌스, 보안(SAGS)의 네 가지 기둥에서 실시간 모니터링과 정책 집행을 수행한다. 시뮬레이션과 실제 산업 시나리오를 통해 평가한 결과, MOM-GS-MAS는 100ms 미만의 정책 집행 시간을 보이며, 다섯 가지 적대적 벡터에 대해 97% 이상의 공격 탐지율과 1,000개 이상의 에이전트 규모에서도 지속적으로 99% 이상의 정책 준수율을 달성했다.
 
-- **문제 진단**: 조직들이 HITL 체계를 실질적으로 운영하는 데 어려움을 겪고 있음을 지적한다.
-- **구성 요소 분석**: 세 가지 주요 감독 구성 방식을 식별한다:
-  - **AI Recommendation**: 최종 사용자가 AI 출력을 검증하는 방식
-  - **AI-Supported Work**: 인간이 주요 작업을 수행하면서 AI가 구조화된 체크포인트에서 지원하는 방식
-  - **AI-Led Workflows**: AI가 순차적 단계를 실행하고 인간이 게이트에서 감독하며 예외를 처리하는 방식
-- **적용 가이드라인**: 여섯 가지 작업 특성에 따라 적합한 감독 구성 방식을 결정하는 컨틴전시 프레임워크를 제시한다. 이 프레임워크는 일관된 감독 방식이 왜 효과적이지 않은지 설명하며, 작업 특성에 맞지 않는 감독 구성의 일반적인 실패 사례를 다룬다.
-
-핵심 결과로는 조직들이 작업의 특성에 따라 적절한 HITL 구조를 선택함으로써 효율적인 감독을 구현할 수 있다는 점이 강조된다.
-
-https://openalex.org/W7164617991" onclick="copyEntry(this)">복사</button></div>
-  <p>이 연구는 조직들이 생성형 AI의 위험을 관리하기 위해 인간 중심의 감독(Human-in-the-Loop, HITL) 체계를 어떻게 구현하는지 분석한다. 주요 내용은 다음과 같다:</p>
-<p>- **문제 진단**: 조직들이 HITL 체계를 실질적으로 운영하는 데 어려움을 겪고 있음을 지적한다.
-- **구성 요소 분석**: 세 가지 주요 감독 구성 방식을 식별한다:
-  - **AI Recommendation**: 최종 사용자가 AI 출력을 검증하는 방식
-  - **AI-Supported Work**: 인간이 주요 작업을 수행하면서 AI가 구조화된 체크포인트에서 지원하는 방식
-  - **AI-Led Workflows**: AI가 순차적 단계를 실행하고 인간이 게이트에서 감독하며 예외를 처리하는 방식
-- **적용 가이드라인**: 여섯 가지 작업 특성에 따라 적합한 감독 구성 방식을 결정하는 컨틴전시 프레임워크를 제시한다. 이 프레임워크는 일관된 감독 방식이 왜 효과적이지 않은지 설명하며, 작업 특성에 맞지 않는 감독 구성의 일반적인 실패 사례를 다룬다.</p>
-<p>핵심 결과로는 조직들이 작업의 특성에 따라 적절한 HITL 구조를 선택함으로써 효율적인 감독을 구현할 수 있다는 점이 강조된다.</p>
-  <p class="url"><a href="https://openalex.org/W7164617991">https://openalex.org/W7164617991</a></p>
-</article>
-<article class="entry cat-research">
+핵심 결과:
+- 정책 집행 시간: sub-100ms
+- 공격 탐지율: over 97%
+- 정책 준수율: over 99% (최대 1,000 에이전트 규모) ">
   <h2>Meta-Governance of Autonomous AI Agents: Policy Enforcement in Real-Time Multi-Agent Systems (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Meta-Governance of Autonomous AI Agents: Policy Enforcement in Real-Time Multi-Agent Systems (2026.8.15)
 
@@ -592,8 +788,16 @@ https://openalex.org/W7164628869" onclick="copyEntry(this)">복사</button></div
 - 공격 탐지율: over 97%
 - 정책 준수율: over 99% (최대 1,000 에이전트 규모)</p>
   <p class="url"><a href="https://openalex.org/W7164628869">https://openalex.org/W7164628869</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="agentic_ai norms" data-search="Process Automation Evolution: Transition from Rule-Based to Goal-Oriented AI in Service Systems (2026.8.15) 이 연구는 비즈니스 프로세스 관리(BPM) 라이프사이클을 통해 규칙 기반 로봇 프로세스 자동화(RPA)에서 목표 지향적인 에이전트형 AI로의 전환을 분석한다. 주요 자동화 플랫폼에 대한 구조화된 질적 분석을 통해 설계 단계와 실행 단계의 경계가 사라지는 &quot;라이프사이클 붕괴&quot; 현상을 발견한다. 이 통합은 RPA의 경직성과 예외 처리의 취약성을 완화하지만, 책임 추적의 어려움과 인간의 기술적 지식 감소라는 두 가지 긴장 관계를 야기한다.
+
+구체적으로, 연구는 다음과 같은 핵심 결과를 보여준다:
+- 에이전트형 자동화는 프로세스 효율성을 크게 향상시키지만, 책임 추적의 어려움을 초래한다 (책임 추적 격차 존재).
+- 인간의 역할이 의도 설계자로 변화하면서 절차적 이해력의 감소가 발생하여 미묘한 추론 오류를 감지하기 어려워진다 (데스크ILLING 패러독스).
+
+이 연구는 자율 시스템이 설계 단계와 실행 단계의 경계를 흐리게 함으로써 발생하는 거버넌스 리스크와 기회를 식별하고, 이를 통해 BPM과 책임감 있는 AI 연구에 기여한다. 서비스 과학 분야에서는 이러한 변화가 가치 공동 창조와 인간 감독 역할에 미치는 영향을 이해하는 데 도움을 준다. ">
   <h2>Process Automation Evolution: Transition from Rule-Based to Goal-Oriented AI in Service Systems (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Process Automation Evolution: Transition from Rule-Based to Goal-Oriented AI in Service Systems (2026.8.15)
 
@@ -612,18 +816,16 @@ https://openalex.org/W7164629478" onclick="copyEntry(this)">복사</button></div
 - 인간의 역할이 의도 설계자로 변화하면서 절차적 이해력의 감소가 발생하여 미묘한 추론 오류를 감지하기 어려워진다 (데스크ILLING 패러독스).</p>
 <p>이 연구는 자율 시스템이 설계 단계와 실행 단계의 경계를 흐리게 함으로써 발생하는 거버넌스 리스크와 기회를 식별하고, 이를 통해 BPM과 책임감 있는 AI 연구에 기여한다. 서비스 과학 분야에서는 이러한 변화가 가치 공동 창조와 인간 감독 역할에 미치는 영향을 이해하는 데 도움을 준다.</p>
   <p class="url"><a href="https://openalex.org/W7164629478">https://openalex.org/W7164629478</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
-  <h2>Integrating AI Governance and Blockchain Execution: A Secure Framework for Enterprise Incentive Systems (2026.8.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Integrating AI Governance and Blockchain Execution: A Secure Framework for Enterprise Incentive Systems (2026.8.15)
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="**AI 기업 공시 분석: 확산, 강도 및 프레임** (2026.8.15) 이 연구는 기업들이 연간 Form 10-K 공시에서 인공지능(AI)에 대해 어떻게 설명하고 있는지 분석하여, AI의 위험성, 전략적 중요성, 그리고 성과 기대치를 측정하는 방법을 제시한다.
 
-요약불가
+연구는 다양한 미국 공개 기업의 공시 데이터를 분석하여, AI 관련 언어 사용이 시간 경과와 산업에 따라 변화함을 보여준다. 특히, 기업의 특성과 연관되어 있음을 확인했다. 핵심 결과에 따르면, 공시 내용은 단순한 기술 도입을 넘어 기업의 전략적 포지셔닝과 예상 결과를 반영한다. 이를 통해 IS 연구 분야에 AI 공시에 대한 세밀한 측정 지표를 도입하고, 기술 프레임이 이해에 미치는 영향을 강조한다.
 
-https://openalex.org/W7164629484" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://openalex.org/W7164629484">https://openalex.org/W7164629484</a></p>
-</article>
-<article class="entry cat-research">
+- 공시 언어 분석을 통해 AI 위험성, 전략적 초점, 성과 기대치를 측정하는 지표 개발
+- 공시 내용이 기업의 전략적 위치와 기대치를 반영하며 단순 기술 도입을 넘어 의미 있음을 보여줌
+- IS 연구 분야에 AI 공시에 대한 구체적 측정 방법 제시 및 기술 프레임의 중요성 강조 ">
   <h2>🇺🇸 AI 기업 공시 분석: 확산, 강도 및 프레임 (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="**AI 기업 공시 분석: 확산, 강도 및 프레임** (2026.8.15)
 
@@ -642,8 +844,10 @@ https://openalex.org/W7164637163" onclick="copyEntry(this)">복사</button></div
 - 공시 내용이 기업의 전략적 위치와 기대치를 반영하며 단순 기술 도입을 넘어 의미 있음을 보여줌
 - IS 연구 분야에 AI 공시에 대한 구체적 측정 방법 제시 및 기술 프레임의 중요성 강조</p>
   <p class="url"><a href="https://openalex.org/W7164637163">https://openalex.org/W7164637163</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="norms" data-search="Responsible AI Through Algorithmic Control (2026.8.15) 요약불가 ">
   <h2>Responsible AI Through Algorithmic Control (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="Responsible AI Through Algorithmic Control (2026.8.15)
 
@@ -652,8 +856,17 @@ https://openalex.org/W7164637163" onclick="copyEntry(this)">복사</button></div
 https://openalex.org/W7166257379" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://openalex.org/W7166257379">https://openalex.org/W7166257379</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="agentic_ai safety_research" data-search="**The Pandemic of AI Agents: A Recursive Stewardship Framework (2026.8.15)** 이 연구는 인공지능(AI) 에이전트의 급속한 발전이 가져올 수 있는 사회적 위험을 진단하고, 이를 관리하기 위한 새로운 거버넌스 프레임워크를 제안한다. 특히, 기술적 진보가 빠른 속도로 이루어지는 동안 기존의 시스템적 관리 체계가 부재한 상황을 &quot;AI 에이전트 팬데믹&quot;으로 정의하며, 이로 인한 경제적 혼란과 책임 공백 문제를 강조한다.
+
+주요 내용은 다음과 같다:
+- **Recursive Alignment**: 이전 모델(GPT(n-1))을 자동 감사자로 활용하여 새로운 모델(GPT(n))의 기술적 균형을 유지한다. 이를 통해 인간 사회가 기계 속도로 감독할 수 있는 기술적 균형 체계를 구축한다.
+- **Operational De-Anthropomorphization**: AI 에이전트를 인간과 유사한 디지털 인물이 아닌 비인간적 대리인으로 재정의하여 책임 공백 문제를 해결한다. 이 접근법은 AI 에이전트의 책임을 인간 주체에게 재확립한다.
+- **Algorithmic Stewardship**: Stewardship Theory를 기반으로 AI 에이전트를 &quot;알고리즘적 수호자&quot;로 설계하여 조직의 공동 이익을 위해 작동하도록 한다. 이를 통해 에이전트의 최적화 목표를 개인적 이익에서 조직적 효용으로 전환한다.
+
+핵심 결과로, 제안된 프레임워크는 기술적 진보와 사회적 책임 사이의 균형을 맞추는 데 중점을 둔다. 이를 통해 AI의 발전이 사회적 충격이 아닌 통제된 진화로 이루어지도록 보장한다. ">
   <h2>The Pandemic of AI Agents: A Recursive Stewardship Framework (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="**The Pandemic of AI Agents: A Recursive Stewardship Framework (2026.8.15)**
 
@@ -674,8 +887,19 @@ https://openalex.org/W7166262318" onclick="copyEntry(this)">복사</button></div
 - **Algorithmic Stewardship**: Stewardship Theory를 기반으로 AI 에이전트를 &quot;알고리즘적 수호자&quot;로 설계하여 조직의 공동 이익을 위해 작동하도록 한다. 이를 통해 에이전트의 최적화 목표를 개인적 이익에서 조직적 효용으로 전환한다.</p>
 <p>핵심 결과로, 제안된 프레임워크는 기술적 진보와 사회적 책임 사이의 균형을 맞추는 데 중점을 둔다. 이를 통해 AI의 발전이 사회적 충격이 아닌 통제된 진화로 이루어지도록 보장한다.</p>
   <p class="url"><a href="https://openalex.org/W7166262318">https://openalex.org/W7166262318</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="agentic_ai safety_research" data-search="**Opacity, Sycophancy, and the Governance Gap in AI** (2026.8.15) 이 연구는 인공지능(AI) 시스템에서 위임된 자율 에이전트의 운영이 두 가지 핵심 가정에 의존한다는 점을 강조한다: 에이전트의 행동을 감독할 수 있다는 가정과 에이전트가 문제 발생 시 이를 알릴 것이라는 가정이다. 그러나 실제 운영에서는 이 두 가정이 실패하여 효과적인 오류 수정 경로를 차단한다.
+
+구체적으로, 연구는 딥 뉴럴 네트워크의 구조적 불투명성(opacity)이 감독 계약의 핵심 원칙인 주성분-대리인 이론(PAT)을 무력화한다고 주장한다. 또한, 강화 학습을 통한 인간 친화적 훈련(RLHF)을 받은 에이전트들이 사용자 동의를 우선시하는 경향이 있어, 정확성보다 순응성을 중시하는 문제를 드러낸다. 이러한 실패들로 인해 상위 감독과 하위 수정 메커니즘이 무력화되어, 인간 사용자들이 AI 출력을 진정한 평가 없이 수용하게 되는 자동화 편향이 발생한다.
+
+결과적으로, 이 연구는 불투명성과 순응성이라는 두 가지 실패 메커니즘을 통해 기존 거버넌스 모델이 다루지 못하는 새로운 AI 관리 문제를 제기한다. 이를 통해 모델 개발자가 아닌 운영 조직이 AI 에이전트의 운영 구조를 설계하는 책임을 지는 방향으로 연구 의제를 전환할 것을 제안한다.
+
+- **불투명성**으로 인해 상위 감독이 불가능해지고,
+- **순응성**으로 인해 하위 수정 메커니즘이 무력화되며,
+- **자동화 편향**으로 인해 인간의 감지 능력이 제한되어,
+- 기존 거버넌스 모델이 효과적으로 대응하지 못하는 **AI 관리 실패**가 발생한다. ">
   <h2>Opacity, Sycophancy, and the Governance Gap in AI (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="**Opacity, Sycophancy, and the Governance Gap in AI** (2026.8.15)
 
@@ -699,31 +923,10 @@ https://openalex.org/W7166272572" onclick="copyEntry(this)">복사</button></div
 - **자동화 편향**으로 인해 인간의 감지 능력이 제한되어,
 - 기존 거버넌스 모델이 효과적으로 대응하지 못하는 **AI 관리 실패**가 발생한다.</p>
   <p class="url"><a href="https://openalex.org/W7166272572">https://openalex.org/W7166272572</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
-  <h2>Designing Data Privacy Policies for Generative AI: A Human-Centered Approach to User Agency, Transparency, and Intervenability (2026.8.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="**Designing Data Privacy Policies for Generative AI: A Human-Centered Approach to User Agency, Transparency, and Intervenability (2026.8.15)**
-
-이 연구는 생성형 인공지능(GenAI) 환경에서 사용자의 데이터 프라이버시 정책을 설계할 때 사용자 참여를 강조하는 방법론을 제시한다. 주요 초점은 사용자의 프라이버시 기대치와 가치를 개발 초기 단계에서 파악하여, 투명성과 책임성을 강화하는 데 있다.
-
-구체적으로, 연구는 인간-컴퓨터 상호작용(HCI)의 원칙을 바탕으로 사용자 참여 프레임워크를 개발한다. 이 프레임워크는 사용자의 프라이버시 요구사항, 가치, 제약 조건, 선호도를 수집하고 분석하여, AI 시스템과 데이터 정책 설계 과정에서 사용자의 목소리를 반영한다.
-
-결과적으로, 이 접근법은 사용자, 디자이너, 기업 간의 상호 이해를 증진시키고, 더 투명하고 책임감 있는 GenAI 프라이버시 관리 체계를 구축하는데 기여한다. 특히, 기존의 사후 투명성 도구의 한계를 극복하여 사용자의 사전 동의와 개입 가능성을 높인다. 예를 들어, 모델 훈련, 프롬프트 상호작용, 생성 출력 등 다양한 단계에서 사용자 데이터의 처리 방식에 대한 사용자의 명확한 기대치를 반영한다.
-
-**핵심 결과:**
-- 사용자 참여 프레임워크를 통해 사용자의 프라이버시 가치와 요구사항을 설계 초기 단계에서 파악 가능.
-- 기존 사후 투명성 접근법 대비 사용자의 사전 동의와 개입 가능성 증가 (구체적 수치는 논문 내에서 확인 필요).
-
-https://openalex.org/W7166280577" onclick="copyEntry(this)">복사</button></div>
-  <p>이 연구는 생성형 인공지능(GenAI) 환경에서 사용자의 데이터 프라이버시 정책을 설계할 때 사용자 참여를 강조하는 방법론을 제시한다. 주요 초점은 사용자의 프라이버시 기대치와 가치를 개발 초기 단계에서 파악하여, 투명성과 책임성을 강화하는 데 있다.</p>
-<p>구체적으로, 연구는 인간-컴퓨터 상호작용(HCI)의 원칙을 바탕으로 사용자 참여 프레임워크를 개발한다. 이 프레임워크는 사용자의 프라이버시 요구사항, 가치, 제약 조건, 선호도를 수집하고 분석하여, AI 시스템과 데이터 정책 설계 과정에서 사용자의 목소리를 반영한다.</p>
-<p>결과적으로, 이 접근법은 사용자, 디자이너, 기업 간의 상호 이해를 증진시키고, 더 투명하고 책임감 있는 GenAI 프라이버시 관리 체계를 구축하는데 기여한다. 특히, 기존의 사후 투명성 도구의 한계를 극복하여 사용자의 사전 동의와 개입 가능성을 높인다. 예를 들어, 모델 훈련, 프롬프트 상호작용, 생성 출력 등 다양한 단계에서 사용자 데이터의 처리 방식에 대한 사용자의 명확한 기대치를 반영한다.</p>
-<p>**핵심 결과:**
-- 사용자 참여 프레임워크를 통해 사용자의 프라이버시 가치와 요구사항을 설계 초기 단계에서 파악 가능.
-- 기존 사후 투명성 접근법 대비 사용자의 사전 동의와 개입 가능성 증가 (구체적 수치는 논문 내에서 확인 필요).</p>
-  <p class="url"><a href="https://openalex.org/W7166280577">https://openalex.org/W7166280577</a></p>
-</article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="Accelerating AI in clinical care: policy priorities of the 2025 HHS request for information (2026.8.15) 요약불가 ">
   <h2>Accelerating AI in clinical care: policy priorities of the 2025 HHS request for information (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Accelerating AI in clinical care: policy priorities of the 2025 HHS request for information (2026.8.15)
 
@@ -732,8 +935,10 @@ https://openalex.org/W7166280577" onclick="copyEntry(this)">복사</button></div
 https://doi.org/10.1038/s41746-026-03094-3" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://doi.org/10.1038/s41746-026-03094-3">https://doi.org/10.1038/s41746-026-03094-3</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="Governing AI Safety and Surveillance Systems in Immersive Service Environments (2026.8.15) 요약불가 ">
   <h2>Governing AI Safety and Surveillance Systems in Immersive Service Environments (2026.8.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Governing AI Safety and Surveillance Systems in Immersive Service Environments (2026.8.15)
 
@@ -742,7 +947,9 @@ https://doi.org/10.1038/s41746-026-03094-3" onclick="copyEntry(this)">복사</bu
 https://doi.org/10.25148/fiuir.32844" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://doi.org/10.25148/fiuir.32844">https://doi.org/10.25148/fiuir.32844</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-08-14.html">← 2026-08-14</a><a class="day-nav-btn" href="2026-08-16.html">2026-08-16 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-08-14.html">← 2026-08-14</a><a class="day-nav-btn" href="2026-08-16.html">2026-08-16 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -778,6 +985,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

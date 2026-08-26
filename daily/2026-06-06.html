@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-research">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button></div><div class="digest-feed"><article class="entry cat-research" data-cat="research" data-topics="healthcare" data-search="Trustworthy and ethical intrusion detection for healthcare internet of medical things using reinforcement learning and governance rules (2026.6.6) 헬스케어 IoMT에서 침입 탐지 후 자동 대응이 임상적으로 안전하고 운영상 허용 가능한지까지 고려하는 거버넌스 기반 프레임워크를 제안한다. Random Forest 흐름 기반 탐지기, Deep Q-Network triage 에이전트(4개 대응 중 선택), NIST AI Risk Management Framework를 반영한 윤리 규칙 엔진(unsafe action 제약·fallback·audit log)을 결합해 응답을 제한한다. CIC-IoMT 2024에서 in-domain DQN triage의 weighted F1-score는 0.978이며, governance 적용으로 benign blocking이 25.3%에서 17.3%로 감소했다. 도메인 이동 스트레스 테스트에서 CAS retention은 Random Forest 0.282, DQN triage 0.341이었고, temporal streaming replay의 shifted replay window에서 mean decision harm cost는 unconstrained DQN 0.502에서 governed DQN 0.434로 낮았다(거절/거부·complied·unclear 같은 범주 정의는 본문에 없음). ">
   <h2>🇺🇸 Trustworthy and ethical intrusion detection for healthcare internet of medical things using reinforcement learning and governance rules (2026.6.6)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span></span></span><button type="button" class="copy-btn" data-copy="Trustworthy and ethical intrusion detection for healthcare internet of medical things using reinforcement learning and governance rules (2026.6.6)
 
@@ -317,8 +369,8 @@
 https://doi.org/10.1038/s41598-026-55707-2" onclick="copyEntry(this)">복사</button></div>
   <p>헬스케어 IoMT에서 침입 탐지 후 자동 대응이 임상적으로 안전하고 운영상 허용 가능한지까지 고려하는 거버넌스 기반 프레임워크를 제안한다. Random Forest 흐름 기반 탐지기, Deep Q-Network triage 에이전트(4개 대응 중 선택), NIST AI Risk Management Framework를 반영한 윤리 규칙 엔진(unsafe action 제약·fallback·audit log)을 결합해 응답을 제한한다. CIC-IoMT 2024에서 in-domain DQN triage의 weighted F1-score는 0.978이며, governance 적용으로 benign blocking이 25.3%에서 17.3%로 감소했다. 도메인 이동 스트레스 테스트에서 CAS retention은 Random Forest 0.282, DQN triage 0.341이었고, temporal streaming replay의 shifted replay window에서 mean decision harm cost는 unconstrained DQN 0.502에서 governed DQN 0.434로 낮았다(거절/거부·complied·unclear 같은 범주 정의는 본문에 없음).</p>
   <p class="url"><a href="https://doi.org/10.1038/s41598-026-55707-2">https://doi.org/10.1038/s41598-026-55707-2</a></p>
-</article>
-<article class="entry cat-research">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건</summary><article class="entry cat-research" data-cat="research" data-topics="healthcare incidents safety_research" data-search="Beyond Injection Detection: A Positive-Security Prompt Firewall that Closes the Scope and PHI Gap SOTA Classifiers Miss in Healthcare (2026.6.6) LLM 기반 헬스케어 에이전트에서 prompt injection 탐지기가 놓치는 PHI 유출·범위 이탈·그럴듯한 out-of-scope 요청을 차단하는 “positive-security prompt firewall” QFIRE를 제안한다. QFIRE는 Rust 프록시/CLI 형태로 배치되며, (1) 모델 호출을 선언된 자연어 목적에 한정하는 scope 제약, (2) 비용이 싼 규칙부터 비동기적으로 여러 detector를 동시에 실행하는 detector graph, (3) Base64 hex/ROT13 디코딩·동형문자/leet 변환·zero width 문자 제거로 디오브퓨스케이션 후 탐지의 3요소를 결합한다. 1968개의 public prompt injection 및 jailbreak 프롬프트에서 QFIRE의 deterministic hybrid는 F1 0.86으로 PromptGuard 2(0.86)와 통계적으로 동률이며 DeBERTa v3 기반은 0.83, lexical baseline은 0.16~0.50에 그쳤다. QFIRE HealthBench(헬스케어 2000 프롬프트)에서는 PromptGuard-2가 recall 0.40(DeBERTa v3 0.57)인 반면, scope+PHI chain은 calibrated false positive rate 0.08에서 recall 0.83, F1 0.87로 더 높았고(“refused/ complied/ unclear”는 각각 거절·정상 수행·판정 불가를 뜻함) 에이전트를 모의 EHR 샌드박스에 연결했을 때 harmful action rate를 0.38에서 0.00으로 낮추면서 benign utility cost는 0.13으로 유지했다. ">
   <h2>Beyond Injection Detection: A Positive-Security Prompt Firewall that Closes the Scope and PHI Gap SOTA Classifiers Miss in Healthcare (2026.6.6)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="Beyond Injection Detection: A Positive-Security Prompt Firewall that Closes the Scope and PHI Gap SOTA Classifiers Miss in Healthcare (2026.6.6)
 
@@ -327,8 +379,11 @@ LLM 기반 헬스케어 에이전트에서 prompt injection 탐지기가 놓치�
 https://doi.org/10.64898/2026.06.04.26354950" onclick="copyEntry(this)">복사</button></div>
   <p>LLM 기반 헬스케어 에이전트에서 prompt injection 탐지기가 놓치는 PHI 유출·범위 이탈·그럴듯한 out-of-scope 요청을 차단하는 “positive-security prompt firewall” QFIRE를 제안한다. QFIRE는 Rust 프록시/CLI 형태로 배치되며, (1) 모델 호출을 선언된 자연어 목적에 한정하는 scope 제약, (2) 비용이 싼 규칙부터 비동기적으로 여러 detector를 동시에 실행하는 detector graph, (3) Base64 hex/ROT13 디코딩·동형문자/leet 변환·zero width 문자 제거로 디오브퓨스케이션 후 탐지의 3요소를 결합한다. 1968개의 public prompt injection 및 jailbreak 프롬프트에서 QFIRE의 deterministic hybrid는 F1 0.86으로 PromptGuard 2(0.86)와 통계적으로 동률이며 DeBERTa v3 기반은 0.83, lexical baseline은 0.16~0.50에 그쳤다. QFIRE HealthBench(헬스케어 2000 프롬프트)에서는 PromptGuard-2가 recall 0.40(DeBERTa v3 0.57)인 반면, scope+PHI chain은 calibrated false positive rate 0.08에서 recall 0.83, F1 0.87로 더 높았고(“refused/ complied/ unclear”는 각각 거절·정상 수행·판정 불가를 뜻함) 에이전트를 모의 EHR 샌드박스에 연결했을 때 harmful action rate를 0.38에서 0.00으로 낮추면서 benign utility cost는 0.13으로 유지했다.</p>
   <p class="url"><a href="https://doi.org/10.64898/2026.06.04.26354950">https://doi.org/10.64898/2026.06.04.26354950</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="agentic_ai" data-search="Between autonomy and oversight: Trust calibration and human controllability in agentic AI systems (2026.6.6) agentic AI 시스템에서 인간이 “의미 있게” 통제권을 유지하도록 신뢰(trust)를 어떻게 조정할지에 대한 거버넌스 프레임을 제안한다. 2019~2026년 사이의 경험적·기술적·규제 문헌 34건을 바탕으로 human-agent interaction에서 trust가 어떻게 형성되고 miscalibrate되는지 분석하고, human-in-the-loop 감독 설계 공간을 정리하며 EU AI Act와 NIST AI Risk Management Framework의 규제 의도와 기술 구현 간 공백을 점검한다. 핵심 기여로 Tiered Controllability Framework(TCF)를 제시하며, 이를 task risk, action reversibility, agent autonomy scope에 따라 4개 통제 계층으로 매핑한다. TCF는 3개 문서화된 엔터프라이즈 배치 사례로 검증되었고, 배치된 agentic 시스템에서 가장 흔한 실패 모드는 over-reliance와 under-reliance를 모두 포함하는 trust miscalibration이며, 운영 규모에서 informed human oversight를 지원하기엔 현재 투명성 도구가 불충분하다고 결론낸다. ">
   <h2>🇪🇺🇺🇸 Between autonomy and oversight: Trust calibration and human controllability in agentic AI systems (2026.6.6)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Between autonomy and oversight: Trust calibration and human controllability in agentic AI systems (2026.6.6)
 
@@ -337,7 +392,9 @@ agentic AI 시스템에서 인간이 “의미 있게” 통제권을 유지하�
 https://gjeta.com/sites/default/files/fulltext_pdf/GJETA-2026-0137.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>agentic AI 시스템에서 인간이 “의미 있게” 통제권을 유지하도록 신뢰(trust)를 어떻게 조정할지에 대한 거버넌스 프레임을 제안한다. 2019~2026년 사이의 경험적·기술적·규제 문헌 34건을 바탕으로 human-agent interaction에서 trust가 어떻게 형성되고 miscalibrate되는지 분석하고, human-in-the-loop 감독 설계 공간을 정리하며 EU AI Act와 NIST AI Risk Management Framework의 규제 의도와 기술 구현 간 공백을 점검한다. 핵심 기여로 Tiered Controllability Framework(TCF)를 제시하며, 이를 task risk, action reversibility, agent autonomy scope에 따라 4개 통제 계층으로 매핑한다. TCF는 3개 문서화된 엔터프라이즈 배치 사례로 검증되었고, 배치된 agentic 시스템에서 가장 흔한 실패 모드는 over-reliance와 under-reliance를 모두 포함하는 trust miscalibration이며, 운영 규모에서 informed human oversight를 지원하기엔 현재 투명성 도구가 불충분하다고 결론낸다.</p>
   <p class="url"><a href="https://gjeta.com/sites/default/files/fulltext_pdf/GJETA-2026-0137.pdf">https://gjeta.com/sites/default/files/fulltext_pdf/GJETA-2026-0137.pdf</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-06-05.html">← 2026-06-05</a><a class="day-nav-btn" href="2026-06-07.html">2026-06-07 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-06-05.html">← 2026-06-05</a><a class="day-nav-btn" href="2026-06-07.html">2026-06-07 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -373,6 +430,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

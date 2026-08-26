@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="" data-search="Google Antigravity 2.0 출시: 에이전트 중심 독립형 데스크톱 앱 (2026.5.17) Google Antigravity 2.0은 macOS·Linux·Windows에서 사용할 수 있는 독립형 데스크톱 애플리케이션으로, IDE 없이 Gemini 기반 에이전트의 동기·비동기 작업을 지원한다. 동적 subagents, 비동기 작업 관리, JSON hooks, 예약 작업, 프로젝트 단위 권한 설정, 음성 실시간 전사와 같은 기능이 추가됐다. 기존 Antigravity IDE 사용자는 다음 업데이트 때 2.0으로 자동 업데이트되며, 당분간 IDE와 Agent Manager도 계속 사용할 수 있지만 향후 Agent Manager는 IDE에서 제거될 예정이다. 구글 딥마인드">
   <h2>Google Antigravity 2.0 출시: 에이전트 중심 독립형 데스크톱 앱 (2026.5.17)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span></span><button type="button" class="copy-btn" data-copy="Google Antigravity 2.0 출시: 에이전트 중심 독립형 데스크톱 앱 (2026.5.17)
 
@@ -317,8 +369,10 @@ Google Antigravity 2.0은 macOS·Linux·Windows에서 사용할 수 있는 독�
 https://deepmind.google/blog/introducing-google-antigravity-2-0/" onclick="copyEntry(this)">복사</button></div>
   <p>Google Antigravity 2.0은 macOS·Linux·Windows에서 사용할 수 있는 독립형 데스크톱 애플리케이션으로, IDE 없이 Gemini 기반 에이전트의 동기·비동기 작업을 지원한다. 동적 subagents, 비동기 작업 관리, JSON hooks, 예약 작업, 프로젝트 단위 권한 설정, 음성 실시간 전사와 같은 기능이 추가됐다. 기존 Antigravity IDE 사용자는 다음 업데이트 때 2.0으로 자동 업데이트되며, 당분간 IDE와 Agent Manager도 계속 사용할 수 있지만 향후 Agent Manager는 IDE에서 제거될 예정이다.</p>
   <p class="url"><a href="https://deepmind.google/blog/introducing-google-antigravity-2-0/">https://deepmind.google/blog/introducing-google-antigravity-2-0/</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="구글 딥마인드, 아시아·태평양 환경 위험 대응 액셀러레이터 프로그램 출범 (2026.5.17) 구글 딥마인드는 아시아·태평양 지역의 기후변화와 환경 위험에 대응하기 위해 ‘지구를 위한 AI’에 초점을 둔 3개월 액셀러레이터 프로그램을 출범한다. 이 프로그램은 지역 내 스타트업, 연구팀, 비영리단체가 자연·기후·농업·에너지 등의 문제 해결에 frontier AI를 활용하도록 전문가 멘토링과 맞춤형 지원, Google AI 모델 통합을 제공한다. 프로그램은 싱가포르 대면 부트캠프로 시작되며, 참여 희망자는 등록 의사를 제출할 수 있다. 구글 딥마인드">
   <h2>구글 딥마인드, 아시아·태평양 환경 위험 대응 액셀러레이터 프로그램 출범 (2026.5.17)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="구글 딥마인드, 아시아·태평양 환경 위험 대응 액셀러레이터 프로그램 출범 (2026.5.17)
 
@@ -327,8 +381,10 @@ https://deepmind.google/blog/introducing-google-antigravity-2-0/" onclick="copyE
 https://deepmind.google/blog/were-launching-the-google-deepmind-accelerator-program-in-asia-pacific-to-tackle-environmental-risks/" onclick="copyEntry(this)">복사</button></div>
   <p>구글 딥마인드는 아시아·태평양 지역의 기후변화와 환경 위험에 대응하기 위해 ‘지구를 위한 AI’에 초점을 둔 3개월 액셀러레이터 프로그램을 출범한다. 이 프로그램은 지역 내 스타트업, 연구팀, 비영리단체가 자연·기후·농업·에너지 등의 문제 해결에 frontier AI를 활용하도록 전문가 멘토링과 맞춤형 지원, Google AI 모델 통합을 제공한다. 프로그램은 싱가포르 대면 부트캠프로 시작되며, 참여 희망자는 등록 의사를 제출할 수 있다.</p>
   <p class="url"><a href="https://deepmind.google/blog/were-launching-the-google-deepmind-accelerator-program-in-asia-pacific-to-tackle-environmental-risks/">https://deepmind.google/blog/were-launching-the-google-deepmind-accelerator-program-in-asia-pacific-to-tackle-environmental-risks/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="frontier" data-search="ChinAI #358: 중국 AI 생태계 주요 동향 모음 (25회) (2026.5.17) 이번 호는 중국 AI 생태계와 관련된 10개 중국어권 글을 소개하고, 독자 투표로 다음 주 번역 대상을 선정하는 정기 모음집이다. 주요 내용은 ModelBest의 AGI 기술 경로, ByteDance Doubao의 유료화, AI 인재의 경업금지 분쟁, 2026년 1분기 AI 안전 벤치마크, AI PPT 도구와 OpenClaw 확산 등이다. 이밖에 중국 대학의 5년간 5,000개 이상 전공 폐지, DeepSeek 기업가치 급등, 업계 루머, 중국 당국의 Manus 인수 중단 논평도 다룬다. ChinAI">
   <h2>🇨🇳 ChinAI #358: 중국 AI 생태계 주요 동향 모음 (25회) (2026.5.17)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">ChinAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="ChinAI #358: 중국 AI 생태계 주요 동향 모음 (25회) (2026.5.17)
 
@@ -337,8 +393,10 @@ https://deepmind.google/blog/were-launching-the-google-deepmind-accelerator-prog
 https://chinai.substack.com/p/chinai-358-around-the-horn-25th-episode" onclick="copyEntry(this)">복사</button></div>
   <p>이번 호는 중국 AI 생태계와 관련된 10개 중국어권 글을 소개하고, 독자 투표로 다음 주 번역 대상을 선정하는 정기 모음집이다. 주요 내용은 ModelBest의 AGI 기술 경로, ByteDance Doubao의 유료화, AI 인재의 경업금지 분쟁, 2026년 1분기 AI 안전 벤치마크, AI PPT 도구와 OpenClaw 확산 등이다. 이밖에 중국 대학의 5년간 5,000개 이상 전공 폐지, DeepSeek 기업가치 급등, 업계 루머, 중국 당국의 Manus 인수 중단 논평도 다룬다.</p>
   <p class="url"><a href="https://chinai.substack.com/p/chinai-358-around-the-horn-25th-episode">https://chinai.substack.com/p/chinai-358-around-the-horn-25th-episode</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="공공 시스템 AI 배치를 위한 제도적 준비도 프레임워크(IAR) 제안 (저자 외 2명, arXiv, 2026.5.17) 공공 교육 시스템에서 모델은 내부 테스트에서 기술적으로는 가능해도, 승인·데이터 체계·인간 감독·운영 역량·재정 지속성·법적 명확성 부족으로 확산 배치가 중단되는 문제를 다룬다. 두 개의 익명화된 운영 사례(영상 기반 인체계측 스크리닝 도구, 음성 분석 기반 조기 학습 위험 식별)에서 확산이 막힌 제도적 원인을 바탕으로, 배치 준비도를 5개 차원(제도/운영 적합성, 데이터 생태계 성숙도, 인간 감독 역량, 재정 지속가능성, 규제 정렬 준비도)으로 평가하는 IAR를 제시하고 no-go·pilot-only·광범위 배치 준비 같은 단계적 의사결정을 지원한다고 설명한다. 기존 책임 AI/모델 평가가 주로 모델·데이터·개발자 측을 다루는 한계를 보완해 “수용 기관”의 준비도를 평가하도록 설계되었다. arXiv">
   <h2>공공 시스템 AI 배치를 위한 제도적 준비도 프레임워크(IAR) 제안 (저자 외 2명, arXiv, 2026.5.17)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="공공 시스템 AI 배치를 위한 제도적 준비도 프레임워크(IAR) 제안 (저자 외 2명, arXiv, 2026.5.17)
 
@@ -347,8 +405,8 @@ https://chinai.substack.com/p/chinai-358-around-the-horn-25th-episode" onclick="
 https://arxiv.org/abs/2605.17203v1" onclick="copyEntry(this)">복사</button></div>
   <p>공공 교육 시스템에서 모델은 내부 테스트에서 기술적으로는 가능해도, 승인·데이터 체계·인간 감독·운영 역량·재정 지속성·법적 명확성 부족으로 확산 배치가 중단되는 문제를 다룬다. 두 개의 익명화된 운영 사례(영상 기반 인체계측 스크리닝 도구, 음성 분석 기반 조기 학습 위험 식별)에서 확산이 막힌 제도적 원인을 바탕으로, 배치 준비도를 5개 차원(제도/운영 적합성, 데이터 생태계 성숙도, 인간 감독 역량, 재정 지속가능성, 규제 정렬 준비도)으로 평가하는 IAR를 제시하고 no-go·pilot-only·광범위 배치 준비 같은 단계적 의사결정을 지원한다고 설명한다. 기존 책임 AI/모델 평가가 주로 모델·데이터·개발자 측을 다루는 한계를 보완해 “수용 기관”의 준비도를 평가하도록 설계되었다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.17203v1">https://arxiv.org/abs/2605.17203v1</a></p>
-</article>
-<article class="entry cat-research">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 3건 · arXiv</summary><article class="entry cat-research" data-cat="research" data-topics="" data-search="동적 LLM 정렬에서 선호의 비순환성·순환성을 분해하는 HRC 및 DSPPO (저자 외 3명, arXiv, 2026.5.17) RLHF의 단일 스칼라(전이적) 보상이 인간 선호의 순환적(cyclic) 성격을 반영하지 못하는 문제를 다루며, GPM류가 계층성과 순환성을 얽어 “dominant solution”을 보장하지 못한다는 이론적 한계를 제시한다. 게임이론적 분해로 선호를 직교한 전이적(스칼라) 성분과 순환적(벡터) 성분으로 명시적으로 분해하는 Hybrid Reward-Cyclic(HRC)와, 정렬을 시간가변 게임으로 보고 Nash equilibrium 쪽으로 점진 유도하는 Dynamic Self-Play Preference Optimization(DSPPO)를 제안하고 합성 데이터 및 RewardBench 2, AlpacaEval 2.0, Arena-Hard-v0.1, MT-Bench에서 실험한다. RewardBench 2에서 Gemma-2B-it 기준 +1.23% 개선을 포함해, AlpacaEval 2.0 length-controlled win-rate 44.75%, Arena-Hard-v0.1 46.8%의 peak 성능을 보고하며 BT·GPM 및 SPPO 변형 대비 우위를 보인다. arXiv">
   <h2>동적 LLM 정렬에서 선호의 비순환성·순환성을 분해하는 HRC 및 DSPPO (저자 외 3명, arXiv, 2026.5.17)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="동적 LLM 정렬에서 선호의 비순환성·순환성을 분해하는 HRC 및 DSPPO (저자 외 3명, arXiv, 2026.5.17)
 
@@ -357,8 +415,10 @@ RLHF의 단일 스칼라(전이적) 보상이 인간 선호의 순환적(cyclic)
 https://arxiv.org/abs/2605.17342v1" onclick="copyEntry(this)">복사</button></div>
   <p>RLHF의 단일 스칼라(전이적) 보상이 인간 선호의 순환적(cyclic) 성격을 반영하지 못하는 문제를 다루며, GPM류가 계층성과 순환성을 얽어 “dominant solution”을 보장하지 못한다는 이론적 한계를 제시한다. 게임이론적 분해로 선호를 직교한 전이적(스칼라) 성분과 순환적(벡터) 성분으로 명시적으로 분해하는 Hybrid Reward-Cyclic(HRC)와, 정렬을 시간가변 게임으로 보고 Nash equilibrium 쪽으로 점진 유도하는 Dynamic Self-Play Preference Optimization(DSPPO)를 제안하고 합성 데이터 및 RewardBench 2, AlpacaEval 2.0, Arena-Hard-v0.1, MT-Bench에서 실험한다. RewardBench 2에서 Gemma-2B-it 기준 +1.23% 개선을 포함해, AlpacaEval 2.0 length-controlled win-rate 44.75%, Arena-Hard-v0.1 46.8%의 peak 성능을 보고하며 BT·GPM 및 SPPO 변형 대비 우위를 보인다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.17342v1">https://arxiv.org/abs/2605.17342v1</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="연령 추정 모델은 생체인식 데이터를 처리하지 않음 (저자 외 0명, arXiv, 2026.5.17) 연령을 사진에서 추정하는 모델이 추론 시 신원 식별에 필요한 생체인식(identification) 수준의 표상을 형성하는지, 그리고 그에 따른 규제 쟁점을 다룬다. 14개 연령 추정 모델을 3개의 얼굴 검증(verification) 벤치마크에서 평가해, 연령 추정이 식별 임계값에 비해 “자릿수(order of magnitude)” 수준으로 낮아 개인 식별을 수행하지 못함을 보였다. 핵심 결과로 연령 추정 모델은 식별(threshold) 수준에 도달하지 못하며, 규제 관점에서 일시적 처리와 템플릿 저장을 구분하는 투명성 제공을 요구한다. arXiv">
   <h2>연령 추정 모델은 생체인식 데이터를 처리하지 않음 (저자 외 0명, arXiv, 2026.5.17)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="연령 추정 모델은 생체인식 데이터를 처리하지 않음 (저자 외 0명, arXiv, 2026.5.17)
 
@@ -367,8 +427,10 @@ https://arxiv.org/abs/2605.17342v1" onclick="copyEntry(this)">복사</button></d
 https://arxiv.org/abs/2605.17347v1" onclick="copyEntry(this)">복사</button></div>
   <p>연령을 사진에서 추정하는 모델이 추론 시 신원 식별에 필요한 생체인식(identification) 수준의 표상을 형성하는지, 그리고 그에 따른 규제 쟁점을 다룬다. 14개 연령 추정 모델을 3개의 얼굴 검증(verification) 벤치마크에서 평가해, 연령 추정이 식별 임계값에 비해 “자릿수(order of magnitude)” 수준으로 낮아 개인 식별을 수행하지 못함을 보였다. 핵심 결과로 연령 추정 모델은 식별(threshold) 수준에 도달하지 못하며, 규제 관점에서 일시적 처리와 템플릿 저장을 구분하는 투명성 제공을 요구한다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.17347v1">https://arxiv.org/abs/2605.17347v1</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="agentic_ai safety_research" data-search="에이전트형 AI 보안 탐지·대응을 위한 에이전틱 디텍션 시스템 ADR(저자 외 11명, arXiv, 2026.5.17) ADR은 Model Context Protocol(MCP)로 동작하는 엔터프라이즈 AI 에이전트에서 (1) 추론·프롬프트·의도-실행 인과흐름의 관측 부족, (2) 정적 규칙 기반 방어의 일반화 한계, (3) LLM 추론 기반 탐지의 비용 문제를 다룬다. ADR은 에이전틱 텔레메트리 수집(ADR Sensor), 사전 레드팀/하드 예제 생성(ADR Explorer), 빠른 1차 트리아지와 맥락 기반 추론을 결합한 2단계 온라인 탐지(ADR Detector)로 구성되며, Uber에서 10개월 이상 운영하며 7,200개 호스트와 일 10,000개 에이전트 세션을 처리했다. 핵심 결과로 97.2% precision으로 206개 자격증명 노출을 탐지했고, ADR-Bench에서는 zero false positives로 67% 공격을 탐지하며 F1-score에서 기존 3개 베이스라인 대비 2–4x, AgentDojo에서는 93개 태스크 중 3개 false alarm으로 모든 공격을 탐지했다. arXiv">
   <h2>에이전트형 AI 보안 탐지·대응을 위한 에이전틱 디텍션 시스템 ADR(저자 외 11명, arXiv, 2026.5.17)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="에이전트형 AI 보안 탐지·대응을 위한 에이전틱 디텍션 시스템 ADR(저자 외 11명, arXiv, 2026.5.17)
 
@@ -377,7 +439,10 @@ ADR은 Model Context Protocol(MCP)로 동작하는 엔터프라이즈 AI 에이�
 https://arxiv.org/abs/2605.17380v1" onclick="copyEntry(this)">복사</button></div>
   <p>ADR은 Model Context Protocol(MCP)로 동작하는 엔터프라이즈 AI 에이전트에서 (1) 추론·프롬프트·의도-실행 인과흐름의 관측 부족, (2) 정적 규칙 기반 방어의 일반화 한계, (3) LLM 추론 기반 탐지의 비용 문제를 다룬다. ADR은 에이전틱 텔레메트리 수집(ADR Sensor), 사전 레드팀/하드 예제 생성(ADR Explorer), 빠른 1차 트리아지와 맥락 기반 추론을 결합한 2단계 온라인 탐지(ADR Detector)로 구성되며, Uber에서 10개월 이상 운영하며 7,200개 호스트와 일 10,000개 에이전트 세션을 처리했다. 핵심 결과로 97.2% precision으로 206개 자격증명 노출을 탐지했고, ADR-Bench에서는 zero false positives로 67% 공격을 탐지하며 F1-score에서 기존 3개 베이스라인 대비 2–4x, AgentDojo에서는 93개 태스크 중 3개 false alarm으로 모든 공격을 탐지했다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.17380v1">https://arxiv.org/abs/2605.17380v1</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-05-16.html">← 2026-05-16</a><a class="day-nav-btn" href="2026-05-18.html">2026-05-18 →</a></nav>
+  
+  
+</article></details>
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-05-16.html">← 2026-05-16</a><a class="day-nav-btn" href="2026-05-18.html">2026-05-18 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -413,6 +478,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

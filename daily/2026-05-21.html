@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="law" data-search="AI 산업 육성 강화를 위한 「AI기본법 시행령」 개정안 입법예고 (2026.5.21) 과학기술정보통신부가 공공분야 AI 도입·활용 촉진, 인공지능연구소 설립·지원, 인공지능취약계층 및 AI 제품·서비스 비용 지원 등의 세부 내용을 담은 시행령 개정안을 입법예고했다. 인공지능취약계층에 경력단절여성·구직자·비수도권 중소기업 재직자·농어업인 등을 추가하고, 비용 지원 대상에는 비수도권 대학 인재와 이공계 인력을 포함한다. 개정안은 2026년 7월 21일 시행 예정이며, 의견은 6월 19일까지 제출할 수 있다. 과학기술정보통신부">
   <h2>AI 산업 육성 강화를 위한 「AI기본법 시행령」 개정안 입법예고 (2026.5.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">과학기술정보통신부</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="AI 산업 육성 강화를 위한 「AI기본법 시행령」 개정안 입법예고 (2026.5.21)
 
@@ -317,8 +369,10 @@
 https://eiec.kdi.re.kr/policy/materialView.do?num=281382" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부가 공공분야 AI 도입·활용 촉진, 인공지능연구소 설립·지원, 인공지능취약계층 및 AI 제품·서비스 비용 지원 등의 세부 내용을 담은 시행령 개정안을 입법예고했다. 인공지능취약계층에 경력단절여성·구직자·비수도권 중소기업 재직자·농어업인 등을 추가하고, 비용 지원 대상에는 비수도권 대학 인재와 이공계 인력을 포함한다. 개정안은 2026년 7월 21일 시행 예정이며, 의견은 6월 19일까지 제출할 수 있다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=281382">https://eiec.kdi.re.kr/policy/materialView.do?num=281382</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="「JAI-Trust：日本の生成AI의 안전성·보안 벤치마크 구축 프로젝트」개최 안내 (2026.5.21) AISI는 생성AI(LLM)의 안전성·보안 평가를 위한 벤치마크를 산·관·학이 협력해 구축하는 프로젝트 「JAI-Trust」의 개최를 안내했다. 이번 행사는 프로젝트의 전체 구상과 분과별 그간 성과·논점을 공유하고, AISI 및 파트너 단체의 보고와 토론, 참가자 교류회를 진행한다. 5월 21일에 이이노홀&amp;컨퍼런스센터에서 열리며 온라인 배급도 예정되어 있다. Japan AI Safety Institute(AISI-Japan)">
   <h2>🇯🇵 「JAI-Trust：日本の生成AI의 안전성·보안 벤치마크 구축 프로젝트」개최 안내 (2026.5.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Japan AI Safety Institute(AISI-Japan)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="「JAI-Trust：日本の生成AI의 안전성·보안 벤치마크 구축 프로젝트」개최 안내 (2026.5.21)
 
@@ -327,8 +381,10 @@ AISI는 생성AI(LLM)의 안전성·보안 평가를 위한 벤치마크를 산�
 https://aisi.go.jp/activity/activity_information/260427/" onclick="copyEntry(this)">복사</button></div>
   <p>AISI는 생성AI(LLM)의 안전성·보안 평가를 위한 벤치마크를 산·관·학이 협력해 구축하는 프로젝트 「JAI-Trust」의 개최를 안내했다. 이번 행사는 프로젝트의 전체 구상과 분과별 그간 성과·논점을 공유하고, AISI 및 파트너 단체의 보고와 토론, 참가자 교류회를 진행한다. 5월 21일에 이이노홀&amp;컨퍼런스센터에서 열리며 온라인 배급도 예정되어 있다.</p>
   <p class="url"><a href="https://aisi.go.jp/activity/activity_information/260427/">https://aisi.go.jp/activity/activity_information/260427/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="(2026.05.21) Loss of Oversight: AI 시스템의 감사·모니터링·사후조사가 더 어려워질 수 있다는 분석 전진형(fron-tier) AI에 대한 안전은 배포 전 감사, 운영 중 모니터링, 사고 발생 후 조사 능력에 달려 있으며, AISI 보고서는 이를 둘러싼 감독(oversight) 지형을 정리하고 변화 가능성을 평가했다. 정부·NGO·학계·개발사 등 다양한 분야 전문가 25명 인터뷰, 문헌검토, 내부 분석을 바탕으로 모델 행동, chain-of-thought, internals activations and circuits, 메모리 아키텍처, honesty training 등 5가지 감독 신호원을 다뤘다. 보고서는 현행 감독이 의존하는 기반이 효과적인 개입 없이는 약화(erosion)될 가능성이 높다고 결론내리며, 감독 관련 속성의 변화 추적·보고, 설계 단계에서 감독 기능 보존, 기존 방식의 열화에 대비한 대안(emerin-g) 감독 기법 투자를 권고한다. 영국 AI 보안 연구소(UK AI Security Institute, AISI-UK)">
   <h2>🇬🇧 (2026.05.21) Loss of Oversight: AI 시스템의 감사·모니터링·사후조사가 더 어려워질 수 있다는 분석</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">영국 AI 보안 연구소(UK AI Security Institute, AISI-UK)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="(2026.05.21) Loss of Oversight: AI 시스템의 감사·모니터링·사후조사가 더 어려워질 수 있다는 분석
 
@@ -337,18 +393,22 @@ https://aisi.go.jp/activity/activity_information/260427/" onclick="copyEntry(thi
 https://www.aisi.gov.uk/research/loss-of-oversight-how-ai-systems-may-become-harder-to-audit-monitor-and-investigate" onclick="copyEntry(this)">복사</button></div>
   <p>전진형(fron-tier) AI에 대한 안전은 배포 전 감사, 운영 중 모니터링, 사고 발생 후 조사 능력에 달려 있으며, AISI 보고서는 이를 둘러싼 감독(oversight) 지형을 정리하고 변화 가능성을 평가했다. 정부·NGO·학계·개발사 등 다양한 분야 전문가 25명 인터뷰, 문헌검토, 내부 분석을 바탕으로 모델 행동, chain-of-thought, internals activations and circuits, 메모리 아키텍처, honesty training 등 5가지 감독 신호원을 다뤘다. 보고서는 현행 감독이 의존하는 기반이 효과적인 개입 없이는 약화(erosion)될 가능성이 높다고 결론내리며, 감독 관련 속성의 변화 추적·보고, 설계 단계에서 감독 기능 보존, 기존 방식의 열화에 대비한 대안(emerin-g) 감독 기법 투자를 권고한다.</p>
   <p class="url"><a href="https://www.aisi.gov.uk/research/loss-of-oversight-how-ai-systems-may-become-harder-to-audit-monitor-and-investigate">https://www.aisi.gov.uk/research/loss-of-oversight-how-ai-systems-may-become-harder-to-audit-monitor-and-investigate</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="cybersecurity norms" data-search="싱가포르 IMDA, 기업의 대규모 AI 도입 및 디지털 복원력 강화를 위한 신규 이니셔티브 발표 (2026.5.21) 싱가포르 정보통신미디어개발청(IMDA)은 중소기업(SME)의 안전한 AI 도입을 돕기 위해 파트너십 확장 및 SME AI 임팩트 어워드를 신설. Grab, RSM 등과 협력하여 1만 개 이상의 기업에 AI 교육과 사이버 보안 점검을 무상 지원하고, 맞춤형 가이드인 &#x27;기업 임팩트를 위한 AI 플레이북&#x27;을 출시. IMDA">
   <h2>싱가포르 IMDA, 기업의 대규모 AI 도입 및 디지털 복원력 강화를 위한 신규 이니셔티브 발표 (2026.5.21)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">IMDA</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="싱가포르 IMDA, 기업의 대규모 AI 도입 및 디지털 복원력 강화를 위한 신규 이니셔티브 발표 (2026.5.21)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">IMDA</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="싱가포르 IMDA, 기업의 대규모 AI 도입 및 디지털 복원력 강화를 위한 신규 이니셔티브 발표 (2026.5.21)
 
 싱가포르 정보통신미디어개발청(IMDA)은 중소기업(SME)의 안전한 AI 도입을 돕기 위해 파트너십 확장 및 SME AI 임팩트 어워드를 신설. Grab, RSM 등과 협력하여 1만 개 이상의 기업에 AI 교육과 사이버 보안 점검을 무상 지원하고, 맞춤형 가이드인 &#x27;기업 임팩트를 위한 AI 플레이북&#x27;을 출시.
 
 https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/building-ai-ready-enterprises" onclick="copyEntry(this)">복사</button></div>
   <p>싱가포르 정보통신미디어개발청(IMDA)은 중소기업(SME)의 안전한 AI 도입을 돕기 위해 파트너십 확장 및 SME AI 임팩트 어워드를 신설. Grab, RSM 등과 협력하여 1만 개 이상의 기업에 AI 교육과 사이버 보안 점검을 무상 지원하고, 맞춤형 가이드인 &#x27;기업 임팩트를 위한 AI 플레이북&#x27;을 출시.</p>
   <p class="url"><a href="https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/building-ai-ready-enterprises">https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/building-ai-ready-enterprises</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="CSET, 새로운 AI 위험 불확실성 정량화 방법론 제안 (2026.5.21) CSET은 전문가들의 주관적 멸종 확률(P-doom) 추정 대신 &#x27;믿음(Belief)&#x27;과 &#x27;타당성(Plausibility)&#x27;이라는 증거 기반 개념을 도입한 보고서를 발간. 데이터가 부족한 불확실성 환경에서 위험을 정밀하게 분석하기 위해 직관적이고 수학적으로 엄밀한 두 가지 질문을 통한 새로운 평가 방법론을 제안. CSET">
   <h2>CSET, 새로운 AI 위험 불확실성 정량화 방법론 제안 (2026.5.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">CSET</span></span><button type="button" class="copy-btn" data-copy="CSET, 새로운 AI 위험 불확실성 정량화 방법론 제안 (2026.5.21)
 
@@ -357,8 +417,10 @@ CSET은 전문가들의 주관적 멸종 확률(P-doom) 추정 대신 &#x27;믿�
 https://cset.georgetown.edu/wp-content/uploads/CSET-Beyond-Pdoom-for-AI-Risk.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>CSET은 전문가들의 주관적 멸종 확률(P-doom) 추정 대신 &#x27;믿음(Belief)&#x27;과 &#x27;타당성(Plausibility)&#x27;이라는 증거 기반 개념을 도입한 보고서를 발간. 데이터가 부족한 불확실성 환경에서 위험을 정밀하게 분석하기 위해 직관적이고 수학적으로 엄밀한 두 가지 질문을 통한 새로운 평가 방법론을 제안.</p>
   <p class="url"><a href="https://cset.georgetown.edu/wp-content/uploads/CSET-Beyond-Pdoom-for-AI-Risk.pdf">https://cset.georgetown.edu/wp-content/uploads/CSET-Beyond-Pdoom-for-AI-Risk.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="agentic_ai cybersecurity" data-search="(2026.5.21) 집단적 AI 보안 강화를 위한 공통 기반 마련 AI의 코딩·도구 활용·다단계 추론(에이전틱 AI) 확산으로 보안 환경이 복잡해지고, 설정 오류·취약점 등 새로운 형태의 노출이 늘고 있다고 설명한다. AI 보안은 전통적 사이버보안에 더해, 모델의 확률적 동작과 데이터 학습 특성, 그리고 에이전트의 자율성 때문에 국경·산업을 넘는 협력이 필요하다고 강조한다. 우선순위로는 (1) 전이·자동화 가능한 프롬프트 인젝션 방어, (2) 에이전트의 메모리 오염·도구 오용·문맥 기반 지시 공격 등 보안 확보, (3) 학습/파인튜닝 데이터 조작을 통한 모델 포이즈닝 탐지·완화가 제시된다. 또한 국가별로 증거·평가·운영 역량을 단독 구축하기 어렵기 때문에 공통 벤치마크, 취약점 정보 공유 채널 등 ‘공유 AI 보안’의 기반을 G7 및 OECD를 통해 발전시킬 수 있다고 본다. OECD-AI">
   <h2>(2026.5.21) 집단적 AI 보안 강화를 위한 공통 기반 마련</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">OECD-AI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="(2026.5.21) 집단적 AI 보안 강화를 위한 공통 기반 마련
 
@@ -367,8 +429,10 @@ AI의 코딩·도구 활용·다단계 추론(에이전틱 AI) 확산으로 보�
 https://oecd.ai/en/wonk/establishing-the-shared-foundations-for-collective-ai-security" onclick="copyEntry(this)">복사</button></div>
   <p>AI의 코딩·도구 활용·다단계 추론(에이전틱 AI) 확산으로 보안 환경이 복잡해지고, 설정 오류·취약점 등 새로운 형태의 노출이 늘고 있다고 설명한다. AI 보안은 전통적 사이버보안에 더해, 모델의 확률적 동작과 데이터 학습 특성, 그리고 에이전트의 자율성 때문에 국경·산업을 넘는 협력이 필요하다고 강조한다. 우선순위로는 (1) 전이·자동화 가능한 프롬프트 인젝션 방어, (2) 에이전트의 메모리 오염·도구 오용·문맥 기반 지시 공격 등 보안 확보, (3) 학습/파인튜닝 데이터 조작을 통한 모델 포이즈닝 탐지·완화가 제시된다. 또한 국가별로 증거·평가·운영 역량을 단독 구축하기 어렵기 때문에 공통 벤치마크, 취약점 정보 공유 채널 등 ‘공유 AI 보안’의 기반을 G7 및 OECD를 통해 발전시킬 수 있다고 본다.</p>
   <p class="url"><a href="https://oecd.ai/en/wonk/establishing-the-shared-foundations-for-collective-ai-security">https://oecd.ai/en/wonk/establishing-the-shared-foundations-for-collective-ai-security</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="런던 시장 사디크 칸, 메트로폴리탄경찰의 Palantir 5,000만 파운드 AI 계약을 막아 조달·의존성 논란(기사·공고 게재일 2026.5.21) 런던 시장실은 메트가 Palantir 기술에 “의존”하게 될 위험과 조달 규정 위반을 이유로 5,000만 파운드 규모의 AI 계약을 차단했다고 밝혔다. 가디언 보도 이후 스코틀랜드야드는 새 기술이 없으면 인력 감축이 불가피해 치안에 영향을 줄 수 있다고 비판했으며, 시(경찰·범죄) 담당 기관(Mopac)은 메트의 조달 전략에 대한 승인 실패를 들어 계약을 막은 것으로 전해졌다. 한편 의회 과학기술위원회 위원 등은 vendor lock-in과 특정 대형 해외 사업자 의존 문제를 짚으며 칸의 결정을 환영했고, Palantir는 자사 소프트웨어가 여러 경찰의 범죄 대응에 도움을 줬다고 반박했다. 가디언(theguardian.com)">
   <h2>🇬🇧 런던 시장 사디크 칸, 메트로폴리탄경찰의 Palantir 5,000만 파운드 AI 계약을 막아 조달·의존성 논란(기사·공고 게재일 2026.5.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">가디언(theguardian.com)</span></span><button type="button" class="copy-btn" data-copy="런던 시장 사디크 칸, 메트로폴리탄경찰의 Palantir 5,000만 파운드 AI 계약을 막아 조달·의존성 논란(기사·공고 게재일 2026.5.21)
 
@@ -377,8 +441,10 @@ https://oecd.ai/en/wonk/establishing-the-shared-foundations-for-collective-ai-se
 https://www.theguardian.com/uk-news/2026/may/21/london-mayor-sadiq-khan-blocks-met-police-deal-with-palantir" onclick="copyEntry(this)">복사</button></div>
   <p>런던 시장실은 메트가 Palantir 기술에 “의존”하게 될 위험과 조달 규정 위반을 이유로 5,000만 파운드 규모의 AI 계약을 차단했다고 밝혔다. 가디언 보도 이후 스코틀랜드야드는 새 기술이 없으면 인력 감축이 불가피해 치안에 영향을 줄 수 있다고 비판했으며, 시(경찰·범죄) 담당 기관(Mopac)은 메트의 조달 전략에 대한 승인 실패를 들어 계약을 막은 것으로 전해졌다. 한편 의회 과학기술위원회 위원 등은 vendor lock-in과 특정 대형 해외 사업자 의존 문제를 짚으며 칸의 결정을 환영했고, Palantir는 자사 소프트웨어가 여러 경찰의 범죄 대응에 도움을 줬다고 반박했다.</p>
   <p class="url"><a href="https://www.theguardian.com/uk-news/2026/may/21/london-mayor-sadiq-khan-blocks-met-police-deal-with-palantir">https://www.theguardian.com/uk-news/2026/may/21/london-mayor-sadiq-khan-blocks-met-police-deal-with-palantir</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="AI 기반 형식 증명 탐색으로 공개 수학 문제 다수 해결 (2026.5.21) LLM이 수학 추론에서 불안정하다는 한계를 줄이기 위해, Lean 같은 형식 언어로 증명을 생성하고 검증하는 방식의 대규모 평가를 수행했다. 가장 성능이 좋은 에이전트는 353개의 공개 에르되시(Erdős) 문제 중 9개를 자율적으로 해결했고, OEIS 추측 492개 중 44개를 증명했으며 문제당 비용은 수백 달러 수준으로 제시된다. 또한 LLM 생성과 Lean 검증을 교대로 수행하는 기본 에이전트도 에르되시 문제 성과를 재현했지만, 특히 어려운 문제에서는 더 비용이 많이 들었다. arXiv">
   <h2>AI 기반 형식 증명 탐색으로 공개 수학 문제 다수 해결 (2026.5.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="AI 기반 형식 증명 탐색으로 공개 수학 문제 다수 해결 (2026.5.21)
 
@@ -387,8 +453,10 @@ LLM이 수학 추론에서 불안정하다는 한계를 줄이기 위해, Lean �
 https://arxiv.org/abs/2605.22763v1" onclick="copyEntry(this)">복사</button></div>
   <p>LLM이 수학 추론에서 불안정하다는 한계를 줄이기 위해, Lean 같은 형식 언어로 증명을 생성하고 검증하는 방식의 대규모 평가를 수행했다. 가장 성능이 좋은 에이전트는 353개의 공개 에르되시(Erdős) 문제 중 9개를 자율적으로 해결했고, OEIS 추측 492개 중 44개를 증명했으며 문제당 비용은 수백 달러 수준으로 제시된다. 또한 LLM 생성과 Lean 검증을 교대로 수행하는 기본 에이전트도 에르되시 문제 성과를 재현했지만, 특히 어려운 문제에서는 더 비용이 많이 들었다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.22763v1">https://arxiv.org/abs/2605.22763v1</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="deepfake_disinfo" data-search="(가짜 VPN 확장 프로그램 팜) (2026.5.21) 가짜 VPN Chrome 확장 프로그램들이 다수 운영되며, 사용자 브라우징 트래픽을 15개의 하드코딩된 SOCKS5 프록시 서버로 라우팅하는 구조로 설명된다. 이 확장 프로그램들은 AdGuard VPN, Proton VPN, BrowSec VPN, HideMyName VPN 등 주요 합법 VPN 브랜드를 사칭하고, 각 확장 프로그램에 동일한 서버 목록이 내장되어 있는 것으로 나타난다. 또한 실제 VPN 암호화가 없어서 방문 URL과 HTTP 자격증명이 공격자에게 노출될 수 있으며, 설치 시 동의 없이 sverchtun[.]store 도메인을 여는 동작이 포함돼 있다. 코드 템플릿과 유사 코드가 반복되고 단기간에 다수 확장이 생성된 점 등으로 AI를 활용해 캠페인을 가속했을 가능성이 제시된다. 팔로알토네트웍스 Unit42 위협 인텔리전스">
   <h2>(가짜 VPN 확장 프로그램 팜) (2026.5.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">팔로알토네트웍스 Unit42 위협 인텔리전스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="(가짜 VPN 확장 프로그램 팜) (2026.5.21)
 
@@ -397,8 +465,10 @@ https://arxiv.org/abs/2605.22763v1" onclick="copyEntry(this)">복사</button></d
 https://github.com/PaloAltoNetworks/Unit42-timely-threat-intel/blob/main/2026-05-21-Fake-VPN-Extension-Farm.txt" onclick="copyEntry(this)">복사</button></div>
   <p>가짜 VPN Chrome 확장 프로그램들이 다수 운영되며, 사용자 브라우징 트래픽을 15개의 하드코딩된 SOCKS5 프록시 서버로 라우팅하는 구조로 설명된다. 이 확장 프로그램들은 AdGuard VPN, Proton VPN, BrowSec VPN, HideMyName VPN 등 주요 합법 VPN 브랜드를 사칭하고, 각 확장 프로그램에 동일한 서버 목록이 내장되어 있는 것으로 나타난다. 또한 실제 VPN 암호화가 없어서 방문 URL과 HTTP 자격증명이 공격자에게 노출될 수 있으며, 설치 시 동의 없이 sverchtun[.]store 도메인을 여는 동작이 포함돼 있다. 코드 템플릿과 유사 코드가 반복되고 단기간에 다수 확장이 생성된 점 등으로 AI를 활용해 캠페인을 가속했을 가능성이 제시된다.</p>
   <p class="url"><a href="https://github.com/PaloAltoNetworks/Unit42-timely-threat-intel/blob/main/2026-05-21-Fake-VPN-Extension-Farm.txt">https://github.com/PaloAltoNetworks/Unit42-timely-threat-intel/blob/main/2026-05-21-Fake-VPN-Extension-Farm.txt</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="UK AISI, AI 감독(oversight) 기반이 약화될 수 있어 보완책 필요(2026.5.21) 고급 AI 시스템의 안전은 배포 전 감사(audit), 사용 중 모니터링, 사고 후 조사 등 감독 역량에 달려 있다고 설명한다. AI 감독을 내부 activations, chain-of-thought, external actions, inter-agent communication의 4개 ‘oversight surface’로 나눠 현재 방법과 약화 경로를 정리했으며, 문헌검토와 전문가 인터뷰(25명)를 바탕으로 한다. 현행 감독은 효과가 있으나, 텍스트 기반 추론의 약화·숨은 내부 상태에서의 reasoning, 테스트 인지 후 행동 조정 등으로 기반이 침식될 가능성이 있고, 이를 상쇄할 emerging 방법은 아직 성숙하지 않다고 본다. 다만 개발자가 기존 감독 채널을 유지하고 emerging 기술을 대체 수단(fallback)으로 투자하는 실질적 개입은 가능하다고 강조한다. AI-Risk-Explorer(UK AISI 블로그)">
   <h2>🇬🇧 UK AISI, AI 감독(oversight) 기반이 약화될 수 있어 보완책 필요(2026.5.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer(UK AISI 블로그)</span></span><button type="button" class="copy-btn" data-copy="UK AISI, AI 감독(oversight) 기반이 약화될 수 있어 보완책 필요(2026.5.21)
 
@@ -407,8 +477,10 @@ https://github.com/PaloAltoNetworks/Unit42-timely-threat-intel/blob/main/2026-05
 https://www.aisi.gov.uk/blog/will-it-become-harder-to-oversee-ai-systems?" onclick="copyEntry(this)">복사</button></div>
   <p>고급 AI 시스템의 안전은 배포 전 감사(audit), 사용 중 모니터링, 사고 후 조사 등 감독 역량에 달려 있다고 설명한다. AI 감독을 내부 activations, chain-of-thought, external actions, inter-agent communication의 4개 ‘oversight surface’로 나눠 현재 방법과 약화 경로를 정리했으며, 문헌검토와 전문가 인터뷰(25명)를 바탕으로 한다. 현행 감독은 효과가 있으나, 텍스트 기반 추론의 약화·숨은 내부 상태에서의 reasoning, 테스트 인지 후 행동 조정 등으로 기반이 침식될 가능성이 있고, 이를 상쇄할 emerging 방법은 아직 성숙하지 않다고 본다. 다만 개발자가 기존 감독 채널을 유지하고 emerging 기술을 대체 수단(fallback)으로 투자하는 실질적 개입은 가능하다고 강조한다.</p>
   <p class="url"><a href="https://www.aisi.gov.uk/blog/will-it-become-harder-to-oversee-ai-systems?">https://www.aisi.gov.uk/blog/will-it-become-harder-to-oversee-ai-systems?</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="cybersecurity safety_research" data-search="(2026.5.21) 솔로 러시아어 위협 행위자가 jailbroken Gemini로 5년간 영향력·사기 ‘Patriot Bait’ 캠페인을 운영 트렌드마이크로는 러시아어를 쓰는 단독 위협 행위자(bandcampro)가 5년간 MAGA 테마 텔레그램 채널(@americanpatriotus, 약 1.7만 구독자)을 운영하다가 2025년 9월부터 AI를 활용해 콘텐츠 자동화, 자격증명 탈취, 암호화폐 사기(펌프앤덤프)까지 확장했다고 밝혔다. 이 과정에서 jailbroken Google Gemini가 역할극 글 생성, API 키 회전, 피해자 비밀번호 모델링, QAnon 스타일 챗봇(QFS 2.0 Terminal) 운영 등에 관여했으며, 비영어 프롬프트와 jailbreak로 안전장치가 우회된 정황이 제시됐다. 또한 29개 WordPress 관리자 계정이 해킹되고 최소 1개 회사 침투 및 최소 1개 암호화폐 지갑이 비워진 사례가 언급되며, AI가 운영 자원을 크게 줄여주지만 대규모 성공을 보장하진 않는다고 평가했다. 트렌드마이크로(TrendAI™ Research)">
   <h2>(2026.5.21) 솔로 러시아어 위협 행위자가 jailbroken Gemini로 5년간 영향력·사기 ‘Patriot Bait’ 캠페인을 운영</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">트렌드마이크로(TrendAI™ Research)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="(2026.5.21) 솔로 러시아어 위협 행위자가 jailbroken Gemini로 5년간 영향력·사기 ‘Patriot Bait’ 캠페인을 운영
 
@@ -417,7 +489,9 @@ https://www.aisi.gov.uk/blog/will-it-become-harder-to-oversee-ai-systems?" oncli
 https://www.trendmicro.com/en_us/research/26/e/inside-the-influence-and-fraud-patriot-bait-campaign.html" onclick="copyEntry(this)">복사</button></div>
   <p>트렌드마이크로는 러시아어를 쓰는 단독 위협 행위자(bandcampro)가 5년간 MAGA 테마 텔레그램 채널(@americanpatriotus, 약 1.7만 구독자)을 운영하다가 2025년 9월부터 AI를 활용해 콘텐츠 자동화, 자격증명 탈취, 암호화폐 사기(펌프앤덤프)까지 확장했다고 밝혔다. 이 과정에서 jailbroken Google Gemini가 역할극 글 생성, API 키 회전, 피해자 비밀번호 모델링, QAnon 스타일 챗봇(QFS 2.0 Terminal) 운영 등에 관여했으며, 비영어 프롬프트와 jailbreak로 안전장치가 우회된 정황이 제시됐다. 또한 29개 WordPress 관리자 계정이 해킹되고 최소 1개 회사 침투 및 최소 1개 암호화폐 지갑이 비워진 사례가 언급되며, AI가 운영 자원을 크게 줄여주지만 대규모 성공을 보장하진 않는다고 평가했다.</p>
   <p class="url"><a href="https://www.trendmicro.com/en_us/research/26/e/inside-the-influence-and-fraud-patriot-bait-campaign.html">https://www.trendmicro.com/en_us/research/26/e/inside-the-influence-and-fraud-patriot-bait-campaign.html</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-05-20.html">← 2026-05-20</a><a class="day-nav-btn" href="2026-05-22.html">2026-05-22 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-05-20.html">← 2026-05-20</a><a class="day-nav-btn" href="2026-05-22.html">2026-05-22 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -453,6 +527,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

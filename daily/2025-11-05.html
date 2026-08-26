@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="" data-search="금융권 AI의 설명가능성 규제 한계와 개선방안 (2025.11.5) 금융권의 AI 활용이 리스크 관리 중심에서 생성형 AI를 활용한 내부 역량 강화로 확대되고 있으며, 주요 해외 투자은행들은 자체 AI 모델 개발을 추진하고 있다. 각국은 위험도 기반 차등 규제나 부문별 규제 방식을 채택하고 있지만, 대규모 언어모델의 블랙박스 특성으로 설명가능성 규제에는 공백이 있다. 보고서는 완벽한 설명가능성 대신 설명 불가능성을 본질적 리스크로 인정하고, 규제체계 재설계와 제3자 모델의 최소 투명성 확보, 생성형 AI의 단계적 도입을 제안한다. 국제금융센터">
   <h2>금융권 AI의 설명가능성 규제 한계와 개선방안 (2025.11.5)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국제금융센터</span></span><button type="button" class="copy-btn" data-copy="금융권 AI의 설명가능성 규제 한계와 개선방안 (2025.11.5)
 
@@ -317,8 +369,10 @@
 https://www.kcif.or.kr/economy/economyView?rpt_no=36298&amp;mn=003007" onclick="copyEntry(this)">복사</button></div>
   <p>금융권의 AI 활용이 리스크 관리 중심에서 생성형 AI를 활용한 내부 역량 강화로 확대되고 있으며, 주요 해외 투자은행들은 자체 AI 모델 개발을 추진하고 있다. 각국은 위험도 기반 차등 규제나 부문별 규제 방식을 채택하고 있지만, 대규모 언어모델의 블랙박스 특성으로 설명가능성 규제에는 공백이 있다. 보고서는 완벽한 설명가능성 대신 설명 불가능성을 본질적 리스크로 인정하고, 규제체계 재설계와 제3자 모델의 최소 투명성 확보, 생성형 AI의 단계적 도입을 제안한다.</p>
   <p class="url"><a href="https://www.kcif.or.kr/economy/economyView?rpt_no=36298&amp;mn=003007">https://www.kcif.or.kr/economy/economyView?rpt_no=36298&amp;mn=003007</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="**Anthropic 경제 미래 프로그램 유럽 및 영국 출시** (2025.11.5) Anthropic은 유럽과 영국에서 AI의 경제적 영향에 대한 논의를 촉진하기 위해 Economic Futures Programme을 확장하고 있습니다. 이 프로그램은 런던 정치경제학 학원에서 열리는 심포지엄을 시작으로, 연구자들에게 AI의 노동 시장, 생산성, 가치 창출에 대한 영향을 조사할 수 있는 연구 자금과 API 크레딧을 제공합니다. 또한 유럽 전역의 AI 채택을 측정하고 데이터를 공개하여 정책 입안자들이 미래의 경제적 전환을 준비할 수 있도록 지원합니다. 이는 유럽 지역의 정책 제안 개발과 평가를 위한 증거 기반 접근법을 강화하는 것을 목표로 합니다. Anthropic">
   <h2>🇺🇸 Anthropic 경제 미래 프로그램 유럽 및 영국 출시 (2025.11.5)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="**Anthropic 경제 미래 프로그램 유럽 및 영국 출시** (2025.11.5)
 
@@ -327,8 +381,10 @@ Anthropic은 유럽과 영국에서 AI의 경제적 영향에 대한 논의를 �
 https://www.anthropic.com/news/economic-futures-uk-europe" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 유럽과 영국에서 AI의 경제적 영향에 대한 논의를 촉진하기 위해 Economic Futures Programme을 확장하고 있습니다. 이 프로그램은 런던 정치경제학 학원에서 열리는 심포지엄을 시작으로, 연구자들에게 AI의 노동 시장, 생산성, 가치 창출에 대한 영향을 조사할 수 있는 연구 자금과 API 크레딧을 제공합니다. 또한 유럽 전역의 AI 채택을 측정하고 데이터를 공개하여 정책 입안자들이 미래의 경제적 전환을 준비할 수 있도록 지원합니다. 이는 유럽 지역의 정책 제안 개발과 평가를 위한 증거 기반 접근법을 강화하는 것을 목표로 합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/economic-futures-uk-europe">https://www.anthropic.com/news/economic-futures-uk-europe</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="AI 시대, 환경 예측의 대중화 (2025.11.5) 앨런 튜링 연구소는 기후변화로 심화되는 홍수·산불·가뭄·극지 해빙 등에 대응하기 위해, 공공의 이익을 위한 AI 기반 환경 예측 기술 개발을 추진하고 있다. 영국 기상청과 함께 중기예보 모델 FastNet을 개발하고 있으며, 케임브리지대학교의 Aardvark Weather는 기존 물리 기반 및 AI 예측 시스템보다 수십 배 빠르고 수천 배 적은 컴퓨팅 자원으로 예측할 수 있어 자원이 부족한 지역에서도 활용될 가능성이 있다. 연구소는 해빙·해양·대기 등을 아우르는 다중모달 예측 모델과 재난 경보·평이한 언어의 예보를 개발하는 한편, 극한 기상과 변화하는 기후 조건에서의 성능을 기존 방식과 함께 장기간 엄격히 평가할 계획이다. 앨런 튜링 연구소">
   <h2>🇬🇧 AI 시대, 환경 예측의 대중화 (2025.11.5)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">앨런 튜링 연구소</span></span><button type="button" class="copy-btn" data-copy="AI 시대, 환경 예측의 대중화 (2025.11.5)
 
@@ -337,8 +393,10 @@ https://www.anthropic.com/news/economic-futures-uk-europe" onclick="copyEntry(th
 https://www.turing.ac.uk/blog/democratising-environmental-forecasting-age-ai" onclick="copyEntry(this)">복사</button></div>
   <p>앨런 튜링 연구소는 기후변화로 심화되는 홍수·산불·가뭄·극지 해빙 등에 대응하기 위해, 공공의 이익을 위한 AI 기반 환경 예측 기술 개발을 추진하고 있다. 영국 기상청과 함께 중기예보 모델 FastNet을 개발하고 있으며, 케임브리지대학교의 Aardvark Weather는 기존 물리 기반 및 AI 예측 시스템보다 수십 배 빠르고 수천 배 적은 컴퓨팅 자원으로 예측할 수 있어 자원이 부족한 지역에서도 활용될 가능성이 있다. 연구소는 해빙·해양·대기 등을 아우르는 다중모달 예측 모델과 재난 경보·평이한 언어의 예보를 개발하는 한편, 극한 기상과 변화하는 기후 조건에서의 성능을 기존 방식과 함께 장기간 엄격히 평가할 계획이다.</p>
   <p class="url"><a href="https://www.turing.ac.uk/blog/democratising-environmental-forecasting-age-ai">https://www.turing.ac.uk/blog/democratising-environmental-forecasting-age-ai</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="guideline law" data-search="EU AI법상 AI 수정: 분류와 규제 준수에 관한 실무 교훈 (2025.11.5) 기존 AI 시스템이나 GPAI 모델을 수정·통합·재목적화하거나 자체 제품으로 재브랜딩한 조직은 EU AI법상 제공자 지위를 얻어 추가적인 규제 준수 의무를 부담할 수 있다. 특히 고위험 AI 시스템의 실질적 변경이나 GPAI 모델의 일반성·역량·시스템적 위험을 크게 바꾸는 경우 책임이 원래 제공자에서 수정자에게 이전될 수 있으며, 위반 시 최대 1,500만 유로 또는 전 세계 연간 매출의 3%에 해당하는 과징금이 부과될 수 있다. 유럽연합 집행위원회 지침은 원래 모델 학습에 필요한 연산량의 3분의 1을 실질적 변경 판단의 참고 기준으로 제시했지만, 연산량이 적어도 모델의 행동과 위험을 크게 바꾸는 수정에는 충분하지 않을 수 있어 법적 불확실성이 남아 있다. EU 인공지능법">
   <h2>🇪🇺 EU AI법상 AI 수정: 분류와 규제 준수에 관한 실무 교훈 (2025.11.5)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">EU 인공지능법</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="EU AI법상 AI 수정: 분류와 규제 준수에 관한 실무 교훈 (2025.11.5)
 
@@ -347,7 +405,9 @@ https://www.turing.ac.uk/blog/democratising-environmental-forecasting-age-ai" on
 https://artificialintelligenceact.eu/modifying-ai-under-the-eu-ai-act/" onclick="copyEntry(this)">복사</button></div>
   <p>기존 AI 시스템이나 GPAI 모델을 수정·통합·재목적화하거나 자체 제품으로 재브랜딩한 조직은 EU AI법상 제공자 지위를 얻어 추가적인 규제 준수 의무를 부담할 수 있다. 특히 고위험 AI 시스템의 실질적 변경이나 GPAI 모델의 일반성·역량·시스템적 위험을 크게 바꾸는 경우 책임이 원래 제공자에서 수정자에게 이전될 수 있으며, 위반 시 최대 1,500만 유로 또는 전 세계 연간 매출의 3%에 해당하는 과징금이 부과될 수 있다. 유럽연합 집행위원회 지침은 원래 모델 학습에 필요한 연산량의 3분의 1을 실질적 변경 판단의 참고 기준으로 제시했지만, 연산량이 적어도 모델의 행동과 위험을 크게 바꾸는 수정에는 충분하지 않을 수 있어 법적 불확실성이 남아 있다.</p>
   <p class="url"><a href="https://artificialintelligenceact.eu/modifying-ai-under-the-eu-ai-act/">https://artificialintelligenceact.eu/modifying-ai-under-the-eu-ai-act/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-11-04.html">← 2025-11-04</a><a class="day-nav-btn" href="2025-11-06.html">2025-11-06 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-11-04.html">← 2025-11-04</a><a class="day-nav-btn" href="2025-11-06.html">2025-11-06 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -383,6 +443,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

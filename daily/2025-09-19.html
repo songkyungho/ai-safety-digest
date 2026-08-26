@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="" data-search="인공지능책임관(CAIO) 협의회 출범 및 제1차 회의 개최 (2025.9.19) 국가인공지능전략위원회는 2025년 9월 18일 인공지능책임관(CAIO) 협의회를 공식 출범시키고, 48개 부·처·청·위원회의 CAIO 지정을 완료했다고 밝혔다. 제1차 회의에는 이 중 장관급 25개 부처가 참석했으며, 협의회 의장과 국가 CAIO는 하정우 AI미래기획수석이 맡는다. 각 부처 CAIO는 AI 전략 수립과 이행 점검, AI 활용 및 데이터 개방·연계 등 소관 기관의 AI 관련 업무를 총괄하고, 협의회는 부처 간 규제 논의와 공동 사업 발굴·예산 지원 등을 담당한다. 국가인공지능전략위원회">
   <h2>인공지능책임관(CAIO) 협의회 출범 및 제1차 회의 개최 (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국가인공지능전략위원회</span></span><button type="button" class="copy-btn" data-copy="인공지능책임관(CAIO) 협의회 출범 및 제1차 회의 개최 (2025.9.19)
 
@@ -317,8 +369,10 @@
 https://eiec.kdi.re.kr/policy/materialView.do?num=271277" onclick="copyEntry(this)">복사</button></div>
   <p>국가인공지능전략위원회는 2025년 9월 18일 인공지능책임관(CAIO) 협의회를 공식 출범시키고, 48개 부·처·청·위원회의 CAIO 지정을 완료했다고 밝혔다. 제1차 회의에는 이 중 장관급 25개 부처가 참석했으며, 협의회 의장과 국가 CAIO는 하정우 AI미래기획수석이 맡는다. 각 부처 CAIO는 AI 전략 수립과 이행 점검, AI 활용 및 데이터 개방·연계 등 소관 기관의 AI 관련 업무를 총괄하고, 협의회는 부처 간 규제 논의와 공동 사업 발굴·예산 지원 등을 담당한다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=271277">https://eiec.kdi.re.kr/policy/materialView.do?num=271277</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="national_security" data-search="AI 시대 국가안보자산 역할 강화를 위한 반도체산업 육성 방안 (2025.9.19) 반도체는 약 6,000억 달러 규모의 세계시장을 보유한 핵심 부품으로, 국가 경제와 안보의 핵심자산으로 평가된다. 한국 반도체산업은 GDP의 6~7%, 수출의 20% 이상을 차지하며, 약 1,400개 기업과 20만 명의 고용을 기반으로 세계 시장에서 매출 기준 2위를 기록하고 있다. 특히 메모리 반도체 분야에서는 오랜 기간 세계 1위를 유지하고 있다. 산업연구원">
   <h2>🇰🇷 AI 시대 국가안보자산 역할 강화를 위한 반도체산업 육성 방안 (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">산업연구원</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="AI 시대 국가안보자산 역할 강화를 위한 반도체산업 육성 방안 (2025.9.19)
 
@@ -327,8 +381,10 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=271277" onclick="copyEntry(thi
 https://www.kiet.re.kr/common/file/userDownload?atch_no=byXDJirPoxzqMBfTOdj7Cg%3D%3D&amp;menu_cd=002002001&amp;lang=KR&amp;no=3101" onclick="copyEntry(this)">복사</button></div>
   <p>반도체는 약 6,000억 달러 규모의 세계시장을 보유한 핵심 부품으로, 국가 경제와 안보의 핵심자산으로 평가된다. 한국 반도체산업은 GDP의 6~7%, 수출의 20% 이상을 차지하며, 약 1,400개 기업과 20만 명의 고용을 기반으로 세계 시장에서 매출 기준 2위를 기록하고 있다. 특히 메모리 반도체 분야에서는 오랜 기간 세계 1위를 유지하고 있다.</p>
   <p class="url"><a href="https://www.kiet.re.kr/common/file/userDownload?atch_no=byXDJirPoxzqMBfTOdj7Cg%3D%3D&amp;menu_cd=002002001&amp;lang=KR&amp;no=3101">https://www.kiet.re.kr/common/file/userDownload?atch_no=byXDJirPoxzqMBfTOdj7Cg%3D%3D&amp;menu_cd=002002001&amp;lang=KR&amp;no=3101</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Which AI gives the right answers? Librarians helped us put them to the test. (2025.9.19) 요약불가 washingtonpost.com">
   <h2>Which AI gives the right answers? Librarians helped us put them to the test. (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">washingtonpost.com</span></span><button type="button" class="copy-btn" data-copy="Which AI gives the right answers? Librarians helped us put them to the test. (2025.9.19)
 
@@ -337,8 +393,12 @@ https://www.kiet.re.kr/common/file/userDownload?atch_no=byXDJirPoxzqMBfTOdj7Cg%3
 https://www.washingtonpost.com/technology/2025/08/27/ai-search-best-answers-facts" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.washingtonpost.com/technology/2025/08/27/ai-search-best-answers-facts">https://www.washingtonpost.com/technology/2025/08/27/ai-search-best-answers-facts</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier" data-search="연방 판사가 앤트로픽의 ‘저자 허락 없는’ 책 기반 AI 학습에 대해 저작권 침해가 아니라는 취지로 판단 (2025.9.19) 법원은 다만 ‘중앙 도서관’ 구축에 사용된 불법 복제본과 그로 인한 손해 규모에 대해서는 별도 재판을 진행하기로 했다.
+
+미 연방 판사 윌리엄 알수프는 앤트로픽이 출판된 책을 저자 허락 없이 AI 모델 학습에 활용한 행위가 공정이용(fair use)에 해당할 수 있다고 판결했다. 이번 결정은 법원이 AI 기업의 공정이용 주장을 처음으로 상당 부분 인정한 사례로 소개된다. 다만 원고 측은 앤트로픽이 ‘전 세계 모든 책’을 영구 보관하려는 ‘중앙 도서관’을 만들기 위해 작품을 확보·저장한 방식에 문제를 제기했으며, 법원은 특히 불법 다운로드된(해적 사이트) 복제본 사용과 손해에 대해 재판을 열 예정이다. TechCrunch(테크크런치)">
   <h2>연방 판사가 앤트로픽의 ‘저자 허락 없는’ 책 기반 AI 학습에 대해 저작권 침해가 아니라는 취지로 판단 (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">TechCrunch(테크크런치)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="연방 판사가 앤트로픽의 ‘저자 허락 없는’ 책 기반 AI 학습에 대해 저작권 침해가 아니라는 취지로 판단 (2025.9.19)
 
@@ -350,8 +410,10 @@ http://techcrunch.com/2025/06/24/a-federal-judge-sides-with-anthropic-in-lawsuit
   <p>법원은 다만 ‘중앙 도서관’ 구축에 사용된 불법 복제본과 그로 인한 손해 규모에 대해서는 별도 재판을 진행하기로 했다.</p>
 <p>미 연방 판사 윌리엄 알수프는 앤트로픽이 출판된 책을 저자 허락 없이 AI 모델 학습에 활용한 행위가 공정이용(fair use)에 해당할 수 있다고 판결했다. 이번 결정은 법원이 AI 기업의 공정이용 주장을 처음으로 상당 부분 인정한 사례로 소개된다. 다만 원고 측은 앤트로픽이 ‘전 세계 모든 책’을 영구 보관하려는 ‘중앙 도서관’을 만들기 위해 작품을 확보·저장한 방식에 문제를 제기했으며, 법원은 특히 불법 다운로드된(해적 사이트) 복제본 사용과 손해에 대해 재판을 열 예정이다.</p>
   <p class="url"><a href="http://techcrunch.com/2025/06/24/a-federal-judge-sides-with-anthropic-in-lawsuit-over-training-ai-on-books-without-authors-permission">http://techcrunch.com/2025/06/24/a-federal-judge-sides-with-anthropic-in-lawsuit-over-training-ai-on-books-without-authors-permission</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="C (2025.9.19) 요약불가 xinhuanet.com">
   <h2>C (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">xinhuanet.com</span></span><button type="button" class="copy-btn" data-copy="C (2025.9.19)
 
@@ -360,8 +422,10 @@ http://techcrunch.com/2025/06/24/a-federal-judge-sides-with-anthropic-in-lawsuit
 http://www.xinhuanet.com/mrdx/20250611/da784400a39f40578c69647fae82d9a0/c.html" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="http://www.xinhuanet.com/mrdx/20250611/da784400a39f40578c69647fae82d9a0/c.html">http://www.xinhuanet.com/mrdx/20250611/da784400a39f40578c69647fae82d9a0/c.html</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier" data-search="(2025.9.19 기준) 오픈AI 자문위원회가 비영리(비영리 지배구조) 감독 강화를 지속할 것을 촉구 오픈AI 자문위원회가 비영리 측의 감독(거버넌스) 강화를 계속해야 한다는 취지의 요구를 했다는 내용입니다. 다만 본문 원문이 제공되지 않아 구체적인 권고 내용, 배경, 일정 및 관련 발언의 세부사항은 확인이 필요합니다. ABC News">
   <h2>(2025.9.19 기준) 오픈AI 자문위원회가 비영리(비영리 지배구조) 감독 강화를 지속할 것을 촉구</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">ABC News</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="(2025.9.19 기준) 오픈AI 자문위원회가 비영리(비영리 지배구조) 감독 강화를 지속할 것을 촉구
 
@@ -370,8 +434,10 @@ http://www.xinhuanet.com/mrdx/20250611/da784400a39f40578c69647fae82d9a0/c.html" 
 https://abcnews.go.com/Technology/wireStory/openais-advisory-board-calls-continued-strengthened-nonprofit-oversight-123848848" onclick="copyEntry(this)">복사</button></div>
   <p>오픈AI 자문위원회가 비영리 측의 감독(거버넌스) 강화를 계속해야 한다는 취지의 요구를 했다는 내용입니다. 다만 본문 원문이 제공되지 않아 구체적인 권고 내용, 배경, 일정 및 관련 발언의 세부사항은 확인이 필요합니다.</p>
   <p class="url"><a href="https://abcnews.go.com/Technology/wireStory/openais-advisory-board-calls-continued-strengthened-nonprofit-oversight-123848848">https://abcnews.go.com/Technology/wireStory/openais-advisory-board-calls-continued-strengthened-nonprofit-oversight-123848848</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Sen. Gounardes’ AI Safety Bill Passes the State Senate (2025.9.19) 요약불가 nysenate.gov">
   <h2>Sen. Gounardes’ AI Safety Bill Passes the State Senate (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">nysenate.gov</span></span><button type="button" class="copy-btn" data-copy="Sen. Gounardes’ AI Safety Bill Passes the State Senate (2025.9.19)
 
@@ -380,8 +446,10 @@ https://abcnews.go.com/Technology/wireStory/openais-advisory-board-calls-continu
 https://www.nysenate.gov/newsroom/press-releases/2025/andrew-gounardes/sen-gounardes-ai-safety-bill-passes-state-senate" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.nysenate.gov/newsroom/press-releases/2025/andrew-gounardes/sen-gounardes-ai-safety-bill-passes-state-senate">https://www.nysenate.gov/newsroom/press-releases/2025/andrew-gounardes/sen-gounardes-ai-safety-bill-passes-state-senate</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="IF (2025.9.19) 요약불가 congress.gov">
   <h2>IF (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">congress.gov</span></span><button type="button" class="copy-btn" data-copy="IF (2025.9.19)
 
@@ -390,8 +458,10 @@ https://www.nysenate.gov/newsroom/press-releases/2025/andrew-gounardes/sen-gouna
 https://www.congress.gov/crs_external_products/IF/PDF/IF13051/IF13051.1.pdf" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.congress.gov/crs_external_products/IF/PDF/IF13051/IF13051.1.pdf">https://www.congress.gov/crs_external_products/IF/PDF/IF13051/IF13051.1.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Subscribe to read (2025.9.19) 요약불가 ft.com">
   <h2>Subscribe to read (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">ft.com</span></span><button type="button" class="copy-btn" data-copy="Subscribe to read (2025.9.19)
 
@@ -400,248 +470,8 @@ https://www.congress.gov/crs_external_products/IF/PDF/IF13051/IF13051.1.pdf" onc
 https://www.ft.com/content/a825759e-aec8-4184-bc73-f604f169204c" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.ft.com/content/a825759e-aec8-4184-bc73-f604f169204c">https://www.ft.com/content/a825759e-aec8-4184-bc73-f604f169204c</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>Why language models hallucinate (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">openai.com</span></span><button type="button" class="copy-btn" data-copy="Why language models hallucinate (2025.9.19)
-
-요약불가
-
-https://openai.com/index/why-language-models-hallucinate" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://openai.com/index/why-language-models-hallucinate">https://openai.com/index/why-language-models-hallucinate</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>AI Compute Sovereignty: Infrastructure Control Across Territories, Cloud Providers, and Accelerators (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">papers.ssrn.com</span></span><button type="button" class="copy-btn" data-copy="AI Compute Sovereignty: Infrastructure Control Across Territories, Cloud Providers, and Accelerators (2025.9.19)
-
-요약불가
-
-https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5312977" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5312977">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5312977</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>Canaries BrynjolfssonChandarChen (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">digitaleconomy.stanford.edu</span></span><button type="button" class="copy-btn" data-copy="Canaries BrynjolfssonChandarChen (2025.9.19)
-
-요약불가
-
-https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf">https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>Understanding Gen Alpha&#x27;s Digital Language: Evaluation of LLM Safety Systems for Content Moderation | Proceedings of the 2025 ACM Conference on Fairness, Accountability, and Transparency (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">dl.acm.org</span></span><button type="button" class="copy-btn" data-copy="Understanding Gen Alpha&#x27;s Digital Language: Evaluation of LLM Safety Systems for Content Moderation | Proceedings of the 2025 ACM Conference on Fairness, Accountability, and Transparency (2025.9.19)
-
-요약불가
-
-https://dl.acm.org/doi/full/10.1145/3715275.3732184" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://dl.acm.org/doi/full/10.1145/3715275.3732184">https://dl.acm.org/doi/full/10.1145/3715275.3732184</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>🇯🇵 Shiryo (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">aisi.go.jp</span></span><button type="button" class="copy-btn" data-copy="Shiryo (2025.9.19)
-
-요약불가
-
-https://aisi.go.jp/assets/pdf/250626_shiryo.pdf" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://aisi.go.jp/assets/pdf/250626_shiryo.pdf">https://aisi.go.jp/assets/pdf/250626_shiryo.pdf</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>Disrupting malicious uses of AI: June 2025 (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">openai.com</span></span><button type="button" class="copy-btn" data-copy="Disrupting malicious uses of AI: June 2025 (2025.9.19)
-
-요약불가
-
-https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025">https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>Why language models hallucinate (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">cdn.openai.com</span></span><button type="button" class="copy-btn" data-copy="Why language models hallucinate (2025.9.19)
-
-요약불가
-
-https://cdn.openai.com/pdf/d04913be-3f6f-4d2b-b283-ff432ef4aaa5/why-language-models-hallucinate.pdf" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://cdn.openai.com/pdf/d04913be-3f6f-4d2b-b283-ff432ef4aaa5/why-language-models-hallucinate.pdf">https://cdn.openai.com/pdf/d04913be-3f6f-4d2b-b283-ff432ef4aaa5/why-language-models-hallucinate.pdf</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>강한 거절에서 안전한 완성으로: 결과 중심의 안전성 훈련을 위하여 (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">openai.com</span></span><button type="button" class="copy-btn" data-copy="강한 거절에서 안전한 완성으로: 결과 중심의 안전성 훈련을 위하여 (2025.9.19)
-
-요약불가
-
-https://openai.com/ko-KR/index/gpt-5-safe-completions" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://openai.com/ko-KR/index/gpt-5-safe-completions">https://openai.com/ko-KR/index/gpt-5-safe-completions</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>RAND RRA (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">rand.org</span></span><button type="button" class="copy-btn" data-copy="RAND RRA (2025.9.19)
-
-요약불가
-
-https://www.rand.org/content/dam/rand/pubs/research_reports/RRA3800/RRA3847-1/RAND_RRA3847-1.pdf" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.rand.org/content/dam/rand/pubs/research_reports/RRA3800/RRA3847-1/RAND_RRA3847-1.pdf">https://www.rand.org/content/dam/rand/pubs/research_reports/RRA3800/RRA3847-1/RAND_RRA3847-1.pdf</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>https://arxiv.org/pdf/2508.19258 (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">arxiv.org</span></span><button type="button" class="copy-btn" data-copy="https://arxiv.org/pdf/2508.19258 (2025.9.19)
-
-요약불가
-
-https://arxiv.org/pdf/2508.19258" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://arxiv.org/pdf/2508.19258">https://arxiv.org/pdf/2508.19258</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>🇪🇺 Exclusive: Google&#x27;s AI Overviews hit by EU antitrust complaint from independent publishers (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">reuters.com</span></span><button type="button" class="copy-btn" data-copy="Exclusive: Google&#x27;s AI Overviews hit by EU antitrust complaint from independent publishers (2025.9.19)
-
-요약불가
-
-https://www.reuters.com/legal/litigation/googles-ai-overviews-hit-by-eu-antitrust-complaint-independent-publishers-2025-07-04" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.reuters.com/legal/litigation/googles-ai-overviews-hit-by-eu-antitrust-complaint-independent-publishers-2025-07-04">https://www.reuters.com/legal/litigation/googles-ai-overviews-hit-by-eu-antitrust-complaint-independent-publishers-2025-07-04</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>https://arxiv.org/pdf/2407.05502 (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">arxiv.org</span></span><button type="button" class="copy-btn" data-copy="https://arxiv.org/pdf/2407.05502 (2025.9.19)
-
-요약불가
-
-https://arxiv.org/pdf/2407.05502" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://arxiv.org/pdf/2407.05502">https://arxiv.org/pdf/2407.05502</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>🇺🇸 NIST Overlays SecuringAI concept paper (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">csrc.nist.gov</span></span><button type="button" class="copy-btn" data-copy="NIST Overlays SecuringAI concept paper (2025.9.19)
-
-요약불가
-
-https://csrc.nist.gov/csrc/media/Projects/cosais/documents/NIST-Overlays-SecuringAI-concept-paper.pdf" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://csrc.nist.gov/csrc/media/Projects/cosais/documents/NIST-Overlays-SecuringAI-concept-paper.pdf">https://csrc.nist.gov/csrc/media/Projects/cosais/documents/NIST-Overlays-SecuringAI-concept-paper.pdf</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>As Government Splits on AI Rules, New Report Reveals Critical Gaps (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">fox4kc.com</span></span><button type="button" class="copy-btn" data-copy="As Government Splits on AI Rules, New Report Reveals Critical Gaps (2025.9.19)
-
-요약불가
-
-https://fox4kc.com/business/press-releases/ein-presswire/840781277/as-government-splits-on-ai-rules-new-report-reveals-critical-gaps" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://fox4kc.com/business/press-releases/ein-presswire/840781277/as-government-splits-on-ai-rules-new-report-reveals-critical-gaps">https://fox4kc.com/business/press-releases/ein-presswire/840781277/as-government-splits-on-ai-rules-new-report-reveals-critical-gaps</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>Departmental Plan 2025-26 - Canada.ca (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">canada.ca</span></span><button type="button" class="copy-btn" data-copy="Departmental Plan 2025-26 - Canada.ca (2025.9.19)
-
-요약불가
-
-https://www.canada.ca/en/department-national-defence/corporate/reports-publications/departmental-plans/departmental-plan-2025-26.html" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.canada.ca/en/department-national-defence/corporate/reports-publications/departmental-plans/departmental-plan-2025-26.html">https://www.canada.ca/en/department-national-defence/corporate/reports-publications/departmental-plans/departmental-plan-2025-26.html</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>AI Strategy for the Federal Public Service 2025-2027: Full-text - Canada.ca (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">canada.ca</span></span><button type="button" class="copy-btn" data-copy="AI Strategy for the Federal Public Service 2025-2027: Full-text - Canada.ca (2025.9.19)
-
-요약불가
-
-https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/gc-ai-strategy-full-text.html" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/gc-ai-strategy-full-text.html">https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/gc-ai-strategy-full-text.html</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>🇪🇺 Af f f bfcd en (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">eiopa.europa.eu</span></span><button type="button" class="copy-btn" data-copy="Af f f bfcd en (2025.9.19)
-
-요약불가
-
-https://www.eiopa.europa.eu/document/download/88342342-a17f-4f88-842f-bf62c93012d6_en?filename=Opinion+on+Artificial+Intelligence+governance+and+risk+management.pdf" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.eiopa.europa.eu/document/download/88342342-a17f-4f88-842f-bf62c93012d6_en?filename=Opinion+on+Artificial+Intelligence+governance+and+risk+management.pdf">https://www.eiopa.europa.eu/document/download/88342342-a17f-4f88-842f-bf62c93012d6_en?filename=Opinion+on+Artificial+Intelligence+governance+and+risk+management.pdf</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>Public consultation on the draft Guidance Note on the Implications of Generative Artificial Intelligence for Freedom of Expression (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">coe.int</span></span><button type="button" class="copy-btn" data-copy="Public consultation on the draft Guidance Note on the Implications of Generative Artificial Intelligence for Freedom of Expression (2025.9.19)
-
-요약불가
-
-https://www.coe.int/pt/web/freedom-expression/-/public-consultation-on-the-draft-guidance-note-on-the-implications-of-generative-artificial-intelligence-for-freedom-of-expression" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.coe.int/pt/web/freedom-expression/-/public-consultation-on-the-draft-guidance-note-on-the-implications-of-generative-artificial-intelligence-for-freedom-of-expression">https://www.coe.int/pt/web/freedom-expression/-/public-consultation-on-the-draft-guidance-note-on-the-implications-of-generative-artificial-intelligence-for-freedom-of-expression</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>🇬🇧 UK standards regulator sets sight on independent audit firms in AI safety crackdown (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">cryptopolitan.com</span></span><button type="button" class="copy-btn" data-copy="UK standards regulator sets sight on independent audit firms in AI safety crackdown (2025.9.19)
-
-요약불가
-
-https://www.cryptopolitan.com/uk-audit-firms-ai-safety-crackdown" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.cryptopolitan.com/uk-audit-firms-ai-safety-crackdown">https://www.cryptopolitan.com/uk-audit-firms-ai-safety-crackdown</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>AI could affect both sides of Fed&#x27;s mandate, Fed&#x27;s Cook says (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">seekingalpha.com</span></span><button type="button" class="copy-btn" data-copy="AI could affect both sides of Fed&#x27;s mandate, Fed&#x27;s Cook says (2025.9.19)
-
-요약불가
-
-https://seekingalpha.com/news/4468553-ai-could-affect-both-sides-of-feds-mandate-feds-cook-says" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://seekingalpha.com/news/4468553-ai-could-affect-both-sides-of-feds-mandate-feds-cook-says">https://seekingalpha.com/news/4468553-ai-could-affect-both-sides-of-feds-mandate-feds-cook-says</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>🇯🇵 AI Watch: Global regulatory tracker - Japan (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">whitecase.com</span></span><button type="button" class="copy-btn" data-copy="AI Watch: Global regulatory tracker - Japan (2025.9.19)
-
-요약불가
-
-https://www.whitecase.com/insight-our-thinking/ai-watch-global-regulatory-tracker-japan" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.whitecase.com/insight-our-thinking/ai-watch-global-regulatory-tracker-japan">https://www.whitecase.com/insight-our-thinking/ai-watch-global-regulatory-tracker-japan</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>🇨🇳 DeepSeek and the Race to Develop Artificial Intelligence (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">congress.gov</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="DeepSeek and the Race to Develop Artificial Intelligence (2025.9.19)
-
-요약불가
-
-https://www.congress.gov/crs-product/IF13051?r=63&amp;s=3" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.congress.gov/crs-product/IF13051?r=63&amp;s=3">https://www.congress.gov/crs-product/IF13051?r=63&amp;s=3</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>June – The California Report on Frontier AI Policy (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">gov.ca.gov</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="June – The California Report on Frontier AI Policy (2025.9.19)
-
-요약불가
-
-https://www.gov.ca.gov/wp-content/uploads/2025/06/June-17-2025-%E2%80%93-The-California-Report-on-Frontier-AI-Policy.pdf" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.gov.ca.gov/wp-content/uploads/2025/06/June-17-2025-%E2%80%93-The-California-Report-on-Frontier-AI-Policy.pdf">https://www.gov.ca.gov/wp-content/uploads/2025/06/June-17-2025-%E2%80%93-The-California-Report-on-Frontier-AI-Policy.pdf</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
-  <h2>Instagram’s chatbot helped teen accounts plan suicide — and parents can’t disable it (2025.9.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">washingtonpost.com</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="Instagram’s chatbot helped teen accounts plan suicide — and parents can’t disable it (2025.9.19)
-
-요약불가
-
-https://www.washingtonpost.com/technology/2025/08/28/meta-ai-chatbot-safety-teens" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.washingtonpost.com/technology/2025/08/28/meta-ai-chatbot-safety-teens">https://www.washingtonpost.com/technology/2025/08/28/meta-ai-chatbot-safety-teens</a></p>
-</article>
-<article class="entry cat-aisi-weekly">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · ft.com</summary><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Subscribe to read (2025.9.19) 요약불가 ft.com">
   <h2>Subscribe to read (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">ft.com</span></span><button type="button" class="copy-btn" data-copy="Subscribe to read (2025.9.19)
 
@@ -650,8 +480,297 @@ https://www.washingtonpost.com/technology/2025/08/28/meta-ai-chatbot-safety-teen
 https://www.ft.com/content/97ee867c-64c2-44ee-a519-36ca670ed565" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.ft.com/content/97ee867c-64c2-44ee-a519-36ca670ed565">https://www.ft.com/content/97ee867c-64c2-44ee-a519-36ca670ed565</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Why language models hallucinate (2025.9.19) 요약불가 openai.com">
+  <h2>Why language models hallucinate (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">openai.com</span></span><button type="button" class="copy-btn" data-copy="Why language models hallucinate (2025.9.19)
+
+요약불가
+
+https://openai.com/index/why-language-models-hallucinate" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://openai.com/index/why-language-models-hallucinate">https://openai.com/index/why-language-models-hallucinate</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · cdn.openai.com</summary><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Why language models hallucinate (2025.9.19) 요약불가 cdn.openai.com">
+  <h2>Why language models hallucinate (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">cdn.openai.com</span></span><button type="button" class="copy-btn" data-copy="Why language models hallucinate (2025.9.19)
+
+요약불가
+
+https://cdn.openai.com/pdf/d04913be-3f6f-4d2b-b283-ff432ef4aaa5/why-language-models-hallucinate.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://cdn.openai.com/pdf/d04913be-3f6f-4d2b-b283-ff432ef4aaa5/why-language-models-hallucinate.pdf">https://cdn.openai.com/pdf/d04913be-3f6f-4d2b-b283-ff432ef4aaa5/why-language-models-hallucinate.pdf</a></p>
+  
+  
+</article></details>
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="AI Compute Sovereignty: Infrastructure Control Across Territories, Cloud Providers, and Accelerators (2025.9.19) 요약불가 papers.ssrn.com">
+  <h2>AI Compute Sovereignty: Infrastructure Control Across Territories, Cloud Providers, and Accelerators (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">papers.ssrn.com</span></span><button type="button" class="copy-btn" data-copy="AI Compute Sovereignty: Infrastructure Control Across Territories, Cloud Providers, and Accelerators (2025.9.19)
+
+요약불가
+
+https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5312977" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5312977">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5312977</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Canaries BrynjolfssonChandarChen (2025.9.19) 요약불가 digitaleconomy.stanford.edu">
+  <h2>Canaries BrynjolfssonChandarChen (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">digitaleconomy.stanford.edu</span></span><button type="button" class="copy-btn" data-copy="Canaries BrynjolfssonChandarChen (2025.9.19)
+
+요약불가
+
+https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf">https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Understanding Gen Alpha&#x27;s Digital Language: Evaluation of LLM Safety Systems for Content Moderation | Proceedings of the 2025 ACM Conference on Fairness, Accountability, and Transparency (2025.9.19) 요약불가 dl.acm.org">
+  <h2>Understanding Gen Alpha&#x27;s Digital Language: Evaluation of LLM Safety Systems for Content Moderation | Proceedings of the 2025 ACM Conference on Fairness, Accountability, and Transparency (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">dl.acm.org</span></span><button type="button" class="copy-btn" data-copy="Understanding Gen Alpha&#x27;s Digital Language: Evaluation of LLM Safety Systems for Content Moderation | Proceedings of the 2025 ACM Conference on Fairness, Accountability, and Transparency (2025.9.19)
+
+요약불가
+
+https://dl.acm.org/doi/full/10.1145/3715275.3732184" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://dl.acm.org/doi/full/10.1145/3715275.3732184">https://dl.acm.org/doi/full/10.1145/3715275.3732184</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Shiryo (2025.9.19) 요약불가 aisi.go.jp">
+  <h2>🇯🇵 Shiryo (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">aisi.go.jp</span></span><button type="button" class="copy-btn" data-copy="Shiryo (2025.9.19)
+
+요약불가
+
+https://aisi.go.jp/assets/pdf/250626_shiryo.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://aisi.go.jp/assets/pdf/250626_shiryo.pdf">https://aisi.go.jp/assets/pdf/250626_shiryo.pdf</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Disrupting malicious uses of AI: June 2025 (2025.9.19) 요약불가 openai.com">
+  <h2>Disrupting malicious uses of AI: June 2025 (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">openai.com</span></span><button type="button" class="copy-btn" data-copy="Disrupting malicious uses of AI: June 2025 (2025.9.19)
+
+요약불가
+
+https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025">https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-june-2025</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="강한 거절에서 안전한 완성으로: 결과 중심의 안전성 훈련을 위하여 (2025.9.19) 요약불가 openai.com">
+  <h2>강한 거절에서 안전한 완성으로: 결과 중심의 안전성 훈련을 위하여 (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">openai.com</span></span><button type="button" class="copy-btn" data-copy="강한 거절에서 안전한 완성으로: 결과 중심의 안전성 훈련을 위하여 (2025.9.19)
+
+요약불가
+
+https://openai.com/ko-KR/index/gpt-5-safe-completions" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://openai.com/ko-KR/index/gpt-5-safe-completions">https://openai.com/ko-KR/index/gpt-5-safe-completions</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="RAND RRA (2025.9.19) 요약불가 rand.org">
+  <h2>RAND RRA (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">rand.org</span></span><button type="button" class="copy-btn" data-copy="RAND RRA (2025.9.19)
+
+요약불가
+
+https://www.rand.org/content/dam/rand/pubs/research_reports/RRA3800/RRA3847-1/RAND_RRA3847-1.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.rand.org/content/dam/rand/pubs/research_reports/RRA3800/RRA3847-1/RAND_RRA3847-1.pdf">https://www.rand.org/content/dam/rand/pubs/research_reports/RRA3800/RRA3847-1/RAND_RRA3847-1.pdf</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="https://arxiv.org/pdf/2508.19258 (2025.9.19) 요약불가 arxiv.org">
+  <h2>https://arxiv.org/pdf/2508.19258 (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">arxiv.org</span></span><button type="button" class="copy-btn" data-copy="https://arxiv.org/pdf/2508.19258 (2025.9.19)
+
+요약불가
+
+https://arxiv.org/pdf/2508.19258" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://arxiv.org/pdf/2508.19258">https://arxiv.org/pdf/2508.19258</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · arxiv.org</summary><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="https://arxiv.org/pdf/2407.05502 (2025.9.19) 요약불가 arxiv.org">
+  <h2>https://arxiv.org/pdf/2407.05502 (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">arxiv.org</span></span><button type="button" class="copy-btn" data-copy="https://arxiv.org/pdf/2407.05502 (2025.9.19)
+
+요약불가
+
+https://arxiv.org/pdf/2407.05502" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://arxiv.org/pdf/2407.05502">https://arxiv.org/pdf/2407.05502</a></p>
+  
+  
+</article></details>
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Exclusive: Google&#x27;s AI Overviews hit by EU antitrust complaint from independent publishers (2025.9.19) 요약불가 reuters.com">
+  <h2>🇪🇺 Exclusive: Google&#x27;s AI Overviews hit by EU antitrust complaint from independent publishers (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">reuters.com</span></span><button type="button" class="copy-btn" data-copy="Exclusive: Google&#x27;s AI Overviews hit by EU antitrust complaint from independent publishers (2025.9.19)
+
+요약불가
+
+https://www.reuters.com/legal/litigation/googles-ai-overviews-hit-by-eu-antitrust-complaint-independent-publishers-2025-07-04" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.reuters.com/legal/litigation/googles-ai-overviews-hit-by-eu-antitrust-complaint-independent-publishers-2025-07-04">https://www.reuters.com/legal/litigation/googles-ai-overviews-hit-by-eu-antitrust-complaint-independent-publishers-2025-07-04</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="NIST Overlays SecuringAI concept paper (2025.9.19) 요약불가 csrc.nist.gov">
+  <h2>🇺🇸 NIST Overlays SecuringAI concept paper (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">csrc.nist.gov</span></span><button type="button" class="copy-btn" data-copy="NIST Overlays SecuringAI concept paper (2025.9.19)
+
+요약불가
+
+https://csrc.nist.gov/csrc/media/Projects/cosais/documents/NIST-Overlays-SecuringAI-concept-paper.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://csrc.nist.gov/csrc/media/Projects/cosais/documents/NIST-Overlays-SecuringAI-concept-paper.pdf">https://csrc.nist.gov/csrc/media/Projects/cosais/documents/NIST-Overlays-SecuringAI-concept-paper.pdf</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="As Government Splits on AI Rules, New Report Reveals Critical Gaps (2025.9.19) 요약불가 fox4kc.com">
+  <h2>As Government Splits on AI Rules, New Report Reveals Critical Gaps (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">fox4kc.com</span></span><button type="button" class="copy-btn" data-copy="As Government Splits on AI Rules, New Report Reveals Critical Gaps (2025.9.19)
+
+요약불가
+
+https://fox4kc.com/business/press-releases/ein-presswire/840781277/as-government-splits-on-ai-rules-new-report-reveals-critical-gaps" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://fox4kc.com/business/press-releases/ein-presswire/840781277/as-government-splits-on-ai-rules-new-report-reveals-critical-gaps">https://fox4kc.com/business/press-releases/ein-presswire/840781277/as-government-splits-on-ai-rules-new-report-reveals-critical-gaps</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Departmental Plan 2025-26 - Canada.ca (2025.9.19) 요약불가 canada.ca">
+  <h2>Departmental Plan 2025-26 - Canada.ca (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">canada.ca</span></span><button type="button" class="copy-btn" data-copy="Departmental Plan 2025-26 - Canada.ca (2025.9.19)
+
+요약불가
+
+https://www.canada.ca/en/department-national-defence/corporate/reports-publications/departmental-plans/departmental-plan-2025-26.html" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.canada.ca/en/department-national-defence/corporate/reports-publications/departmental-plans/departmental-plan-2025-26.html">https://www.canada.ca/en/department-national-defence/corporate/reports-publications/departmental-plans/departmental-plan-2025-26.html</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="AI Strategy for the Federal Public Service 2025-2027: Full-text - Canada.ca (2025.9.19) 요약불가 canada.ca">
+  <h2>AI Strategy for the Federal Public Service 2025-2027: Full-text - Canada.ca (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">canada.ca</span></span><button type="button" class="copy-btn" data-copy="AI Strategy for the Federal Public Service 2025-2027: Full-text - Canada.ca (2025.9.19)
+
+요약불가
+
+https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/gc-ai-strategy-full-text.html" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/gc-ai-strategy-full-text.html">https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/responsible-use-ai/gc-ai-strategy-full-text.html</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Af f f bfcd en (2025.9.19) 요약불가 eiopa.europa.eu">
+  <h2>🇪🇺 Af f f bfcd en (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">eiopa.europa.eu</span></span><button type="button" class="copy-btn" data-copy="Af f f bfcd en (2025.9.19)
+
+요약불가
+
+https://www.eiopa.europa.eu/document/download/88342342-a17f-4f88-842f-bf62c93012d6_en?filename=Opinion+on+Artificial+Intelligence+governance+and+risk+management.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.eiopa.europa.eu/document/download/88342342-a17f-4f88-842f-bf62c93012d6_en?filename=Opinion+on+Artificial+Intelligence+governance+and+risk+management.pdf">https://www.eiopa.europa.eu/document/download/88342342-a17f-4f88-842f-bf62c93012d6_en?filename=Opinion+on+Artificial+Intelligence+governance+and+risk+management.pdf</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="Public consultation on the draft Guidance Note on the Implications of Generative Artificial Intelligence for Freedom of Expression (2025.9.19) 요약불가 coe.int">
+  <h2>Public consultation on the draft Guidance Note on the Implications of Generative Artificial Intelligence for Freedom of Expression (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">coe.int</span></span><button type="button" class="copy-btn" data-copy="Public consultation on the draft Guidance Note on the Implications of Generative Artificial Intelligence for Freedom of Expression (2025.9.19)
+
+요약불가
+
+https://www.coe.int/pt/web/freedom-expression/-/public-consultation-on-the-draft-guidance-note-on-the-implications-of-generative-artificial-intelligence-for-freedom-of-expression" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.coe.int/pt/web/freedom-expression/-/public-consultation-on-the-draft-guidance-note-on-the-implications-of-generative-artificial-intelligence-for-freedom-of-expression">https://www.coe.int/pt/web/freedom-expression/-/public-consultation-on-the-draft-guidance-note-on-the-implications-of-generative-artificial-intelligence-for-freedom-of-expression</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="UK standards regulator sets sight on independent audit firms in AI safety crackdown (2025.9.19) 요약불가 cryptopolitan.com">
+  <h2>🇬🇧 UK standards regulator sets sight on independent audit firms in AI safety crackdown (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">cryptopolitan.com</span></span><button type="button" class="copy-btn" data-copy="UK standards regulator sets sight on independent audit firms in AI safety crackdown (2025.9.19)
+
+요약불가
+
+https://www.cryptopolitan.com/uk-audit-firms-ai-safety-crackdown" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.cryptopolitan.com/uk-audit-firms-ai-safety-crackdown">https://www.cryptopolitan.com/uk-audit-firms-ai-safety-crackdown</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="AI could affect both sides of Fed&#x27;s mandate, Fed&#x27;s Cook says (2025.9.19) 요약불가 seekingalpha.com">
+  <h2>AI could affect both sides of Fed&#x27;s mandate, Fed&#x27;s Cook says (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">seekingalpha.com</span></span><button type="button" class="copy-btn" data-copy="AI could affect both sides of Fed&#x27;s mandate, Fed&#x27;s Cook says (2025.9.19)
+
+요약불가
+
+https://seekingalpha.com/news/4468553-ai-could-affect-both-sides-of-feds-mandate-feds-cook-says" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://seekingalpha.com/news/4468553-ai-could-affect-both-sides-of-feds-mandate-feds-cook-says">https://seekingalpha.com/news/4468553-ai-could-affect-both-sides-of-feds-mandate-feds-cook-says</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="AI Watch: Global regulatory tracker - Japan (2025.9.19) 요약불가 whitecase.com">
+  <h2>🇯🇵 AI Watch: Global regulatory tracker - Japan (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">whitecase.com</span></span><button type="button" class="copy-btn" data-copy="AI Watch: Global regulatory tracker - Japan (2025.9.19)
+
+요약불가
+
+https://www.whitecase.com/insight-our-thinking/ai-watch-global-regulatory-tracker-japan" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.whitecase.com/insight-our-thinking/ai-watch-global-regulatory-tracker-japan">https://www.whitecase.com/insight-our-thinking/ai-watch-global-regulatory-tracker-japan</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier" data-search="DeepSeek and the Race to Develop Artificial Intelligence (2025.9.19) 요약불가 congress.gov">
+  <h2>🇨🇳 DeepSeek and the Race to Develop Artificial Intelligence (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">congress.gov</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="DeepSeek and the Race to Develop Artificial Intelligence (2025.9.19)
+
+요약불가
+
+https://www.congress.gov/crs-product/IF13051?r=63&amp;s=3" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.congress.gov/crs-product/IF13051?r=63&amp;s=3">https://www.congress.gov/crs-product/IF13051?r=63&amp;s=3</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier" data-search="June – The California Report on Frontier AI Policy (2025.9.19) 요약불가 gov.ca.gov">
+  <h2>June – The California Report on Frontier AI Policy (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">gov.ca.gov</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="June – The California Report on Frontier AI Policy (2025.9.19)
+
+요약불가
+
+https://www.gov.ca.gov/wp-content/uploads/2025/06/June-17-2025-%E2%80%93-The-California-Report-on-Frontier-AI-Policy.pdf" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.gov.ca.gov/wp-content/uploads/2025/06/June-17-2025-%E2%80%93-The-California-Report-on-Frontier-AI-Policy.pdf">https://www.gov.ca.gov/wp-content/uploads/2025/06/June-17-2025-%E2%80%93-The-California-Report-on-Frontier-AI-Policy.pdf</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="youth" data-search="Instagram’s chatbot helped teen accounts plan suicide — and parents can’t disable it (2025.9.19) 요약불가 washingtonpost.com">
+  <h2>Instagram’s chatbot helped teen accounts plan suicide — and parents can’t disable it (2025.9.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">washingtonpost.com</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="Instagram’s chatbot helped teen accounts plan suicide — and parents can’t disable it (2025.9.19)
+
+요약불가
+
+https://www.washingtonpost.com/technology/2025/08/28/meta-ai-chatbot-safety-teens" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.washingtonpost.com/technology/2025/08/28/meta-ai-chatbot-safety-teens">https://www.washingtonpost.com/technology/2025/08/28/meta-ai-chatbot-safety-teens</a></p>
+  
+  
+</article>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="healthcare" data-search="Pennsylvania lawmakers propose regulations to AI in healthcare (2025.9.19) 요약불가 abc27.com">
   <h2>Pennsylvania lawmakers propose regulations to AI in healthcare (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">abc27.com</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span></span></span><button type="button" class="copy-btn" data-copy="Pennsylvania lawmakers propose regulations to AI in healthcare (2025.9.19)
 
@@ -660,8 +779,8 @@ https://www.ft.com/content/97ee867c-64c2-44ee-a519-36ca670ed565" onclick="copyEn
 https://www.abc27.com/pennsylvania/pennsylvania-lawmakers-propose-regulations-to-ai-in-healthcare" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.abc27.com/pennsylvania/pennsylvania-lawmakers-propose-regulations-to-ai-in-healthcare">https://www.abc27.com/pennsylvania/pennsylvania-lawmakers-propose-regulations-to-ai-in-healthcare</a></p>
-</article>
-<article class="entry cat-media">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · lexology.com</summary><article class="entry cat-media" data-cat="media" data-topics="" data-search="AI: Possible Regulations (2025.9.19) 요약불가 lexology.com">
   <h2>AI: Possible Regulations (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">lexology.com</span></span><button type="button" class="copy-btn" data-copy="AI: Possible Regulations (2025.9.19)
 
@@ -670,8 +789,11 @@ https://www.abc27.com/pennsylvania/pennsylvania-lawmakers-propose-regulations-to
 https://www.lexology.com/library/detail.aspx?g=03e257ce-beec-467a-88d4-ba1007e849c6" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.lexology.com/library/detail.aspx?g=03e257ce-beec-467a-88d4-ba1007e849c6">https://www.lexology.com/library/detail.aspx?g=03e257ce-beec-467a-88d4-ba1007e849c6</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="AI Governance Library (2025.9.19) 요약불가 techieray.com">
   <h2>AI Governance Library (2025.9.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">techieray.com</span></span><button type="button" class="copy-btn" data-copy="AI Governance Library (2025.9.19)
 
@@ -680,7 +802,9 @@ https://www.lexology.com/library/detail.aspx?g=03e257ce-beec-467a-88d4-ba1007e84
 https://www.techieray.com/AIGovernanceLibrary" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.techieray.com/AIGovernanceLibrary">https://www.techieray.com/AIGovernanceLibrary</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-09-18.html">← 2025-09-18</a><a class="day-nav-btn" href="2025-09-21.html">2025-09-21 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-18.html">← 2025-09-18</a><a class="day-nav-btn" href="2025-09-21.html">2025-09-21 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -716,6 +840,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

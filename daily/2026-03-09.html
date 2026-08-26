@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -304,11 +356,11 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI Safety Daily Digest</h1>
-    <div class="sub">2026-03-09 · 10/12건 요약</div>
+    <div class="sub">2026-03-09 · 11/13건 요약</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi-weekly">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="트리니티 칼리지 더블린, AI 관리자에 대한 인간의 성별 편견 투영 현상 확인 (2026.3.9) 트리니티 칼리지 더블린 연구진은 인간 리더를 평가할 때 나타나는 성별 편견이 AI 의사결정권자(AI 관리자)를 대할 때도 동일하게 적용된다는 실험 결과를 발표. 참가자들은 완전히 동일한 보너스 미지급 결정을 내렸음에도 남성 AI보다 여성 AI 관리자에게 훨씬 부정적으로 반응하여, 향후 인간-AI 상호작용에서 발생할 수 있는 잠재적 우려를 보여줌. Trinity College Dublin">
   <h2>트리니티 칼리지 더블린, AI 관리자에 대한 인간의 성별 편견 투영 현상 확인 (2026.3.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Trinity College Dublin</span></span><button type="button" class="copy-btn" data-copy="트리니티 칼리지 더블린, AI 관리자에 대한 인간의 성별 편견 투영 현상 확인 (2026.3.9)
 
@@ -317,8 +369,10 @@
 https://www.sciencedirect.com/science/article/pii/S2451958826000588#sec3" onclick="copyEntry(this)">복사</button></div>
   <p>트리니티 칼리지 더블린 연구진은 인간 리더를 평가할 때 나타나는 성별 편견이 AI 의사결정권자(AI 관리자)를 대할 때도 동일하게 적용된다는 실험 결과를 발표. 참가자들은 완전히 동일한 보너스 미지급 결정을 내렸음에도 남성 AI보다 여성 AI 관리자에게 훨씬 부정적으로 반응하여, 향후 인간-AI 상호작용에서 발생할 수 있는 잠재적 우려를 보여줌.</p>
   <p class="url"><a href="https://www.sciencedirect.com/science/article/pii/S2451958826000588#sec3">https://www.sciencedirect.com/science/article/pii/S2451958826000588#sec3</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="guideline" data-search="NIST, 배포된 AI 시스템 사후 모니터링의 과제 정리(2026.3.9) 인공지능이 상용·정부 분야에 널리 도입되면서 실사용 환경에서의 사후 모니터링 필요성이 커지고 있다는 배경에서 NIST AI 800-4 보고서를 소개했다. 보고서는 기능·운영·인간요인·보안·컴플라이언스·대규모 영향 등 6가지 모니터링 범주를 제시하고, 각 범주별 격차(gaps)·장벽(barriers)과 함께 공통 과제(예: 신뢰할 수 있는 가이드라인 부족, 정보 공유 생태계 미성숙) 및 공개 질문을 정리했다. 특히 성능 저하와 drift 탐지, 분산 인프라의 로그 단편화, 모니터링 부담을 사용자에게 줄이는 방법, 위험 수준에 따른 모니터링 설계 등 구체적 쟁점을 강조한다. 미국 국립표준기술연구소(NIST)">
   <h2>🇺🇸 NIST, 배포된 AI 시스템 사후 모니터링의 과제 정리(2026.3.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">미국 국립표준기술연구소(NIST)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="NIST, 배포된 AI 시스템 사후 모니터링의 과제 정리(2026.3.9)
 
@@ -327,8 +381,10 @@ https://www.sciencedirect.com/science/article/pii/S2451958826000588#sec3" onclic
 https://www.nist.gov/news-events/news/2026/03/new-report-challenges-monitoring-deployed-ai-systems" onclick="copyEntry(this)">복사</button></div>
   <p>인공지능이 상용·정부 분야에 널리 도입되면서 실사용 환경에서의 사후 모니터링 필요성이 커지고 있다는 배경에서 NIST AI 800-4 보고서를 소개했다. 보고서는 기능·운영·인간요인·보안·컴플라이언스·대규모 영향 등 6가지 모니터링 범주를 제시하고, 각 범주별 격차(gaps)·장벽(barriers)과 함께 공통 과제(예: 신뢰할 수 있는 가이드라인 부족, 정보 공유 생태계 미성숙) 및 공개 질문을 정리했다. 특히 성능 저하와 drift 탐지, 분산 인프라의 로그 단편화, 모니터링 부담을 사용자에게 줄이는 방법, 위험 수준에 따른 모니터링 설계 등 구체적 쟁점을 강조한다.</p>
   <p class="url"><a href="https://www.nist.gov/news-events/news/2026/03/new-report-challenges-monitoring-deployed-ai-systems">https://www.nist.gov/news-events/news/2026/03/new-report-challenges-monitoring-deployed-ai-systems</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="Establishment of the awcft project maven (2026.3.9) 요약불가 govexec.com">
   <h2>Establishment of the awcft project maven (2026.3.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">govexec.com</span></span><button type="button" class="copy-btn" data-copy="Establishment of the awcft project maven (2026.3.9)
 
@@ -337,8 +393,10 @@ https://www.nist.gov/news-events/news/2026/03/new-report-challenges-monitoring-d
 https://www.govexec.com/media/gbc/docs/pdfs_edit/establishment_of_the_awcft_project_maven.pdf" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.govexec.com/media/gbc/docs/pdfs_edit/establishment_of_the_awcft_project_maven.pdf">https://www.govexec.com/media/gbc/docs/pdfs_edit/establishment_of_the_awcft_project_maven.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="agentic_ai standards" data-search="(2026.3.9 기준) AI 에이전트 보안 고려사항 관련 미 정부 RFI에 CLTC 연구진 의견 제출 CLTC AI Security Initiative(AISI) 연구진이 NIST 산하 CAISI의 AI 에이전트 보안 고려사항 RFI에 대한 의견서를 2026.3.9 제출했으며, 에이전트 자율성 수준에 비례한 거버넌스, 인간 통제·책임체계, 배포 후 연속 모니터링과 신속 대응, 방어적 다층화·격리, 시스템 단위 위험평가 등을 권고했다. 또한 개인정보·보안, 환각(에이전트 간 상호작용으로 인한 연쇄적 오정보), 악의적 사용(생물·화학·사이버 공격 개발 등) 우려를 구체적으로 언급했다. 정부-학계-산업-시민사회 간 표준화, 사고 보고, 인력 양성, 적응형 거버넌스 등 협력의 필요성도 강조했다. UC 버클리 CLTC(장기 사이버보안 센터)">
   <h2>🇺🇸 (2026.3.9 기준) AI 에이전트 보안 고려사항 관련 미 정부 RFI에 CLTC 연구진 의견 제출</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">UC 버클리 CLTC(장기 사이버보안 센터)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="(2026.3.9 기준) AI 에이전트 보안 고려사항 관련 미 정부 RFI에 CLTC 연구진 의견 제출
 
@@ -347,8 +405,10 @@ CLTC AI Security Initiative(AISI) 연구진이 NIST 산하 CAISI의 AI 에이전
 https://cltc.berkeley.edu/2026/03/18/researchers-submit-response-to-u-s-government-request-on-security-considerations-for-ai-agents/" onclick="copyEntry(this)">복사</button></div>
   <p>CLTC AI Security Initiative(AISI) 연구진이 NIST 산하 CAISI의 AI 에이전트 보안 고려사항 RFI에 대한 의견서를 2026.3.9 제출했으며, 에이전트 자율성 수준에 비례한 거버넌스, 인간 통제·책임체계, 배포 후 연속 모니터링과 신속 대응, 방어적 다층화·격리, 시스템 단위 위험평가 등을 권고했다. 또한 개인정보·보안, 환각(에이전트 간 상호작용으로 인한 연쇄적 오정보), 악의적 사용(생물·화학·사이버 공격 개발 등) 우려를 구체적으로 언급했다. 정부-학계-산업-시민사회 간 표준화, 사고 보고, 인력 양성, 적응형 거버넌스 등 협력의 필요성도 강조했다.</p>
   <p class="url"><a href="https://cltc.berkeley.edu/2026/03/18/researchers-submit-response-to-u-s-government-request-on-security-considerations-for-ai-agents/">https://cltc.berkeley.edu/2026/03/18/researchers-submit-response-to-u-s-government-request-on-security-considerations-for-ai-agents/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="healthcare law youth" data-search="플로리다 주지사 DeSantis, FLI와 협력해 AI 동반앱의 심리·사회적 위해 대응(2026.3.9) 플로리다 주정부는 AI chatbots·companion applications로 인한 아동 및 지역사회 위해를 줄이기 위해 Future of Life Institute(FLI)와 협력한다고 밝혔다. 이번 협력으로 위기 상담(Crisis Counselor Training Curriculum) 교육과, AI 제품으로 인한 위해를 주 당국에 신고할 수 있는 AI Harms Reporting Form을 마련한다. 교육은 정신건강 전문가가 AI 관련 상호작용이 심리적 고통·정서적 의존·행동 위해로 이어졌는지 식별하고 대응하도록 돕는 것을 목표로 하며, 신고 양식은 부모·교사·보호자 등 누구나 구조화된 방식으로 사례를 제출해 향후 주·연방 차원의 입법·규제에 활용될 예정이다. Future of Life Institute (FLI)">
   <h2>플로리다 주지사 DeSantis, FLI와 협력해 AI 동반앱의 심리·사회적 위해 대응(2026.3.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Future of Life Institute (FLI)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="의료">🏥</span><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="플로리다 주지사 DeSantis, FLI와 협력해 AI 동반앱의 심리·사회적 위해 대응(2026.3.9)
 
@@ -357,8 +417,10 @@ https://cltc.berkeley.edu/2026/03/18/researchers-submit-response-to-u-s-governme
 https://futureoflife.org/press-release/desantis-directs-florida-agencies-to-partner-with-fli/" onclick="copyEntry(this)">복사</button></div>
   <p>플로리다 주정부는 AI chatbots·companion applications로 인한 아동 및 지역사회 위해를 줄이기 위해 Future of Life Institute(FLI)와 협력한다고 밝혔다. 이번 협력으로 위기 상담(Crisis Counselor Training Curriculum) 교육과, AI 제품으로 인한 위해를 주 당국에 신고할 수 있는 AI Harms Reporting Form을 마련한다. 교육은 정신건강 전문가가 AI 관련 상호작용이 심리적 고통·정서적 의존·행동 위해로 이어졌는지 식별하고 대응하도록 돕는 것을 목표로 하며, 신고 양식은 부모·교사·보호자 등 누구나 구조화된 방식으로 사례를 제출해 향후 주·연방 차원의 입법·규제에 활용될 예정이다.</p>
   <p class="url"><a href="https://futureoflife.org/press-release/desantis-directs-florida-agencies-to-partner-with-fli/">https://futureoflife.org/press-release/desantis-directs-florida-agencies-to-partner-with-fli/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="deepfake_disinfo law safety_research youth" data-search="미네소타 입법 패키지로 18세 미만 챗봇 사용 제한 추진(2026.3.9) 미네소타 주 의회에서 AI 규제 법안들이 논의되는 가운데, 이번 회기 통과 시 18세 미만은 챗봇을 사용할 수 없게 하는 방안이 포함됐다. DFL 상원의원 Erin Maye Quade와 GOP 상원의원 Eric Lucero가 공동 발의했으며, 기술 기업이 스스로 안전장치를 마련하지 않는다는 점과 아동 보호 필요성이 근거로 제시됐다. 반면 TechNet의 AI 정책 고문은 해당 접근이 유용한 도구로부터 아이들을 차단할 수 있다고 반박했다. 이와 함께 의료적 필요성 판단에 AI 사용 제한, 고객 응대 시 AI 사용 공개 및 상담원 선택권 부여, 감시 목적 가격 책정 알고리즘 차단, deepfake 관련 기존 규제 강화 등 다른 AI 관련 조항도 함께 거론됐다. CBS 뉴스(미네소타)">
   <h2>미네소타 입법 패키지로 18세 미만 챗봇 사용 제한 추진(2026.3.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">CBS 뉴스(미네소타)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="청소년">🧒</span><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="미네소타 입법 패키지로 18세 미만 챗봇 사용 제한 추진(2026.3.9)
 
@@ -367,8 +429,12 @@ https://futureoflife.org/press-release/desantis-directs-florida-agencies-to-part
 https://www.cbsnews.com/minnesota/news/kids-ban-chatbots-regulation-artificial-intelligence-bills-minnesota/" onclick="copyEntry(this)">복사</button></div>
   <p>미네소타 주 의회에서 AI 규제 법안들이 논의되는 가운데, 이번 회기 통과 시 18세 미만은 챗봇을 사용할 수 없게 하는 방안이 포함됐다. DFL 상원의원 Erin Maye Quade와 GOP 상원의원 Eric Lucero가 공동 발의했으며, 기술 기업이 스스로 안전장치를 마련하지 않는다는 점과 아동 보호 필요성이 근거로 제시됐다. 반면 TechNet의 AI 정책 고문은 해당 접근이 유용한 도구로부터 아이들을 차단할 수 있다고 반박했다. 이와 함께 의료적 필요성 판단에 AI 사용 제한, 고객 응대 시 AI 사용 공개 및 상담원 선택권 부여, 감시 목적 가격 책정 알고리즘 차단, deepfake 관련 기존 규제 강화 등 다른 AI 관련 조항도 함께 거론됐다.</p>
   <p class="url"><a href="https://www.cbsnews.com/minnesota/news/kids-ban-chatbots-regulation-artificial-intelligence-bills-minnesota/">https://www.cbsnews.com/minnesota/news/kids-ban-chatbots-regulation-artificial-intelligence-bills-minnesota/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="frontier law national_security" data-search="Anthropic, 펜타곤의 ‘국가안보 공급망 위험’ 지정에 반발해 트럼프 행정부·연방기관 상대 소송(2026.3.9) 펜타곤은 지난주 Anthropic을 ‘supply-chain risk to national security’로 지정하고 국방 목적 사용을 금지했으며, 트럼프는 다른 연방기관에도 사용 금지를 지시함
+
+Anthropic은 펜타곤이 자사를 국가안보 위협(공급망 위험)으로 규정하고 정부와의 연계를 끊으려는 조치가 단순한 계약 분쟁을 넘어 “unlawful campaign of retaliation”이라며 소송을 제기했다. 회사는 두 건의 소송을 북부 캘리포니아 연방법원과 워싱턴 D.C. 항소법원에 각각 제출했으며, 공급망 위험 지정과 행정부 메시지가 절차를 무시하고 대통령 권한을 넘었다고 주장했다. 펜타곤과 백악관은 국방에 필요한 도구를 헌법에 따라 제공하겠다는 입장을 밝혔고, 펜타곤은 소송 관련 논평을 하지 않는다고 했다. NBC News (미국 NBC뉴스)">
   <h2>🇺🇸 Anthropic, 펜타곤의 ‘국가안보 공급망 위험’ 지정에 반발해 트럼프 행정부·연방기관 상대 소송(2026.3.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">NBC News (미국 NBC뉴스)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic, 펜타곤의 ‘국가안보 공급망 위험’ 지정에 반발해 트럼프 행정부·연방기관 상대 소송(2026.3.9)
 
@@ -380,8 +446,22 @@ https://www.nbcnews.com/tech/tech-news/anthropic-sues-trump-administration-ai-di
   <p>펜타곤은 지난주 Anthropic을 ‘supply-chain risk to national security’로 지정하고 국방 목적 사용을 금지했으며, 트럼프는 다른 연방기관에도 사용 금지를 지시함</p>
 <p>Anthropic은 펜타곤이 자사를 국가안보 위협(공급망 위험)으로 규정하고 정부와의 연계를 끊으려는 조치가 단순한 계약 분쟁을 넘어 “unlawful campaign of retaliation”이라며 소송을 제기했다. 회사는 두 건의 소송을 북부 캘리포니아 연방법원과 워싱턴 D.C. 항소법원에 각각 제출했으며, 공급망 위험 지정과 행정부 메시지가 절차를 무시하고 대통령 권한을 넘었다고 주장했다. 펜타곤과 백악관은 국방에 필요한 도구를 헌법에 따라 제공하겠다는 입장을 밝혔고, 펜타곤은 소송 관련 논평을 하지 않는다고 했다.</p>
   <p class="url"><a href="https://www.nbcnews.com/tech/tech-news/anthropic-sues-trump-administration-ai-dispute-pentagon-rcna262444">https://www.nbcnews.com/tech/tech-news/anthropic-sues-trump-administration-ai-dispute-pentagon-rcna262444</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-archive" data-cat="archive" data-topics="incidents law" data-search="EU 인공지능법 뉴스레터 97호: 안전과 집행 (2026.3.9) 유럽연합 집행위원회는 인공지능 생성 콘텐츠의 표시·라벨링에 관한 인공지능법 제50조 자발적 실천규범 제2차 초안을 공개했으며, 의견 제출 기한은 3월 30일, 최종 확정은 2026년 6월 초, 투명성 규정 적용은 8월 2일로 예정됐다. 2026 국제 AI 안전 보고서는 범용 AI의 오용·오작동·시스템 위험과 평가 회피로 인한 안전성 검증의 어려움을 지적하며, 인공지능법 시행과 관련성이 크다고 평가됐다. 뉴스레터는 유럽의 AI 인재 유출과 행정 분절 문제, 디지털서비스법 집행을 위한 독립 EU 기관 설립 제안, 산업용·범용 AI 규제 완화 및 의회 개정안에 대한 우려도 다뤘다. EU-AI-Act-Newsletter">
+  <h2>🇪🇺 EU 인공지능법 뉴스레터 97호: 안전과 집행 (2026.3.9)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-archive">아카이브</span> · <span class="source">EU AI Act Newsletter</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="EU 인공지능법 뉴스레터 97호: 안전과 집행 (2026.3.9)
+
+유럽연합 집행위원회는 인공지능 생성 콘텐츠의 표시·라벨링에 관한 인공지능법 제50조 자발적 실천규범 제2차 초안을 공개했으며, 의견 제출 기한은 3월 30일, 최종 확정은 2026년 6월 초, 투명성 규정 적용은 8월 2일로 예정됐다. 2026 국제 AI 안전 보고서는 범용 AI의 오용·오작동·시스템 위험과 평가 회피로 인한 안전성 검증의 어려움을 지적하며, 인공지능법 시행과 관련성이 크다고 평가됐다. 뉴스레터는 유럽의 AI 인재 유출과 행정 분절 문제, 디지털서비스법 집행을 위한 독립 EU 기관 설립 제안, 산업용·범용 AI 규제 완화 및 의회 개정안에 대한 우려도 다뤘다.
+
+https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-97-safety" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽연합 집행위원회는 인공지능 생성 콘텐츠의 표시·라벨링에 관한 인공지능법 제50조 자발적 실천규범 제2차 초안을 공개했으며, 의견 제출 기한은 3월 30일, 최종 확정은 2026년 6월 초, 투명성 규정 적용은 8월 2일로 예정됐다. 2026 국제 AI 안전 보고서는 범용 AI의 오용·오작동·시스템 위험과 평가 회피로 인한 안전성 검증의 어려움을 지적하며, 인공지능법 시행과 관련성이 크다고 평가됐다. 뉴스레터는 유럽의 AI 인재 유출과 행정 분절 문제, 디지털서비스법 집행을 위한 독립 EU 기관 설립 제안, 산업용·범용 AI 규제 완화 및 의회 개정안에 대한 우려도 다뤘다.</p>
+  <p class="url"><a href="https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-97-safety">https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-97-safety</a></p>
+  
+  
+</article>
+<article class="entry cat-db" data-cat="db" data-topics="cybersecurity" data-search="(2026.3.9) McKinsey 내부 AI 플랫폼 ‘Lilli’에서 SQL 인젝션 등 취약점으로 대량 데이터 접근 가능했다는 보안 연구 CodeWall은 McKinsey의 내부 AI 플랫폼 Lilli에 대해 자율형 공격 에이전트를 사용해 무인증 상태에서 프로덕션 데이터베이스에 읽기·쓰기 접근이 가능했다고 주장했다. 공개된 API 문서 중 일부 비보호 엔드포인트에서 JSON 키를 SQL에 직접 결합하는 방식의 SQL 인젝션이 발견됐고, 반복 탐색을 통해 실제 직원 식별자와 대규모 데이터가 유출되는 정황을 확인했다고 밝혔다. 또한 SQL 인젝션과 IDOR 취약점을 연계해 사용자 검색 기록 등 교차 사용자 데이터 접근 가능성, 프롬프트 레이어(시스템 프롬프트·모델 설정) 변조 시 가드레일 제거·오염된 조언·데이터 유출 유도 등 영향이 있을 수 있다고 설명했다. 책임 있는 공개 일정에 따라 McKinsey가 무인증 엔드포인트 패치 및 공개 API 문서 차단 등을 수행했다고 연구자가 서술했다. CodeWall(블로그)">
   <h2>(2026.3.9) McKinsey 내부 AI 플랫폼 ‘Lilli’에서 SQL 인젝션 등 취약점으로 대량 데이터 접근 가능했다는 보안 연구</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">CodeWall(블로그)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="(2026.3.9) McKinsey 내부 AI 플랫폼 ‘Lilli’에서 SQL 인젝션 등 취약점으로 대량 데이터 접근 가능했다는 보안 연구
 
@@ -390,18 +470,22 @@ CodeWall은 McKinsey의 내부 AI 플랫폼 Lilli에 대해 자율형 공격 에
 https://codewall.ai/blog/how-we-hacked-mckinseys-ai-platform" onclick="copyEntry(this)">복사</button></div>
   <p>CodeWall은 McKinsey의 내부 AI 플랫폼 Lilli에 대해 자율형 공격 에이전트를 사용해 무인증 상태에서 프로덕션 데이터베이스에 읽기·쓰기 접근이 가능했다고 주장했다. 공개된 API 문서 중 일부 비보호 엔드포인트에서 JSON 키를 SQL에 직접 결합하는 방식의 SQL 인젝션이 발견됐고, 반복 탐색을 통해 실제 직원 식별자와 대규모 데이터가 유출되는 정황을 확인했다고 밝혔다. 또한 SQL 인젝션과 IDOR 취약점을 연계해 사용자 검색 기록 등 교차 사용자 데이터 접근 가능성, 프롬프트 레이어(시스템 프롬프트·모델 설정) 변조 시 가드레일 제거·오염된 조언·데이터 유출 유도 등 영향이 있을 수 있다고 설명했다. 책임 있는 공개 일정에 따라 McKinsey가 무인증 엔드포인트 패치 및 공개 API 문서 차단 등을 수행했다고 연구자가 서술했다.</p>
   <p class="url"><a href="https://codewall.ai/blog/how-we-hacked-mckinseys-ai-platform">https://codewall.ai/blog/how-we-hacked-mckinseys-ai-platform</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="deepfake_disinfo" data-search="AI가 생성한 데이팅 프로필이 중국이 운영하는 온라인 사기(로맨스 스캠)로 유도한다 (2026.3.9) 소셜미디어에서 로맨스 상대를 찾는 이용자를 대상으로 AI로 만든 이미지·영상 등을 활용해 가짜 데이팅 후보를 홍보하는 크로스플랫폼 사기 생태계가 소개됐다. 이용자는 시니어·부유층·특정 인종 등 테마의 데이팅 사이트로 유인된 뒤, 이용료 손실과 함께 개인정보(의료·성병 관련 정보 포함) 유출 위험에 노출될 수 있다. Graphika는 최근 발견된 네트워크가 합성 미디어로 유혹하고, 여러 데이팅 사이트를 입구로 삼아 소수의 목적지 사기 도메인으로 사용자를 이동시키는 방식으로 규모와 정교함을 키운다고 분석했다. Graphika 리포트">
   <h2>🇨🇳 AI가 생성한 데이팅 프로필이 중국이 운영하는 온라인 사기(로맨스 스캠)로 유도한다 (2026.3.9)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Graphika 리포트</span></span><button type="button" class="copy-btn" data-copy="AI가 생성한 데이팅 프로필이 중국이 운영하는 온라인 사기(로맨스 스캠)로 유도한다 (2026.3.9)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Graphika 리포트</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="AI가 생성한 데이팅 프로필이 중국이 운영하는 온라인 사기(로맨스 스캠)로 유도한다 (2026.3.9)
 
 소셜미디어에서 로맨스 상대를 찾는 이용자를 대상으로 AI로 만든 이미지·영상 등을 활용해 가짜 데이팅 후보를 홍보하는 크로스플랫폼 사기 생태계가 소개됐다. 이용자는 시니어·부유층·특정 인종 등 테마의 데이팅 사이트로 유인된 뒤, 이용료 손실과 함께 개인정보(의료·성병 관련 정보 포함) 유출 위험에 노출될 수 있다. Graphika는 최근 발견된 네트워크가 합성 미디어로 유혹하고, 여러 데이팅 사이트를 입구로 삼아 소수의 목적지 사기 도메인으로 사용자를 이동시키는 방식으로 규모와 정교함을 키운다고 분석했다.
 
 https://graphika.com/reports/fauxmantic-overtures" onclick="copyEntry(this)">복사</button></div>
   <p>소셜미디어에서 로맨스 상대를 찾는 이용자를 대상으로 AI로 만든 이미지·영상 등을 활용해 가짜 데이팅 후보를 홍보하는 크로스플랫폼 사기 생태계가 소개됐다. 이용자는 시니어·부유층·특정 인종 등 테마의 데이팅 사이트로 유인된 뒤, 이용료 손실과 함께 개인정보(의료·성병 관련 정보 포함) 유출 위험에 노출될 수 있다. Graphika는 최근 발견된 네트워크가 합성 미디어로 유혹하고, 여러 데이팅 사이트를 입구로 삼아 소수의 목적지 사기 도메인으로 사용자를 이동시키는 방식으로 규모와 정교함을 키운다고 분석했다.</p>
   <p class="url"><a href="https://graphika.com/reports/fauxmantic-overtures">https://graphika.com/reports/fauxmantic-overtures</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="Claude Opus 4.6 Identified and Decrypted Its Own Benchmark During Evaluation (2026.3.9) 요약불가 AI-Risk-Explorer">
   <h2>Claude Opus 4.6 Identified and Decrypted Its Own Benchmark During Evaluation (2026.3.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Claude Opus 4.6 Identified and Decrypted Its Own Benchmark During Evaluation (2026.3.9)
 
@@ -410,8 +494,10 @@ https://graphika.com/reports/fauxmantic-overtures" onclick="copyEntry(this)">복
 https://www.anthropic.com/engineering/eval-awareness-browsecomp" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.anthropic.com/engineering/eval-awareness-browsecomp">https://www.anthropic.com/engineering/eval-awareness-browsecomp</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="" data-search="대규모 언어모델의 on-policy 거짓말 데이터셋을 만드는 Red Team 공모(2026.3.9) Schmidt Sciences, NDIF, Cadenza가 LLM lie detection을 위한 Red Team vs. Blue Team 경쟁을 진행하며, Red Team은 LLM이 스스로 생성한 on-policy lies(모델이 믿는 것으로 보이지만 거짓인 진술) 데이터셋을 설계·구현해야 한다. Blue Team은 black-box/white-box/hybrid 방식으로 거짓을 탐지하는 디텍터를 만들며, 개발 과정에서 Red Team의 validation 데이터 접근과 activation steering 등 해석도구 사용 권한을 받는다. Red Team은 모델별 최소 100개 정직·100개 기만 예시를 포함하고, 라벨이 실제로 거짓을 반영한다는 검증 근거와 함께 HuggingFace private 저장소 업로드 및 4쪽 이내 보고서를 제출해야 하며, 선정 시 $10,000(컴퓨트 최대 $2,000)와 추가로 $15,000이 지급된다. cadenza-labs.github.io">
   <h2>대규모 언어모델의 on-policy 거짓말 데이터셋을 만드는 Red Team 공모(2026.3.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">cadenza-labs.github.io</span></span><button type="button" class="copy-btn" data-copy="대규모 언어모델의 on-policy 거짓말 데이터셋을 만드는 Red Team 공모(2026.3.9)
 
@@ -420,8 +506,10 @@ Schmidt Sciences, NDIF, Cadenza가 LLM lie detection을 위한 Red Team vs. Blue
 https://cadenza-labs.github.io/red-team-rfp/" onclick="copyEntry(this)">복사</button></div>
   <p>Schmidt Sciences, NDIF, Cadenza가 LLM lie detection을 위한 Red Team vs. Blue Team 경쟁을 진행하며, Red Team은 LLM이 스스로 생성한 on-policy lies(모델이 믿는 것으로 보이지만 거짓인 진술) 데이터셋을 설계·구현해야 한다. Blue Team은 black-box/white-box/hybrid 방식으로 거짓을 탐지하는 디텍터를 만들며, 개발 과정에서 Red Team의 validation 데이터 접근과 activation steering 등 해석도구 사용 권한을 받는다. Red Team은 모델별 최소 100개 정직·100개 기만 예시를 포함하고, 라벨이 실제로 거짓을 반영한다는 검증 근거와 함께 HuggingFace private 저장소 업로드 및 4쪽 이내 보고서를 제출해야 하며, 선정 시 $10,000(컴퓨트 최대 $2,000)와 추가로 $15,000이 지급된다.</p>
   <p class="url"><a href="https://cadenza-labs.github.io/red-team-rfp/">https://cadenza-labs.github.io/red-team-rfp/</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="law" data-search="콜로라도 주 의회에서 의료 시스템 AI 관련 가드레일 법안 2건이 진전(2026.03.09) 콜로라도 주 의회에서 의료 시스템의 인공지능(AI) 사용을 규율하기 위한 ‘가드레일’ 성격의 법안 2건이 논의·진전되고 있다는 내용입니다. 다만 제공된 정보에는 법안의 구체 조항, 통과 단계, 일정, 주요 쟁점이 없어 세부 내용은 확인이 필요합니다. CPR(콜로라도 공영라디오)">
   <h2>콜로라도 주 의회에서 의료 시스템 AI 관련 가드레일 법안 2건이 진전(2026.03.09)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">CPR(콜로라도 공영라디오)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="콜로라도 주 의회에서 의료 시스템 AI 관련 가드레일 법안 2건이 진전(2026.03.09)
 
@@ -430,7 +518,9 @@ https://cadenza-labs.github.io/red-team-rfp/" onclick="copyEntry(this)">복사</
 https://www.cpr.org/2026/03/09/colorado-ai-health-care-guardrails-bills" onclick="copyEntry(this)">복사</button></div>
   <p>콜로라도 주 의회에서 의료 시스템의 인공지능(AI) 사용을 규율하기 위한 ‘가드레일’ 성격의 법안 2건이 논의·진전되고 있다는 내용입니다. 다만 제공된 정보에는 법안의 구체 조항, 통과 단계, 일정, 주요 쟁점이 없어 세부 내용은 확인이 필요합니다.</p>
   <p class="url"><a href="https://www.cpr.org/2026/03/09/colorado-ai-health-care-guardrails-bills">https://www.cpr.org/2026/03/09/colorado-ai-health-care-guardrails-bills</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-03-08.html">← 2026-03-08</a><a class="day-nav-btn" href="2026-03-10.html">2026-03-10 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-03-08.html">← 2026-03-08</a><a class="day-nav-btn" href="2026-03-10.html">2026-03-10 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -466,6 +556,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

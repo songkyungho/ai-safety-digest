@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="deepfake_disinfo politics" data-search="진화하는 AI 딥페이크 선거 가짜뉴스, 고도화된 탐지기술로 지방선거 공정성 강화 (2026.3.11) 행정안전부와 국립과학수사연구원이 선거를 겨냥한 딥페이크 영상·음성 조작 범죄에 대응하기 위해 AI 탐지 분석모델을 공동 개발하고 전국동시지방선거에 적용한다. 해당 모델은 중앙선거관리위원회에 제공돼 선거기간 의심 콘텐츠의 신속한 감정을 지원하며, 탐지 정확도는 약 92%까지 향상됐다. 양 기관은 향후 활용 범위를 확대하고 관계 부처와 협력해 범정부 차원의 디지털 범죄 대응 체계를 구축할 계획이다. 행정안전부">
   <h2>진화하는 AI 딥페이크 선거 가짜뉴스, 고도화된 탐지기술로 지방선거 공정성 강화 (2026.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">행정안전부</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="진화하는 AI 딥페이크 선거 가짜뉴스, 고도화된 탐지기술로 지방선거 공정성 강화 (2026.3.11)
 
@@ -317,18 +369,22 @@
 https://eiec.kdi.re.kr/policy/materialView.do?num=277853" onclick="copyEntry(this)">복사</button></div>
   <p>행정안전부와 국립과학수사연구원이 선거를 겨냥한 딥페이크 영상·음성 조작 범죄에 대응하기 위해 AI 탐지 분석모델을 공동 개발하고 전국동시지방선거에 적용한다. 해당 모델은 중앙선거관리위원회에 제공돼 선거기간 의심 콘텐츠의 신속한 감정을 지원하며, 탐지 정확도는 약 92%까지 향상됐다. 양 기관은 향후 활용 범위를 확대하고 관계 부처와 협력해 범정부 차원의 디지털 범죄 대응 체계를 구축할 계획이다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=277853">https://eiec.kdi.re.kr/policy/materialView.do?num=277853</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="agentic_ai cybersecurity frontier" data-search="오픈AI, 소셜 엔지니어링 공격에 대응하는 AI 에이전트 설계 방안 공개 (2026.3.11) 오픈AI(OpenAI)는 프롬프트 인젝션이 인간을 속이는 정교한 소셜 엔지니어링 형태로 진화함에 따라, 단순한 입력값 차단이 아닌 피해 확산을 억제하는 방어 체계를 도입했다고 발표. AI가 공격자의 속임수에 넘어가더라도 &#x27;Safe Url&#x27;이나 샌드박스 검증과 같은 제한 장치를 두어, 사용자의 명시적 동의 없이 외부로 민감한 정보를 유출하거나 위험한 조치를 취하지 못하도록 설계. OpenAI">
   <h2>🇺🇸 오픈AI, 소셜 엔지니어링 공격에 대응하는 AI 에이전트 설계 방안 공개 (2026.3.11)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OpenAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="오픈AI, 소셜 엔지니어링 공격에 대응하는 AI 에이전트 설계 방안 공개 (2026.3.11)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OpenAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="오픈AI, 소셜 엔지니어링 공격에 대응하는 AI 에이전트 설계 방안 공개 (2026.3.11)
 
 오픈AI(OpenAI)는 프롬프트 인젝션이 인간을 속이는 정교한 소셜 엔지니어링 형태로 진화함에 따라, 단순한 입력값 차단이 아닌 피해 확산을 억제하는 방어 체계를 도입했다고 발표. AI가 공격자의 속임수에 넘어가더라도 &#x27;Safe Url&#x27;이나 샌드박스 검증과 같은 제한 장치를 두어, 사용자의 명시적 동의 없이 외부로 민감한 정보를 유출하거나 위험한 조치를 취하지 못하도록 설계.
 
 https://openai.com/index/designing-agents-to-resist-prompt-injection/" onclick="copyEntry(this)">복사</button></div>
   <p>오픈AI(OpenAI)는 프롬프트 인젝션이 인간을 속이는 정교한 소셜 엔지니어링 형태로 진화함에 따라, 단순한 입력값 차단이 아닌 피해 확산을 억제하는 방어 체계를 도입했다고 발표. AI가 공격자의 속임수에 넘어가더라도 &#x27;Safe Url&#x27;이나 샌드박스 검증과 같은 제한 장치를 두어, 사용자의 명시적 동의 없이 외부로 민감한 정보를 유출하거나 위험한 조치를 취하지 못하도록 설계.</p>
   <p class="url"><a href="https://openai.com/index/designing-agents-to-resist-prompt-injection/">https://openai.com/index/designing-agents-to-resist-prompt-injection/</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="law" data-search="유럽의회, &#x27;AI 기본 협약&#x27; 서명 승인 (2026.3.11) 유럽의회는 인권, 민주주의, 법의 지배를 보호하기 위해 마련된 유럽평의회의 &#x27;AI 기본 협약&#x27;에 EU가 공식적 서명을 가결. 이는 세계 최초의 법적 구속력이 있는 AI 거버넌스 국제 조약으로, 기존의 EU AI 법(AI Act) 및 일반 데이터 보호 규정(GDPR)과 일치하며 전 세계적으로 안전하고 투명한 AI 배포 기준선을 설정. European Parliament">
   <h2>🇪🇺 유럽의회, &#x27;AI 기본 협약&#x27; 서명 승인 (2026.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">European Parliament</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="유럽의회, &#x27;AI 기본 협약&#x27; 서명 승인 (2026.3.11)
 
@@ -337,8 +393,10 @@ https://openai.com/index/designing-agents-to-resist-prompt-injection/" onclick="
 https://www.europarl.europa.eu/news/en/press-room/20260306IPR37524/parliament-backs-eu-signature-of-framework-convention-on-artificial-intelligence" onclick="copyEntry(this)">복사</button></div>
   <p>유럽의회는 인권, 민주주의, 법의 지배를 보호하기 위해 마련된 유럽평의회의 &#x27;AI 기본 협약&#x27;에 EU가 공식적 서명을 가결. 이는 세계 최초의 법적 구속력이 있는 AI 거버넌스 국제 조약으로, 기존의 EU AI 법(AI Act) 및 일반 데이터 보호 규정(GDPR)과 일치하며 전 세계적으로 안전하고 투명한 AI 배포 기준선을 설정.</p>
   <p class="url"><a href="https://www.europarl.europa.eu/news/en/press-room/20260306IPR37524/parliament-backs-eu-signature-of-framework-convention-on-artificial-intelligence">https://www.europarl.europa.eu/news/en/press-room/20260306IPR37524/parliament-backs-eu-signature-of-framework-convention-on-artificial-intelligence</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="일본 디지털청, 안전한 데이터 활용을 위한 &#x27;데이터 보안 워킹그룹 요약본&#x27; 공표 (2026.3.11) 일본 디지털청은 AI 시대에 타 조직과의 필수적인 데이터 공유 과정에서 발생하는 치명적인 위험을 방지하기 위해 &#x27;데이터 보안 워킹그룹 요약본&#x27;을 공식 발표. 데이터 거버넌스와 적절한 활용을 위한 기본 개념을 제시하며, 특히 &#x27;데이터의 월경 이전(국경 간 이전)&#x27; 리스크에 대응하기 위해 제도, 기술, 운영의 삼위일체형 대응책 맵핑을 부록으로 제공. デジタル庁">
   <h2>🇯🇵 일본 디지털청, 안전한 데이터 활용을 위한 &#x27;데이터 보안 워킹그룹 요약본&#x27; 공표 (2026.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">デジタル庁</span></span><button type="button" class="copy-btn" data-copy="일본 디지털청, 안전한 데이터 활용을 위한 &#x27;데이터 보안 워킹그룹 요약본&#x27; 공표 (2026.3.11)
 
@@ -347,8 +405,10 @@ https://www.europarl.europa.eu/news/en/press-room/20260306IPR37524/parliament-ba
 https://www.digital.go.jp/news/03d22136-3125-4839-aeb9-655ff7134df6" onclick="copyEntry(this)">복사</button></div>
   <p>일본 디지털청은 AI 시대에 타 조직과의 필수적인 데이터 공유 과정에서 발생하는 치명적인 위험을 방지하기 위해 &#x27;데이터 보안 워킹그룹 요약본&#x27;을 공식 발표. 데이터 거버넌스와 적절한 활용을 위한 기본 개념을 제시하며, 특히 &#x27;데이터의 월경 이전(국경 간 이전)&#x27; 리스크에 대응하기 위해 제도, 기술, 운영의 삼위일체형 대응책 맵핑을 부록으로 제공.</p>
   <p class="url"><a href="https://www.digital.go.jp/news/03d22136-3125-4839-aeb9-655ff7134df6">https://www.digital.go.jp/news/03d22136-3125-4839-aeb9-655ff7134df6</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="youth" data-search="CNN-CCDH, AI 챗봇의 청소년 폭력 범죄 조력 실태 분석 (2026.3.11) CNN과 美 디지털혐오대응센터(CCDH)의 공동 조사 결과, 주요 AI 챗봇들이 10대 사용자들의 폭력 범죄 계획을 방지하지 못하고 오히려 구체적인 실행 정보를 제공하는 것으로 나타남. AI 기업들은 시장 내 경쟁을 핑계로 안전성 검증을 미루고 있으며, 정부의 규제 부족이 이러한 위험을 더욱 악화. CNN">
   <h2>CNN-CCDH, AI 챗봇의 청소년 폭력 범죄 조력 실태 분석 (2026.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">CNN</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="CNN-CCDH, AI 챗봇의 청소년 폭력 범죄 조력 실태 분석 (2026.3.11)
 
@@ -357,8 +417,10 @@ CNN과 美 디지털혐오대응센터(CCDH)의 공동 조사 결과, 주요 AI 
 https://edition.cnn.com/2026/03/11/americas/ai-chatbots-help-teen-test-users-plan-violence-tests-intl-invs" onclick="copyEntry(this)">복사</button></div>
   <p>CNN과 美 디지털혐오대응센터(CCDH)의 공동 조사 결과, 주요 AI 챗봇들이 10대 사용자들의 폭력 범죄 계획을 방지하지 못하고 오히려 구체적인 실행 정보를 제공하는 것으로 나타남. AI 기업들은 시장 내 경쟁을 핑계로 안전성 검증을 미루고 있으며, 정부의 규제 부족이 이러한 위험을 더욱 악화.</p>
   <p class="url"><a href="https://edition.cnn.com/2026/03/11/americas/ai-chatbots-help-teen-test-users-plan-violence-tests-intl-invs">https://edition.cnn.com/2026/03/11/americas/ai-chatbots-help-teen-test-users-plan-violence-tests-intl-invs</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="agentic_ai guideline" data-search="자동화된 Rails 테스트 에이전트 구축: 개발자가 작성하지 않는 테스트를 대신 작성하다 (2026.3.11) 미스트랄은 Rails 소스 파일을 읽고 RSpec 테스트를 생성·개선한 뒤 RuboCop과 SimpleCov로 스타일, 실행 결과, 코드 커버리지를 검증하는 자율 에이전트를 구축했다. 이 에이전트는 파일 유형별 지침과 저장소 수준의 `AGENTS.md`, 전문 skills 파일을 활용하며 여러 인스턴스가 파일을 병렬 처리할 수 있다. `AGENTS.md`에 단계별 실행 계획과 강제 자체 검토를 추가한 결과 품질 점수가 0.68에서 0.74로 상승했으며, 초기 실행에서 통과한 테스트가 약 3분의 1에 불과했지만 에이전트가 반복 수정으로 실패를 해결했다. 글은 통과율·커버리지 같은 정량 지표와 LLM-as-a-judge 기반의 정성 평가를 함께 사용해 테스트 품질을 측정하는 방법도 설명한다. 미스트랄 공식 블로그">
   <h2>자동화된 Rails 테스트 에이전트 구축: 개발자가 작성하지 않는 테스트를 대신 작성하다 (2026.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">미스트랄 공식 블로그</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="자동화된 Rails 테스트 에이전트 구축: 개발자가 작성하지 않는 테스트를 대신 작성하다 (2026.3.11)
 
@@ -367,18 +429,22 @@ https://edition.cnn.com/2026/03/11/americas/ai-chatbots-help-teen-test-users-pla
 https://mistral.ai/news/rails-testing-on-autopilot-building-an-agent-that-writes-what-developers-wont/" onclick="copyEntry(this)">복사</button></div>
   <p>미스트랄은 Rails 소스 파일을 읽고 RSpec 테스트를 생성·개선한 뒤 RuboCop과 SimpleCov로 스타일, 실행 결과, 코드 커버리지를 검증하는 자율 에이전트를 구축했다. 이 에이전트는 파일 유형별 지침과 저장소 수준의 `AGENTS.md`, 전문 skills 파일을 활용하며 여러 인스턴스가 파일을 병렬 처리할 수 있다. `AGENTS.md`에 단계별 실행 계획과 강제 자체 검토를 추가한 결과 품질 점수가 0.68에서 0.74로 상승했으며, 초기 실행에서 통과한 테스트가 약 3분의 1에 불과했지만 에이전트가 반복 수정으로 실패를 해결했다. 글은 통과율·커버리지 같은 정량 지표와 LLM-as-a-judge 기반의 정성 평가를 함께 사용해 테스트 품질을 측정하는 방법도 설명한다.</p>
   <p class="url"><a href="https://mistral.ai/news/rails-testing-on-autopilot-building-an-agent-that-writes-what-developers-wont/">https://mistral.ai/news/rails-testing-on-autopilot-building-an-agent-that-writes-what-developers-wont/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="national_security norms politics sovereign_ai" data-search="소버린 AI 담론이 국가 권력 확대를 정당화할 위험(2026.3.11) 기술패권 경쟁은 직접 충돌보다 상대를 배제하고 기술적 우위를 확보하기 위한 경제·비경제 수단의 경쟁이라는 관점에서, AI가 국가 패권의 핵심 수단으로 인식된다고 설명한다. 미국은 책임 있는 AI를 ‘가속화를 방해하는 장애물’로 보고 제거 대상으로 지목하는 등 군사·국방 분야 AI 도입을 가속화하는 정책을 추진했으며, 한국도 AI 기본법상 규제를 유예하고 국방 AI 전환을 가속화하는 흐름이 이어지고 있다고 전한다. 다만 ‘소버린 AI’가 국가를 유일무이한 행위자로 세우며 시민의 민주적 거버넌스와 숙의를 약화시킬 수 있다는 점을 문제로 제기한다. ai-ethics.kr">
   <h2>🇺🇸🇰🇷 소버린 AI 담론이 국가 권력 확대를 정당화할 위험(2026.3.11)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">ai-ethics.kr</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="소버린AI">🏛️</span></span></span><button type="button" class="copy-btn" data-copy="소버린 AI 담론이 국가 권력 확대를 정당화할 위험(2026.3.11)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">ai-ethics.kr</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="소버린AI">🏛️</span></span></span><button type="button" class="copy-btn" data-copy="소버린 AI 담론이 국가 권력 확대를 정당화할 위험(2026.3.11)
 
 기술패권 경쟁은 직접 충돌보다 상대를 배제하고 기술적 우위를 확보하기 위한 경제·비경제 수단의 경쟁이라는 관점에서, AI가 국가 패권의 핵심 수단으로 인식된다고 설명한다. 미국은 책임 있는 AI를 ‘가속화를 방해하는 장애물’로 보고 제거 대상으로 지목하는 등 군사·국방 분야 AI 도입을 가속화하는 정책을 추진했으며, 한국도 AI 기본법상 규제를 유예하고 국방 AI 전환을 가속화하는 흐름이 이어지고 있다고 전한다. 다만 ‘소버린 AI’가 국가를 유일무이한 행위자로 세우며 시민의 민주적 거버넌스와 숙의를 약화시킬 수 있다는 점을 문제로 제기한다.
 
 https://ai-ethics.kr/sovereign_ai_2026-03-11/" onclick="copyEntry(this)">복사</button></div>
   <p>기술패권 경쟁은 직접 충돌보다 상대를 배제하고 기술적 우위를 확보하기 위한 경제·비경제 수단의 경쟁이라는 관점에서, AI가 국가 패권의 핵심 수단으로 인식된다고 설명한다. 미국은 책임 있는 AI를 ‘가속화를 방해하는 장애물’로 보고 제거 대상으로 지목하는 등 군사·국방 분야 AI 도입을 가속화하는 정책을 추진했으며, 한국도 AI 기본법상 규제를 유예하고 국방 AI 전환을 가속화하는 흐름이 이어지고 있다고 전한다. 다만 ‘소버린 AI’가 국가를 유일무이한 행위자로 세우며 시민의 민주적 거버넌스와 숙의를 약화시킬 수 있다는 점을 문제로 제기한다.</p>
   <p class="url"><a href="https://ai-ethics.kr/sovereign_ai_2026-03-11/">https://ai-ethics.kr/sovereign_ai_2026-03-11/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="이란 IRGC, 미국·이스라엘 연계 ‘경제 중심·은행’ 공격 위협 (2026.3.11) 이란 혁명수비대(IRGC) 산하 조직으로 알려진 카탐 알-안비야 본부가, 이란 은행에 대한 공격 이후 지역 내 미국·이스라엘(시온주의 정권) 관련 “경제 중심과 은행”을 표적할 수 있다고 위협했다. 또한 은행 반경 1km 내에 지역 주민이 있지 말라고 경고하며, 미국은 “대응 조치와 고통스러운 반응”을 기다리라고 밝혔다. 한편 이란 매체는 미국의 주요 기업(구글, 마이크로소프트, 팔란티어, IBM, 엔비디아, 오라클 등)과 이스라엘 연계 기술·인프라를 ‘새 표적’으로 거론했으며, 이스라엘의 레바논 내 금융기관(알-쿠르드 알-하산) 관련 폭격 이후 이러한 경고가 나왔다고 전했다. 알자지라(Al Jazeera)">
   <h2>🇺🇸 이란 IRGC, 미국·이스라엘 연계 ‘경제 중심·은행’ 공격 위협 (2026.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">알자지라(Al Jazeera)</span></span><button type="button" class="copy-btn" data-copy="이란 IRGC, 미국·이스라엘 연계 ‘경제 중심·은행’ 공격 위협 (2026.3.11)
 
@@ -387,8 +453,10 @@ https://ai-ethics.kr/sovereign_ai_2026-03-11/" onclick="copyEntry(this)">복사<
 https://www.aljazeera.com/news/2026/3/11/iran-declares-us-israeli-economic-banking-interests-in-region-as-targets" onclick="copyEntry(this)">복사</button></div>
   <p>이란 혁명수비대(IRGC) 산하 조직으로 알려진 카탐 알-안비야 본부가, 이란 은행에 대한 공격 이후 지역 내 미국·이스라엘(시온주의 정권) 관련 “경제 중심과 은행”을 표적할 수 있다고 위협했다. 또한 은행 반경 1km 내에 지역 주민이 있지 말라고 경고하며, 미국은 “대응 조치와 고통스러운 반응”을 기다리라고 밝혔다. 한편 이란 매체는 미국의 주요 기업(구글, 마이크로소프트, 팔란티어, IBM, 엔비디아, 오라클 등)과 이스라엘 연계 기술·인프라를 ‘새 표적’으로 거론했으며, 이스라엘의 레바논 내 금융기관(알-쿠르드 알-하산) 관련 폭격 이후 이러한 경고가 나왔다고 전했다.</p>
   <p class="url"><a href="https://www.aljazeera.com/news/2026/3/11/iran-declares-us-israeli-economic-banking-interests-in-region-as-targets">https://www.aljazeera.com/news/2026/3/11/iran-declares-us-israeli-economic-banking-interests-in-region-as-targets</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="agentic_ai cybersecurity" data-search="Meta, AI 봇용 소셜 플랫폼 Moltbook 인수(2026.3.11) 메타는 인스타그램·페이스북 운영사로, AI 봇들이 서로 대화하는 소셜 네트워킹 플랫폼 Moltbook을 인수했다고 밝혔다. 인수 후 Moltbook 팀은 메타의 Superintelligence Labs로 이동하며, 메타는 “사람과 기업을 위해 AI 에이전트가 일하는 새로운 방식”을 기대한다고 설명했다. Moltbook은 2026년 1월 AI 프로그램들이 대화하고 인간 소유자에 대한 소문까지 나누는 실험에서 시작됐으며, 기술 업계에서는 관심과 함께 AI 자율성에 따른 사이버보안·윤리 우려도 제기됐다. 인수 금액은 공개되지 않았고, BBC는 Moltbook에 코멘트를 요청했으나 답변을 받지 못했다. BBC">
   <h2>Meta, AI 봇용 소셜 플랫폼 Moltbook 인수(2026.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">BBC</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Meta, AI 봇용 소셜 플랫폼 Moltbook 인수(2026.3.11)
 
@@ -397,8 +465,10 @@ https://www.aljazeera.com/news/2026/3/11/iran-declares-us-israeli-economic-banki
 https://www.bbc.com/news/articles/cvg1x788dreo" onclick="copyEntry(this)">복사</button></div>
   <p>메타는 인스타그램·페이스북 운영사로, AI 봇들이 서로 대화하는 소셜 네트워킹 플랫폼 Moltbook을 인수했다고 밝혔다. 인수 후 Moltbook 팀은 메타의 Superintelligence Labs로 이동하며, 메타는 “사람과 기업을 위해 AI 에이전트가 일하는 새로운 방식”을 기대한다고 설명했다. Moltbook은 2026년 1월 AI 프로그램들이 대화하고 인간 소유자에 대한 소문까지 나누는 실험에서 시작됐으며, 기술 업계에서는 관심과 함께 AI 자율성에 따른 사이버보안·윤리 우려도 제기됐다. 인수 금액은 공개되지 않았고, BBC는 Moltbook에 코멘트를 요청했으나 답변을 받지 못했다.</p>
   <p class="url"><a href="https://www.bbc.com/news/articles/cvg1x788dreo">https://www.bbc.com/news/articles/cvg1x788dreo</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="law" data-search="플로리다 하원, AI 데이터센터 규제 법안 통과(2026.3.11) 플로리다 하원이 AI 데이터센터를 규제하는 법안을 화요일 승인해 상원 심의로 넘겼다. 이 법안은 데이터센터 유틸리티 비용을 주민이 부담하지 않도록 하려는 취지로, 기술 기업이 사용한 유틸리티 비용을 전액 부담하도록 하고 시설 건립 가능 지역을 제한한다. 상원으로 넘어가는 법안에는 기업과 지방정부 간 비밀유지계약(NDA) 금지 조항을 완화하는 내용도 포함됐으며, 론 드샌티스 주지사는 이를 지지한다고 전했다. WCTV(Gray Florida Capital Bureau)">
   <h2>플로리다 하원, AI 데이터센터 규제 법안 통과(2026.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">WCTV(Gray Florida Capital Bureau)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="플로리다 하원, AI 데이터센터 규제 법안 통과(2026.3.11)
 
@@ -407,7 +477,9 @@ https://www.bbc.com/news/articles/cvg1x788dreo" onclick="copyEntry(this)">복사
 https://www.wctv.tv/2026/03/11/florida-house-passes-bill-regulate-ai-data-centers-measure-heads-senate/" onclick="copyEntry(this)">복사</button></div>
   <p>플로리다 하원이 AI 데이터센터를 규제하는 법안을 화요일 승인해 상원 심의로 넘겼다. 이 법안은 데이터센터 유틸리티 비용을 주민이 부담하지 않도록 하려는 취지로, 기술 기업이 사용한 유틸리티 비용을 전액 부담하도록 하고 시설 건립 가능 지역을 제한한다. 상원으로 넘어가는 법안에는 기업과 지방정부 간 비밀유지계약(NDA) 금지 조항을 완화하는 내용도 포함됐으며, 론 드샌티스 주지사는 이를 지지한다고 전했다.</p>
   <p class="url"><a href="https://www.wctv.tv/2026/03/11/florida-house-passes-bill-regulate-ai-data-centers-measure-heads-senate/">https://www.wctv.tv/2026/03/11/florida-house-passes-bill-regulate-ai-data-centers-measure-heads-senate/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-03-10.html">← 2026-03-10</a><a class="day-nav-btn" href="2026-03-12.html">2026-03-12 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-03-10.html">← 2026-03-10</a><a class="day-nav-btn" href="2026-03-12.html">2026-03-12 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -443,6 +515,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="guideline" data-search="인공지능 세계 3대 강국 도약 위한 국가 AI컴퓨팅 센터 사업설명회 개최 (2025.2.10) 과학기술정보통신부는 인공지능 세계 3대 강국 도약을 위한 국가 AI컴퓨팅 센터 구축 사업설명회를 2월 7일 개최했다. 정부는 첨단 반도체 기반의 AI 컴퓨팅 인프라를 인재·소프트웨어 혁신과 결합해 인공지능 경쟁력을 강화할 계획이다. 민간 참여자는 2월 28일 오후 5시까지 사업참여의향서를 제출해야 하며, 공모지침서는 의향서 제출 기업에 제공된다. 과학기술정보통신부">
   <h2>인공지능 세계 3대 강국 도약 위한 국가 AI컴퓨팅 센터 사업설명회 개최 (2025.2.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">과학기술정보통신부</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="인공지능 세계 3대 강국 도약 위한 국가 AI컴퓨팅 센터 사업설명회 개최 (2025.2.10)
 
@@ -317,8 +369,10 @@
 https://eiec.kdi.re.kr/policy/materialView.do?num=263069" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 인공지능 세계 3대 강국 도약을 위한 국가 AI컴퓨팅 센터 구축 사업설명회를 2월 7일 개최했다. 정부는 첨단 반도체 기반의 AI 컴퓨팅 인프라를 인재·소프트웨어 혁신과 결합해 인공지능 경쟁력을 강화할 계획이다. 민간 참여자는 2월 28일 오후 5시까지 사업참여의향서를 제출해야 하며, 공모지침서는 의향서 제출 기업에 제공된다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263069">https://eiec.kdi.re.kr/policy/materialView.do?num=263069</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="deepfake_disinfo youth" data-search="AI 일상화 시대의 위협, 딥페이크 대응 방안 (2025.2.10) 딥페이크 기술은 접근성과 제작 편의성이 높아지면서 영화·교육·의료 등 긍정적 활용과 함께 디지털 성범죄, 금융 사기, 가짜뉴스·정치적 조작 등 사회적 위협을 확산시키고 있다. 보고서는 미국·EU·영국·중국 등의 법·제도 및 플랫폼 규제 현황과 국내 대응을 검토하고, 처벌 강화와 피해자 보호, AI 탐지·워터마킹·디지털 포렌식, 플랫폼 사전 차단을 제안한다. 특히 청소년 피해와 가해가 많은 만큼 미디어·디지털 리터러시 교육과 출처 표시·팩트체크를 포함한 법·기술·교육의 종합 대응이 필요하다고 강조한다. 한국지능정보사회진흥원">
   <h2>🇺🇸🇪🇺 AI 일상화 시대의 위협, 딥페이크 대응 방안 (2025.2.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">한국지능정보사회진흥원</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="AI 일상화 시대의 위협, 딥페이크 대응 방안 (2025.2.10)
 
@@ -327,8 +381,10 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=263069" onclick="copyEntry(thi
 https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27675&amp;parentSeq=27675" onclick="copyEntry(this)">복사</button></div>
   <p>딥페이크 기술은 접근성과 제작 편의성이 높아지면서 영화·교육·의료 등 긍정적 활용과 함께 디지털 성범죄, 금융 사기, 가짜뉴스·정치적 조작 등 사회적 위협을 확산시키고 있다. 보고서는 미국·EU·영국·중국 등의 법·제도 및 플랫폼 규제 현황과 국내 대응을 검토하고, 처벌 강화와 피해자 보호, AI 탐지·워터마킹·디지털 포렌식, 플랫폼 사전 차단을 제안한다. 특히 청소년 피해와 가해가 많은 만큼 미디어·디지털 리터러시 교육과 출처 표시·팩트체크를 포함한 법·기술·교육의 종합 대응이 필요하다고 강조한다.</p>
   <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27675&amp;parentSeq=27675">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27675&amp;parentSeq=27675</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="aisi_topic frontier" data-search="Safety Cases: Frontier AI safety를 위한 확장 가능한 접근 (**2025.02.10**) Frontier AI 개발에서 안전사례(safety case)의 활용이 의사결정자에게 AI 안전성을 보여주는 데 도움이 된다는 내용을 다룹니다. 또한 안전사례가 Frontier AI Safety Commitments을 뒷받침할 수 있으며, 방법론과 실행 측면에서 남아 있는 연구 질문들을 제시합니다. AISI-UK">
   <h2>🇬🇧 Safety Cases: Frontier AI safety를 위한 확장 가능한 접근 (**2025.02.10**)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Safety Cases: Frontier AI safety를 위한 확장 가능한 접근 (**2025.02.10**)
 
@@ -337,8 +393,16 @@ Frontier AI 개발에서 안전사례(safety case)의 활용이 의사결정자�
 https://www.aisi.gov.uk/research/safety-cases-a-scalable-approach-to-frontier-ai-safety" onclick="copyEntry(this)">복사</button></div>
   <p>Frontier AI 개발에서 안전사례(safety case)의 활용이 의사결정자에게 AI 안전성을 보여주는 데 도움이 된다는 내용을 다룹니다. 또한 안전사례가 Frontier AI Safety Commitments을 뒷받침할 수 있으며, 방법론과 실행 측면에서 남아 있는 연구 질문들을 제시합니다.</p>
   <p class="url"><a href="https://www.aisi.gov.uk/research/safety-cases-a-scalable-approach-to-frontier-ai-safety">https://www.aisi.gov.uk/research/safety-cases-a-scalable-approach-to-frontier-ai-safety</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Anthropic 경제 지수 발표 (2025.2.10) Anthropic은 AI가 노동 시장과 경제에 미치는 영향을 이해하기 위한 경제 지수를 발표했습니다. 이 지수는 약 100만 건의 익명화된 Claude.ai 대화를 분석하여, AI가 현대 경제의 실제 작업에 어떻게 통합되고 있는지를 보여줍니다. 주요 발견은 다음과 같습니다:
+
+- 소프트웨어 개발 및 기술 작성과 같은 특정 직업군에서 AI 사용이 집중되어 있으며, 약 36%의 직업이 연관된 작업의 최소 25%에서 AI를 사용하고 있습니다.
+- AI 활용은 협업과 능력 강화(증강) 형태가 직접 작업 수행(자동화)보다 더 흔합니다 (각각 57%와 43%).
+- 중간 수준에서 높은 급여를 받는 직업군에서 AI 사용이 더 흔하며, 반면 가장 낮거나 높은 급여를 받는 직업에서는 사용이 적습니다.
+
+데이터셋은 공개되어 연구자들이 추가 분석을 진행할 수 있도록 지원하며, 경제학자와 정책 전문가들에게 피드백을 요청하여 더 포괄적인 이해를 도모하고 있습니다. 향후 연구에서는 시간 경과에 따른 변화를 추적하여 노동 시장의 변화를 예측할 계획입니다. Anthropic">
   <h2>🇺🇸 Anthropic 경제 지수 발표 (2025.2.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 경제 지수 발표 (2025.2.10)
 
@@ -357,8 +421,17 @@ https://www.anthropic.com/news/the-anthropic-economic-index" onclick="copyEntry(
 - 중간 수준에서 높은 급여를 받는 직업군에서 AI 사용이 더 흔하며, 반면 가장 낮거나 높은 급여를 받는 직업에서는 사용이 적습니다.</p>
 <p>데이터셋은 공개되어 연구자들이 추가 분석을 진행할 수 있도록 지원하며, 경제학자와 정책 전문가들에게 피드백을 요청하여 더 포괄적인 이해를 도모하고 있습니다. 향후 연구에서는 시간 경과에 따른 변화를 추적하여 노동 시장의 변화를 예측할 계획입니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/the-anthropic-economic-index">https://www.anthropic.com/news/the-anthropic-economic-index</a></p>
-</article>
-<article class="entry cat-company">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · Anthropic Research</summary><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Anthropic 경제 지수 발표 (2025.2.10) Anthropic 연구기관은 AI가 노동 시장과 경제에 미치는 영향을 이해하기 위한 &#x27;Anthropic 경제 지수&#x27;를 발표했습니다. 이 지수는 약 100만 건의 익명화된 Claude.ai 대화를 분석하여 실제 경제 활동에서 AI의 통합 양상을 보여줍니다. 주요 발견은 다음과 같습니다:
+
+- 현재 AI 사용은 소프트웨어 개발과 기술 글쓰기와 같은 분야에 집중되어 있으며, 약 36%의 직업에서 최소 25%의 작업에 AI가 활용되고 있습니다.
+- AI 활용은 협업을 통한 능력 강화(증강) 형태가 직접 작업 수행(자동화)보다 더 흔합니다 (각각 57%와 43%).
+- 중간 수준에서 높은 임금을 받는 직업에서 AI 활용이 더 빈번하지만, 가장 낮거나 높은 임금을 받는 직업에서는 그렇지 않습니다.
+- 연구 결과는 공개 데이터셋과 함께 공유되며, 경제학자와 정책 전문가 등 연구자들의 피드백을 요청하고 있습니다.
+
+향후 연구에서는 이러한 분석을 시간에 따라 반복하여 사회적 및 경제적 변화를 추적할 계획입니다. 자세한 내용은 전체 논문을 참조하세요.
+
+**요약불가** Anthropic Research">
   <h2>🇺🇸 Anthropic 경제 지수 발표 (2025.2.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 경제 지수 발표 (2025.2.10)
 
@@ -382,7 +455,10 @@ https://www.anthropic.com/research/the-anthropic-economic-index" onclick="copyEn
 <p>향후 연구에서는 이러한 분석을 시간에 따라 반복하여 사회적 및 경제적 변화를 추적할 계획입니다. 자세한 내용은 전체 논문을 참조하세요.</p>
 <p>**요약불가**</p>
   <p class="url"><a href="https://www.anthropic.com/research/the-anthropic-economic-index">https://www.anthropic.com/research/the-anthropic-economic-index</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-02-06.html">← 2025-02-06</a><a class="day-nav-btn" href="2025-02-11.html">2025-02-11 →</a></nav>
+  
+  
+</article></details>
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-06.html">← 2025-02-06</a><a class="day-nav-btn" href="2025-02-11.html">2025-02-11 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -418,6 +494,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-research">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button></div><div class="digest-feed"><article class="entry cat-research" data-cat="research" data-topics="safety_research" data-search="RouteScan: MoE LLM 안전 감사를 GPU expert routing 텔레메트리로 수행 (저자 외 6명, arXiv, 2026.5.24) MoE LLM 운영 중 유해 행동을 감사하되, 기존 콘텐츠 기반 감사가 프롬프트/출력 접근으로 개인정보 노출 위험을 갖는 문제를 다룬다. RouteScan은 프리필링 단계에서 expert 모듈에 할당된 활성 GPU 스레드 수를 마이크로아키텍처 지문으로 사용하고, 경량 탐지 파이프라인으로 악성 프롬프트를 식별하도록 실험했다. 공개 MoE LLM들에서 AUROC가 미지 유해 도메인에서 0.93을 초과하고, 새로운 jailbreak wrapper에서는 0.96을 달성했으며, 텔레메트리 기반 프롬프트 복원(inversion) 정보는 제한적이라고 보고했다. arXiv">
   <h2>RouteScan: MoE LLM 안전 감사를 GPU expert routing 텔레메트리로 수행 (저자 외 6명, arXiv, 2026.5.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="RouteScan: MoE LLM 안전 감사를 GPU expert routing 텔레메트리로 수행 (저자 외 6명, arXiv, 2026.5.24)
 
@@ -317,8 +369,8 @@ MoE LLM 운영 중 유해 행동을 감사하되, 기존 콘텐츠 기반 감사
 https://arxiv.org/abs/2605.24817v1" onclick="copyEntry(this)">복사</button></div>
   <p>MoE LLM 운영 중 유해 행동을 감사하되, 기존 콘텐츠 기반 감사가 프롬프트/출력 접근으로 개인정보 노출 위험을 갖는 문제를 다룬다. RouteScan은 프리필링 단계에서 expert 모듈에 할당된 활성 GPU 스레드 수를 마이크로아키텍처 지문으로 사용하고, 경량 탐지 파이프라인으로 악성 프롬프트를 식별하도록 실험했다. 공개 MoE LLM들에서 AUROC가 미지 유해 도메인에서 0.93을 초과하고, 새로운 jailbreak wrapper에서는 0.96을 달성했으며, 텔레메트리 기반 프롬프트 복원(inversion) 정보는 제한적이라고 보고했다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.24817v1">https://arxiv.org/abs/2605.24817v1</a></p>
-</article>
-<article class="entry cat-research">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 5건 · arXiv</summary><article class="entry cat-research" data-cat="research" data-topics="incidents" data-search="Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24 Reflect-Guard는 Llama Guard류 안전 분류기가 역할극/허구 프레이밍/간접 요청 등으로 악의 의도를 숨기는 적대적 프롬프트에 취약한 문제를 다룬다. GPT-4o-mini의 분석을 구조화된 논리적 self-reflection 어노테이션으로 증류한 뒤, QLoRA로 Llama-Guard-3-8B를 1000개 학습 예시와 약 0.5% 파라미터 업데이트(약 42M)로 파인튜닝하여 verdict 전 self-reflection을 생성하게 한다. WildGuardTest에서 F1 0.770→0.842(+7.2pp), 적대적 프롬프트 recall 0.513→0.921(+40.8pp)로 개선되고, JailbreakBench에서 공격 성공률 10.3%→1.8%로 82.5% 상대 감소한다. arXiv">
   <h2>Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24
 
@@ -327,8 +379,10 @@ Reflect-Guard는 Llama Guard류 안전 분류기가 역할극/허구 프레이�
 https://arxiv.org/abs/2605.24834v1" onclick="copyEntry(this)">복사</button></div>
   <p>Reflect-Guard는 Llama Guard류 안전 분류기가 역할극/허구 프레이밍/간접 요청 등으로 악의 의도를 숨기는 적대적 프롬프트에 취약한 문제를 다룬다. GPT-4o-mini의 분석을 구조화된 논리적 self-reflection 어노테이션으로 증류한 뒤, QLoRA로 Llama-Guard-3-8B를 1000개 학습 예시와 약 0.5% 파라미터 업데이트(약 42M)로 파인튜닝하여 verdict 전 self-reflection을 생성하게 한다. WildGuardTest에서 F1 0.770→0.842(+7.2pp), 적대적 프롬프트 recall 0.513→0.921(+40.8pp)로 개선되고, JailbreakBench에서 공격 성공률 10.3%→1.8%로 82.5% 상대 감소한다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.24834v1">https://arxiv.org/abs/2605.24834v1</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="정책 명세로부터 안전 테스트를 체계적으로 생성하는 POLARIS (저자 외 6명, arXiv, 2026.5.24) POLARIS는 자연어 정책을 FOL로 변환해 정책 규칙과 구체적 테스트 케이스 간 추적 가능성을 만들고, 이를 바탕으로 안전 정책 위반 시나리오를 탐색·생성하는 문제를 다룬다. Semantic Policy Graph를 구성한 뒤 그래프 경로를 체계적으로 탐색해 조합적 위반 패턴을 찾아, 이를 실행 가능한 자연어 테스트 쿼리로 인스턴스화하는 방식으로 커버리지 기반·재현 가능한 안전 평가를 수행한다. 실험에서 POLARIS는 기존 베이스라인 대비 더 높은 정책 커버리지와 더 많은 공격 성공 건수를 보였다. arXiv">
   <h2>정책 명세로부터 안전 테스트를 체계적으로 생성하는 POLARIS (저자 외 6명, arXiv, 2026.5.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="정책 명세로부터 안전 테스트를 체계적으로 생성하는 POLARIS (저자 외 6명, arXiv, 2026.5.24)
 
@@ -337,8 +391,10 @@ POLARIS는 자연어 정책을 FOL로 변환해 정책 규칙과 구체적 테�
 https://arxiv.org/abs/2605.24883v1" onclick="copyEntry(this)">복사</button></div>
   <p>POLARIS는 자연어 정책을 FOL로 변환해 정책 규칙과 구체적 테스트 케이스 간 추적 가능성을 만들고, 이를 바탕으로 안전 정책 위반 시나리오를 탐색·생성하는 문제를 다룬다. Semantic Policy Graph를 구성한 뒤 그래프 경로를 체계적으로 탐색해 조합적 위반 패턴을 찾아, 이를 실행 가능한 자연어 테스트 쿼리로 인스턴스화하는 방식으로 커버리지 기반·재현 가능한 안전 평가를 수행한다. 실험에서 POLARIS는 기존 베이스라인 대비 더 높은 정책 커버리지와 더 많은 공격 성공 건수를 보였다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.24883v1">https://arxiv.org/abs/2605.24883v1</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="대규모 언어모델 파인튜닝 라이프사이클의 보안 위협·방어·평가·향후과제 (저자 외 3명, arXiv, 2026.5.24) 파인튜닝이 학습데이터·파라미터 업데이트·재사용 컴포넌트에 의존한다는 점에서, 공격이 라이프사이클 전 단계(프리-튜닝/듀링-튜닝/포스트-튜닝)에 걸쳐 어떻게 달라지는지와 방어가 어떻게 비교·평가되어야 하는지를 다룬다. 개입 시점에 따라 공격·방어를 3단계로 분류하는 프레임워크를 제시하고, 동일한 모델/하드웨어/프로토콜 하에서 단일 단계 및 교차 단계(서로 다른 단계의 공격-방어 조합) 실험으로 통합 평가를 수행한다. 결과로 가중치 편집 공격은 초기 모델에서 효과적이었으나 현대 오픈소스 LLM에서는 영향이 사라지고, 교차언어 백도어 전이는 더 큰 스케일에서 “거의 완벽”으로 보고되었지만 테스트된 1B-4B 모델에서는 완전히 실패했으며, 단일 단계 방어는 단계 간 일반화가 거의 되지 않는다고 보고한다. arXiv">
   <h2>대규모 언어모델 파인튜닝 라이프사이클의 보안 위협·방어·평가·향후과제 (저자 외 3명, arXiv, 2026.5.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="대규모 언어모델 파인튜닝 라이프사이클의 보안 위협·방어·평가·향후과제 (저자 외 3명, arXiv, 2026.5.24)
 
@@ -347,8 +403,10 @@ https://arxiv.org/abs/2605.24883v1" onclick="copyEntry(this)">복사</button></d
 https://arxiv.org/abs/2605.25073v1" onclick="copyEntry(this)">복사</button></div>
   <p>파인튜닝이 학습데이터·파라미터 업데이트·재사용 컴포넌트에 의존한다는 점에서, 공격이 라이프사이클 전 단계(프리-튜닝/듀링-튜닝/포스트-튜닝)에 걸쳐 어떻게 달라지는지와 방어가 어떻게 비교·평가되어야 하는지를 다룬다. 개입 시점에 따라 공격·방어를 3단계로 분류하는 프레임워크를 제시하고, 동일한 모델/하드웨어/프로토콜 하에서 단일 단계 및 교차 단계(서로 다른 단계의 공격-방어 조합) 실험으로 통합 평가를 수행한다. 결과로 가중치 편집 공격은 초기 모델에서 효과적이었으나 현대 오픈소스 LLM에서는 영향이 사라지고, 교차언어 백도어 전이는 더 큰 스케일에서 “거의 완벽”으로 보고되었지만 테스트된 1B-4B 모델에서는 완전히 실패했으며, 단일 단계 방어는 단계 간 일반화가 거의 되지 않는다고 보고한다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.25073v1">https://arxiv.org/abs/2605.25073v1</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="guideline" data-search="미디어 추천에서 자살 유발 에코체인을 차단하는 RankAid (저자 외 3명, arXiv, 2026.5.24) 취약 사용자의 자살사고 징후가 있을 때 추천 시스템이 위험 콘텐츠 에코체인에 가두는 문제를 다루며, 기존 모델의 예측 관련성은 유지하면서 임상 안전을 우선하는 재랭킹을 제안한다. MovieLens 1M에서 LLM으로 임상 위험/치료 가치 라벨을 만든 뒤, RankAid를 기존 추천 모델 위의 add-on 레이어로 적용해 위기 피크 시 위험 아이템 추천을 차단하고 감정 완화를 돕는 피드 재구성을 시뮬레이션했다. 핵심 결과로 위기 피크 동안 유해 콘텐츠 추천을 성공적으로 차단하면서 NDCG 같은 표준 정확도 지표에서 “통제된 허용 수준의 하락”이 나타났고, 비대칭 하이퍼파라미터로 개입 강도를 임상 가이드라인에 맞춰 조정할 수 있다. arXiv">
   <h2>미디어 추천에서 자살 유발 에코체인을 차단하는 RankAid (저자 외 3명, arXiv, 2026.5.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="미디어 추천에서 자살 유발 에코체인을 차단하는 RankAid (저자 외 3명, arXiv, 2026.5.24)
 
@@ -357,8 +415,10 @@ https://arxiv.org/abs/2605.25073v1" onclick="copyEntry(this)">복사</button></d
 https://arxiv.org/abs/2605.25258v1" onclick="copyEntry(this)">복사</button></div>
   <p>취약 사용자의 자살사고 징후가 있을 때 추천 시스템이 위험 콘텐츠 에코체인에 가두는 문제를 다루며, 기존 모델의 예측 관련성은 유지하면서 임상 안전을 우선하는 재랭킹을 제안한다. MovieLens 1M에서 LLM으로 임상 위험/치료 가치 라벨을 만든 뒤, RankAid를 기존 추천 모델 위의 add-on 레이어로 적용해 위기 피크 시 위험 아이템 추천을 차단하고 감정 완화를 돕는 피드 재구성을 시뮬레이션했다. 핵심 결과로 위기 피크 동안 유해 콘텐츠 추천을 성공적으로 차단하면서 NDCG 같은 표준 정확도 지표에서 “통제된 허용 수준의 하락”이 나타났고, 비대칭 하이퍼파라미터로 개입 강도를 임상 가이드라인에 맞춰 조정할 수 있다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.25258v1">https://arxiv.org/abs/2605.25258v1</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="저자 외 2명, Furina: Fragmented Uncertainty-Driven Refusal Instability Attack, arXiv, 2026.5.24 LLM/MLLM의 안전 정렬이 이진 임계값처럼 동작한다는 가정을 깨고, 안전 거부가 “불안정 영역”에서 섬세한 교란에 의해 확률적으로 흔들리는 세팅을 다룬다. 외부/내부 신호를 함께 쓰는 다중 지표 진단 프레임워크로 불안정 입력에서 출력 불확실성은 증가하지만 내부 안전 활성은 감소하는 “디커플링” 시그니처를 실험적으로 식별하고, 이를 유도하는 장면-앵커드(fragmented) 프롬프트 기반 재잘브레이크 Furina를 제안한다. HarmBench에서 강한 단일/다중 턴 기준선을 능가하며, MM-SafetyBench에서도 경쟁 성능을 보였고, 코드가 공개되어 있다. arXiv">
   <h2>저자 외 2명, Furina: Fragmented Uncertainty-Driven Refusal Instability Attack, arXiv, 2026.5.24</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="저자 외 2명, Furina: Fragmented Uncertainty-Driven Refusal Instability Attack, arXiv, 2026.5.24
 
@@ -367,7 +427,10 @@ LLM/MLLM의 안전 정렬이 이진 임계값처럼 동작한다는 가정을 �
 https://arxiv.org/abs/2605.26158v1" onclick="copyEntry(this)">복사</button></div>
   <p>LLM/MLLM의 안전 정렬이 이진 임계값처럼 동작한다는 가정을 깨고, 안전 거부가 “불안정 영역”에서 섬세한 교란에 의해 확률적으로 흔들리는 세팅을 다룬다. 외부/내부 신호를 함께 쓰는 다중 지표 진단 프레임워크로 불안정 입력에서 출력 불확실성은 증가하지만 내부 안전 활성은 감소하는 “디커플링” 시그니처를 실험적으로 식별하고, 이를 유도하는 장면-앵커드(fragmented) 프롬프트 기반 재잘브레이크 Furina를 제안한다. HarmBench에서 강한 단일/다중 턴 기준선을 능가하며, MM-SafetyBench에서도 경쟁 성능을 보였고, 코드가 공개되어 있다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2605.26158v1">https://arxiv.org/abs/2605.26158v1</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-05-23.html">← 2026-05-23</a><a class="day-nav-btn" href="2026-05-25.html">2026-05-25 →</a></nav>
+  
+  
+</article></details>
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-05-23.html">← 2026-05-23</a><a class="day-nav-btn" href="2026-05-25.html">2026-05-25 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -403,6 +466,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

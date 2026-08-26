@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="(AISI Work) (2025.01.01) 요약불가 AISI-UK">
   <h2>🇬🇧 (AISI Work) (2025.01.01)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="(AISI Work) (2025.01.01)
 
@@ -317,8 +369,10 @@
 https://www.aisi.gov.uk/blog/test-blog" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.aisi.gov.uk/blog/test-blog">https://www.aisi.gov.uk/blog/test-blog</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="law politics" data-search="(테러방지법 2000·2006 및 2011년 테러예방수사조치법 운영 점검 보고서, **2025.01.01**) 테러 관련 법률(2000·2006년 Terrorism Acts, 2011년 Terrorism Prevention and Investigation Measures Act)의 2023년 운영을 점검한 독립 검토관 보고서다. 보고서는 생성형 AI가 텍스트·이미지·음성 등을 만들어 테러에 악용될 수 있으며, 그로 인한 잠재적 위해 7개 범주를 평가해 현행 법이 충분한지 검토한다고 밝혔다. 또한 챗봇 기반 급진화가 가장 어려운 문제이며, 인종혐오 기반의 새로운 범죄를 검토할 필요가 있다고 제안했다. 디지털 기기 압수·조사에 필요한 시간이 늘어나는 만큼 구금권한의 장기적 정당성도 고민해야 한다고 덧붙였다. 영국 정부(gov.uk)">
   <h2>🇬🇧 (테러방지법 2000·2006 및 2011년 테러예방수사조치법 운영 점검 보고서, **2025.01.01**)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">영국 정부(gov.uk)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="(테러방지법 2000·2006 및 2011년 테러예방수사조치법 운영 점검 보고서, **2025.01.01**)
 
@@ -327,8 +381,10 @@ https://www.aisi.gov.uk/blog/test-blog" onclick="copyEntry(this)">복사</button
 https://www.gov.uk/government/publications/the-terrorism-acts-in-2023/the-terrorism-acts-in-2023-report-of-the-independent-reviewer-of-terrorism-legislation-accessible#annex-generative-ai" onclick="copyEntry(this)">복사</button></div>
   <p>테러 관련 법률(2000·2006년 Terrorism Acts, 2011년 Terrorism Prevention and Investigation Measures Act)의 2023년 운영을 점검한 독립 검토관 보고서다. 보고서는 생성형 AI가 텍스트·이미지·음성 등을 만들어 테러에 악용될 수 있으며, 그로 인한 잠재적 위해 7개 범주를 평가해 현행 법이 충분한지 검토한다고 밝혔다. 또한 챗봇 기반 급진화가 가장 어려운 문제이며, 인종혐오 기반의 새로운 범죄를 검토할 필요가 있다고 제안했다. 디지털 기기 압수·조사에 필요한 시간이 늘어나는 만큼 구금권한의 장기적 정당성도 고민해야 한다고 덧붙였다.</p>
   <p class="url"><a href="https://www.gov.uk/government/publications/the-terrorism-acts-in-2023/the-terrorism-acts-in-2023-report-of-the-independent-reviewer-of-terrorism-legislation-accessible#annex-generative-ai">https://www.gov.uk/government/publications/the-terrorism-acts-in-2023/the-terrorism-acts-in-2023-report-of-the-independent-reviewer-of-terrorism-legislation-accessible#annex-generative-ai</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="national_security" data-search="AI 연구소의 biorisk 평가는 실제로 생물무기 개발 위험을 측정하나? (2025.01.01) Epoch AI는 8개 주요 AI 랩의 biorisk 평가(또는 미공개 평가)를 분석한 결과, 공개된 벤치마크는 존재하지만 빠르게 포화(saturate)되어 biorisk에 대한 해석이 불확실하다고 지적했다. 또한 비(非)공개 평가나 벤치마크가 아닌 평가들은 방법·채점 기준·측정 대상이 불투명한 경우가 많아 무엇을 실제로 측정하는지 알기 어렵다고 밝혔다. 종합적으로 현재 평가 세트는 LLM이 아마추어의 생물무기 개발을 “강하게” 뒷받침할 증거를 제공하진 못하며, 불확실성을 줄이려면 더 어려운(harder) 평가가 필요하다고 결론냈다. Epoch AI">
   <h2>AI 연구소의 biorisk 평가는 실제로 생물무기 개발 위험을 측정하나? (2025.01.01)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Epoch AI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="AI 연구소의 biorisk 평가는 실제로 생물무기 개발 위험을 측정하나? (2025.01.01)
 
@@ -337,8 +393,10 @@ Epoch AI는 8개 주요 AI 랩의 biorisk 평가(또는 미공개 평가)를 분
 https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons" onclick="copyEntry(this)">복사</button></div>
   <p>Epoch AI는 8개 주요 AI 랩의 biorisk 평가(또는 미공개 평가)를 분석한 결과, 공개된 벤치마크는 존재하지만 빠르게 포화(saturate)되어 biorisk에 대한 해석이 불확실하다고 지적했다. 또한 비(非)공개 평가나 벤치마크가 아닌 평가들은 방법·채점 기준·측정 대상이 불투명한 경우가 많아 무엇을 실제로 측정하는지 알기 어렵다고 밝혔다. 종합적으로 현재 평가 세트는 LLM이 아마추어의 생물무기 개발을 “강하게” 뒷받침할 증거를 제공하진 못하며, 불확실성을 줄이려면 더 어려운(harder) 평가가 필요하다고 결론냈다.</p>
   <p class="url"><a href="https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons">https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Anthropic, AI 상호작용을 위한 ‘AI Fluency: Framework &amp; Foundations’ 무료 과정(2025.01.01) AI Fluency: Framework &amp; Foundations 과정은 학계 전문가 Joseph Feller, Rick Dakan과의 파트너십을 통해 AI와의 상호작용을 효과적·효율적·윤리적·안전하게 하는 실무 역량을 가르친다고 안내한다. 과정은 AI Fluency 프레임워크와 4D Framework를 중심으로 생성형 AI 기초, 위임(Delegation), 설명(Description), 식별/판별(Discernment), 부지런함(Diligence) 등 핵심 개념과 함께 효과적인 프롬프트 기법을 다룬다. 수료 후 최종 평가를 통해 수료증을 받을 수 있으며, 학습 콘텐츠는 Skilljar에 호스팅되고 학습 진행·완료 상태·퀴즈 점수·학습 시간 등의 기본 학습 분석을 수집한다고 설명한다. Anthropic Academy (anthropic.skilljar.com)">
   <h2>🇺🇸 Anthropic, AI 상호작용을 위한 ‘AI Fluency: Framework &amp; Foundations’ 무료 과정(2025.01.01)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Academy (anthropic.skilljar.com)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic, AI 상호작용을 위한 ‘AI Fluency: Framework &amp; Foundations’ 무료 과정(2025.01.01)
 
@@ -347,8 +405,10 @@ AI Fluency: Framework &amp; Foundations 과정은 학계 전문가 Joseph Feller
 https://anthropic.skilljar.com/ai-fluency-framework-foundations" onclick="copyEntry(this)">복사</button></div>
   <p>AI Fluency: Framework &amp; Foundations 과정은 학계 전문가 Joseph Feller, Rick Dakan과의 파트너십을 통해 AI와의 상호작용을 효과적·효율적·윤리적·안전하게 하는 실무 역량을 가르친다고 안내한다. 과정은 AI Fluency 프레임워크와 4D Framework를 중심으로 생성형 AI 기초, 위임(Delegation), 설명(Description), 식별/판별(Discernment), 부지런함(Diligence) 등 핵심 개념과 함께 효과적인 프롬프트 기법을 다룬다. 수료 후 최종 평가를 통해 수료증을 받을 수 있으며, 학습 콘텐츠는 Skilljar에 호스팅되고 학습 진행·완료 상태·퀴즈 점수·학습 시간 등의 기본 학습 분석을 수집한다고 설명한다.</p>
   <p class="url"><a href="https://anthropic.skilljar.com/ai-fluency-framework-foundations">https://anthropic.skilljar.com/ai-fluency-framework-foundations</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="law" data-search="S.2714(119th Congress) CHAT Act(2025.01.01) 확인 필요: S.2714 ‘CHAT Act’의 구체적 목적과 주요 조항, 발의자/공동발의자, 심사·표결 등 진행 상황은 본문 확인이 필요합니다. 또한 법안의 적용 범위와 시행 시점 등 세부 일정도 확인 필요입니다. 미국 의회 의안정보( congress.gov )">
   <h2>🇺🇸 S.2714(119th Congress) CHAT Act(2025.01.01)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">미국 의회 의안정보( congress.gov )</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="S.2714(119th Congress) CHAT Act(2025.01.01)
 
@@ -357,8 +417,12 @@ https://anthropic.skilljar.com/ai-fluency-framework-foundations" onclick="copyEn
 https://www.congress.gov/bill/119th-congress/senate-bill/2714" onclick="copyEntry(this)">복사</button></div>
   <p>확인 필요: S.2714 ‘CHAT Act’의 구체적 목적과 주요 조항, 발의자/공동발의자, 심사·표결 등 진행 상황은 본문 확인이 필요합니다. 또한 법안의 적용 범위와 시행 시점 등 세부 일정도 확인 필요입니다.</p>
   <p class="url"><a href="https://www.congress.gov/bill/119th-congress/senate-bill/2714">https://www.congress.gov/bill/119th-congress/senate-bill/2714</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="incidents" data-search="MIT AI Incident Tracker, AI 위해·위험·피해 심각도 기준으로 1,400건 이상 사건 분류(2025.01.01) 이용·분류 도구는 AI Incident Database(AIID) 보고서를 LLM으로 처리해 MIT Risk Repository 및 CSET AI Harm Taxonomy 기반으로 재분류하며, EU AI Act의 위험 수준 정의도 함께 활용한다.
+
+MIT AI Incident Tracker는 AI Incident Database(AIID)에 보고된 1,400건 이상의 실제 사건을 위험, 원인, 피해 유형, 심각도 등 기준으로 분류해 탐색할 수 있게 한 도구다. MIT Risk Repository와 CSET의 AI Harm Taxonomy를 바탕으로 LLM이 원문 보고서를 처리해 사건을 체계적으로 범주화하며, 연도별 추이·도메인별 비중·원인 속성 경향·피해 심각도 분포 등을 시각화한다. 또한 데이터는 자발 제출과 보고 품질 편차로 인해 표본편향 가능성이 있어, 관찰된 패턴·추이는 참고용이며 추가 검증이 필요하다고 명시한다. MIT FutureTech(airisk.mit.edu)">
   <h2>🇪🇺 MIT AI Incident Tracker, AI 위해·위험·피해 심각도 기준으로 1,400건 이상 사건 분류(2025.01.01)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">MIT FutureTech(airisk.mit.edu)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="MIT AI Incident Tracker, AI 위해·위험·피해 심각도 기준으로 1,400건 이상 사건 분류(2025.01.01)
 
@@ -370,7 +434,9 @@ https://airisk.mit.edu/ai-incident-tracker" onclick="copyEntry(this)">복사</bu
   <p>이용·분류 도구는 AI Incident Database(AIID) 보고서를 LLM으로 처리해 MIT Risk Repository 및 CSET AI Harm Taxonomy 기반으로 재분류하며, EU AI Act의 위험 수준 정의도 함께 활용한다.</p>
 <p>MIT AI Incident Tracker는 AI Incident Database(AIID)에 보고된 1,400건 이상의 실제 사건을 위험, 원인, 피해 유형, 심각도 등 기준으로 분류해 탐색할 수 있게 한 도구다. MIT Risk Repository와 CSET의 AI Harm Taxonomy를 바탕으로 LLM이 원문 보고서를 처리해 사건을 체계적으로 범주화하며, 연도별 추이·도메인별 비중·원인 속성 경향·피해 심각도 분포 등을 시각화한다. 또한 데이터는 자발 제출과 보고 품질 편차로 인해 표본편향 가능성이 있어, 관찰된 패턴·추이는 참고용이며 추가 검증이 필요하다고 명시한다.</p>
   <p class="url"><a href="https://airisk.mit.edu/ai-incident-tracker">https://airisk.mit.edu/ai-incident-tracker</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2024-12-30.html">← 2024-12-30</a><a class="day-nav-btn" href="2025-01-03.html">2025-01-03 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-12-30.html">← 2024-12-30</a><a class="day-nav-btn" href="2025-01-03.html">2025-01-03 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -406,6 +472,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

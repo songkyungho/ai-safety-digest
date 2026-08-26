@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,17 +360,31 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="national_security" data-search="AI 시대, 미·중 기술 패권 경쟁이 초래할 충격 (2024.11.19) 산업연구원은 중국의 R&amp;D 투자와 첨단기술 연구 역량이 미국에 근접하거나 일부 분야에서 앞서면서 미국이 새로운 ‘스푸트니크 모멘트’를 경험하고 있다고 분석했다. 중국은 연구의 질과 핵심기술 분야에서 높은 성과를 보였으며, AI·양자·5G·반도체 등 기술이 경제뿐 아니라 군사·안보 측면에서도 중요하다고 설명했다. 양자컴퓨팅은 도청 감시망을 무력화할 수 있고, 양자 레이더와 센싱은 스텔스기와 잠수함 탐지에 활용될 수 있다. 산업연구원">
   <h2>🇨🇳🇺🇸 AI 시대, 미·중 기술 패권 경쟁이 초래할 충격 (2024.11.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">산업연구원</span></span><button type="button" class="copy-btn" data-copy="AI 시대, 미·중 기술 패권 경쟁이 초래할 충격 (2024.11.19)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">산업연구원</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="AI 시대, 미·중 기술 패권 경쟁이 초래할 충격 (2024.11.19)
 
 산업연구원은 중국의 R&amp;D 투자와 첨단기술 연구 역량이 미국에 근접하거나 일부 분야에서 앞서면서 미국이 새로운 ‘스푸트니크 모멘트’를 경험하고 있다고 분석했다. 중국은 연구의 질과 핵심기술 분야에서 높은 성과를 보였으며, AI·양자·5G·반도체 등 기술이 경제뿐 아니라 군사·안보 측면에서도 중요하다고 설명했다. 양자컴퓨팅은 도청 감시망을 무력화할 수 있고, 양자 레이더와 센싱은 스텔스기와 잠수함 탐지에 활용될 수 있다.
 
 https://www.kiet.re.kr/common/file/userDownload?atch_no=d0fAKjEtjcL9yzs0k6s3gA%3D%3D&amp;menu_cd=002002001&amp;lang=KR&amp;no=2991" onclick="copyEntry(this)">복사</button></div>
   <p>산업연구원은 중국의 R&amp;D 투자와 첨단기술 연구 역량이 미국에 근접하거나 일부 분야에서 앞서면서 미국이 새로운 ‘스푸트니크 모멘트’를 경험하고 있다고 분석했다. 중국은 연구의 질과 핵심기술 분야에서 높은 성과를 보였으며, AI·양자·5G·반도체 등 기술이 경제뿐 아니라 군사·안보 측면에서도 중요하다고 설명했다. 양자컴퓨팅은 도청 감시망을 무력화할 수 있고, 양자 레이더와 센싱은 스텔스기와 잠수함 탐지에 활용될 수 있다.</p>
   <p class="url"><a href="https://www.kiet.re.kr/common/file/userDownload?atch_no=d0fAKjEtjcL9yzs0k6s3gA%3D%3D&amp;menu_cd=002002001&amp;lang=KR&amp;no=2991">https://www.kiet.re.kr/common/file/userDownload?atch_no=d0fAKjEtjcL9yzs0k6s3gA%3D%3D&amp;menu_cd=002002001&amp;lang=KR&amp;no=2991</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="AI 모델 평가를 위한 통계적 접근법 (2024.11.19) 본 연구는 AI 모델 평가의 정확성을 높이기 위해 통계적 방법론을 제안한다. 주요 추천 사항은 다음과 같다:
+
+1. **중앙극한정리 활용**: 평가 질문들이 독립적이지 않은 경우에도 이론적 평균 점수를 측정하기 위해 중앙극한정리를 적용하여 표준오차(SEM)를 보고하도록 권장한다.
+   
+2. **표준오차 클러스터링**: 질문들이 관련성을 가지는 클러스터 형태일 때, 클러스터링된 표준오차를 사용하여 평가 점수의 분산을 정확히 측정하도록 제안한다.
+
+3. **질문 내 분산 감소**: 모델의 답변 변동성을 줄여 평가 점수의 통계적 정밀도를 높이는 방법을 제시한다. 특히 체인-of-생각(CoT) 기법을 활용하는 경우를 포함한다.
+
+4. **짝지어진 차이 분석**: 두 모델 간의 차이를 분석할 때 질문 선택의 영향을 제거하고 응답의 변동성에 집중하도록 짝지어진 차이 분석을 권장한다.
+
+5. **전력 분석 활용**: 평가의 통계적 전력을 계산하여 모델 간 차이를 더 정확하게 감지할 수 있도록 전력 분석 기법을 적용하도록 제안한다.
+
+이러한 방법론을 통해 AI 모델 평가의 신뢰성과 해석력을 향상시킬 수 있다. Anthropic-Research">
   <h2>🇺🇸 AI 모델 평가를 위한 통계적 접근법 (2024.11.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span></span><button type="button" class="copy-btn" data-copy="AI 모델 평가를 위한 통계적 접근법 (2024.11.19)
 
@@ -346,8 +412,10 @@ https://www.anthropic.com/research/statistical-approach-to-model-evals" onclick=
 <p>5. **전력 분석 활용**: 평가의 통계적 전력을 계산하여 모델 간 차이를 더 정확하게 감지할 수 있도록 전력 분석 기법을 적용하도록 제안한다.</p>
 <p>이러한 방법론을 통해 AI 모델 평가의 신뢰성과 해석력을 향상시킬 수 있다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/statistical-approach-to-model-evals">https://www.anthropic.com/research/statistical-approach-to-model-evals</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="유럽 AI 사무국, AI 수석 과학자문관 채용 공고 (2024.11.19) 유럽 AI 사무국이 범용 AI에 대한 과학적 접근을 총괄하고 모델의 시험·평가를 담당할 AI 수석 과학자문관을 채용했다. 지원 마감일은 2024년 12월 13일이며, 월 기본급은 AD13 등급 기준 약 1만3,500~1만5,000유로다. 지원자는 EU 회원국 시민권자, 대학 학위, 15년 이상의 경력, EU 공식 언어 1개와 추가 언어 1개에 대한 지식을 갖춰야 하며 정규 은퇴 연령에 도달하지 않아야 한다. 유럽 인공지능법 공식 안내 사이트">
   <h2>🇪🇺 유럽 AI 사무국, AI 수석 과학자문관 채용 공고 (2024.11.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽 인공지능법 공식 안내 사이트</span></span><button type="button" class="copy-btn" data-copy="유럽 AI 사무국, AI 수석 과학자문관 채용 공고 (2024.11.19)
 
@@ -356,7 +424,9 @@ https://www.anthropic.com/research/statistical-approach-to-model-evals" onclick=
 https://artificialintelligenceact.eu/ai-office-hiring-a-lead-scientific-advisor-for-ai/" onclick="copyEntry(this)">복사</button></div>
   <p>유럽 AI 사무국이 범용 AI에 대한 과학적 접근을 총괄하고 모델의 시험·평가를 담당할 AI 수석 과학자문관을 채용했다. 지원 마감일은 2024년 12월 13일이며, 월 기본급은 AD13 등급 기준 약 1만3,500~1만5,000유로다. 지원자는 EU 회원국 시민권자, 대학 학위, 15년 이상의 경력, EU 공식 언어 1개와 추가 언어 1개에 대한 지식을 갖춰야 하며 정규 은퇴 연령에 도달하지 않아야 한다.</p>
   <p class="url"><a href="https://artificialintelligenceact.eu/ai-office-hiring-a-lead-scientific-advisor-for-ai/">https://artificialintelligenceact.eu/ai-office-hiring-a-lead-scientific-advisor-for-ai/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2024-11-18.html">← 2024-11-18</a><a class="day-nav-btn" href="2024-11-22.html">2024-11-22 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-11-18.html">← 2024-11-18</a><a class="day-nav-btn" href="2024-11-22.html">2024-11-22 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -392,6 +462,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

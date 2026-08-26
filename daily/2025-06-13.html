@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,17 +360,19 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi-weekly">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier incidents law" data-search="뉴욕, OpenAI·Google·Anthropic 등 ‘frontier AI’ 재난 위험을 막는 RAISE Act 통과(2025.6.13) 뉴욕 주 의회가 RAISE Act를 통과시켰으며, 법안은 OpenAI·Google·Anthropic 등 ‘frontier AI’ 모델이 대규모 인명 피해(100명 이상 사망·부상)나 10억 달러 이상 손해로 이어지는 재난 시나리오에 기여하는 것을 막는 것을 목표로 한다. 법안이 시행되면 해당 기준을 충족하는 대형 AI 랩은 모델에 대한 안전·보안 보고서를 의무적으로 공개하고, 안전 관련 사고(이상 행동, 모델 도난 등)도 보고해야 하며, 기준 미이행 시 뉴욕 검찰총장이 최대 3,000만 달러 민사상 제재를 청구할 수 있다. 현재 법안은 호철 주지사 서명·수정·거부 절차를 앞두고 있으며, 스타트업·학계 혁신 위축 우려를 고려해 소규모 기업에는 적용을 피하도록 설계했다고 설명된다. TechCrunch">
   <h2>🇺🇸 뉴욕, OpenAI·Google·Anthropic 등 ‘frontier AI’ 재난 위험을 막는 RAISE Act 통과(2025.6.13)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">TechCrunch</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="뉴욕, OpenAI·Google·Anthropic 등 ‘frontier AI’ 재난 위험을 막는 RAISE Act 통과(2025.6.13)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">TechCrunch</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="뉴욕, OpenAI·Google·Anthropic 등 ‘frontier AI’ 재난 위험을 막는 RAISE Act 통과(2025.6.13)
 
 뉴욕 주 의회가 RAISE Act를 통과시켰으며, 법안은 OpenAI·Google·Anthropic 등 ‘frontier AI’ 모델이 대규모 인명 피해(100명 이상 사망·부상)나 10억 달러 이상 손해로 이어지는 재난 시나리오에 기여하는 것을 막는 것을 목표로 한다. 법안이 시행되면 해당 기준을 충족하는 대형 AI 랩은 모델에 대한 안전·보안 보고서를 의무적으로 공개하고, 안전 관련 사고(이상 행동, 모델 도난 등)도 보고해야 하며, 기준 미이행 시 뉴욕 검찰총장이 최대 3,000만 달러 민사상 제재를 청구할 수 있다. 현재 법안은 호철 주지사 서명·수정·거부 절차를 앞두고 있으며, 스타트업·학계 혁신 위축 우려를 고려해 소규모 기업에는 적용을 피하도록 설계했다고 설명된다.
 
 https://techcrunch.com/2025/06/13/new-york-passes-a-bill-to-prevent-ai-fueled-disasters" onclick="copyEntry(this)">복사</button></div>
   <p>뉴욕 주 의회가 RAISE Act를 통과시켰으며, 법안은 OpenAI·Google·Anthropic 등 ‘frontier AI’ 모델이 대규모 인명 피해(100명 이상 사망·부상)나 10억 달러 이상 손해로 이어지는 재난 시나리오에 기여하는 것을 막는 것을 목표로 한다. 법안이 시행되면 해당 기준을 충족하는 대형 AI 랩은 모델에 대한 안전·보안 보고서를 의무적으로 공개하고, 안전 관련 사고(이상 행동, 모델 도난 등)도 보고해야 하며, 기준 미이행 시 뉴욕 검찰총장이 최대 3,000만 달러 민사상 제재를 청구할 수 있다. 현재 법안은 호철 주지사 서명·수정·거부 절차를 앞두고 있으며, 스타트업·학계 혁신 위축 우려를 고려해 소규모 기업에는 적용을 피하도록 설계했다고 설명된다.</p>
   <p class="url"><a href="https://techcrunch.com/2025/06/13/new-york-passes-a-bill-to-prevent-ai-fueled-disasters">https://techcrunch.com/2025/06/13/new-york-passes-a-bill-to-prevent-ai-fueled-disasters</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="cybersecurity deepfake_disinfo politics" data-search="몰도바 총선(2025.9.28) 앞두고 디지털 하이브리드 위협에 대한 모의훈련 실시 (**2025.6.13**) 유럽 집행위는 2025년 6월 11일 키시나우에서 몰도바 정부 및 EU 관련 기관과 함께 선거 무결성을 겨냥한 잠재적 disinformation 캠페인과 cyber-attack에 대비한 디지털 하이브리드 위협 시뮬레이션을 진행했다. Google, Meta, TikTok 등 주요 온라인 플랫폼이 자발적으로 참여했으며, 시민사회·팩트체커·독립언론·국제 파트너와 함께 시나리오 기반 대응 역량을 높이는 것을 목표로 했다. 또한 EU의 Hybrid Rapid Response Team 지원, Cyber Solidarity Act 하의 EU Cybersecurity Reserve 접근, EDMO(유럽 디지털 미디어 관측소) 지역 허브 신설 및 선거 기간 모니터링 계획, 2024년 선거 때의 임시 에스컬레이션 메커니즘 성과를 바탕으로 한 플랫폼-시민사회 협력 강화를 언급했다. 유럽연합 집행위원회(디지털 전략) 공식 웹사이트">
   <h2>🇪🇺 몰도바 총선(2025.9.28) 앞두고 디지털 하이브리드 위협에 대한 모의훈련 실시 (**2025.6.13**)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">유럽연합 집행위원회(디지털 전략) 공식 웹사이트</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="몰도바 총선(2025.9.28) 앞두고 디지털 하이브리드 위협에 대한 모의훈련 실시 (**2025.6.13**)
 
@@ -327,8 +381,10 @@ https://techcrunch.com/2025/06/13/new-york-passes-a-bill-to-prevent-ai-fueled-di
 https://digital-strategy.ec.europa.eu/en/news/commission-services-and-moldovan-authorities-conduct-stress-test-potential-digital-hybrid-threats#linkedin" onclick="copyEntry(this)">복사</button></div>
   <p>유럽 집행위는 2025년 6월 11일 키시나우에서 몰도바 정부 및 EU 관련 기관과 함께 선거 무결성을 겨냥한 잠재적 disinformation 캠페인과 cyber-attack에 대비한 디지털 하이브리드 위협 시뮬레이션을 진행했다. Google, Meta, TikTok 등 주요 온라인 플랫폼이 자발적으로 참여했으며, 시민사회·팩트체커·독립언론·국제 파트너와 함께 시나리오 기반 대응 역량을 높이는 것을 목표로 했다. 또한 EU의 Hybrid Rapid Response Team 지원, Cyber Solidarity Act 하의 EU Cybersecurity Reserve 접근, EDMO(유럽 디지털 미디어 관측소) 지역 허브 신설 및 선거 기간 모니터링 계획, 2024년 선거 때의 임시 에스컬레이션 메커니즘 성과를 바탕으로 한 플랫폼-시민사회 협력 강화를 언급했다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-services-and-moldovan-authorities-conduct-stress-test-potential-digital-hybrid-threats#linkedin">https://digital-strategy.ec.europa.eu/en/news/commission-services-and-moldovan-authorities-conduct-stress-test-potential-digital-hybrid-threats#linkedin</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="deepfake_disinfo law" data-search="생성형 AI, EU 경제 혁신·생산성에 기여 가능하나 추가 정책 대응 필요(2025.6.13) 유럽 집행위는 생성형 AI를 전략 분야에 통합하기 위한 첫 번째 EU 자금 지원(약 7억 유로)과 GenAI4EU(유럽에서 만든 생성형 AI) 계획을 추진한다고 밝혔다. JRC 과학 보고서는 의료·교육·문화창작 등 주요 분야에서 혁신과 생산성 향상 잠재력이 크다고 보면서도, 허위정보 확산, 알고리즘 편향, 일자리 변화, 개인정보 우려 등 교차적 위험이 빠르게 커지고 있어 긴급한 대응이 필요하다고 강조했다. 또한 AI Act 및 데이터 관련 EU 법과의 정합성을 포함해 다학제적·전략적 정책 접근이 필요하다고 제안했다. 유럽연합 집행위원회(JRC·디지털 전략) 공식 뉴스">
   <h2>🇪🇺 생성형 AI, EU 경제 혁신·생산성에 기여 가능하나 추가 정책 대응 필요(2025.6.13)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">유럽연합 집행위원회(JRC·디지털 전략) 공식 뉴스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="생성형 AI, EU 경제 혁신·생산성에 기여 가능하나 추가 정책 대응 필요(2025.6.13)
 
@@ -337,8 +393,10 @@ https://digital-strategy.ec.europa.eu/en/news/commission-services-and-moldovan-a
 https://digital-strategy.ec.europa.eu/en/news/generative-ai-set-transform-eu-economy-requires-further-policy-action" onclick="copyEntry(this)">복사</button></div>
   <p>유럽 집행위는 생성형 AI를 전략 분야에 통합하기 위한 첫 번째 EU 자금 지원(약 7억 유로)과 GenAI4EU(유럽에서 만든 생성형 AI) 계획을 추진한다고 밝혔다. JRC 과학 보고서는 의료·교육·문화창작 등 주요 분야에서 혁신과 생산성 향상 잠재력이 크다고 보면서도, 허위정보 확산, 알고리즘 편향, 일자리 변화, 개인정보 우려 등 교차적 위험이 빠르게 커지고 있어 긴급한 대응이 필요하다고 강조했다. 또한 AI Act 및 데이터 관련 EU 법과의 정합성을 포함해 다학제적·전략적 정책 접근이 필요하다고 제안했다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/generative-ai-set-transform-eu-economy-requires-further-policy-action">https://digital-strategy.ec.europa.eu/en/news/generative-ai-set-transform-eu-economy-requires-further-policy-action</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="deepfake_disinfo law" data-search="Generative AI의 기술·경제·사회 영향과 EU 규제 대응을 다룬 전망 보고서 (2025.6.13) 유럽연합 집행위원회 공동연구센터(JRC)가 작성한 「Generative AI Outlook Report」는 EU를 중심으로 생성형 AI(GenAI)의 혁신·생산성·사회 변화 가능성을 검토한다. GenAI는 인간과 유사한 콘텐츠를 대규모로 생성할 수 있어 의료·교육·과학·창작 산업 등에서 기회가 크지만, 허위정보 증폭, 편향, 노동 혼란, 개인정보 우려도 동시에 제기된다고 설명한다. 보고서는 기술 현황과 향후 트렌드, 산업 구조 변화에 따른 경제적 함의, 포용성 기회와 편향·과도한 의존 위험 등 사회적 영향, 그리고 AI Act 및 데이터 관련 가로(수평) 입법을 포함한 규제 프레임워크를 다룬다. 결론적으로 EU의 민주적 가치와 법체계에 부합하도록 위험을 완화하면서 잠재효과를 극대화하는 포괄적·정교한 정책 접근이 필요하다고 제시한다. 유럽연합 집행위원회 공동연구센터(JRC) 유럽연합 출판국">
   <h2>🇪🇺 Generative AI의 기술·경제·사회 영향과 EU 규제 대응을 다룬 전망 보고서 (2025.6.13)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">유럽연합 집행위원회 공동연구센터(JRC) 유럽연합 출판국</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="Generative AI의 기술·경제·사회 영향과 EU 규제 대응을 다룬 전망 보고서 (2025.6.13)
 
@@ -347,8 +405,10 @@ https://digital-strategy.ec.europa.eu/en/news/generative-ai-set-transform-eu-eco
 https://publications.jrc.ec.europa.eu/repository/handle/JRC142598" onclick="copyEntry(this)">복사</button></div>
   <p>유럽연합 집행위원회 공동연구센터(JRC)가 작성한 「Generative AI Outlook Report」는 EU를 중심으로 생성형 AI(GenAI)의 혁신·생산성·사회 변화 가능성을 검토한다. GenAI는 인간과 유사한 콘텐츠를 대규모로 생성할 수 있어 의료·교육·과학·창작 산업 등에서 기회가 크지만, 허위정보 증폭, 편향, 노동 혼란, 개인정보 우려도 동시에 제기된다고 설명한다. 보고서는 기술 현황과 향후 트렌드, 산업 구조 변화에 따른 경제적 함의, 포용성 기회와 편향·과도한 의존 위험 등 사회적 영향, 그리고 AI Act 및 데이터 관련 가로(수평) 입법을 포함한 규제 프레임워크를 다룬다. 결론적으로 EU의 민주적 가치와 법체계에 부합하도록 위험을 완화하면서 잠재효과를 극대화하는 포괄적·정교한 정책 접근이 필요하다고 제시한다.</p>
   <p class="url"><a href="https://publications.jrc.ec.europa.eu/repository/handle/JRC142598">https://publications.jrc.ec.europa.eu/repository/handle/JRC142598</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="youth" data-search="AI가 학대 탐지·보호에 도움을 줄 수 있지만, 편향·프라이버시 침해를 자동화할 위험도 함께 커진다(2025.6.13) AI는 아동·노인·학교 등에서 실시간 위험 신호를 탐지하고 당국에 경고하는 데 활용되며, 언어 기반 NLP나 예측모델로 위협·조작·통제 패턴을 찾는 방식이 소개된다. 다만 과거 데이터의 불평등과 인간의 라벨링 편향이 그대로 반영돼 인종·계층 차별을 재생산할 수 있고, 오탐으로 실제 사건을 놓치거나 불필요한 개입·징계를 유발할 수 있다고 지적한다. 또한 감시형 카메라·학교 모니터링은 프라이버시 침해와 함께 LGBTQ+ 학생 노출 같은 부작용이 보고되었으며, 이를 줄이기 위해 피해자 통제, 인간 감독, 편향 감사, 프라이버시 설계를 포함한 ‘trauma-responsive AI’ 원칙과 관련 법·감시가 필요하다고 강조한다. The Conversation (theconversation.com)">
   <h2>AI가 학대 탐지·보호에 도움을 줄 수 있지만, 편향·프라이버시 침해를 자동화할 위험도 함께 커진다(2025.6.13)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">The Conversation (theconversation.com)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="AI가 학대 탐지·보호에 도움을 줄 수 있지만, 편향·프라이버시 침해를 자동화할 위험도 함께 커진다(2025.6.13)
 
@@ -357,9 +417,13 @@ AI는 아동·노인·학교 등에서 실시간 위험 신호를 탐지하고 �
 https://theconversation.com/protecting-the-vulnerable-or-automating-harm-ais-double-edged-role-in-spotting-abuse-256403" onclick="copyEntry(this)">복사</button></div>
   <p>AI는 아동·노인·학교 등에서 실시간 위험 신호를 탐지하고 당국에 경고하는 데 활용되며, 언어 기반 NLP나 예측모델로 위협·조작·통제 패턴을 찾는 방식이 소개된다. 다만 과거 데이터의 불평등과 인간의 라벨링 편향이 그대로 반영돼 인종·계층 차별을 재생산할 수 있고, 오탐으로 실제 사건을 놓치거나 불필요한 개입·징계를 유발할 수 있다고 지적한다. 또한 감시형 카메라·학교 모니터링은 프라이버시 침해와 함께 LGBTQ+ 학생 노출 같은 부작용이 보고되었으며, 이를 줄이기 위해 피해자 통제, 인간 감독, 편향 감사, 프라이버시 설계를 포함한 ‘trauma-responsive AI’ 원칙과 관련 법·감시가 필요하다고 강조한다.</p>
   <p class="url"><a href="https://theconversation.com/protecting-the-vulnerable-or-automating-harm-ais-double-edged-role-in-spotting-abuse-256403">https://theconversation.com/protecting-the-vulnerable-or-automating-harm-ais-double-edged-role-in-spotting-abuse-256403</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
-  <h2>🇺🇸 G7 의장국 캐나다, HAIP Code of Conduct의 Reporting Framework를 ‘의무·평가’ 중심으로 강화 제안(2025.6.13)</h2>
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="guideline norms" data-search="G7 의장국 캐나다, HAIP Code of Conduct의 Reporting Framework를 ‘의무·평가’ 중심으로 강화 제안(2025.6.13) G7 정상회의(캐나다 개최)에서 AI 안전·책임을 의제로 전면화하고, HAIP의 자발적 보고를 보완할 다자 메커니즘(의무 제출·평가/정책연계) 마련을 촉구
+
+캐나다는 G7 의장국으로서 히로시마 AI Process(HAIP)의 Code of Conduct와 Reporting Framework를 국제 AI 거버넌스의 실질 도구로 발전시키는 방안을 제안한다. 구체적으로 자발적 설문 기반 보고의 한계를 보완하기 위해 관할 내 AI 개발·배포 조직의 Reporting Framework 제출을 의무화하거나, HAIP와 상호운용 가능한 별도 의무 보고 체계를 국가들이 마련하도록 권고할 수 있다고 본다. 또한 제출 내용이 정책으로 전환되는 과정에 대한 평가 절차와 다중이해관계자 협의체를 만들어 모범사례를 종합·권고하고, G7·OECD 간 정책 정렬을 위한 메커니즘을 구축해야 한다고 강조한다. TechPolicy Press">
+  <h2>G7 의장국 캐나다, HAIP Code of Conduct의 Reporting Framework를 ‘의무·평가’ 중심으로 강화 제안(2025.6.13)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">TechPolicy Press</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="G7 의장국 캐나다, HAIP Code of Conduct의 Reporting Framework를 ‘의무·평가’ 중심으로 강화 제안(2025.6.13)
 
 G7 정상회의(캐나다 개최)에서 AI 안전·책임을 의제로 전면화하고, HAIP의 자발적 보고를 보완할 다자 메커니즘(의무 제출·평가/정책연계) 마련을 촉구
@@ -370,18 +434,22 @@ https://www.techpolicy.press/how-canada-can-advance-international-ai-governance-
   <p>G7 정상회의(캐나다 개최)에서 AI 안전·책임을 의제로 전면화하고, HAIP의 자발적 보고를 보완할 다자 메커니즘(의무 제출·평가/정책연계) 마련을 촉구</p>
 <p>캐나다는 G7 의장국으로서 히로시마 AI Process(HAIP)의 Code of Conduct와 Reporting Framework를 국제 AI 거버넌스의 실질 도구로 발전시키는 방안을 제안한다. 구체적으로 자발적 설문 기반 보고의 한계를 보완하기 위해 관할 내 AI 개발·배포 조직의 Reporting Framework 제출을 의무화하거나, HAIP와 상호운용 가능한 별도 의무 보고 체계를 국가들이 마련하도록 권고할 수 있다고 본다. 또한 제출 내용이 정책으로 전환되는 과정에 대한 평가 절차와 다중이해관계자 협의체를 만들어 모범사례를 종합·권고하고, G7·OECD 간 정책 정렬을 위한 메커니즘을 구축해야 한다고 강조한다.</p>
   <p class="url"><a href="https://www.techpolicy.press/how-canada-can-advance-international-ai-governance-at-the-g7">https://www.techpolicy.press/how-canada-can-advance-international-ai-governance-at-the-g7</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="cybersecurity" data-search="Anthropic와 CMU의 연구: LLM과 사이버 도구킷으로 비즈니스 규모 네트워크의 다단계 사이버 작전 수행 가능 (2025.6.13) Anthropic와 Carnegie Mellon University의 CyLab 연구진은 사이버 도구킷인 Incalmo를 개발하여 대형 언어 모델(LLM)이 비즈니스 규모의 컴퓨터 네트워크에 대한 복잡한 다단계 사이버 공격을 수행할 수 있음을 보여주었다. 이 연구에서는 LLMs가 네트워크 접근 획득, 시스템 간 이동, 네트워크 간 데이터 유출 등 복잡한 단계를 자동화하여 성공적으로 공격을 수행할 수 있음을 확인했다. Incalmo 도구킷이 없는 경우 LLMs는 테스트 네트워크에서 거의 실패했으나, 도구킷을 사용할 때는 10개 네트워크 중 9개에서 다단계 공격을 성공적으로 수행했다. 이러한 결과는 LLMs의 사이버 공격 능력 향상과 방어 연구에 대한 투자 필요성을 강조한다. Anthropic-Research">
   <h2>🇺🇸 Anthropic와 CMU의 연구: LLM과 사이버 도구킷으로 비즈니스 규모 네트워크의 다단계 사이버 작전 수행 가능 (2025.6.13)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span></span><button type="button" class="copy-btn" data-copy="Anthropic와 CMU의 연구: LLM과 사이버 도구킷으로 비즈니스 규모 네트워크의 다단계 사이버 작전 수행 가능 (2025.6.13)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic와 CMU의 연구: LLM과 사이버 도구킷으로 비즈니스 규모 네트워크의 다단계 사이버 작전 수행 가능 (2025.6.13)
 
 Anthropic와 Carnegie Mellon University의 CyLab 연구진은 사이버 도구킷인 Incalmo를 개발하여 대형 언어 모델(LLM)이 비즈니스 규모의 컴퓨터 네트워크에 대한 복잡한 다단계 사이버 공격을 수행할 수 있음을 보여주었다. 이 연구에서는 LLMs가 네트워크 접근 획득, 시스템 간 이동, 네트워크 간 데이터 유출 등 복잡한 단계를 자동화하여 성공적으로 공격을 수행할 수 있음을 확인했다. Incalmo 도구킷이 없는 경우 LLMs는 테스트 네트워크에서 거의 실패했으나, 도구킷을 사용할 때는 10개 네트워크 중 9개에서 다단계 공격을 성공적으로 수행했다. 이러한 결과는 LLMs의 사이버 공격 능력 향상과 방어 연구에 대한 투자 필요성을 강조한다.
 
 https://www.anthropic.com/research/cyber-toolkits" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic와 Carnegie Mellon University의 CyLab 연구진은 사이버 도구킷인 Incalmo를 개발하여 대형 언어 모델(LLM)이 비즈니스 규모의 컴퓨터 네트워크에 대한 복잡한 다단계 사이버 공격을 수행할 수 있음을 보여주었다. 이 연구에서는 LLMs가 네트워크 접근 획득, 시스템 간 이동, 네트워크 간 데이터 유출 등 복잡한 단계를 자동화하여 성공적으로 공격을 수행할 수 있음을 확인했다. Incalmo 도구킷이 없는 경우 LLMs는 테스트 네트워크에서 거의 실패했으나, 도구킷을 사용할 때는 10개 네트워크 중 9개에서 다단계 공격을 성공적으로 수행했다. 이러한 결과는 LLMs의 사이버 공격 능력 향상과 방어 연구에 대한 투자 필요성을 강조한다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/cyber-toolkits">https://www.anthropic.com/research/cyber-toolkits</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Google DeepMind, 실사 영화 제작과 Veo를 결합한 ‘ANCESTRA’의 제작 과정 공개 (2025.6.13) 구글 딥마인드는 감독 엘리자 맥닛, 대런 애러노프스키 및 200명 이상의 영화 제작진과 함께 단편 영화 ‘ANCESTRA’를 제작했으며, 이 작품은 트라이베카 페스티벌에서 공개됐다. 제작진은 Gemini로 프롬프트를 개발하고 Imagen과 Veo로 영화의 이미지와 영상을 생성한 뒤, 실사 촬영 및 전통적인 VFX 작업과 결합했다. 개인화된 영상 생성, 카메라 움직임 매칭, 실사 영상에 생성된 신생아를 추가하는 기능 등 영화 제작에 필요한 Veo의 새로운 기능도 개발했다. 구글 딥마인드">
   <h2>Google DeepMind, 실사 영화 제작과 Veo를 결합한 ‘ANCESTRA’의 제작 과정 공개 (2025.6.13)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Google DeepMind, 실사 영화 제작과 Veo를 결합한 ‘ANCESTRA’의 제작 과정 공개 (2025.6.13)
 
@@ -390,8 +458,10 @@ https://www.anthropic.com/research/cyber-toolkits" onclick="copyEntry(this)">복
 https://deepmind.google/blog/behind-ancestra-combining-veo-with-live-action-filmmaking/" onclick="copyEntry(this)">복사</button></div>
   <p>구글 딥마인드는 감독 엘리자 맥닛, 대런 애러노프스키 및 200명 이상의 영화 제작진과 함께 단편 영화 ‘ANCESTRA’를 제작했으며, 이 작품은 트라이베카 페스티벌에서 공개됐다. 제작진은 Gemini로 프롬프트를 개발하고 Imagen과 Veo로 영화의 이미지와 영상을 생성한 뒤, 실사 촬영 및 전통적인 VFX 작업과 결합했다. 개인화된 영상 생성, 카메라 움직임 매칭, 실사 영상에 생성된 신생아를 추가하는 기능 등 영화 제작에 필요한 Veo의 새로운 기능도 개발했다.</p>
   <p class="url"><a href="https://deepmind.google/blog/behind-ancestra-combining-veo-with-live-action-filmmaking/">https://deepmind.google/blog/behind-ancestra-combining-veo-with-live-action-filmmaking/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="They Asked an A.I. Chatbot Questions. The Answers Sent Them Spiraling. (2025.06.13) 뉴욕타임스는 A.I. 챗봇에 질문을 했을 때 답변이 사용자를 혼란이나 과도한 확신(spiraling)으로 이끌 수 있다는 취지의 내용을 다룬 것으로 보입니다. 다만 제공된 정보에는 본문 내용이 없어 구체적인 사례, 어떤 유형의 질문에서 어떤 오류·편향이 나타났는지 확인이 필요합니다. 뉴욕타임스(NYT)">
   <h2>They Asked an A.I. Chatbot Questions. The Answers Sent Them Spiraling. (2025.06.13)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">뉴욕타임스(NYT)</span></span><button type="button" class="copy-btn" data-copy="They Asked an A.I. Chatbot Questions. The Answers Sent Them Spiraling. (2025.06.13)
 
@@ -400,7 +470,9 @@ https://deepmind.google/blog/behind-ancestra-combining-veo-with-live-action-film
 https://www.nytimes.com/2025/06/13/technology/chatgpt-ai-chatbots-conspiracies.html" onclick="copyEntry(this)">복사</button></div>
   <p>뉴욕타임스는 A.I. 챗봇에 질문을 했을 때 답변이 사용자를 혼란이나 과도한 확신(spiraling)으로 이끌 수 있다는 취지의 내용을 다룬 것으로 보입니다. 다만 제공된 정보에는 본문 내용이 없어 구체적인 사례, 어떤 유형의 질문에서 어떤 오류·편향이 나타났는지 확인이 필요합니다.</p>
   <p class="url"><a href="https://www.nytimes.com/2025/06/13/technology/chatgpt-ai-chatbots-conspiracies.html">https://www.nytimes.com/2025/06/13/technology/chatgpt-ai-chatbots-conspiracies.html</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-06-12.html">← 2025-06-12</a><a class="day-nav-btn" href="2025-06-15.html">2025-06-15 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-06-12.html">← 2025-06-12</a><a class="day-nav-btn" href="2025-06-14.html">2025-06-14 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -436,6 +508,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

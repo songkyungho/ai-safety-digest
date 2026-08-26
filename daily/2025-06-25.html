@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi-weekly">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="미국 법원, Anthropic의 책 기반 AI 학습은 fair use로 판단(2025.6.25) 미국 샌프란시스코 연방법원 윌리엄 알수프 판사는 저자 동의 없이 책을 활용해 Claude LLM을 학습한 것은 저작권 침해가 아니라 “fair use”라고 판시했다. 다만 Anthropic이 700만 권이 넘는 불법 복제본을 중앙 도서관 형태로 저장한 행위는 저자들의 저작권을 침해하며 fair use에 해당하지 않는다고 덧붙였고, 침해에 따른 배상 규모를 정하기 위한 12월 재판을 명령했다. 가디언(theguardian.com)">
   <h2>🇺🇸 미국 법원, Anthropic의 책 기반 AI 학습은 fair use로 판단(2025.6.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">가디언(theguardian.com)</span></span><button type="button" class="copy-btn" data-copy="미국 법원, Anthropic의 책 기반 AI 학습은 fair use로 판단(2025.6.25)
 
@@ -317,8 +369,10 @@
 https://www.theguardian.com/technology/2025/jun/25/anthropic-did-not-breach-copyright-when-training-ai-on-books-without-permission-court-rules" onclick="copyEntry(this)">복사</button></div>
   <p>미국 샌프란시스코 연방법원 윌리엄 알수프 판사는 저자 동의 없이 책을 활용해 Claude LLM을 학습한 것은 저작권 침해가 아니라 “fair use”라고 판시했다. 다만 Anthropic이 700만 권이 넘는 불법 복제본을 중앙 도서관 형태로 저장한 행위는 저자들의 저작권을 침해하며 fair use에 해당하지 않는다고 덧붙였고, 침해에 따른 배상 규모를 정하기 위한 12월 재판을 명령했다.</p>
   <p class="url"><a href="https://www.theguardian.com/technology/2025/jun/25/anthropic-did-not-breach-copyright-when-training-ai-on-books-without-permission-court-rules">https://www.theguardian.com/technology/2025/jun/25/anthropic-did-not-breach-copyright-when-training-ai-on-books-without-permission-court-rules</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="law" data-search="Tech lobby group urges EU leaders to pause AI Act (2025.06.25) 로이터 보도에 따르면 한 기술 로비 단체가 EU 지도자들에게 AI Act(인공지능 규제)의 일시 중단을 촉구했다는 내용이다. 다만 제공된 정보에 본문 내용이 없어, 촉구 배경(규제 내용·시행 일정·우려 지점)과 구체적 주장, 관련 인물/단체는 확인이 필요하다. 로이터 통신(Reuters)">
   <h2>🇪🇺 Tech lobby group urges EU leaders to pause AI Act (2025.06.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">로이터 통신(Reuters)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="Tech lobby group urges EU leaders to pause AI Act (2025.06.25)
 
@@ -327,18 +381,22 @@ https://www.theguardian.com/technology/2025/jun/25/anthropic-did-not-breach-copy
 https://www.reuters.com/technology/tech-lobby-group-urges-eu-leaders-pause-ai-act-2025-06-25" onclick="copyEntry(this)">복사</button></div>
   <p>로이터 보도에 따르면 한 기술 로비 단체가 EU 지도자들에게 AI Act(인공지능 규제)의 일시 중단을 촉구했다는 내용이다. 다만 제공된 정보에 본문 내용이 없어, 촉구 배경(규제 내용·시행 일정·우려 지점)과 구체적 주장, 관련 인물/단체는 확인이 필요하다.</p>
   <p class="url"><a href="https://www.reuters.com/technology/tech-lobby-group-urges-eu-leaders-pause-ai-act-2025-06-25">https://www.reuters.com/technology/tech-lobby-group-urges-eu-leaders-pause-ai-act-2025-06-25</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="law national_security" data-search="(2025.6.25) 미 하원 중국특위, ‘No Adversarial AI Act’로 CCP 연계 AI의 미 정부 사용 차단 추진 미 하원 중국특별위원회가 2025.6.25 ‘No Adversarial AI Act’라는 초당적 법안을 공개했다. 이 법안은 중국 공산당 등 외국 적대세력과 연계된 기업이 개발한 AI를 미 정부가 취득하거나 사용하는 것을 금지하고, 연방조달안보위원회가 적대세력 개발 AI 목록을 공개·관리하도록 한다. 또한 적대세력의 통제나 영향에서 벗어났음을 입증하는 기업에 대한 ‘delisting’ 절차도 마련한다. 위원회는 이번 법안이 AI 공급망을 확보하고 미국 혁신이 권위주의 감시·군사체계에 활용되는 것을 막기 위한 AI 캠페인의 핵심 조치라고 설명했다. 미국 하원 중국특별위원회(Select Committee on the CCP)">
   <h2>🇨🇳🇺🇸 (2025.6.25) 미 하원 중국특위, ‘No Adversarial AI Act’로 CCP 연계 AI의 미 정부 사용 차단 추진</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 하원 중국특별위원회(Select Committee on the CCP)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="(2025.6.25) 미 하원 중국특위, ‘No Adversarial AI Act’로 CCP 연계 AI의 미 정부 사용 차단 추진
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 하원 중국특별위원회(Select Committee on the CCP)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="(2025.6.25) 미 하원 중국특위, ‘No Adversarial AI Act’로 CCP 연계 AI의 미 정부 사용 차단 추진
 
 미 하원 중국특별위원회가 2025.6.25 ‘No Adversarial AI Act’라는 초당적 법안을 공개했다. 이 법안은 중국 공산당 등 외국 적대세력과 연계된 기업이 개발한 AI를 미 정부가 취득하거나 사용하는 것을 금지하고, 연방조달안보위원회가 적대세력 개발 AI 목록을 공개·관리하도록 한다. 또한 적대세력의 통제나 영향에서 벗어났음을 입증하는 기업에 대한 ‘delisting’ 절차도 마련한다. 위원회는 이번 법안이 AI 공급망을 확보하고 미국 혁신이 권위주의 감시·군사체계에 활용되는 것을 막기 위한 AI 캠페인의 핵심 조치라고 설명했다.
 
 https://selectcommitteeontheccp.house.gov/media/press-releases/china-select-committee-launches-ai-campaign-with-legislation-to-block-ccp-linked-ai-from-us-government-use" onclick="copyEntry(this)">복사</button></div>
   <p>미 하원 중국특별위원회가 2025.6.25 ‘No Adversarial AI Act’라는 초당적 법안을 공개했다. 이 법안은 중국 공산당 등 외국 적대세력과 연계된 기업이 개발한 AI를 미 정부가 취득하거나 사용하는 것을 금지하고, 연방조달안보위원회가 적대세력 개발 AI 목록을 공개·관리하도록 한다. 또한 적대세력의 통제나 영향에서 벗어났음을 입증하는 기업에 대한 ‘delisting’ 절차도 마련한다. 위원회는 이번 법안이 AI 공급망을 확보하고 미국 혁신이 권위주의 감시·군사체계에 활용되는 것을 막기 위한 AI 캠페인의 핵심 조치라고 설명했다.</p>
   <p class="url"><a href="https://selectcommitteeontheccp.house.gov/media/press-releases/china-select-committee-launches-ai-campaign-with-legislation-to-block-ccp-linked-ai-from-us-government-use">https://selectcommitteeontheccp.house.gov/media/press-releases/china-select-committee-launches-ai-campaign-with-legislation-to-block-ccp-linked-ai-from-us-government-use</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="law" data-search="미시간 주의회, AI 기술의 위해를 막기 위한 safeguard 법안 검토(2025.6.25) 본문 내용 확인 필요. 현재 제공된 정보(URL·제목)만으로는 어떤 법안이 논의되는지, 구체 조항과 일정, 이해관계자 의견을 특정하기 어렵습니다. michiganadvance.com">
   <h2>미시간 주의회, AI 기술의 위해를 막기 위한 safeguard 법안 검토(2025.6.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">michiganadvance.com</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="미시간 주의회, AI 기술의 위해를 막기 위한 safeguard 법안 검토(2025.6.25)
 
@@ -347,7 +405,9 @@ https://selectcommitteeontheccp.house.gov/media/press-releases/china-select-comm
 https://michiganadvance.com/2025/06/25/michigan-lawmakers-consider-ai-safeguard-bills-to-prevent-technology-from-committing-harm" onclick="copyEntry(this)">복사</button></div>
   <p>본문 내용 확인 필요. 현재 제공된 정보(URL·제목)만으로는 어떤 법안이 논의되는지, 구체 조항과 일정, 이해관계자 의견을 특정하기 어렵습니다.</p>
   <p class="url"><a href="https://michiganadvance.com/2025/06/25/michigan-lawmakers-consider-ai-safeguard-bills-to-prevent-technology-from-committing-harm">https://michiganadvance.com/2025/06/25/michigan-lawmakers-consider-ai-safeguard-bills-to-prevent-technology-from-committing-harm</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-06-24.html">← 2025-06-24</a><a class="day-nav-btn" href="2025-06-26.html">2025-06-26 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-06-24.html">← 2025-06-24</a><a class="day-nav-btn" href="2025-06-26.html">2025-06-26 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -383,6 +443,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

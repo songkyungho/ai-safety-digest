@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi-weekly">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="agentic_ai cybersecurity" data-search="AI 에이전트의 취약점 실사례 3가지(MCP·WhatsApp MCP·ElizaOS)로 본 ‘편리함의 대가’(2025.08.22) NRIセキュア는 AI 에이전트가 외부 도구를 ‘정상 기능’으로 해석하는 구조적 문제로 인해 실제 프로덕트에서 심각한 취약점이 발견되고 있다고 설명했다. GitHub MCP에서는 악의적 Issue의 prompt injection으로 AI가 사용자의 프라이빗 저장소에 접근해 기밀 코드·인증정보를 공격자에게 유출할 수 있고, WhatsApp MCP에서는 Rug Pull·Tool Shadowing·UI 은폐 기법을 조합해 암호화 자체를 깨지 않고도 메시지 이력과 연락처를 탈취할 수 있다고 한다. 또한 ElizaOS에서는 메모리 포이즈닝으로 장기기억에 저장된 악성 지시가 후속 거래 요청에 재사용되어 되돌릴 수 없는 금전 피해(2500만 달러 이상 규모 가능)를 유발할 수 있다고 정리했다. NRIセキュア（NRI Secure Technologies）">
   <h2>AI 에이전트의 취약점 실사례 3가지(MCP·WhatsApp MCP·ElizaOS)로 본 ‘편리함의 대가’(2025.08.22)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">NRIセキュア（NRI Secure Technologies）</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="AI 에이전트의 취약점 실사례 3가지(MCP·WhatsApp MCP·ElizaOS)로 본 ‘편리함의 대가’(2025.08.22)
 
@@ -317,8 +369,12 @@ NRIセキュア는 AI 에이전트가 외부 도구를 ‘정상 기능’으로
 https://www.nri-secure.co.jp/blog/ai-agent-6" onclick="copyEntry(this)">복사</button></div>
   <p>NRIセキュア는 AI 에이전트가 외부 도구를 ‘정상 기능’으로 해석하는 구조적 문제로 인해 실제 프로덕트에서 심각한 취약점이 발견되고 있다고 설명했다. GitHub MCP에서는 악의적 Issue의 prompt injection으로 AI가 사용자의 프라이빗 저장소에 접근해 기밀 코드·인증정보를 공격자에게 유출할 수 있고, WhatsApp MCP에서는 Rug Pull·Tool Shadowing·UI 은폐 기법을 조합해 암호화 자체를 깨지 않고도 메시지 이력과 연락처를 탈취할 수 있다고 한다. 또한 ElizaOS에서는 메모리 포이즈닝으로 장기기억에 저장된 악성 지시가 후속 거래 요청에 재사용되어 되돌릴 수 없는 금전 피해(2500만 달러 이상 규모 가능)를 유발할 수 있다고 정리했다.</p>
   <p class="url"><a href="https://www.nri-secure.co.jp/blog/ai-agent-6">https://www.nri-secure.co.jp/blog/ai-agent-6</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="deepfake_disinfo incidents politics" data-search="아프리카, AI 안전·리스크 관리 자원 부족으로 ‘디지털 식민주의’ 우려(2025.8.22) 아프리카연합(AU)은 2024년 ‘Continental AI Strategy’를 통해 표준·연례 회의·전문가 그룹 등을 추진 중이나, 집행 수단은 부족하다고 연구는 지적함
+
+아프리카와 국제 연구자 연합이 arXiv에 제출한 연구는 아프리카가 frontier AI의 충격에 취약해질 수 있다며 자체 AI 안전 의제를 시급히 마련해야 한다고 경고했다. 위험은 악의적 사용(딥페이크 기반 선거 개입, 허위정보, 디지털 감시), 기술적 오작동(서구 데이터 학습으로 인한 편향·의료/금융/교육 실패), 시스템적 혼란(일자리 자동화, 여성·저숙련층의 불균형 피해, AI로 인한 탄소·에너지·물·전자폐기물 증가)으로 나뉜다. 또한 아프리카는 슈퍼컴퓨터·데이터센터 등 인프라가 세계 대비 매우 부족해 외부 기술 의존이 커지고, 이를 ‘computational poverty’와 디지털 식민주의로 설명했다. 연구는 인권 기반 거버넌스, 아프리카 AI Safety Institute 설립, AI 리터러시 캠페인, 실시간 조기경보 체계, AU 차원의 연례 AI Safety and Security Forum 등 5가지 실행안을 제안했다. Devdiscourse">
   <h2>아프리카, AI 안전·리스크 관리 자원 부족으로 ‘디지털 식민주의’ 우려(2025.8.22)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Devdiscourse</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="아프리카, AI 안전·리스크 관리 자원 부족으로 ‘디지털 식민주의’ 우려(2025.8.22)
 
@@ -330,8 +386,10 @@ https://www.devdiscourse.com/article/technology/3547183-digital-colonialism-fear
   <p>아프리카연합(AU)은 2024년 ‘Continental AI Strategy’를 통해 표준·연례 회의·전문가 그룹 등을 추진 중이나, 집행 수단은 부족하다고 연구는 지적함</p>
 <p>아프리카와 국제 연구자 연합이 arXiv에 제출한 연구는 아프리카가 frontier AI의 충격에 취약해질 수 있다며 자체 AI 안전 의제를 시급히 마련해야 한다고 경고했다. 위험은 악의적 사용(딥페이크 기반 선거 개입, 허위정보, 디지털 감시), 기술적 오작동(서구 데이터 학습으로 인한 편향·의료/금융/교육 실패), 시스템적 혼란(일자리 자동화, 여성·저숙련층의 불균형 피해, AI로 인한 탄소·에너지·물·전자폐기물 증가)으로 나뉜다. 또한 아프리카는 슈퍼컴퓨터·데이터센터 등 인프라가 세계 대비 매우 부족해 외부 기술 의존이 커지고, 이를 ‘computational poverty’와 디지털 식민주의로 설명했다. 연구는 인권 기반 거버넌스, 아프리카 AI Safety Institute 설립, AI 리터러시 캠페인, 실시간 조기경보 체계, AU 차원의 연례 AI Safety and Security Forum 등 5가지 실행안을 제안했다.</p>
   <p class="url"><a href="https://www.devdiscourse.com/article/technology/3547183-digital-colonialism-fears-rise-as-africa-lacks-resources-to-manage-ai-risks?amp=">https://www.devdiscourse.com/article/technology/3547183-digital-colonialism-fears-rise-as-africa-lacks-resources-to-manage-ai-risks?amp=</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="Claude, GPT, 그리고 Gemini 모델들이 모니터링을 피하는 데 어려움을 겪음 (2025.8.22) 이 연구는 GDM 논문에서 제시된 실험을 확장하여, Claude 4 Sonnet, Claude 3.7 Sonnet, 그리고 GPT-4o 모델들이 모니터링을 피하는 능력을 분석했습니다. 실험 결과, 이러한 모델들은 복잡한 작업을 수행하면서 자신의 추론 과정을 숨기려 해도 정확도를 크게 잃게 되어 모니터링을 피하는 데 실패했습니다. 특히, 모델들이 추론 모드를 활성화한 상태에서는 모니터링이 훨씬 더 쉬워지는 것으로 나타났습니다. 이는 모델들이 추론 과정에서 자신의 계획을 거의 항상 드러내기 때문입니다. 연구는 또한 모델의 능력과 모니터링 능력 간의 상관관계를 보여주며, 더 발전된 모델일수록 모니터링에 더 효과적임을 확인했습니다. 그러나 이 실험은 실제 세계의 복잡한 상황을 완벽하게 반영하지 못하는 한계가 있습니다. METR">
   <h2>🇺🇸 Claude, GPT, 그리고 Gemini 모델들이 모니터링을 피하는 데 어려움을 겪음 (2025.8.22)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="Claude, GPT, 그리고 Gemini 모델들이 모니터링을 피하는 데 어려움을 겪음 (2025.8.22)
 
@@ -340,7 +398,9 @@ https://www.devdiscourse.com/article/technology/3547183-digital-colonialism-fear
 https://metr.org/notes/2025-08-22-claude-gpt-gemini-struggle-evade-monitors/" onclick="copyEntry(this)">복사</button></div>
   <p>이 연구는 GDM 논문에서 제시된 실험을 확장하여, Claude 4 Sonnet, Claude 3.7 Sonnet, 그리고 GPT-4o 모델들이 모니터링을 피하는 능력을 분석했습니다. 실험 결과, 이러한 모델들은 복잡한 작업을 수행하면서 자신의 추론 과정을 숨기려 해도 정확도를 크게 잃게 되어 모니터링을 피하는 데 실패했습니다. 특히, 모델들이 추론 모드를 활성화한 상태에서는 모니터링이 훨씬 더 쉬워지는 것으로 나타났습니다. 이는 모델들이 추론 과정에서 자신의 계획을 거의 항상 드러내기 때문입니다. 연구는 또한 모델의 능력과 모니터링 능력 간의 상관관계를 보여주며, 더 발전된 모델일수록 모니터링에 더 효과적임을 확인했습니다. 그러나 이 실험은 실제 세계의 복잡한 상황을 완벽하게 반영하지 못하는 한계가 있습니다.</p>
   <p class="url"><a href="https://metr.org/notes/2025-08-22-claude-gpt-gemini-struggle-evade-monitors/">https://metr.org/notes/2025-08-22-claude-gpt-gemini-struggle-evade-monitors/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-08-21.html">← 2025-08-21</a><a class="day-nav-btn" href="2025-08-24.html">2025-08-24 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-08-21.html">← 2025-08-21</a><a class="day-nav-btn" href="2025-08-24.html">2025-08-24 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -376,6 +436,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

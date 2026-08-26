@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -304,11 +356,15 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI Safety Daily Digest</h1>
-    <div class="sub">2026-06-24 · 13/15건 요약</div>
+    <div class="sub">2026-06-24 · 14/16건 요약</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="" data-search="Doubao Seed 2.1 Pro (ByteDance) (2026.6.24) Reasoning · Closed · $0.83/M · $4.17/M
+
+벤치마크 미공개
+
+ByteDance&#x27;s flagship deep-thinking model for the coding and agent era, which ByteDance positions as comparable to GPT-5.5. Leads GDPval, MobileWorld, CharXiv-RQ, and MeasureBench; #8 on Code Arena Frontend (1539, level with Claude Opus 4.6); top-tier on Agents&#x27; Last Exam. Built for strong demand understanding, long-horizon planning, and continuous repair on complex coding and long-chain agents. Multimodal (image + video). Closed, API via Doubao / Volcano Engine. Pricing ¥6/¥30 per 1M tokens (~$0.83/$4.17; cache-hit input ¥1.2). Parameters and context window not disclosed. DemandSphere">
   <h2>Doubao Seed 2.1 Pro (ByteDance) (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Doubao Seed 2.1 Pro (ByteDance) (2026.6.24)
 
@@ -323,8 +379,12 @@ https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-prod
 <p>벤치마크 미공개</p>
 <p>ByteDance&#x27;s flagship deep-thinking model for the coding and agent era, which ByteDance positions as comparable to GPT-5.5. Leads GDPval, MobileWorld, CharXiv-RQ, and MeasureBench; #8 on Code Arena Frontend (1539, level with Claude Opus 4.6); top-tier on Agents&#x27; Last Exam. Built for strong demand understanding, long-horizon planning, and continuous repair on complex coding and long-chain agents. Multimodal (image + video). Closed, API via Doubao / Volcano Engine. Pricing ¥6/¥30 per 1M tokens (~$0.83/$4.17; cache-hit input ¥1.2). Parameters and context window not disclosed.</p>
   <p class="url"><a href="https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity">https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity</a></p>
-</article>
-<article class="entry cat-company">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · DemandSphere</summary><article class="entry cat-company" data-cat="company" data-topics="" data-search="Doubao Seed 2.1 Turbo (ByteDance) (2026.6.24) Reasoning · Closed · $0.42/M · $2.08/M
+
+벤치마크 미공개
+
+Low-cost, low-latency sibling of Doubao Seed 2.1 Pro, built for large-scale enterprise deployment handling high-volume online agent and coding calls. ByteDance reports performance comparable to the Pro version. Multimodal (image + video). Closed, API via Doubao / Volcano Engine. Pricing ¥3/¥15 per 1M tokens (~$0.42/$2.08). Parameters and context window not disclosed. DemandSphere">
   <h2>Doubao Seed 2.1 Turbo (ByteDance) (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Doubao Seed 2.1 Turbo (ByteDance) (2026.6.24)
 
@@ -339,8 +399,11 @@ https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-prod
 <p>벤치마크 미공개</p>
 <p>Low-cost, low-latency sibling of Doubao Seed 2.1 Pro, built for large-scale enterprise deployment handling high-volume online agent and coding calls. ByteDance reports performance comparable to the Pro version. Multimodal (image + video). Closed, API via Doubao / Volcano Engine. Pricing ¥3/¥15 per 1M tokens (~$0.42/$2.08). Parameters and context window not disclosed.</p>
   <p class="url"><a href="https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity">https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-productivity</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="공공 AI 박람회 개최로 산업 성장과 AI 민주정부 구현 추진 (2026.6.24) 행정안전부는 2026년 6월 23~24일 일산 킨텍스에서 공공 AI 박람회를 개최하고, 공공분야 인공지능 혁신 성과를 산업 성장으로 연결하는 방안을 제시했다. 관계 부처와 ‘범부처 K-AI Gov 얼라이언스’ 협약을 체결해 공공 AI 도입과 국내 AI 기업의 해외 진출을 지원하기로 했다. 52개 인공지능 기업이 참여해 공공 AX 기술을 전시하고, 기업과 수요기관 간 사업 매칭 및 글로벌 포럼·해커톤·국민 정책 제안 등의 프로그램을 진행했다. 행정안전부">
   <h2>🇰🇷 공공 AI 박람회 개최로 산업 성장과 AI 민주정부 구현 추진 (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">행정안전부</span></span><button type="button" class="copy-btn" data-copy="공공 AI 박람회 개최로 산업 성장과 AI 민주정부 구현 추진 (2026.6.24)
 
@@ -349,8 +412,10 @@ https://seed.bytedance.com/en/blog/seed2-1-officially-released-advancing-ai-prod
 https://eiec.kdi.re.kr/policy/materialView.do?num=283173" onclick="copyEntry(this)">복사</button></div>
   <p>행정안전부는 2026년 6월 23~24일 일산 킨텍스에서 공공 AI 박람회를 개최하고, 공공분야 인공지능 혁신 성과를 산업 성장으로 연결하는 방안을 제시했다. 관계 부처와 ‘범부처 K-AI Gov 얼라이언스’ 협약을 체결해 공공 AI 도입과 국내 AI 기업의 해외 진출을 지원하기로 했다. 52개 인공지능 기업이 참여해 공공 AX 기술을 전시하고, 기업과 수요기관 간 사업 매칭 및 글로벌 포럼·해커톤·국민 정책 제안 등의 프로그램을 진행했다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=283173">https://eiec.kdi.re.kr/policy/materialView.do?num=283173</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="White Box Control at UK AISI - Update on sandbagging investigations 요약불가 AISI-UK">
   <h2>🇬🇧 White Box Control at UK AISI - Update on sandbagging investigations</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="White Box Control at UK AISI - Update on sandbagging investigations
 
@@ -359,8 +424,10 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=283173" onclick="copyEntry(thi
 https://www.aisi.gov.uk/research/white-box-control-at-uk-aisi---update-on-sandbagging-investigations" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.aisi.gov.uk/research/white-box-control-at-uk-aisi---update-on-sandbagging-investigations">https://www.aisi.gov.uk/research/white-box-control-at-uk-aisi---update-on-sandbagging-investigations</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="cybersecurity" data-search="Mythos, 미 정부 기밀 시스템 취약점 발견 (2026.6.24) 미 정부 관계자는 Anthropic의 AI 모델 &#x27;Mythos&#x27;가 프로젝트 글래스윙의 질환으로 진행된 테스트 중 미 정부 기밀 시스템의 취약점을 발견했다고 밝힘. 이러한 위험으로 트럼프 행정부가 &#x27;Fable 5&#x27; 및 &#x27;Mythos 5&#x27; 모델 수출을 통제했을 가능성이 있으며, Anthropic과 사이버 보안 업계는 이 조치가 미국의 방어 능력을 저해할 수 있다고 반발. AP">
   <h2>🇺🇸 Mythos, 미 정부 기밀 시스템 취약점 발견 (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">AP</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="Mythos, 미 정부 기밀 시스템 취약점 발견 (2026.6.24)
 
@@ -369,8 +436,10 @@ https://www.aisi.gov.uk/research/white-box-control-at-uk-aisi---update-on-sandba
 https://apnews.com/article/anthropic-mythos-ai-classified-systems-vulnerabilities-testing-3e8762c0527c4d8ed657cbe48c84a718" onclick="copyEntry(this)">복사</button></div>
   <p>미 정부 관계자는 Anthropic의 AI 모델 &#x27;Mythos&#x27;가 프로젝트 글래스윙의 질환으로 진행된 테스트 중 미 정부 기밀 시스템의 취약점을 발견했다고 밝힘. 이러한 위험으로 트럼프 행정부가 &#x27;Fable 5&#x27; 및 &#x27;Mythos 5&#x27; 모델 수출을 통제했을 가능성이 있으며, Anthropic과 사이버 보안 업계는 이 조치가 미국의 방어 능력을 저해할 수 있다고 반발.</p>
   <p class="url"><a href="https://apnews.com/article/anthropic-mythos-ai-classified-systems-vulnerabilities-testing-3e8762c0527c4d8ed657cbe48c84a718">https://apnews.com/article/anthropic-mythos-ai-classified-systems-vulnerabilities-testing-3e8762c0527c4d8ed657cbe48c84a718</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="RAND, 기업과 시민사회의 AI 위험 관리 역할에 대한 보고서 발표 (2026.6.24) RAND 연구소는 정부의 규제만으로는 부족한 AI 기술 위험을 관리하기 위해 기업과 시민사회 등 비정부 주체의 역할을 제시한 보고서 발간. AI 개발 및 배포 과정의 기술적 위험 관리, 시장 메커니즘을 활용한 안전 유도, AI로 인한 구조적 변화 시기에 사회적 안정과 대중의 신뢰를 구축하는 핵심 역할을 수행해야 한다고 권고. RAND">
   <h2>🇺🇸 RAND, 기업과 시민사회의 AI 위험 관리 역할에 대한 보고서 발표 (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="RAND, 기업과 시민사회의 AI 위험 관리 역할에 대한 보고서 발표 (2026.6.24)
 
@@ -379,8 +448,10 @@ RAND 연구소는 정부의 규제만으로는 부족한 AI 기술 위험을 관
 https://www.rand.org/content/dam/rand/pubs/research_reports/RRA4500/RRA4522-1/RAND_RRA4522-1.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>RAND 연구소는 정부의 규제만으로는 부족한 AI 기술 위험을 관리하기 위해 기업과 시민사회 등 비정부 주체의 역할을 제시한 보고서 발간. AI 개발 및 배포 과정의 기술적 위험 관리, 시장 메커니즘을 활용한 안전 유도, AI로 인한 구조적 변화 시기에 사회적 안정과 대중의 신뢰를 구축하는 핵심 역할을 수행해야 한다고 권고.</p>
   <p class="url"><a href="https://www.rand.org/content/dam/rand/pubs/research_reports/RRA4500/RRA4522-1/RAND_RRA4522-1.pdf">https://www.rand.org/content/dam/rand/pubs/research_reports/RRA4500/RRA4522-1/RAND_RRA4522-1.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier" data-search="Anthropic, 중국 알리바바의 대규모 AI &#x27;증류 공격&#x27; 의혹 제기 (2026.6.24) Anthropic은 중국 Alibaba가 자사 AI 모델의 역량을 무단으로 추출하기 위해 사상 최대 규모의 &#x27;증류 공격&#x27;을 감행했다며 미 상원 위원회에 공식 서한을 보내 고발. 알리바바와 연계된 작업자들이 2만 5천여 개의 가짜 계정을 동원해 2,880만 회 이상의 데이터를 불법적으로 추출하려 했다며 정부와 업계의 긴밀한 공조를 촉구. CNBC">
   <h2>🇺🇸🇨🇳 Anthropic, 중국 알리바바의 대규모 AI &#x27;증류 공격&#x27; 의혹 제기 (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">CNBC</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic, 중국 알리바바의 대규모 AI &#x27;증류 공격&#x27; 의혹 제기 (2026.6.24)
 
@@ -389,18 +460,10 @@ Anthropic은 중국 Alibaba가 자사 AI 모델의 역량을 무단으로 추출
 https://www.cnbc.com/2026/06/24/anthropic-alibaba-distillation-campaign.html" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 중국 Alibaba가 자사 AI 모델의 역량을 무단으로 추출하기 위해 사상 최대 규모의 &#x27;증류 공격&#x27;을 감행했다며 미 상원 위원회에 공식 서한을 보내 고발. 알리바바와 연계된 작업자들이 2만 5천여 개의 가짜 계정을 동원해 2,880만 회 이상의 데이터를 불법적으로 추출하려 했다며 정부와 업계의 긴밀한 공조를 촉구.</p>
   <p class="url"><a href="https://www.cnbc.com/2026/06/24/anthropic-alibaba-distillation-campaign.html">https://www.cnbc.com/2026/06/24/anthropic-alibaba-distillation-campaign.html</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
-  <h2>(Google DeepMind) Introducing computer use in Gemini 3.5 Flash (2026.6.24)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DeepMind(구글 딥마인드)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="(Google DeepMind) Introducing computer use in Gemini 3.5 Flash (2026.6.24)
-
-Gemini 3.5 Flash에 computer use를 기본 내장 도구로 통합해, 브라우저·모바일·데스크톱 환경 전반에서 에이전트가 보고 추론하며 실행할 수 있다고 밝혔다. 기존에는 Gemini 2.5의 standalone computer use 모델로만 제공되던 기능이 메인 Gemini Flash 모델에 natively 통합되었으며, 연속 소프트웨어 테스트·업무 자동화 등 장기 과업 성능 향상을 기대한다고 설명했다. 또한 prompt injection 위험을 줄이기 위해 targeted adversarial training을 적용하고, 기업용으로 민감/되돌릴 수 없는 행동에 대한 사용자 확인과 간접 prompt injection 감지 시 작업 자동 중단 같은 안전장치를 옵션으로 제공한다.
-
-https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/" onclick="copyEntry(this)">복사</button></div>
-  <p>Gemini 3.5 Flash에 computer use를 기본 내장 도구로 통합해, 브라우저·모바일·데스크톱 환경 전반에서 에이전트가 보고 추론하며 실행할 수 있다고 밝혔다. 기존에는 Gemini 2.5의 standalone computer use 모델로만 제공되던 기능이 메인 Gemini Flash 모델에 natively 통합되었으며, 연속 소프트웨어 테스트·업무 자동화 등 장기 과업 성능 향상을 기대한다고 설명했다. 또한 prompt injection 위험을 줄이기 위해 targeted adversarial training을 적용하고, 기업용으로 민감/되돌릴 수 없는 행동에 대한 사용자 확인과 간접 prompt injection 감지 시 작업 자동 중단 같은 안전장치를 옵션으로 제공한다.</p>
-  <p class="url"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/">https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/</a></p>
-</article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="safety_research" data-search="Gemini 3.5 Flash에 컴퓨터 사용 기능 통합 (2026.6.24) Gemini 3.5 Flash에 브라우저·모바일·데스크톱 환경을 인식하고 조작하는 컴퓨터 사용 기능이 내장되어, 개발자와 기업이 장시간 작업 및 업무 자동화 에이전트를 구축할 수 있게 됐다. 이 기능은 Gemini API와 Gemini Enterprise Agent Platform을 통해 제공된다. Google DeepMind는 prompt injection 위험을 줄이기 위해 적대적 학습을 적용했으며, 민감하거나 되돌릴 수 없는 작업에 대한 사용자 확인과 간접 prompt injection 감지 시 작업 중단 기능을 선택적으로 제공한다. 구글 딥마인드">
   <h2>Gemini 3.5 Flash에 컴퓨터 사용 기능 통합 (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Gemini 3.5 Flash에 컴퓨터 사용 기능 통합 (2026.6.24)
 
@@ -409,8 +472,21 @@ Gemini 3.5 Flash에 브라우저·모바일·데스크톱 환경을 인식하고
 https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/" onclick="copyEntry(this)">복사</button></div>
   <p>Gemini 3.5 Flash에 브라우저·모바일·데스크톱 환경을 인식하고 조작하는 컴퓨터 사용 기능이 내장되어, 개발자와 기업이 장시간 작업 및 업무 자동화 에이전트를 구축할 수 있게 됐다. 이 기능은 Gemini API와 Gemini Enterprise Agent Platform을 통해 제공된다. Google DeepMind는 prompt injection 위험을 줄이기 위해 적대적 학습을 적용했으며, 민감하거나 되돌릴 수 없는 작업에 대한 사용자 확인과 간접 prompt injection 감지 시 작업 중단 기능을 선택적으로 제공한다.</p>
   <p class="url"><a href="https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/">https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · DeepMind(구글 딥마인드)</summary><article class="entry cat-company" data-cat="company" data-topics="frontier safety_research" data-search="(Google DeepMind) Introducing computer use in Gemini 3.5 Flash (2026.6.24) Gemini 3.5 Flash에 computer use를 기본 내장 도구로 통합해, 브라우저·모바일·데스크톱 환경 전반에서 에이전트가 보고 추론하며 실행할 수 있다고 밝혔다. 기존에는 Gemini 2.5의 standalone computer use 모델로만 제공되던 기능이 메인 Gemini Flash 모델에 natively 통합되었으며, 연속 소프트웨어 테스트·업무 자동화 등 장기 과업 성능 향상을 기대한다고 설명했다. 또한 prompt injection 위험을 줄이기 위해 targeted adversarial training을 적용하고, 기업용으로 민감/되돌릴 수 없는 행동에 대한 사용자 확인과 간접 prompt injection 감지 시 작업 자동 중단 같은 안전장치를 옵션으로 제공한다. DeepMind(구글 딥마인드)">
+  <h2>(Google DeepMind) Introducing computer use in Gemini 3.5 Flash (2026.6.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DeepMind(구글 딥마인드)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="(Google DeepMind) Introducing computer use in Gemini 3.5 Flash (2026.6.24)
+
+Gemini 3.5 Flash에 computer use를 기본 내장 도구로 통합해, 브라우저·모바일·데스크톱 환경 전반에서 에이전트가 보고 추론하며 실행할 수 있다고 밝혔다. 기존에는 Gemini 2.5의 standalone computer use 모델로만 제공되던 기능이 메인 Gemini Flash 모델에 natively 통합되었으며, 연속 소프트웨어 테스트·업무 자동화 등 장기 과업 성능 향상을 기대한다고 설명했다. 또한 prompt injection 위험을 줄이기 위해 targeted adversarial training을 적용하고, 기업용으로 민감/되돌릴 수 없는 행동에 대한 사용자 확인과 간접 prompt injection 감지 시 작업 자동 중단 같은 안전장치를 옵션으로 제공한다.
+
+https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/" onclick="copyEntry(this)">복사</button></div>
+  <p>Gemini 3.5 Flash에 computer use를 기본 내장 도구로 통합해, 브라우저·모바일·데스크톱 환경 전반에서 에이전트가 보고 추론하며 실행할 수 있다고 밝혔다. 기존에는 Gemini 2.5의 standalone computer use 모델로만 제공되던 기능이 메인 Gemini Flash 모델에 natively 통합되었으며, 연속 소프트웨어 테스트·업무 자동화 등 장기 과업 성능 향상을 기대한다고 설명했다. 또한 prompt injection 위험을 줄이기 위해 targeted adversarial training을 적용하고, 기업용으로 민감/되돌릴 수 없는 행동에 대한 사용자 확인과 간접 prompt injection 감지 시 작업 자동 중단 같은 안전장치를 옵션으로 제공한다.</p>
+  <p class="url"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/">https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="Mistral, 커넥터 관리·보안 제어 기능 강화 (2026.6.24) Mistral은 워크스페이스·조직별 커넥터 및 개별 도구 접근을 관리하고, 권한 범위가 지정된 API 키와 다중 계정 커넥터를 제공하는 기능을 출시했다. Connectors Debugger는 MCP 연결 과정을 11단계로 점검해 오류 원인을 분석하며, Workflows와 Vibe Code에서는 승인된 커넥터를 자동화 작업과 개발 작업에 활용할 수 있다. 60개 이상의 사전 구축 커넥터가 제공되며, 기업용 제어 기능·커넥터 자격 증명·Vibe Code 연동은 정식 제공되고 Workflows 연동과 Connectors Playground는 공개 프리뷰로 운영된다. Mistral AI 공식 블로그">
   <h2>Mistral, 커넥터 관리·보안 제어 기능 강화 (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Mistral AI 공식 블로그</span></span><button type="button" class="copy-btn" data-copy="Mistral, 커넥터 관리·보안 제어 기능 강화 (2026.6.24)
 
@@ -419,8 +495,23 @@ Mistral은 워크스페이스·조직별 커넥터 및 개별 도구 접근을 �
 https://mistral.ai/news/more-control-over-connectors/" onclick="copyEntry(this)">복사</button></div>
   <p>Mistral은 워크스페이스·조직별 커넥터 및 개별 도구 접근을 관리하고, 권한 범위가 지정된 API 키와 다중 계정 커넥터를 제공하는 기능을 출시했다. Connectors Debugger는 MCP 연결 과정을 11단계로 점검해 오류 원인을 분석하며, Workflows와 Vibe Code에서는 승인된 커넥터를 자동화 작업과 개발 작업에 활용할 수 있다. 60개 이상의 사전 구축 커넥터가 제공되며, 기업용 제어 기능·커넥터 자격 증명·Vibe Code 연동은 정식 제공되고 Workflows 연동과 Connectors Playground는 공개 프리뷰로 운영된다.</p>
   <p class="url"><a href="https://mistral.ai/news/more-control-over-connectors/">https://mistral.ai/news/more-control-over-connectors/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="frontier" data-search="중국 AI 기업의 전략 파악하기: 1,604개의 중국 AI 구인 공고 분석 (2026.6.24) 중국 AI 기업들은 여전히 Nvidia에 의존하고 있지만, 국내 대안 기술 탐색 중
+중국의 주요 AI 기업들은 여전히 Nvidia 칩에 의존하고 있지만, ByteDance의 경우 Ascend나 Cambricon과 같은 국내 칩 기술에 대한 지식을 요구하는 구인 공고를 통해 국내 대안 기술 탐색을 진행 중인 것으로 보임. 그러나 대부분의 경우, 추론 작업에서는 Nvidia 기술에 의존하고 있는 것으로 나타남. 예외적으로 Z.ai는 이미 올해 초에 자체 칩을 사용해 모델을 훈련시킨 사례를 공개함.
+
+국내 클라우드 컴퓨팅 및 데이터 센터 구축 확대
+중국의 스타트업들은 클라우드 컴퓨팅 서비스를 임대하는 것과 동시에 자체 데이터 센터 구축에도 투자하고 있음. 예를 들어, Moonshot은 클라우드 컴퓨팅 자원 조달 인력을 채용하고 있으며, MiniMax와 DeepSeek 등은 데이터 센터 구축 및 운영에 참여할 인재를 찾고 있음. 이는 중국 AI 기업들이 자체 컴퓨팅 자원 확보에 힘쓰고 있음을 시사함.
+
+다양한 비즈니스 전략
+중국의 AI 스타트업들은 비즈니스 모델에 있어서 차이를 보임. Z.ai는 주로 B2B 판매에 초점을 맞추고 있는 반면, MiniMax와 Moonshot은 마케팅에 더 집중하고 있음. MiniMax는 소비자 기반 제품 판매로 상당 부분의 수익을 창출하는 반면, Z.ai는 고객 인프라 위에서 모델을 실행하는 방식으로 수익을 얻고 있음.
+
+인재 채용 기준의 차이
+중국의 AI 구인 공고는 미국에 비해 상대적으로 적은 경력을 요구함. 평균적으로 중국 기업들은 1.6년의 경력을 요구하는 반면, 미국 기업들은 5.5년의 경력을 요구함. 이는 중국 정부의 대학 졸업생 채용 정책과 관련이 있을 것으로 보임.
+
+주요 기술 허브 집중
+중국의 AI 구인 공고는 베이징, 상하이, 항저우 등 몇몇 주요 도시에 집중되어 있음. 특히 베이징이 가장 큰 허브로, 전체 공고의 약 63%를 차지 Epoch-Substack">
   <h2>🇨🇳🇰🇷 중국 AI 기업의 전략 파악하기: 1,604개의 중국 AI 구인 공고 분석 (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Epoch-Substack</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="중국 AI 기업의 전략 파악하기: 1,604개의 중국 AI 구인 공고 분석 (2026.6.24)
 
@@ -451,8 +542,22 @@ https://epochai.substack.com/p/what-we-learned-from-1604-chinese" onclick="copyE
 <p>주요 기술 허브 집중
 중국의 AI 구인 공고는 베이징, 상하이, 항저우 등 몇몇 주요 도시에 집중되어 있음. 특히 베이징이 가장 큰 허브로, 전체 공고의 약 63%를 차지</p>
   <p class="url"><a href="https://epochai.substack.com/p/what-we-learned-from-1604-chinese">https://epochai.substack.com/p/what-we-learned-from-1604-chinese</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-media" data-cat="media" data-topics="cybersecurity safety_research" data-search="AI 규제 대응부터 신뢰성 검증까지, AI Ignite 후기 (2026.6.24) AI Ignite에서 금융권의 망분리 규제 변화와 혁신금융서비스를 활용한 외부 AI 모델 연계, 하이브리드 AI 인프라 구축 방안이 소개됐다. 셀렉트스타는 AI 전 생애주기를 검증하는 Datumo Platform의 Evaluation, Redteaming, Observability 기능을 설명했으며, Observability 기능은 2026년 3분기 출시 예정이다. Datumo Platform은 AI 성능 평가와 취약점 탐지, 운영 중 사용자 대화 및 이상 징후 모니터링을 지원한다. Select-Digest">
+  <h2>🇰🇷 AI 규제 대응부터 신뢰성 검증까지, AI Ignite 후기 (2026.6.24)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">Select Digest</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="AI 규제 대응부터 신뢰성 검증까지, AI Ignite 후기 (2026.6.24)
+
+AI Ignite에서 금융권의 망분리 규제 변화와 혁신금융서비스를 활용한 외부 AI 모델 연계, 하이브리드 AI 인프라 구축 방안이 소개됐다. 셀렉트스타는 AI 전 생애주기를 검증하는 Datumo Platform의 Evaluation, Redteaming, Observability 기능을 설명했으며, Observability 기능은 2026년 3분기 출시 예정이다. Datumo Platform은 AI 성능 평가와 취약점 탐지, 운영 중 사용자 대화 및 이상 징후 모니터링을 지원한다.
+
+https://stib.ee/EL2M" onclick="copyEntry(this)">복사</button></div>
+  <p>AI Ignite에서 금융권의 망분리 규제 변화와 혁신금융서비스를 활용한 외부 AI 모델 연계, 하이브리드 AI 인프라 구축 방안이 소개됐다. 셀렉트스타는 AI 전 생애주기를 검증하는 Datumo Platform의 Evaluation, Redteaming, Observability 기능을 설명했으며, Observability 기능은 2026년 3분기 출시 예정이다. Datumo Platform은 AI 성능 평가와 취약점 탐지, 운영 중 사용자 대화 및 이상 징후 모니터링을 지원한다.</p>
+  <p class="url"><a href="https://stib.ee/EL2M">https://stib.ee/EL2M</a></p>
+  
+  
+</article>
+<article class="entry cat-db" data-cat="db" data-topics="incidents" data-search="Congresswoman denies staff used AI to write defense funding amendment (2026.6.24) 요약불가 AIID">
   <h2>Congresswoman denies staff used AI to write defense funding amendment (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AIID</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="Congresswoman denies staff used AI to write defense funding amendment (2026.6.24)
 
@@ -461,8 +566,10 @@ https://epochai.substack.com/p/what-we-learned-from-1604-chinese" onclick="copyE
 https://www.theverge.com/policy/956394/florida-anna-paulina-luna-anthropic-claude" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.theverge.com/policy/956394/florida-anna-paulina-luna-anthropic-claude">https://www.theverge.com/policy/956394/florida-anna-paulina-luna-anthropic-claude</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier law" data-search="리치너 커뮤니케이션스, 마이크로소프트·오픈AI 상대 저작권 침해 소송 제기 (2026.6.24) 약 400개 지역·지방 신문 발행사를 대표하는 리치너 커뮤니케이션스가 마이크로소프트와 오픈AI가 허가나 대가 없이 저작권 기사를 수집해 ChatGPT와 Copilot 등 AI 모델을 학습시키고, 이용자 질의에 콘텐츠를 재현한다고 주장하며 소송을 제기했다. 소송은 직접·간접 저작권 침해와 저작권 관리 정보 삭제에 관한 DMCA 위반을 주장하며, 법정 손해배상 등을 청구한다. 사건은 미국 뉴욕 남부지방법원에 제기됐으며, 사건번호는 1:26-cv-05320이고 현재 진행 중이다. AI 소송 추적기">
   <h2>🇺🇸 리치너 커뮤니케이션스, 마이크로소프트·오픈AI 상대 저작권 침해 소송 제기 (2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI 소송 추적기</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="리치너 커뮤니케이션스, 마이크로소프트·오픈AI 상대 저작권 침해 소송 제기 (2026.6.24)
 
@@ -471,8 +578,10 @@ https://www.theverge.com/policy/956394/florida-anna-paulina-luna-anthropic-claud
 https://ailawsuittracker.com/cases/richner-communications-inc-v-microsoft-corporation-1-26-cv-05320/" onclick="copyEntry(this)">복사</button></div>
   <p>약 400개 지역·지방 신문 발행사를 대표하는 리치너 커뮤니케이션스가 마이크로소프트와 오픈AI가 허가나 대가 없이 저작권 기사를 수집해 ChatGPT와 Copilot 등 AI 모델을 학습시키고, 이용자 질의에 콘텐츠를 재현한다고 주장하며 소송을 제기했다. 소송은 직접·간접 저작권 침해와 저작권 관리 정보 삭제에 관한 DMCA 위반을 주장하며, 법정 손해배상 등을 청구한다. 사건은 미국 뉴욕 남부지방법원에 제기됐으며, 사건번호는 1:26-cv-05320이고 현재 진행 중이다.</p>
   <p class="url"><a href="https://ailawsuittracker.com/cases/richner-communications-inc-v-microsoft-corporation-1-26-cv-05320/">https://ailawsuittracker.com/cases/richner-communications-inc-v-microsoft-corporation-1-26-cv-05320/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="agentic_ai law safety_research" data-search="(IT&amp;Future Strategy 2026-1) 에이전틱 AI 자율성 확대를 위한 신뢰 확보 정책 과제(2026.6.24) 에이전틱 AI가 스스로 판단·계획·실행하는 단계로 전환되며, 기존의 결과 확인 중심 승인 방식만으로는 외부 시스템 접근·실행에 따른 되돌리기 어려운 피해 위험에 대한 우려가 커진다고 설명한다. EU AI Act, 한국 AI 기본법, 싱가포르 MGF, 미국 AI RMF 등 주요 제도를 비교하고, 위험 관리를 위해 인간 감독·투명성·지속 모니터링 같은 공통 요건을 다룬다고 밝혔다. 또한 Harness Engineering을 통해 안전장치 설정, 최소 권한, 인간 개입 지점, 관측 가능성 등을 설계·구현하는 방안을 제시하며, 사후 승인에서 ‘작동 환경과 범위의 사전 구조 설계·관리’로 정책 패러다임 전환, 검증 체계 구축, 에이전틱 AI 얼라이언스 등 생태계 논의 확산의 필요성을 제시했다. 한국지능정보사회진흥원(NIA)">
   <h2>🇰🇷 (IT&amp;Future Strategy 2026-1) 에이전틱 AI 자율성 확대를 위한 신뢰 확보 정책 과제(2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">한국지능정보사회진흥원(NIA)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="(IT&amp;Future Strategy 2026-1) 에이전틱 AI 자율성 확대를 위한 신뢰 확보 정책 과제(2026.6.24)
 
@@ -481,8 +590,10 @@ https://ailawsuittracker.com/cases/richner-communications-inc-v-microsoft-corpor
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=25932&amp;bcIdx=29577" onclick="copyEntry(this)">복사</button></div>
   <p>에이전틱 AI가 스스로 판단·계획·실행하는 단계로 전환되며, 기존의 결과 확인 중심 승인 방식만으로는 외부 시스템 접근·실행에 따른 되돌리기 어려운 피해 위험에 대한 우려가 커진다고 설명한다. EU AI Act, 한국 AI 기본법, 싱가포르 MGF, 미국 AI RMF 등 주요 제도를 비교하고, 위험 관리를 위해 인간 감독·투명성·지속 모니터링 같은 공통 요건을 다룬다고 밝혔다. 또한 Harness Engineering을 통해 안전장치 설정, 최소 권한, 인간 개입 지점, 관측 가능성 등을 설계·구현하는 방안을 제시하며, 사후 승인에서 ‘작동 환경과 범위의 사전 구조 설계·관리’로 정책 패러다임 전환, 검증 체계 구축, 에이전틱 AI 얼라이언스 등 생태계 논의 확산의 필요성을 제시했다.</p>
   <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=25932&amp;bcIdx=29577">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=25932&amp;bcIdx=29577</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="agentic_ai" data-search="AI 시대의 스케일링을 전제로 경쟁·협력·시스템 리스크 중심 규제 재설계(2026.6.24) FCA 최고경영자 니킬 라티(Nikhil Rathi)는 AI가 전통적 규제보다 빠르게 진화하는 만큼, 금융서비스를 세계적 AI 경제의 핵심으로 두고 규제의 효과를 재정의하겠다고 밝혔다. 에이전틱 시스템과 토큰화가 시장 구조·운영을 바꿀 수 있으며, 중요한 의사결정은 이해 가능한 형태의 인적 감독 하에 책임성과 소비자 신뢰를 유지해야 한다고 강조했다. 또한 도매시장 모니터링을 위해 agentic AI를 ‘first responder’로 활용하고, 시장 개입을 예외가 아닌 정규 도구로 넓히는 등 감독·정보수집·협업 방식의 전환을 예고했다. 클라우드·모델·데이터 의존 확대에 따른 시스템적 회복탄력성, 사기·사이버 위험을 줄이기 위한 정보 공유와 기술기업의 역할 확대도 함께 언급했다. 영국 금융감독청 FCA(Financial Conduct Authority)">
   <h2>AI 시대의 스케일링을 전제로 경쟁·협력·시스템 리스크 중심 규제 재설계(2026.6.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">영국 금융감독청 FCA(Financial Conduct Authority)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="AI 시대의 스케일링을 전제로 경쟁·협력·시스템 리스크 중심 규제 재설계(2026.6.24)
 
@@ -491,7 +602,9 @@ FCA 최고경영자 니킬 라티(Nikhil Rathi)는 AI가 전통적 규제보다 
 https://fca.org.uk/news/speeches/rethinking-regulation-age-ai" onclick="copyEntry(this)">복사</button></div>
   <p>FCA 최고경영자 니킬 라티(Nikhil Rathi)는 AI가 전통적 규제보다 빠르게 진화하는 만큼, 금융서비스를 세계적 AI 경제의 핵심으로 두고 규제의 효과를 재정의하겠다고 밝혔다. 에이전틱 시스템과 토큰화가 시장 구조·운영을 바꿀 수 있으며, 중요한 의사결정은 이해 가능한 형태의 인적 감독 하에 책임성과 소비자 신뢰를 유지해야 한다고 강조했다. 또한 도매시장 모니터링을 위해 agentic AI를 ‘first responder’로 활용하고, 시장 개입을 예외가 아닌 정규 도구로 넓히는 등 감독·정보수집·협업 방식의 전환을 예고했다. 클라우드·모델·데이터 의존 확대에 따른 시스템적 회복탄력성, 사기·사이버 위험을 줄이기 위한 정보 공유와 기술기업의 역할 확대도 함께 언급했다.</p>
   <p class="url"><a href="https://fca.org.uk/news/speeches/rethinking-regulation-age-ai">https://fca.org.uk/news/speeches/rethinking-regulation-age-ai</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-06-23.html">← 2026-06-23</a><a class="day-nav-btn" href="2026-06-25.html">2026-06-25 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-06-23.html">← 2026-06-23</a><a class="day-nav-btn" href="2026-06-25.html">2026-06-25 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -527,6 +640,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

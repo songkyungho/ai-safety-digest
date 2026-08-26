@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi-weekly">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="norms" data-search="BRICS, 리우에서 ‘포용적·지속가능한 거버넌스’ 공동선언 채택(2025.07.06) 17차 정상회의에서 BRICS 11개국이 공동선언을 서명했으며, 글로벌 거버넌스·금융·보건·인공지능·기후 등 126개 이행 약속을 채택했다. 개발도상국(특히 아프리카·라틴아메리카·카리브)의 국제 의사결정 참여 확대와 국제법·UN 헌장 목적·원칙 수호를 강조했으며, IMF 쿼터 및 세계은행 지분 조정, 글로벌 보건 거버넌스 강화, AI 거버넌스의 위험 완화와 포용적 협력, COP30 준비 차원의 열대림 보전 TFFF 등도 포함됐다. 또한 분쟁·군비 지출 증가에 대한 우려와 안보 의제와 기후 의제의 연계 시도에 대한 우려를 언급했다. BRICS Brasil( brics.br )">
   <h2>BRICS, 리우에서 ‘포용적·지속가능한 거버넌스’ 공동선언 채택(2025.07.06)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">BRICS Brasil( brics.br )</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="BRICS, 리우에서 ‘포용적·지속가능한 거버넌스’ 공동선언 채택(2025.07.06)
 
@@ -317,8 +369,10 @@
 https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-inclusive-and-sustainable-governance" onclick="copyEntry(this)">복사</button></div>
   <p>17차 정상회의에서 BRICS 11개국이 공동선언을 서명했으며, 글로벌 거버넌스·금융·보건·인공지능·기후 등 126개 이행 약속을 채택했다. 개발도상국(특히 아프리카·라틴아메리카·카리브)의 국제 의사결정 참여 확대와 국제법·UN 헌장 목적·원칙 수호를 강조했으며, IMF 쿼터 및 세계은행 지분 조정, 글로벌 보건 거버넌스 강화, AI 거버넌스의 위험 완화와 포용적 협력, COP30 준비 차원의 열대림 보전 TFFF 등도 포함됐다. 또한 분쟁·군비 지출 증가에 대한 우려와 안보 의제와 기후 의제의 연계 시도에 대한 우려를 언급했다.</p>
   <p class="url"><a href="https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-inclusive-and-sustainable-governance">https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-inclusive-and-sustainable-governance</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="norms" data-search="(2025.7.6) 70개국 이상, UNHRC에서 ‘AI를 통한 접근성 증진’ 공동성명 제네바에서 열린 UN 인권이사회(UNHRC) 59차 회기 기술협력·역량강화 관련 연례 주제 패널에서 중국 대표가 70개국 이상을 대표해 ‘Artificial Intelligence(AI) for Promoting Accessibility’ 공동성명을 전달했다. 성명은 AI가 물리·정보·문화 장벽을 줄이고 모두가 인권을 누리도록 접근성 환경을 조성할 잠재력이 크다고 강조했으며, 인권 존중을 바탕으로 한 사람중심 접근, AI 혜택의 공평한 공유, 개발도상국 지원과 국제협력을 통한 상생 협력을 제안했다. 또한 중국이 주도한 ‘모두를 위한 동등한 접근성’ 관련 결의 이행의 한 단계라고 밝혔다. 차이나데일리(China Daily)">
   <h2>🇨🇳 (2025.7.6) 70개국 이상, UNHRC에서 ‘AI를 통한 접근성 증진’ 공동성명</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">차이나데일리(China Daily)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="(2025.7.6) 70개국 이상, UNHRC에서 ‘AI를 통한 접근성 증진’ 공동성명
 
@@ -327,8 +381,10 @@ https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-
 https://www.chinadaily.com.cn/a/202507/06/WS6869b209a31000e9a573a5a5.html" onclick="copyEntry(this)">복사</button></div>
   <p>제네바에서 열린 UN 인권이사회(UNHRC) 59차 회기 기술협력·역량강화 관련 연례 주제 패널에서 중국 대표가 70개국 이상을 대표해 ‘Artificial Intelligence(AI) for Promoting Accessibility’ 공동성명을 전달했다. 성명은 AI가 물리·정보·문화 장벽을 줄이고 모두가 인권을 누리도록 접근성 환경을 조성할 잠재력이 크다고 강조했으며, 인권 존중을 바탕으로 한 사람중심 접근, AI 혜택의 공평한 공유, 개발도상국 지원과 국제협력을 통한 상생 협력을 제안했다. 또한 중국이 주도한 ‘모두를 위한 동등한 접근성’ 관련 결의 이행의 한 단계라고 밝혔다.</p>
   <p class="url"><a href="https://www.chinadaily.com.cn/a/202507/06/WS6869b209a31000e9a573a5a5.html">https://www.chinadaily.com.cn/a/202507/06/WS6869b209a31000e9a573a5a5.html</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="캐나다인의 AI 음악 ‘호ax’이 언론을 속이고 ‘밴드’의 스트리밍 성공으로 이어진 과정 (2025.7.6) CBC는 캐나다인 Andrew Frelon(가명)이 Spotify의 AI 음악 프로젝트를 둘러싼 정교한 사기극으로 언론을 속여 ‘The Velvet Sundown’이 월간 100만 청취자를 기록했다고 보도했다. 그는 Suno로 노래를 만들고, X 계정과 프로필·이미지 등을 활용해 “social engineering” 실험처럼 정체성 혼란을 의도했으며, 피해가 있었다면 사과한다고 밝혔다. 이후 밴드의 X 계정도 AI를 활용한 ‘synthetic music project’라고 인정했지만, 여전히 실제 배후는 완전히 확인되지 않았다고 전했다. CBC 뉴스 (CBC News)">
   <h2>캐나다인의 AI 음악 ‘호ax’이 언론을 속이고 ‘밴드’의 스트리밍 성공으로 이어진 과정 (2025.7.6)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">CBC 뉴스 (CBC News)</span></span><button type="button" class="copy-btn" data-copy="캐나다인의 AI 음악 ‘호ax’이 언론을 속이고 ‘밴드’의 스트리밍 성공으로 이어진 과정 (2025.7.6)
 
@@ -337,7 +393,9 @@ CBC는 캐나다인 Andrew Frelon(가명)이 Spotify의 AI 음악 프로젝트�
 https://www.cbc.ca/news/entertainment/ai-band-hoax-velvet-sundown-1.7575874" onclick="copyEntry(this)">복사</button></div>
   <p>CBC는 캐나다인 Andrew Frelon(가명)이 Spotify의 AI 음악 프로젝트를 둘러싼 정교한 사기극으로 언론을 속여 ‘The Velvet Sundown’이 월간 100만 청취자를 기록했다고 보도했다. 그는 Suno로 노래를 만들고, X 계정과 프로필·이미지 등을 활용해 “social engineering” 실험처럼 정체성 혼란을 의도했으며, 피해가 있었다면 사과한다고 밝혔다. 이후 밴드의 X 계정도 AI를 활용한 ‘synthetic music project’라고 인정했지만, 여전히 실제 배후는 완전히 확인되지 않았다고 전했다.</p>
   <p class="url"><a href="https://www.cbc.ca/news/entertainment/ai-band-hoax-velvet-sundown-1.7575874">https://www.cbc.ca/news/entertainment/ai-band-hoax-velvet-sundown-1.7575874</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-07-04.html">← 2025-07-04</a><a class="day-nav-btn" href="2025-07-07.html">2025-07-07 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-04.html">← 2025-07-04</a><a class="day-nav-btn" href="2025-07-07.html">2025-07-07 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -373,6 +431,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

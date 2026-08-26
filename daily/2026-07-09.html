@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,9 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search=" 출처: SG-AISI
+
+세부적으로는 위험 식별과 테스트 범위 조정, 실제 운영과 유사한 테스트 환경 구축(API·도구·가드레일·세션 상태·샌드박싱), 목적에 맞는 대표적 데이터셋/상호작용 모드 설계, 출력·결과뿐 아니라 궤적(에이전트의 단계별 수행·도구 사용·부분 성공/일관성)까지 아우르는 지표·평가기법을 제시한다. 리더보드 성능만으로는 배포 적합성을 보장하기 어렵고, 도메인 데이터·검색/RAG·가드레일·멀티턴 워크플로에 내재된 실패 양상이 실제로 드러날 수 있다고 설명한다. 또한 결과를 분석해 개선과 완화책(조치 방향)을 도출하는 접근의 필요성을 강조한다. ">
   <h2></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="
 
@@ -320,28 +374,34 @@ https://sgaisi.sg/resources/how-should-evaluators-test-ai-systems-as-opposed-to-
   <p>출처: SG-AISI</p>
 <p>세부적으로는 위험 식별과 테스트 범위 조정, 실제 운영과 유사한 테스트 환경 구축(API·도구·가드레일·세션 상태·샌드박싱), 목적에 맞는 대표적 데이터셋/상호작용 모드 설계, 출력·결과뿐 아니라 궤적(에이전트의 단계별 수행·도구 사용·부분 성공/일관성)까지 아우르는 지표·평가기법을 제시한다. 리더보드 성능만으로는 배포 적합성을 보장하기 어렵고, 도메인 데이터·검색/RAG·가드레일·멀티턴 워크플로에 내재된 실패 양상이 실제로 드러날 수 있다고 설명한다. 또한 결과를 분석해 개선과 완화책(조치 방향)을 도출하는 접근의 필요성을 강조한다.</p>
   <p class="url"><a href="https://sgaisi.sg/resources/how-should-evaluators-test-ai-systems-as-opposed-to-models/">https://sgaisi.sg/resources/how-should-evaluators-test-ai-systems-as-opposed-to-models/</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="agentic_ai cybersecurity frontier" data-search="OpenAI, 성능과 비용 효율성을 극대화한 차세대 프런티어 모델 &#x27;GPT-5.6&#x27; 출시 (2026.7.9) OpenAI는 코딩, 사이버 보안, 지식 업무 등에서 최고 수준의 성능과 효율성을 달성한 새로운 프런티어 모델 &#x27;GPT-5.6&#x27; 제품군을 정식 출시. 다중 에이전트를 조율하는 ultra 설정을 도입해 복잡한 작업을 단축하며, 향상된 안전 시스템과 툴 사용 능력을 바탕으로 기업과 연구자들에게 압도적인 비용 대비 성능을 제공. OpenAI">
   <h2>🇺🇸 OpenAI, 성능과 비용 효율성을 극대화한 차세대 프런티어 모델 &#x27;GPT-5.6&#x27; 출시 (2026.7.9)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OpenAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI, 성능과 비용 효율성을 극대화한 차세대 프런티어 모델 &#x27;GPT-5.6&#x27; 출시 (2026.7.9)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OpenAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI, 성능과 비용 효율성을 극대화한 차세대 프런티어 모델 &#x27;GPT-5.6&#x27; 출시 (2026.7.9)
 
 OpenAI는 코딩, 사이버 보안, 지식 업무 등에서 최고 수준의 성능과 효율성을 달성한 새로운 프런티어 모델 &#x27;GPT-5.6&#x27; 제품군을 정식 출시. 다중 에이전트를 조율하는 ultra 설정을 도입해 복잡한 작업을 단축하며, 향상된 안전 시스템과 툴 사용 능력을 바탕으로 기업과 연구자들에게 압도적인 비용 대비 성능을 제공.
 
 https://openai.com/index/gpt-5-6/" onclick="copyEntry(this)">복사</button></div>
   <p>OpenAI는 코딩, 사이버 보안, 지식 업무 등에서 최고 수준의 성능과 효율성을 달성한 새로운 프런티어 모델 &#x27;GPT-5.6&#x27; 제품군을 정식 출시. 다중 에이전트를 조율하는 ultra 설정을 도입해 복잡한 작업을 단축하며, 향상된 안전 시스템과 툴 사용 능력을 바탕으로 기업과 연구자들에게 압도적인 비용 대비 성능을 제공.</p>
   <p class="url"><a href="https://openai.com/index/gpt-5-6/">https://openai.com/index/gpt-5-6/</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="norms physical_ai" data-search="글로벌 협력을 위한 &#x27;인공지능안전 서울 포럼 2026&#x27; 성료 (2026.7.9) 과기정통부와 인공지능안전연구소는 글로벌 기업 및 학계가 참여한 &#x27;인공지능안전 서울 포럼(SFASS) 2026&#x27;을 성황리에 개최. 이번 포럼에서 캐나다 AI 안전연구소(ISED)와 양해각서를 체결했으며, 생성형 및 피지컬 AI 보안 위협에 대한 글로벌 표준 벤치마크 확립과 국제 협력 방안을 심도 있게 논의. 인공지능신문">
   <h2>🇰🇷 글로벌 협력을 위한 &#x27;인공지능안전 서울 포럼 2026&#x27; 성료 (2026.7.9)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">인공지능신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="글로벌 협력을 위한 &#x27;인공지능안전 서울 포럼 2026&#x27; 성료 (2026.7.9)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">인공지능신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="글로벌 협력을 위한 &#x27;인공지능안전 서울 포럼 2026&#x27; 성료 (2026.7.9)
 
 과기정통부와 인공지능안전연구소는 글로벌 기업 및 학계가 참여한 &#x27;인공지능안전 서울 포럼(SFASS) 2026&#x27;을 성황리에 개최. 이번 포럼에서 캐나다 AI 안전연구소(ISED)와 양해각서를 체결했으며, 생성형 및 피지컬 AI 보안 위협에 대한 글로벌 표준 벤치마크 확립과 국제 협력 방안을 심도 있게 논의.
 
 https://www.aitimes.kr/news/articleView.html?idxno=40906" onclick="copyEntry(this)">복사</button></div>
   <p>과기정통부와 인공지능안전연구소는 글로벌 기업 및 학계가 참여한 &#x27;인공지능안전 서울 포럼(SFASS) 2026&#x27;을 성황리에 개최. 이번 포럼에서 캐나다 AI 안전연구소(ISED)와 양해각서를 체결했으며, 생성형 및 피지컬 AI 보안 위협에 대한 글로벌 표준 벤치마크 확립과 국제 협력 방안을 심도 있게 논의.</p>
   <p class="url"><a href="https://www.aitimes.kr/news/articleView.html?idxno=40906">https://www.aitimes.kr/news/articleView.html?idxno=40906</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier" data-search="미국 정부의 불투명한 OpenAI 최신 모델 안전성 승인 과정에 대한 우려 제기 (2026.7.9) TechCrunch는 미국 정부가 OpenAI의 최신 프런티어 모델인 &#x27;Sol(GPT-5.6)&#x27;의 대중 공개를 안전하다고 판단 및 승인한 과정이 불투명하다고 지적. 명확한 안전 평가 기준이나 승인 주체가 부재한 상황에서, 규제가 행정부 관계자와의 개인적 연결고리에 의존할 경우 산업 전반에 불확실성을 초래할 수 있다고 비판. TechCrunch">
   <h2>🇺🇸 미국 정부의 불투명한 OpenAI 최신 모델 안전성 승인 과정에 대한 우려 제기 (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">TechCrunch</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="미국 정부의 불투명한 OpenAI 최신 모델 안전성 승인 과정에 대한 우려 제기 (2026.7.9)
 
@@ -350,18 +410,22 @@ TechCrunch는 미국 정부가 OpenAI의 최신 프런티어 모델인 &#x27;Sol
 https://techcrunch.com/2026/07/09/how-did-the-government-decide-openais-frontier-model-was-safe-to-release/" onclick="copyEntry(this)">복사</button></div>
   <p>TechCrunch는 미국 정부가 OpenAI의 최신 프런티어 모델인 &#x27;Sol(GPT-5.6)&#x27;의 대중 공개를 안전하다고 판단 및 승인한 과정이 불투명하다고 지적. 명확한 안전 평가 기준이나 승인 주체가 부재한 상황에서, 규제가 행정부 관계자와의 개인적 연결고리에 의존할 경우 산업 전반에 불확실성을 초래할 수 있다고 비판.</p>
   <p class="url"><a href="https://techcrunch.com/2026/07/09/how-did-the-government-decide-openais-frontier-model-was-safe-to-release/">https://techcrunch.com/2026/07/09/how-did-the-government-decide-openais-frontier-model-was-safe-to-release/</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="national_security norms" data-search="FLI, 2026년 여름 &#x27;AI 안전 지수&#x27; 발표 (2026.7.9) Future of Life Institute는 9개 글로벌 AI 선도 기업을 대상으로 위험 평가 및 거버넌스 등 6개 분야에 대한 종합 안전 등급을 평가한 지수를 공개. 업계 전반적인 실존적 안전 대비책은 매우 미흡하며, 기업들의 군사적 활용 지속과 이전의 자발적 안전 서약 후퇴 등 중대한 위험 요인을 경고. Future of Life Institute">
   <h2>FLI, 2026년 여름 &#x27;AI 안전 지수&#x27; 발표 (2026.7.9)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Future of Life Institute</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="FLI, 2026년 여름 &#x27;AI 안전 지수&#x27; 발표 (2026.7.9)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Future of Life Institute</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="FLI, 2026년 여름 &#x27;AI 안전 지수&#x27; 발표 (2026.7.9)
 
 Future of Life Institute는 9개 글로벌 AI 선도 기업을 대상으로 위험 평가 및 거버넌스 등 6개 분야에 대한 종합 안전 등급을 평가한 지수를 공개. 업계 전반적인 실존적 안전 대비책은 매우 미흡하며, 기업들의 군사적 활용 지속과 이전의 자발적 안전 서약 후퇴 등 중대한 위험 요인을 경고.
 
 https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>Future of Life Institute는 9개 글로벌 AI 선도 기업을 대상으로 위험 평가 및 거버넌스 등 6개 분야에 대한 종합 안전 등급을 평가한 지수를 공개. 업계 전반적인 실존적 안전 대비책은 매우 미흡하며, 기업들의 군사적 활용 지속과 이전의 자발적 안전 서약 후퇴 등 중대한 위험 요인을 경고.</p>
   <p class="url"><a href="https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital.pdf">https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Ben Bernanke, Anthropic Long-Term Benefit Trust 신임 위원으로 선임(2026.7.9) Anthropic의 Long-Term Benefit Trust(LTBT)는 벤 버냉키(Ben Bernanke) 박사를 신규 위원으로 임명했다고 밝혔다. 버냉키는 브루킹스 연구소 Distinguished Fellow이며 연준 의장(2006~2014) 출신으로, 2008년 글로벌 금융위기와 회복 국면을 이끈 경험이 있다고 설명했다. LTBT는 회사가 장기적으로 AI를 인류의 장기적 이익을 위해 책임 있게 개발·배치하도록 견제하는 독립 기구이며, 버냉키는 AI가 경제와 노동시장에 미치는 영향을 예측·대응하는 데 도움을 줄 것이라고 전했다. Anthropic">
   <h2>🇺🇸 Ben Bernanke, Anthropic Long-Term Benefit Trust 신임 위원으로 선임(2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Ben Bernanke, Anthropic Long-Term Benefit Trust 신임 위원으로 선임(2026.7.9)
 
@@ -370,8 +434,10 @@ Anthropic의 Long-Term Benefit Trust(LTBT)는 벤 버냉키(Ben Bernanke) 박사
 https://www.anthropic.com/news/ben-bernanke" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic의 Long-Term Benefit Trust(LTBT)는 벤 버냉키(Ben Bernanke) 박사를 신규 위원으로 임명했다고 밝혔다. 버냉키는 브루킹스 연구소 Distinguished Fellow이며 연준 의장(2006~2014) 출신으로, 2008년 글로벌 금융위기와 회복 국면을 이끈 경험이 있다고 설명했다. LTBT는 회사가 장기적으로 AI를 인류의 장기적 이익을 위해 책임 있게 개발·배치하도록 견제하는 독립 기구이며, 버냉키는 AI가 경제와 노동시장에 미치는 영향을 예측·대응하는 데 도움을 줄 것이라고 전했다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/ben-bernanke">https://www.anthropic.com/news/ben-bernanke</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="강한 질문을 받아 공개적으로 점검하겠다는 Anthropic(기사·공고 게재일 2026.7.9) 앤트로픽은 AI가 사회에 미칠 영향(일자리, 사회·가정, 과학·의학 발전, 위험의 가능성 등)에 대해 대중이 가진 ‘어려운 질문’을 수집하고, 이를 바탕으로 공익 목적 달성 현황을 투명하게 추적·보고하겠다고 밝혔다. 앤트로픽은 이미 52,000명 대상 공공 설문(Anthropic Public Record), 159개국·70개 언어의 81,000명 Claude 사용자 설문(Anthropic Interviewer), 대면 포커스그룹 및 익명 실사용 데이터 연구 등을 통해 우려와 기대를 파악해 왔다. 또한 오남용 위험을 줄이기 위한 AI safeguards 투자, 모델의 행동·내부 작동 연구, 과학자 대상 모델 무료 제공, 펠로우십 프로그램 등 공익 목적의 조치를 이어가며, 질문에 대한 대응에서 목표에 미치지 못할 가능성도 명확히 하겠다고 설명했다. 앤트로픽(Anthropic)">
   <h2>🇺🇸 강한 질문을 받아 공개적으로 점검하겠다는 Anthropic(기사·공고 게재일 2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="강한 질문을 받아 공개적으로 점검하겠다는 Anthropic(기사·공고 게재일 2026.7.9)
 
@@ -380,8 +446,10 @@ https://www.anthropic.com/news/ben-bernanke" onclick="copyEntry(this)">복사</b
 https://www.anthropic.com/news/hard-questions" onclick="copyEntry(this)">복사</button></div>
   <p>앤트로픽은 AI가 사회에 미칠 영향(일자리, 사회·가정, 과학·의학 발전, 위험의 가능성 등)에 대해 대중이 가진 ‘어려운 질문’을 수집하고, 이를 바탕으로 공익 목적 달성 현황을 투명하게 추적·보고하겠다고 밝혔다. 앤트로픽은 이미 52,000명 대상 공공 설문(Anthropic Public Record), 159개국·70개 언어의 81,000명 Claude 사용자 설문(Anthropic Interviewer), 대면 포커스그룹 및 익명 실사용 데이터 연구 등을 통해 우려와 기대를 파악해 왔다. 또한 오남용 위험을 줄이기 위한 AI safeguards 투자, 모델의 행동·내부 작동 연구, 과학자 대상 모델 무료 제공, 펠로우십 프로그램 등 공익 목적의 조치를 이어가며, 질문에 대한 대응에서 목표에 미치지 못할 가능성도 명확히 하겠다고 설명했다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/hard-questions">https://www.anthropic.com/news/hard-questions</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="Claude 사용 방식을 돌아보고 조정하는 기능 ‘reflect’(2026.7.9) Anthropic은 Claude 웹/데스크톱 앱의 Settings에서 ‘reflect’(베타) 대시보드를 제공해 이용 패턴과 주로 다루는 작업 유형을 요약·시각화하고, AI 사용 시간이 사용자의 목표와 맞는지 점검할 수 있게 할 계획이다. 사용자는 최근 1/3/6/12개월 치 채팅 활동을 확인할 수 있으며, 조용한 시간(quiet hours) 설정이나 일정 시간 후 사용 중단을 상기하는 nudge도 설정·해제할 수 있다. ‘reflect’는 incognito 채팅이나 연결된 도구의 원본 파일을 기반으로 하지 않으며, 민감한 주제(예: 헬스 통합 관련)는 통찰에서 제외된다고 밝혔다. 또한 4D AI Fluency Framework(Delegation, Discernment, Diligence)에 따라 사용자의 활동을 차원별로 요약하고 실용적 제안을 제공하며, Memory가 켜진 Free/Pro/Max 사용자에게 베타로 제공된다. Anthropic">
   <h2>🇺🇸 Claude 사용 방식을 돌아보고 조정하는 기능 ‘reflect’(2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="Claude 사용 방식을 돌아보고 조정하는 기능 ‘reflect’(2026.7.9)
 
@@ -390,8 +458,10 @@ Anthropic은 Claude 웹/데스크톱 앱의 Settings에서 ‘reflect’(베타)
 https://www.anthropic.com/news/reflect-with-claude" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 Claude 웹/데스크톱 앱의 Settings에서 ‘reflect’(베타) 대시보드를 제공해 이용 패턴과 주로 다루는 작업 유형을 요약·시각화하고, AI 사용 시간이 사용자의 목표와 맞는지 점검할 수 있게 할 계획이다. 사용자는 최근 1/3/6/12개월 치 채팅 활동을 확인할 수 있으며, 조용한 시간(quiet hours) 설정이나 일정 시간 후 사용 중단을 상기하는 nudge도 설정·해제할 수 있다. ‘reflect’는 incognito 채팅이나 연결된 도구의 원본 파일을 기반으로 하지 않으며, 민감한 주제(예: 헬스 통합 관련)는 통찰에서 제외된다고 밝혔다. 또한 4D AI Fluency Framework(Delegation, Discernment, Diligence)에 따라 사용자의 활동을 차원별로 요약하고 실용적 제안을 제공하며, Memory가 켜진 Free/Pro/Max 사용자에게 베타로 제공된다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/reflect-with-claude">https://www.anthropic.com/news/reflect-with-claude</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="Building an AI inventory is your first governance intervention 요약불가 governance.aicareer.pro">
   <h2>Building an AI inventory is your first governance intervention</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">governance.aicareer.pro</span></span><button type="button" class="copy-btn" data-copy="Building an AI inventory is your first governance intervention
 
@@ -400,8 +470,10 @@ https://www.anthropic.com/news/reflect-with-claude" onclick="copyEntry(this)">�
 https://governance.aicareer.pro/blog/building-ai-inventory-first-governance-intervention" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://governance.aicareer.pro/blog/building-ai-inventory-first-governance-intervention">https://governance.aicareer.pro/blog/building-ai-inventory-first-governance-intervention</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="agentic_ai healthcare" data-search="UST가 물리 AI 생산·검증 공정에 Claude를 도입하며 2만명 교육 (2026.7.9) UST가 반도체·제조 검증 플랫폼 iDEC 등 생산 파이프라인에 Claude Code를 통합하고, 설계 핀아웃/회로도 기반 회귀 테스트와 디지털 트윈 대비 실데이터 분석으로 결함을 더 이르게 탐지해 검증 주기를 단축한다고 밝혔다. 또한 헬스케어(CarePath), 통신(IntelliOps), 금융(FinX) 플랫폼에서도 Claude를 연결해 청구·진료 후속, 네트워크 장애 예측/대응 워크플로, 코어 시스템 현대화 지원용 AI 에이전트 기능을 제공한다. UST는 전 세계 엔지니어·컨설턴트 등 2만명을 Claude에 대해 교육하고 Claude Partner Network를 통해 배치·인증을 지원받는다고 전했다. Anthropic">
   <h2>🇺🇸 UST가 물리 AI 생산·검증 공정에 Claude를 도입하며 2만명 교육 (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="UST가 물리 AI 생산·검증 공정에 Claude를 도입하며 2만명 교육 (2026.7.9)
 
@@ -410,8 +482,10 @@ UST가 반도체·제조 검증 플랫폼 iDEC 등 생산 파이프라인에 Cla
 https://www.anthropic.com/news/ust-claude" onclick="copyEntry(this)">복사</button></div>
   <p>UST가 반도체·제조 검증 플랫폼 iDEC 등 생산 파이프라인에 Claude Code를 통합하고, 설계 핀아웃/회로도 기반 회귀 테스트와 디지털 트윈 대비 실데이터 분석으로 결함을 더 이르게 탐지해 검증 주기를 단축한다고 밝혔다. 또한 헬스케어(CarePath), 통신(IntelliOps), 금융(FinX) 플랫폼에서도 Claude를 연결해 청구·진료 후속, 네트워크 장애 예측/대응 워크플로, 코어 시스템 현대화 지원용 AI 에이전트 기능을 제공한다. UST는 전 세계 엔지니어·컨설턴트 등 2만명을 Claude에 대해 교육하고 Claude Partner Network를 통해 배치·인증을 지원받는다고 전했다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/ust-claude">https://www.anthropic.com/news/ust-claude</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Anthropic 연구: 언어 모델의 로봇 제어 능력 평가 (2026.7.9) 언어 모델이 로봇 제어 분야에서 얼마나 효과적인지 평가한 연구 결과, 모델의 성능은 로봇 몸과 제어 인터페이스에 크게 의존한다. 직접적인 모터 제어는 대부분 실패하지만, 사전 훈련된 정책을 감독하거나 간단한 방향 지시를 제공할 때는 실제 환경 내에서의 이동과 조작 작업을 수행할 수 있다. 특히 최신 모델들은 이미지와 감각 정보를 적절한 동작으로 전환하는 능력에서 눈에 띄는 발전을 보이고 있으며, 향후 모델들은 더욱 향상될 것으로 예상된다. 로봇 제어에서의 이러한 발전은 안전한 언어 모델 개발과 배포에 중요한 의미를 가진다. Anthropic">
   <h2>🇺🇸 Anthropic 연구: 언어 모델의 로봇 제어 능력 평가 (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 연구: 언어 모델의 로봇 제어 능력 평가 (2026.7.9)
 
@@ -420,8 +494,10 @@ https://www.anthropic.com/news/ust-claude" onclick="copyEntry(this)">복사</but
 https://www.anthropic.com/research/claude-plays-robotics" onclick="copyEntry(this)">복사</button></div>
   <p>언어 모델이 로봇 제어 분야에서 얼마나 효과적인지 평가한 연구 결과, 모델의 성능은 로봇 몸과 제어 인터페이스에 크게 의존한다. 직접적인 모터 제어는 대부분 실패하지만, 사전 훈련된 정책을 감독하거나 간단한 방향 지시를 제공할 때는 실제 환경 내에서의 이동과 조작 작업을 수행할 수 있다. 특히 최신 모델들은 이미지와 감각 정보를 적절한 동작으로 전환하는 능력에서 눈에 띄는 발전을 보이고 있으며, 향후 모델들은 더욱 향상될 것으로 예상된다. 로봇 제어에서의 이러한 발전은 안전한 언어 모델 개발과 배포에 중요한 의미를 가진다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/claude-plays-robotics">https://www.anthropic.com/research/claude-plays-robotics</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="프롬프트와 스킬에 시스템 오브 레코드가 필요하다 (2026.7.9) Mistral Studio는 분산·비관리 상태였던 프롬프트와 스킬을 버전, 소유자, 변경 이력과 함께 관리하는 중앙 시스템을 제공한다. 사용자는 배포 전 프롬프트와 스킬을 즉시 수정·시험할 수 있으며, 운영 반영 시에는 기존 CI/CD 테스트와 승인 절차를 거칠 수 있다. 불변 버전, 롤백, 분류 라벨, 감사 로그, 관측성·계보 추적 기능을 통해 실제 운영 결과와 사용된 자산을 연결하며, 해당 기능은 Mistral Studio 고객에게 현재 제공된다. 미스트랄">
   <h2>프롬프트와 스킬에 시스템 오브 레코드가 필요하다 (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">미스트랄</span></span><button type="button" class="copy-btn" data-copy="프롬프트와 스킬에 시스템 오브 레코드가 필요하다 (2026.7.9)
 
@@ -430,8 +506,10 @@ Mistral Studio는 분산·비관리 상태였던 프롬프트와 스킬을 버�
 https://mistral.ai/news/manage-prompts-and-skills-in-studio/" onclick="copyEntry(this)">복사</button></div>
   <p>Mistral Studio는 분산·비관리 상태였던 프롬프트와 스킬을 버전, 소유자, 변경 이력과 함께 관리하는 중앙 시스템을 제공한다. 사용자는 배포 전 프롬프트와 스킬을 즉시 수정·시험할 수 있으며, 운영 반영 시에는 기존 CI/CD 테스트와 승인 절차를 거칠 수 있다. 불변 버전, 롤백, 분류 라벨, 감사 로그, 관측성·계보 추적 기능을 통해 실제 운영 결과와 사용된 자산을 연결하며, 해당 기능은 Mistral Studio 고객에게 현재 제공된다.</p>
   <p class="url"><a href="https://mistral.ai/news/manage-prompts-and-skills-in-studio/">https://mistral.ai/news/manage-prompts-and-skills-in-studio/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="cybersecurity youth" data-search="EU-호주, 제3차 디지털 대화에서 AI·사이버·온라인 안전 등 공동 우선순위 논의(2026.7.9) 유럽연합(EU)과 호주가 온라인으로 제3차 Digital Economy and Technology Policy 대화를 열고 디지털·기술 분야 협력 지속 방안을 논의했다. 대화에서는 AI 인프라·역량·안전, 보안 있는 국제 연결 및 인프라, 사이버보안, 온라인 안전과 데이터 정책이 다뤄졌으며 특히 미성년자 보호에 초점을 둔 온라인 안전 협력 현황도 점검했다. 양측은 논의 주제를 바탕으로 추가 대화를 이어가고, 호주의 EU Horizon Europe 프로그램 연계로 비롯될 수 있는 협력 기회도 모색하기로 했다. 유럽연합 집행위원회(European Commission)">
   <h2>🇪🇺 EU-호주, 제3차 디지털 대화에서 AI·사이버·온라인 안전 등 공동 우선순위 논의(2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽연합 집행위원회(European Commission)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="EU-호주, 제3차 디지털 대화에서 AI·사이버·온라인 안전 등 공동 우선순위 논의(2026.7.9)
 
@@ -440,8 +518,10 @@ https://mistral.ai/news/manage-prompts-and-skills-in-studio/" onclick="copyEntry
 https://digital-strategy.ec.europa.eu/en/news/eu-and-australia-discuss-shared-priorities-third-digital-dialogue" onclick="copyEntry(this)">복사</button></div>
   <p>유럽연합(EU)과 호주가 온라인으로 제3차 Digital Economy and Technology Policy 대화를 열고 디지털·기술 분야 협력 지속 방안을 논의했다. 대화에서는 AI 인프라·역량·안전, 보안 있는 국제 연결 및 인프라, 사이버보안, 온라인 안전과 데이터 정책이 다뤄졌으며 특히 미성년자 보호에 초점을 둔 온라인 안전 협력 현황도 점검했다. 양측은 논의 주제를 바탕으로 추가 대화를 이어가고, 호주의 EU Horizon Europe 프로그램 연계로 비롯될 수 있는 협력 기회도 모색하기로 했다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/eu-and-australia-discuss-shared-priorities-third-digital-dialogue">https://digital-strategy.ec.europa.eu/en/news/eu-and-australia-discuss-shared-priorities-third-digital-dialogue</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="agentic_ai norms standards" data-search="ITU, AI 에이전트 행동·디지털 신원 신뢰 보장을 위한 글로벌 표준 이니셔티브(2026.7.9) ITU는 UN 디지털 기술 전문기구로서 ‘사람과 agentic AI를 위한 신뢰·신원(Trust and Identity for Humans and Agentic AI)’ 분야 ITU 포커스 그룹을 새로 출범한다고 밝혔다. 이 포커스 그룹은 AI 에이전트가 자율적으로 행동하는 과정에서 디지털 신원과 신뢰성(책임성·통제가능성)을 확보할 수 있는 프레임워크를 개발하고, 사람의 의미 있는 통제 유지 방안을 포함해 공통 토대를 마련하는 것을 목표로 한다. 또한 공통 용어·정의, 신원·신뢰·에이전트 발견·상호운용 참조아키텍처, 신뢰 프레임워크 및 생애주기(assurance) 모델, 상호운용 메커니즘, 보안 기준과 지속평가 벤치마크, 표준화 로드맵 등을 개발하기 위해 정책·법·기술 전문가의 참여를 받을 예정이다. 국제전기통신연합(ITU)">
   <h2>ITU, AI 에이전트 행동·디지털 신원 신뢰 보장을 위한 글로벌 표준 이니셔티브(2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국제전기통신연합(ITU)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="ITU, AI 에이전트 행동·디지털 신원 신뢰 보장을 위한 글로벌 표준 이니셔티브(2026.7.9)
 
@@ -450,8 +530,10 @@ ITU는 UN 디지털 기술 전문기구로서 ‘사람과 agentic AI를 위한 
 https://itu.int/en/mediacentre/Pages/PR-2026-07-09-focus-group-agentic-AI.aspx" onclick="copyEntry(this)">복사</button></div>
   <p>ITU는 UN 디지털 기술 전문기구로서 ‘사람과 agentic AI를 위한 신뢰·신원(Trust and Identity for Humans and Agentic AI)’ 분야 ITU 포커스 그룹을 새로 출범한다고 밝혔다. 이 포커스 그룹은 AI 에이전트가 자율적으로 행동하는 과정에서 디지털 신원과 신뢰성(책임성·통제가능성)을 확보할 수 있는 프레임워크를 개발하고, 사람의 의미 있는 통제 유지 방안을 포함해 공통 토대를 마련하는 것을 목표로 한다. 또한 공통 용어·정의, 신원·신뢰·에이전트 발견·상호운용 참조아키텍처, 신뢰 프레임워크 및 생애주기(assurance) 모델, 상호운용 메커니즘, 보안 기준과 지속평가 벤치마크, 표준화 로드맵 등을 개발하기 위해 정책·법·기술 전문가의 참여를 받을 예정이다.</p>
   <p class="url"><a href="https://itu.int/en/mediacentre/Pages/PR-2026-07-09-focus-group-agentic-AI.aspx">https://itu.int/en/mediacentre/Pages/PR-2026-07-09-focus-group-agentic-AI.aspx</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="norms" data-search="세계 지도자들, 접근성 확대·신뢰 강화·성과 가속화를 위한 AI for Good 글로벌 위원회 출범 (2026.7.9) 르완다 폴 카가메 대통령, Salesforce의 마크 베니오프 회장 겸 CEO, 국제전기통신연합(ITU) 도린 보고단마틴 사무총장이 AI for Good 글로벌 위원회 출범을 발표했다. 위원회에는 국가·정부 수반, 기업 최고경영자 및 유엔 기구 수장 등 40명 이상의 창립 회원이 참여해 AI에 대한 신뢰를 강화하고 접근성을 확대하며 현실의 문제 해결에 AI를 활용할 방안을 모색한다. 국제전기통신연합 AI for Good">
   <h2>세계 지도자들, 접근성 확대·신뢰 강화·성과 가속화를 위한 AI for Good 글로벌 위원회 출범 (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국제전기통신연합 AI for Good</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="세계 지도자들, 접근성 확대·신뢰 강화·성과 가속화를 위한 AI for Good 글로벌 위원회 출범 (2026.7.9)
 
@@ -460,8 +542,10 @@ https://itu.int/en/mediacentre/Pages/PR-2026-07-09-focus-group-agentic-AI.aspx" 
 https://aiforgood.itu.int/global-leaders-launch-ai-for-good-global-commission-to-expand-access-strengthen-trust-and-accelerate-impact/" onclick="copyEntry(this)">복사</button></div>
   <p>르완다 폴 카가메 대통령, Salesforce의 마크 베니오프 회장 겸 CEO, 국제전기통신연합(ITU) 도린 보고단마틴 사무총장이 AI for Good 글로벌 위원회 출범을 발표했다. 위원회에는 국가·정부 수반, 기업 최고경영자 및 유엔 기구 수장 등 40명 이상의 창립 회원이 참여해 AI에 대한 신뢰를 강화하고 접근성을 확대하며 현실의 문제 해결에 AI를 활용할 방안을 모색한다.</p>
   <p class="url"><a href="https://aiforgood.itu.int/global-leaders-launch-ai-for-good-global-commission-to-expand-access-strengthen-trust-and-accelerate-impact/">https://aiforgood.itu.int/global-leaders-launch-ai-for-good-global-commission-to-expand-access-strengthen-trust-and-accelerate-impact/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="https://www.warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts/ (2026.7.9) 요약불가 warren.senate.gov">
   <h2>https://www.warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts/ (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">warren.senate.gov</span></span><button type="button" class="copy-btn" data-copy="https://www.warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts/ (2026.7.9)
 
@@ -470,8 +554,10 @@ https://aiforgood.itu.int/global-leaders-launch-ai-for-good-global-commission-to
 https://warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts">https://warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers-on-military-ai-contracts-demands-release-of-ai-contracts</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="Beyond Targeting: 군 의사결정에서 AI의 역할과 확산장애(2026.7.9)  조지타운대 CSET( Center for Security and Emerging Technology )">
   <h2>Beyond Targeting: 군 의사결정에서 AI의 역할과 확산장애(2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">조지타운대 CSET( Center for Security and Emerging Technology )</span></span><button type="button" class="copy-btn" data-copy="Beyond Targeting: 군 의사결정에서 AI의 역할과 확산장애(2026.7.9)
 
@@ -480,8 +566,10 @@ https://warren.senate.gov/newsroom/press-releases/warren-presses-dod-for-answers
 https://cset.georgetown.edu/publication/beyond-targeting" onclick="copyEntry(this)">복사</button></div>
   
   <p class="url"><a href="https://cset.georgetown.edu/publication/beyond-targeting">https://cset.georgetown.edu/publication/beyond-targeting</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="Stanford Scientists Develop AI Lab Partner Biomni (2026.7.9) 스탠포드 과학자들이 인간 과학자들과 함께 연구를 진행할 수 있는 가상의 AI 생물학자인 Biomni를 개발했습니다. Biomni는 방대한 의학 데이터를 분석하고 인간이 놓칠 수 있는 패턴을 찾아내며, 심지어 실험을 설계하는 기능을 갖추고 있어 질병 치료를 위한 과학적 발견을 가속화합니다. 이 오픈소스 플랫폼은 스탠포드의 컴퓨터 과학, 유전학, 병리학, 의학, 소아과 등 다양한 학과의 전문 지식을 통합하여, 복잡한 실험과 방대한 데이터셋을 처리하는 데 어려움을 겪는 연구자들을 지원합니다. 초기 테스트에서 Biomni는 다양한 복잡한 작업에서 뛰어난 성능을 보여주었으며, 현재는 스타트업 Phylo의 일환으로 상용화되어 있습니다. 이 플랫폼은 과학적 발견 과정을 혁신적으로 변화시키는 잠재력을 가지고 있습니다. Stanford HAI-News">
   <h2>🇺🇸 Stanford Scientists Develop AI Lab Partner Biomni (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Stanford HAI-News</span></span><button type="button" class="copy-btn" data-copy="Stanford Scientists Develop AI Lab Partner Biomni (2026.7.9)
 
@@ -490,8 +578,10 @@ https://cset.georgetown.edu/publication/beyond-targeting" onclick="copyEntry(thi
 https://hai.stanford.edu/news/stanford-scientists-build-an-ai-lab-partner" onclick="copyEntry(this)">복사</button></div>
   <p>스탠포드 과학자들이 인간 과학자들과 함께 연구를 진행할 수 있는 가상의 AI 생물학자인 Biomni를 개발했습니다. Biomni는 방대한 의학 데이터를 분석하고 인간이 놓칠 수 있는 패턴을 찾아내며, 심지어 실험을 설계하는 기능을 갖추고 있어 질병 치료를 위한 과학적 발견을 가속화합니다. 이 오픈소스 플랫폼은 스탠포드의 컴퓨터 과학, 유전학, 병리학, 의학, 소아과 등 다양한 학과의 전문 지식을 통합하여, 복잡한 실험과 방대한 데이터셋을 처리하는 데 어려움을 겪는 연구자들을 지원합니다. 초기 테스트에서 Biomni는 다양한 복잡한 작업에서 뛰어난 성능을 보여주었으며, 현재는 스타트업 Phylo의 일환으로 상용화되어 있습니다. 이 플랫폼은 과학적 발견 과정을 혁신적으로 변화시키는 잠재력을 가지고 있습니다.</p>
   <p class="url"><a href="https://hai.stanford.edu/news/stanford-scientists-build-an-ai-lab-partner">https://hai.stanford.edu/news/stanford-scientists-build-an-ai-lab-partner</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="guideline" data-search="High Bandwidth Memory 분석: 기술 및 시장 동향 (2026.7.9) 이 보고서는 High Bandwidth Memory (HBM)의 기술적 작동 원리와 생산 과정을 설명하며, HBM 생산을 주도하는 기업과 시설에 초점을 맞춥니다. 특히 HBM은 주요 인공지능 칩에서 사용되지만, 생산은 동아시아의 몇몇 시설에 집중되어 있으며, 이 분야는 세 개의 기업이 글로벌 경쟁을 통해 주도하고 있습니다. 정책 입안자와 연구자들에게 다양한 정책 논의에 참고할 수 있는 지침서 역할을 하도록 작성되었습니다. RAND">
   <h2>🇺🇸 High Bandwidth Memory 분석: 기술 및 시장 동향 (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RAND</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="High Bandwidth Memory 분석: 기술 및 시장 동향 (2026.7.9)
 
@@ -500,18 +590,22 @@ https://hai.stanford.edu/news/stanford-scientists-build-an-ai-lab-partner" oncli
 https://www.rand.org/pubs/perspectives/PEA4748-1.html" onclick="copyEntry(this)">복사</button></div>
   <p>이 보고서는 High Bandwidth Memory (HBM)의 기술적 작동 원리와 생산 과정을 설명하며, HBM 생산을 주도하는 기업과 시설에 초점을 맞춥니다. 특히 HBM은 주요 인공지능 칩에서 사용되지만, 생산은 동아시아의 몇몇 시설에 집중되어 있으며, 이 분야는 세 개의 기업이 글로벌 경쟁을 통해 주도하고 있습니다. 정책 입안자와 연구자들에게 다양한 정책 논의에 참고할 수 있는 지침서 역할을 하도록 작성되었습니다.</p>
   <p class="url"><a href="https://www.rand.org/pubs/perspectives/PEA4748-1.html">https://www.rand.org/pubs/perspectives/PEA4748-1.html</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="national_security" data-search="로봇 혁명이 전쟁 가능성에 미치는 영향 (2026.7.9) 연구에 따르면, 자율 무기 시스템의 혁신은 세 가지 메커니즘을 통해 전쟁 가능성을 높일 수 있습니다: (1) 전쟁 성공 가능성 향상, (2) 전쟁 비용 감소, (3) 전쟁의 정치적 이익 증가. 이러한 효과는 보장되지 않지만, 각각 미국의 경쟁자들이 제3국에 대한 무력 사용을 약간 더 유인할 수 있습니다. 미국은 전쟁에서 성공 가능성을 높이고 동원 비용을 줄이는 기술 발전을 통해 이러한 위험을 완화할 수 있습니다. 연구 결과, 러시아 대중의 군사 개입 지지는 로봇 기술에 큰 영향을 받지 않지만, 도덕적 논거가 가장 큰 영향을 미칠 것으로 나타났습니다. RAND">
   <h2>🇺🇸 로봇 혁명이 전쟁 가능성에 미치는 영향 (2026.7.9)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="로봇 혁명이 전쟁 가능성에 미치는 영향 (2026.7.9)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RAND</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="로봇 혁명이 전쟁 가능성에 미치는 영향 (2026.7.9)
 
 연구에 따르면, 자율 무기 시스템의 혁신은 세 가지 메커니즘을 통해 전쟁 가능성을 높일 수 있습니다: (1) 전쟁 성공 가능성 향상, (2) 전쟁 비용 감소, (3) 전쟁의 정치적 이익 증가. 이러한 효과는 보장되지 않지만, 각각 미국의 경쟁자들이 제3국에 대한 무력 사용을 약간 더 유인할 수 있습니다. 미국은 전쟁에서 성공 가능성을 높이고 동원 비용을 줄이는 기술 발전을 통해 이러한 위험을 완화할 수 있습니다. 연구 결과, 러시아 대중의 군사 개입 지지는 로봇 기술에 큰 영향을 받지 않지만, 도덕적 논거가 가장 큰 영향을 미칠 것으로 나타났습니다.
 
 https://www.rand.org/pubs/rgs_dissertations/RGSDA5114-1.html" onclick="copyEntry(this)">복사</button></div>
   <p>연구에 따르면, 자율 무기 시스템의 혁신은 세 가지 메커니즘을 통해 전쟁 가능성을 높일 수 있습니다: (1) 전쟁 성공 가능성 향상, (2) 전쟁 비용 감소, (3) 전쟁의 정치적 이익 증가. 이러한 효과는 보장되지 않지만, 각각 미국의 경쟁자들이 제3국에 대한 무력 사용을 약간 더 유인할 수 있습니다. 미국은 전쟁에서 성공 가능성을 높이고 동원 비용을 줄이는 기술 발전을 통해 이러한 위험을 완화할 수 있습니다. 연구 결과, 러시아 대중의 군사 개입 지지는 로봇 기술에 큰 영향을 받지 않지만, 도덕적 논거가 가장 큰 영향을 미칠 것으로 나타났습니다.</p>
   <p class="url"><a href="https://www.rand.org/pubs/rgs_dissertations/RGSDA5114-1.html">https://www.rand.org/pubs/rgs_dissertations/RGSDA5114-1.html</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="Beijing is looking at curbing overseas access to China&#x27;s top AI models, sources say 요약불가 reuters.com">
   <h2>🇨🇳 Beijing is looking at curbing overseas access to China&#x27;s top AI models, sources say</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">reuters.com</span></span><button type="button" class="copy-btn" data-copy="Beijing is looking at curbing overseas access to China&#x27;s top AI models, sources say
 
@@ -520,8 +614,10 @@ https://www.rand.org/pubs/rgs_dissertations/RGSDA5114-1.html" onclick="copyEntry
 https://reuters.com/world/beijing-is-looking-curbing-overseas-access-chinas-top-ai-models-sources-say-2026-07-07" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://reuters.com/world/beijing-is-looking-curbing-overseas-access-chinas-top-ai-models-sources-say-2026-07-07">https://reuters.com/world/beijing-is-looking-curbing-overseas-access-chinas-top-ai-models-sources-say-2026-07-07</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="(Over $130B in U.S. AI Data Center Projects Face Local Opposition (2026.7.9)) 요약불가 Yahoo Finance">
   <h2>(Over $130B in U.S. AI Data Center Projects Face Local Opposition (2026.7.9))</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Yahoo Finance</span></span><button type="button" class="copy-btn" data-copy="(Over $130B in U.S. AI Data Center Projects Face Local Opposition (2026.7.9))
 
@@ -530,8 +626,10 @@ https://reuters.com/world/beijing-is-looking-curbing-overseas-access-chinas-top-
 https://finance.yahoo.com/technology/ai/articles/130-billion-ai-data-centers-000000041.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAACjyXLxPXf_hb8rvenUY5fGyU5HpqAQl-3ndjonXXq1VySzKaB5FwVZkmTP5lWJEzbi_fnd4EgSAvVn-hQsSIlFKIo9pbTlkgHMiU4R-9Q9WFYjMVpvy1ugBLDMmafOQwJPSkYvMdCpNX9nisO-kKNHe7GQDkHw4T4Q0TCRtnMWP" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://finance.yahoo.com/technology/ai/articles/130-billion-ai-data-centers-000000041.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAACjyXLxPXf_hb8rvenUY5fGyU5HpqAQl-3ndjonXXq1VySzKaB5FwVZkmTP5lWJEzbi_fnd4EgSAvVn-hQsSIlFKIo9pbTlkgHMiU4R-9Q9WFYjMVpvy1ugBLDMmafOQwJPSkYvMdCpNX9nisO-kKNHe7GQDkHw4T4Q0TCRtnMWP">https://finance.yahoo.com/technology/ai/articles/130-billion-ai-data-centers-000000041.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAACjyXLxPXf_hb8rvenUY5fGyU5HpqAQl-3ndjonXXq1VySzKaB5FwVZkmTP5lWJEzbi_fnd4EgSAvVn-hQsSIlFKIo9pbTlkgHMiU4R-9Q9WFYjMVpvy1ugBLDMmafOQwJPSkYvMdCpNX9nisO-kKNHe7GQDkHw4T4Q0TCRtnMWP</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="agentic_ai" data-search="Stanford Introduces AI Agent for End-to-End Biomedical Research (2026.7.9) 요약불가 AI-Risk-Explorer">
   <h2>Stanford Introduces AI Agent for End-to-End Biomedical Research (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Stanford Introduces AI Agent for End-to-End Biomedical Research (2026.7.9)
 
@@ -540,8 +638,10 @@ https://finance.yahoo.com/technology/ai/articles/130-billion-ai-data-centers-000
 https://news.stanford.edu/stories/2026/07/biomni-ai-powered-biomedical-co-scientist" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://news.stanford.edu/stories/2026/07/biomni-ai-powered-biomedical-co-scientist">https://news.stanford.edu/stories/2026/07/biomni-ai-powered-biomedical-co-scientist</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="agentic_ai" data-search="Biomni AI agent가 다양한 생의학 연구 작업을 자율적으로 수행한다(2026.7.9) Biomni는 반복적·분절된 연구 워크플로를 줄이기 위해 설계된 범용 생의학 AI 에이전트로, 도구·데이터베이스·프로토콜을 다수 논문에서 추출해 통합된 에이전틱 환경을 구축한다. LLM 추론과 retrieval-augmented planning, 코드 기반 실행을 결합해 사전 템플릿 없이 워크플로를 동적으로 조합하며, 유전자/약물 재창출/희귀질환 진단/마이크로바이옴/분자 클로닝 등 이질적 과제에서 task-specific tuning 없이도 일반화 성능이 높다고 보고한다. 또한 다중모달 데이터 해석, 단백질 안정성 최적화, 습식 실험 장비 오케스트레이션, 실험적으로 검증 가능한 프로토콜 생성 등의 사례를 제시한다. PubMed (미국 국립보건원, NCBI)">
   <h2>Biomni AI agent가 다양한 생의학 연구 작업을 자율적으로 수행한다(2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">PubMed (미국 국립보건원, NCBI)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Biomni AI agent가 다양한 생의학 연구 작업을 자율적으로 수행한다(2026.7.9)
 
@@ -550,8 +650,14 @@ Biomni는 반복적·분절된 연구 워크플로를 줄이기 위해 설계된
 https://pubmed.ncbi.nlm.nih.gov/42424436/" onclick="copyEntry(this)">복사</button></div>
   <p>Biomni는 반복적·분절된 연구 워크플로를 줄이기 위해 설계된 범용 생의학 AI 에이전트로, 도구·데이터베이스·프로토콜을 다수 논문에서 추출해 통합된 에이전틱 환경을 구축한다. LLM 추론과 retrieval-augmented planning, 코드 기반 실행을 결합해 사전 템플릿 없이 워크플로를 동적으로 조합하며, 유전자/약물 재창출/희귀질환 진단/마이크로바이옴/분자 클로닝 등 이질적 과제에서 task-specific tuning 없이도 일반화 성능이 높다고 보고한다. 또한 다중모달 데이터 해석, 단백질 안정성 최적화, 습식 실험 장비 오케스트레이션, 실험적으로 검증 가능한 프로토콜 생성 등의 사례를 제시한다.</p>
   <p class="url"><a href="https://pubmed.ncbi.nlm.nih.gov/42424436/">https://pubmed.ncbi.nlm.nih.gov/42424436/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier" data-search="GPT-5.6 Sol (OpenAI) (2026.7.9) Reasoning · Closed · 1000K ctx · $5/M · $30/M
+
+벤치마크 미공개
+
+Flagship of the GPT-5.6 family (Sol, Terra, Luna) and OpenAI&#x27;s most capable tier. State of the art on Terminal-Bench 2.1. Adds programmatic tool calling in the Responses API. Went public July 9 after a gated preview that opened June 25. $5/$30 per 1M tokens, priced like the prior GPT-5.5. 1M context. DemandSphere">
   <h2>🇺🇸 GPT-5.6 Sol (OpenAI) (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">DemandSphere</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="GPT-5.6 Sol (OpenAI) (2026.7.9)
 
@@ -566,8 +672,12 @@ https://openai.com/index/previewing-gpt-5-6-sol/" onclick="copyEntry(this)">복�
 <p>벤치마크 미공개</p>
 <p>Flagship of the GPT-5.6 family (Sol, Terra, Luna) and OpenAI&#x27;s most capable tier. State of the art on Terminal-Bench 2.1. Adds programmatic tool calling in the Responses API. Went public July 9 after a gated preview that opened June 25. $5/$30 per 1M tokens, priced like the prior GPT-5.5. 1M context.</p>
   <p class="url"><a href="https://openai.com/index/previewing-gpt-5-6-sol/">https://openai.com/index/previewing-gpt-5-6-sol/</a></p>
-</article>
-<article class="entry cat-db">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 2건 · DemandSphere</summary><article class="entry cat-db" data-cat="db" data-topics="frontier" data-search="GPT-5.6 Terra (OpenAI) (2026.7.9) Reasoning · Closed · 1000K ctx · $2.5/M · $15/M
+
+벤치마크 미공개
+
+Balanced mid-tier of the GPT-5.6 family. OpenAI positions it at GPT-5.5-class quality at about half the cost. $2.50/$15 per 1M tokens. 1M context. DemandSphere">
   <h2>🇺🇸 GPT-5.6 Terra (OpenAI) (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">DemandSphere</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="GPT-5.6 Terra (OpenAI) (2026.7.9)
 
@@ -582,8 +692,14 @@ https://openai.com/index/previewing-gpt-5-6-sol/" onclick="copyEntry(this)">복�
 <p>벤치마크 미공개</p>
 <p>Balanced mid-tier of the GPT-5.6 family. OpenAI positions it at GPT-5.5-class quality at about half the cost. $2.50/$15 per 1M tokens. 1M context.</p>
   <p class="url"><a href="https://openai.com/index/previewing-gpt-5-6-sol/">https://openai.com/index/previewing-gpt-5-6-sol/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier" data-search="GPT-5.6 Luna (OpenAI) (2026.7.9) Reasoning · Closed · 1000K ctx · $1/M · $6/M
+
+벤치마크 미공개
+
+Fastest and cheapest tier of the GPT-5.6 family. $1/$6 per 1M tokens. 1M context. DemandSphere">
   <h2>🇺🇸 GPT-5.6 Luna (OpenAI) (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">DemandSphere</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="GPT-5.6 Luna (OpenAI) (2026.7.9)
 
@@ -598,8 +714,11 @@ https://openai.com/index/previewing-gpt-5-6-sol/" onclick="copyEntry(this)">복�
 <p>벤치마크 미공개</p>
 <p>Fastest and cheapest tier of the GPT-5.6 family. $1/$6 per 1M tokens. 1M context.</p>
   <p class="url"><a href="https://openai.com/index/previewing-gpt-5-6-sol/">https://openai.com/index/previewing-gpt-5-6-sol/</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="law" data-search="EVOX 프로덕션스, 구글 상대 저작권 침해 소송 제기 (2026.7.9) EVOX 프로덕션스는 구글이 허가 없이 자사의 자동차 사진을 인공지능 모델 학습에 사용했다며 미국 캘리포니아 중부지방법원에 저작권 침해 소송을 제기했다. 소송은 저작권법 제501조에 따른 청구를 포함하며, 관련 사진 데이터셋을 무단 사용했다는 이유로 스탠퍼드대학교, Stability AI, Runway 등을 상대로 제기한 EVOX의 최근 소송들과 맥락을 같이한다. 이 사건은 저작권 사진을 대규모 AI 학습 데이터에 포함하는 행위가 저작권 침해인지 공정 이용인지 판단하는 데 영향을 줄 수 있다. AI 소송 추적기">
   <h2>🇺🇸 EVOX 프로덕션스, 구글 상대 저작권 침해 소송 제기 (2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI 소송 추적기</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="EVOX 프로덕션스, 구글 상대 저작권 침해 소송 제기 (2026.7.9)
 
@@ -608,8 +727,10 @@ EVOX 프로덕션스는 구글이 허가 없이 자사의 자동차 사진을 �
 https://ailawsuittracker.com/cases/evox-productions-llc-v-google-llc-5-26-cv-07013/" onclick="copyEntry(this)">복사</button></div>
   <p>EVOX 프로덕션스는 구글이 허가 없이 자사의 자동차 사진을 인공지능 모델 학습에 사용했다며 미국 캘리포니아 중부지방법원에 저작권 침해 소송을 제기했다. 소송은 저작권법 제501조에 따른 청구를 포함하며, 관련 사진 데이터셋을 무단 사용했다는 이유로 스탠퍼드대학교, Stability AI, Runway 등을 상대로 제기한 EVOX의 최근 소송들과 맥락을 같이한다. 이 사건은 저작권 사진을 대규모 AI 학습 데이터에 포함하는 행위가 저작권 침해인지 공정 이용인지 판단하는 데 영향을 줄 수 있다.</p>
   <p class="url"><a href="https://ailawsuittracker.com/cases/evox-productions-llc-v-google-llc-5-26-cv-07013/">https://ailawsuittracker.com/cases/evox-productions-llc-v-google-llc-5-26-cv-07013/</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="safety_research" data-search="Seoul Alignment Workshop Open Roles 요약불가 docs.google.com">
   <h2>🇰🇷 Seoul Alignment Workshop Open Roles</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">docs.google.com</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Seoul Alignment Workshop Open Roles
 
@@ -618,8 +739,10 @@ https://ailawsuittracker.com/cases/evox-productions-llc-v-google-llc-5-26-cv-070
 https://docs.google.com/spreadsheets/d/1srQcA4GwYs5o26u3OjEWJGd6uiWeuK5FrphSnX3CrI8/htmlview" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://docs.google.com/spreadsheets/d/1srQcA4GwYs5o26u3OjEWJGd6uiWeuK5FrphSnX3CrI8/htmlview">https://docs.google.com/spreadsheets/d/1srQcA4GwYs5o26u3OjEWJGd6uiWeuK5FrphSnX3CrI8/htmlview</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="norms" data-search="‘2026 세계한인과학기술인대회’서 서울선언 2.0 채택(2026.7.9) 2026 세계한인과학기술인대회가 8일 성료하며 ‘서울선언 2.0’을 공식 발표했다. 과학기술정보통신부가 주최하고 과총 및 20개 재외한인과학기술자협회가 공동 주관했으며, 국내외 과학기술인 1040여명이 AI 시대 혁신과 국제협력, 글로벌 인재 순환, 과학기술외교 등을 논의했다. 서울선언 2.0은 국경을 넘나드는 한인 과학기술인의 ‘인재 순환’을 성장 축으로 삼고 국제사회의 과학기술 규범 형성에 주도적으로 참여한다는 내용이다. 파이낸셜뉴스(fnnews.com)">
   <h2>🇰🇷 ‘2026 세계한인과학기술인대회’서 서울선언 2.0 채택(2026.7.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">파이낸셜뉴스(fnnews.com)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="‘2026 세계한인과학기술인대회’서 서울선언 2.0 채택(2026.7.9)
 
@@ -628,8 +751,13 @@ https://docs.google.com/spreadsheets/d/1srQcA4GwYs5o26u3OjEWJGd6uiWeuK5FrphSnX3C
 https://fnnews.com/news/202607091817223409" onclick="copyEntry(this)">복사</button></div>
   <p>2026 세계한인과학기술인대회가 8일 성료하며 ‘서울선언 2.0’을 공식 발표했다. 과학기술정보통신부가 주최하고 과총 및 20개 재외한인과학기술자협회가 공동 주관했으며, 국내외 과학기술인 1040여명이 AI 시대 혁신과 국제협력, 글로벌 인재 순환, 과학기술외교 등을 논의했다. 서울선언 2.0은 국경을 넘나드는 한인 과학기술인의 ‘인재 순환’을 성장 축으로 삼고 국제사회의 과학기술 규범 형성에 주도적으로 참여한다는 내용이다.</p>
   <p class="url"><a href="https://fnnews.com/news/202607091817223409">https://fnnews.com/news/202607091817223409</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="Bridging Causal Reasoning and Fuzzy Calibration for Trustworthy AI Risk Assessment **2026.7.9** 고위험 도메인에서 AI 리스크 평가의 신뢰도를 높이기 위해, LLM의 원인 추론 부족과 출력 과잉확신/부정확한 집계를 동시에 다루는 2계층 프레임워크를 제안한다.  
+구체적으로 (1) 알려진 위해 메커니즘을 트리거 조건-인과 단계-근거로 문서화한 causal risk patterns로 추론 입력을 구조화하고, (2) 여러 LLM 평가를 출처가 아니라 순위에 따라 가중하는 Ordered Weighted Averaging(OWA)로 결과를 전문가 보정 타깃에 맞춘다.  
+5개 부동산 AI 배치에서 125개 case-pattern pair를 3개 frontier LLM이 평가했을 때, 개별 모델은 0–1 스케일 기준 전문가 타깃보다 +0.07~+0.16 높게(과대평가) 나타났고 OWA( orness=0.6 ) 집계는 최선 단일 모델 대비 mean absolute error를 7.7% 줄였다(p=0.023).  
+또한 추론 레이어를 fuzzy scaffolding으로 강제하면 오류가 34.8% 증가한 반면, 출력 레이어의 fuzzy aggregation은 보정(calibration)을 개선해 “추론 단계의 fuzzy 강제는 악화, 출력 단계의 fuzzy는 개선”의 비대칭이 관찰되었다. ">
   <h2>Bridging Causal Reasoning and Fuzzy Calibration for Trustworthy AI Risk Assessment **2026.7.9**</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Bridging Causal Reasoning and Fuzzy Calibration for Trustworthy AI Risk Assessment **2026.7.9**
 
@@ -644,7 +772,9 @@ https://doi.org/10.1007/978-981-92-2497-5_18" onclick="copyEntry(this)">복사</
 5개 부동산 AI 배치에서 125개 case-pattern pair를 3개 frontier LLM이 평가했을 때, 개별 모델은 0–1 스케일 기준 전문가 타깃보다 +0.07~+0.16 높게(과대평가) 나타났고 OWA( orness=0.6 ) 집계는 최선 단일 모델 대비 mean absolute error를 7.7% 줄였다(p=0.023).  
 또한 추론 레이어를 fuzzy scaffolding으로 강제하면 오류가 34.8% 증가한 반면, 출력 레이어의 fuzzy aggregation은 보정(calibration)을 개선해 “추론 단계의 fuzzy 강제는 악화, 출력 단계의 fuzzy는 개선”의 비대칭이 관찰되었다.</p>
   <p class="url"><a href="https://doi.org/10.1007/978-981-92-2497-5_18">https://doi.org/10.1007/978-981-92-2497-5_18</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-07-08.html">← 2026-07-08</a><a class="day-nav-btn" href="2026-07-10.html">2026-07-10 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-07-08.html">← 2026-07-08</a><a class="day-nav-btn" href="2026-07-10.html">2026-07-10 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -680,6 +810,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

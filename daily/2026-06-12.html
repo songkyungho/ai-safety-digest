@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,11 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="frontier open_weight" data-search="Kimi K2.7 Code (Moonshot AI) (2026.6.12) Reasoning · Open · 262K ctx · $0.95/M · $4/M
+
+벤치마크 미공개
+
+1T MoE / 32B active, built on Kimi K2.6 and specialized for coding. Mandatory thinking mode, ~30% fewer reasoning tokens than K2.6. MoonViT vision encoder (400M) for image and video input; native INT4 quantization. Moonshot reports +21.8% on Kimi Code Bench v2 over K2.6; no independent SWE-Bench numbers published yet. 256K context. Open-weight, Modified MIT. API $0.95/$4.00 per 1M tokens (cached input $0.19). DemandSphere">
   <h2>Kimi K2.7 Code (Moonshot AI) (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="오픈소스·오픈웨이트">🔓</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Kimi K2.7 Code (Moonshot AI) (2026.6.12)
 
@@ -323,8 +379,10 @@ https://huggingface.co/moonshotai/Kimi-K2.7-Code" onclick="copyEntry(this)">복�
 <p>벤치마크 미공개</p>
 <p>1T MoE / 32B active, built on Kimi K2.6 and specialized for coding. Mandatory thinking mode, ~30% fewer reasoning tokens than K2.6. MoonViT vision encoder (400M) for image and video input; native INT4 quantization. Moonshot reports +21.8% on Kimi Code Bench v2 over K2.6; no independent SWE-Bench numbers published yet. 256K context. Open-weight, Modified MIT. API $0.95/$4.00 per 1M tokens (cached input $0.19).</p>
   <p class="url"><a href="https://huggingface.co/moonshotai/Kimi-K2.7-Code">https://huggingface.co/moonshotai/Kimi-K2.7-Code</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="개인정보위, AI 시대 개인정보 쟁점 모의재판 참가자 사전 모집 (2026.6.12) 개인정보보호위원회가 ‘제4회 개인정보 보호 모의재판 경연대회’ 참가자를 6월 12일부터 26일까지 사전 모집한다. 경연은 8월 27일 서울시립대학교 모의법정에서 대학(원)생과 법학전문대학원생을 대상으로 열리며, 본선 진출팀에는 전문가 멘토링과 함께 총 1,500만 원 상당의 상금 등이 제공된다. 개인정보보호위원회">
   <h2>🇰🇷 개인정보위, AI 시대 개인정보 쟁점 모의재판 참가자 사전 모집 (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">개인정보보호위원회</span></span><button type="button" class="copy-btn" data-copy="개인정보위, AI 시대 개인정보 쟁점 모의재판 참가자 사전 모집 (2026.6.12)
 
@@ -333,8 +391,10 @@ https://huggingface.co/moonshotai/Kimi-K2.7-Code" onclick="copyEntry(this)">복�
 https://eiec.kdi.re.kr/policy/materialView.do?num=282585" onclick="copyEntry(this)">복사</button></div>
   <p>개인정보보호위원회가 ‘제4회 개인정보 보호 모의재판 경연대회’ 참가자를 6월 12일부터 26일까지 사전 모집한다. 경연은 8월 27일 서울시립대학교 모의법정에서 대학(원)생과 법학전문대학원생을 대상으로 열리며, 본선 진출팀에는 전문가 멘토링과 함께 총 1,500만 원 상당의 상금 등이 제공된다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=282585">https://eiec.kdi.re.kr/policy/materialView.do?num=282585</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="aisi_topic cybersecurity frontier" data-search="일본 AISI ‘AI政策動向マンスリー情報’(2026.6.12)에서 JAI-Trust, OpenAI–MOC 등 주요 AI 안전·거버넌스 소식 정리 본 페이지는 AISI가 매달 정리한 일본·해외 AI 정책/안전 관련 동향을 모은 자료다. 일본에서는 JAI-Trust를 통해 생성 AI의 안전성을 평가·확보하기 위한 표준/가이드 등 논의가 소개됐고, 국외로는 미국 NIST의 AI Consortium 범위 확대, 유럽/영국 등의 AI 규정 정비 및 신속한 AI 보안 리스크 대응, 싱가포르의 OpenAI 협력·AI 거버넌스 프레임워크 업데이트 등이 언급된다. 또한 내부 AI 정책으로는 사이버보안 관련 규정(중요 인프라·소프트웨어 벤더 등) 강화 흐름이 포함돼 있다. AISI-Japan">
   <h2>🇯🇵 일본 AISI ‘AI政策動向マンスリー情報’(2026.6.12)에서 JAI-Trust, OpenAI–MOC 등 주요 AI 안전·거버넌스 소식 정리</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Japan AISI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="일본 AISI ‘AI政策動向マンスリー情報’(2026.6.12)에서 JAI-Trust, OpenAI–MOC 등 주요 AI 안전·거버넌스 소식 정리
 
@@ -343,8 +403,10 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=282585" onclick="copyEntry(thi
 https://aisi.go.jp/activity/activity_information/260612/" onclick="copyEntry(this)">복사</button></div>
   <p>본 페이지는 AISI가 매달 정리한 일본·해외 AI 정책/안전 관련 동향을 모은 자료다. 일본에서는 JAI-Trust를 통해 생성 AI의 안전성을 평가·확보하기 위한 표준/가이드 등 논의가 소개됐고, 국외로는 미국 NIST의 AI Consortium 범위 확대, 유럽/영국 등의 AI 규정 정비 및 신속한 AI 보안 리스크 대응, 싱가포르의 OpenAI 협력·AI 거버넌스 프레임워크 업데이트 등이 언급된다. 또한 내부 AI 정책으로는 사이버보안 관련 규정(중요 인프라·소프트웨어 벤더 등) 강화 흐름이 포함돼 있다.</p>
   <p class="url"><a href="https://aisi.go.jp/activity/activity_information/260612/">https://aisi.go.jp/activity/activity_information/260612/</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="safety_research" data-search="미국 금융 당국, 금융 기업의 AI 사용 감시 강화 (2026.6.12) 로이터는 미국 통화감독청(OCC)과 연준(Fed)은 은행들이 대출, 고객 확인 등 고위험 영역에 AI를 도입함에 따라 데이터 접근과 제3자 업체 리스크 관리를 집중 점검하고 있다고 보도. 기존 위험 관리 프레임워크를 활용해 안전장치, 인간의 통제 여부, 비상 정지(kill switch) 기능을 깐깐하게 들여다보고 있다고 밝힘. Reuters">
   <h2>🇺🇸 미국 금융 당국, 금융 기업의 AI 사용 감시 강화 (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Reuters</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="미국 금융 당국, 금융 기업의 AI 사용 감시 강화 (2026.6.12)
 
@@ -353,8 +415,10 @@ https://aisi.go.jp/activity/activity_information/260612/" onclick="copyEntry(thi
 https://www.reuters.com/business/finance/us-bank-regulators-ramp-up-scrutiny-ai-use-financial-companies-2026-06-12/" onclick="copyEntry(this)">복사</button></div>
   <p>로이터는 미국 통화감독청(OCC)과 연준(Fed)은 은행들이 대출, 고객 확인 등 고위험 영역에 AI를 도입함에 따라 데이터 접근과 제3자 업체 리스크 관리를 집중 점검하고 있다고 보도. 기존 위험 관리 프레임워크를 활용해 안전장치, 인간의 통제 여부, 비상 정지(kill switch) 기능을 깐깐하게 들여다보고 있다고 밝힘.</p>
   <p class="url"><a href="https://www.reuters.com/business/finance/us-bank-regulators-ramp-up-scrutiny-ai-use-financial-companies-2026-06-12/">https://www.reuters.com/business/finance/us-bank-regulators-ramp-up-scrutiny-ai-use-financial-companies-2026-06-12/</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="deepfake_disinfo frontier" data-search="미국민의 AI 기대는 질병 치료·장애 지원에, 우려는 job loss·cognitive dependency에 집중 (2026.6.12) Anthropic Public Record는 2025년 11~12월(YouGov, n=51,993) 전국 온라인 조사로 2만여가 아닌 약 5.2만 명에 대한 AI 인식 스냅샷을 공개했다. 응답자의 48%는 AI가 암·알츠하이머 등 질병을 치료하길 희망했으며, 두 번째는 장애인 지원(36%)이었다. 가장 큰 두려움은 AI로 인한 일자리 상실(64%)과 인지적 의존(cognitive dependency, 56%), 허위정보(52%)였고, 정부의 AI 규제·개입 필요에는 70% 이상이 동의했다. AI 회사에 대한 신뢰는 15%에 그쳤으며, 산업 차원에서는 위해에 대한 법적 책임(47%)과 성장보다 안전 우선(44%)을 가장 높게 꼽았다. Anthropic">
   <h2>🇺🇸 미국민의 AI 기대는 질병 치료·장애 지원에, 우려는 job loss·cognitive dependency에 집중 (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="딥페이크·허위정보">🎭</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="미국민의 AI 기대는 질병 치료·장애 지원에, 우려는 job loss·cognitive dependency에 집중 (2026.6.12)
 
@@ -363,8 +427,10 @@ Anthropic Public Record는 2025년 11~12월(YouGov, n=51,993) 전국 온라인 �
 https://www.anthropic.com/news/anthropic-public-record" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic Public Record는 2025년 11~12월(YouGov, n=51,993) 전국 온라인 조사로 2만여가 아닌 약 5.2만 명에 대한 AI 인식 스냅샷을 공개했다. 응답자의 48%는 AI가 암·알츠하이머 등 질병을 치료하길 희망했으며, 두 번째는 장애인 지원(36%)이었다. 가장 큰 두려움은 AI로 인한 일자리 상실(64%)과 인지적 의존(cognitive dependency, 56%), 허위정보(52%)였고, 정부의 AI 규제·개입 필요에는 70% 이상이 동의했다. AI 회사에 대한 신뢰는 15%에 그쳤으며, 산업 차원에서는 위해에 대한 법적 책임(47%)과 성장보다 안전 우선(44%)을 가장 높게 꼽았다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/anthropic-public-record">https://www.anthropic.com/news/anthropic-public-record</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="cybersecurity frontier national_security safety_research" data-search="US 정부의 Fable 5·Mythos 5 접근 중단 지시에 따라 해당 모델 접근을 전면 비활성화 (기사·공고 게재일 2026.6.12) 앤트로픽은 미국 정부가 국가안보 사유로 외국 국적자를 포함한 모든 사용자에게 Fable 5와 Mythos 5에 대한 접근을 중단하라는 수출통제 지시를 내렸다고 밝혔다. 회사는 지시 이행을 위해 모든 고객에서 두 모델의 접근을 즉시 비활성화하되, 다른 모델 접근은 영향을 받지 않는다고 설명했다. 정부는 Fable 5의 특정 “jailbreaking” 우회 가능성(소규모 기존 취약점 식별) 인지에 기반했으며, 회사는 자사 safeguards가 기존 모델보다 실질적으로 더 효과적이지만 완전한 universal jailbreak 저항은 어려울 수 있다고 주장했다. 또한 이번 조치가 투명하고 기술 사실에 근거해야 한다는 원칙에 부합하지 않는다고 반박하면서, 고객 불편에 대해 사과하고 가능한 한 조속히 접근을 복구하겠다고 밝혔다. 앤트로픽(Anthropic)">
   <h2>🇺🇸 US 정부의 Fable 5·Mythos 5 접근 중단 지시에 따라 해당 모델 접근을 전면 비활성화 (기사·공고 게재일 2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="US 정부의 Fable 5·Mythos 5 접근 중단 지시에 따라 해당 모델 접근을 전면 비활성화 (기사·공고 게재일 2026.6.12)
 
@@ -373,18 +439,8 @@ https://www.anthropic.com/news/anthropic-public-record" onclick="copyEntry(this)
 https://www.anthropic.com/news/fable-mythos-access" onclick="copyEntry(this)">복사</button></div>
   <p>앤트로픽은 미국 정부가 국가안보 사유로 외국 국적자를 포함한 모든 사용자에게 Fable 5와 Mythos 5에 대한 접근을 중단하라는 수출통제 지시를 내렸다고 밝혔다. 회사는 지시 이행을 위해 모든 고객에서 두 모델의 접근을 즉시 비활성화하되, 다른 모델 접근은 영향을 받지 않는다고 설명했다. 정부는 Fable 5의 특정 “jailbreaking” 우회 가능성(소규모 기존 취약점 식별) 인지에 기반했으며, 회사는 자사 safeguards가 기존 모델보다 실질적으로 더 효과적이지만 완전한 universal jailbreak 저항은 어려울 수 있다고 주장했다. 또한 이번 조치가 투명하고 기술 사실에 근거해야 한다는 원칙에 부합하지 않는다고 반박하면서, 고객 불편에 대해 사과하고 가능한 한 조속히 접근을 복구하겠다고 밝혔다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/fable-mythos-access">https://www.anthropic.com/news/fable-mythos-access</a></p>
-</article>
-<article class="entry cat-company">
-  <h2>🇺🇸🇬🇧 TCS- Anthropic, Claude를 규제 산업으로 확대(기사 게재일: 2026.6.12)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="TCS- Anthropic, Claude를 규제 산업으로 확대(기사 게재일: 2026.6.12)
-
-앤트로픽은 Tata Consultancy Services(TCS)와 파트너십을 발표하고, TCS가 56개국 5만 명의 임직원을 대상으로 Claude를 제공하며 금융·헬스케어·공공부문 등 규제 산업에 Claude 기반 제품을 구축한다고 밝혔다. 또한 TCS는 Claude Partner Network에 참여해 기업 고객에 컨설팅·서비스를 제공하고, 청구 처리·대출 자문 등 산업별 패키지를 만들어 도입·운영할 계획이다. TCS의 UK 생명·연금 사업부 Diligenta는 2,200만 명 이상 정책 가입자 대상 고객경험 개선에 Claude를 활용하고, 금융/은행 분야는 Claude Code로 개발·IT 운영 생산성을 높이며 Claude Code 생태계에 재사용 가능한 스킬·플러그인을 추가할 예정이다.
-
-https://www.anthropic.com/news/tcs-anthropic-partnership" onclick="copyEntry(this)">복사</button></div>
-  <p>앤트로픽은 Tata Consultancy Services(TCS)와 파트너십을 발표하고, TCS가 56개국 5만 명의 임직원을 대상으로 Claude를 제공하며 금융·헬스케어·공공부문 등 규제 산업에 Claude 기반 제품을 구축한다고 밝혔다. 또한 TCS는 Claude Partner Network에 참여해 기업 고객에 컨설팅·서비스를 제공하고, 청구 처리·대출 자문 등 산업별 패키지를 만들어 도입·운영할 계획이다. TCS의 UK 생명·연금 사업부 Diligenta는 2,200만 명 이상 정책 가입자 대상 고객경험 개선에 Claude를 활용하고, 금융/은행 분야는 Claude Code로 개발·IT 운영 생산성을 높이며 Claude Code 생태계에 재사용 가능한 스킬·플러그인을 추가할 예정이다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/tcs-anthropic-partnership">https://www.anthropic.com/news/tcs-anthropic-partnership</a></p>
-</article>
-<article class="entry cat-public">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · 유럽연합 집행위원회(EU-Digital-Strategy)</summary><article class="entry cat-public" data-cat="public" data-topics="guideline law" data-search="AI Board 8차 회의 개최 및 EU AI Act 이행·관계 기구 업데이트 논의 (기사·공고 게재일 2026.6.12) 11일(2026.6) 키프로스 EU 이사회 의장단 하에 AI Board 8차 회의가 열려 EU AI 전략과 AI Act 이행 우선순위를 점검했다. 집행위는 EU의 기술 주권과 경쟁력 강화를 위한 Tech Sovereignty 패키지(Cloud 및 AI Development Act 포함)를 소개했으며, 생성형 AI 관련 ‘AI-generated content’ 라벨링·표시 Code of Practice 최종본을 발표했다(2 August 2026부터 적용되는 AI Act 투명성 의무 준수 지원 목적, 자발적). 또한 과학 패널과 AI Act Advisory Forum 등 이행 지원 기구를 소개하고, 국가 시장감시 당국의 진행 상황 및 AI Board 산하 소위원회 문서의 채택도 논의했다. 유럽연합 집행위원회(EU-Digital-Strategy)">
   <h2>🇪🇺 AI Board 8차 회의 개최 및 EU AI Act 이행·관계 기구 업데이트 논의 (기사·공고 게재일 2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽연합 집행위원회(EU-Digital-Strategy)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="AI Board 8차 회의 개최 및 EU AI Act 이행·관계 기구 업데이트 논의 (기사·공고 게재일 2026.6.12)
 
@@ -393,8 +449,23 @@ https://www.anthropic.com/news/tcs-anthropic-partnership" onclick="copyEntry(thi
 https://digital-strategy.ec.europa.eu/en/news/ai-board-convenes-its-eighth-meeting" onclick="copyEntry(this)">복사</button></div>
   <p>11일(2026.6) 키프로스 EU 이사회 의장단 하에 AI Board 8차 회의가 열려 EU AI 전략과 AI Act 이행 우선순위를 점검했다. 집행위는 EU의 기술 주권과 경쟁력 강화를 위한 Tech Sovereignty 패키지(Cloud 및 AI Development Act 포함)를 소개했으며, 생성형 AI 관련 ‘AI-generated content’ 라벨링·표시 Code of Practice 최종본을 발표했다(2 August 2026부터 적용되는 AI Act 투명성 의무 준수 지원 목적, 자발적). 또한 과학 패널과 AI Act Advisory Forum 등 이행 지원 기구를 소개하고, 국가 시장감시 당국의 진행 상황 및 AI Board 산하 소위원회 문서의 채택도 논의했다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/ai-board-convenes-its-eighth-meeting">https://digital-strategy.ec.europa.eu/en/news/ai-board-convenes-its-eighth-meeting</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-public">
+<article class="entry cat-company" data-cat="company" data-topics="frontier healthcare" data-search="TCS- Anthropic, Claude를 규제 산업으로 확대(기사 게재일: 2026.6.12) 앤트로픽은 Tata Consultancy Services(TCS)와 파트너십을 발표하고, TCS가 56개국 5만 명의 임직원을 대상으로 Claude를 제공하며 금융·헬스케어·공공부문 등 규제 산업에 Claude 기반 제품을 구축한다고 밝혔다. 또한 TCS는 Claude Partner Network에 참여해 기업 고객에 컨설팅·서비스를 제공하고, 청구 처리·대출 자문 등 산업별 패키지를 만들어 도입·운영할 계획이다. TCS의 UK 생명·연금 사업부 Diligenta는 2,200만 명 이상 정책 가입자 대상 고객경험 개선에 Claude를 활용하고, 금융/은행 분야는 Claude Code로 개발·IT 운영 생산성을 높이며 Claude Code 생태계에 재사용 가능한 스킬·플러그인을 추가할 예정이다. 앤트로픽(Anthropic)">
+  <h2>🇺🇸🇬🇧 TCS- Anthropic, Claude를 규제 산업으로 확대(기사 게재일: 2026.6.12)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="TCS- Anthropic, Claude를 규제 산업으로 확대(기사 게재일: 2026.6.12)
+
+앤트로픽은 Tata Consultancy Services(TCS)와 파트너십을 발표하고, TCS가 56개국 5만 명의 임직원을 대상으로 Claude를 제공하며 금융·헬스케어·공공부문 등 규제 산업에 Claude 기반 제품을 구축한다고 밝혔다. 또한 TCS는 Claude Partner Network에 참여해 기업 고객에 컨설팅·서비스를 제공하고, 청구 처리·대출 자문 등 산업별 패키지를 만들어 도입·운영할 계획이다. TCS의 UK 생명·연금 사업부 Diligenta는 2,200만 명 이상 정책 가입자 대상 고객경험 개선에 Claude를 활용하고, 금융/은행 분야는 Claude Code로 개발·IT 운영 생산성을 높이며 Claude Code 생태계에 재사용 가능한 스킬·플러그인을 추가할 예정이다.
+
+https://www.anthropic.com/news/tcs-anthropic-partnership" onclick="copyEntry(this)">복사</button></div>
+  <p>앤트로픽은 Tata Consultancy Services(TCS)와 파트너십을 발표하고, TCS가 56개국 5만 명의 임직원을 대상으로 Claude를 제공하며 금융·헬스케어·공공부문 등 규제 산업에 Claude 기반 제품을 구축한다고 밝혔다. 또한 TCS는 Claude Partner Network에 참여해 기업 고객에 컨설팅·서비스를 제공하고, 청구 처리·대출 자문 등 산업별 패키지를 만들어 도입·운영할 계획이다. TCS의 UK 생명·연금 사업부 Diligenta는 2,200만 명 이상 정책 가입자 대상 고객경험 개선에 Claude를 활용하고, 금융/은행 분야는 Claude Code로 개발·IT 운영 생산성을 높이며 Claude Code 생태계에 재사용 가능한 스킬·플러그인을 추가할 예정이다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/tcs-anthropic-partnership">https://www.anthropic.com/news/tcs-anthropic-partnership</a></p>
+  
+  
+</article>
+<article class="entry cat-public" data-cat="public" data-topics="guideline youth" data-search="EU 집행위, 브라질 ANPD와 온라인 아동 보호 협력(2026.6.12) EU-브라질 디지털 파트너십(브라질 브라질리아) 맥락에서 집행위원회 DSA 집행 담당 부서가 브라질 개인정보보호 규제기관 ANPD와 온라인 아동 보호를 위한 행정 약정을 체결했다. 협력은 온라인에서 아동이 직면하는 위험 대응을 위해 모범사례와 지식을 공유하고, 디지털 플랫폼의 투명성 의무·위험평가 및 완화조치·알고리즘 및 AI 관련 기술 협력에 초점을 둔다. 약정은 기술 전문가 대화 등 정보 교환을 가능하게 하며 양 당국이 공동 연구·공동 연구과제 협력도 진행할 수 있다. 유럽 집행위원회(Digital Strategy)">
   <h2>🇪🇺 EU 집행위, 브라질 ANPD와 온라인 아동 보호 협력(2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽 집행위원회(Digital Strategy)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="EU 집행위, 브라질 ANPD와 온라인 아동 보호 협력(2026.6.12)
 
@@ -403,8 +474,10 @@ EU-브라질 디지털 파트너십(브라질 브라질리아) 맥락에서 집�
 https://digital-strategy.ec.europa.eu/en/news/commission-services-cooperate-brazils-data-protection-agency-protection-minors-online" onclick="copyEntry(this)">복사</button></div>
   <p>EU-브라질 디지털 파트너십(브라질 브라질리아) 맥락에서 집행위원회 DSA 집행 담당 부서가 브라질 개인정보보호 규제기관 ANPD와 온라인 아동 보호를 위한 행정 약정을 체결했다. 협력은 온라인에서 아동이 직면하는 위험 대응을 위해 모범사례와 지식을 공유하고, 디지털 플랫폼의 투명성 의무·위험평가 및 완화조치·알고리즘 및 AI 관련 기술 협력에 초점을 둔다. 약정은 기술 전문가 대화 등 정보 교환을 가능하게 하며 양 당국이 공동 연구·공동 연구과제 협력도 진행할 수 있다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-services-cooperate-brazils-data-protection-agency-protection-minors-online">https://digital-strategy.ec.europa.eu/en/news/commission-services-cooperate-brazils-data-protection-agency-protection-minors-online</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="youth" data-search="EU와 브라질, 디지털 파트너십 체결로 데이터 거버넌스·AI 등 협력 강화 (2026.6.12) 유럽연합과 브라질은 오늘 브라질리아에서 Digital Partnership에 서명하며 디지털 협력을 새로운 전략 수준으로 끌어올린다고 밝혔다. 데이터 거버넌스, 인공지능, 디지털 인프라와 연결성, 온라인 플랫폼, 디지털 공공재 및 서비스 등 공통 디지털 우선순위에서 EU-브라질 협력을 강화하는 내용이 포함된다. 서명 이후에는 집행위 서비스와 브라질 Agência Nacional de Proteção de Dados가 온라인 상에서 미성년자 보호 강화를 위한 행정협정을 추가로 체결할 예정이다. 유럽연합 집행위원회(EU-Digital-Strategy)">
   <h2>🇪🇺 EU와 브라질, 디지털 파트너십 체결로 데이터 거버넌스·AI 등 협력 강화 (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽연합 집행위원회(EU-Digital-Strategy)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="EU와 브라질, 디지털 파트너십 체결로 데이터 거버넌스·AI 등 협력 강화 (2026.6.12)
 
@@ -413,8 +486,10 @@ https://digital-strategy.ec.europa.eu/en/news/commission-services-cooperate-braz
 https://digital-strategy.ec.europa.eu/en/news/eu-and-brazil-deepen-ties-through-digital-partnership" onclick="copyEntry(this)">복사</button></div>
   <p>유럽연합과 브라질은 오늘 브라질리아에서 Digital Partnership에 서명하며 디지털 협력을 새로운 전략 수준으로 끌어올린다고 밝혔다. 데이터 거버넌스, 인공지능, 디지털 인프라와 연결성, 온라인 플랫폼, 디지털 공공재 및 서비스 등 공통 디지털 우선순위에서 EU-브라질 협력을 강화하는 내용이 포함된다. 서명 이후에는 집행위 서비스와 브라질 Agência Nacional de Proteção de Dados가 온라인 상에서 미성년자 보호 강화를 위한 행정협정을 추가로 체결할 예정이다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/eu-and-brazil-deepen-ties-through-digital-partnership">https://digital-strategy.ec.europa.eu/en/news/eu-and-brazil-deepen-ties-through-digital-partnership</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="IMDA와 마이크로소프트, AI safety와 security 발전(2026.6.12) IMDA와 마이크로소프트는 AI의 safety와 security를 한층 발전시키기 위한 협력을 약속했다. 이번 발표는 SG의 디지털 미래를 설계하는 핵심 기관과 기업 간의 공동 노력의 일환으로 소개됐다. 싱가포르 정보통신미디어개발청(IMDA)">
   <h2>IMDA와 마이크로소프트, AI safety와 security 발전(2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">싱가포르 정보통신미디어개발청(IMDA)</span></span><button type="button" class="copy-btn" data-copy="IMDA와 마이크로소프트, AI safety와 security 발전(2026.6.12)
 
@@ -423,8 +498,10 @@ IMDA와 마이크로소프트는 AI의 safety와 security를 한층 발전시키
 https://imda.gov.sg/resources/press-releases-factsheets-and-speeches/imda-and-microsoft-commit-to-advancing-ai-safety-and-security" onclick="copyEntry(this)">복사</button></div>
   <p>IMDA와 마이크로소프트는 AI의 safety와 security를 한층 발전시키기 위한 협력을 약속했다. 이번 발표는 SG의 디지털 미래를 설계하는 핵심 기관과 기업 간의 공동 노력의 일환으로 소개됐다.</p>
   <p class="url"><a href="https://imda.gov.sg/resources/press-releases-factsheets-and-speeches/imda-and-microsoft-commit-to-advancing-ai-safety-and-security">https://imda.gov.sg/resources/press-releases-factsheets-and-speeches/imda-and-microsoft-commit-to-advancing-ai-safety-and-security</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="cybersecurity frontier" data-search="정부 사이버 방어에서 최첨단 AI 모델을 시험한 사례 (2026.6.12) 정부 사이버 조정센터는 9개 정부 기관의 공개 코드 저장소를 대상으로 최첨단 AI를 활용한 해킹톤을 진행해 인증 우회, 데이터 노출, 원격 코드 실행 등을 포함한 407건의 취약점을 식별했으며, 모든 치명적 취약점을 수정하고 악용 증거는 확인하지 못했다. AI 활용에는 £13,000의 토큰 비용이 들었고, 전통적 스캐너가 놓칠 수 있는 서비스 간 취약점과 공격 경로를 추적하는 데 효과를 보였다. 연구진은 구조화된 파이프라인, 신중한 triage, 인간 전문가의 검증이 중요하며, 취약점 발견만으로는 충분하지 않고 기존 패치 절차와 연계해야 한다고 밝혔다. 2단계 시범사업에서는 참여 부처와 모델을 늘리고 공개 코드에서 폐쇄형 코드 환경으로 범위를 확대할 예정이다. 영국 과학·혁신·기술부 및 국가사이버보안센터">
   <h2>🇬🇧 정부 사이버 방어에서 최첨단 AI 모델을 시험한 사례 (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">영국 과학·혁신·기술부 및 국가사이버보안센터</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="정부 사이버 방어에서 최첨단 AI 모델을 시험한 사례 (2026.6.12)
 
@@ -433,8 +510,13 @@ https://imda.gov.sg/resources/press-releases-factsheets-and-speeches/imda-and-mi
 https://www.gov.uk/government/case-studies/when-ai-leaves-the-lab-testing-frontier-models-in-government-cyber-defence" onclick="copyEntry(this)">복사</button></div>
   <p>정부 사이버 조정센터는 9개 정부 기관의 공개 코드 저장소를 대상으로 최첨단 AI를 활용한 해킹톤을 진행해 인증 우회, 데이터 노출, 원격 코드 실행 등을 포함한 407건의 취약점을 식별했으며, 모든 치명적 취약점을 수정하고 악용 증거는 확인하지 못했다. AI 활용에는 £13,000의 토큰 비용이 들었고, 전통적 스캐너가 놓칠 수 있는 서비스 간 취약점과 공격 경로를 추적하는 데 효과를 보였다. 연구진은 구조화된 파이프라인, 신중한 triage, 인간 전문가의 검증이 중요하며, 취약점 발견만으로는 충분하지 않고 기존 패치 절차와 연계해야 한다고 밝혔다. 2단계 시범사업에서는 참여 부처와 모델을 늘리고 공개 코드에서 폐쇄형 코드 환경으로 범위를 확대할 예정이다.</p>
   <p class="url"><a href="https://www.gov.uk/government/case-studies/when-ai-leaves-the-lab-testing-frontier-models-in-government-cyber-defence">https://www.gov.uk/government/case-studies/when-ai-leaves-the-lab-testing-frontier-models-in-government-cyber-defence</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="cybersecurity" data-search="The Epoch Brief - June 12, 2026 Highlights (2026.6.12) 새로운 사이버 취약점 탐색 도구 출시, 데이터 센터 컴퓨팅 용량의 급격한 증가, FrontierMath v2 버전 출시 및 AI 기반 수학 능력 향상, AGI 이후의 부의 재분배 방안 논의
+
+**요약:**
+Epoch AI는 사이버 취약점 변화를 분석하는 새로운 도구인 Cyber Vulnerabilities explorer를 출시했습니다. 데이터 센터의 컴퓨팅 용량은 지속적으로 증가하여 기록이 7개월마다 두 배로 늘었으며, FrontierMath v2의 출시로 AI의 수학 능력이 크게 향상되었습니다. 특히 Anthropic의 Fable 5 모델이 선두를 달리고 있습니다. 또한, AGI 이후의 부의 재분배 방안에 대한 논의와 함께 Mythos 모델의 사이버 능력에 대한 평가도 포함되었습니다. Epoch-Substack">
   <h2>The Epoch Brief - June 12, 2026 Highlights (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Epoch-Substack</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="The Epoch Brief - June 12, 2026 Highlights (2026.6.12)
 
@@ -448,8 +530,10 @@ https://epochai.substack.com/p/the-epoch-brief-june-12-2026" onclick="copyEntry(
 <p>**요약:**
 Epoch AI는 사이버 취약점 변화를 분석하는 새로운 도구인 Cyber Vulnerabilities explorer를 출시했습니다. 데이터 센터의 컴퓨팅 용량은 지속적으로 증가하여 기록이 7개월마다 두 배로 늘었으며, FrontierMath v2의 출시로 AI의 수학 능력이 크게 향상되었습니다. 특히 Anthropic의 Fable 5 모델이 선두를 달리고 있습니다. 또한, AGI 이후의 부의 재분배 방안에 대한 논의와 함께 Mythos 모델의 사이버 능력에 대한 평가도 포함되었습니다.</p>
   <p class="url"><a href="https://epochai.substack.com/p/the-epoch-brief-june-12-2026">https://epochai.substack.com/p/the-epoch-brief-june-12-2026</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="agentic_ai" data-search="DeepMind, AGI→ASI로 이어질 AI 발전 경로와 병목·마찰을 다룬 보고서 공개 (2026.6.12) 보고서에 따르면 AGI에서 ASI로의 4가지 경로(스케일링, 패러다임 전환, 재귀적 개선, 대규모 멀티에이전트 집단에서의 출현)와 각 경로의 마찰·병목이 미칠 영향을 둘러싼 연구 질문을 제시한다. 구글 딥마인(DeepMind)">
   <h2>DeepMind, AGI→ASI로 이어질 AI 발전 경로와 병목·마찰을 다룬 보고서 공개 (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">구글 딥마인(DeepMind)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="DeepMind, AGI→ASI로 이어질 AI 발전 경로와 병목·마찰을 다룬 보고서 공개 (2026.6.12)
 
@@ -458,8 +542,10 @@ Epoch AI는 사이버 취약점 변화를 분석하는 새로운 도구인 Cyber
 https://deepmind.google/research/publications/239142/" onclick="copyEntry(this)">복사</button></div>
   <p>보고서에 따르면 AGI에서 ASI로의 4가지 경로(스케일링, 패러다임 전환, 재귀적 개선, 대규모 멀티에이전트 집단에서의 출현)와 각 경로의 마찰·병목이 미칠 영향을 둘러싼 연구 질문을 제시한다.</p>
   <p class="url"><a href="https://deepmind.google/research/publications/239142/">https://deepmind.google/research/publications/239142/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="Polls Show Growing Public Anxiety Over AI’s Economic Impact (2026.6.12) 요약불가 AI-Risk-Explorer">
   <h2>Polls Show Growing Public Anxiety Over AI’s Economic Impact (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Polls Show Growing Public Anxiety Over AI’s Economic Impact (2026.6.12)
 
@@ -468,8 +554,12 @@ https://deepmind.google/research/publications/239142/" onclick="copyEntry(this)"
 https://www.reuters.com/business/ai-stock-boom-coincides-with-americans-fears-2026-06-12/?" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.reuters.com/business/ai-stock-boom-coincides-with-americans-fears-2026-06-12/?">https://www.reuters.com/business/ai-stock-boom-coincides-with-americans-fears-2026-06-12/?</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="physical_ai" data-search="(기사·2026.6.12) 중국, 대규모 휴머노이드 로봇 ‘실전 배치’ 프로그램 추진 2026년 6월 말까지 지자체가 실행계획을 제출하고, 11월 말까지 진행상황을 보고해야 하며, 2026년 말까지 핵심 휴머노이드 제품의 적용 검증과 정기 배치를 목표로 함.
+
+중국 정부가 휴머노이드 로봇과 embodied artificial intelligence를 실제 산업 현장에 적용하기 위한 전국 단위 프로그램을 추진한다. 현장 시연 중심에서 공장·물류·병원·재난 대응 등 다양한 업무 현장으로 로봇을 배치하는 방향으로 전환하며, 2026년 말까지 100개 이상의 고부가 응용 시나리오와 1만 대 이상의 로봇 배치를 목표로 한다. 지자체는 6월 말까지 계획을 제출하고 11월 말까지 진행을 보고해야 하며, 실제 배치 데이터를 통해 소프트웨어·하드웨어 성능과 embodied AI 품질을 개선하겠다는 취지다. eWeek">
   <h2>🇨🇳 (기사·2026.6.12) 중국, 대규모 휴머노이드 로봇 ‘실전 배치’ 프로그램 추진</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">eWeek</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="(기사·2026.6.12) 중국, 대규모 휴머노이드 로봇 ‘실전 배치’ 프로그램 추진
 
@@ -481,8 +571,10 @@ https://www.eweek.com/news/humanoid-robots-work-mode-2026-apac-china/?" onclick=
   <p>2026년 6월 말까지 지자체가 실행계획을 제출하고, 11월 말까지 진행상황을 보고해야 하며, 2026년 말까지 핵심 휴머노이드 제품의 적용 검증과 정기 배치를 목표로 함.</p>
 <p>중국 정부가 휴머노이드 로봇과 embodied artificial intelligence를 실제 산업 현장에 적용하기 위한 전국 단위 프로그램을 추진한다. 현장 시연 중심에서 공장·물류·병원·재난 대응 등 다양한 업무 현장으로 로봇을 배치하는 방향으로 전환하며, 2026년 말까지 100개 이상의 고부가 응용 시나리오와 1만 대 이상의 로봇 배치를 목표로 한다. 지자체는 6월 말까지 계획을 제출하고 11월 말까지 진행을 보고해야 하며, 실제 배치 데이터를 통해 소프트웨어·하드웨어 성능과 embodied AI 품질을 개선하겠다는 취지다.</p>
   <p class="url"><a href="https://www.eweek.com/news/humanoid-robots-work-mode-2026-apac-china/?">https://www.eweek.com/news/humanoid-robots-work-mode-2026-apac-china/?</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="cybersecurity law" data-search="Google LLC, 피고 1~25명 상대 소송 제기 (2026.6.12) Google LLC가 뉴욕 남부지방법원에 피고 1~25명을 상대로 RICO법에 따른 조직적 사기 행위를 주장하며 소송을 제기하고, 해당 행위의 중단과 구제를 요구했다. 사건은 초기 절차 단계로, 법원은 피고들에게 소환장을 발부해 송달하도록 명령했다. 소장은 피싱 사기범과 관련 온라인 사기 활동을 조직적 기업 형태의 범행으로 규정하고 RICO를 핵심 법적 근거로 제시했으며, 현재 사건 상태는 진행 중이다. Vega AI 소송 추적기">
   <h2>Google LLC, 피고 1~25명 상대 소송 제기 (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI 소송 추적기</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="Google LLC, 피고 1~25명 상대 소송 제기 (2026.6.12)
 
@@ -491,8 +583,10 @@ Google LLC가 뉴욕 남부지방법원에 피고 1~25명을 상대로 RICO법�
 https://ailawsuittracker.com/cases/google-llc-v-does-1-25-1-26-cv-04982/" onclick="copyEntry(this)">복사</button></div>
   <p>Google LLC가 뉴욕 남부지방법원에 피고 1~25명을 상대로 RICO법에 따른 조직적 사기 행위를 주장하며 소송을 제기하고, 해당 행위의 중단과 구제를 요구했다. 사건은 초기 절차 단계로, 법원은 피고들에게 소환장을 발부해 송달하도록 명령했다. 소장은 피싱 사기범과 관련 온라인 사기 활동을 조직적 기업 형태의 범행으로 규정하고 RICO를 핵심 법적 근거로 제시했으며, 현재 사건 상태는 진행 중이다. Vega</p>
   <p class="url"><a href="https://ailawsuittracker.com/cases/google-llc-v-does-1-25-1-26-cv-04982/">https://ailawsuittracker.com/cases/google-llc-v-does-1-25-1-26-cv-04982/</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="" data-search="AI 안전 연구자를 위한 3~6개월 버클리 방문 펠로십(2026.6.12) 컨스텔레이션은 AI 안전 분야 연구자를 대상으로 3~6개월(가을 2026 코호트) 방문 펠로십 프로그램을 운영하며, 버클리 연구센터에서 연구를 지속하면서 협업 기회를 얻을 수 있도록 지원한다. 주거(버클리), 여행, 식사 및 사무공간(평일 점심·저녁 제공, 주중 24/7 오피스 접근)과 비자 절차 안내를 제공한다. 지원은 가을 2026 코호트 기준으로 2026년 6월 12일까지이며, 원격 참여는 불가하고 평균 주 3일 이상 현장 근무를 기대한다. Constellation(컨스텔레이션)">
   <h2>AI 안전 연구자를 위한 3~6개월 버클리 방문 펠로십(2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">Constellation(컨스텔레이션)</span></span><button type="button" class="copy-btn" data-copy="AI 안전 연구자를 위한 3~6개월 버클리 방문 펠로십(2026.6.12)
 
@@ -501,8 +595,10 @@ https://ailawsuittracker.com/cases/google-llc-v-does-1-25-1-26-cv-04982/" onclic
 https://constellation.org/programs/visiting-fellowship" onclick="copyEntry(this)">복사</button></div>
   <p>컨스텔레이션은 AI 안전 분야 연구자를 대상으로 3~6개월(가을 2026 코호트) 방문 펠로십 프로그램을 운영하며, 버클리 연구센터에서 연구를 지속하면서 협업 기회를 얻을 수 있도록 지원한다. 주거(버클리), 여행, 식사 및 사무공간(평일 점심·저녁 제공, 주중 24/7 오피스 접근)과 비자 절차 안내를 제공한다. 지원은 가을 2026 코호트 기준으로 2026년 6월 12일까지이며, 원격 참여는 불가하고 평균 주 3일 이상 현장 근무를 기대한다.</p>
   <p class="url"><a href="https://constellation.org/programs/visiting-fellowship">https://constellation.org/programs/visiting-fellowship</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="Real-world AI evaluation design and planning (2026.6.12) CIRCLE 프레임워크로 배포 맥락에서 AI 시스템을 평가·계획하는 활동 묶음을 제시해, 모델 성능 중심을 넘어 안전성과 신뢰성 관련 이해관계자 결과를 도출하는 방법을 설명한다. AI lifecycle 관점에 기반해 field testing과 red teaming을 포함한 테스트 활동을 설계하고, AI 스택 밖의 이해관계자 관점에서 관심 결과를 산출하도록 구성한다. 교육 환경의 가상 사례를 통해, 전통적 모델 중심 평가를 보완하는 평가 접근이 이해관계자 목표에 맞춘 시스템 정렬과 배포 의사결정에 활용되는 흐름을 보여준다. ">
   <h2>Real-world AI evaluation design and planning (2026.6.12)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="Real-world AI evaluation design and planning (2026.6.12)
 
@@ -511,7 +607,9 @@ CIRCLE 프레임워크로 배포 맥락에서 AI 시스템을 평가·계획하�
 https://openalex.org/W7161101139" onclick="copyEntry(this)">복사</button></div>
   <p>CIRCLE 프레임워크로 배포 맥락에서 AI 시스템을 평가·계획하는 활동 묶음을 제시해, 모델 성능 중심을 넘어 안전성과 신뢰성 관련 이해관계자 결과를 도출하는 방법을 설명한다. AI lifecycle 관점에 기반해 field testing과 red teaming을 포함한 테스트 활동을 설계하고, AI 스택 밖의 이해관계자 관점에서 관심 결과를 산출하도록 구성한다. 교육 환경의 가상 사례를 통해, 전통적 모델 중심 평가를 보완하는 평가 접근이 이해관계자 목표에 맞춘 시스템 정렬과 배포 의사결정에 활용되는 흐름을 보여준다.</p>
   <p class="url"><a href="https://openalex.org/W7161101139">https://openalex.org/W7161101139</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-06-11.html">← 2026-06-11</a><a class="day-nav-btn" href="2026-06-13.html">2026-06-13 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-06-11.html">← 2026-06-11</a><a class="day-nav-btn" href="2026-06-13.html">2026-06-13 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -547,6 +645,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

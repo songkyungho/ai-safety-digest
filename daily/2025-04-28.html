@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,11 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Qwen3 235B-A22B (Alibaba/Qwen) (2025.4.28) Reasoning · Open · 128K ctx · $0.09/M · $0.58/M
+
+MMLU 68.2% · HE 77.6% · MATH 71.8% · AIME 81.5%
+
+MoE - 22B active / 235B total. Hybrid thinking/non-thinking modes. Overtook Llama in HuggingFace downloads. Apache 2.0. DemandSphere">
   <h2>🇨🇳 Qwen3 235B-A22B (Alibaba/Qwen) (2025.4.28)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Qwen3 235B-A22B (Alibaba/Qwen) (2025.4.28)
 
@@ -323,8 +379,10 @@ https://qwen.ai/blog/qwen3" onclick="copyEntry(this)">복사</button></div>
 <p>MMLU 68.2% · HE 77.6% · MATH 71.8% · AIME 81.5%</p>
 <p>MoE - 22B active / 235B total. Hybrid thinking/non-thinking modes. Overtook Llama in HuggingFace downloads. Apache 2.0.</p>
   <p class="url"><a href="https://qwen.ai/blog/qwen3">https://qwen.ai/blog/qwen3</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="healthcare physical_ai" data-search="미중 경쟁에 따른 중국의 AI 혁신전략과 한국 산업의 대응 (2025.4.28) 산업연구원은 미중 AI 경쟁에서 미국이 원천기술과 지식·창의서비스 활용에 강점을 보이는 반면, 중국은 제조 인프라를 바탕으로 AI의 신속한 상용화와 산업 적용을 추진한다고 분석했다. 중국은 로봇·자율주행·헬스케어를 중심으로 AI 제조 생태계를 구축하고 있으며, 전기차·배터리·태양광 산업에서도 AI 자율제조를 활용해 비용과 가격경쟁력을 높이고 있다. 한국은 반도체·로봇·바이오 제조에 AI를 신속히 적용하고, 원천기술보다 응용 완성도와 보안 안정성을 앞세운 K-AI 제조혁신 전략을 마련해야 한다. 산업연구원">
   <h2>🇨🇳🇰🇷 미중 경쟁에 따른 중국의 AI 혁신전략과 한국 산업의 대응 (2025.4.28)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">산업연구원</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="미중 경쟁에 따른 중국의 AI 혁신전략과 한국 산업의 대응 (2025.4.28)
 
@@ -333,8 +391,16 @@ https://qwen.ai/blog/qwen3" onclick="copyEntry(this)">복사</button></div>
 https://www.kiet.re.kr/common/file/userDownload?atch_no=ahOZ3H05LuopvGdeT9LEbA%3D%3D&amp;menu_cd=002002001&amp;lang=KR&amp;no=3043" onclick="copyEntry(this)">복사</button></div>
   <p>산업연구원은 미중 AI 경쟁에서 미국이 원천기술과 지식·창의서비스 활용에 강점을 보이는 반면, 중국은 제조 인프라를 바탕으로 AI의 신속한 상용화와 산업 적용을 추진한다고 분석했다. 중국은 로봇·자율주행·헬스케어를 중심으로 AI 제조 생태계를 구축하고 있으며, 전기차·배터리·태양광 산업에서도 AI 자율제조를 활용해 비용과 가격경쟁력을 높이고 있다. 한국은 반도체·로봇·바이오 제조에 AI를 신속히 적용하고, 원천기술보다 응용 완성도와 보안 안정성을 앞세운 K-AI 제조혁신 전략을 마련해야 한다.</p>
   <p class="url"><a href="https://www.kiet.re.kr/common/file/userDownload?atch_no=ahOZ3H05LuopvGdeT9LEbA%3D%3D&amp;menu_cd=002002001&amp;lang=KR&amp;no=3043">https://www.kiet.re.kr/common/file/userDownload?atch_no=ahOZ3H05LuopvGdeT9LEbA%3D%3D&amp;menu_cd=002002001&amp;lang=KR&amp;no=3043</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="agentic_ai" data-search="Anthropic의 AI가 소프트웨어 개발에 미치는 영향 분석 (2025.4.28) Anthropic의 연구에 따르면, AI 시스템이 소프트웨어 개발 분야에서 코딩 작업의 자동화와 보조 역할을 크게 확대하고 있다. 분석 결과, Claude Code를 사용한 대화의 79%가 자동화 작업에 초점을 맞추고 있었으며, 이는 전통적인 보조 역할(21%)보다 훨씬 높다. 반면, Claude.ai에서는 자동화 작업이 49%로 나타났다. 이러한 패턴은 AI 에이전트가 보편화됨에 따라 작업의 자동화가 더욱 증가할 것으로 예측된다.
+
+개발자들은 주로 웹 개발 언어인 JavaScript와 HTML을 사용하여 사용자 인터페이스와 사용자 경험 작업에 AI를 활용하고 있다. 이는 간단한 애플리케이션과 사용자 인터페이스 개발 분야가 AI 시스템으로부터 더 빠르게 영향을 받을 가능성이 있음을 시사한다. 반면, 백엔드 작업에 집중한 분야는 상대적으로 늦게 영향을 받을 것으로 보인다.
+
+또한, 스타트업들이 Claude Code를 초기 채택자로 활용하는 반면, 대기업들은 이를 더 늦게 도입하는 경향이 있어, 기술 도입의 격차가 경쟁 우위로 이어질 수 있다는 점도 강조되었다.
+
+이러한 변화는 개발자의 역할에 대한 질문을 제기하며, 특히 AI의 역할이 확대됨에 따라 개발자의 참여 정도가 어떻게 변화할지에 대한 관심을 불러일으키고 있다. Anthropic">
   <h2>🇺🇸 Anthropic의 AI가 소프트웨어 개발에 미치는 영향 분석 (2025.4.28)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic의 AI가 소프트웨어 개발에 미치는 영향 분석 (2025.4.28)
 
@@ -352,18 +418,8 @@ https://www.anthropic.com/news/impact-software-development" onclick="copyEntry(t
 <p>또한, 스타트업들이 Claude Code를 초기 채택자로 활용하는 반면, 대기업들은 이를 더 늦게 도입하는 경향이 있어, 기술 도입의 격차가 경쟁 우위로 이어질 수 있다는 점도 강조되었다.</p>
 <p>이러한 변화는 개발자의 역할에 대한 질문을 제기하며, 특히 AI의 역할이 확대됨에 따라 개발자의 참여 정도가 어떻게 변화할지에 대한 관심을 불러일으키고 있다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/impact-software-development">https://www.anthropic.com/news/impact-software-development</a></p>
-</article>
-<article class="entry cat-company">
-  <h2>앤서픽 경제 자문 위원회 출범 (2025.4.28)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤서픽</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="앤서픽 경제 자문 위원회 출범 (2025.4.28)
-
-앤서픽은 인공지능(AI) 개발과 배포의 경제적 영향에 대한 전문적인 지침을 제공하기 위해 경제 자문 위원회를 출범한다고 발표했습니다. 이 자문 위원회는 노동 시장, 경제 성장, 그리고 더 넓은 사회경제 시스템에 미치는 AI의 영향에 대해 앤서픽에 조언할 경제학자들로 구성됩니다. 이 작업은 앤서픽 경제 지수 연구 아젠다를 형성하는데 기여하며, 이 지수는 AI가 노동 시장과 글로벌 경제에 미치는 영향을 시간에 따라 이해하는 것을 목표로 합니다. 위원회의 전문가들은 AI의 진화가 일자리와 작업 방식에 미치는 기회와 도전을 이해하는 데 중요한 역할을 하게 됩니다. 이 연구는 전 세계의 정책 입안자, 연구자, 기업 리더들에게 자원이 될 것입니다. 초기 회원으로는 Tyler Cowen, Oeindrila Dube, John Horton, Anton Korinek, John List, Ioana Marinescu, Tomas J. Philipson, Silvana Tenreyro 등이 포함되어 있으며, 이후에도 추가 회원을 영입할 계획입니다.
-
-https://www.anthropic.com/news/introducing-the-anthropic-economic-advisory-counsel" onclick="copyEntry(this)">복사</button></div>
-  <p>앤서픽은 인공지능(AI) 개발과 배포의 경제적 영향에 대한 전문적인 지침을 제공하기 위해 경제 자문 위원회를 출범한다고 발표했습니다. 이 자문 위원회는 노동 시장, 경제 성장, 그리고 더 넓은 사회경제 시스템에 미치는 AI의 영향에 대해 앤서픽에 조언할 경제학자들로 구성됩니다. 이 작업은 앤서픽 경제 지수 연구 아젠다를 형성하는데 기여하며, 이 지수는 AI가 노동 시장과 글로벌 경제에 미치는 영향을 시간에 따라 이해하는 것을 목표로 합니다. 위원회의 전문가들은 AI의 진화가 일자리와 작업 방식에 미치는 기회와 도전을 이해하는 데 중요한 역할을 하게 됩니다. 이 연구는 전 세계의 정책 입안자, 연구자, 기업 리더들에게 자원이 될 것입니다. 초기 회원으로는 Tyler Cowen, Oeindrila Dube, John Horton, Anton Korinek, John List, Ioana Marinescu, Tomas J. Philipson, Silvana Tenreyro 등이 포함되어 있으며, 이후에도 추가 회원을 영입할 계획입니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/introducing-the-anthropic-economic-advisory-counsel">https://www.anthropic.com/news/introducing-the-anthropic-economic-advisory-counsel</a></p>
-</article>
-<article class="entry cat-company">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · Anthropic-Research</summary><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Anthropic AI가 소프트웨어 개발에 미치는 영향 분석 (2025.4.28) Anthropic의 연구에 따르면, AI 시스템이 소프트웨어 개발 분야에서 코딩 작업의 자동화와 보조 역할을 크게 확대하고 있다. 분석 결과, Claude Code를 사용한 대화의 79%가 자동화 작업에 초점을 맞추고 있으며, 이는 전통적인 보조 역할보다 훨씬 높은 비율이다. 특히 스타트업들이 Claude Code를 초기 채택자로 활용하고 있는 반면, 대기업들은 아직 뒤처져 있는 것으로 나타났다. 개발자들은 주로 웹 애플리케이션과 사용자 인터페이스 개발에 AI를 활용하고 있어, 이러한 분야의 일자리가 AI 도입으로 인해 더 빠르게 변화할 가능성이 있다. 그러나 자동화 과정에서도 여전히 인간의 개입이 필요하다는 점이 확인되었다. 이러한 변화는 AI 기술의 발전에 따라 개발자의 역할에도 영향을 미칠 것으로 보인다. Anthropic-Research">
   <h2>🇺🇸 Anthropic AI가 소프트웨어 개발에 미치는 영향 분석 (2025.4.28)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic AI가 소프트웨어 개발에 미치는 영향 분석 (2025.4.28)
 
@@ -372,7 +428,22 @@ Anthropic의 연구에 따르면, AI 시스템이 소프트웨어 개발 분야�
 https://www.anthropic.com/research/impact-software-개발" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic의 연구에 따르면, AI 시스템이 소프트웨어 개발 분야에서 코딩 작업의 자동화와 보조 역할을 크게 확대하고 있다. 분석 결과, Claude Code를 사용한 대화의 79%가 자동화 작업에 초점을 맞추고 있으며, 이는 전통적인 보조 역할보다 훨씬 높은 비율이다. 특히 스타트업들이 Claude Code를 초기 채택자로 활용하고 있는 반면, 대기업들은 아직 뒤처져 있는 것으로 나타났다. 개발자들은 주로 웹 애플리케이션과 사용자 인터페이스 개발에 AI를 활용하고 있어, 이러한 분야의 일자리가 AI 도입으로 인해 더 빠르게 변화할 가능성이 있다. 그러나 자동화 과정에서도 여전히 인간의 개입이 필요하다는 점이 확인되었다. 이러한 변화는 AI 기술의 발전에 따라 개발자의 역할에도 영향을 미칠 것으로 보인다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/impact-software-개발">https://www.anthropic.com/research/impact-software-개발</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-04-25.html">← 2025-04-25</a><a class="day-nav-btn" href="2025-04-30.html">2025-04-30 →</a></nav>
+  
+  
+</article></details>
+</article>
+<article class="entry cat-company" data-cat="company" data-topics="guideline" data-search="앤서픽 경제 자문 위원회 출범 (2025.4.28) 앤서픽은 인공지능(AI) 개발과 배포의 경제적 영향에 대한 전문적인 지침을 제공하기 위해 경제 자문 위원회를 출범한다고 발표했습니다. 이 자문 위원회는 노동 시장, 경제 성장, 그리고 더 넓은 사회경제 시스템에 미치는 AI의 영향에 대해 앤서픽에 조언할 경제학자들로 구성됩니다. 이 작업은 앤서픽 경제 지수 연구 아젠다를 형성하는데 기여하며, 이 지수는 AI가 노동 시장과 글로벌 경제에 미치는 영향을 시간에 따라 이해하는 것을 목표로 합니다. 위원회의 전문가들은 AI의 진화가 일자리와 작업 방식에 미치는 기회와 도전을 이해하는 데 중요한 역할을 하게 됩니다. 이 연구는 전 세계의 정책 입안자, 연구자, 기업 리더들에게 자원이 될 것입니다. 초기 회원으로는 Tyler Cowen, Oeindrila Dube, John Horton, Anton Korinek, John List, Ioana Marinescu, Tomas J. Philipson, Silvana Tenreyro 등이 포함되어 있으며, 이후에도 추가 회원을 영입할 계획입니다. 앤서픽">
+  <h2>앤서픽 경제 자문 위원회 출범 (2025.4.28)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤서픽</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="앤서픽 경제 자문 위원회 출범 (2025.4.28)
+
+앤서픽은 인공지능(AI) 개발과 배포의 경제적 영향에 대한 전문적인 지침을 제공하기 위해 경제 자문 위원회를 출범한다고 발표했습니다. 이 자문 위원회는 노동 시장, 경제 성장, 그리고 더 넓은 사회경제 시스템에 미치는 AI의 영향에 대해 앤서픽에 조언할 경제학자들로 구성됩니다. 이 작업은 앤서픽 경제 지수 연구 아젠다를 형성하는데 기여하며, 이 지수는 AI가 노동 시장과 글로벌 경제에 미치는 영향을 시간에 따라 이해하는 것을 목표로 합니다. 위원회의 전문가들은 AI의 진화가 일자리와 작업 방식에 미치는 기회와 도전을 이해하는 데 중요한 역할을 하게 됩니다. 이 연구는 전 세계의 정책 입안자, 연구자, 기업 리더들에게 자원이 될 것입니다. 초기 회원으로는 Tyler Cowen, Oeindrila Dube, John Horton, Anton Korinek, John List, Ioana Marinescu, Tomas J. Philipson, Silvana Tenreyro 등이 포함되어 있으며, 이후에도 추가 회원을 영입할 계획입니다.
+
+https://www.anthropic.com/news/introducing-the-anthropic-economic-advisory-counsel" onclick="copyEntry(this)">복사</button></div>
+  <p>앤서픽은 인공지능(AI) 개발과 배포의 경제적 영향에 대한 전문적인 지침을 제공하기 위해 경제 자문 위원회를 출범한다고 발표했습니다. 이 자문 위원회는 노동 시장, 경제 성장, 그리고 더 넓은 사회경제 시스템에 미치는 AI의 영향에 대해 앤서픽에 조언할 경제학자들로 구성됩니다. 이 작업은 앤서픽 경제 지수 연구 아젠다를 형성하는데 기여하며, 이 지수는 AI가 노동 시장과 글로벌 경제에 미치는 영향을 시간에 따라 이해하는 것을 목표로 합니다. 위원회의 전문가들은 AI의 진화가 일자리와 작업 방식에 미치는 기회와 도전을 이해하는 데 중요한 역할을 하게 됩니다. 이 연구는 전 세계의 정책 입안자, 연구자, 기업 리더들에게 자원이 될 것입니다. 초기 회원으로는 Tyler Cowen, Oeindrila Dube, John Horton, Anton Korinek, John List, Ioana Marinescu, Tomas J. Philipson, Silvana Tenreyro 등이 포함되어 있으며, 이후에도 추가 회원을 영입할 계획입니다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/introducing-the-anthropic-economic-advisory-counsel">https://www.anthropic.com/news/introducing-the-anthropic-economic-advisory-counsel</a></p>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-25.html">← 2025-04-25</a><a class="day-nav-btn" href="2025-04-30.html">2025-04-30 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -408,6 +479,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

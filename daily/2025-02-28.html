@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="standards" data-search="아시아·태평양 지역, AI 표준협력 강화한다 (2025.2.28) 산업통상자원부 국가기술표준원은 2025년 2월 27~28일 APEC 18개 회원국 대표단이 참석한 표준·적합성 위원회(SCSC) 총회를 열고 AI·수소경제 등 첨단산업의 표준·인증 협력 방안을 논의했다. 주요 의제로 표준·인증 규제 개선, 중소기업의 국제표준화 참여, 표준전문가 양성, 산업 AI 활용을 지원하는 표준 및 수소·연료전지 표준 공동연구 등이 다뤄졌다. 국가기술표준원은 AI 국제표준화와 인증체계 공동연구를 위한 ‘APEC AI 표준포럼’ 신설을 제안했으며, 2025년 8월 첫 포럼 컨퍼런스를 개최할 계획이다. 국가기술표준원">
   <h2>아시아·태평양 지역, AI 표준협력 강화한다 (2025.2.28)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국가기술표준원</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span></span></span><button type="button" class="copy-btn" data-copy="아시아·태평양 지역, AI 표준협력 강화한다 (2025.2.28)
 
@@ -317,8 +369,10 @@
 https://eiec.kdi.re.kr/policy/materialView.do?num=263803" onclick="copyEntry(this)">복사</button></div>
   <p>산업통상자원부 국가기술표준원은 2025년 2월 27~28일 APEC 18개 회원국 대표단이 참석한 표준·적합성 위원회(SCSC) 총회를 열고 AI·수소경제 등 첨단산업의 표준·인증 협력 방안을 논의했다. 주요 의제로 표준·인증 규제 개선, 중소기업의 국제표준화 참여, 표준전문가 양성, 산업 AI 활용을 지원하는 표준 및 수소·연료전지 표준 공동연구 등이 다뤄졌다. 국가기술표준원은 AI 국제표준화와 인증체계 공동연구를 위한 ‘APEC AI 표준포럼’ 신설을 제안했으며, 2025년 8월 첫 포럼 컨퍼런스를 개최할 계획이다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263803">https://eiec.kdi.re.kr/policy/materialView.do?num=263803</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="guideline" data-search="방송통신위원회, 생성형 인공지능 서비스 이용자 보호 가이드라인 발표 (2025.2.28) 방송통신위원회는 생성형 인공지능 개발사와 서비스 제공자를 대상으로 서비스 전반의 이용자 보호를 위한 가이드라인을 발표했으며, 3월 28일부터 시행한다. 가이드라인은 이용자 보호를 위한 4가지 기본원칙과 이를 실현하기 위한 6가지 실행 방식을 제시한다. 방통위는 생성형 인공지능의 부작용에 대응하기 위해 정보통신정책연구원과 인공지능 전문가가 참여한 연구반을 구성하고 국내외 피해 사례와 이용자 보호 현황을 검토해 마련했다. 방송통신위원회">
   <h2>방송통신위원회, 생성형 인공지능 서비스 이용자 보호 가이드라인 발표 (2025.2.28)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">방송통신위원회</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="방송통신위원회, 생성형 인공지능 서비스 이용자 보호 가이드라인 발표 (2025.2.28)
 
@@ -327,17 +381,21 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=263803" onclick="copyEntry(thi
 https://eiec.kdi.re.kr/policy/materialView.do?num=263856" onclick="copyEntry(this)">복사</button></div>
   <p>방송통신위원회는 생성형 인공지능 개발사와 서비스 제공자를 대상으로 서비스 전반의 이용자 보호를 위한 가이드라인을 발표했으며, 3월 28일부터 시행한다. 가이드라인은 이용자 보호를 위한 4가지 기본원칙과 이를 실현하기 위한 6가지 실행 방식을 제시한다. 방통위는 생성형 인공지능의 부작용에 대응하기 위해 정보통신정책연구원과 인공지능 전문가가 참여한 연구반을 구성하고 국내외 피해 사례와 이용자 보호 현황을 검토해 마련했다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263856">https://eiec.kdi.re.kr/policy/materialView.do?num=263856</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="law standards" data-search="LLM 안전성과 편향을 점검하는 10가지 벤치마크(2025.2.28) LLM이 실제 서비스에 적용될수록 안전성 확보가 중요해졌으며, 이를 위해 진실성·독성·편향·강건성 등 다양한 위험을 평가하는 전용 safety benchmarks가 활용된다고 소개한다. 글에서는 TruthfulQA(거짓/오해 유도), ToxiGen(독성·혐오 검출), HHH(도움/정직/무해성), ForbiddenQuestions(안전하지 않은 요청 거부) 등 10개 대표 벤치마크의 데이터 규모와 평가 목적을 요약한다. 또한 DecodingTrust(다각도 신뢰성 프레임워크), AdvBench·AnthropicRedTeam(공격/우회에 대한 취약성), HELM Safety(표준화된 안전평가 구성), RealToxicityPrompt·DoNotAnswer(자연발생 독성 및 가드레일 거부 성능)도 함께 설명한다. Evidently AI 블로그">
   <h2>LLM 안전성과 편향을 점검하는 10가지 벤치마크(2025.2.28)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Evidently AI 블로그</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span></span></span><button type="button" class="copy-btn" data-copy="LLM 안전성과 편향을 점검하는 10가지 벤치마크(2025.2.28)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Evidently AI 블로그</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="표준">📏</span></span></span><button type="button" class="copy-btn" data-copy="LLM 안전성과 편향을 점검하는 10가지 벤치마크(2025.2.28)
 
 LLM이 실제 서비스에 적용될수록 안전성 확보가 중요해졌으며, 이를 위해 진실성·독성·편향·강건성 등 다양한 위험을 평가하는 전용 safety benchmarks가 활용된다고 소개한다. 글에서는 TruthfulQA(거짓/오해 유도), ToxiGen(독성·혐오 검출), HHH(도움/정직/무해성), ForbiddenQuestions(안전하지 않은 요청 거부) 등 10개 대표 벤치마크의 데이터 규모와 평가 목적을 요약한다. 또한 DecodingTrust(다각도 신뢰성 프레임워크), AdvBench·AnthropicRedTeam(공격/우회에 대한 취약성), HELM Safety(표준화된 안전평가 구성), RealToxicityPrompt·DoNotAnswer(자연발생 독성 및 가드레일 거부 성능)도 함께 설명한다.
 
 https://evidentlyai.com/blog/llm-safety-bias-benchmarks" onclick="copyEntry(this)">복사</button></div>
   <p>LLM이 실제 서비스에 적용될수록 안전성 확보가 중요해졌으며, 이를 위해 진실성·독성·편향·강건성 등 다양한 위험을 평가하는 전용 safety benchmarks가 활용된다고 소개한다. 글에서는 TruthfulQA(거짓/오해 유도), ToxiGen(독성·혐오 검출), HHH(도움/정직/무해성), ForbiddenQuestions(안전하지 않은 요청 거부) 등 10개 대표 벤치마크의 데이터 규모와 평가 목적을 요약한다. 또한 DecodingTrust(다각도 신뢰성 프레임워크), AdvBench·AnthropicRedTeam(공격/우회에 대한 취약성), HELM Safety(표준화된 안전평가 구성), RealToxicityPrompt·DoNotAnswer(자연발생 독성 및 가드레일 거부 성능)도 함께 설명한다.</p>
   <p class="url"><a href="https://evidentlyai.com/blog/llm-safety-bias-benchmarks">https://evidentlyai.com/blog/llm-safety-bias-benchmarks</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-02-27.html">← 2025-02-27</a><a class="day-nav-btn" href="2025-03-02.html">2025-03-02 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-27.html">← 2025-02-27</a><a class="day-nav-btn" href="2025-03-02.html">2025-03-02 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -373,6 +431,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

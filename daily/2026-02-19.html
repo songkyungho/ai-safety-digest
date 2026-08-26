@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,21 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button></div><div class="digest-feed"><article class="entry cat-db" data-cat="db" data-topics="frontier national_security" data-search="Gemini 3.1 Pro 공개(2026.2.19) 딥마인드의 모델 카드에 따르면 Gemini 3.1 Pro는 텍스트·이미지·오디오·비디오 및 코드 저장소 등 방대한 멀티모달 입력을 이해할 수 있으며, 최대 1M 토큰 컨텍스트와 64K 토큰 출력이 가능하다고 명시돼 있습니다. 평가 결과는 벤치마크 전반에서 Gemini 3 Pro 대비 추론 및 멀티모달 성능이 유의미하게 향상되었다고 제시되며, 안전·톤 관련 내부 자동 평가에서는 전반적으로 개선과 낮은 무근거 거절(unjustified refusals)을 유지했다고 설명합니다. 또한 Frontier Safety 프레임워크에 따라 CBRN·사이버·유해 조작·정렬 등 위험 도메인에서 임계 수준(CCL) 도달 여부를 평가했으며, CCL 미도달로 결론 내린 항목들이 포함돼 있습니다. 딥마인드(DeepMind) 공식 모델 카드">
+  <h2>Gemini 3.1 Pro 공개(2026.2.19)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">딥마인드(DeepMind) 공식 모델 카드</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Gemini 3.1 Pro 공개(2026.2.19)
+
+딥마인드의 모델 카드에 따르면 Gemini 3.1 Pro는 텍스트·이미지·오디오·비디오 및 코드 저장소 등 방대한 멀티모달 입력을 이해할 수 있으며, 최대 1M 토큰 컨텍스트와 64K 토큰 출력이 가능하다고 명시돼 있습니다. 평가 결과는 벤치마크 전반에서 Gemini 3 Pro 대비 추론 및 멀티모달 성능이 유의미하게 향상되었다고 제시되며, 안전·톤 관련 내부 자동 평가에서는 전반적으로 개선과 낮은 무근거 거절(unjustified refusals)을 유지했다고 설명합니다. 또한 Frontier Safety 프레임워크에 따라 CBRN·사이버·유해 조작·정렬 등 위험 도메인에서 임계 수준(CCL) 도달 여부를 평가했으며, CCL 미도달로 결론 내린 항목들이 포함돼 있습니다.
+
+https://deepmind.google/models/model-cards/gemini-3-1-pro/" onclick="copyEntry(this)">복사</button></div>
+  <p>딥마인드의 모델 카드에 따르면 Gemini 3.1 Pro는 텍스트·이미지·오디오·비디오 및 코드 저장소 등 방대한 멀티모달 입력을 이해할 수 있으며, 최대 1M 토큰 컨텍스트와 64K 토큰 출력이 가능하다고 명시돼 있습니다. 평가 결과는 벤치마크 전반에서 Gemini 3 Pro 대비 추론 및 멀티모달 성능이 유의미하게 향상되었다고 제시되며, 안전·톤 관련 내부 자동 평가에서는 전반적으로 개선과 낮은 무근거 거절(unjustified refusals)을 유지했다고 설명합니다. 또한 Frontier Safety 프레임워크에 따라 CBRN·사이버·유해 조작·정렬 등 위험 도메인에서 임계 수준(CCL) 도달 여부를 평가했으며, CCL 미도달로 결론 내린 항목들이 포함돼 있습니다.</p>
+  <p class="url"><a href="https://deepmind.google/models/model-cards/gemini-3-1-pro/">https://deepmind.google/models/model-cards/gemini-3-1-pro/</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · DemandSphere</summary><article class="entry cat-company" data-cat="company" data-topics="" data-search="Gemini 3.1 Pro (Google) (2026.2.19) Reasoning · Closed · 1000K ctx · $2/M · $12/M
+
+GPQA 94.3% · SWE 80.6% · MMLU 84% · HE 95% · MATH 93% · AIME 91.2% · HLE 41%
+
+First model to break 1500 LMArena Elo. 94.3% GPQA Diamond. 41% HLE. Deep Think mode. 1M context. $2/$12 per 1M tokens ($4/$18 above 200K). DemandSphere">
   <h2>Gemini 3.1 Pro (Google) (2026.2.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span></span><button type="button" class="copy-btn" data-copy="Gemini 3.1 Pro (Google) (2026.2.19)
 
@@ -323,8 +389,11 @@ https://ai.google.dev/gemini-api/docs/models" onclick="copyEntry(this)">복사</
 <p>GPQA 94.3% · SWE 80.6% · MMLU 84% · HE 95% · MATH 93% · AIME 91.2% · HLE 41%</p>
 <p>First model to break 1500 LMArena Elo. 94.3% GPQA Diamond. 41% HLE. Deep Think mode. 1M context. $2/$12 per 1M tokens ($4/$18 above 200K).</p>
   <p class="url"><a href="https://ai.google.dev/gemini-api/docs/models">https://ai.google.dev/gemini-api/docs/models</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="guideline norms" data-search="OECD, 기업을 위한 &#x27;책임 있는 AI를 위한 실사 가이드라인&#x27; 발간 (2026.2.19) OECD는 다국적 기업들이 인공지능(AI)을 개발하고 사용할 때 발생할 수 있는 잠재적 악영향을 식별하고 완화하기 위한 위험 관리 실사 지침을 발표. 기업 가치사슬 전반에서 OECD AI 원칙을 구현할 수 있도록 6단계의 실천적 프레임워크를 제공하여, 각국의 규제와 상호 운용 가능한 책임 있는 비즈니스를 지원. OECD">
   <h2>OECD, 기업을 위한 &#x27;책임 있는 AI를 위한 실사 가이드라인&#x27; 발간 (2026.2.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OECD</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="OECD, 기업을 위한 &#x27;책임 있는 AI를 위한 실사 가이드라인&#x27; 발간 (2026.2.19)
 
@@ -333,8 +402,10 @@ OECD는 다국적 기업들이 인공지능(AI)을 개발하고 사용할 때 �
 https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/02/oecd-due-diligence-guidance-for-responsible-ai_7831bb49/41671712-en.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>OECD는 다국적 기업들이 인공지능(AI)을 개발하고 사용할 때 발생할 수 있는 잠재적 악영향을 식별하고 완화하기 위한 위험 관리 실사 지침을 발표. 기업 가치사슬 전반에서 OECD AI 원칙을 구현할 수 있도록 6단계의 실천적 프레임워크를 제공하여, 각국의 규제와 상호 운용 가능한 책임 있는 비즈니스를 지원.</p>
   <p class="url"><a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/02/oecd-due-diligence-guidance-for-responsible-ai_7831bb49/41671712-en.pdf">https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/02/oecd-due-diligence-guidance-for-responsible-ai_7831bb49/41671712-en.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="Gemini 3.1 Pro, 복잡한 작업을 위한 더욱 똑똑한 모델 발표 (2026.2.19) 구글이 복잡한 문제 해결과 고급 추론을 강화한 Gemini 3.1 Pro를 공개하고, 개발자·기업·소비자 제품에 프리뷰로 배포한다. 이 모델은 ARC-AGI-2에서 77.1%의 검증 점수를 기록해 Gemini 3 Pro보다 두 배 이상 높은 추론 성능을 보였으며, 데이터 종합·복잡한 주제 설명·코드 기반 애니메이션과 대화형 설계 등에 활용할 수 있다. Gemini API, AI Studio, Vertex AI, Gemini 앱, NotebookLM 등에서 제공되며, Google AI Pro·Ultra 사용자는 Gemini 앱과 NotebookLM에서 더 높은 한도 또는 이용 권한을 받는다. 구글 딥마인드">
   <h2>Gemini 3.1 Pro, 복잡한 작업을 위한 더욱 똑똑한 모델 발표 (2026.2.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span></span><button type="button" class="copy-btn" data-copy="Gemini 3.1 Pro, 복잡한 작업을 위한 더욱 똑똑한 모델 발표 (2026.2.19)
 
@@ -343,8 +414,12 @@ https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/02/oecd-due-d
 https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/" onclick="copyEntry(this)">복사</button></div>
   <p>구글이 복잡한 문제 해결과 고급 추론을 강화한 Gemini 3.1 Pro를 공개하고, 개발자·기업·소비자 제품에 프리뷰로 배포한다. 이 모델은 ARC-AGI-2에서 77.1%의 검증 점수를 기록해 Gemini 3 Pro보다 두 배 이상 높은 추론 성능을 보였으며, 데이터 종합·복잡한 주제 설명·코드 기반 애니메이션과 대화형 설계 등에 활용할 수 있다. Gemini API, AI Studio, Vertex AI, Gemini 앱, NotebookLM 등에서 제공되며, Google AI Pro·Ultra 사용자는 Gemini 앱과 NotebookLM에서 더 높은 한도 또는 이용 권한을 받는다.</p>
   <p class="url"><a href="https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/">https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="agentic_ai safety_research" data-search="CIFAR, 글로벌 AI safety initiative에 100만 달러 투입(2026.2.19) CAISI Research Program 소속 4개 신규 캐나다 연구 프로젝트가 UK AI Security Institute가 주도하는 AI Alignment Project에 편입되며, 1년간 프로젝트당 최대 165,000달러와 컴퓨트 자원·전문가 지원이 제공됨
+
+CIFAR는 캐나다 AI Safety Institute(CAISI) Research Program을 통해 AI alignment 분야 연구 프로젝트 4개를 신규 선정했다고 밝혔다. 이 프로젝트들은 게임이론, 통계, 물리 기반 데이터 생성, 희귀 사건 위험 정량화 등 방법론을 활용해 다중 에이전트 환경에서의 안전 보장, 배포 후 misalignment 대응, scaling laws 검증, jailbreak 등 long-tail failure의 평가·기준 설정을 다룬다. 선정 결과로 CAISI Research Program의 연구 프로젝트 수는 총 16개로 늘었으며, 프로그램의 성과는 2025 Year in Review 보고서에서 조명됐다고 전했다. CIFAR(캐나다 고등연구원)">
   <h2>🇬🇧 CIFAR, 글로벌 AI safety initiative에 100만 달러 투입(2026.2.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">CIFAR(캐나다 고등연구원)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="CIFAR, 글로벌 AI safety initiative에 100만 달러 투입(2026.2.19)
 
@@ -356,10 +431,24 @@ https://cifar.ca/cifarnews/2026/02/19/cifar-commits-1m-to-global-ai-safety-initi
   <p>CAISI Research Program 소속 4개 신규 캐나다 연구 프로젝트가 UK AI Security Institute가 주도하는 AI Alignment Project에 편입되며, 1년간 프로젝트당 최대 165,000달러와 컴퓨트 자원·전문가 지원이 제공됨</p>
 <p>CIFAR는 캐나다 AI Safety Institute(CAISI) Research Program을 통해 AI alignment 분야 연구 프로젝트 4개를 신규 선정했다고 밝혔다. 이 프로젝트들은 게임이론, 통계, 물리 기반 데이터 생성, 희귀 사건 위험 정량화 등 방법론을 활용해 다중 에이전트 환경에서의 안전 보장, 배포 후 misalignment 대응, scaling laws 검증, jailbreak 등 long-tail failure의 평가·기준 설정을 다룬다. 선정 결과로 CAISI Research Program의 연구 프로젝트 수는 총 16개로 늘었으며, 프로그램의 성과는 2025 Year in Review 보고서에서 조명됐다고 전했다.</p>
   <p class="url"><a href="https://cifar.ca/cifarnews/2026/02/19/cifar-commits-1m-to-global-ai-safety-initiative/">https://cifar.ca/cifarnews/2026/02/19/cifar-commits-1m-to-global-ai-safety-initiative/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="safety_research" data-search="AI 생물학 RCT 운영을 통해 얻은 다섯 가지 교훈 (2026.2.19) AI 기술이 생물학 분야에서 전문가 수준을 넘어서는 성과를 보이면서, 실제 초보자들의 업무 능력 향상에 미치는 영향에 대한 의문이 제기되었다. METR은 AI-생물학 RCT(무작위 대조 시험)를 운영하며 다섯 가지 교훈을 도출했다:
+
+1. **장기적인 엄격한 연구는 상업적 출시 일정에 맞지 않음**: RCT는 몇 주에서 몇 달이 걸리지만, AI 기업들은 모델 출시 후 며칠 내에 배포를 계획한다. 따라서 정기적인 심층 RCT 실행이 필요하다.
+
+2. **RCT 확대를 위한 주요 장벽은 인재 부족**: 특히 우수한 운영 인력이 부족하다. 비용보다는 인력 확보가 더 큰 문제이며, 이를 해결하기 위해 전문 팀을 구성하는 것이 중요하다.
+
+3. **중요한 위협 모델을 위한 RCT 설계와 실행의 어려움**: 현재 RCT는 초보자의 능력을 평가하지만, 향후에는 전문가 팀을 대상으로 한 복잡한 연구가 필요할 것이다. 이러한 연구를 위한 초기 설계가 필요하다.
+
+4. **RCT는 유용하지만 한계가 있음**: RCT 결과는 중요한 증거이지만, 단독으로 위험 평가를 대체할 수는 없다. RCT 방법론의 투명성과 사전 예측 등록이 중요하다.
+
+5. **AI 기업들은 선제적으로 안전 장치를 개발해야 함**: RCT가 위험을 식별하기 전에 안전 장치를 미리 개발하고 테스트해야 한다. 이는 비용 절감과 신뢰성 향상에 도움이 된다.
+
+결론적으로, 증거 기반의 AI 정책은 중요하지만 복잡하다. 최근 RCT는 아직 배워야 할 많은 것을 보여주며, 미래의 AI 위험을 평가하기 위한 증거 기준이 높아질 것으로 보인다. METR">
   <h2>🇺🇸 AI 생물학 RCT 운영을 통해 얻은 다섯 가지 교훈 (2026.2.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="AI 생물학 RCT 운영을 통해 얻은 다섯 가지 교훈 (2026.2.19)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="AI 생물학 RCT 운영을 통해 얻은 다섯 가지 교훈 (2026.2.19)
 
 AI 기술이 생물학 분야에서 전문가 수준을 넘어서는 성과를 보이면서, 실제 초보자들의 업무 능력 향상에 미치는 영향에 대한 의문이 제기되었다. METR은 AI-생물학 RCT(무작위 대조 시험)를 운영하며 다섯 가지 교훈을 도출했다:
 
@@ -384,8 +473,10 @@ https://metr.org/blog/2026-02-19-five-lessons-from-ai-biology-rct/" onclick="cop
 <p>5. **AI 기업들은 선제적으로 안전 장치를 개발해야 함**: RCT가 위험을 식별하기 전에 안전 장치를 미리 개발하고 테스트해야 한다. 이는 비용 절감과 신뢰성 향상에 도움이 된다.</p>
 <p>결론적으로, 증거 기반의 AI 정책은 중요하지만 복잡하다. 최근 RCT는 아직 배워야 할 많은 것을 보여주며, 미래의 AI 위험을 평가하기 위한 증거 기준이 높아질 것으로 보인다.</p>
   <p class="url"><a href="https://metr.org/blog/2026-02-19-five-lessons-from-ai-biology-rct/">https://metr.org/blog/2026-02-19-five-lessons-from-ai-biology-rct/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="탐험가 (2026.2.19) 산토시가 발행하는 ‘아굼베 AI 뉴스레터’의 구독 안내 페이지다. 첫 호 발행을 앞두고 구독 신청과 지인 공유를 권하고 있다. IAPS">
   <h2>🇺🇸 탐험가 (2026.2.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">IAPS</span></span><button type="button" class="copy-btn" data-copy="탐험가 (2026.2.19)
 
@@ -394,8 +485,10 @@ https://metr.org/blog/2026-02-19-five-lessons-from-ai-biology-rct/" onclick="cop
 https://iaps.substack.com/p/coming-soon" onclick="copyEntry(this)">복사</button></div>
   <p>산토시가 발행하는 ‘아굼베 AI 뉴스레터’의 구독 안내 페이지다. 첫 호 발행을 앞두고 구독 신청과 지인 공유를 권하고 있다.</p>
   <p class="url"><a href="https://iaps.substack.com/p/coming-soon">https://iaps.substack.com/p/coming-soon</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="ChatGPT의 DSA 규제 적용 논의 (2026.2.19) 본 논문은 ChatGPT가 EU 디지털 서비스법(DSA) 하에서 매우 큰 온라인 검색 엔진과 플랫폼의 특성을 동시에 지닌 하이브리드 서비스로 분류되어야 함을 주장한다. ChatGPT의 빠른 사용자 증가와 기능적 특성은 전통적인 검색 엔진과 플랫폼의 구분을 모호하게 만들며, 이에 따라 더욱 엄격한 DSA 규제 적용이 필요하다는 점을 강조한다. ChatGPT는 정보 검색과 사용자 상호작용을 결합한 새로운 유형의 서비스로, 불법 콘텐츠 확산, 기본권 침해, 민주주의 위협, 공중 보건 문제 등 다양한 위험 요소를 내포하고 있어, 사용자 기준을 충족함에 따라 강화된 규제 의무가 적용되어야 한다는 입장이다. TheFutureSociety">
   <h2>🇪🇺 ChatGPT의 DSA 규제 적용 논의 (2026.2.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">TheFutureSociety</span></span><button type="button" class="copy-btn" data-copy="ChatGPT의 DSA 규제 적용 논의 (2026.2.19)
 
@@ -404,8 +497,10 @@ https://iaps.substack.com/p/coming-soon" onclick="copyEntry(this)">복사</butto
 https://thefuturesociety.org/chatgpt_under_the_dsa/" onclick="copyEntry(this)">복사</button></div>
   <p>본 논문은 ChatGPT가 EU 디지털 서비스법(DSA) 하에서 매우 큰 온라인 검색 엔진과 플랫폼의 특성을 동시에 지닌 하이브리드 서비스로 분류되어야 함을 주장한다. ChatGPT의 빠른 사용자 증가와 기능적 특성은 전통적인 검색 엔진과 플랫폼의 구분을 모호하게 만들며, 이에 따라 더욱 엄격한 DSA 규제 적용이 필요하다는 점을 강조한다. ChatGPT는 정보 검색과 사용자 상호작용을 결합한 새로운 유형의 서비스로, 불법 콘텐츠 확산, 기본권 침해, 민주주의 위협, 공중 보건 문제 등 다양한 위험 요소를 내포하고 있어, 사용자 기준을 충족함에 따라 강화된 규제 의무가 적용되어야 한다는 입장이다.</p>
   <p class="url"><a href="https://thefuturesociety.org/chatgpt_under_the_dsa/">https://thefuturesociety.org/chatgpt_under_the_dsa/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="LLM이 생물학 초보자의 실험 단계 수행에는 일부 도움을 주지만, 전체 절차 성공률은 유의미하게 개선하지 못함 (2026.2.19) arXiv에 게재된 연구는 2025년 6~8월(사전등록·연구자 눈가림) 동안 생물학 초보자 153명을 대상으로 LLM 보조가 바이러스 역유전학 워크플로우를 모델링한 실험 과제 수행에 미치는 영향을 평가했다. 주요 결과로 전체 워크플로우 완료율은 LLM군 5.2%, 인터넷군 6.6%로 유의미한 차이가 없었고( P=0.759 ), 개별 과제의 성공률도 전반적으로 큰 차이를 보이지 않았다. 다만 5개 과제 중 4개에서 LLM군의 성공률이 수치상 높았으며, 특히 세포배양 과제는 LLM군 68.8% vs 인터넷군 55.3%로 유의수준에 근접했다(P=0.059). 연구진은 중간 단계로의 진행은 LLM군에서 더 높게 나타났지만, 복잡한 실험 절차의 실질적 완수는 크게 개선되지 않았다고 결론냈다. arXiv">
   <h2>LLM이 생물학 초보자의 실험 단계 수행에는 일부 도움을 주지만, 전체 절차 성공률은 유의미하게 개선하지 못함 (2026.2.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="LLM이 생물학 초보자의 실험 단계 수행에는 일부 도움을 주지만, 전체 절차 성공률은 유의미하게 개선하지 못함 (2026.2.19)
 
@@ -414,18 +509,10 @@ arXiv에 게재된 연구는 2025년 6~8월(사전등록·연구자 눈가림) �
 https://arxiv.org/abs/2602.16703" onclick="copyEntry(this)">복사</button></div>
   <p>arXiv에 게재된 연구는 2025년 6~8월(사전등록·연구자 눈가림) 동안 생물학 초보자 153명을 대상으로 LLM 보조가 바이러스 역유전학 워크플로우를 모델링한 실험 과제 수행에 미치는 영향을 평가했다. 주요 결과로 전체 워크플로우 완료율은 LLM군 5.2%, 인터넷군 6.6%로 유의미한 차이가 없었고( P=0.759 ), 개별 과제의 성공률도 전반적으로 큰 차이를 보이지 않았다. 다만 5개 과제 중 4개에서 LLM군의 성공률이 수치상 높았으며, 특히 세포배양 과제는 LLM군 68.8% vs 인터넷군 55.3%로 유의수준에 근접했다(P=0.059). 연구진은 중간 단계로의 진행은 LLM군에서 더 높게 나타났지만, 복잡한 실험 절차의 실질적 완수는 크게 개선되지 않았다고 결론냈다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2602.16703">https://arxiv.org/abs/2602.16703</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
-  <h2>Gemini 3.1 Pro 공개(2026.2.19)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">딥마인드(DeepMind) 공식 모델 카드</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Gemini 3.1 Pro 공개(2026.2.19)
-
-딥마인드의 모델 카드에 따르면 Gemini 3.1 Pro는 텍스트·이미지·오디오·비디오 및 코드 저장소 등 방대한 멀티모달 입력을 이해할 수 있으며, 최대 1M 토큰 컨텍스트와 64K 토큰 출력이 가능하다고 명시돼 있습니다. 평가 결과는 벤치마크 전반에서 Gemini 3 Pro 대비 추론 및 멀티모달 성능이 유의미하게 향상되었다고 제시되며, 안전·톤 관련 내부 자동 평가에서는 전반적으로 개선과 낮은 무근거 거절(unjustified refusals)을 유지했다고 설명합니다. 또한 Frontier Safety 프레임워크에 따라 CBRN·사이버·유해 조작·정렬 등 위험 도메인에서 임계 수준(CCL) 도달 여부를 평가했으며, CCL 미도달로 결론 내린 항목들이 포함돼 있습니다.
-
-https://deepmind.google/models/model-cards/gemini-3-1-pro/" onclick="copyEntry(this)">복사</button></div>
-  <p>딥마인드의 모델 카드에 따르면 Gemini 3.1 Pro는 텍스트·이미지·오디오·비디오 및 코드 저장소 등 방대한 멀티모달 입력을 이해할 수 있으며, 최대 1M 토큰 컨텍스트와 64K 토큰 출력이 가능하다고 명시돼 있습니다. 평가 결과는 벤치마크 전반에서 Gemini 3 Pro 대비 추론 및 멀티모달 성능이 유의미하게 향상되었다고 제시되며, 안전·톤 관련 내부 자동 평가에서는 전반적으로 개선과 낮은 무근거 거절(unjustified refusals)을 유지했다고 설명합니다. 또한 Frontier Safety 프레임워크에 따라 CBRN·사이버·유해 조작·정렬 등 위험 도메인에서 임계 수준(CCL) 도달 여부를 평가했으며, CCL 미도달로 결론 내린 항목들이 포함돼 있습니다.</p>
-  <p class="url"><a href="https://deepmind.google/models/model-cards/gemini-3-1-pro/">https://deepmind.google/models/model-cards/gemini-3-1-pro/</a></p>
-</article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier" data-search="Researchers Allege OpenAI Involvement In User Screening Against Government Watchlists (2026.2.19) 요약불가 AI-Risk-Explorer">
   <h2>🇺🇸 Researchers Allege OpenAI Involvement In User Screening Against Government Watchlists (2026.2.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Researchers Allege OpenAI Involvement In User Screening Against Government Watchlists (2026.2.19)
 
@@ -434,7 +521,9 @@ https://deepmind.google/models/model-cards/gemini-3-1-pro/" onclick="copyEntry(t
 https://vmfunc.re/blog/persona" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://vmfunc.re/blog/persona">https://vmfunc.re/blog/persona</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-02-18.html">← 2026-02-18</a><a class="day-nav-btn" href="2026-02-20.html">2026-02-20 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-18.html">← 2026-02-18</a><a class="day-nav-btn" href="2026-02-20.html">2026-02-20 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -470,6 +559,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

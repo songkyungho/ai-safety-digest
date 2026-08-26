@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,17 +360,21 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="open_weight" data-search="AI 개방성: 정책입안자를 위한 입문서 (2025.8.21) 이 보고서는 인공지능의 개방성 개념과 관련 용어, 개방성의 다양한 수준을 설명한다. 소프트웨어에서 유래한 ‘오픈소스’라는 용어만으로는 AI의 복잡한 특성을 충분히 설명하기 어렵다고 분석한다. 실험 데이터를 바탕으로 오픈 웨이트 파운데이션 모델의 동향과 잠재적 이점·위험을 검토하고, 생성형 AI 파운데이션 모델의 개방성과 책임 있는 거버넌스 간 균형을 위한 정책 논의를 지원한다. 경제협력개발기구(OECD)">
   <h2>AI 개방성: 정책입안자를 위한 입문서 (2025.8.21)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">경제협력개발기구(OECD)</span></span><button type="button" class="copy-btn" data-copy="AI 개방성: 정책입안자를 위한 입문서 (2025.8.21)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">경제협력개발기구(OECD)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="오픈소스·오픈웨이트">🔓</span></span></span><button type="button" class="copy-btn" data-copy="AI 개방성: 정책입안자를 위한 입문서 (2025.8.21)
 
 이 보고서는 인공지능의 개방성 개념과 관련 용어, 개방성의 다양한 수준을 설명한다. 소프트웨어에서 유래한 ‘오픈소스’라는 용어만으로는 AI의 복잡한 특성을 충분히 설명하기 어렵다고 분석한다. 실험 데이터를 바탕으로 오픈 웨이트 파운데이션 모델의 동향과 잠재적 이점·위험을 검토하고, 생성형 AI 파운데이션 모델의 개방성과 책임 있는 거버넌스 간 균형을 위한 정책 논의를 지원한다.
 
 https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/08/ai-openness_958d292b/02f73362-en.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>이 보고서는 인공지능의 개방성 개념과 관련 용어, 개방성의 다양한 수준을 설명한다. 소프트웨어에서 유래한 ‘오픈소스’라는 용어만으로는 AI의 복잡한 특성을 충분히 설명하기 어렵다고 분석한다. 실험 데이터를 바탕으로 오픈 웨이트 파운데이션 모델의 동향과 잠재적 이점·위험을 검토하고, 생성형 AI 파운데이션 모델의 개방성과 책임 있는 거버넌스 간 균형을 위한 정책 논의를 지원한다.</p>
   <p class="url"><a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/08/ai-openness_958d292b/02f73362-en.pdf">https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/08/ai-openness_958d292b/02f73362-en.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="norms" data-search="앤서픽, 고등교육 자문위원회 및 AI 유창성 과정 출시 (2025.8.21) 앤서픽은 고등교육 분야에서 AI의 윤리적이고 책임감 있는 도입을 지원하기 위해 고등교육 자문위원회와 AI 유창성 과정을 출시했습니다. 자문위원회는 교육 기술과 학습 과학 분야의 전문가들로 구성되어 있으며, 클라우데(Claude)의 교육 분야 적용을 안내합니다. 또한 세 가지 AI 유창성 과정은 교육자와 학생들이 실질적이고 책임감 있는 AI 기술을 배울 수 있도록 설계되었습니다. 이 과정들은 크리에이티브 커먼즈 라이선스 하에 공개되어 있어 모든 기관이 수정 및 활용할 수 있습니다. 이러한 노력은 미래의 AI 교육 환경을 공동으로 창조하는 데 초점을 맞추고 있습니다.
+
+**요약불가** 앤서픽">
   <h2>앤서픽, 고등교육 자문위원회 및 AI 유창성 과정 출시 (2025.8.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤서픽</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="앤서픽, 고등교육 자문위원회 및 AI 유창성 과정 출시 (2025.8.21)
 
@@ -330,8 +386,10 @@ https://www.anthropic.com/news/anthropic-higher-education-initiatives" onclick="
   <p>앤서픽은 고등교육 분야에서 AI의 윤리적이고 책임감 있는 도입을 지원하기 위해 고등교육 자문위원회와 AI 유창성 과정을 출시했습니다. 자문위원회는 교육 기술과 학습 과학 분야의 전문가들로 구성되어 있으며, 클라우데(Claude)의 교육 분야 적용을 안내합니다. 또한 세 가지 AI 유창성 과정은 교육자와 학생들이 실질적이고 책임감 있는 AI 기술을 배울 수 있도록 설계되었습니다. 이 과정들은 크리에이티브 커먼즈 라이선스 하에 공개되어 있어 모든 기관이 수정 및 활용할 수 있습니다. 이러한 노력은 미래의 AI 교육 환경을 공동으로 창조하는 데 초점을 맞추고 있습니다.</p>
 <p>**요약불가**</p>
   <p class="url"><a href="https://www.anthropic.com/news/anthropic-higher-education-initiatives">https://www.anthropic.com/news/anthropic-higher-education-initiatives</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier safety_research" data-search="Anthropic와 정부 기관의 협력으로 AI 핵 안전 장치 개발 (2025.8.21) Anthropic는 미국 에너지부(DOE)의 국립핵안보행정처(NNSA)와 협력하여 AI 모델이 핵 관련 위험한 기술 지식을 제공하는 것을 방지하기 위한 안전장치를 개발하고 있습니다. 이 파트너십을 통해 개발된 핵 관련 내용 분류기는 핵 관련 대화를 위험한 것과 무해한 것으로 96%의 정확도로 구분합니다. 이 시스템은 이미 Claude 모델 트래픽에서 테스트 중이며 초기 데이터는 효과적인 성능을 보여주고 있습니다. 이러한 공공-민간 파트너십은 AI 모델의 신뢰성과 안전성을 높이는 데 기여하며, Anthropic는 이 접근법을 Frontier Model Forum을 통해 공유하여 다른 AI 개발자들이 유사한 안전장치를 구현하는 데 도움을 주고자 합니다. Anthropic">
   <h2>🇺🇸 Anthropic와 정부 기관의 협력으로 AI 핵 안전 장치 개발 (2025.8.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic와 정부 기관의 협력으로 AI 핵 안전 장치 개발 (2025.8.21)
 
@@ -340,8 +398,8 @@ Anthropic는 미국 에너지부(DOE)의 국립핵안보행정처(NNSA)와 협�
 https://www.anthropic.com/news/developing-nuclear-safeguards-for-ai-through-public-private-partnership" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic는 미국 에너지부(DOE)의 국립핵안보행정처(NNSA)와 협력하여 AI 모델이 핵 관련 위험한 기술 지식을 제공하는 것을 방지하기 위한 안전장치를 개발하고 있습니다. 이 파트너십을 통해 개발된 핵 관련 내용 분류기는 핵 관련 대화를 위험한 것과 무해한 것으로 96%의 정확도로 구분합니다. 이 시스템은 이미 Claude 모델 트래픽에서 테스트 중이며 초기 데이터는 효과적인 성능을 보여주고 있습니다. 이러한 공공-민간 파트너십은 AI 모델의 신뢰성과 안전성을 높이는 데 기여하며, Anthropic는 이 접근법을 Frontier Model Forum을 통해 공유하여 다른 AI 개발자들이 유사한 안전장치를 구현하는 데 도움을 주고자 합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/developing-nuclear-safeguards-for-ai-through-public-private-partnership">https://www.anthropic.com/news/developing-nuclear-safeguards-for-ai-through-public-private-partnership</a></p>
-</article>
-<article class="entry cat-company">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · Anthropic-Research</summary><article class="entry cat-company" data-cat="company" data-topics="" data-search="Anthropic와 정부 기관의 협력으로 AI 핵 안전 보장 기술 개발 (2025.8.21) Anthropic은 미국 에너지부(DOE)의 국립핵안보행정처(NNSA)와 협력하여 AI 모델이 핵 관련 위험한 기술 지식을 제공하는 것을 방지하기 위한 기술을 개발하고 있습니다. 이 파트너십을 통해 개발된 핵 관련 내용 분류기는 96%의 정확도를 보여주며, 이는 핵 관련 우려 사항과 무해한 대화를 구분하는 데 사용됩니다. 이 접근법은 AI 모델의 안전성을 향상시키고, 민간 기업과 정부 기관 간의 협력 모델을 제시하여 다른 AI 개발자들에게도 적용 가능하도록 공유될 예정입니다. Anthropic-Research">
   <h2>🇺🇸 Anthropic와 정부 기관의 협력으로 AI 핵 안전 보장 기술 개발 (2025.8.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span></span><button type="button" class="copy-btn" data-copy="Anthropic와 정부 기관의 협력으로 AI 핵 안전 보장 기술 개발 (2025.8.21)
 
@@ -350,19 +408,24 @@ Anthropic은 미국 에너지부(DOE)의 국립핵안보행정처(NNSA)와 협�
 https://www.anthropic.com/research/developing-nuclear-safeguards-for-ai-through-public-private-partnership" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 미국 에너지부(DOE)의 국립핵안보행정처(NNSA)와 협력하여 AI 모델이 핵 관련 위험한 기술 지식을 제공하는 것을 방지하기 위한 기술을 개발하고 있습니다. 이 파트너십을 통해 개발된 핵 관련 내용 분류기는 96%의 정확도를 보여주며, 이는 핵 관련 우려 사항과 무해한 대화를 구분하는 데 사용됩니다. 이 접근법은 AI 모델의 안전성을 향상시키고, 민간 기업과 정부 기관 간의 협력 모델을 제시하여 다른 AI 개발자들에게도 적용 가능하도록 공유될 예정입니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/developing-nuclear-safeguards-for-ai-through-public-private-partnership">https://www.anthropic.com/research/developing-nuclear-safeguards-for-ai-through-public-private-partnership</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="safety_research" data-search="**AI 모델의 핵 안전 장치 개발** (2025.8.21) Anthropic은 미국 에너지부(DOE)의 국립핵안보행정처(NNSA)와 협력하여 AI 모델이 핵 관련 위험한 기술 지식을 제공하는 것을 방지하기 위한 핵 안전 장치를 개발하고 있습니다. 공동 개발한 분류기는 핵 관련 대화를 위험한 것과 무해한 것으로 96%의 정확도로 구분합니다. 이 시스템은 실제 사용자 대화에서도 효과적으로 작동하며, 핵 관련 교육, 의료, 연구 토론을 잘못 분류하지 않는 것으로 나타났습니다. 이 파트너십은 공공-민간 협력의 힘을 보여주며, 다른 AI 기업들이 유사한 안전 장치를 구현하는 데 참고할 수 있는 모델을 제시합니다. Anthropic-Research">
   <h2>🇺🇸 AI 모델의 핵 안전 장치 개발 (2025.8.21)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span></span><button type="button" class="copy-btn" data-copy="**AI 모델의 핵 안전 장치 개발** (2025.8.21)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="**AI 모델의 핵 안전 장치 개발** (2025.8.21)
 
 Anthropic은 미국 에너지부(DOE)의 국립핵안보행정처(NNSA)와 협력하여 AI 모델이 핵 관련 위험한 기술 지식을 제공하는 것을 방지하기 위한 핵 안전 장치를 개발하고 있습니다. 공동 개발한 분류기는 핵 관련 대화를 위험한 것과 무해한 것으로 96%의 정확도로 구분합니다. 이 시스템은 실제 사용자 대화에서도 효과적으로 작동하며, 핵 관련 교육, 의료, 연구 토론을 잘못 분류하지 않는 것으로 나타났습니다. 이 파트너십은 공공-민간 협력의 힘을 보여주며, 다른 AI 기업들이 유사한 안전 장치를 구현하는 데 참고할 수 있는 모델을 제시합니다.
 
 https://www.anthropic.com/research/nuclear-safeguards-for-ai" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 미국 에너지부(DOE)의 국립핵안보행정처(NNSA)와 협력하여 AI 모델이 핵 관련 위험한 기술 지식을 제공하는 것을 방지하기 위한 핵 안전 장치를 개발하고 있습니다. 공동 개발한 분류기는 핵 관련 대화를 위험한 것과 무해한 것으로 96%의 정확도로 구분합니다. 이 시스템은 실제 사용자 대화에서도 효과적으로 작동하며, 핵 관련 교육, 의료, 연구 토론을 잘못 분류하지 않는 것으로 나타났습니다. 이 파트너십은 공공-민간 협력의 힘을 보여주며, 다른 AI 기업들이 유사한 안전 장치를 구현하는 데 참고할 수 있는 모델을 제시합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/nuclear-safeguards-for-ai">https://www.anthropic.com/research/nuclear-safeguards-for-ai</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
-  <h2>🇰🇷🇬🇧 AI 위험 논의 국제정상회의가 규범 형성에 기여했지만, 프랑스 회의처럼 의제가 분산되면 ‘가드레일’ 구축은 약해질 수 있음 (2025.8.21)</h2>
+<article class="entry cat-other" data-cat="other" data-topics="frontier law norms" data-search="AI 위험 논의 국제정상회의가 규범 형성에 기여했지만, 프랑스 회의처럼 의제가 분산되면 ‘가드레일’ 구축은 약해질 수 있음 (2025.8.21) Bletchley Park(2023)에서 시작된 AI 안전·보안 위험 논의 정상회의는 이후 서울(2024), 파리(2025)로 이어졌고, 2026년 인도에서 다음 회의가 예정돼 있다. 인터뷰에 따르면 이 과정은 대화의 분위기를 바꾸고 영국의 AI Safety Institute 설립, 미국 등 유사 기관 확산에 영향을 줬으며, 특히 서울에서 기업들이 한 자발적 약속이 EU의 frontier AI 규제 논의(예: AI Act)로 이어지는 데 기반이 됐다고 본다. 다만 프랑스 회의는 안전·보안 의제를 상대적으로 축소하고 AI 거버넌스 참여 확대, 접근성, 일자리 등 사회 이슈에 더 초점을 둬 ‘가드레일’ 구축 관점에서는 보완이 필요하다는 평가가 나온다. globaldispatches.org">
+  <h2>🇫🇷🇰🇷 AI 위험 논의 국제정상회의가 규범 형성에 기여했지만, 프랑스 회의처럼 의제가 분산되면 ‘가드레일’ 구축은 약해질 수 있음 (2025.8.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">globaldispatches.org</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="AI 위험 논의 국제정상회의가 규범 형성에 기여했지만, 프랑스 회의처럼 의제가 분산되면 ‘가드레일’ 구축은 약해질 수 있음 (2025.8.21)
 
 Bletchley Park(2023)에서 시작된 AI 안전·보안 위험 논의 정상회의는 이후 서울(2024), 파리(2025)로 이어졌고, 2026년 인도에서 다음 회의가 예정돼 있다. 인터뷰에 따르면 이 과정은 대화의 분위기를 바꾸고 영국의 AI Safety Institute 설립, 미국 등 유사 기관 확산에 영향을 줬으며, 특히 서울에서 기업들이 한 자발적 약속이 EU의 frontier AI 규제 논의(예: AI Act)로 이어지는 데 기반이 됐다고 본다. 다만 프랑스 회의는 안전·보안 의제를 상대적으로 축소하고 AI 거버넌스 참여 확대, 접근성, 일자리 등 사회 이슈에 더 초점을 둬 ‘가드레일’ 구축 관점에서는 보완이 필요하다는 평가가 나온다.
@@ -370,8 +433,10 @@ Bletchley Park(2023)에서 시작된 AI 안전·보안 위험 논의 정상회�
 https://www.globaldispatches.org/p/can-a-series-of-global-ai-summits" onclick="copyEntry(this)">복사</button></div>
   <p>Bletchley Park(2023)에서 시작된 AI 안전·보안 위험 논의 정상회의는 이후 서울(2024), 파리(2025)로 이어졌고, 2026년 인도에서 다음 회의가 예정돼 있다. 인터뷰에 따르면 이 과정은 대화의 분위기를 바꾸고 영국의 AI Safety Institute 설립, 미국 등 유사 기관 확산에 영향을 줬으며, 특히 서울에서 기업들이 한 자발적 약속이 EU의 frontier AI 규제 논의(예: AI Act)로 이어지는 데 기반이 됐다고 본다. 다만 프랑스 회의는 안전·보안 의제를 상대적으로 축소하고 AI 거버넌스 참여 확대, 접근성, 일자리 등 사회 이슈에 더 초점을 둬 ‘가드레일’ 구축 관점에서는 보완이 필요하다는 평가가 나온다.</p>
   <p class="url"><a href="https://www.globaldispatches.org/p/can-a-series-of-global-ai-summits">https://www.globaldispatches.org/p/can-a-series-of-global-ai-summits</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="" data-search="EU AI Act가 기본권 보호와 혁신 촉진의 균형을 이뤘는지 점검한 학술서(2025.08.21) 유럽연합의 AI Act를 기본권 중심 관점에서 비판적으로 분석한 책으로, 2024년 Digital Law Institute Trier 연례 컨퍼런스에서 나온 논문들을 엮었다. 금지되는 AI 관행, 위험 기반 규제모델, 데이터 거버넌스와 human oversight 등 핵심 의무를 다루며, 혁신을 억누르지 않으면서 기본권을 보호하는 규율 방식이 가능한지 살핀다. 또한 미국과 아시아의 AI 규제 접근을 비교해 글로벌 기술 규제에 대한 함의를 정리한다. (기술 오류로 ISBN이 교체되었으며 새 ISBN은 9783565013197) IRDT Schriften des IRDT (유니 트리어)">
   <h2>🇪🇺🇺🇸 EU AI Act가 기본권 보호와 혁신 촉진의 균형을 이뤘는지 점검한 학술서(2025.08.21)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">IRDT Schriften des IRDT (유니 트리어)</span></span><button type="button" class="copy-btn" data-copy="EU AI Act가 기본권 보호와 혁신 촉진의 균형을 이뤘는지 점검한 학술서(2025.08.21)
 
@@ -380,7 +445,9 @@ https://www.globaldispatches.org/p/can-a-series-of-global-ai-summits" onclick="c
 https://irdt-schriften.uni-trier.de/index.php/irdt/catalog/book/6" onclick="copyEntry(this)">복사</button></div>
   <p>유럽연합의 AI Act를 기본권 중심 관점에서 비판적으로 분석한 책으로, 2024년 Digital Law Institute Trier 연례 컨퍼런스에서 나온 논문들을 엮었다. 금지되는 AI 관행, 위험 기반 규제모델, 데이터 거버넌스와 human oversight 등 핵심 의무를 다루며, 혁신을 억누르지 않으면서 기본권을 보호하는 규율 방식이 가능한지 살핀다. 또한 미국과 아시아의 AI 규제 접근을 비교해 글로벌 기술 규제에 대한 함의를 정리한다. (기술 오류로 ISBN이 교체되었으며 새 ISBN은 9783565013197)</p>
   <p class="url"><a href="https://irdt-schriften.uni-trier.de/index.php/irdt/catalog/book/6">https://irdt-schriften.uni-trier.de/index.php/irdt/catalog/book/6</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-08-20.html">← 2025-08-20</a><a class="day-nav-btn" href="2025-08-22.html">2025-08-22 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-08-20.html">← 2025-08-20</a><a class="day-nav-btn" href="2025-08-22.html">2025-08-22 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -416,6 +483,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

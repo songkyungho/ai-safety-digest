@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -304,11 +356,11 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI Safety Daily Digest</h1>
-    <div class="sub">2026-07-01 · 18/21건 요약</div>
+    <div class="sub">2026-07-01 · 19/22건 요약</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="guideline law" data-search="글로벌 개인정보 감독기구에 인공지능(AI) 대응 ‘실전해법’ 제시 (2026.7.1) 개인정보보호위원회는 글로벌 개인정보 감독기구를 대상으로 인공지능 프라이버시 정책과 대응 경험을 공유하는 온라인 회의를 개최했다. 한국을 포함한 5개국 감독기구가 각국의 도전과제, 법제화 동향, 규제 유예 제도와 기관 내부 사례를 논의했다. 개인정보보호위원회는 인공지능 프라이버시 리스크 관리 모델, 생성형 인공지능 개발·활용 가이드라인, 혁신 지원사례와 특례 제도 및 개인정보보호법 개정안의 입법 절차를 소개했다. 앞으로도 안전과 혁신이 조화를 이루는 국제 인공지능 프라이버시 규범 형성을 위해 협력을 이어갈 계획이다. 개인정보보호위원회">
   <h2>🇰🇷 글로벌 개인정보 감독기구에 인공지능(AI) 대응 ‘실전해법’ 제시 (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">개인정보보호위원회</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="글로벌 개인정보 감독기구에 인공지능(AI) 대응 ‘실전해법’ 제시 (2026.7.1)
 
@@ -317,8 +369,10 @@
 https://eiec.kdi.re.kr/policy/materialView.do?num=283613" onclick="copyEntry(this)">복사</button></div>
   <p>개인정보보호위원회는 글로벌 개인정보 감독기구를 대상으로 인공지능 프라이버시 정책과 대응 경험을 공유하는 온라인 회의를 개최했다. 한국을 포함한 5개국 감독기구가 각국의 도전과제, 법제화 동향, 규제 유예 제도와 기관 내부 사례를 논의했다. 개인정보보호위원회는 인공지능 프라이버시 리스크 관리 모델, 생성형 인공지능 개발·활용 가이드라인, 혁신 지원사례와 특례 제도 및 개인정보보호법 개정안의 입법 절차를 소개했다. 앞으로도 안전과 혁신이 조화를 이루는 국제 인공지능 프라이버시 규범 형성을 위해 협력을 이어갈 계획이다.</p>
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=283613">https://eiec.kdi.re.kr/policy/materialView.do?num=283613</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="제2회 인공지능안전서울포럼(Seoul Forum on Artificial Intelligence Safety and Security, SFASS) 개최 안내 (7.7~7.8) 요약불가 AISI-Korea">
   <h2>🇰🇷 제2회 인공지능안전서울포럼(Seoul Forum on Artificial Intelligence Safety and Security, SFASS) 개최 안내 (7.7~7.8)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-Korea</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="제2회 인공지능안전서울포럼(Seoul Forum on Artificial Intelligence Safety and Security, SFASS) 개최 안내 (7.7~7.8)
 
@@ -327,8 +381,10 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=283613" onclick="copyEntry(thi
 https://www.aisi.re.kr/kor/article/view.do?articleId=110" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.aisi.re.kr/kor/article/view.do?articleId=110">https://www.aisi.re.kr/kor/article/view.do?articleId=110</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier" data-search="Anthropic, Fable 5 및 Mythos 5 모델 수출 통제 해제 (2026.7.1) 미국 상무부는 사이버 공격 악용 우려로 앤스로픽의 최신 AI 모델인 Fable 5와 Mythos 5에 내렸던 수출 통제 조치를 해제. 앤스로픽이 모델의 보안 위험을 선제적으로 감지 및 해결하고 정부와 협력하기로 합의함에 따라, 신뢰할 수 있는 파트너에 한해 모델 접근이 다시 허용. The Guardian">
   <h2>🇺🇸 Anthropic, Fable 5 및 Mythos 5 모델 수출 통제 해제 (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">The Guardian</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic, Fable 5 및 Mythos 5 모델 수출 통제 해제 (2026.7.1)
 
@@ -337,8 +393,10 @@ https://www.aisi.re.kr/kor/article/view.do?articleId=110" onclick="copyEntry(thi
 https://www.theguardian.com/technology/2026/jul/01/anthropic-fable-mythos-ai-models-us-export-controls-lifted" onclick="copyEntry(this)">복사</button></div>
   <p>미국 상무부는 사이버 공격 악용 우려로 앤스로픽의 최신 AI 모델인 Fable 5와 Mythos 5에 내렸던 수출 통제 조치를 해제. 앤스로픽이 모델의 보안 위험을 선제적으로 감지 및 해결하고 정부와 협력하기로 합의함에 따라, 신뢰할 수 있는 파트너에 한해 모델 접근이 다시 허용.</p>
   <p class="url"><a href="https://www.theguardian.com/technology/2026/jul/01/anthropic-fable-mythos-ai-models-us-export-controls-lifted">https://www.theguardian.com/technology/2026/jul/01/anthropic-fable-mythos-ai-models-us-export-controls-lifted</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="norms" data-search="Brookings, G7에 강제력 있는 다자간 AI 표준 도입 촉구 (2026.7.1) Brookings 연구소는 G7 정상들이 거대 AI 기업들이 제안한 공동 표준 설정 프레임워크를 수용하되, 이를 강제력 있는 규제로 발전시켜야 한다고 주장. 기업 이익만을 대변하는 기술적 표준에 그치지 않도록 정부와 시민사회가 참여해야 하며, 기존 금융권 규제(바젤 III 등)처럼 규정 준수를 의무화하는 장치를 마련해야 한다고 제언. Brookings">
   <h2>Brookings, G7에 강제력 있는 다자간 AI 표준 도입 촉구 (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Brookings</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="Brookings, G7에 강제력 있는 다자간 AI 표준 도입 촉구 (2026.7.1)
 
@@ -347,8 +405,10 @@ Brookings 연구소는 G7 정상들이 거대 AI 기업들이 제안한 공동 �
 https://www.brookings.edu/articles/g7-should-accept-ai-standards-offer-but-make-it-enforceable/" onclick="copyEntry(this)">복사</button></div>
   <p>Brookings 연구소는 G7 정상들이 거대 AI 기업들이 제안한 공동 표준 설정 프레임워크를 수용하되, 이를 강제력 있는 규제로 발전시켜야 한다고 주장. 기업 이익만을 대변하는 기술적 표준에 그치지 않도록 정부와 시민사회가 참여해야 하며, 기존 금융권 규제(바젤 III 등)처럼 규정 준수를 의무화하는 장치를 마련해야 한다고 제언.</p>
   <p class="url"><a href="https://www.brookings.edu/articles/g7-should-accept-ai-standards-offer-but-make-it-enforceable/">https://www.brookings.edu/articles/g7-should-accept-ai-standards-offer-but-make-it-enforceable/</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="youth" data-search="UN AI 과학 패널, 예비 보고서 발간 (2026.7.1) UN AI 독립 국제 과학 패널은 AI 기술의 급격한 성장에 따른 전 세계적 기회와 위험, 영향을 과학적으로 진단한 첫 독립적 평가서를 발표. 보고서는 과학, 보건, 경제, 인권, 아동 안전 등 7대 핵심 분야를 다루며, 증거가 확실해졌을 때는 이미 대응하기에 너무 늦을 수 있다는 &#x27;증거의 한계&#x27;를 지적. UN">
   <h2>UN AI 과학 패널, 예비 보고서 발간 (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">UN</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="UN AI 과학 패널, 예비 보고서 발간 (2026.7.1)
 
@@ -357,8 +417,10 @@ UN AI 독립 국제 과학 패널은 AI 기술의 급격한 성장에 따른 전
 https://www.un.org/independent-international-scientific-panel-ai/sites/default/files/2026-07/en_Preliminary%20Report_.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>UN AI 독립 국제 과학 패널은 AI 기술의 급격한 성장에 따른 전 세계적 기회와 위험, 영향을 과학적으로 진단한 첫 독립적 평가서를 발표. 보고서는 과학, 보건, 경제, 인권, 아동 안전 등 7대 핵심 분야를 다루며, 증거가 확실해졌을 때는 이미 대응하기에 너무 늦을 수 있다는 &#x27;증거의 한계&#x27;를 지적.</p>
   <p class="url"><a href="https://www.un.org/independent-international-scientific-panel-ai/sites/default/files/2026-07/en_Preliminary%20Report_.pdf">https://www.un.org/independent-international-scientific-panel-ai/sites/default/files/2026-07/en_Preliminary%20Report_.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="norms" data-search="RAND, 유럽 내 AI 안전 및 사이버 오용 모의 훈련 결과 발표 (2026.7.1) RAND는 유럽 고위 관료들과 AI 기반 사이버 공격 위기 대응 모의 훈련(TTX)을 실시하고, 위기 대응을 위한 거버넌스 과제와 필수 역량을 도출. 국가적 위기로 판단할 명확한 기준(임계값) 마련, 정부의 독립적인 기술 평가 역량 확보, 그리고 다자간 규제 프레임워크 구축 등이 필요하다 결론. RAND">
   <h2>🇺🇸 RAND, 유럽 내 AI 안전 및 사이버 오용 모의 훈련 결과 발표 (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">RAND</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="RAND, 유럽 내 AI 안전 및 사이버 오용 모의 훈련 결과 발표 (2026.7.1)
 
@@ -367,18 +429,22 @@ RAND는 유럽 고위 관료들과 AI 기반 사이버 공격 위기 대응 모�
 https://www.rand.org/pubs/research_reports/RRA5082-1.html" onclick="copyEntry(this)">복사</button></div>
   <p>RAND는 유럽 고위 관료들과 AI 기반 사이버 공격 위기 대응 모의 훈련(TTX)을 실시하고, 위기 대응을 위한 거버넌스 과제와 필수 역량을 도출. 국가적 위기로 판단할 명확한 기준(임계값) 마련, 정부의 독립적인 기술 평가 역량 확보, 그리고 다자간 규제 프레임워크 구축 등이 필요하다 결론.</p>
   <p class="url"><a href="https://www.rand.org/pubs/research_reports/RRA5082-1.html">https://www.rand.org/pubs/research_reports/RRA5082-1.html</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier norms" data-search="구글, DOE ‘Genesis Mission’ 지원 위해 AI tokens·클라우드 크레딧 4,000만 달러 확장(2026.7.1) 구글 딥마인드는 DOE(미 에너지부) ‘Genesis Mission Summit 2026’에서 연구자들을 위한 AI tokens 및 클라우드 크레딧 4,000만 달러 규모의 지원을 확대하겠다고 밝혔다. 이번 지원은 Genesis Mission 수상자에게 AlphaEvolve·AlphaFold 3·AlphaGenome·WeatherNext·AlphaEarth Foundations 등 ‘for science’ 포트폴리오의 무상 인텔리전스 액세스를 제공하고, DOE 국립연구소 운영·연구·관리팀 다수 사용자에게 Gemini for Government 자리와 1년간의 토큰을 제공하는 내용이다. 또한 PNNL에서는 AlphaEvolve로 복잡한 수학 시스템 탐색을 자동화해 발견 시간을 단축하고, NLR에서는 Gemini를 계측 장비에 적용해 현미경 캘리브레이션 시간을 90분 이상에서 약 13분(8배 빠름)으로 줄였으며 수동 단계도 크게 감소했다고 전했다. 딥마인드(DeepMind)">
   <h2>구글, DOE ‘Genesis Mission’ 지원 위해 AI tokens·클라우드 크레딧 4,000만 달러 확장(2026.7.1)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">딥마인드(DeepMind)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="구글, DOE ‘Genesis Mission’ 지원 위해 AI tokens·클라우드 크레딧 4,000만 달러 확장(2026.7.1)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">딥마인드(DeepMind)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="구글, DOE ‘Genesis Mission’ 지원 위해 AI tokens·클라우드 크레딧 4,000만 달러 확장(2026.7.1)
 
 구글 딥마인드는 DOE(미 에너지부) ‘Genesis Mission Summit 2026’에서 연구자들을 위한 AI tokens 및 클라우드 크레딧 4,000만 달러 규모의 지원을 확대하겠다고 밝혔다. 이번 지원은 Genesis Mission 수상자에게 AlphaEvolve·AlphaFold 3·AlphaGenome·WeatherNext·AlphaEarth Foundations 등 ‘for science’ 포트폴리오의 무상 인텔리전스 액세스를 제공하고, DOE 국립연구소 운영·연구·관리팀 다수 사용자에게 Gemini for Government 자리와 1년간의 토큰을 제공하는 내용이다. 또한 PNNL에서는 AlphaEvolve로 복잡한 수학 시스템 탐색을 자동화해 발견 시간을 단축하고, NLR에서는 Gemini를 계측 장비에 적용해 현미경 캘리브레이션 시간을 90분 이상에서 약 13분(8배 빠름)으로 줄였으며 수동 단계도 크게 감소했다고 전했다.
 
 https://cloud.google.com/blog/topics/public-sector/accelerating-frontiers-of-scientific-discovery-40-million-dollar-commitment-genesis-mission" onclick="copyEntry(this)">복사</button></div>
   <p>구글 딥마인드는 DOE(미 에너지부) ‘Genesis Mission Summit 2026’에서 연구자들을 위한 AI tokens 및 클라우드 크레딧 4,000만 달러 규모의 지원을 확대하겠다고 밝혔다. 이번 지원은 Genesis Mission 수상자에게 AlphaEvolve·AlphaFold 3·AlphaGenome·WeatherNext·AlphaEarth Foundations 등 ‘for science’ 포트폴리오의 무상 인텔리전스 액세스를 제공하고, DOE 국립연구소 운영·연구·관리팀 다수 사용자에게 Gemini for Government 자리와 1년간의 토큰을 제공하는 내용이다. 또한 PNNL에서는 AlphaEvolve로 복잡한 수학 시스템 탐색을 자동화해 발견 시간을 단축하고, NLR에서는 Gemini를 계측 장비에 적용해 현미경 캘리브레이션 시간을 90분 이상에서 약 13분(8배 빠름)으로 줄였으며 수동 단계도 크게 감소했다고 전했다.</p>
   <p class="url"><a href="https://cloud.google.com/blog/topics/public-sector/accelerating-frontiers-of-scientific-discovery-40-million-dollar-commitment-genesis-mission">https://cloud.google.com/blog/topics/public-sector/accelerating-frontiers-of-scientific-discovery-40-million-dollar-commitment-genesis-mission</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="FTC, AI 정확성·객관성 훼손 우려 정책초안에 대한 대국민 의견수렴(2026.7.1) 미 연방거래위원회(FTC)는 AI 기업이 소비자가 기대하는 객관성·정확성과 달리 AI 시스템의 동작을 조작할 수 있다는 우려와 관련해 정책 성명(안)에 대한 공개 의견을 받는다. FTC Act상 ‘부당하거나 기만적인(unfair or deceptive)’ 행위를 금지하며, 회사가 비공개된 이념적 목표를 달성하기 위해 AI의 출력 결과를 왜곡하는 경우 소비자를 기만해 FTC Act 제5조 위반이 될 수 있다고 설명한다. 또한 소비자에게 특정 작업에서 AI가 효과적·적합하다고 한 명시적·암묵적 표현과 어긋날 수 있다고 밝혔다. 해당 정책 성명은 연방관보(Federal Register)에 게재되며, 의견은 Regulations.gov에 게시될 예정이다. 미국 연방거래위원회(FTC)">
   <h2>🇺🇸 FTC, AI 정확성·객관성 훼손 우려 정책초안에 대한 대국민 의견수렴(2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">미국 연방거래위원회(FTC)</span></span><button type="button" class="copy-btn" data-copy="FTC, AI 정확성·객관성 훼손 우려 정책초안에 대한 대국민 의견수렴(2026.7.1)
 
@@ -387,8 +453,10 @@ https://cloud.google.com/blog/topics/public-sector/accelerating-frontiers-of-sci
 https://ftc.gov/news-events/news/press-releases/2026/07/ftc-seeks-public-comment-policy-statement-addressing-ai-accuracy" onclick="copyEntry(this)">복사</button></div>
   <p>미 연방거래위원회(FTC)는 AI 기업이 소비자가 기대하는 객관성·정확성과 달리 AI 시스템의 동작을 조작할 수 있다는 우려와 관련해 정책 성명(안)에 대한 공개 의견을 받는다. FTC Act상 ‘부당하거나 기만적인(unfair or deceptive)’ 행위를 금지하며, 회사가 비공개된 이념적 목표를 달성하기 위해 AI의 출력 결과를 왜곡하는 경우 소비자를 기만해 FTC Act 제5조 위반이 될 수 있다고 설명한다. 또한 소비자에게 특정 작업에서 AI가 효과적·적합하다고 한 명시적·암묵적 표현과 어긋날 수 있다고 밝혔다. 해당 정책 성명은 연방관보(Federal Register)에 게재되며, 의견은 Regulations.gov에 게시될 예정이다.</p>
   <p class="url"><a href="https://ftc.gov/news-events/news/press-releases/2026/07/ftc-seeks-public-comment-policy-statement-addressing-ai-accuracy">https://ftc.gov/news-events/news/press-releases/2026/07/ftc-seeks-public-comment-policy-statement-addressing-ai-accuracy</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="IASEAI - International Association for Safe and Ethical AI 요약불가 iaseai.org">
   <h2>IASEAI - International Association for Safe and Ethical AI</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">iaseai.org</span></span><button type="button" class="copy-btn" data-copy="IASEAI - International Association for Safe and Ethical AI
 
@@ -397,8 +465,10 @@ https://ftc.gov/news-events/news/press-releases/2026/07/ftc-seeks-public-comment
 https://iaseai.org/working-groups/red-lines-policy-brief-july-2026" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://iaseai.org/working-groups/red-lines-policy-brief-july-2026">https://iaseai.org/working-groups/red-lines-policy-brief-july-2026</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="Building AI for Inclusive Outcomes (2026.7.1) 이 기사는 GLAAD의 보고서 &quot;Build for Everyone: LGBTQ 표현과 안전을 위한 AI 프레임워크&quot;를 소개하며, AI 시스템 개발 과정에서 LGBTQ 커뮤니티를 고려하는 것이 모든 사용자에게 더 안전하고 정확한 시스템을 만드는 데 중요하다는 점을 강조한다. 핵심은 LGBTQ 관련 데이터의 정확성과 다양성을 확보하여 AI 시스템의 편향성을 줄이는 것이다. 이를 통해 복잡한 상황을 더 잘 처리할 수 있는 품질 표준을 구축할 수 있으며, 이는 궁극적으로 모든 사용자에게 이점이 된다. 실질적인 첫 단계로는 훈련 데이터 내의 LGBTQ 표현을 검토하고, 필요하다면 전문가와 협력하는 것을 제안한다. PartnershipOnAI">
   <h2>🇺🇸 Building AI for Inclusive Outcomes (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">PartnershipOnAI</span></span><button type="button" class="copy-btn" data-copy="Building AI for Inclusive Outcomes (2026.7.1)
 
@@ -407,8 +477,10 @@ https://iaseai.org/working-groups/red-lines-policy-brief-july-2026" onclick="cop
 https://partnershiponai.org/building-ai-systems-that-work-for-everyone/" onclick="copyEntry(this)">복사</button></div>
   <p>이 기사는 GLAAD의 보고서 &quot;Build for Everyone: LGBTQ 표현과 안전을 위한 AI 프레임워크&quot;를 소개하며, AI 시스템 개발 과정에서 LGBTQ 커뮤니티를 고려하는 것이 모든 사용자에게 더 안전하고 정확한 시스템을 만드는 데 중요하다는 점을 강조한다. 핵심은 LGBTQ 관련 데이터의 정확성과 다양성을 확보하여 AI 시스템의 편향성을 줄이는 것이다. 이를 통해 복잡한 상황을 더 잘 처리할 수 있는 품질 표준을 구축할 수 있으며, 이는 궁극적으로 모든 사용자에게 이점이 된다. 실질적인 첫 단계로는 훈련 데이터 내의 LGBTQ 표현을 검토하고, 필요하다면 전문가와 협력하는 것을 제안한다.</p>
   <p class="url"><a href="https://partnershiponai.org/building-ai-systems-that-work-for-everyone/">https://partnershiponai.org/building-ai-systems-that-work-for-everyone/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="law" data-search="Opt-In Surveillance Approaching (2026.7.1) 본문에서 논의된 주요 내용은 AI 기술의 발전으로 인해 개인 데이터에 대한 광범위한 접근이 가능해짐에 따라, 사람들이 자발적으로 AI를 통한 개인 평가를 공유하는 문화가 확산될 가능성이 있다는 점입니다. 초기에는 실용적인 이점을 위해 개인 정보를 공유하는 것이지만, 미래의 AI는 사용자의 일상 활동을 기반으로 한 신뢰성 있는 평가를 제공할 수 있습니다. 이러한 평가는 클릭 한 번으로 생성될 수 있으며, 초기 채택자들이 긍정적인 평가를 공유하면 다른 사람들도 비슷한 이점을 얻기 위해 따라할 압력이 생깁니다. 이 과정은 사회 전반에 걸쳐 자발적인 감시 문화로 이어질 수 있습니다. 기술적 진보와 함께, 개인 정보 보호 법률만으로는 이러한 자발적 감시 현상을 막기 어려울 수 있습니다. AI-Frontiers">
   <h2>Opt-In Surveillance Approaching (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AI-Frontiers</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="Opt-In Surveillance Approaching (2026.7.1)
 
@@ -417,8 +489,22 @@ https://partnershiponai.org/building-ai-systems-that-work-for-everyone/" onclick
 https://newsletter.ai-frontiers.org/p/opt-in-surveillance-is-approaching" onclick="copyEntry(this)">복사</button></div>
   <p>본문에서 논의된 주요 내용은 AI 기술의 발전으로 인해 개인 데이터에 대한 광범위한 접근이 가능해짐에 따라, 사람들이 자발적으로 AI를 통한 개인 평가를 공유하는 문화가 확산될 가능성이 있다는 점입니다. 초기에는 실용적인 이점을 위해 개인 정보를 공유하는 것이지만, 미래의 AI는 사용자의 일상 활동을 기반으로 한 신뢰성 있는 평가를 제공할 수 있습니다. 이러한 평가는 클릭 한 번으로 생성될 수 있으며, 초기 채택자들이 긍정적인 평가를 공유하면 다른 사람들도 비슷한 이점을 얻기 위해 따라할 압력이 생깁니다. 이 과정은 사회 전반에 걸쳐 자발적인 감시 문화로 이어질 수 있습니다. 기술적 진보와 함께, 개인 정보 보호 법률만으로는 이러한 자발적 감시 현상을 막기 어려울 수 있습니다.</p>
   <p class="url"><a href="https://newsletter.ai-frontiers.org/p/opt-in-surveillance-is-approaching">https://newsletter.ai-frontiers.org/p/opt-in-surveillance-is-approaching</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="AI는 뇌 신호를 어디까지 읽을 수 있을까? (2026.7.1) Meta 연구진의 Brain2Qwerty v2는 참가자가 문장을 들은 뒤 타이핑하는 동안의 비침습적 MEG 신호를 분석해 문장을 복원했으며, 자유롭게 떠올린 생각을 직접 읽은 연구는 아니다. 건강한 성인 9명의 약 2만2천 개 문장을 학습한 결과 평균 WER는 39%, 최고 성능 참가자는 22%를 기록했다. 다만 LLM이 신호가 불분명할 때 유창하지만 실제 입력과 다른 문장을 만들 수 있고, 아직 오류가 많아 실험실 수준의 기술에 머물러 있다. Select-Digest">
+  <h2>🇰🇷 AI는 뇌 신호를 어디까지 읽을 수 있을까? (2026.7.1)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">Select Digest</span></span><button type="button" class="copy-btn" data-copy="AI는 뇌 신호를 어디까지 읽을 수 있을까? (2026.7.1)
+
+Meta 연구진의 Brain2Qwerty v2는 참가자가 문장을 들은 뒤 타이핑하는 동안의 비침습적 MEG 신호를 분석해 문장을 복원했으며, 자유롭게 떠올린 생각을 직접 읽은 연구는 아니다. 건강한 성인 9명의 약 2만2천 개 문장을 학습한 결과 평균 WER는 39%, 최고 성능 참가자는 22%를 기록했다. 다만 LLM이 신호가 불분명할 때 유창하지만 실제 입력과 다른 문장을 만들 수 있고, 아직 오류가 많아 실험실 수준의 기술에 머물러 있다.
+
+https://stib.ee/LxIM" onclick="copyEntry(this)">복사</button></div>
+  <p>Meta 연구진의 Brain2Qwerty v2는 참가자가 문장을 들은 뒤 타이핑하는 동안의 비침습적 MEG 신호를 분석해 문장을 복원했으며, 자유롭게 떠올린 생각을 직접 읽은 연구는 아니다. 건강한 성인 9명의 약 2만2천 개 문장을 학습한 결과 평균 WER는 39%, 최고 성능 참가자는 22%를 기록했다. 다만 LLM이 신호가 불분명할 때 유창하지만 실제 입력과 다른 문장을 만들 수 있고, 아직 오류가 많아 실험실 수준의 기술에 머물러 있다.</p>
+  <p class="url"><a href="https://stib.ee/LxIM">https://stib.ee/LxIM</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="frontier" data-search="미국 정부의 AI security 정책에서 “누가 무엇을 하는지” 개관(2026.7.1) 이 글은 백악관의 EO(Advancing AI innovation and security)와 NSPM-11, 그리고 관련 전문가들이 본 정부 내 AI 보안 역할 분담을 정리한다. 백악관은 조정·컨설팅 중심이며 ONCD가 EO 작성에 크게 관여하고, OSTP는 분류된 분기점 지표(benchmark) 및 compute roadmap 관련 역할을 한다고 전한다. NSA는 ‘covered frontier model’ 지정과 파트너십·AI Security Center 등을 통한 평가/보안 강화에 관여하며, 상무부 CAISI는 평가 역할의 범위가 제한되거나 향후 축이 바뀔 가능성이 언급된다. Horizon Launchpad(Substack)">
   <h2>🇺🇸 미국 정부의 AI security 정책에서 “누가 무엇을 하는지” 개관(2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">Horizon Launchpad(Substack)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="미국 정부의 AI security 정책에서 “누가 무엇을 하는지” 개관(2026.7.1)
 
@@ -427,8 +513,10 @@ https://newsletter.ai-frontiers.org/p/opt-in-surveillance-is-approaching" onclic
 https://horizonlaunchpad.substack.com/p/whos-doing-what-on-ai-security" onclick="copyEntry(this)">복사</button></div>
   <p>이 글은 백악관의 EO(Advancing AI innovation and security)와 NSPM-11, 그리고 관련 전문가들이 본 정부 내 AI 보안 역할 분담을 정리한다. 백악관은 조정·컨설팅 중심이며 ONCD가 EO 작성에 크게 관여하고, OSTP는 분류된 분기점 지표(benchmark) 및 compute roadmap 관련 역할을 한다고 전한다. NSA는 ‘covered frontier model’ 지정과 파트너십·AI Security Center 등을 통한 평가/보안 강화에 관여하며, 상무부 CAISI는 평가 역할의 범위가 제한되거나 향후 축이 바뀔 가능성이 언급된다.</p>
   <p class="url"><a href="https://horizonlaunchpad.substack.com/p/whos-doing-what-on-ai-security">https://horizonlaunchpad.substack.com/p/whos-doing-what-on-ai-security</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="cybersecurity" data-search="ARToken ‘EvilTokens’ 제휴형 PhaaS 패널로 Microsoft 365 대상 phishing·토큰 지속·SharePoint 유출(2026.7.1) 시스코 탈로스는 ‘ARToken’이라는 phishing-as-a-service(PhaaS) 제휴자용 패널을 분석해, EvilTokens와 API 계약·운용 방식이 공유된다고 밝혔다. ARToken 패널은 장치 코드 phishing, Primary Refresh Token(PRT) 기반 지속성, BEC(메일함 장악) 및 SharePoint/OneDrive 유출에 이르는 기능을 80개+ API 엔드포인트와 대시보드를 통해 제공하며, Cloudflare Workers에 템플릿을 배포하는 구조라고 설명했다. 또한 클라이언트 측 7단계 anti-analysis(행동·타이밍 기반 봇 차단, XOR 암호화 payload)를 포함하고, 스푸핑 이메일은 SharePoint 링크의 평판을 이용하되 실제 목적지는 look-alike 테넌트로 유도하는 정교한 회피 방식을 사용한 것으로 제시했다. 시스코 탈로스(Cisco Talos)">
   <h2>ARToken ‘EvilTokens’ 제휴형 PhaaS 패널로 Microsoft 365 대상 phishing·토큰 지속·SharePoint 유출(2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">시스코 탈로스(Cisco Talos)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="ARToken ‘EvilTokens’ 제휴형 PhaaS 패널로 Microsoft 365 대상 phishing·토큰 지속·SharePoint 유출(2026.7.1)
 
@@ -437,8 +525,10 @@ https://horizonlaunchpad.substack.com/p/whos-doing-what-on-ai-security" onclick=
 https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/" onclick="copyEntry(this)">복사</button></div>
   <p>시스코 탈로스는 ‘ARToken’이라는 phishing-as-a-service(PhaaS) 제휴자용 패널을 분석해, EvilTokens와 API 계약·운용 방식이 공유된다고 밝혔다. ARToken 패널은 장치 코드 phishing, Primary Refresh Token(PRT) 기반 지속성, BEC(메일함 장악) 및 SharePoint/OneDrive 유출에 이르는 기능을 80개+ API 엔드포인트와 대시보드를 통해 제공하며, Cloudflare Workers에 템플릿을 배포하는 구조라고 설명했다. 또한 클라이언트 측 7단계 anti-analysis(행동·타이밍 기반 봇 차단, XOR 암호화 payload)를 포함하고, 스푸핑 이메일은 SharePoint 링크의 평판을 이용하되 실제 목적지는 look-alike 테넌트로 유도하는 정교한 회피 방식을 사용한 것으로 제시했다.</p>
   <p class="url"><a href="https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/">https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="cybersecurity" data-search="LLM Agent JADEPUFFER Executes Autonomous Ransomware Operation (2026.7.1) 요약불가 AI-Risk-Explorer">
   <h2>LLM Agent JADEPUFFER Executes Autonomous Ransomware Operation (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="LLM Agent JADEPUFFER Executes Autonomous Ransomware Operation (2026.7.1)
 
@@ -447,8 +537,10 @@ https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-
 https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion">https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="norms safety_research youth" data-search="유엔 독립 국제 과학 패널, AI 역량 성장 속도에 현재 AI 안전장치가 못 미친다고 경고 (2026.7.1) 본 보고서는 유엔 5개 지역의 독립 과학자와 전문가로 구성된 패널이 AI의 기회·위험·영향을 과학적 근거로 평가한 첫 독립 과학 보고서라고 밝힌다. 핵심 경고는 “현재의 safeguards가 AI 역량 성장 속도를 따라가지 못한다”는 점이며, 정책결정자는 필요 시점에 맞는 과학적 증거를 확보해야 하지만 증거가 명확해질 때는 이미 조치가 늦을 수 있다는 증거 격차 문제를 제시한다. 보고서는 7개 핵심 영역(과학·사회 적용·경제·보안/시스템/환경·인권/정보/민주주의·자율성과 아동 안전·관리/거버넌스/신뢰성)으로 결과를 정리하며, 예비보고서 이후에도 협의와 과학계 참여를 통해 근거를 심화하고 2026년 7월 제네바 글로벌 다이얼로그의 공통 과학적 출발점으로 활용될 예정이라고 한다. 유엔(UN) 독립 국제 과학 패널 on AI">
   <h2>유엔 독립 국제 과학 패널, AI 역량 성장 속도에 현재 AI 안전장치가 못 미친다고 경고 (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">유엔(UN) 독립 국제 과학 패널 on AI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="청소년">🧒</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="유엔 독립 국제 과학 패널, AI 역량 성장 속도에 현재 AI 안전장치가 못 미친다고 경고 (2026.7.1)
 
@@ -457,8 +549,10 @@ https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database
 https://www.un.org/independent-international-scientific-panel-ai/en/preliminary-report" onclick="copyEntry(this)">복사</button></div>
   <p>본 보고서는 유엔 5개 지역의 독립 과학자와 전문가로 구성된 패널이 AI의 기회·위험·영향을 과학적 근거로 평가한 첫 독립 과학 보고서라고 밝힌다. 핵심 경고는 “현재의 safeguards가 AI 역량 성장 속도를 따라가지 못한다”는 점이며, 정책결정자는 필요 시점에 맞는 과학적 증거를 확보해야 하지만 증거가 명확해질 때는 이미 조치가 늦을 수 있다는 증거 격차 문제를 제시한다. 보고서는 7개 핵심 영역(과학·사회 적용·경제·보안/시스템/환경·인권/정보/민주주의·자율성과 아동 안전·관리/거버넌스/신뢰성)으로 결과를 정리하며, 예비보고서 이후에도 협의와 과학계 참여를 통해 근거를 심화하고 2026년 7월 제네바 글로벌 다이얼로그의 공통 과학적 출발점으로 활용될 예정이라고 한다.</p>
   <p class="url"><a href="https://www.un.org/independent-international-scientific-panel-ai/en/preliminary-report">https://www.un.org/independent-international-scientific-panel-ai/en/preliminary-report</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier" data-search="OpenAI LLM harness, 이론 CS·수학 9개 미해결 문제 해결(2026.7.1) OpenAI LLM harness는 GPT-5.5 Pro가 후보 증명/해법을 만들고 Claude Opus 4.8이 검증하는 prover-verifier 루프를 통해 이론적 컴퓨터과학·수학의 9개 공개 문제를 해결했다고 전했다. 9개 문제 중 4개는 COLT 문제 목록, 1개는 FOCS, 4개는 가환대수 분야에서 왔다고 하며, 결과는 2026년 6월 27~30일 무렵 공개된 것으로 설명했다. 연구진은 이 방식의 적용 범위를 다른 과학 분야 전반으로 확대할 계획도 밝혔다. CryptoBriefing">
   <h2>🇺🇸 OpenAI LLM harness, 이론 CS·수학 9개 미해결 문제 해결(2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">CryptoBriefing</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI LLM harness, 이론 CS·수학 9개 미해결 문제 해결(2026.7.1)
 
@@ -467,8 +561,10 @@ OpenAI LLM harness는 GPT-5.5 Pro가 후보 증명/해법을 만들고 Claude Op
 https://cryptobriefing.com/openai-llm-harness-solves-theoretical-cs-problems/" onclick="copyEntry(this)">복사</button></div>
   <p>OpenAI LLM harness는 GPT-5.5 Pro가 후보 증명/해법을 만들고 Claude Opus 4.8이 검증하는 prover-verifier 루프를 통해 이론적 컴퓨터과학·수학의 9개 공개 문제를 해결했다고 전했다. 9개 문제 중 4개는 COLT 문제 목록, 1개는 FOCS, 4개는 가환대수 분야에서 왔다고 하며, 결과는 2026년 6월 27~30일 무렵 공개된 것으로 설명했다. 연구진은 이 방식의 적용 범위를 다른 과학 분야 전반으로 확대할 계획도 밝혔다.</p>
   <p class="url"><a href="https://cryptobriefing.com/openai-llm-harness-solves-theoretical-cs-problems/">https://cryptobriefing.com/openai-llm-harness-solves-theoretical-cs-problems/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier law" data-search="Anthropic, Abnormal AI를 상대로 상표권 침해 소송 제기 (2026.7.1) Anthropic PBC는 Abnormal AI가 자사 로고를 복제하고 유사한 이름과 브랜딩을 사용해 고객 혼동을 일으켰다며 상표권 침해 소송을 제기했다. 소송 근거는 미국 상거래에서 상표권 침해와 출처의 허위 표시를 금지하는 랜햄법(15 U.S.C. § 1125)이다. 사건은 캘리포니아 북부 연방지방법원에 접수됐으며, 사건번호는 3:26-cv-06754이고 현재 진행 중이다. изложાયેલા 내용은 법원의 사실 인정이 아니라 소장과 신청서에 담긴 주장이다. AI 소송 추적기">
   <h2>🇺🇸 Anthropic, Abnormal AI를 상대로 상표권 침해 소송 제기 (2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI 소송 추적기</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic, Abnormal AI를 상대로 상표권 침해 소송 제기 (2026.7.1)
 
@@ -477,8 +573,10 @@ Anthropic PBC는 Abnormal AI가 자사 로고를 복제하고 유사한 이름�
 https://ailawsuittracker.com/cases/anthropic-pbc-v-abnormal-ai-inc-3-26-cv-06754/" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic PBC는 Abnormal AI가 자사 로고를 복제하고 유사한 이름과 브랜딩을 사용해 고객 혼동을 일으켰다며 상표권 침해 소송을 제기했다. 소송 근거는 미국 상거래에서 상표권 침해와 출처의 허위 표시를 금지하는 랜햄법(15 U.S.C. § 1125)이다. 사건은 캘리포니아 북부 연방지방법원에 접수됐으며, 사건번호는 3:26-cv-06754이고 현재 진행 중이다. изложાયેલા 내용은 법원의 사실 인정이 아니라 소장과 신청서에 담긴 주장이다.</p>
   <p class="url"><a href="https://ailawsuittracker.com/cases/anthropic-pbc-v-abnormal-ai-inc-3-26-cv-06754/">https://ailawsuittracker.com/cases/anthropic-pbc-v-abnormal-ai-inc-3-26-cv-06754/</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="" data-search="AI 규제 동향 구독형 Global AI Regulation Tracker API를 Python/CLI로 조회·렌더링하는 패키지 (본문 발행일: 2026.07.01) github.com의 ai-reg-tracker는 Raymond Sun의 Global AI Regulation Tracker API에 대한 Python client로, 약 100+ 관할의 AI 규제 발전 정보를 구독(구매) 기반으로 조회할 수 있다. API 키는 결제 후 발급받아 AI_REG_TRACKER_API_KEY 환경변수로 설정하거나 클라이언트에 직접 전달하며, market(국가/그룹 코드), category(예: latest_news 등), date(스냅샷/일별 조회) 및 lang(eng/chn)로 질의한다. 응답은 RegulationResponse(평탄화된 entries, 메시지, 원문 raw) 형태이며, entries에는 label/desc/href 등 필드가 제공되고 global+date 응답은 market 코드별 dict로 온다. 결과를 markdown으로 저장하는 렌더러/CLI(예: ai-reg-render)와 pytest 기반 단위/실통합 테스트, 라이선스는 MIT로 안내된다. GitHub (aegis-blue-ai)">
   <h2>AI 규제 동향 구독형 Global AI Regulation Tracker API를 Python/CLI로 조회·렌더링하는 패키지 (본문 발행일: 2026.07.01)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">GitHub (aegis-blue-ai)</span></span><button type="button" class="copy-btn" data-copy="AI 규제 동향 구독형 Global AI Regulation Tracker API를 Python/CLI로 조회·렌더링하는 패키지 (본문 발행일: 2026.07.01)
 
@@ -487,8 +585,10 @@ github.com의 ai-reg-tracker는 Raymond Sun의 Global AI Regulation Tracker API�
 https://github.com/aegis-blue-ai/ai-reg-tracker" onclick="copyEntry(this)">복사</button></div>
   <p>github.com의 ai-reg-tracker는 Raymond Sun의 Global AI Regulation Tracker API에 대한 Python client로, 약 100+ 관할의 AI 규제 발전 정보를 구독(구매) 기반으로 조회할 수 있다. API 키는 결제 후 발급받아 AI_REG_TRACKER_API_KEY 환경변수로 설정하거나 클라이언트에 직접 전달하며, market(국가/그룹 코드), category(예: latest_news 등), date(스냅샷/일별 조회) 및 lang(eng/chn)로 질의한다. 응답은 RegulationResponse(평탄화된 entries, 메시지, 원문 raw) 형태이며, entries에는 label/desc/href 등 필드가 제공되고 global+date 응답은 market 코드별 dict로 온다. 결과를 markdown으로 저장하는 렌더러/CLI(예: ai-reg-render)와 pytest 기반 단위/실통합 테스트, 라이선스는 MIT로 안내된다.</p>
   <p class="url"><a href="https://github.com/aegis-blue-ai/ai-reg-tracker">https://github.com/aegis-blue-ai/ai-reg-tracker</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="" data-search="Moonlight, 연구논문 읽기를 돕는 AI PDF 리더 및 2주년 프로모션(2026.7.1) Moonlight은 PDF 뷰어와 같은 화면에서 번역·질문(Q&amp;A)·설명(수식/도표/이론)·인용 확인·요약·미리보기·라이브러리 정리·자동 하이라이트·마크업 등을 제공하는 AI 기능을 강조했다. 또한 2nd Anniversary Celebration을 통해 7월 1일까지 할인 쿠폰 및 구독 보상 제공을 안내하며, 사용자 사례로 논문 이해 부담 완화와 요약 기반 독서 효율 향상을 제시했다. themoonlight.io">
   <h2>Moonlight, 연구논문 읽기를 돕는 AI PDF 리더 및 2주년 프로모션(2026.7.1)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">themoonlight.io</span></span><button type="button" class="copy-btn" data-copy="Moonlight, 연구논문 읽기를 돕는 AI PDF 리더 및 2주년 프로모션(2026.7.1)
 
@@ -497,8 +597,10 @@ Moonlight은 PDF 뷰어와 같은 화면에서 번역·질문(Q&amp;A)·설명(�
 https://themoonlight.io/en" onclick="copyEntry(this)">복사</button></div>
   <p>Moonlight은 PDF 뷰어와 같은 화면에서 번역·질문(Q&amp;A)·설명(수식/도표/이론)·인용 확인·요약·미리보기·라이브러리 정리·자동 하이라이트·마크업 등을 제공하는 AI 기능을 강조했다. 또한 2nd Anniversary Celebration을 통해 7월 1일까지 할인 쿠폰 및 구독 보상 제공을 안내하며, 사용자 사례로 논문 이해 부담 완화와 요약 기반 독서 효율 향상을 제시했다.</p>
   <p class="url"><a href="https://themoonlight.io/en">https://themoonlight.io/en</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="sovereign_ai" data-search="The week AI sovereignty became an engineering discipline (2026.07.01) UN Open Source Week 기간 뉴욕에서 열린 행사에서 ‘AI sovereignty’를 정책 구호가 아닌 구축 가능한 기술 과제로 다뤘다고 전했다. AI Alliance는 분산된 모델 개발을 통해 커뮤니티가 소유하고 frontier급 역량을 갖춘 sovereign AI를 만들기 위한 Project Tapestry를 소개했으며, 국가·기관별로 데이터/컴퓨트/인재를 제공하되 각 참여 주체의 소유권은 유지하는 방식을 강조했다. 또한 공개 데이터 고갈 우려, federated learning 및 DP-SGD 기반 학습/평가 필요성, 언어·문화 데이터 과소대표 문제와 비용·효율 이슈, 추론 시 AI가 콘텐츠를 직접 질의해 통제·귀속을 확보하는 접근 등을 함께 논의했다. 마지막으로는 AI 플랫폼 여정은 벤더에 선점되기 전에 기업이 스택을 소유하고 거버넌스를 설계해야 한다는 제언이 제시됐다. thealliance.ai (AI Alliance)">
   <h2>The week AI sovereignty became an engineering discipline (2026.07.01)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">thealliance.ai (AI Alliance)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="소버린AI">🏛️</span></span></span><button type="button" class="copy-btn" data-copy="The week AI sovereignty became an engineering discipline (2026.07.01)
 
@@ -507,8 +609,10 @@ UN Open Source Week 기간 뉴욕에서 열린 행사에서 ‘AI sovereignty’
 https://thealliance.ai/blog/the-week-ai-sovereignty-became-an-engineering-discipline" onclick="copyEntry(this)">복사</button></div>
   <p>UN Open Source Week 기간 뉴욕에서 열린 행사에서 ‘AI sovereignty’를 정책 구호가 아닌 구축 가능한 기술 과제로 다뤘다고 전했다. AI Alliance는 분산된 모델 개발을 통해 커뮤니티가 소유하고 frontier급 역량을 갖춘 sovereign AI를 만들기 위한 Project Tapestry를 소개했으며, 국가·기관별로 데이터/컴퓨트/인재를 제공하되 각 참여 주체의 소유권은 유지하는 방식을 강조했다. 또한 공개 데이터 고갈 우려, federated learning 및 DP-SGD 기반 학습/평가 필요성, 언어·문화 데이터 과소대표 문제와 비용·효율 이슈, 추론 시 AI가 콘텐츠를 직접 질의해 통제·귀속을 확보하는 접근 등을 함께 논의했다. 마지막으로는 AI 플랫폼 여정은 벤더에 선점되기 전에 기업이 스택을 소유하고 거버넌스를 설계해야 한다는 제언이 제시됐다.</p>
   <p class="url"><a href="https://thealliance.ai/blog/the-week-ai-sovereignty-became-an-engineering-discipline">https://thealliance.ai/blog/the-week-ai-sovereignty-became-an-engineering-discipline</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="physical_ai" data-search="ADRF26 포르투에서 2026.10.13~14 개최 예정(2026.10.13) ADRF26은 2026년 10월 13~14일 포르투갈 포르투에서 개최되는 유럽 고위임팩트 포럼으로, AI·Data·Robotics 분야의 산업·학계·정책 주요 참여자 500여 명을 모아 기술 혁신과 실용적 전환을 가속하는 것을 목표로 한다. INESC TEC가 주관하며, 유럽 AI·데이터·로보틱스 파트너십의 민간 측 ADRA와 유럽연합 집행위원회의 참여가 언급된다. 기조연설, 고위 패널, 병렬 세션, 전시 및 프로젝트 쇼케이스, 구조화 네트워킹을 통해 전략적·산업·사회적 과제와 유망 트렌드 및 파트너십 기회를 다룬다. ADRF(adrforum.eu)">
   <h2>🇪🇺 ADRF26 포르투에서 2026.10.13~14 개최 예정(2026.10.13)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">ADRF(adrforum.eu)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="ADRF26 포르투에서 2026.10.13~14 개최 예정(2026.10.13)
 
@@ -517,7 +621,9 @@ ADRF26은 2026년 10월 13~14일 포르투갈 포르투에서 개최되는 유�
 https://adrforum.eu/about-adrf26" onclick="copyEntry(this)">복사</button></div>
   <p>ADRF26은 2026년 10월 13~14일 포르투갈 포르투에서 개최되는 유럽 고위임팩트 포럼으로, AI·Data·Robotics 분야의 산업·학계·정책 주요 참여자 500여 명을 모아 기술 혁신과 실용적 전환을 가속하는 것을 목표로 한다. INESC TEC가 주관하며, 유럽 AI·데이터·로보틱스 파트너십의 민간 측 ADRA와 유럽연합 집행위원회의 참여가 언급된다. 기조연설, 고위 패널, 병렬 세션, 전시 및 프로젝트 쇼케이스, 구조화 네트워킹을 통해 전략적·산업·사회적 과제와 유망 트렌드 및 파트너십 기회를 다룬다.</p>
   <p class="url"><a href="https://adrforum.eu/about-adrf26">https://adrforum.eu/about-adrf26</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-06-30.html">← 2026-06-30</a><a class="day-nav-btn" href="2026-07-02.html">2026-07-02 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-06-30.html">← 2026-06-30</a><a class="day-nav-btn" href="2026-07-02.html">2026-07-02 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -553,6 +659,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

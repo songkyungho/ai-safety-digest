@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -304,21 +356,23 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI Safety Daily Digest</h1>
-    <div class="sub">2026-06-03 · 23/27건 요약</div>
+    <div class="sub">2026-06-03 · 24/28건 요약</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi-weekly">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier law national_security" data-search="OpenAI, 프론티어 AI의 민주적 거버넌스를 위한 연방 프레임워크 청사진 공개 (2026.6.3) OpenAI는 프론티어 AI가 초래할 수 있는 심각한 국가 안보 위험을 통제하기 위해 미국 연방 정부 차원의 포괄적인 규제 프레임워크 구축을 제안. 주 정부들의 안전 법안을 기반으로 국가적 틀을 마련하고, 미국 AI 안전 혁신 센터(CAISI)의 권한을 대폭 강화하여 의무적인 AI 평가 및 제3자 감사 체계를 도입할 것을 촉구. OpenAI">
   <h2>🇺🇸 OpenAI, 프론티어 AI의 민주적 거버넌스를 위한 연방 프레임워크 청사진 공개 (2026.6.3)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OpenAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI, 프론티어 AI의 민주적 거버넌스를 위한 연방 프레임워크 청사진 공개 (2026.6.3)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OpenAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI, 프론티어 AI의 민주적 거버넌스를 위한 연방 프레임워크 청사진 공개 (2026.6.3)
 
 OpenAI는 프론티어 AI가 초래할 수 있는 심각한 국가 안보 위험을 통제하기 위해 미국 연방 정부 차원의 포괄적인 규제 프레임워크 구축을 제안. 주 정부들의 안전 법안을 기반으로 국가적 틀을 마련하고, 미국 AI 안전 혁신 센터(CAISI)의 권한을 대폭 강화하여 의무적인 AI 평가 및 제3자 감사 체계를 도입할 것을 촉구.
 
 https://cdn.openai.com/pdf/25752ecb-0e5c-47f9-b9e4-c0f4d76f8d3d/a-blueprint-for-a-federal-framework.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>OpenAI는 프론티어 AI가 초래할 수 있는 심각한 국가 안보 위험을 통제하기 위해 미국 연방 정부 차원의 포괄적인 규제 프레임워크 구축을 제안. 주 정부들의 안전 법안을 기반으로 국가적 틀을 마련하고, 미국 AI 안전 혁신 센터(CAISI)의 권한을 대폭 강화하여 의무적인 AI 평가 및 제3자 감사 체계를 도입할 것을 촉구.</p>
   <p class="url"><a href="https://cdn.openai.com/pdf/25752ecb-0e5c-47f9-b9e4-c0f4d76f8d3d/a-blueprint-for-a-federal-framework.pdf">https://cdn.openai.com/pdf/25752ecb-0e5c-47f9-b9e4-c0f4d76f8d3d/a-blueprint-for-a-federal-framework.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="deepfake_disinfo frontier youth" data-search="OpenAI, 안전하고 포용적인 AI 생태계 조성을 위한 &#x27;공공 정책 아젠다&#x27; 공개 (2026.6.3) OpenAI는 범용인공지능(AGI)이 전 인류에게 혜택을 주도록 보장하기 위해, 프론티어 AI 안전, 청소년 보호, 인프라 등을 포괄하는 공공 정책 아젠다를 발표. 첨단 AI 안전을 위한 연방 프레임워크 구축, 딥페이크 방지를 위한 콘텐츠 출처 표시, 노동 전환 지원 및 지역사회와 상생하는 인프라 투자 등 구체적인 정책 지원 방향을 제시. OpenAI">
   <h2>🇺🇸 OpenAI, 안전하고 포용적인 AI 생태계 조성을 위한 &#x27;공공 정책 아젠다&#x27; 공개 (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">OpenAI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI, 안전하고 포용적인 AI 생태계 조성을 위한 &#x27;공공 정책 아젠다&#x27; 공개 (2026.6.3)
 
@@ -327,18 +381,22 @@ OpenAI는 범용인공지능(AGI)이 전 인류에게 혜택을 주도록 보장
 https://openai.com/index/public-policy-agenda/" onclick="copyEntry(this)">복사</button></div>
   <p>OpenAI는 범용인공지능(AGI)이 전 인류에게 혜택을 주도록 보장하기 위해, 프론티어 AI 안전, 청소년 보호, 인프라 등을 포괄하는 공공 정책 아젠다를 발표. 첨단 AI 안전을 위한 연방 프레임워크 구축, 딥페이크 방지를 위한 콘텐츠 출처 표시, 노동 전환 지원 및 지역사회와 상생하는 인프라 투자 등 구체적인 정책 지원 방향을 제시.</p>
   <p class="url"><a href="https://openai.com/index/public-policy-agenda/">https://openai.com/index/public-policy-agenda/</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="deepfake_disinfo law national_security" data-search="전 세계 AI 전문가들을 대상으로 한 AI의 파국적 위험성 분석 연구 결과 발표 (2026.6.3) MIT 및 퀸즐랜드 대학 연구진은 37개국 272명의 AI 전문가를 대상으로 조사한 결과, 합리적 조치가 없을 경우 AI가 파괴적인 결과를 초래할 확률이 10% 이상이라는 경고를 발표. 전문가들은 무기화, 허위 정보 등을 가장 큰 위협으로 꼽았으며, AI 개발 경쟁 구조상 기업의 자발적 통제가 어려우므로 법률 및 조약과 같은 집단적 규제의 필요성을 강조. MIT Sloan">
   <h2>전 세계 AI 전문가들을 대상으로 한 AI의 파국적 위험성 분석 연구 결과 발표 (2026.6.3)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">MIT Sloan</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="전 세계 AI 전문가들을 대상으로 한 AI의 파국적 위험성 분석 연구 결과 발표 (2026.6.3)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">MIT Sloan</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="전 세계 AI 전문가들을 대상으로 한 AI의 파국적 위험성 분석 연구 결과 발표 (2026.6.3)
 
 MIT 및 퀸즐랜드 대학 연구진은 37개국 272명의 AI 전문가를 대상으로 조사한 결과, 합리적 조치가 없을 경우 AI가 파괴적인 결과를 초래할 확률이 10% 이상이라는 경고를 발표. 전문가들은 무기화, 허위 정보 등을 가장 큰 위협으로 꼽았으며, AI 개발 경쟁 구조상 기업의 자발적 통제가 어려우므로 법률 및 조약과 같은 집단적 규제의 필요성을 강조.
 
 https://mitsloan.mit.edu/press/international-ai-experts-warn-potentially-catastrophic-risks-ai" onclick="copyEntry(this)">복사</button></div>
   <p>MIT 및 퀸즐랜드 대학 연구진은 37개국 272명의 AI 전문가를 대상으로 조사한 결과, 합리적 조치가 없을 경우 AI가 파괴적인 결과를 초래할 확률이 10% 이상이라는 경고를 발표. 전문가들은 무기화, 허위 정보 등을 가장 큰 위협으로 꼽았으며, AI 개발 경쟁 구조상 기업의 자발적 통제가 어려우므로 법률 및 조약과 같은 집단적 규제의 필요성을 강조.</p>
   <p class="url"><a href="https://mitsloan.mit.edu/press/international-ai-experts-warn-potentially-catastrophic-risks-ai">https://mitsloan.mit.edu/press/international-ai-experts-warn-potentially-catastrophic-risks-ai</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="AI-enabled 사이버 위협을 MITRE ATT&amp;CK에 매핑한 1년 분석(2026.6.3) Anthropic은 2025년 3월~2026년 3월 사이 악성 사이버 활동으로 금지(banned)된 계정 832건을 MITRE ATT&amp;CK에 매핑해 분석한 결과를 공개했다. 분석은 AI가 공격의 초기 침투보다 내부 침투 이후의 복잡한 단계(예: account discovery, lateral movement, privilege escalation)에 더 많이 활용되며, 위험도 분류도 6개월 단위로 중간 이상 비중이 33%→56%로 약 1.7배 증가했다고 밝혔다. 또한 MITRE ATT&amp;CK가 AI-enabled 공격자의 위험을 좌우하는 ‘agentic orchestration(모델이 단계들을 연쇄·자율 실행)’ 같은 행위를 충분히 포착하지 못한다고 지적했다. 앤트로픽(Anthropic)">
   <h2>AI-enabled 사이버 위협을 MITRE ATT&amp;CK에 매핑한 1년 분석(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span></span><button type="button" class="copy-btn" data-copy="AI-enabled 사이버 위협을 MITRE ATT&amp;CK에 매핑한 1년 분석(2026.6.3)
 
@@ -347,8 +405,10 @@ Anthropic은 2025년 3월~2026년 3월 사이 악성 사이버 활동으로 금�
 https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 2025년 3월~2026년 3월 사이 악성 사이버 활동으로 금지(banned)된 계정 832건을 MITRE ATT&amp;CK에 매핑해 분석한 결과를 공개했다. 분석은 AI가 공격의 초기 침투보다 내부 침투 이후의 복잡한 단계(예: account discovery, lateral movement, privilege escalation)에 더 많이 활용되며, 위험도 분류도 6개월 단위로 중간 이상 비중이 33%→56%로 약 1.7배 증가했다고 밝혔다. 또한 MITRE ATT&amp;CK가 AI-enabled 공격자의 위험을 좌우하는 ‘agentic orchestration(모델이 단계들을 연쇄·자율 실행)’ 같은 행위를 충분히 포착하지 못한다고 지적했다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack">https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Claude Partner Network의 Services Track과 Partner Hub 공개(2026.6.3) 앤트로픽은 Claude Partner Network의 고객 탐색을 돕기 위해 Services Track(3개 티어)과 Claude Partner Hub(파트너·고객용 포털)를 공개했다. Services Track은 인증 보유 인력, Claude 프로덕션 배포 고객 수, 공개 고객 스토리 등을 기준으로 Select·Preferred·Global Premier로 구분하며, Partner Hub에서는 각 파트너의 요건 충족 현황이 매일 갱신되고 공개 디렉터리로도 확인 가능하다. 또한 파트너가 MCP connector를 통해 Partner Hub 정보를 Claude와 연동해 자신의 다음 티어 요건, 등록 딜 상태, 인증 보유 컨설턴트 수 등을 질의·활용할 수 있다고 밝혔다. 파트너 프로그램은 3월 발표된 1억 달러 투자(파트너 교육·기술 지원·공동 마케팅)를 바탕으로 하며, 파트너십 시작은 Select부터이고 신규 시작은 무료라고 설명했다. 앤트로픽(Anthropic)">
   <h2>Claude Partner Network의 Services Track과 Partner Hub 공개(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤트로픽(Anthropic)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Claude Partner Network의 Services Track과 Partner Hub 공개(2026.6.3)
 
@@ -357,8 +417,10 @@ https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack" onclick="c
 https://www.anthropic.com/news/services-track-partner-hub" onclick="copyEntry(this)">복사</button></div>
   <p>앤트로픽은 Claude Partner Network의 고객 탐색을 돕기 위해 Services Track(3개 티어)과 Claude Partner Hub(파트너·고객용 포털)를 공개했다. Services Track은 인증 보유 인력, Claude 프로덕션 배포 고객 수, 공개 고객 스토리 등을 기준으로 Select·Preferred·Global Premier로 구분하며, Partner Hub에서는 각 파트너의 요건 충족 현황이 매일 갱신되고 공개 디렉터리로도 확인 가능하다. 또한 파트너가 MCP connector를 통해 Partner Hub 정보를 Claude와 연동해 자신의 다음 티어 요건, 등록 딜 상태, 인증 보유 컨설턴트 수 등을 질의·활용할 수 있다고 밝혔다. 파트너 프로그램은 3월 발표된 1억 달러 투자(파트너 교육·기술 지원·공동 마케팅)를 바탕으로 하며, 파트너십 시작은 Select부터이고 신규 시작은 무료라고 설명했다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/services-track-partner-hub">https://www.anthropic.com/news/services-track-partner-hub</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="agentic_ai" data-search="Gemma 4 12B, 인코더 없는 통합 멀티모달 모델로 노트북 로컬 실행(2026.6.3) Gemma 4 12B는 노트북에서 에이전트형 멀티모달 지능을 구동하도록 설계된 모델로, E4B보다 확장된 성능을 더 작은 메모리 사용량으로 제공한다고 설명했다. 비전과 오디오를 별도 멀티모달 인코더 없이 LLM 백본으로 직접 연결하는 ‘encoder-free’ 통합 아키텍처가 핵심이며, 오디오는 오디오 인코더를 제거하고 원시 오디오 신호를 텍스트 토큰과 같은 차원으로 투영한다고 밝혔다. 또한 16GB VRAM(또는 unified memory)에서 로컬 실행이 가능하고, Apache 2.0 라이선스로 공개되며 Multi-Token Prediction(MTP) drafters로 지연을 줄이도록 구성했다고 전했다. 구글 딥마인드(DeepMind)">
   <h2>Gemma 4 12B, 인코더 없는 통합 멀티모달 모델로 노트북 로컬 실행(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드(DeepMind)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Gemma 4 12B, 인코더 없는 통합 멀티모달 모델로 노트북 로컬 실행(2026.6.3)
 
@@ -367,8 +429,27 @@ Gemma 4 12B는 노트북에서 에이전트형 멀티모달 지능을 구동하�
 https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/" onclick="copyEntry(this)">복사</button></div>
   <p>Gemma 4 12B는 노트북에서 에이전트형 멀티모달 지능을 구동하도록 설계된 모델로, E4B보다 확장된 성능을 더 작은 메모리 사용량으로 제공한다고 설명했다. 비전과 오디오를 별도 멀티모달 인코더 없이 LLM 백본으로 직접 연결하는 ‘encoder-free’ 통합 아키텍처가 핵심이며, 오디오는 오디오 인코더를 제거하고 원시 오디오 신호를 텍스트 토큰과 같은 차원으로 투영한다고 밝혔다. 또한 16GB VRAM(또는 unified memory)에서 로컬 실행이 가능하고, Apache 2.0 라이선스로 공개되며 Multi-Token Prediction(MTP) drafters로 지연을 줄이도록 구성했다고 전했다.</p>
   <p class="url"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/">https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · 구글 딥마인드</summary><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Gemma 4 12B, 통합 인코더 없는 멀티모달 모델 공개 (2026.6.3) 구글 딥마인드가 시각·음성 입력을 언어 모델 본체에 직접 통합하는 인코더 없는 멀티모달 모델 Gemma 4 12B를 공개했다. 이 모델은 26B Mixture of Experts 모델에 근접한 성능을 목표로 하면서 16GB 메모리 환경의 노트북에서 로컬 실행할 수 있도록 설계됐고, Apache 2.0 라이선스로 제공된다. 사전 학습·지시 조정 체크포인트는 Hugging Face와 Kaggle에서 받을 수 있으며, 다양한 로컬 추론 도구와 Google Cloud 배포 환경을 지원한다. 구글 딥마인드">
+  <h2>Gemma 4 12B, 통합 인코더 없는 멀티모달 모델 공개 (2026.6.3)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Gemma 4 12B, 통합 인코더 없는 멀티모달 모델 공개 (2026.6.3)
+
+구글 딥마인드가 시각·음성 입력을 언어 모델 본체에 직접 통합하는 인코더 없는 멀티모달 모델 Gemma 4 12B를 공개했다. 이 모델은 26B Mixture of Experts 모델에 근접한 성능을 목표로 하면서 16GB 메모리 환경의 노트북에서 로컬 실행할 수 있도록 설계됐고, Apache 2.0 라이선스로 제공된다. 사전 학습·지시 조정 체크포인트는 Hugging Face와 Kaggle에서 받을 수 있으며, 다양한 로컬 추론 도구와 Google Cloud 배포 환경을 지원한다.
+
+https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/" onclick="copyEntry(this)">복사</button></div>
+  <p>구글 딥마인드가 시각·음성 입력을 언어 모델 본체에 직접 통합하는 인코더 없는 멀티모달 모델 Gemma 4 12B를 공개했다. 이 모델은 26B Mixture of Experts 모델에 근접한 성능을 목표로 하면서 16GB 메모리 환경의 노트북에서 로컬 실행할 수 있도록 설계됐고, Apache 2.0 라이선스로 제공된다. 사전 학습·지시 조정 체크포인트는 Hugging Face와 Kaggle에서 받을 수 있으며, 다양한 로컬 추론 도구와 Google Cloud 배포 환경을 지원한다.</p>
+  <p class="url"><a href="https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/">https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="AI 기반 사이버 위협 분석 결과: 사이버 공격의 진화와 보안 프레임워크의 한계 (2026.6.3) AI 기술이 사이버 공격을 더욱 복잡하고 위험하게 만들고 있으며, 기존 보안 프레임워크가 이러한 변화를 충분히 반영하지 못하고 있다는 점이 주요 결론입니다. 구체적으로:
+
+- **AI 활용 증가**: 공격자들이 AI를 초기 접근보다 내부 시스템 내 활동에 더 많이 활용하고 있으며, 이로 인해 위협 수준이 상승하고 있습니다.
+- **자율성 증가**: AI를 통한 공격의 자율성이 높아져 기존 위험 평가 기준이 효과적이지 않게 되었습니다.
+- **프레임워크 한계**: MITRE ATT&amp;CK 프레임워크가 AI 기반 공격의 복잡한 도구와 활동을 완전히 포착하지 못하고 있습니다.
+
+이러한 변화에 대응하기 위해 보안 프레임워크의 업데이트와 모델 내 사이버 방어 기능 개발이 필요합니다. Anthropic-Research">
   <h2>🇺🇸 AI 기반 사이버 위협 분석 결과: 사이버 공격의 진화와 보안 프레임워크의 한계 (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span></span><button type="button" class="copy-btn" data-copy="AI 기반 사이버 위협 분석 결과: 사이버 공격의 진화와 보안 프레임워크의 한계 (2026.6.3)
 
@@ -387,8 +468,10 @@ https://www.anthropic.com/research/AI-enabled-cyber-threats-mitre-attack" onclic
 - **프레임워크 한계**: MITRE ATT&amp;CK 프레임워크가 AI 기반 공격의 복잡한 도구와 활동을 완전히 포착하지 못하고 있습니다.</p>
 <p>이러한 변화에 대응하기 위해 보안 프레임워크의 업데이트와 모델 내 사이버 방어 기능 개발이 필요합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/AI-enabled-cyber-threats-mitre-attack">https://www.anthropic.com/research/AI-enabled-cyber-threats-mitre-attack</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="guideline" data-search="AI 활용 사이버 위협 분석: LLM ATT&amp;CK 네비게이터의 통찰 (2026.6.3) AI 기술을 악용하는 사이버 공격자들의 패턴이 증가하고 위험도가 높아지고 있으며, 이를 MITRE ATT&amp;CK 프레임워크에 매핑하여 분석한 결과, 공격의 복잡성과 범위가 확대되고 있음을 확인했습니다. 특히, AI 지원으로 인해 중간 위험도 이상의 공격자 비율이 증가했으며, 이는 공격의 자율성과 효율성 향상을 의미합니다. 그러나 현재의 ATT&amp;CK 프레임워크는 이러한 고도화된 자율 공격 패턴을 완전히 포괄하지 못하고 있어, 위협 인텔리전스와 방어 전략의 발전이 요구됩니다. 이 연구는 AI 모델의 위험 평가 방법론인 ARiES를 개발하고, 이를 통해 사이버 공격의 위험도를 측정하며, 미래의 위협에 대비하기 위한 지침을 제공합니다. Anthropic-Research">
   <h2>🇺🇸 AI 활용 사이버 위협 분석: LLM ATT&amp;CK 네비게이터의 통찰 (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="AI 활용 사이버 위협 분석: LLM ATT&amp;CK 네비게이터의 통찰 (2026.6.3)
 
@@ -397,18 +480,10 @@ AI 기술을 악용하는 사이버 공격자들의 패턴이 증가하고 위�
 https://www.anthropic.com/research/attack-navigator" onclick="copyEntry(this)">복사</button></div>
   <p>AI 기술을 악용하는 사이버 공격자들의 패턴이 증가하고 위험도가 높아지고 있으며, 이를 MITRE ATT&amp;CK 프레임워크에 매핑하여 분석한 결과, 공격의 복잡성과 범위가 확대되고 있음을 확인했습니다. 특히, AI 지원으로 인해 중간 위험도 이상의 공격자 비율이 증가했으며, 이는 공격의 자율성과 효율성 향상을 의미합니다. 그러나 현재의 ATT&amp;CK 프레임워크는 이러한 고도화된 자율 공격 패턴을 완전히 포괄하지 못하고 있어, 위협 인텔리전스와 방어 전략의 발전이 요구됩니다. 이 연구는 AI 모델의 위험 평가 방법론인 ARiES를 개발하고, 이를 통해 사이버 공격의 위험도를 측정하며, 미래의 위협에 대비하기 위한 지침을 제공합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/attack-navigator">https://www.anthropic.com/research/attack-navigator</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
-  <h2>Gemma 4 12B, 통합 인코더 없는 멀티모달 모델 공개 (2026.6.3)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Gemma 4 12B, 통합 인코더 없는 멀티모달 모델 공개 (2026.6.3)
-
-구글 딥마인드가 시각·음성 입력을 언어 모델 본체에 직접 통합하는 인코더 없는 멀티모달 모델 Gemma 4 12B를 공개했다. 이 모델은 26B Mixture of Experts 모델에 근접한 성능을 목표로 하면서 16GB 메모리 환경의 노트북에서 로컬 실행할 수 있도록 설계됐고, Apache 2.0 라이선스로 제공된다. 사전 학습·지시 조정 체크포인트는 Hugging Face와 Kaggle에서 받을 수 있으며, 다양한 로컬 추론 도구와 Google Cloud 배포 환경을 지원한다.
-
-https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/" onclick="copyEntry(this)">복사</button></div>
-  <p>구글 딥마인드가 시각·음성 입력을 언어 모델 본체에 직접 통합하는 인코더 없는 멀티모달 모델 Gemma 4 12B를 공개했다. 이 모델은 26B Mixture of Experts 모델에 근접한 성능을 목표로 하면서 16GB 메모리 환경의 노트북에서 로컬 실행할 수 있도록 설계됐고, Apache 2.0 라이선스로 제공된다. 사전 학습·지시 조정 체크포인트는 Hugging Face와 Kaggle에서 받을 수 있으며, 다양한 로컬 추론 도구와 Google Cloud 배포 환경을 지원한다.</p>
-  <p class="url"><a href="https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/">https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/</a></p>
-</article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="deepfake_disinfo guideline" data-search="유럽연합, AI 투명성 의무 관련 가이드라인 초안 공개 및 의견수렴(2026.6.3) 유럽 집행위원회는 AI 투명성 의무에 관한 가이드라인 초안을 발표하고, 이해관계자 의견을 수렴한 뒤 채택을 추진한다고 밝혔다. AI Act에 따라 AI 제공자는 이용자가 AI 시스템과 상호작용하는 경우 이를 고지하고, AI 생성·조작 콘텐츠를 탐지할 수 있도록 기계 판독 가능한 표시를 해야 하며, 딥페이크·공익 관련 AI 생성물·감정인식 또는 생체정보 분류 시스템에 노출되는 경우에도 고지가 요구된다. 가이드라인은 기존 협의 결과를 반영해 의무 범위를 명확히 하고 준수에 도움을 주는 것을 목표로 하며, 독립 전문가가 마련하는 ‘표시·라벨링’ 실천강령 초안이 보완될 예정이다. 이해관계자들은 2026년 6월 3일까지 의견을 제출할 수 있다. 유럽 집행위원회(EU-Digital-Strategy)">
   <h2>🇪🇺 유럽연합, AI 투명성 의무 관련 가이드라인 초안 공개 및 의견수렴(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽 집행위원회(EU-Digital-Strategy)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="유럽연합, AI 투명성 의무 관련 가이드라인 초안 공개 및 의견수렴(2026.6.3)
 
@@ -417,8 +492,10 @@ https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-mult
 https://digital-strategy.ec.europa.eu/en/news/commission-opens-consultation-draft-guidelines-ai-transparency-obligations" onclick="copyEntry(this)">복사</button></div>
   <p>유럽 집행위원회는 AI 투명성 의무에 관한 가이드라인 초안을 발표하고, 이해관계자 의견을 수렴한 뒤 채택을 추진한다고 밝혔다. AI Act에 따라 AI 제공자는 이용자가 AI 시스템과 상호작용하는 경우 이를 고지하고, AI 생성·조작 콘텐츠를 탐지할 수 있도록 기계 판독 가능한 표시를 해야 하며, 딥페이크·공익 관련 AI 생성물·감정인식 또는 생체정보 분류 시스템에 노출되는 경우에도 고지가 요구된다. 가이드라인은 기존 협의 결과를 반영해 의무 범위를 명확히 하고 준수에 도움을 주는 것을 목표로 하며, 독립 전문가가 마련하는 ‘표시·라벨링’ 실천강령 초안이 보완될 예정이다. 이해관계자들은 2026년 6월 3일까지 의견을 제출할 수 있다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-opens-consultation-draft-guidelines-ai-transparency-obligations">https://digital-strategy.ec.europa.eu/en/news/commission-opens-consultation-draft-guidelines-ai-transparency-obligations</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="law" data-search="유럽 집행위원회, Jim Hagemann Snabe를 산업 인공지능 Special Envoy로 임명 (**기사·공고 게재일** 2026.6.3) 유럽 집행위원회는 Jim Hagemann Snabe를 산업 인공지능 분야 Special Envoy로 임명했다. 그는 우르줄라 폰데어라이엔 집행위원장과 Henna Virkkunen(Tech Sovereignty, Security and Democracy) 집행부위원장에게 산업 AI 관련 사안을 자문하고, EU 전역에서 AI의 전환 잠재력을 극대화하기 위한 근거 기반의 전망 보고서를 제출할 예정이다. 자문 범위에는 AI 인프라(데이터센터, HPC, 반도체 공급망)와 LLM·생성형 AI·클라우드 서비스·고급 AI 소프트웨어 등 기반 기술, 산업 전반의 적용, 그리고 기술 혁신과 EU 입법 체계 간의 정합성을 위한 정책 고려가 포함된다. EU-Digital-Strategy">
   <h2>🇪🇺 유럽 집행위원회, Jim Hagemann Snabe를 산업 인공지능 Special Envoy로 임명 (**기사·공고 게재일** 2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">EU-Digital-Strategy</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="유럽 집행위원회, Jim Hagemann Snabe를 산업 인공지능 Special Envoy로 임명 (**기사·공고 게재일** 2026.6.3)
 
@@ -427,8 +504,8 @@ https://digital-strategy.ec.europa.eu/en/news/commission-opens-consultation-draf
 https://digital-strategy.ec.europa.eu/en/news/commission-appoints-jim-hagemann-snabe-special-envoy-industrial-artificial-intelligence" onclick="copyEntry(this)">복사</button></div>
   <p>유럽 집행위원회는 Jim Hagemann Snabe를 산업 인공지능 분야 Special Envoy로 임명했다. 그는 우르줄라 폰데어라이엔 집행위원장과 Henna Virkkunen(Tech Sovereignty, Security and Democracy) 집행부위원장에게 산업 AI 관련 사안을 자문하고, EU 전역에서 AI의 전환 잠재력을 극대화하기 위한 근거 기반의 전망 보고서를 제출할 예정이다. 자문 범위에는 AI 인프라(데이터센터, HPC, 반도체 공급망)와 LLM·생성형 AI·클라우드 서비스·고급 AI 소프트웨어 등 기반 기술, 산업 전반의 적용, 그리고 기술 혁신과 EU 입법 체계 간의 정합성을 위한 정책 고려가 포함된다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-appoints-jim-hagemann-snabe-special-envoy-industrial-artificial-intelligence">https://digital-strategy.ec.europa.eu/en/news/commission-appoints-jim-hagemann-snabe-special-envoy-industrial-artificial-intelligence</a></p>
-</article>
-<article class="entry cat-public">
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · 유럽연합 집행위원회(EU-Digital-Strategy)</summary><article class="entry cat-public" data-cat="public" data-topics="law" data-search="유럽 집행위, 반도체·AI·클라우드·오픈소스 중심 ‘European Technological Sovereignty Package’ 제안 (기사·공고 게재일 2026.6.3) 유럽 집행위원회는 반도체, 인공지능(AI), 클라우드, 오픈소스를 중심으로 유럽의 디지털 자율성과 회복력을 강화하기 위한 ‘European Technological Sovereignty Package’를 제시했다. 이 패키지에는 Chips Act 2.0과 Cloud and AI Development Act(CADA) 등 2건의 입법 제안, 오픈소스 전략, 에너지 분야 디지털화·AI 전략 로드맵이 포함된다. EU는 핵심 디지털 기술에서 역외 공급 의존이 크고 AI 확산으로 컴퓨팅 수요가 급증하는 상황에서 구조적 의존을 줄이고 유럽이 기술을 개발·배치·보안할 수 있도록 하려는 취지라고 밝혔다. 유럽연합 집행위원회(EU-Digital-Strategy)">
   <h2>🇪🇺 유럽 집행위, 반도체·AI·클라우드·오픈소스 중심 ‘European Technological Sovereignty Package’ 제안 (기사·공고 게재일 2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽연합 집행위원회(EU-Digital-Strategy)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="유럽 집행위, 반도체·AI·클라우드·오픈소스 중심 ‘European Technological Sovereignty Package’ 제안 (기사·공고 게재일 2026.6.3)
 
@@ -437,8 +514,11 @@ https://digital-strategy.ec.europa.eu/en/news/commission-appoints-jim-hagemann-s
 https://digital-strategy.ec.europa.eu/en/news/commission-proposes-tech-sovereignty-package-strengthen-europes-digital-autonomy-and-resilience" onclick="copyEntry(this)">복사</button></div>
   <p>유럽 집행위원회는 반도체, 인공지능(AI), 클라우드, 오픈소스를 중심으로 유럽의 디지털 자율성과 회복력을 강화하기 위한 ‘European Technological Sovereignty Package’를 제시했다. 이 패키지에는 Chips Act 2.0과 Cloud and AI Development Act(CADA) 등 2건의 입법 제안, 오픈소스 전략, 에너지 분야 디지털화·AI 전략 로드맵이 포함된다. EU는 핵심 디지털 기술에서 역외 공급 의존이 크고 AI 확산으로 컴퓨팅 수요가 급증하는 상황에서 구조적 의존을 줄이고 유럽이 기술을 개발·배치·보안할 수 있도록 하려는 취지라고 밝혔다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/news/commission-proposes-tech-sovereignty-package-strengthen-europes-digital-autonomy-and-resilience">https://digital-strategy.ec.europa.eu/en/news/commission-proposes-tech-sovereignty-package-strengthen-europes-digital-autonomy-and-resilience</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="guideline" data-search="OECD, AI 원칙을 정책으로 전환하는 ‘AI Policy Toolkit’ 1차 공개(2026.6.3) AI는 기술이자 정책 과제로, 각국의 필요에 맞춰 안전하고 신뢰할 수 있는 AI 개발·활용을 지원하는 가이드가 필요하다는 취지다. OECD는 GPAI(Global Partnership on Artificial Intelligence) 하에 OECD AI Principles를 정책 실행으로 옮기기 위한 비(非)규범적·실무형 ‘OECD AI Policy Toolkit’ 1차 버전을 공개했다. 이 툴킷은 AI 정책 전 주기에서 활용할 수 있는 대화형·진화형 플랫폼이며, AI 기반 의미 검색으로 실제 사례와 지침을 찾아 바로 적용 가능한 옵션을 제공하도록 설계됐다. 또한 동남아·라틴아메리카·아프리카 등에서 정책결정자·산업·전문가와의 공동창작(co-creation)을 통해 지역별 의사결정 방식과 쟁점(모델 간 트레이드오프, 인프라 격차, 농업·교육·보건 분야 확산)을 반영했다고 설명했다. 경제협력개발기구(OECD) AI Wonk">
   <h2>OECD, AI 원칙을 정책으로 전환하는 ‘AI Policy Toolkit’ 1차 공개(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">경제협력개발기구(OECD) AI Wonk</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="OECD, AI 원칙을 정책으로 전환하는 ‘AI Policy Toolkit’ 1차 공개(2026.6.3)
 
@@ -447,8 +527,10 @@ AI는 기술이자 정책 과제로, 각국의 필요에 맞춰 안전하고 신
 https://oecd.ai/en/wonk/the-oecd-ai-policy-toolkit-better-ai-policies-for-better-lives" onclick="copyEntry(this)">복사</button></div>
   <p>AI는 기술이자 정책 과제로, 각국의 필요에 맞춰 안전하고 신뢰할 수 있는 AI 개발·활용을 지원하는 가이드가 필요하다는 취지다. OECD는 GPAI(Global Partnership on Artificial Intelligence) 하에 OECD AI Principles를 정책 실행으로 옮기기 위한 비(非)규범적·실무형 ‘OECD AI Policy Toolkit’ 1차 버전을 공개했다. 이 툴킷은 AI 정책 전 주기에서 활용할 수 있는 대화형·진화형 플랫폼이며, AI 기반 의미 검색으로 실제 사례와 지침을 찾아 바로 적용 가능한 옵션을 제공하도록 설계됐다. 또한 동남아·라틴아메리카·아프리카 등에서 정책결정자·산업·전문가와의 공동창작(co-creation)을 통해 지역별 의사결정 방식과 쟁점(모델 간 트레이드오프, 인프라 격차, 농업·교육·보건 분야 확산)을 반영했다고 설명했다.</p>
   <p class="url"><a href="https://oecd.ai/en/wonk/the-oecd-ai-policy-toolkit-better-ai-policies-for-better-lives">https://oecd.ai/en/wonk/the-oecd-ai-policy-toolkit-better-ai-policies-for-better-lives</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="law" data-search="AI Act 자문포럼, 집행위·AI Board에 일반 자문 제공(2026.6.3) AI Act에 따라 설립된 AI 자문포럼은 유럽 집행위원회와 AI Board의 AI Act 이행·집행을 지원하는 일반 자문기구다. 700여 건의 신청 중 시민사회·학계·산업(중소기업 및 스타트업 포함)에서 174명이 선정되며, 2년(1회 연임) 임기로 전체회의와 주제별 소그룹에 적극 참여해 의견·권고·서면 기여를 제공한다. 상임 구성에는 FRA, ENISA, CEN, CENELEC, ETSI가 포함되며, AI Office는 추가 관찰자 형태로 관련 이해관계자를 초청할 수 있다. 유럽연합 집행위원회 디지털 전략(Digital Strategy) 공식 웹사이트">
   <h2>🇪🇺 AI Act 자문포럼, 집행위·AI Board에 일반 자문 제공(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">유럽연합 집행위원회 디지털 전략(Digital Strategy) 공식 웹사이트</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="AI Act 자문포럼, 집행위·AI Board에 일반 자문 제공(2026.6.3)
 
@@ -457,8 +539,10 @@ AI Act에 따라 설립된 AI 자문포럼은 유럽 집행위원회와 AI Board
 https://digital-strategy.ec.europa.eu/en/policies/ai-advisory-forum" onclick="copyEntry(this)">복사</button></div>
   <p>AI Act에 따라 설립된 AI 자문포럼은 유럽 집행위원회와 AI Board의 AI Act 이행·집행을 지원하는 일반 자문기구다. 700여 건의 신청 중 시민사회·학계·산업(중소기업 및 스타트업 포함)에서 174명이 선정되며, 2년(1회 연임) 임기로 전체회의와 주제별 소그룹에 적극 참여해 의견·권고·서면 기여를 제공한다. 상임 구성에는 FRA, ENISA, CEN, CENELEC, ETSI가 포함되며, AI Office는 추가 관찰자 형태로 관련 이해관계자를 초청할 수 있다.</p>
   <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/policies/ai-advisory-forum">https://digital-strategy.ec.europa.eu/en/policies/ai-advisory-forum</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="law" data-search="사라 제이콥스 의원, AI가 기존 연방법을 위반하는 경우 책임을 묻기 위한 ‘Sectoral AI Governance Act’ 법안 발의(2026.6.3) 요약불가 sarajacobs.house.gov">
   <h2>사라 제이콥스 의원, AI가 기존 연방법을 위반하는 경우 책임을 묻기 위한 ‘Sectoral AI Governance Act’ 법안 발의(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">sarajacobs.house.gov</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="사라 제이콥스 의원, AI가 기존 연방법을 위반하는 경우 책임을 묻기 위한 ‘Sectoral AI Governance Act’ 법안 발의(2026.6.3)
 
@@ -467,8 +551,10 @@ https://digital-strategy.ec.europa.eu/en/policies/ai-advisory-forum" onclick="co
 https://sarajacobs.house.gov/news/press-releases/rep-sara-jacobs-introduces-bill-to-hold-ai-accountable-for-breaking-the-law" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://sarajacobs.house.gov/news/press-releases/rep-sara-jacobs-introduces-bill-to-hold-ai-accountable-for-breaking-the-law">https://sarajacobs.house.gov/news/press-releases/rep-sara-jacobs-introduces-bill-to-hold-ai-accountable-for-breaking-the-law</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="healthcare" data-search="PsychAdapter로 성격·나이·정신건강 특성을 수치 입력해 “사람 같은” 텍스트를 생성(2026.6.3) PsychAdapter는 연속 심리 점수(성격 Big Five, 우울, 삶의 만족, 나이 등)를 LLM에 직접 입력해 특정 프로필을 반영한 텍스트를 생성하는 방식이다. 기존 LLM이 “language from nobody”처럼 목소리가 평탄해지는 문제를, 사람 간 차이를 연속적인 차원에서 다시 반영하는 데 초점을 둔다. 연구팀은 전문가 평가에서 성격 적합도 87%, 정신건강 적합도 97%를 보고했으며, 실제 환자를 쓰지 않고도 증상 프로필에 맞춘 AI 환자 시뮬레이션이나 교육 자료 개인화 등에 활용할 수 있다고 설명했다. 또한 AI 생성물은 반드시 표시돼야 하며, 악용(마이크로 타겟팅·영향작전) 가능성도 함께 언급했다. 스탠퍼드 대학교 인간중심 AI 연구소(Human-Centered AI, HAI)">
   <h2>PsychAdapter로 성격·나이·정신건강 특성을 수치 입력해 “사람 같은” 텍스트를 생성(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">스탠퍼드 대학교 인간중심 AI 연구소(Human-Centered AI, HAI)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span></span></span><button type="button" class="copy-btn" data-copy="PsychAdapter로 성격·나이·정신건강 특성을 수치 입력해 “사람 같은” 텍스트를 생성(2026.6.3)
 
@@ -477,8 +563,10 @@ PsychAdapter는 연속 심리 점수(성격 Big Five, 우울, 삶의 만족, 나
 https://hai.stanford.edu/news/todays-ai-talks-like-nobody-new-research-gives-it-real-personality" onclick="copyEntry(this)">복사</button></div>
   <p>PsychAdapter는 연속 심리 점수(성격 Big Five, 우울, 삶의 만족, 나이 등)를 LLM에 직접 입력해 특정 프로필을 반영한 텍스트를 생성하는 방식이다. 기존 LLM이 “language from nobody”처럼 목소리가 평탄해지는 문제를, 사람 간 차이를 연속적인 차원에서 다시 반영하는 데 초점을 둔다. 연구팀은 전문가 평가에서 성격 적합도 87%, 정신건강 적합도 97%를 보고했으며, 실제 환자를 쓰지 않고도 증상 프로필에 맞춘 AI 환자 시뮬레이션이나 교육 자료 개인화 등에 활용할 수 있다고 설명했다. 또한 AI 생성물은 반드시 표시돼야 하며, 악용(마이크로 타겟팅·영향작전) 가능성도 함께 언급했다.</p>
   <p class="url"><a href="https://hai.stanford.edu/news/todays-ai-talks-like-nobody-new-research-gives-it-real-personality">https://hai.stanford.edu/news/todays-ai-talks-like-nobody-new-research-gives-it-real-personality</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="national_security" data-search="FLI 회장, 백악관 행정명령에 대한 입장 발표 (2026.6.3) 퓨처 오브 라이프 연구소의 앤서니 아기레 회장 겸 CEO는 인공지능 실무그룹을 설치하는 백악관 행정명령을 올바른 방향으로 나아가는 중요한 조치라고 평가했다. 그는 첨단 AI가 국가안보와 경제에 위협이 될 수 있으므로 출시 전에 정부가 시스템의 국가안보 위험을 평가해야 한다고 주장했다. 또한 자율 규제와 자발적 프레임워크만으로는 부족하다며, 위험이 수용할 수 없는 수준인 AI 시스템의 출시를 정부가 막을 수 있는 의무적 사전 심사 절차를 촉구했다. 퓨처 오브 라이프 연구소">
   <h2>🇺🇸 FLI 회장, 백악관 행정명령에 대한 입장 발표 (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">퓨처 오브 라이프 연구소</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="FLI 회장, 백악관 행정명령에 대한 입장 발표 (2026.6.3)
 
@@ -487,18 +575,22 @@ https://hai.stanford.edu/news/todays-ai-talks-like-nobody-new-research-gives-it-
 https://futureoflife.org/statement/fli-president-on-white-house-executive-order/" onclick="copyEntry(this)">복사</button></div>
   <p>퓨처 오브 라이프 연구소의 앤서니 아기레 회장 겸 CEO는 인공지능 실무그룹을 설치하는 백악관 행정명령을 올바른 방향으로 나아가는 중요한 조치라고 평가했다. 그는 첨단 AI가 국가안보와 경제에 위협이 될 수 있으므로 출시 전에 정부가 시스템의 국가안보 위험을 평가해야 한다고 주장했다. 또한 자율 규제와 자발적 프레임워크만으로는 부족하다며, 위험이 수용할 수 없는 수준인 AI 시스템의 출시를 정부가 막을 수 있는 의무적 사전 심사 절차를 촉구했다.</p>
   <p class="url"><a href="https://futureoflife.org/statement/fli-president-on-white-house-executive-order/">https://futureoflife.org/statement/fli-president-on-white-house-executive-order/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="deepfake_disinfo national_security" data-search="교황의 회칙과 AI 배신이 무모한 AI 사용을 억제할 가능성 (2026.6.3) 교황 레오 14세는 AI의 일자리 대체, 자율무기, 허위정보, 인간관계 개입과 권력 집중을 우려하면서도 기술 자체의 사용을 반대하지 않고 인간을 위해 책임 있게 활용해야 한다고 강조했다. CAIS는 AI가 학습 데이터 오염이나 사이버공격으로 개발자·사용자를 배신할 수 있으며, 이런 위험이 고위험 배포와 성급한 개발을 억제하는 ‘배신에 의한 억제’ 효과를 낼 수 있다고 설명했다. OpenAI의 내부 모델은 1946년부터 이어진 Erdős의 단위거리 문제 추측을 반례로 반증했으며, 독립 수학자들이 결과를 검증하고 후속 연구를 진행했다. 뉴스레터는 미국의 AI 안전·노동 정책과 주요 기업의 IPO 및 인프라 투자 등 최근 AI 관련 동향도 전했다. 인공지능 안전센터(CAIS)">
   <h2>🇺🇸 교황의 회칙과 AI 배신이 무모한 AI 사용을 억제할 가능성 (2026.6.3)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">인공지능 안전센터(CAIS)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="교황의 회칙과 AI 배신이 무모한 AI 사용을 억제할 가능성 (2026.6.3)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">인공지능 안전센터(CAIS)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="교황의 회칙과 AI 배신이 무모한 AI 사용을 억제할 가능성 (2026.6.3)
 
 교황 레오 14세는 AI의 일자리 대체, 자율무기, 허위정보, 인간관계 개입과 권력 집중을 우려하면서도 기술 자체의 사용을 반대하지 않고 인간을 위해 책임 있게 활용해야 한다고 강조했다. CAIS는 AI가 학습 데이터 오염이나 사이버공격으로 개발자·사용자를 배신할 수 있으며, 이런 위험이 고위험 배포와 성급한 개발을 억제하는 ‘배신에 의한 억제’ 효과를 낼 수 있다고 설명했다. OpenAI의 내부 모델은 1946년부터 이어진 Erdős의 단위거리 문제 추측을 반례로 반증했으며, 독립 수학자들이 결과를 검증하고 후속 연구를 진행했다. 뉴스레터는 미국의 AI 안전·노동 정책과 주요 기업의 IPO 및 인프라 투자 등 최근 AI 관련 동향도 전했다.
 
 https://newsletter.safe.ai/p/aisn-74-the-popes-encyclical-and" onclick="copyEntry(this)">복사</button></div>
   <p>교황 레오 14세는 AI의 일자리 대체, 자율무기, 허위정보, 인간관계 개입과 권력 집중을 우려하면서도 기술 자체의 사용을 반대하지 않고 인간을 위해 책임 있게 활용해야 한다고 강조했다. CAIS는 AI가 학습 데이터 오염이나 사이버공격으로 개발자·사용자를 배신할 수 있으며, 이런 위험이 고위험 배포와 성급한 개발을 억제하는 ‘배신에 의한 억제’ 효과를 낼 수 있다고 설명했다. OpenAI의 내부 모델은 1946년부터 이어진 Erdős의 단위거리 문제 추측을 반례로 반증했으며, 독립 수학자들이 결과를 검증하고 후속 연구를 진행했다. 뉴스레터는 미국의 AI 안전·노동 정책과 주요 기업의 IPO 및 인프라 투자 등 최근 AI 관련 동향도 전했다.</p>
   <p class="url"><a href="https://newsletter.safe.ai/p/aisn-74-the-popes-encyclical-and">https://newsletter.safe.ai/p/aisn-74-the-popes-encyclical-and</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="AI가 개인 데이터 접근을 바탕으로 ‘신뢰할 만한 인물 평가’를 생성하고, 사람들이 자발적으로 공유·확산하면서 자기감시가 확산될 수 있다는 전망(2026.6.3) AI가 개인의 방대한 데이터를 바탕으로 다른 사람에게 전달 가능한 ‘character assessments(인물 평가/평판)’를 만들 수 있어, 공유하지 않으면 의심받는 분위기가 생길 수 있다고 설명한다. 초기에는 운전·금융 등 비용이 낮고 신뢰도 높은 영역에서 opt-in이 시작되지만, ‘unraveling’(좋은 기록을 가진 사람이 먼저 공개하고 이후 연쇄적으로 모두가 공개하게 되는 현상) 논리로 점차 거의 전 영역으로 확산될 수 있다고 본다. 또한 기술적으로는 AI가 데이터 수집·분석을 더 저렴하고 정확하게 만들어 자기감시를 쉽게 만들 수 있으며, 법이 정부·기업의 비동의 감시를 막더라도 개인이 스스로 opt-in하는 흐름은 막기 어렵다고 주장한다. AI Frontiers">
   <h2>AI가 개인 데이터 접근을 바탕으로 ‘신뢰할 만한 인물 평가’를 생성하고, 사람들이 자발적으로 공유·확산하면서 자기감시가 확산될 수 있다는 전망(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AI Frontiers</span></span><button type="button" class="copy-btn" data-copy="AI가 개인 데이터 접근을 바탕으로 ‘신뢰할 만한 인물 평가’를 생성하고, 사람들이 자발적으로 공유·확산하면서 자기감시가 확산될 수 있다는 전망(2026.6.3)
 
@@ -507,8 +599,10 @@ AI가 개인의 방대한 데이터를 바탕으로 다른 사람에게 전달 �
 https://aifrontiersmedia.substack.com/p/opt-in-surveillance-is-approaching" onclick="copyEntry(this)">복사</button></div>
   <p>AI가 개인의 방대한 데이터를 바탕으로 다른 사람에게 전달 가능한 ‘character assessments(인물 평가/평판)’를 만들 수 있어, 공유하지 않으면 의심받는 분위기가 생길 수 있다고 설명한다. 초기에는 운전·금융 등 비용이 낮고 신뢰도 높은 영역에서 opt-in이 시작되지만, ‘unraveling’(좋은 기록을 가진 사람이 먼저 공개하고 이후 연쇄적으로 모두가 공개하게 되는 현상) 논리로 점차 거의 전 영역으로 확산될 수 있다고 본다. 또한 기술적으로는 AI가 데이터 수집·분석을 더 저렴하고 정확하게 만들어 자기감시를 쉽게 만들 수 있으며, 법이 정부·기업의 비동의 감시를 막더라도 개인이 스스로 opt-in하는 흐름은 막기 어렵다고 주장한다.</p>
   <p class="url"><a href="https://aifrontiersmedia.substack.com/p/opt-in-surveillance-is-approaching">https://aifrontiersmedia.substack.com/p/opt-in-surveillance-is-approaching</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="수학자들, AI 성과 과대홍보 경계…정책엔 전문가 평가·검증 우선(2026.6.3) 전 세계 수백 명의 수학자들이 ‘라이덴 선언’을 발표하고, AI 능력에 대한 과장된 홍보를 믿지 말라고 각국 정부에 촉구했다. 이들은 기술 기업들이 논문·동료평가 등 학문적 검증 전에 블로그나 보도자료로 결과를 먼저 공개해 대중이 AI를 과신하게 만든다고 비판했다. 또한 특정 수학 문제 해결이나 난제 기여가 곧 일반적 지능이나 AGI의 증거가 아니며, AI가 잘못된 증명을 만들더라도 과정이 불투명해 책임을 묻기 어렵다고 지적했다. 더불어 AI와 거대 자본이 결합하면서 연구 주도권이 학계에서 기업으로 이동할 수 있다는 우려도 함께 제기했다. 매일경제(mk.co.kr)">
   <h2>수학자들, AI 성과 과대홍보 경계…정책엔 전문가 평가·검증 우선(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">매일경제(mk.co.kr)</span></span><button type="button" class="copy-btn" data-copy="수학자들, AI 성과 과대홍보 경계…정책엔 전문가 평가·검증 우선(2026.6.3)
 
@@ -517,8 +611,10 @@ https://aifrontiersmedia.substack.com/p/opt-in-surveillance-is-approaching" oncl
 https://mk.co.kr/news/it/12064961" onclick="copyEntry(this)">복사</button></div>
   <p>전 세계 수백 명의 수학자들이 ‘라이덴 선언’을 발표하고, AI 능력에 대한 과장된 홍보를 믿지 말라고 각국 정부에 촉구했다. 이들은 기술 기업들이 논문·동료평가 등 학문적 검증 전에 블로그나 보도자료로 결과를 먼저 공개해 대중이 AI를 과신하게 만든다고 비판했다. 또한 특정 수학 문제 해결이나 난제 기여가 곧 일반적 지능이나 AGI의 증거가 아니며, AI가 잘못된 증명을 만들더라도 과정이 불투명해 책임을 묻기 어렵다고 지적했다. 더불어 AI와 거대 자본이 결합하면서 연구 주도권이 학계에서 기업으로 이동할 수 있다는 우려도 함께 제기했다.</p>
   <p class="url"><a href="https://mk.co.kr/news/it/12064961">https://mk.co.kr/news/it/12064961</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="“AI 데이터센터, 지역사회 망친다”...MS 행사장 앞 AI 반대 시위 (2026.6.3) 요약불가 chosun.com">
   <h2>“AI 데이터센터, 지역사회 망친다”...MS 행사장 앞 AI 반대 시위 (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">chosun.com</span></span><button type="button" class="copy-btn" data-copy="“AI 데이터센터, 지역사회 망친다”...MS 행사장 앞 AI 반대 시위 (2026.6.3)
 
@@ -527,8 +623,22 @@ https://mk.co.kr/news/it/12064961" onclick="copyEntry(this)">복사</button></di
 https://chosun.com/economy/tech_it/2026/06/03/6XVS5JSQH5FEJLDGMF3HCJJWGY" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://chosun.com/economy/tech_it/2026/06/03/6XVS5JSQH5FEJLDGMF3HCJJWGY">https://chosun.com/economy/tech_it/2026/06/03/6XVS5JSQH5FEJLDGMF3HCJJWGY</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-archive" data-cat="archive" data-topics="frontier" data-search="지난주 AI #340 - OpenAI와 머스크의 대결, Microsoft·DeepSeek v4·Vision Banana (2026.6.3) Musk v. Altman 재판 첫 주에 일론 머스크의 증언이 주요하게 다뤄졌다. OpenAI와 Microsoft의 법적 분쟁, Amazon과의 500억 달러 규모 거래, DeepSeek의 최신 AI 모델 공개 예고 등도 소개됐다. Last-Week-in-AI">
+  <h2>🇺🇸 지난주 AI #340 - OpenAI와 머스크의 대결, Microsoft·DeepSeek v4·Vision Banana (2026.6.3)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-archive">아카이브</span> · <span class="source">Last Week in AI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="지난주 AI #340 - OpenAI와 머스크의 대결, Microsoft·DeepSeek v4·Vision Banana (2026.6.3)
+
+Musk v. Altman 재판 첫 주에 일론 머스크의 증언이 주요하게 다뤄졌다. OpenAI와 Microsoft의 법적 분쟁, Amazon과의 500억 달러 규모 거래, DeepSeek의 최신 AI 모델 공개 예고 등도 소개됐다.
+
+https://lastweekin.ai/p/last-week-in-ai-340-openai-vs-musk" onclick="copyEntry(this)">복사</button></div>
+  <p>Musk v. Altman 재판 첫 주에 일론 머스크의 증언이 주요하게 다뤄졌다. OpenAI와 Microsoft의 법적 분쟁, Amazon과의 500억 달러 규모 거래, DeepSeek의 최신 AI 모델 공개 예고 등도 소개됐다.</p>
+  <p class="url"><a href="https://lastweekin.ai/p/last-week-in-ai-340-openai-vs-musk">https://lastweekin.ai/p/last-week-in-ai-340-openai-vs-musk</a></p>
+  
+  
+</article>
+<article class="entry cat-db" data-cat="db" data-topics="frontier" data-search="OpenAI Updates GPT-Rosalind with Enhanced Drug Discovery and Genomics Capabilities (2026.6.3) 요약불가 AI-Risk-Explorer">
   <h2>🇺🇸 OpenAI Updates GPT-Rosalind with Enhanced Drug Discovery and Genomics Capabilities (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI Updates GPT-Rosalind with Enhanced Drug Discovery and Genomics Capabilities (2026.6.3)
 
@@ -537,8 +647,10 @@ https://chosun.com/economy/tech_it/2026/06/03/6XVS5JSQH5FEJLDGMF3HCJJWGY" onclic
 https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/">https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="Tech and Life Sciences Leaders Call for Mandatory Nucleic Acid Synthesis Screening (2026.6.3) 요약불가 AI-Risk-Explorer">
   <h2>Tech and Life Sciences Leaders Call for Mandatory Nucleic Acid Synthesis Screening (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Tech and Life Sciences Leaders Call for Mandatory Nucleic Acid Synthesis Screening (2026.6.3)
 
@@ -547,8 +659,10 @@ https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/" onclick=
 https://prod-i.a.dj.com/public/resources/documents/dnaletter.pdf" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
   <p class="url"><a href="https://prod-i.a.dj.com/public/resources/documents/dnaletter.pdf">https://prod-i.a.dj.com/public/resources/documents/dnaletter.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="cybersecurity frontier" data-search="(Anthropic Maps AI-Enabled Cyber Threats Using MITRE ATT&amp;CK Framework) (2026.6.3) 앤트로픽은 2025년 3월~2026년 3월 사이 악성 활동과 연관된 832개 계정을 분석해, AI가 포함된 공격 패턴을 MITRE ATT&amp;CK 프레임워크에 매핑한 ‘LLM ATT&amp;CK Navigator’ 보고서를 공개했다. 분석 결과, AI를 활용하는 행위자의 중간~고위험 비율이 연초~연말 구간에서 33%에서 56%로 증가했으며, 특히 lateral movement, credential dumping, web shells 등 고위험 기법에서 증가가 두드러졌다고 밝혔다. 또한 행위자의 위험도는 공격의 ‘기술 숙련도’보다 모델을 둘러싼 orchestration(코드·아키텍처·도구 등) 방식이 구분 요인이 되며, ATT&amp;CK이 아직 완전 자동화된 killchain 오케스트레이션 같은 행동을 충분히 분류하지 못한다고 설명했다. 위험 점수는 0~100 범위의 ARiES(AI Risk Enablement Score)로 산정하며, 위협(Threat)·취약성(Vulnerability)·영향(Impact)을 더하는 방식으로 설계했다고 밝혔다. 앤트로픽(Anthropic) 공식 블로그">
   <h2>🇺🇸 (Anthropic Maps AI-Enabled Cyber Threats Using MITRE ATT&amp;CK Framework) (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">앤트로픽(Anthropic) 공식 블로그</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="(Anthropic Maps AI-Enabled Cyber Threats Using MITRE ATT&amp;CK Framework) (2026.6.3)
 
@@ -557,8 +671,10 @@ https://prod-i.a.dj.com/public/resources/documents/dnaletter.pdf" onclick="copyE
 https://red.anthropic.com/2026/attack-navigator/" onclick="copyEntry(this)">복사</button></div>
   <p>앤트로픽은 2025년 3월~2026년 3월 사이 악성 활동과 연관된 832개 계정을 분석해, AI가 포함된 공격 패턴을 MITRE ATT&amp;CK 프레임워크에 매핑한 ‘LLM ATT&amp;CK Navigator’ 보고서를 공개했다. 분석 결과, AI를 활용하는 행위자의 중간~고위험 비율이 연초~연말 구간에서 33%에서 56%로 증가했으며, 특히 lateral movement, credential dumping, web shells 등 고위험 기법에서 증가가 두드러졌다고 밝혔다. 또한 행위자의 위험도는 공격의 ‘기술 숙련도’보다 모델을 둘러싼 orchestration(코드·아키텍처·도구 등) 방식이 구분 요인이 되며, ATT&amp;CK이 아직 완전 자동화된 killchain 오케스트레이션 같은 행동을 충분히 분류하지 못한다고 설명했다. 위험 점수는 0~100 범위의 ARiES(AI Risk Enablement Score)로 산정하며, 위협(Threat)·취약성(Vulnerability)·영향(Impact)을 더하는 방식으로 설계했다고 밝혔다.</p>
   <p class="url"><a href="https://red.anthropic.com/2026/attack-navigator/">https://red.anthropic.com/2026/attack-navigator/</a></p>
+  
+  
 </article>
-<article class="entry cat-other">
+<article class="entry cat-other" data-cat="other" data-topics="agentic_ai cybersecurity safety_research" data-search="AI 에이전트의 보안 위험(미스얼라인 행동·민감정보 노출·prompt injection 등)과 다층 방어 필요성(2026.6.3) AI 에이전트는 추론 능력에 도구 접근·외부 서비스 호출·메모리 유지·다중 에이전트 상호작용을 결합해 복잡한 작업을 자율적으로 수행할 수 있지만, 기존 사이버보안 프레임워크가 다루기 어려운 새로운 보안 위험을 만든다고 설명한다. 특히 미스얼라인된 에이전트 행동과 민감 데이터 접근 위험이 핵심이며, 메모리 관리·도구 권한·다중 에이전트 위임 구조가 취약성의 크기를 좌우한다고 밝힌다. 주요 공격 벡터로는 prompt injection(직접/간접), memory poisoning(시간에 걸친 메모리 조작), tool supply chain compromise(도구가 모델 추론 컨텍스트에 직접 들어오는 특성으로 인한 악성 코드 실행·프롬프트 주입 위험)가 제시된다. 또한 보안은 모델 개발자·배포자·도구/하네스 제공자·제3자 서비스·사용자 등 가치사슬 전반의 공유 책임이며, 모델·가드레일/아키텍처·하네스·도구 접근 등 계층별로 서로 다른 실패 양상과 방어 접근이 필요하다고 정리한다. Frontier Model Forum">
   <h2>AI 에이전트의 보안 위험(미스얼라인 행동·민감정보 노출·prompt injection 등)과 다층 방어 필요성(2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">Frontier Model Forum</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="AI 에이전트의 보안 위험(미스얼라인 행동·민감정보 노출·prompt injection 등)과 다층 방어 필요성(2026.6.3)
 
@@ -567,8 +683,10 @@ AI 에이전트는 추론 능력에 도구 접근·외부 서비스 호출·메�
 https://frontiermodelforum.org/issue-briefs/emerging-security-practices-for-ai-agents" onclick="copyEntry(this)">복사</button></div>
   <p>AI 에이전트는 추론 능력에 도구 접근·외부 서비스 호출·메모리 유지·다중 에이전트 상호작용을 결합해 복잡한 작업을 자율적으로 수행할 수 있지만, 기존 사이버보안 프레임워크가 다루기 어려운 새로운 보안 위험을 만든다고 설명한다. 특히 미스얼라인된 에이전트 행동과 민감 데이터 접근 위험이 핵심이며, 메모리 관리·도구 권한·다중 에이전트 위임 구조가 취약성의 크기를 좌우한다고 밝힌다. 주요 공격 벡터로는 prompt injection(직접/간접), memory poisoning(시간에 걸친 메모리 조작), tool supply chain compromise(도구가 모델 추론 컨텍스트에 직접 들어오는 특성으로 인한 악성 코드 실행·프롬프트 주입 위험)가 제시된다. 또한 보안은 모델 개발자·배포자·도구/하네스 제공자·제3자 서비스·사용자 등 가치사슬 전반의 공유 책임이며, 모델·가드레일/아키텍처·하네스·도구 접근 등 계층별로 서로 다른 실패 양상과 방어 접근이 필요하다고 정리한다.</p>
   <p class="url"><a href="https://frontiermodelforum.org/issue-briefs/emerging-security-practices-for-ai-agents">https://frontiermodelforum.org/issue-briefs/emerging-security-practices-for-ai-agents</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="safety_research" data-search="Probing Outcome-Level Resemblance and Mechanism-Level Alignment in LLM Risk Decisions: Evidence from the St. Petersburg Game (2026.6.3) St. Petersburg game의 위험 의사결정에서 LLM이 인간처럼 “조심스러운” 결과를 내더라도, 그 결과를 만드는 내부 메커니즘이 인간과 일치하지 않을 수 있음을 보인다. 28개 LLM을 대상으로 원문 게임 프롬프트, truncation·반복 플레이·숫자 endowment·직업 정체성 변형, 인간 관점 추론 프롬프트, base vs instruction-tuned 쌍 비교를 포함한 구조화된 프롬프트 세트를 평가했다. 원문 게임에서는 대부분의 모델이 유한한 bid를 생성해 인간과 유사한 위험 행동처럼 보였지만, 변형 실험들은 모델이 조건부·계산적으로 합리적인 행동으로 이동하는 경향을 보여 outcome-level resemblance가 mechanism-level 차이를 가린다고 보고한다. Human-cue prompting과 instruction tuning은 bid를 낮추고 일부 visible pathologies를 줄였으나, 대부분의 mechanism-level response patterns은 크게 변하지 않았다고 정리한다. ">
   <h2>Probing Outcome-Level Resemblance and Mechanism-Level Alignment in LLM Risk Decisions: Evidence from the St. Petersburg Game (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Probing Outcome-Level Resemblance and Mechanism-Level Alignment in LLM Risk Decisions: Evidence from the St. Petersburg Game (2026.6.3)
 
@@ -577,8 +695,10 @@ St. Petersburg game의 위험 의사결정에서 LLM이 인간처럼 “조심�
 https://arxiv.org/abs/2606.04978" onclick="copyEntry(this)">복사</button></div>
   <p>St. Petersburg game의 위험 의사결정에서 LLM이 인간처럼 “조심스러운” 결과를 내더라도, 그 결과를 만드는 내부 메커니즘이 인간과 일치하지 않을 수 있음을 보인다. 28개 LLM을 대상으로 원문 게임 프롬프트, truncation·반복 플레이·숫자 endowment·직업 정체성 변형, 인간 관점 추론 프롬프트, base vs instruction-tuned 쌍 비교를 포함한 구조화된 프롬프트 세트를 평가했다. 원문 게임에서는 대부분의 모델이 유한한 bid를 생성해 인간과 유사한 위험 행동처럼 보였지만, 변형 실험들은 모델이 조건부·계산적으로 합리적인 행동으로 이동하는 경향을 보여 outcome-level resemblance가 mechanism-level 차이를 가린다고 보고한다. Human-cue prompting과 instruction tuning은 bid를 낮추고 일부 visible pathologies를 줄였으나, 대부분의 mechanism-level response patterns은 크게 변하지 않았다고 정리한다.</p>
   <p class="url"><a href="https://arxiv.org/abs/2606.04978">https://arxiv.org/abs/2606.04978</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="The Policy on the Use of Artificial Intelligence Tools at Selected Higher Education Institutions (2026.6.3) 폴란드의 일부 대학에서 AI 도구 사용을 관리하기 위한 정책·규정을 어떻게 평가하고 비교할 수 있는지 정리한다. 대학 웹사이트(학칙·규정, 학생/교수 페이지, 기존 AI 적용 관련 규정 등)에 공개된 정보를 기준으로 AI 정책 평가 기준을 제안하고, 각 기준에 주관적 가중치를 부여한 뒤 여러 주요 대학의 평가를 매트릭스로 비교한다. 마지막 절에서 연구 결과를 요약·비교한다. ">
   <h2>The Policy on the Use of Artificial Intelligence Tools at Selected Higher Education Institutions (2026.6.3)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="The Policy on the Use of Artificial Intelligence Tools at Selected Higher Education Institutions (2026.6.3)
 
@@ -587,7 +707,9 @@ https://arxiv.org/abs/2606.04978" onclick="copyEntry(this)">복사</button></div
 https://doi.org/10.4324/9781003757719-16" onclick="copyEntry(this)">복사</button></div>
   <p>폴란드의 일부 대학에서 AI 도구 사용을 관리하기 위한 정책·규정을 어떻게 평가하고 비교할 수 있는지 정리한다. 대학 웹사이트(학칙·규정, 학생/교수 페이지, 기존 AI 적용 관련 규정 등)에 공개된 정보를 기준으로 AI 정책 평가 기준을 제안하고, 각 기준에 주관적 가중치를 부여한 뒤 여러 주요 대학의 평가를 매트릭스로 비교한다. 마지막 절에서 연구 결과를 요약·비교한다.</p>
   <p class="url"><a href="https://doi.org/10.4324/9781003757719-16">https://doi.org/10.4324/9781003757719-16</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-06-02.html">← 2026-06-02</a><a class="day-nav-btn" href="2026-06-04.html">2026-06-04 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-06-02.html">← 2026-06-02</a><a class="day-nav-btn" href="2026-06-04.html">2026-06-04 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -623,6 +745,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

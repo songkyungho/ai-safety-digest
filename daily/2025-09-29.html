@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,21 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="law" data-search="Claude Sonnet 4.5 최신 버전 출시 (2025.9.29) Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다. Anthropic">
+  <h2>🇺🇸 Claude Sonnet 4.5 최신 버전 출시 (2025.9.29)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 4.5 최신 버전 출시 (2025.9.29)
+
+Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다.
+
+https://www.anthropic.com/news/claude-sonnet-4-5" onclick="copyEntry(this)">복사</button></div>
+  <p>Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다.</p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-sonnet-4-5">https://www.anthropic.com/news/claude-sonnet-4-5</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · DemandSphere</summary><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Claude Sonnet 4.5 (Anthropic) (2025.9.29) General · Closed · 200K ctx · $3/M · $15/M
+
+GPQA 83.4% · SWE 77.2% · MMLU 82% · HE 94% · MATH 88% · AIME 87%
+
+Leading coding model. 77.2% SWE-bench Verified. 30+ hour autonomous task operation. Computer use, extended thinking. DemandSphere">
   <h2>🇺🇸 Claude Sonnet 4.5 (Anthropic) (2025.9.29)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">DemandSphere</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 4.5 (Anthropic) (2025.9.29)
 
@@ -323,18 +389,18 @@ https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)
 <p>GPQA 83.4% · SWE 77.2% · MMLU 82% · HE 94% · MATH 88% · AIME 87%</p>
 <p>Leading coding model. 77.2% SWE-bench Verified. 30+ hour autonomous task operation. Computer use, extended thinking.</p>
   <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
+  
+  
+</article></details>
 </article>
-<article class="entry cat-company">
-  <h2>🇺🇸 Claude Sonnet 4.5 최신 버전 출시 (2025.9.29)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 4.5 최신 버전 출시 (2025.9.29)
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="앤써픽, 클라이드 코드 자율성 향상 업데이트 발표 (2025.9.29) 앤써픽은 클라이드 코드의 기능을 향상시키는 여러 업데이트를 발표했습니다. 이 업데이트에는 VS Code 확장 프로그램, 터미널 인터페이스 버전 업그레이드, 그리고 자율 운영을 위한 체크포인트 기능이 포함됩니다. 클라이드 코드는 이제 더 복잡하고 긴 개발 작업을 터미널과 IDE에서 처리할 수 있습니다. 주요 업데이트 내용은 다음과 같습니다:
 
-Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다.
+- **VS Code 확장 프로그램**: 클라이드 코드를 IDE 내에서 실시간으로 확인할 수 있는 사이드바 패널을 제공합니다.
+- **터미널 인터페이스 개선**: 상태 표시 개선과 검색 가능한 프롬프트 이력 기능을 추가하여 이전 프롬프트를 쉽게 재사용하거나 수정할 수 있습니다.
+- **클라이드 에이전트 SDK**: 사용자 정의 에이전트 경험을 구축하기 위한 도구와 기능을 제공합니다.
+- **체크포인트 기능**: 복잡한 작업 중 코드 변경 전후 상태를 자동으로 저장하여 작업의 안정성을 높입니다.
 
-https://www.anthropic.com/news/claude-sonnet-4-5" onclick="copyEntry(this)">복사</button></div>
-  <p>Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/claude-sonnet-4-5">https://www.anthropic.com/news/claude-sonnet-4-5</a></p>
-</article>
-<article class="entry cat-company">
+이러한 기능들은 클라이드 코드가 더욱 자율적으로 작동하도록 지원하며, 개발자들이 복잡한 작업을 더욱 신뢰성 있게 수행할 수 있게 합니다. 업데이트는 현재 클라이드 코드 사용자들에게 즉시 제공됩니다. 앤써픽">
   <h2>앤써픽, 클라이드 코드 자율성 향상 업데이트 발표 (2025.9.29)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">앤써픽</span></span><button type="button" class="copy-btn" data-copy="앤써픽, 클라이드 코드 자율성 향상 업데이트 발표 (2025.9.29)
 
@@ -355,8 +421,10 @@ https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously" o
 - **체크포인트 기능**: 복잡한 작업 중 코드 변경 전후 상태를 자동으로 저장하여 작업의 안정성을 높입니다.</p>
 <p>이러한 기능들은 클라이드 코드가 더욱 자율적으로 작동하도록 지원하며, 개발자들이 복잡한 작업을 더욱 신뢰성 있게 수행할 수 있게 합니다. 업데이트는 현재 클라이드 코드 사용자들에게 즉시 제공됩니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously">https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="frontier incidents" data-search="(2025.09.29) SB-53, Frontier AI 대형 개발자에 ‘Frontier AI framework’ 공개·위험 평가 보고 의무 등 신설 캘리포니아 SB-53은 ‘Transparency in Frontier Artificial Intelligence Act(TFAIA)’를 제정해, 2022년 이후 출시(또는 중대한 수정)된 생성형 AI 중 ‘frontier model’을 개발하는 대형 개발자에게 인터넷 웹사이트에 frontier AI framework를 작성·구현·명확히 공개하도록 요구합니다. 또한 내부 사용으로부터 발생할 수 있는 catastrophic risk 평가 요약을 Office of Emergency Services에 제출하고, 공공이 critical safety incident를 신고할 수 있는 메커니즘과 대형 개발자가 위험 평가 요약을 기밀로 제출할 수 있는 메커니즘도 마련하도록 합니다. critical safety incident 및 특정 위험 평가 보고는 California Public Records Act 적용에서 제외되며, 미준수에 대해 Attorney General이 민사상 제재(민사벌)를 집행하고, covered employee에 대한 whistleblower 보호 및 익명 내부 신고 절차도 포함합니다. 캘리포니아 주 의회 입법정보(leginfo.legislature.ca.gov)">
   <h2>(2025.09.29) SB-53, Frontier AI 대형 개발자에 ‘Frontier AI framework’ 공개·위험 평가 보고 의무 등 신설</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">캘리포니아 주 의회 입법정보(leginfo.legislature.ca.gov)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="(2025.09.29) SB-53, Frontier AI 대형 개발자에 ‘Frontier AI framework’ 공개·위험 평가 보고 의무 등 신설
 
@@ -365,8 +433,10 @@ https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously" o
 https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260SB53" onclick="copyEntry(this)">복사</button></div>
   <p>캘리포니아 SB-53은 ‘Transparency in Frontier Artificial Intelligence Act(TFAIA)’를 제정해, 2022년 이후 출시(또는 중대한 수정)된 생성형 AI 중 ‘frontier model’을 개발하는 대형 개발자에게 인터넷 웹사이트에 frontier AI framework를 작성·구현·명확히 공개하도록 요구합니다. 또한 내부 사용으로부터 발생할 수 있는 catastrophic risk 평가 요약을 Office of Emergency Services에 제출하고, 공공이 critical safety incident를 신고할 수 있는 메커니즘과 대형 개발자가 위험 평가 요약을 기밀로 제출할 수 있는 메커니즘도 마련하도록 합니다. critical safety incident 및 특정 위험 평가 보고는 California Public Records Act 적용에서 제외되며, 미준수에 대해 Attorney General이 민사상 제재(민사벌)를 집행하고, covered employee에 대한 whistleblower 보호 및 익명 내부 신고 절차도 포함합니다.</p>
   <p class="url"><a href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260SB53">https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260SB53</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="incidents" data-search="AI 여행 계획 시 주의해야 할 위험들 (2025.9.29) AI 도구를 이용해 여행 계획을 세울 때 여행객들은 정보의 정확성을 철저히 확인해야 한다. 실제 존재하지 않는 장소로 안내되거나 위험한 상황에 처할 수 있는 위험이 있기 때문이다. 예를 들어, AI가 생성한 잘못된 장소 정보로 인해 비용 낭비와 심지어 생명의 위협까지 받을 수 있다. AI의 정보 생성 방식으로 인해 실제와 가상의 경계가 모호해져 여행객들이 실제 세계와 AI가 만든 상상의 세계 사이에서 혼란을 겪을 수 있다는 경고가 제기되었다. 전문가들은 구체적인 질문을 하고 모든 정보를 검증하는 것이 중요하다고 조언한다. AIID">
   <h2>AI 여행 계획 시 주의해야 할 위험들 (2025.9.29)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AIID</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="AI 여행 계획 시 주의해야 할 위험들 (2025.9.29)
 
@@ -375,7 +445,9 @@ AI 도구를 이용해 여행 계획을 세울 때 여행객들은 정보의 정
 https://www.bbc.com/travel/article/20250926-the-perils-of-letting-ai-plan-your-next-trip" onclick="copyEntry(this)">복사</button></div>
   <p>AI 도구를 이용해 여행 계획을 세울 때 여행객들은 정보의 정확성을 철저히 확인해야 한다. 실제 존재하지 않는 장소로 안내되거나 위험한 상황에 처할 수 있는 위험이 있기 때문이다. 예를 들어, AI가 생성한 잘못된 장소 정보로 인해 비용 낭비와 심지어 생명의 위협까지 받을 수 있다. AI의 정보 생성 방식으로 인해 실제와 가상의 경계가 모호해져 여행객들이 실제 세계와 AI가 만든 상상의 세계 사이에서 혼란을 겪을 수 있다는 경고가 제기되었다. 전문가들은 구체적인 질문을 하고 모든 정보를 검증하는 것이 중요하다고 조언한다.</p>
   <p class="url"><a href="https://www.bbc.com/travel/article/20250926-the-perils-of-letting-ai-plan-your-next-trip">https://www.bbc.com/travel/article/20250926-the-perils-of-letting-ai-plan-your-next-trip</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-09-26.html">← 2025-09-26</a><a class="day-nav-btn" href="2025-09-30.html">2025-09-30 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-26.html">← 2025-09-26</a><a class="day-nav-btn" href="2025-09-30.html">2025-09-30 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -411,6 +483,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,17 +360,19 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="norms" data-search="MSIT 신규 게시물 1건 [2026-08-14] [Asia] MSIT holds forum on national AI ethics principles (https://english.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187662&amp;searchOpt=ALL&amp;searchTxt=) MSIT">
   <h2>🇰🇷 MSIT 신규 게시물 1건</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 1건
 
 [2026-08-14] [Asia] MSIT holds forum on national AI ethics principles (https://english.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187662&amp;searchOpt=ALL&amp;searchTxt=)
 
 https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307" onclick="copyEntry(this)">복사</button></div>
-  <p>[2026-08-14] [Asia] MSIT holds forum on national AI ethics principles (<a href="https://english.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187662&amp;searchOpt=ALL&amp;searchTxt=">https://english.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187662&amp;searchOpt=ALL&amp;searchTxt=</a>)</p>
+  <p><span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span> [2026-08-14] [Asia] MSIT holds forum on national AI ethics principles (<a href="https://english.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187662&amp;searchOpt=ALL&amp;searchTxt=">https://english.msit.go.kr/bbs/view.do?sCode=user&amp;mId=307&amp;mPid=208&amp;pageIndex=&amp;bbsSeqNo=94&amp;nttSeqNo=3187662&amp;searchOpt=ALL&amp;searchTxt=</a>)</p>
   <p class="url"><a href="https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307">https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="cybersecurity" data-search="사이버 범죄자, AI로 여행사진 분석해 맞춤형 피싱 시도 (2026.8.16) 사이버 범죄자들이 AI로 소셜미디어의 여행사진을 분석한 뒤, 여행 중 신용카드가 해킹됐다는 문자메시지를 보내 금융정보 탈취를 시도하는 사례가 발생. 맥아피(McAfee)가 무료 AI 모델 2종으로 여행사진 2만 1,000여 장을 분석한 결과, 사진 촬영 장소를 약 90%의 정확도로 식별할 수 있는 것으로 확인. The Guardian">
   <h2>사이버 범죄자, AI로 여행사진 분석해 맞춤형 피싱 시도 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">The Guardian</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="사이버 범죄자, AI로 여행사진 분석해 맞춤형 피싱 시도 (2026.8.16)
 
@@ -327,8 +381,10 @@ https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307" onclick=
 https://www.theguardian.com/money/2026/aug/16/scam-ai-holiday-photos-instagram-facebook" onclick="copyEntry(this)">복사</button></div>
   <p>사이버 범죄자들이 AI로 소셜미디어의 여행사진을 분석한 뒤, 여행 중 신용카드가 해킹됐다는 문자메시지를 보내 금융정보 탈취를 시도하는 사례가 발생. 맥아피(McAfee)가 무료 AI 모델 2종으로 여행사진 2만 1,000여 장을 분석한 결과, 사진 촬영 장소를 약 90%의 정확도로 식별할 수 있는 것으로 확인.</p>
   <p class="url"><a href="https://www.theguardian.com/money/2026/aug/16/scam-ai-holiday-photos-instagram-facebook">https://www.theguardian.com/money/2026/aug/16/scam-ai-holiday-photos-instagram-facebook</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="law" data-search="키프로스, AI 규제를 위한 첫 법안 초안 발표 (2026.8.16) 키프로스는 유럽연합 인공지능법(Regulation (EU) 2024/1689)의 국내 적용과 감독을 위한 「2026년 인공지능법」 초안을 공개했다. 법안은 국가 거버넌스와 관할 당국, 시장 감시·통제, 준수 및 행정벌금 부과 절차를 규정하고 고위험 AI 시스템 등록과 AI Regulatory Sandbox를 도입한다. 정부는 기관·기업·시민의 의견을 2026년 9월 16일까지 전자 공공협의 플랫폼을 통해 접수한다. 글로벌 AI 규제 추적기">
   <h2>🇪🇺🇰🇷 키프로스, AI 규제를 위한 첫 법안 초안 발표 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">글로벌 AI 규제 추적기</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="키프로스, AI 규제를 위한 첫 법안 초안 발표 (2026.8.16)
 
@@ -337,8 +393,10 @@ https://www.theguardian.com/money/2026/aug/16/scam-ai-holiday-photos-instagram-f
 https://e-consultation.gov.cy/diavouleuseis/%CE%BF-%CF%80%CE%B5%CF%81%CE%B9-%CF%84%CE%B7%CF%83-%CF%84%CE%B5%CF%87%CE%BD%CE%B7%CF%84%CE%B7%CF%83-%CE%BD%CE%BF%CE%B7%CE%BC%CE%BF%CF%83%CF%85%CE%BD%CE%B7%CF%82-%CE%BD%CE%BF%CE%BC%CE%BF%CF%83-%CF%84" onclick="copyEntry(this)">복사</button></div>
   <p>키프로스는 유럽연합 인공지능법(Regulation (EU) 2024/1689)의 국내 적용과 감독을 위한 「2026년 인공지능법」 초안을 공개했다. 법안은 국가 거버넌스와 관할 당국, 시장 감시·통제, 준수 및 행정벌금 부과 절차를 규정하고 고위험 AI 시스템 등록과 AI Regulatory Sandbox를 도입한다. 정부는 기관·기업·시민의 의견을 2026년 9월 16일까지 전자 공공협의 플랫폼을 통해 접수한다.</p>
   <p class="url"><a href="https://e-consultation.gov.cy/diavouleuseis/%CE%BF-%CF%80%CE%B5%CF%81%CE%B9-%CF%84%CE%B7%CF%83-%CF%84%CE%B5%CF%87%CE%BD%CE%B7%CF%84%CE%B7%CF%83-%CE%BD%CE%BF%CE%B7%CE%BC%CE%BF%CF%83%CF%85%CE%BD%CE%B7%CF%82-%CE%BD%CE%BF%CE%BC%CE%BF%CF%83-%CF%84">https://e-consultation.gov.cy/diavouleuseis/%CE%BF-%CF%80%CE%B5%CF%81%CE%B9-%CF%84%CE%B7%CF%83-%CF%84%CE%B5%CF%87%CE%BD%CE%B7%CF%84%CE%B7%CF%83-%CE%BD%CE%BF%CE%B7%CE%BC%CE%BF%CF%83%CF%85%CE%BD%CE%B7%CF%82-%CE%BD%CE%BF%CE%BC%CE%BF%CF%83-%CF%84</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="frontier" data-search="Zhipu AI 공동 창업자 Tang Jie의 토큰이 지능 경제 동력으로서의 역할 (2026.8.16) 본 논문은 토큰이 지능 경제의 고품질 발전을 주도하는 엔진으로 작용해야 한다는 주장을 제기한다. 저자 Tang Jie는 Zhipu AI의 공동 창업자이자 청화대학교 컴퓨터과학기술부 교수로, 토큰이 단순히 정보 처리의 기술적 단위가 아니라 지능 서비스의 생산, 교환, 가치 창출을 측정하는 기초 단위가 되어야 한다고 강조한다. 지능 경제 발전은 모델 지능 수준, API 호출량, 그리고 지능적 전환 효율성이라는 세 가지 요소에 달려 있다. 중국은 개방형 소스 모델, 저렴한 서비스, 그리고 방대한 API 호출량을 통해 의미 있는 이점을 구축했으나, 토큰 소비의 상당 부분이 채팅과 이미지 생성 같은 저가치 시나리오에 집중되어 있는 반면, 산업 제조와 과학 연구 같은 고부가가치 영역에서의 근본적인 모델 혁신은 부족하다. 향후 발전 방향은 호출량 증가만을 추구하는 것이 아니라 모델 능력 향상과 실제 경제로의 전환률 증대를 동시에 추구해야 한다. 또한 토큰의 측정, 가격 책정, 거래, 관리 규칙을 정립하는 것이 중요하다. 토큰의 가치는 단순히 토큰 수보다는 지능적 전환 효율성에 더 크게 의존한다. GeopoliTechs">
   <h2>🇨🇳 Zhipu AI 공동 창업자 Tang Jie의 토큰이 지능 경제 동력으로서의 역할 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">GeopoliTechs</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Zhipu AI 공동 창업자 Tang Jie의 토큰이 지능 경제 동력으로서의 역할 (2026.8.16)
 
@@ -347,9 +405,11 @@ https://e-consultation.gov.cy/diavouleuseis/%CE%BF-%CF%80%CE%B5%CF%81%CE%B9-%CF%
 https://www.geopolitechs.org/p/zhipu-ai-co-founder-tang-jie-tokens" onclick="copyEntry(this)">복사</button></div>
   <p>본 논문은 토큰이 지능 경제의 고품질 발전을 주도하는 엔진으로 작용해야 한다는 주장을 제기한다. 저자 Tang Jie는 Zhipu AI의 공동 창업자이자 청화대학교 컴퓨터과학기술부 교수로, 토큰이 단순히 정보 처리의 기술적 단위가 아니라 지능 서비스의 생산, 교환, 가치 창출을 측정하는 기초 단위가 되어야 한다고 강조한다. 지능 경제 발전은 모델 지능 수준, API 호출량, 그리고 지능적 전환 효율성이라는 세 가지 요소에 달려 있다. 중국은 개방형 소스 모델, 저렴한 서비스, 그리고 방대한 API 호출량을 통해 의미 있는 이점을 구축했으나, 토큰 소비의 상당 부분이 채팅과 이미지 생성 같은 저가치 시나리오에 집중되어 있는 반면, 산업 제조와 과학 연구 같은 고부가가치 영역에서의 근본적인 모델 혁신은 부족하다. 향후 발전 방향은 호출량 증가만을 추구하는 것이 아니라 모델 능력 향상과 실제 경제로의 전환률 증대를 동시에 추구해야 한다. 또한 토큰의 측정, 가격 책정, 거래, 관리 규칙을 정립하는 것이 중요하다. 토큰의 가치는 단순히 토큰 수보다는 지능적 전환 효율성에 더 크게 의존한다.</p>
   <p class="url"><a href="https://www.geopolitechs.org/p/zhipu-ai-co-founder-tang-jie-tokens">https://www.geopolitechs.org/p/zhipu-ai-co-founder-tang-jie-tokens</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
-  <h2>🇺🇸 합성 유권자의 등장: AI 기반 모의 포커스 그룹의 활용과 위험 (2026.8.16)</h2>
+<article class="entry cat-media" data-cat="media" data-topics="politics" data-search="합성 유권자의 등장: AI 기반 모의 포커스 그룹의 활용과 위험 (2026.8.16) AI 기술을 활용한 모의 포커스 그룹이 정치 캠페인에서 실제 유권자의 마음을 이해하는 데 새로운 도구로 활용될 가능성이 제기되고 있다. 그러나 이러한 합성 유권자들이 실제 유권자의 의견을 정확하게 반영할지, 아니면 오히려 왜곡된 이미지를 제공할지에 대한 우려도 제기되었다. 연구에 따르면, 이러한 도구의 사용은 위험성 평가와 실제 유권자와의 유사성 정도에 따라 결정되어야 하며, 특히 특정 결정(예: 연합 참여 여부)에 활용될 경우 위험성이 크다고 경고한다. 또한, 합성 유권자 데이터가 특정 플랫폼에서 수집된 데이터에 기반하고 있어 전체적인 공공의견을 완벽하게 반영하지 못한다는 점도 지적되었다. 이로 인해 공공의견 형성에 인공적인 요소가 추가될 위험이 있다는 우려도 함께 제기되었다. TechPolicyPress">
+  <h2>합성 유권자의 등장: AI 기반 모의 포커스 그룹의 활용과 위험 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TechPolicyPress</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="합성 유권자의 등장: AI 기반 모의 포커스 그룹의 활용과 위험 (2026.8.16)
 
 AI 기술을 활용한 모의 포커스 그룹이 정치 캠페인에서 실제 유권자의 마음을 이해하는 데 새로운 도구로 활용될 가능성이 제기되고 있다. 그러나 이러한 합성 유권자들이 실제 유권자의 의견을 정확하게 반영할지, 아니면 오히려 왜곡된 이미지를 제공할지에 대한 우려도 제기되었다. 연구에 따르면, 이러한 도구의 사용은 위험성 평가와 실제 유권자와의 유사성 정도에 따라 결정되어야 하며, 특히 특정 결정(예: 연합 참여 여부)에 활용될 경우 위험성이 크다고 경고한다. 또한, 합성 유권자 데이터가 특정 플랫폼에서 수집된 데이터에 기반하고 있어 전체적인 공공의견을 완벽하게 반영하지 못한다는 점도 지적되었다. 이로 인해 공공의견 형성에 인공적인 요소가 추가될 위험이 있다는 우려도 함께 제기되었다.
@@ -357,9 +417,11 @@ AI 기술을 활용한 모의 포커스 그룹이 정치 캠페인에서 실제 
 https://www.techpolicy.press/here-come-the-synthetic-voters" onclick="copyEntry(this)">복사</button></div>
   <p>AI 기술을 활용한 모의 포커스 그룹이 정치 캠페인에서 실제 유권자의 마음을 이해하는 데 새로운 도구로 활용될 가능성이 제기되고 있다. 그러나 이러한 합성 유권자들이 실제 유권자의 의견을 정확하게 반영할지, 아니면 오히려 왜곡된 이미지를 제공할지에 대한 우려도 제기되었다. 연구에 따르면, 이러한 도구의 사용은 위험성 평가와 실제 유권자와의 유사성 정도에 따라 결정되어야 하며, 특히 특정 결정(예: 연합 참여 여부)에 활용될 경우 위험성이 크다고 경고한다. 또한, 합성 유권자 데이터가 특정 플랫폼에서 수집된 데이터에 기반하고 있어 전체적인 공공의견을 완벽하게 반영하지 못한다는 점도 지적되었다. 이로 인해 공공의견 형성에 인공적인 요소가 추가될 위험이 있다는 우려도 함께 제기되었다.</p>
   <p class="url"><a href="https://www.techpolicy.press/here-come-the-synthetic-voters">https://www.techpolicy.press/here-come-the-synthetic-voters</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
-  <h2>🇺🇸 2026 US 미중간선거 앞두고 AI가 선거 정보 재구성 중 (2026.8.16)</h2>
+<article class="entry cat-media" data-cat="media" data-topics="politics" data-search="2026 US 미중간선거 앞두고 AI가 선거 정보 재구성 중 (2026.8.16) AI 챗봇의 확산으로 선거 정보의 생성과 접근이 변화하고 있으며, 이는 2026년 미중간선거를 앞두고 선거 정보 환경에 영향을 미치고 있다. 연구에 따르면, 주요 챗봇들은 제시된 선거 관련 허위 음모론에도 불구하고 사실을 반박하는 경향을 보였다. 그러나 이는 일시적인 현상일 수 있으며, 현재 연방 정부의 선거 정보 관련 지원 축소와 함께 주 단위의 대응 노력이 중요해지고 있다. 한편, 대부분의 주들은 선거 인프라에 대한 투자를 통해 투표 보안을 강화해 왔다. TechPolicyPress">
+  <h2>2026 US 미중간선거 앞두고 AI가 선거 정보 재구성 중 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TechPolicyPress</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="2026 US 미중간선거 앞두고 AI가 선거 정보 재구성 중 (2026.8.16)
 
 AI 챗봇의 확산으로 선거 정보의 생성과 접근이 변화하고 있으며, 이는 2026년 미중간선거를 앞두고 선거 정보 환경에 영향을 미치고 있다. 연구에 따르면, 주요 챗봇들은 제시된 선거 관련 허위 음모론에도 불구하고 사실을 반박하는 경향을 보였다. 그러나 이는 일시적인 현상일 수 있으며, 현재 연방 정부의 선거 정보 관련 지원 축소와 함께 주 단위의 대응 노력이 중요해지고 있다. 한편, 대부분의 주들은 선거 인프라에 대한 투자를 통해 투표 보안을 강화해 왔다.
@@ -367,18 +429,22 @@ AI 챗봇의 확산으로 선거 정보의 생성과 접근이 변화하고 있�
 https://www.techpolicy.press/how-ai-is-reshaping-election-information-ahead-of-the-2026-us-midterms" onclick="copyEntry(this)">복사</button></div>
   <p>AI 챗봇의 확산으로 선거 정보의 생성과 접근이 변화하고 있으며, 이는 2026년 미중간선거를 앞두고 선거 정보 환경에 영향을 미치고 있다. 연구에 따르면, 주요 챗봇들은 제시된 선거 관련 허위 음모론에도 불구하고 사실을 반박하는 경향을 보였다. 그러나 이는 일시적인 현상일 수 있으며, 현재 연방 정부의 선거 정보 관련 지원 축소와 함께 주 단위의 대응 노력이 중요해지고 있다. 한편, 대부분의 주들은 선거 인프라에 대한 투자를 통해 투표 보안을 강화해 왔다.</p>
   <p class="url"><a href="https://www.techpolicy.press/how-ai-is-reshaping-election-information-ahead-of-the-2026-us-midterms">https://www.techpolicy.press/how-ai-is-reshaping-election-information-ahead-of-the-2026-us-midterms</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="deepfake_disinfo politics" data-search="AI가 미국 중간선거에 미치는 영향 (2026.8.16) 미국 중간선거 기간 동안 AI 챗봇이 선거 정보 검색과 생성에 널리 활용되면서 정보 환경이 변화하고 있다. 브레넌 센터의 연구는 AI가 선거 관련 허위 정보 확산에 기여하는지 여부를 탐구했으며, 인터뷰에서는 AI 챗봇이 선거 관련 음모론과 허위 정보에 어떻게 대응하는지, 그리고 정부 기관의 정보 접근성 문제 등 다양한 주제를 다뤘다. 특히 트럼프 행정부 하에서 선거 보안 관련 정보 출처가 제거된 상황에서 AI 챗봇이 신뢰할 수 있는 정부 정보를 제대로 제공하지 못하는 문제점이 제기되었다. 또한, AI 안전 검토의 한계와 AI 기술의 책임 있는 활용 방안에 대한 논의도 포함되어 있다. TechPolicyPress">
   <h2>🇺🇸 AI가 미국 중간선거에 미치는 영향 (2026.8.16)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TechPolicyPress</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="AI가 미국 중간선거에 미치는 영향 (2026.8.16)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TechPolicyPress</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="AI가 미국 중간선거에 미치는 영향 (2026.8.16)
 
 미국 중간선거 기간 동안 AI 챗봇이 선거 정보 검색과 생성에 널리 활용되면서 정보 환경이 변화하고 있다. 브레넌 센터의 연구는 AI가 선거 관련 허위 정보 확산에 기여하는지 여부를 탐구했으며, 인터뷰에서는 AI 챗봇이 선거 관련 음모론과 허위 정보에 어떻게 대응하는지, 그리고 정부 기관의 정보 접근성 문제 등 다양한 주제를 다뤘다. 특히 트럼프 행정부 하에서 선거 보안 관련 정보 출처가 제거된 상황에서 AI 챗봇이 신뢰할 수 있는 정부 정보를 제대로 제공하지 못하는 문제점이 제기되었다. 또한, AI 안전 검토의 한계와 AI 기술의 책임 있는 활용 방안에 대한 논의도 포함되어 있다.
 
 https://www.techpolicy.press/newsletter-august-16-2026" onclick="copyEntry(this)">복사</button></div>
   <p>미국 중간선거 기간 동안 AI 챗봇이 선거 정보 검색과 생성에 널리 활용되면서 정보 환경이 변화하고 있다. 브레넌 센터의 연구는 AI가 선거 관련 허위 정보 확산에 기여하는지 여부를 탐구했으며, 인터뷰에서는 AI 챗봇이 선거 관련 음모론과 허위 정보에 어떻게 대응하는지, 그리고 정부 기관의 정보 접근성 문제 등 다양한 주제를 다뤘다. 특히 트럼프 행정부 하에서 선거 보안 관련 정보 출처가 제거된 상황에서 AI 챗봇이 신뢰할 수 있는 정부 정보를 제대로 제공하지 못하는 문제점이 제기되었다. 또한, AI 안전 검토의 한계와 AI 기술의 책임 있는 활용 방안에 대한 논의도 포함되어 있다.</p>
   <p class="url"><a href="https://www.techpolicy.press/newsletter-august-16-2026">https://www.techpolicy.press/newsletter-august-16-2026</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="인공지능 조종 전투기 모의 요격 성공 (2026.8.16) 록히드 마틴이 개발한 자율 전투기 X-62A가 실제 공중에서 가상 적기를 감지하고 추적하여 모의 요격 임무를 성공적으로 수행하였다. 이 전투기는 F-16을 기반으로 개조되었으며, 인공지능이 실시간 데이터를 분석하여 조종한다. 이번 시험에서는 실제 훈련기인 T-38 탤론 제트를 대상으로 8번의 출격에서 27번의 요격 기동을 성공적으로 이뤄냈다. 향후에는 AI가 복잡한 비행 조작을 담당하고 조종사는 전략적 판단에 집중할 것으로 보인다. 뉴스RSS · 경향신문">
   <h2>인공지능 조종 전투기 모의 요격 성공 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">경향신문</span></span><button type="button" class="copy-btn" data-copy="인공지능 조종 전투기 모의 요격 성공 (2026.8.16)
 
@@ -387,8 +453,10 @@ https://www.techpolicy.press/newsletter-august-16-2026" onclick="copyEntry(this)
 https://www.khan.co.kr/article/202608160900011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=total_news" onclick="copyEntry(this)">복사</button></div>
   <p>록히드 마틴이 개발한 자율 전투기 X-62A가 실제 공중에서 가상 적기를 감지하고 추적하여 모의 요격 임무를 성공적으로 수행하였다. 이 전투기는 F-16을 기반으로 개조되었으며, 인공지능이 실시간 데이터를 분석하여 조종한다. 이번 시험에서는 실제 훈련기인 T-38 탤론 제트를 대상으로 8번의 출격에서 27번의 요격 기동을 성공적으로 이뤄냈다. 향후에는 AI가 복잡한 비행 조작을 담당하고 조종사는 전략적 판단에 집중할 것으로 보인다.</p>
   <p class="url"><a href="https://www.khan.co.kr/article/202608160900011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=total_news">https://www.khan.co.kr/article/202608160900011/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=total_news</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="cybersecurity deepfake_disinfo" data-search="하반기 북한 해킹 공격 최다 99건, AI 및 딥페이크 활용 증가 (2026.8.16) 올해 상반기 북한을 비롯한 국가 배후 해킹 조직의 공격이 증가한 가운데, 특히 북한의 공격이 한국을 가장 많이 노리며 생성형 인공지능과 딥페이크 공격 기법을 더 많이 사용한 것으로 나타났다. 북한의 해킹 활동은 한국을 19회 공격 대상으로 삼았으며, 주요 공격 기법으로는 암호화폐와 IT 산업, 딥페이크 등이 포함되었다. 중국과 러시아의 공격도 각각 동남아시아와 동유럽 지역으로 확대되었다. 보고서는 하반기에도 이러한 사이버 위협이 지속될 가능성을 경고했다. 조선일보">
   <h2>🇰🇷🇨🇳 하반기 북한 해킹 공격 최다 99건, AI 및 딥페이크 활용 증가 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">조선일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="하반기 북한 해킹 공격 최다 99건, AI 및 딥페이크 활용 증가 (2026.8.16)
 
@@ -397,8 +465,10 @@ https://www.khan.co.kr/article/202608160900011/?utm_source=khan_rss&amp;utm_medi
 https://www.chosun.com/economy/tech_it/2026/08/16/FM4KIXMH6VHS3IFY5N326EV4RQ/" onclick="copyEntry(this)">복사</button></div>
   <p>올해 상반기 북한을 비롯한 국가 배후 해킹 조직의 공격이 증가한 가운데, 특히 북한의 공격이 한국을 가장 많이 노리며 생성형 인공지능과 딥페이크 공격 기법을 더 많이 사용한 것으로 나타났다. 북한의 해킹 활동은 한국을 19회 공격 대상으로 삼았으며, 주요 공격 기법으로는 암호화폐와 IT 산업, 딥페이크 등이 포함되었다. 중국과 러시아의 공격도 각각 동남아시아와 동유럽 지역으로 확대되었다. 보고서는 하반기에도 이러한 사이버 위협이 지속될 가능성을 경고했다.</p>
   <p class="url"><a href="https://www.chosun.com/economy/tech_it/2026/08/16/FM4KIXMH6VHS3IFY5N326EV4RQ/">https://www.chosun.com/economy/tech_it/2026/08/16/FM4KIXMH6VHS3IFY5N326EV4RQ/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="law" data-search="&quot;AI 생성 소송 자료의 비밀 유지 문제 제기&quot; (2026.8.16) AI 챗봇과 생성된 소송 자료의 비밀 유지 여부가 법조계의 새로운 쟁점으로 부상하고 있다. 미국에서는 AI가 만든 문서가 변호사와 의뢰인 간의 비밀 유지 특권을 인정받지 못해 공개될 위기에 처했으나, 한국에서는 챗GPT를 활용한 소송 자료가 비밀 유지가 인정되는 사례가 있어 법적 해석의 차이가 나타나고 있다. 이로 인해 이용자의 민감한 정보 보호에 대한 우려가 제기되고 있다. 뉴스RSS · 조선일보">
   <h2>🇺🇸🇰🇷 &quot;AI 생성 소송 자료의 비밀 유지 문제 제기&quot; (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">조선일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="&quot;AI 생성 소송 자료의 비밀 유지 문제 제기&quot; (2026.8.16)
 
@@ -407,8 +477,10 @@ AI 챗봇과 생성된 소송 자료의 비밀 유지 여부가 법조계의 새
 https://www.chosun.com/economy/tech_it/2026/08/17/KLMERY5JAVCVZI3IXUE3WSS7SY/" onclick="copyEntry(this)">복사</button></div>
   <p>AI 챗봇과 생성된 소송 자료의 비밀 유지 여부가 법조계의 새로운 쟁점으로 부상하고 있다. 미국에서는 AI가 만든 문서가 변호사와 의뢰인 간의 비밀 유지 특권을 인정받지 못해 공개될 위기에 처했으나, 한국에서는 챗GPT를 활용한 소송 자료가 비밀 유지가 인정되는 사례가 있어 법적 해석의 차이가 나타나고 있다. 이로 인해 이용자의 민감한 정보 보호에 대한 우려가 제기되고 있다.</p>
   <p class="url"><a href="https://www.chosun.com/economy/tech_it/2026/08/17/KLMERY5JAVCVZI3IXUE3WSS7SY/">https://www.chosun.com/economy/tech_it/2026/08/17/KLMERY5JAVCVZI3IXUE3WSS7SY/</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="norms" data-search="미국과 중국의 AI 경쟁 격화 속에서 미국이 한국을 포함한 35개 동맹국에게 중국과의 선택적 동맹을 요구하는 압박 서한 발송을 준비 중이다 (2026.8.16) 미국은 동맹국들에게 팍스 실리카와 같은 AI 공급망 협의체에 참여하면서 중국의 AI 이니셔티브인 WAICO에 동시에 가입하는 것을 피할 것을 촉구하는 서한을 준비하고 있다. 이는 미중 간의 AI 경쟁이 단순 기술 경쟁을 넘어 외교와 통상 영역까지 확대된 결과이다. 한국을 포함한 회원국들은 미국과의 협력을 통해 중국 의존도를 줄이려 하지만, 반도체 수출 등에서 여전히 중국에 크게 의존하고 있어 딜레마에 직면해 있다. 미국의 압박은 동맹국들이 명확한 진영 선택을 하도록 요구하는 것으로 보인다. 뉴스RSS · 경향신문">
   <h2>🇺🇸🇨🇳 미국과 중국의 AI 경쟁 격화 속에서 미국이 한국을 포함한 35개 동맹국에게 중국과의 선택적 동맹을 요구하는 압박 서한 발송을 준비 중이다 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">경향신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="미국과 중국의 AI 경쟁 격화 속에서 미국이 한국을 포함한 35개 동맹국에게 중국과의 선택적 동맹을 요구하는 압박 서한 발송을 준비 중이다 (2026.8.16)
 
@@ -417,8 +489,10 @@ https://www.chosun.com/economy/tech_it/2026/08/17/KLMERY5JAVCVZI3IXUE3WSS7SY/" o
 https://www.khan.co.kr/article/202608161244001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=economy_news" onclick="copyEntry(this)">복사</button></div>
   <p>미국은 동맹국들에게 팍스 실리카와 같은 AI 공급망 협의체에 참여하면서 중국의 AI 이니셔티브인 WAICO에 동시에 가입하는 것을 피할 것을 촉구하는 서한을 준비하고 있다. 이는 미중 간의 AI 경쟁이 단순 기술 경쟁을 넘어 외교와 통상 영역까지 확대된 결과이다. 한국을 포함한 회원국들은 미국과의 협력을 통해 중국 의존도를 줄이려 하지만, 반도체 수출 등에서 여전히 중국에 크게 의존하고 있어 딜레마에 직면해 있다. 미국의 압박은 동맹국들이 명확한 진영 선택을 하도록 요구하는 것으로 보인다.</p>
   <p class="url"><a href="https://www.khan.co.kr/article/202608161244001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=economy_news">https://www.khan.co.kr/article/202608161244001/?utm_source=khan_rss&amp;utm_medium=rss&amp;utm_campaign=economy_news</a></p>
+  
+  
 </article>
-<article class="entry cat-media">
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="미국 주도 AI 연합 참여 국가들에 대한 경고 (2026.8.16) 미국이 한국을 포함한 35개 국가들에게 중국의 인공지능(AI) 개발에 참여하면 미국이 주도하는 글로벌 AI 연합에서 배제될 것이라는 경고를 발송했다. 이는 미국과 중국 간의 치열한 AI 경쟁의 일환으로, 특히 애플이 중국산 메모리 반도체 사용을 검토하는 상황에서 미국 정부의 강한 반발을 보여주고 있다. 중국과의 협력을 피하려는 미국의 노력이 강조되고 있다. 뉴스RSS · 서울신문">
   <h2>🇺🇸🇰🇷 미국 주도 AI 연합 참여 국가들에 대한 경고 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">서울신문</span></span><button type="button" class="copy-btn" data-copy="미국 주도 AI 연합 참여 국가들에 대한 경고 (2026.8.16)
 
@@ -427,8 +501,10 @@ https://www.khan.co.kr/article/202608161244001/?utm_source=khan_rss&amp;utm_medi
 https://www.seoul.co.kr/news/newsView.php?id=20260816500056" onclick="copyEntry(this)">복사</button></div>
   <p>미국이 한국을 포함한 35개 국가들에게 중국의 인공지능(AI) 개발에 참여하면 미국이 주도하는 글로벌 AI 연합에서 배제될 것이라는 경고를 발송했다. 이는 미국과 중국 간의 치열한 AI 경쟁의 일환으로, 특히 애플이 중국산 메모리 반도체 사용을 검토하는 상황에서 미국 정부의 강한 반발을 보여주고 있다. 중국과의 협력을 피하려는 미국의 노력이 강조되고 있다.</p>
   <p class="url"><a href="https://www.seoul.co.kr/news/newsView.php?id=20260816500056">https://www.seoul.co.kr/news/newsView.php?id=20260816500056</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="frontier incidents" data-search="액시오스, 오픈AI와 지역 저널리즘 자동화 협력 (2026.8.16) 액시오스는 오픈AI와 3년간 협력해 13개 지역 뉴스레터에 콘텐츠 생성 도구를 무료로 제공하고, 오픈AI는 액시오스의 모든 콘텐츠를 ChatGPT 학습에 활용할 수 있게 됐다. 기사에서는 액시오스가 이미 축약된 편집 과정을 AI로 자동화하려 한다고 지적하며, 기술 기업과 오픈AI를 취재하는 매체가 오픈AI와 협력하는 데 따른 이해충돌을 문제로 제기한다. 액시오스 공동창업자 짐 반더하이는 직원들에게 AI를 받아들이지 않으면 언론계에서 일자리를 찾기 어려울 수 있다고 말했다. 퓨처리즘">
   <h2>액시오스, 오픈AI와 지역 저널리즘 자동화 협력 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">퓨처리즘</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="액시오스, 오픈AI와 지역 저널리즘 자동화 협력 (2026.8.16)
 
@@ -437,8 +513,10 @@ https://www.seoul.co.kr/news/newsView.php?id=20260816500056" onclick="copyEntry(
 https://futurism.com/future-society/axios-ceo-ai-journalism-openai-chatgpt" onclick="copyEntry(this)">복사</button></div>
   <p>액시오스는 오픈AI와 3년간 협력해 13개 지역 뉴스레터에 콘텐츠 생성 도구를 무료로 제공하고, 오픈AI는 액시오스의 모든 콘텐츠를 ChatGPT 학습에 활용할 수 있게 됐다. 기사에서는 액시오스가 이미 축약된 편집 과정을 AI로 자동화하려 한다고 지적하며, 기술 기업과 오픈AI를 취재하는 매체가 오픈AI와 협력하는 데 따른 이해충돌을 문제로 제기한다. 액시오스 공동창업자 짐 반더하이는 직원들에게 AI를 받아들이지 않으면 언론계에서 일자리를 찾기 어려울 수 있다고 말했다.</p>
   <p class="url"><a href="https://futurism.com/future-society/axios-ceo-ai-journalism-openai-chatgpt">https://futurism.com/future-society/axios-ceo-ai-journalism-openai-chatgpt</a></p>
+  
+  
 </article>
-<article class="entry cat-db">
+<article class="entry cat-db" data-cat="db" data-topics="incidents" data-search="AI와의 대화가 경찰 수사의 디지털 기록이 될 수 있다 (2026.8.16) 이스라엘의 두 사건에서 ChatGPT와 Gemini 대화가 방화 혐의자의 범행 전 생각과 실종된 모녀의 이동·도피 계획을 파악하는 단서로 활용된 것으로 보도됐다. AI 대화는 삭제하더라도 기기 포렌식이나 적법한 법적 절차 등을 통해 확보될 가능성이 있어, 인터페이스에서 삭제하는 것이 데이터의 완전한 삭제를 뜻하지는 않는다. 기사에서는 임시 대화, 기록·모델 개선 설정 조정 등 각 서비스의 개인정보 보호 기능을 소개하면서도, 민감한 정보는 애초에 입력하지 않는 것이 가장 확실한 보호책이라고 설명한다. CTech">
   <h2>AI와의 대화가 경찰 수사의 디지털 기록이 될 수 있다 (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">CTech</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="AI와의 대화가 경찰 수사의 디지털 기록이 될 수 있다 (2026.8.16)
 
@@ -447,8 +525,17 @@ https://futurism.com/future-society/axios-ceo-ai-journalism-openai-chatgpt" oncl
 https://www.calcalistech.com/ctechnews/article/rk311lbypmg" onclick="copyEntry(this)">복사</button></div>
   <p>이스라엘의 두 사건에서 ChatGPT와 Gemini 대화가 방화 혐의자의 범행 전 생각과 실종된 모녀의 이동·도피 계획을 파악하는 단서로 활용된 것으로 보도됐다. AI 대화는 삭제하더라도 기기 포렌식이나 적법한 법적 절차 등을 통해 확보될 가능성이 있어, 인터페이스에서 삭제하는 것이 데이터의 완전한 삭제를 뜻하지는 않는다. 기사에서는 임시 대화, 기록·모델 개선 설정 조정 등 각 서비스의 개인정보 보호 기능을 소개하면서도, 민감한 정보는 애초에 입력하지 않는 것이 가장 확실한 보호책이라고 설명한다.</p>
   <p class="url"><a href="https://www.calcalistech.com/ctechnews/article/rk311lbypmg">https://www.calcalistech.com/ctechnews/article/rk311lbypmg</a></p>
+  
+  
 </article>
-<article class="entry cat-research">
+<article class="entry cat-research" data-cat="research" data-topics="guideline" data-search="AI Governance Addressing Data Poisoning, Drift, and Integrity Risks (2026.8.16) 이 연구는 인공지능(AI) 시스템이 직면한 데이터 오염, 데이터 드리프트, 데이터 무결성 문제 등을 통합적으로 관리하는 AI 거버넌스 프레임워크를 제시한다.
+
+주요 내용:
+- 기존 연구들이 데이터 오염, 드리프트, 무결성 문제를 각각 다루었지만, 이 논문은 이러한 위험 요소들을 하나의 거버넌스 관점에서 통합적으로 분석한다.
+- 공급망 사례를 통해 데이터 오염, 드리프트, 무결성 실패가 AI 성능과 조직의 회복력에 미치는 영향을 살펴본다.
+- 효과적인 AI 거버넌스는 기술적 방어 수단을 넘어서 지속적인 라이프사이클 보증, 강력한 데이터 관리, 조직의 책임성, 그리고 적절한 규제 감독을 포함해야 함을 강조한다.
+- 제안된 통합 AI 거버넌스 프레임워크는 기술적 보증, 조직적 거버넌스, 국제적으로 인정받은 거버넌스 원칙을 라이프사이클 모델 내에서 통합한다.
+- 이 연구는 복잡한 데이터 기반 환경에서 AI를 구현하는 조직들에게 지침을 제공한다. ">
   <h2>AI Governance Addressing Data Poisoning, Drift, and Integrity Risks (2026.8.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="AI Governance Addressing Data Poisoning, Drift, and Integrity Risks (2026.8.16)
 
@@ -470,7 +557,9 @@ https://doi.org/10.1007/s44163-026-01959-w" onclick="copyEntry(this)">복사</bu
 - 제안된 통합 AI 거버넌스 프레임워크는 기술적 보증, 조직적 거버넌스, 국제적으로 인정받은 거버넌스 원칙을 라이프사이클 모델 내에서 통합한다.
 - 이 연구는 복잡한 데이터 기반 환경에서 AI를 구현하는 조직들에게 지침을 제공한다.</p>
   <p class="url"><a href="https://doi.org/10.1007/s44163-026-01959-w">https://doi.org/10.1007/s44163-026-01959-w</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2026-08-15.html">← 2026-08-15</a><a class="day-nav-btn" href="2026-08-17.html">2026-08-17 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-08-15.html">← 2026-08-15</a><a class="day-nav-btn" href="2026-08-17.html">2026-08-17 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -506,6 +595,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

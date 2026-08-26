@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi-weekly">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="영국 고등법원이 가짜 판례 인용 등 AI 오남용을 막기 위해 변호사들에 긴급 조치 요구(기사·공고 게재일 2025.6.6) 고등법원 킹스벤치부 빅토리아 샤프(Victoria Sharp) 법원장은 AI가 그럴듯하지만 사실이 아닌 답을 만들 수 있고, 존재하지 않는 출처나 잘못된 인용을 낳을 수 있다며 심각한 사법 신뢰 훼손을 경고했다. 기사에 따르면 올해 두 사건에서 AI 또는 AI 요약을 활용한 것으로 의심되는 가짜 판례 인용이 문제됐고, 법원은 변호사들에게 전문·윤리적 의무를 확인하고 정확성 검증을 강화하라고 촉구했다. 오남용 시 공적 질책부터 법정모독 절차 및 경찰 수사 의뢰까지 제재 가능성도 언급됐다. 가디언(theguardian.com)">
   <h2>🇬🇧 영국 고등법원이 가짜 판례 인용 등 AI 오남용을 막기 위해 변호사들에 긴급 조치 요구(기사·공고 게재일 2025.6.6)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">가디언(theguardian.com)</span></span><button type="button" class="copy-btn" data-copy="영국 고등법원이 가짜 판례 인용 등 AI 오남용을 막기 위해 변호사들에 긴급 조치 요구(기사·공고 게재일 2025.6.6)
 
@@ -317,8 +369,10 @@
 https://www.theguardian.com/technology/2025/jun/06/high-court-tells-uk-lawyers-to-urgently-stop-misuse-of-ai-in-legal-work" onclick="copyEntry(this)">복사</button></div>
   <p>고등법원 킹스벤치부 빅토리아 샤프(Victoria Sharp) 법원장은 AI가 그럴듯하지만 사실이 아닌 답을 만들 수 있고, 존재하지 않는 출처나 잘못된 인용을 낳을 수 있다며 심각한 사법 신뢰 훼손을 경고했다. 기사에 따르면 올해 두 사건에서 AI 또는 AI 요약을 활용한 것으로 의심되는 가짜 판례 인용이 문제됐고, 법원은 변호사들에게 전문·윤리적 의무를 확인하고 정확성 검증을 강화하라고 촉구했다. 오남용 시 공적 질책부터 법정모독 절차 및 경찰 수사 의뢰까지 제재 가능성도 언급됐다.</p>
   <p class="url"><a href="https://www.theguardian.com/technology/2025/jun/06/high-court-tells-uk-lawyers-to-urgently-stop-misuse-of-ai-in-legal-work">https://www.theguardian.com/technology/2025/jun/06/high-court-tells-uk-lawyers-to-urgently-stop-misuse-of-ai-in-legal-work</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="(연방정부의 AI 도입을 위한 도구·권한 확보 촉구) (**2025.6.6**) 미 하원 감독·정부개혁위원회는 ‘The Federal Government in the Age of Artificial Intelligence’ 주제 청문회를 열고, 연방정부가 AI를 책임 있게 도입해 효율을 높이고 비용을 줄이며 공공서비스를 개선해야 한다고 강조했다. 위원들은 규제 중심 접근이 기술 진전을 저해했다는 취지로, 연방정부가 AI를 효과적으로 배치할 수 있는 도구와 권한이 필요하다고 결론냈다. 또한 AI를 사기·부정지급 탐지, 행정업무 간소화, 민간 상용기술 활용, 데이터센터·에너지 인프라 및 개인정보·보안 보호와 연계해 논의했으며, 생산성 향상 효과로 2028년까지 연간 최대 5320억 달러 규모의 ‘생산성 윈폴’ 가능성을 언급했다. 미국 하원 감독·정부개혁위원회(United States House Committee on Oversight and Government Reform)">
   <h2>🇺🇸 (연방정부의 AI 도입을 위한 도구·권한 확보 촉구) (**2025.6.6**)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 하원 감독·정부개혁위원회(United States House Committee on Oversight and Government Reform)</span></span><button type="button" class="copy-btn" data-copy="(연방정부의 AI 도입을 위한 도구·권한 확보 촉구) (**2025.6.6**)
 
@@ -327,27 +381,33 @@ https://www.theguardian.com/technology/2025/jun/06/high-court-tells-uk-lawyers-t
 https://oversight.house.gov/release/wrap-up-congress-must-ensure-the-federal-government-has-tools-to-deploy-artificial-intelligence-effectively-and-efficiently" onclick="copyEntry(this)">복사</button></div>
   <p>미 하원 감독·정부개혁위원회는 ‘The Federal Government in the Age of Artificial Intelligence’ 주제 청문회를 열고, 연방정부가 AI를 책임 있게 도입해 효율을 높이고 비용을 줄이며 공공서비스를 개선해야 한다고 강조했다. 위원들은 규제 중심 접근이 기술 진전을 저해했다는 취지로, 연방정부가 AI를 효과적으로 배치할 수 있는 도구와 권한이 필요하다고 결론냈다. 또한 AI를 사기·부정지급 탐지, 행정업무 간소화, 민간 상용기술 활용, 데이터센터·에너지 인프라 및 개인정보·보안 보호와 연계해 논의했으며, 생산성 향상 효과로 2028년까지 연간 최대 5320억 달러 규모의 ‘생산성 윈폴’ 가능성을 언급했다.</p>
   <p class="url"><a href="https://oversight.house.gov/release/wrap-up-congress-must-ensure-the-federal-government-has-tools-to-deploy-artificial-intelligence-effectively-and-efficiently">https://oversight.house.gov/release/wrap-up-congress-must-ensure-the-federal-government-has-tools-to-deploy-artificial-intelligence-effectively-and-efficiently</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="cybersecurity" data-search="49款 국내외 AI 대형모델 안전 테스트 결과, 우리나라는 대체로 중간 수준(2025.6.6) 6월 5일 열린 2025 글로벌 디지털경제대회 디지털안전 주포럼 등에서 공개된 연구에 따르면, 국내 AI 대형모델의 공격 성공률은 약 5~6%로 국제 관점에서 ‘중위권’ 수준이며 개선 여지가 있다고 한다. 새로 개발된 ‘灵御(링위) 대형모델 안전 공방 평가 플랫폼’으로 49종 모델을 테스트한 결과, 모델의 AI 성능이 향상됐더라도 안전 위험 방어 수준은 크게 오르지 않았다고 설명했다. 또한 전문가들은 단일 방어를 넘어 운영자 책임 강화와 통합·연합 방어 체계 구축, SOAR 등 자동화된 대응 체계가 필요하다고 강조했다. 남방도시보(南都)">
   <h2>🇰🇷 49款 국내외 AI 대형모델 안전 테스트 결과, 우리나라는 대체로 중간 수준(2025.6.6)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">남방도시보(南都)</span></span><button type="button" class="copy-btn" data-copy="49款 국내외 AI 대형모델 안전 테스트 결과, 우리나라는 대체로 중간 수준(2025.6.6)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">남방도시보(南都)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="49款 국내외 AI 대형모델 안전 테스트 결과, 우리나라는 대체로 중간 수준(2025.6.6)
 
 6월 5일 열린 2025 글로벌 디지털경제대회 디지털안전 주포럼 등에서 공개된 연구에 따르면, 국내 AI 대형모델의 공격 성공률은 약 5~6%로 국제 관점에서 ‘중위권’ 수준이며 개선 여지가 있다고 한다. 새로 개발된 ‘灵御(링위) 대형모델 안전 공방 평가 플랫폼’으로 49종 모델을 테스트한 결과, 모델의 AI 성능이 향상됐더라도 안전 위험 방어 수준은 크게 오르지 않았다고 설명했다. 또한 전문가들은 단일 방어를 넘어 운영자 책임 강화와 통합·연합 방어 체계 구축, SOAR 등 자동화된 대응 체계가 필요하다고 강조했다.
 
 https://m.mp.oeeee.com/a/BAAFRD0000202506061092840.html" onclick="copyEntry(this)">복사</button></div>
   <p>6월 5일 열린 2025 글로벌 디지털경제대회 디지털안전 주포럼 등에서 공개된 연구에 따르면, 국내 AI 대형모델의 공격 성공률은 약 5~6%로 국제 관점에서 ‘중위권’ 수준이며 개선 여지가 있다고 한다. 새로 개발된 ‘灵御(링위) 대형모델 안전 공방 평가 플랫폼’으로 49종 모델을 테스트한 결과, 모델의 AI 성능이 향상됐더라도 안전 위험 방어 수준은 크게 오르지 않았다고 설명했다. 또한 전문가들은 단일 방어를 넘어 운영자 책임 강화와 통합·연합 방어 체계 구축, SOAR 등 자동화된 대응 체계가 필요하다고 강조했다.</p>
   <p class="url"><a href="https://m.mp.oeeee.com/a/BAAFRD0000202506061092840.html">https://m.mp.oeeee.com/a/BAAFRD0000202506061092840.html</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="cybersecurity frontier national_security" data-search="Claude Gov 모델 출시: 미국 국가 안보 고객 맞춤형 AI (2025.6.6) Anthropic은 미국 국가 안보 고객을 위해 특별히 설계된 Claude Gov 모델 세트를 출시했습니다. 이 모델들은 최고 수준의 국가 안보 기관에서 이미 배포되었으며, 고도의 분류 환경에서만 접근 가능합니다. 정부 고객의 피드백을 바탕으로 개발된 이 모델들은 안전 기준을 충족하며, 전략 계획, 정보 분석, 위협 평가 등 다양한 국가 안보 관련 작업에서 향상된 성능을 제공합니다. 특히 분류된 정보 처리 능력과 복잡한 사이버 보안 데이터 해석 능력이 강화되었습니다. 자세한 내용은 pubsec@anthropic.com으로 문의 가능합니다. Anthropic">
   <h2>🇺🇸 Claude Gov 모델 출시: 미국 국가 안보 고객 맞춤형 AI (2025.6.6)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Claude Gov 모델 출시: 미국 국가 안보 고객 맞춤형 AI (2025.6.6)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Claude Gov 모델 출시: 미국 국가 안보 고객 맞춤형 AI (2025.6.6)
 
 Anthropic은 미국 국가 안보 고객을 위해 특별히 설계된 Claude Gov 모델 세트를 출시했습니다. 이 모델들은 최고 수준의 국가 안보 기관에서 이미 배포되었으며, 고도의 분류 환경에서만 접근 가능합니다. 정부 고객의 피드백을 바탕으로 개발된 이 모델들은 안전 기준을 충족하며, 전략 계획, 정보 분석, 위협 평가 등 다양한 국가 안보 관련 작업에서 향상된 성능을 제공합니다. 특히 분류된 정보 처리 능력과 복잡한 사이버 보안 데이터 해석 능력이 강화되었습니다. 자세한 내용은 pubsec@anthropic.com으로 문의 가능합니다.
 
 https://www.anthropic.com/news/claude-gov-models-for-u-s-national-security-customers" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 미국 국가 안보 고객을 위해 특별히 설계된 Claude Gov 모델 세트를 출시했습니다. 이 모델들은 최고 수준의 국가 안보 기관에서 이미 배포되었으며, 고도의 분류 환경에서만 접근 가능합니다. 정부 고객의 피드백을 바탕으로 개발된 이 모델들은 안전 기준을 충족하며, 전략 계획, 정보 분석, 위협 평가 등 다양한 국가 안보 관련 작업에서 향상된 성능을 제공합니다. 특히 분류된 정보 처리 능력과 복잡한 사이버 보안 데이터 해석 능력이 강화되었습니다. 자세한 내용은 pubsec@anthropic.com으로 문의 가능합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/claude-gov-models-for-u-s-national-security-customers">https://www.anthropic.com/news/claude-gov-models-for-u-s-national-security-customers</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-06-05.html">← 2025-06-05</a><a class="day-nav-btn" href="2025-06-07.html">2025-06-07 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-06-05.html">← 2025-06-05</a><a class="day-nav-btn" href="2025-06-07.html">2025-06-07 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -383,6 +443,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="aisi_topic frontier" data-search="Chain of thought monitorability: AI safety를 위한 새로운(그러나 취약한) 기회 (2025.7.15) AI가 인간 언어로 ‘생각’을 할 때, 해당 chains of thought(CoT)를 감시해 악의적 의도를 파악할 수 있는 기회가 있다고 설명한다. CoT 모니터링은 다른 감독 방법과 마찬가지로 완벽하지 않아 일부 위법 행위가 탐지되지 않을 수 있지만, 잠재력이 있어 추가 연구와 기존 안전 방법과의 병행 투자를 권고한다. 또한 CoT monitorability가 ‘fragile(취약)’할 수 있으므로, 프론티어 모델 개발자들이 개발 과정의 결정이 CoT monitorability에 미치는 영향을 고려해야 한다. AISI-UK">
   <h2>🇬🇧 Chain of thought monitorability: AI safety를 위한 새로운(그러나 취약한) 기회 (2025.7.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Chain of thought monitorability: AI safety를 위한 새로운(그러나 취약한) 기회 (2025.7.15)
 
@@ -317,8 +369,10 @@ AI가 인간 언어로 ‘생각’을 할 때, 해당 chains of thought(CoT)를
 https://www.aisi.gov.uk/research/chain-of-thought-monitorability-a-new-and-fragile-opportunity-for-ai-safety" onclick="copyEntry(this)">복사</button></div>
   <p>AI가 인간 언어로 ‘생각’을 할 때, 해당 chains of thought(CoT)를 감시해 악의적 의도를 파악할 수 있는 기회가 있다고 설명한다. CoT 모니터링은 다른 감독 방법과 마찬가지로 완벽하지 않아 일부 위법 행위가 탐지되지 않을 수 있지만, 잠재력이 있어 추가 연구와 기존 안전 방법과의 병행 투자를 권고한다. 또한 CoT monitorability가 ‘fragile(취약)’할 수 있으므로, 프론티어 모델 개발자들이 개발 과정의 결정이 CoT monitorability에 미치는 영향을 고려해야 한다.</p>
   <p class="url"><a href="https://www.aisi.gov.uk/research/chain-of-thought-monitorability-a-new-and-fragile-opportunity-for-ai-safety">https://www.aisi.gov.uk/research/chain-of-thought-monitorability-a-new-and-fragile-opportunity-for-ai-safety</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="AI TEVV 표준(Zero Draft) 개요(2025.07.15) 본문은 AI TEVV(테스트·평가·검증) 관련 표준의 “Proposed Zero Draft” 문서 개요를 담은 PDF 파일로 보이며, 페이지 내에는 PDF 구조 정보(xref 등)만 추출되어 핵심 내용 문장이 확인되지 않습니다. 따라서 표준의 구체적 요구사항, 범위, 절차 등은 현재 제공된 텍스트만으로 요약할 수 없습니다. 미국 국립표준기술연구소(NIST)">
   <h2>AI TEVV 표준(Zero Draft) 개요(2025.07.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 국립표준기술연구소(NIST)</span></span><button type="button" class="copy-btn" data-copy="AI TEVV 표준(Zero Draft) 개요(2025.07.15)
 
@@ -327,8 +381,10 @@ https://www.aisi.gov.uk/research/chain-of-thought-monitorability-a-new-and-fragi
 https://www.nist.gov/system/files/documents/2025/07/15/Outline_%20Proposed%20Zero%20Draft%20for%20a%20Standard%20on%20AI%20TEVV-for-web.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>본문은 AI TEVV(테스트·평가·검증) 관련 표준의 “Proposed Zero Draft” 문서 개요를 담은 PDF 파일로 보이며, 페이지 내에는 PDF 구조 정보(xref 등)만 추출되어 핵심 내용 문장이 확인되지 않습니다. 따라서 표준의 구체적 요구사항, 범위, 절차 등은 현재 제공된 텍스트만으로 요약할 수 없습니다.</p>
   <p class="url"><a href="https://www.nist.gov/system/files/documents/2025/07/15/Outline_%20Proposed%20Zero%20Draft%20for%20a%20Standard%20on%20AI%20TEVV-for-web.pdf">https://www.nist.gov/system/files/documents/2025/07/15/Outline_%20Proposed%20Zero%20Draft%20for%20a%20Standard%20on%20AI%20TEVV-for-web.pdf</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="cybersecurity deepfake_disinfo" data-search="미국 S&amp;P 500 기업, SEC 공시에서 AI 관련 위험요소를 대거 확대(기사·공고 게재일 2025.7.15) S&amp;P 500 상장사 500곳의 Form 10-K를 분석한 결과, 지난 1년간 3/4 기업이 AI 관련 위험 공시를 확대·상세화한 것으로 나타났다. 산업 전반에서 절반 이상이 AI 위험을 늘렸고, IT 분야 증가폭이 가장 컸으며 금융·커뮤니케이션서비스가 뒤를 이었다. 특히 39%(193개사)는 범죄자 등이 AI를 이용해 디지털 사칭, 허위정보 확산, 악성코드 생성 등에 악용할 위험을 언급했고, 딥페이크(조작 이미지·영상·음성) 언급도 크게 늘었다. 한편 AI 투자에 대해 11%(57개사)는 지출을 회수하지 못하거나 기대효과를 얻지 못할 수 있다고 명시했으며, 데이터 프라이버시·지식재산권 위험은 19%만 공시를 확대한 것으로 조사됐다. 더 레지스터(theregister.com)">
   <h2>🇺🇸 미국 S&amp;P 500 기업, SEC 공시에서 AI 관련 위험요소를 대거 확대(기사·공고 게재일 2025.7.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">더 레지스터(theregister.com)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="미국 S&amp;P 500 기업, SEC 공시에서 AI 관련 위험요소를 대거 확대(기사·공고 게재일 2025.7.15)
 
@@ -337,8 +393,10 @@ S&amp;P 500 상장사 500곳의 Form 10-K를 분석한 결과, 지난 1년간 3/
 https://www.theregister.com/2025/07/15/sec_risk_factors_ai" onclick="copyEntry(this)">복사</button></div>
   <p>S&amp;P 500 상장사 500곳의 Form 10-K를 분석한 결과, 지난 1년간 3/4 기업이 AI 관련 위험 공시를 확대·상세화한 것으로 나타났다. 산업 전반에서 절반 이상이 AI 위험을 늘렸고, IT 분야 증가폭이 가장 컸으며 금융·커뮤니케이션서비스가 뒤를 이었다. 특히 39%(193개사)는 범죄자 등이 AI를 이용해 디지털 사칭, 허위정보 확산, 악성코드 생성 등에 악용할 위험을 언급했고, 딥페이크(조작 이미지·영상·음성) 언급도 크게 늘었다. 한편 AI 투자에 대해 11%(57개사)는 지출을 회수하지 못하거나 기대효과를 얻지 못할 수 있다고 명시했으며, 데이터 프라이버시·지식재산권 위험은 19%만 공시를 확대한 것으로 조사됐다.</p>
   <p class="url"><a href="https://www.theregister.com/2025/07/15/sec_risk_factors_ai">https://www.theregister.com/2025/07/15/sec_risk_factors_ai</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier" data-search="AI 연구자들, 추론 모델의 ‘thoughts(사고 과정)’ 모니터링 필요성 촉구(2025.7.15) AI 연구자들이 OpenAI·Google DeepMind·Anthropic 등과 함께 ‘추론 모델의 chain-of-thought(CoT)를 모니터링’하는 안전 연구를 더 깊게 조사하자고 촉구했다. 이들은 o3·R1 같은 추론 모델의 CoT가 에이전트 의사결정 과정을 들여다볼 수 있는 수단이 될 수 있지만, 현재의 가시성이 유지되지 않거나 신뢰성이 약해질 수 있어 투명성과 신뢰도를 떨어뜨리는 개입은 피해야 한다고 밝혔다. 또한 CoT가 얼마나 ‘monitorable(모니터 가능)’한지 결정하는 요인을 연구하고, 장기적으로 이를 안전 조치로 구현하는 방안도 검토하자고 제안했다. TechCrunch">
   <h2>🇺🇸 AI 연구자들, 추론 모델의 ‘thoughts(사고 과정)’ 모니터링 필요성 촉구(2025.7.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">TechCrunch</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="AI 연구자들, 추론 모델의 ‘thoughts(사고 과정)’ 모니터링 필요성 촉구(2025.7.15)
 
@@ -347,8 +405,10 @@ AI 연구자들이 OpenAI·Google DeepMind·Anthropic 등과 함께 ‘추론 �
 https://techcrunch.com/2025/07/15/research-leaders-urge-tech-industry-to-monitor-ais-thoughts" onclick="copyEntry(this)">복사</button></div>
   <p>AI 연구자들이 OpenAI·Google DeepMind·Anthropic 등과 함께 ‘추론 모델의 chain-of-thought(CoT)를 모니터링’하는 안전 연구를 더 깊게 조사하자고 촉구했다. 이들은 o3·R1 같은 추론 모델의 CoT가 에이전트 의사결정 과정을 들여다볼 수 있는 수단이 될 수 있지만, 현재의 가시성이 유지되지 않거나 신뢰성이 약해질 수 있어 투명성과 신뢰도를 떨어뜨리는 개입은 피해야 한다고 밝혔다. 또한 CoT가 얼마나 ‘monitorable(모니터 가능)’한지 결정하는 요인을 연구하고, 장기적으로 이를 안전 조치로 구현하는 방안도 검토하자고 제안했다.</p>
   <p class="url"><a href="https://techcrunch.com/2025/07/15/research-leaders-urge-tech-industry-to-monitor-ais-thoughts">https://techcrunch.com/2025/07/15/research-leaders-urge-tech-industry-to-monitor-ais-thoughts</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="law safety_research" data-search="Prepare for the ‘coming wave’ of AI terrorism, top adviser warns UK government (2025.7.15) 영국 정부의 테러 입법 독립 검토관 Jonathan Hall이 연례 보고서에서 생성형 AI가 테러 선전과 공격 준비를 “가속”할 수 있다고 경고했다. 그는 generative AI가 텍스트·이미지·오디오·비디오 등 새 콘텐츠를 만들어 테러에 악용될 수 있으며, 기업들이 모델 내부를 충분히 설명하지 않는 상황과 함께 이미 “jailbreaking” 산업이 존재한다고 지적했다. 또한 챗봇이 고립된 개인의 급진화를 돕는 “closed loop”를 만들거나, 잠재적 모집을 선별해 인간 단계로 넘기는 데 활용될 수 있다고 우려했다. 폴리티코 유럽(POLITICO Europe)">
   <h2>🇬🇧 Prepare for the ‘coming wave’ of AI terrorism, top adviser warns UK government (2025.7.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">폴리티코 유럽(POLITICO Europe)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Prepare for the ‘coming wave’ of AI terrorism, top adviser warns UK government (2025.7.15)
 
@@ -357,18 +417,22 @@ https://techcrunch.com/2025/07/15/research-leaders-urge-tech-industry-to-monitor
 https://www.politico.eu/article/ai-terrorism-uk-government-propaganda-jonathan-hall" onclick="copyEntry(this)">복사</button></div>
   <p>영국 정부의 테러 입법 독립 검토관 Jonathan Hall이 연례 보고서에서 생성형 AI가 테러 선전과 공격 준비를 “가속”할 수 있다고 경고했다. 그는 generative AI가 텍스트·이미지·오디오·비디오 등 새 콘텐츠를 만들어 테러에 악용될 수 있으며, 기업들이 모델 내부를 충분히 설명하지 않는 상황과 함께 이미 “jailbreaking” 산업이 존재한다고 지적했다. 또한 챗봇이 고립된 개인의 급진화를 돕는 “closed loop”를 만들거나, 잠재적 모집을 선별해 인간 단계로 넘기는 데 활용될 수 있다고 우려했다.</p>
   <p class="url"><a href="https://www.politico.eu/article/ai-terrorism-uk-government-propaganda-jonathan-hall">https://www.politico.eu/article/ai-terrorism-uk-government-propaganda-jonathan-hall</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="cybersecurity" data-search="미국의 AI 미래를 위한 에너지 투자 (2025.7.15) Anthropic은 미국이 AI 경쟁에서 선두를 유지하기 위해 에너지 인프라에 대한 투자가 필수적이라고 강조하며, $2 백만 달러를 Carnegie Mellon University에 기부한다고 발표했습니다. 기부는 AI 기반 에너지 솔루션 개발과 사이버 보안 인력 양성을 위한 두 가지 핵심 영역에 분배됩니다. 구체적으로, $1 백만 달러는 Scott Institute for Energy Innovation과 협력하여 그리드 관리 자동화 및 최적화를 위한 에너지 연구를 지원하고, 나머지 $1 백만 달러는 사이버 보안 교육 프로그램인 picoCTF를 지원합니다. 이러한 투자는 미국의 에너지 독립성 강화와 AI의 긍정적인 영향 확대를 위한 첫걸음이며, 정부와 산업계의 협력을 통해 장기적인 AI 리더십을 구축할 계획입니다. Anthropic">
   <h2>🇺🇸 미국의 AI 미래를 위한 에너지 투자 (2025.7.15)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="미국의 AI 미래를 위한 에너지 투자 (2025.7.15)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="미국의 AI 미래를 위한 에너지 투자 (2025.7.15)
 
 Anthropic은 미국이 AI 경쟁에서 선두를 유지하기 위해 에너지 인프라에 대한 투자가 필수적이라고 강조하며, $2 백만 달러를 Carnegie Mellon University에 기부한다고 발표했습니다. 기부는 AI 기반 에너지 솔루션 개발과 사이버 보안 인력 양성을 위한 두 가지 핵심 영역에 분배됩니다. 구체적으로, $1 백만 달러는 Scott Institute for Energy Innovation과 협력하여 그리드 관리 자동화 및 최적화를 위한 에너지 연구를 지원하고, 나머지 $1 백만 달러는 사이버 보안 교육 프로그램인 picoCTF를 지원합니다. 이러한 투자는 미국의 에너지 독립성 강화와 AI의 긍정적인 영향 확대를 위한 첫걸음이며, 정부와 산업계의 협력을 통해 장기적인 AI 리더십을 구축할 계획입니다.
 
 https://www.anthropic.com/news/investing-in-energy-to-secure-america-s-ai-future" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 미국이 AI 경쟁에서 선두를 유지하기 위해 에너지 인프라에 대한 투자가 필수적이라고 강조하며, $2 백만 달러를 Carnegie Mellon University에 기부한다고 발표했습니다. 기부는 AI 기반 에너지 솔루션 개발과 사이버 보안 인력 양성을 위한 두 가지 핵심 영역에 분배됩니다. 구체적으로, $1 백만 달러는 Scott Institute for Energy Innovation과 협력하여 그리드 관리 자동화 및 최적화를 위한 에너지 연구를 지원하고, 나머지 $1 백만 달러는 사이버 보안 교육 프로그램인 picoCTF를 지원합니다. 이러한 투자는 미국의 에너지 독립성 강화와 AI의 긍정적인 영향 확대를 위한 첫걸음이며, 정부와 산업계의 협력을 통해 장기적인 AI 리더십을 구축할 계획입니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/investing-in-energy-to-secure-america-s-ai-future">https://www.anthropic.com/news/investing-in-energy-to-secure-america-s-ai-future</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="cybersecurity" data-search="클레어 모델 4의 사이버 평가 심층 분석 (2025.7.15) 앤써픽은 사이버 보안과 AI 분야에서 중요한 시기에 있다고 보고 있으며, 클레어 모델 4(Opus와 Sonnet 버전)가 사이버 공격 능력에서 인간 수준에 근접하고 있음을 확인하기 위해 패턴 랩스와 협력하여 심도 있는 평가를 진행했습니다. 평가 결과, 클레어 모델 4는 유연한 사고와 실패한 접근법에 고착되지 않고 적응하는 능력에서 크게 발전했으며, 복잡한 취약점 식별과 다단계 공격 수행에서도 향상된 성과를 보였습니다. 하지만 장기적인 계획 유지와 예상치 못한 장애물에 대처하는 데는 여전히 한계가 있음을 확인했습니다. 자세한 평가 결과는 패턴 랩스의 보고서에서 확인 가능합니다. Anthropic-Research">
   <h2>🇺🇸 클레어 모델 4의 사이버 평가 심층 분석 (2025.7.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="클레어 모델 4의 사이버 평가 심층 분석 (2025.7.15)
 
@@ -377,8 +441,19 @@ https://www.anthropic.com/news/investing-in-energy-to-secure-america-s-ai-future
 https://www.anthropic.com/research/claude-4-cyber" onclick="copyEntry(this)">복사</button></div>
   <p>앤써픽은 사이버 보안과 AI 분야에서 중요한 시기에 있다고 보고 있으며, 클레어 모델 4(Opus와 Sonnet 버전)가 사이버 공격 능력에서 인간 수준에 근접하고 있음을 확인하기 위해 패턴 랩스와 협력하여 심도 있는 평가를 진행했습니다. 평가 결과, 클레어 모델 4는 유연한 사고와 실패한 접근법에 고착되지 않고 적응하는 능력에서 크게 발전했으며, 복잡한 취약점 식별과 다단계 공격 수행에서도 향상된 성과를 보였습니다. 하지만 장기적인 계획 유지와 예상치 못한 장애물에 대처하는 데는 여전히 한계가 있음을 확인했습니다. 자세한 평가 결과는 패턴 랩스의 보고서에서 확인 가능합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/research/claude-4-cyber">https://www.anthropic.com/research/claude-4-cyber</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier guideline" data-search="**Anthropic, 금융 분석 솔루션 &#x27;Claude for Financial Services&#x27; 출시 (2025.7.15)** Anthropic은 금융 분석을 혁신하는 종합 솔루션인 &#x27;Claude for Financial Services&#x27;를 출시했습니다. 이 솔루션은 시장 분석, 연구 수행, 투자 결정 과정을 개선하기 위해 금융 전문가들이 사용할 수 있는 통합 플랫폼을 제공합니다. 주요 기능으로는:
+
+- **Claude 모델**: 금융 작업에서 뛰어난 성능을 보이는 Claude 모델로, 다양한 금융 업무에서 연구 에이전트 역할을 수행합니다.
+- **Claude Code 및 엔터프라이즈 기능**: 고급 트레이딩 시스템 개발, 자동화된 준수 관리, 복잡한 분석 수행 등을 지원합니다.
+- **사전 구축된 MCP 커넥터**: Box, Daloopa, Databricks, FactSet, Morningstar, Palantir, PitchBook, S&amp;P Global, Snowflake 등 주요 데이터 제공업체와의 통합으로 포괄적인 금융 데이터 접근이 가능합니다.
+- **전문가 구현 지원**: 빠른 가치 실현을 위한 맞춤형 온보딩, 교육, 최적의 실무 지침 제공.
+
+금융 기관들은 데이터 보호에 대한 최고 수준의 기준을 요구하며, 이 솔루션은 사용자 데이터를 훈련 모델에 사용하지 않아 지적 재산과 고객 정보의 기밀성을 유지합니다. 여러 금융 기관들은 이 솔루션을 통해 분석 속도와 정확성을 향상시키고 있습니다.
+
+시작 방법으로는 즉시 배포, API를 통한 맞춤 개발, 또는 Claude Code를 활용한 코드 현대화 등 다양한 옵션이 제공됩니다. AWS Marketplace에서 이용 가능하며, Google Cloud Marketplace에서도 곧 이용 가능할 예정입니다. Anthropic">
   <h2>🇺🇸 Anthropic, 금융 분석 솔루션 &#x27;Claude for Financial Services&#x27; 출시 (2025.7.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="**Anthropic, 금융 분석 솔루션 &#x27;Claude for Financial Services&#x27; 출시 (2025.7.15)**
 
@@ -402,8 +477,10 @@ https://www.anthropic.com/news/claude-for-financial-services" onclick="copyEntry
 <p>금융 기관들은 데이터 보호에 대한 최고 수준의 기준을 요구하며, 이 솔루션은 사용자 데이터를 훈련 모델에 사용하지 않아 지적 재산과 고객 정보의 기밀성을 유지합니다. 여러 금융 기관들은 이 솔루션을 통해 분석 속도와 정확성을 향상시키고 있습니다.</p>
 <p>시작 방법으로는 즉시 배포, API를 통한 맞춤 개발, 또는 Claude Code를 활용한 코드 현대화 등 다양한 옵션이 제공됩니다. AWS Marketplace에서 이용 가능하며, Google Cloud Marketplace에서도 곧 이용 가능할 예정입니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/claude-for-financial-services">https://www.anthropic.com/news/claude-for-financial-services</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="Mistral AI, 음성 이해 모델 Voxtral 공개 (2025.7.15) Mistral AI가 24B 규모의 Voxtral과 3B 규모의 Voxtral Mini를 Apache 2.0 라이선스로 공개하고 API도 제공한다. 두 모델은 최대 30분 음성 전사와 40분 음성 이해, 다국어 처리, 음성 기반 질의응답·요약·함수 호출을 지원하며, API 가격은 분당 0.001달러부터 시작한다. 벤치마크에서 Voxtral은 Whisper large-v3를 전반적으로 앞섰고, 일부 전사·음성 번역 과제에서 최고 수준의 성능을 보였으며, 향후 화자 분할·감정 인식·단어 단위 타임스탬프 등을 추가할 예정이다. Mistral AI">
   <h2>Mistral AI, 음성 이해 모델 Voxtral 공개 (2025.7.15)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Mistral AI</span></span><button type="button" class="copy-btn" data-copy="Mistral AI, 음성 이해 모델 Voxtral 공개 (2025.7.15)
 
@@ -412,7 +489,9 @@ Mistral AI가 24B 규모의 Voxtral과 3B 규모의 Voxtral Mini를 Apache 2.0 �
 https://mistral.ai/news/voxtral/" onclick="copyEntry(this)">복사</button></div>
   <p>Mistral AI가 24B 규모의 Voxtral과 3B 규모의 Voxtral Mini를 Apache 2.0 라이선스로 공개하고 API도 제공한다. 두 모델은 최대 30분 음성 전사와 40분 음성 이해, 다국어 처리, 음성 기반 질의응답·요약·함수 호출을 지원하며, API 가격은 분당 0.001달러부터 시작한다. 벤치마크에서 Voxtral은 Whisper large-v3를 전반적으로 앞섰고, 일부 전사·음성 번역 과제에서 최고 수준의 성능을 보였으며, 향후 화자 분할·감정 인식·단어 단위 타임스탬프 등을 추가할 예정이다.</p>
   <p class="url"><a href="https://mistral.ai/news/voxtral/">https://mistral.ai/news/voxtral/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-07-14.html">← 2025-07-14</a><a class="day-nav-btn" href="2025-07-16.html">2025-07-16 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-14.html">← 2025-07-14</a><a class="day-nav-btn" href="2025-07-16.html">2025-07-16 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -448,6 +527,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

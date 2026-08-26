@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-company">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="frontier national_security open_weight" data-search="Anthropic, ASL-3 보호 활성화 발표 (2025.5.22) Anthropic은 새로운 모델인 Claude Opus 4 출시와 함께 AI 안전성 수준 3 (ASL-3) 배포 및 보안 기준을 활성화했습니다. 이 조치는 모델의 화학, 생물학, 방사능 및 핵(CBRN) 무기 개발이나 획득에 대한 악용 위험을 줄이기 위한 것입니다. ASL-3 기준은 모델 가중치 도난을 더 어렵게 만들고, 배포 기준은 CBRN 무기 관련 작업을 돕는 것을 제한하는 데 초점을 맞춥니다. 이러한 보호 조치는 모델의 고급 기능 악용 위험을 줄이기 위한 예방적 조치이며, 향후 평가를 통해 필요에 따라 조정될 예정입니다. 자세한 내용은 첨부 보고서를 참조하십시오. Anthropic">
   <h2>🇺🇸 Anthropic, ASL-3 보호 활성화 발표 (2025.5.22)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="오픈소스·오픈웨이트">🔓</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic, ASL-3 보호 활성화 발표 (2025.5.22)
 
@@ -317,8 +369,16 @@ Anthropic은 새로운 모델인 Claude Opus 4 출시와 함께 AI 안전성 수
 https://www.anthropic.com/news/activating-asl3-protections" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 새로운 모델인 Claude Opus 4 출시와 함께 AI 안전성 수준 3 (ASL-3) 배포 및 보안 기준을 활성화했습니다. 이 조치는 모델의 화학, 생물학, 방사능 및 핵(CBRN) 무기 개발이나 획득에 대한 악용 위험을 줄이기 위한 것입니다. ASL-3 기준은 모델 가중치 도난을 더 어렵게 만들고, 배포 기준은 CBRN 무기 관련 작업을 돕는 것을 제한하는 데 초점을 맞춥니다. 이러한 보호 조치는 모델의 고급 기능 악용 위험을 줄이기 위한 예방적 조치이며, 향후 평가를 통해 필요에 따라 조정될 예정입니다. 자세한 내용은 첨부 보고서를 참조하십시오.</p>
   <p class="url"><a href="https://www.anthropic.com/news/activating-asl3-protections">https://www.anthropic.com/news/activating-asl3-protections</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="agentic_ai" data-search="Claude 4 모델 출시 및 기능 소개 (2025.5.22) Anthropic은 새로운 세대의 Claude 모델인 **Claude Opus 4**와 **Claude Sonnet 4**를 출시하며, 코딩, 고급 추론, AI 에이전트 분야에서 새로운 기준을 제시한다고 발표했습니다. 
+
+Claude Opus 4는 복잡하고 장시간 걸리는 작업에 대한 지속적인 성능을 보여주며, 코딩 모델로서 세계 최고 수준입니다. 반면, Claude Sonnet 4는 이전 모델보다 향상된 코딩과 추론 능력을 제공합니다. 두 모델 모두 도구 사용 기능, 향상된 지시 준수 능력, 그리고 개발자에게 로컬 파일 접근 권한이 주어질 경우 메모리 능력이 크게 향상됩니다. 
+
+또한, **Claude Code**가 일반적으로 이용 가능해졌으며, GitHub Actions와 VS Code, JetBrains와의 네이티브 통합을 통해 개발 워크플로우에 더 많은 기능을 제공합니다. 새로운 API 기능들로 개발자들은 더욱 강력한 AI 에이전트를 구축할 수 있게 되었습니다. 
+
+Claude 4 모델들은 코딩과 복잡한 문제 해결에서 뛰어난 성능을 보여주며, 특히 Opus 4는 기존 모델들보다 뛰어난 메모리 능력을 갖추고 있습니다. 이러한 개선 사항들은 안전성과 성능 최적화를 위한 광범위한 테스트와 평가를 거쳤습니다. Anthropic">
   <h2>🇺🇸 Claude 4 모델 출시 및 기능 소개 (2025.5.22)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="Claude 4 모델 출시 및 기능 소개 (2025.5.22)
 
@@ -336,7 +396,9 @@ https://www.anthropic.com/news/claude-4" onclick="copyEntry(this)">복사</butto
 <p>또한, **Claude Code**가 일반적으로 이용 가능해졌으며, GitHub Actions와 VS Code, JetBrains와의 네이티브 통합을 통해 개발 워크플로우에 더 많은 기능을 제공합니다. 새로운 API 기능들로 개발자들은 더욱 강력한 AI 에이전트를 구축할 수 있게 되었습니다.</p>
 <p>Claude 4 모델들은 코딩과 복잡한 문제 해결에서 뛰어난 성능을 보여주며, 특히 Opus 4는 기존 모델들보다 뛰어난 메모리 능력을 갖추고 있습니다. 이러한 개선 사항들은 안전성과 성능 최적화를 위한 광범위한 테스트와 평가를 거쳤습니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/claude-4">https://www.anthropic.com/news/claude-4</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-05-21.html">← 2025-05-21</a><a class="day-nav-btn" href="2025-05-23.html">2025-05-23 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-21.html">← 2025-05-21</a><a class="day-nav-btn" href="2025-05-23.html">2025-05-23 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -372,6 +434,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-public">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="" data-search="AI 시스템의 투명하고 충실한 추론 과정이 중요함 (2025.3.11) AI 시스템이 최종 출력을 생성하기 전에 텍스트로 추론 과정을 거치는 것이 안전한 AI 개발과 사용에 필수적입니다. 여기서 &#x27;투명한(legible)&#x27; 추론은 인간이 이해할 수 있는 형식으로 제공되며, &#x27;충실한(faithful)&#x27; 추론은 모델의 실제 의사결정 과정을 정확하게 반영합니다. 이러한 특성은 AI 오류를 탐지하고, 숨겨진 의도를 감지하며, 시스템 능력을 이해하고, 기만적인 행동을 모니터링하는 데 도움이 됩니다. 현재 개발 중인 AI 모델들이 이러한 기준을 충족하도록 하여 안전성을 높이는 것이 권장됩니다. 그러나 경제적 압박이나 최적화 압력으로 인해 추론 과정의 투명성이 저하될 위험이 있으며, 개발자들은 이러한 문제에 주의해야 합니다. METR">
   <h2>🇺🇸 AI 시스템의 투명하고 충실한 추론 과정이 중요함 (2025.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="AI 시스템의 투명하고 충실한 추론 과정이 중요함 (2025.3.11)
 
@@ -317,8 +369,10 @@ AI 시스템이 최종 출력을 생성하기 전에 텍스트로 추론 과정�
 https://metr.org/blog/2025-03-11-good-for-ai-reason-legibly-and-faithfully/" onclick="copyEntry(this)">복사</button></div>
   <p>AI 시스템이 최종 출력을 생성하기 전에 텍스트로 추론 과정을 거치는 것이 안전한 AI 개발과 사용에 필수적입니다. 여기서 &#x27;투명한(legible)&#x27; 추론은 인간이 이해할 수 있는 형식으로 제공되며, &#x27;충실한(faithful)&#x27; 추론은 모델의 실제 의사결정 과정을 정확하게 반영합니다. 이러한 특성은 AI 오류를 탐지하고, 숨겨진 의도를 감지하며, 시스템 능력을 이해하고, 기만적인 행동을 모니터링하는 데 도움이 됩니다. 현재 개발 중인 AI 모델들이 이러한 기준을 충족하도록 하여 안전성을 높이는 것이 권장됩니다. 그러나 경제적 압박이나 최적화 압력으로 인해 추론 과정의 투명성이 저하될 위험이 있으며, 개발자들은 이러한 문제에 주의해야 합니다.</p>
   <p class="url"><a href="https://metr.org/blog/2025-03-11-good-for-ai-reason-legibly-and-faithfully/">https://metr.org/blog/2025-03-11-good-for-ai-reason-legibly-and-faithfully/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="METR, IA의 논리가 이해하기 쉽고 충실하게 되어야 하는 이유 (2025.3.11) METR은 인공지능(AI)의 논리 과정이 이해하기 쉽고 실제 의사결정 과정을 정확하게 반영해야 하는 이유를 설명합니다. 이해하기 쉬운 논리 과정은 인간이 읽고 분석할 수 있어야 하며, 충실한 논리 과정은 모델의 내부 의사결정 과정을 정확하게 나타내야 합니다. 이를 통해 오류 탐지, 숨겨진 의제 발견, 시스템 능력 이해, 속임수 행위 모니터링, 그리고 보안 문제 사전 식별 등이 가능해집니다. 현재 여러 AI 선두 기업들이 논리 모델을 개발하고 있지만, 경제적 압박으로 인해 논리 과정의 투명성이 저하될 수 있으며, 개발자들은 논리 과정의 충실성을 유지하기 위해 주의해야 합니다. METR">
   <h2>🇺🇸 METR, IA의 논리가 이해하기 쉽고 충실하게 되어야 하는 이유 (2025.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="METR, IA의 논리가 이해하기 쉽고 충실하게 되어야 하는 이유 (2025.3.11)
 
@@ -327,8 +381,10 @@ METR은 인공지능(AI)의 논리 과정이 이해하기 쉽고 실제 의사�
 https://metr.org/es/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/" onclick="copyEntry(this)">복사</button></div>
   <p>METR은 인공지능(AI)의 논리 과정이 이해하기 쉽고 실제 의사결정 과정을 정확하게 반영해야 하는 이유를 설명합니다. 이해하기 쉬운 논리 과정은 인간이 읽고 분석할 수 있어야 하며, 충실한 논리 과정은 모델의 내부 의사결정 과정을 정확하게 나타내야 합니다. 이를 통해 오류 탐지, 숨겨진 의제 발견, 시스템 능력 이해, 속임수 행위 모니터링, 그리고 보안 문제 사전 식별 등이 가능해집니다. 현재 여러 AI 선두 기업들이 논리 모델을 개발하고 있지만, 경제적 압박으로 인해 논리 과정의 투명성이 저하될 수 있으며, 개발자들은 논리 과정의 충실성을 유지하기 위해 주의해야 합니다.</p>
   <p class="url"><a href="https://metr.org/es/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/">https://metr.org/es/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/</a></p>
+  
+  
 </article>
-<article class="entry cat-public">
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="AI 추론이 읽기 쉽고 모델의 실제 결정 과정을 충실하게 반영해야 하는 이유 (2025.3.11) AI 시스템의 추론 과정이 명확하고 인간이 이해할 수 있어야 하며, 모델의 실제 결정 과정을 정확하게 반영해야 한다는 주장은 안전한 AI 개발과 사용을 위해 중요하다는 내용이다. 읽기 쉽고 충실한 추론 과정은 오류 발견, 숨겨진 의도 인식, 시스템 능력 이해, 사기 행위 감지 등에 도움이 된다. 그러나 현재 모델들의 추론 과정은 완벽하지 않으며, 비용과 투명성 사이의 균형을 맞추는 것이 중요하다. METR은 이러한 측면을 고려하여 AI 모델의 투명성과 충실성을 평가하는 방법을 연구하고 있다. METR">
   <h2>🇺🇸 AI 추론이 읽기 쉽고 모델의 실제 결정 과정을 충실하게 반영해야 하는 이유 (2025.3.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="AI 추론이 읽기 쉽고 모델의 실제 결정 과정을 충실하게 반영해야 하는 이유 (2025.3.11)
 
@@ -337,7 +393,9 @@ AI 시스템의 추론 과정이 명확하고 인간이 이해할 수 있어야 
 https://metr.org/zh-Hans/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/" onclick="copyEntry(this)">복사</button></div>
   <p>AI 시스템의 추론 과정이 명확하고 인간이 이해할 수 있어야 하며, 모델의 실제 결정 과정을 정확하게 반영해야 한다는 주장은 안전한 AI 개발과 사용을 위해 중요하다는 내용이다. 읽기 쉽고 충실한 추론 과정은 오류 발견, 숨겨진 의도 인식, 시스템 능력 이해, 사기 행위 감지 등에 도움이 된다. 그러나 현재 모델들의 추론 과정은 완벽하지 않으며, 비용과 투명성 사이의 균형을 맞추는 것이 중요하다. METR은 이러한 측면을 고려하여 AI 모델의 투명성과 충실성을 평가하는 방법을 연구하고 있다.</p>
   <p class="url"><a href="https://metr.org/zh-Hans/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/">https://metr.org/zh-Hans/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-03-07.html">← 2025-03-07</a><a class="day-nav-btn" href="2025-03-12.html">2025-03-12 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-07.html">← 2025-03-07</a><a class="day-nav-btn" href="2025-03-12.html">2025-03-12 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -373,6 +431,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

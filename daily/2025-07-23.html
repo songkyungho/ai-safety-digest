@@ -30,6 +30,15 @@
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
     --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -50,6 +59,15 @@
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
       --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -108,6 +126,7 @@
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
   .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
@@ -115,6 +134,30 @@
   .source { color: var(--muted); }
   .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
   .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -151,6 +194,7 @@
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
   .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -229,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -308,7 +360,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<article class="entry cat-aisi-weekly">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier guideline national_security" data-search="백악관, ‘America’s AI Action Plan’ 공개(2025.7.23) 백악관은 트럼프 대통령의 AI 관련 행정명령에 따라 ‘Winning the AI Race: America’s AI Action Plan’을 발표했다. 이 계획은 Accelerating Innovation, Building American AI Infrastructure, Leading in International Diplomacy and Security 등 3개 축에서 90개 이상 연방 정책 과제를 제시하며, 미국의 AI 수출 패키지 제공, 데이터센터·반도체 공장 인허가 신속화, AI 개발·도입을 가로막는 규제 완화, 프론티어 모델 조달 가이드라인 업데이트 등을 포함한다. 백악관은 이를 통해 미국의 AI 경쟁력과 국가안보를 강화하고 동맹과의 글로벌 협력을 확대하겠다고 밝혔다. 미국 백악관(White House)">
   <h2>🇺🇸 백악관, ‘America’s AI Action Plan’ 공개(2025.7.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 백악관(White House)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="백악관, ‘America’s AI Action Plan’ 공개(2025.7.23)
 
@@ -317,8 +369,12 @@
 https://www.whitehouse.gov/articles/2025/07/white-house-unveils-americas-ai-action-plan" onclick="copyEntry(this)">복사</button></div>
   <p>백악관은 트럼프 대통령의 AI 관련 행정명령에 따라 ‘Winning the AI Race: America’s AI Action Plan’을 발표했다. 이 계획은 Accelerating Innovation, Building American AI Infrastructure, Leading in International Diplomacy and Security 등 3개 축에서 90개 이상 연방 정책 과제를 제시하며, 미국의 AI 수출 패키지 제공, 데이터센터·반도체 공장 인허가 신속화, AI 개발·도입을 가로막는 규제 완화, 프론티어 모델 조달 가이드라인 업데이트 등을 포함한다. 백악관은 이를 통해 미국의 AI 경쟁력과 국가안보를 강화하고 동맹과의 글로벌 협력을 확대하겠다고 밝혔다.</p>
   <p class="url"><a href="https://www.whitehouse.gov/articles/2025/07/white-house-unveils-americas-ai-action-plan">https://www.whitehouse.gov/articles/2025/07/white-house-unveils-americas-ai-action-plan</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="national_security" data-search="미국 AI 기술 ‘풀스택’ 수출을 위한 American AI Exports Program 추진(2025.7.23) 대상 일정: 본 행정명령일로부터 90일 내 상무부가 American AI Exports Program을 수립·시행, 제안 공모는 공고 후 90일 이내 제출
+
+미국 백악관은 2025년 7월 23일자 행정명령으로 미국 AI 기술의 해외 채택을 확대하고, 적대국이 개발한 AI에 대한 국제 의존을 줄이기 위한 정책을 제시했다. 상무부는 외교·OSTP 등과 협의해 산업 주도 컨소시엄의 제안을 받아 미국의 AI-최적 하드웨어·데이터 파이프라인·AI 모델·보안조치·응용사례를 포함한 ‘풀스택’ 수출 패키지를 선정하고, 특정 국가/지역을 대상으로 배치하도록 한다. 또한 Economic Diplomacy Action Group(EDAG)이 우선 수출 패키지에 연계할 연방 금융수단을 조정하며, 상무부·국무부·국방부·에너지부·OSTP가 제안 평가 및 우선 패키지 지정을 담당한다. 미국 백악관(whitehouse.gov)">
   <h2>🇺🇸 미국 AI 기술 ‘풀스택’ 수출을 위한 American AI Exports Program 추진(2025.7.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 백악관(whitehouse.gov)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="미국 AI 기술 ‘풀스택’ 수출을 위한 American AI Exports Program 추진(2025.7.23)
 
@@ -330,8 +386,10 @@ https://www.whitehouse.gov/presidential-actions/2025/07/promoting-the-export-of-
   <p>대상 일정: 본 행정명령일로부터 90일 내 상무부가 American AI Exports Program을 수립·시행, 제안 공모는 공고 후 90일 이내 제출</p>
 <p>미국 백악관은 2025년 7월 23일자 행정명령으로 미국 AI 기술의 해외 채택을 확대하고, 적대국이 개발한 AI에 대한 국제 의존을 줄이기 위한 정책을 제시했다. 상무부는 외교·OSTP 등과 협의해 산업 주도 컨소시엄의 제안을 받아 미국의 AI-최적 하드웨어·데이터 파이프라인·AI 모델·보안조치·응용사례를 포함한 ‘풀스택’ 수출 패키지를 선정하고, 특정 국가/지역을 대상으로 배치하도록 한다. 또한 Economic Diplomacy Action Group(EDAG)이 우선 수출 패키지에 연계할 연방 금융수단을 조정하며, 상무부·국무부·국방부·에너지부·OSTP가 제안 평가 및 우선 패키지 지정을 담당한다.</p>
   <p class="url"><a href="https://www.whitehouse.gov/presidential-actions/2025/07/promoting-the-export-of-the-american-ai-technology-stack">https://www.whitehouse.gov/presidential-actions/2025/07/promoting-the-export-of-the-american-ai-technology-stack</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="guideline" data-search="AI 데이터센터·전력 등 인프라의 연방 인허가를 신속화(2025.7.23) 연방 규제 부담을 줄이고, 연방 소유 토지·자원을 활용해 AI 데이터센터 및 관련 전력·반도체·네트워크·저장 인프라의 신속한 구축을 추진하는 내용의 행정명령이다. 상무부 주도로 ‘Qualifying Project’에 대해 대출·보증·보조금·세제 인센티브·오프테이크 계약 등 금융지원을 마련하고, NEPA 환경검토의 효율화를 위해 범주적 면제(categorical exclusions) 확대 및 FAST-41(신속 검토) 적용 절차를 정한다. 또한 EPA가 브라운필드·슈퍼펀드 부지의 활용을 돕는 지침을 마련하고, 내륙수역·생물종 등 관련 인허가 절차도 프로그램 수준 협의·전국 허가 검토 등을 통해 단축하도록 했다. 미국 백악관(whitehouse.gov)">
   <h2>AI 데이터센터·전력 등 인프라의 연방 인허가를 신속화(2025.7.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 백악관(whitehouse.gov)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="AI 데이터센터·전력 등 인프라의 연방 인허가를 신속화(2025.7.23)
 
@@ -340,8 +398,12 @@ https://www.whitehouse.gov/presidential-actions/2025/07/promoting-the-export-of-
 https://www.whitehouse.gov/presidential-actions/2025/07/accelerating-federal-permitting-of-data-center-infrastructure" onclick="copyEntry(this)">복사</button></div>
   <p>연방 규제 부담을 줄이고, 연방 소유 토지·자원을 활용해 AI 데이터센터 및 관련 전력·반도체·네트워크·저장 인프라의 신속한 구축을 추진하는 내용의 행정명령이다. 상무부 주도로 ‘Qualifying Project’에 대해 대출·보증·보조금·세제 인센티브·오프테이크 계약 등 금융지원을 마련하고, NEPA 환경검토의 효율화를 위해 범주적 면제(categorical exclusions) 확대 및 FAST-41(신속 검토) 적용 절차를 정한다. 또한 EPA가 브라운필드·슈퍼펀드 부지의 활용을 돕는 지침을 마련하고, 내륙수역·생물종 등 관련 인허가 절차도 프로그램 수준 협의·전국 허가 검토 등을 통해 단축하도록 했다.</p>
   <p class="url"><a href="https://www.whitehouse.gov/presidential-actions/2025/07/accelerating-federal-permitting-of-data-center-infrastructure">https://www.whitehouse.gov/presidential-actions/2025/07/accelerating-federal-permitting-of-data-center-infrastructure</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="guideline national_security" data-search="연방정부 조달에서 DEI 등 이념 편향을 배제한 “unbiased AI” LLM만 구매하도록 지침·계약 의무화(2025.7.23) 발행일로부터 120일 내 OMB 등이 이행지침을 발행, 이후 각 기관은 90일 내 준수 절차를 마련하도록 함
+
+본문 요약: 백악관은 연방정부가 대형언어모델(LLM)을 조달할 때 사실성(truth-seeking)과 이념 중립(ideological neutrality)을 원칙으로 삼아, DEI 등 이념 의제가 정확성과 진실성을 훼손하지 않도록 하겠다고 밝혔다. 이를 위해 OMB 등이 120일 내 이행지침을 내고, 각 기관은 해당 지침 이후 체결하는 LLM 계약에 준수 조항과 미준수 시 종료·해지 비용을 공급자에 부과하는 조건을 포함하도록 요구한다. 또한 국가안보 시스템 사용 등에는 예외를 둘 수 있으며, 법령과 예산 집행 가능성에 따라 시행된다고 명시했다. 미국 백악관(whitehouse.gov)">
   <h2>🇺🇸 연방정부 조달에서 DEI 등 이념 편향을 배제한 “unbiased AI” LLM만 구매하도록 지침·계약 의무화(2025.7.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 백악관(whitehouse.gov)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="연방정부 조달에서 DEI 등 이념 편향을 배제한 “unbiased AI” LLM만 구매하도록 지침·계약 의무화(2025.7.23)
 
@@ -353,8 +415,12 @@ https://www.whitehouse.gov/presidential-actions/2025/07/preventing-woke-ai-in-th
   <p>발행일로부터 120일 내 OMB 등이 이행지침을 발행, 이후 각 기관은 90일 내 준수 절차를 마련하도록 함</p>
 <p>본문 요약: 백악관은 연방정부가 대형언어모델(LLM)을 조달할 때 사실성(truth-seeking)과 이념 중립(ideological neutrality)을 원칙으로 삼아, DEI 등 이념 의제가 정확성과 진실성을 훼손하지 않도록 하겠다고 밝혔다. 이를 위해 OMB 등이 120일 내 이행지침을 내고, 각 기관은 해당 지침 이후 체결하는 LLM 계약에 준수 조항과 미준수 시 종료·해지 비용을 공급자에 부과하는 조건을 포함하도록 요구한다. 또한 국가안보 시스템 사용 등에는 예외를 둘 수 있으며, 법령과 예산 집행 가능성에 따라 시행된다고 명시했다.</p>
   <p class="url"><a href="https://www.whitehouse.gov/presidential-actions/2025/07/preventing-woke-ai-in-the-federal-government">https://www.whitehouse.gov/presidential-actions/2025/07/preventing-woke-ai-in-the-federal-government</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="트럼프, AI 법 ‘모라토리엄’ 부활(2025.7.23) 연방 예산 집행에서 주(州)의 AI 규제가 ‘혁신을 저해’한다고 판단되면 해당 주에 대한 AI 관련 연방 자금이 제한될 수 있으며, FCC는 주(州) AI 규제가 통신법상 권한 수행을 방해하는지 평가할 계획이다.
+
+백악관이 ‘AI Action Plan’을 공개하며, 주(州)의 AI 규제가 연방 AI 관련 재정 지원에 불리하게 작용할 수 있는 조항을 포함했다. 구체적으로 OMB가 AI 관련 재량(Discretionary) 자금 프로그램에서 주의 규제 환경을 고려해, 규제가 자금의 효과를 저해할 수 있다고 판단되면 자금을 제한하도록 했다. 또한 FCC가 주의 AI 규제가 1934년 통신법에 따른 연방의 의무·권한 수행을 방해하는지 평가하되, 제재 방식은 아직 언급되지 않았다. 더버지(The Verge)">
   <h2>🇺🇸 트럼프, AI 법 ‘모라토리엄’ 부활(2025.7.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">더버지(The Verge)</span></span><button type="button" class="copy-btn" data-copy="트럼프, AI 법 ‘모라토리엄’ 부활(2025.7.23)
 
@@ -366,8 +432,12 @@ https://www.theverge.com/ai-artificial-intelligence/712537/trump-ai-action-plan-
   <p>연방 예산 집행에서 주(州)의 AI 규제가 ‘혁신을 저해’한다고 판단되면 해당 주에 대한 AI 관련 연방 자금이 제한될 수 있으며, FCC는 주(州) AI 규제가 통신법상 권한 수행을 방해하는지 평가할 계획이다.</p>
 <p>백악관이 ‘AI Action Plan’을 공개하며, 주(州)의 AI 규제가 연방 AI 관련 재정 지원에 불리하게 작용할 수 있는 조항을 포함했다. 구체적으로 OMB가 AI 관련 재량(Discretionary) 자금 프로그램에서 주의 규제 환경을 고려해, 규제가 자금의 효과를 저해할 수 있다고 판단되면 자금을 제한하도록 했다. 또한 FCC가 주의 AI 규제가 1934년 통신법에 따른 연방의 의무·권한 수행을 방해하는지 평가하되, 제재 방식은 아직 언급되지 않았다.</p>
   <p class="url"><a href="https://www.theverge.com/ai-artificial-intelligence/712537/trump-ai-action-plan-white-house-ai-law-moratorium">https://www.theverge.com/ai-artificial-intelligence/712537/trump-ai-action-plan-white-house-ai-law-moratorium</a></p>
+  
+  
 </article>
-<article class="entry cat-aisi-weekly">
+<article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="FDA AI ‘Elsa’가 존재하지 않는 연구를 만들어내고 검증 부담을 늘렸다는 지적 (2025.7.23) FDA는 6월 출시 당시 “ahead of schedule and under budget” 및 임상 프로토콜 검토·과학 평가 기간 단축 등을 내세웠으나, 내부적으로는 AI hallucination(허위 연구 생성)과 문서 접근 한계로 인해 신뢰성 문제가 제기됨
+
+CNN에 따르면 미국 FDA의 AI 도구 ‘Elsa’는 회의록·요약·이메일 템플릿 작성에는 활용될 수 있지만, 일부 직원들은 존재하지 않는 연구를 만들어내거나 연구를 잘못 표현하는 AI hallucination 문제가 있다고 전했다. 또한 Elsa가 업계 제출자료 등 핵심 문서에 충분히 접근하지 못해 의약품 승인 관련 세부 확인 등 검토 업무에는 현재로선 제한적이며, 사용자가 결과를 이중·삼중으로 확인해야 해 오히려 시간 낭비가 늘 수 있다고 지적했다. FDA 측은 Elsa 사용이 선택적이고, 향후 개인 문서 라이브러리 기능 등 개선과 함께 요약에 인용된 근거 확인 기능이 확대될 것이라고 설명했다. CNN">
   <h2>🇺🇸 FDA AI ‘Elsa’가 존재하지 않는 연구를 만들어내고 검증 부담을 늘렸다는 지적 (2025.7.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">CNN</span></span><button type="button" class="copy-btn" data-copy="FDA AI ‘Elsa’가 존재하지 않는 연구를 만들어내고 검증 부담을 늘렸다는 지적 (2025.7.23)
 
@@ -379,8 +449,10 @@ https://edition.cnn.com/2025/07/23/politics/fda-ai-elsa-drug-regulation-makary" 
   <p>FDA는 6월 출시 당시 “ahead of schedule and under budget” 및 임상 프로토콜 검토·과학 평가 기간 단축 등을 내세웠으나, 내부적으로는 AI hallucination(허위 연구 생성)과 문서 접근 한계로 인해 신뢰성 문제가 제기됨</p>
 <p>CNN에 따르면 미국 FDA의 AI 도구 ‘Elsa’는 회의록·요약·이메일 템플릿 작성에는 활용될 수 있지만, 일부 직원들은 존재하지 않는 연구를 만들어내거나 연구를 잘못 표현하는 AI hallucination 문제가 있다고 전했다. 또한 Elsa가 업계 제출자료 등 핵심 문서에 충분히 접근하지 못해 의약품 승인 관련 세부 확인 등 검토 업무에는 현재로선 제한적이며, 사용자가 결과를 이중·삼중으로 확인해야 해 오히려 시간 낭비가 늘 수 있다고 지적했다. FDA 측은 Elsa 사용이 선택적이고, 향후 개인 문서 라이브러리 기능 등 개선과 함께 요약에 인용된 근거 확인 기능이 확대될 것이라고 설명했다.</p>
   <p class="url"><a href="https://edition.cnn.com/2025/07/23/politics/fda-ai-elsa-drug-regulation-makary">https://edition.cnn.com/2025/07/23/politics/fda-ai-elsa-drug-regulation-makary</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="" data-search="Anthropic와 시카고 부스크릭 연구소 협력, AI 경제 영향 연구 강화 (2025.7.23) Anthropic은 시카고 부스크릭 경제학 연구소(BFI)와 협력하여 AI가 노동 시장과 경제에 미치는 영향을 연구합니다. 이 파트너십을 통해 BFI의 경제학자들에게 Claude for Enterprise 접근 권한을 제공하고, AI를 경제 연구에 적용하는 교육 세션과 가상 워크숍을 진행할 계획입니다. 주요 연구 주제는 생산성 측정, 노동 시장 변화, 사회적 분배 영향 등입니다. 이를 통해 정책 입안자와 연구자들에게 더 강력한 통찰력을 제공하고자 합니다. Anthropic">
   <h2>🇺🇸 Anthropic와 시카고 부스크릭 연구소 협력, AI 경제 영향 연구 강화 (2025.7.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="Anthropic와 시카고 부스크릭 연구소 협력, AI 경제 영향 연구 강화 (2025.7.23)
 
@@ -389,18 +461,22 @@ Anthropic은 시카고 부스크릭 경제학 연구소(BFI)와 협력하여 AI�
 https://www.anthropic.com/news/anthropic-partners-with-the-university-of-chicago-s-becker-friedman-institute-on-ai-economic" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 시카고 부스크릭 경제학 연구소(BFI)와 협력하여 AI가 노동 시장과 경제에 미치는 영향을 연구합니다. 이 파트너십을 통해 BFI의 경제학자들에게 Claude for Enterprise 접근 권한을 제공하고, AI를 경제 연구에 적용하는 교육 세션과 가상 워크숍을 진행할 계획입니다. 주요 연구 주제는 생산성 측정, 노동 시장 변화, 사회적 분배 영향 등입니다. 이를 통해 정책 입안자와 연구자들에게 더 강력한 통찰력을 제공하고자 합니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/anthropic-partners-with-the-university-of-chicago-s-becker-friedman-institute-on-ai-economic">https://www.anthropic.com/news/anthropic-partners-with-the-university-of-chicago-s-becker-friedman-institute-on-ai-economic</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="national_security" data-search="미국의 AI 행동 계획에 대한 생각 (2025.7.23) 미국 백악관이 발표한 &quot;Winning the Race: America&#x27;s AI Action Plan&quot;에 대해 Anthropic은 긍정적으로 평가하며, 특히 AI 인프라 구축 가속화와 연방 정부의 AI 도입 확대, 안전성 테스트 강화 및 보안 조정에 주목했습니다. Anthropic은 엄격한 수출 통제와 AI 개발 투명성 기준의 중요성을 강조하며, 에너지 용량 확대와 같은 추가적인 조치가 필요하다고 제안합니다. 또한, AI의 이점을 민주화하고 안전한 AI 개발을 촉진하기 위한 계획의 여러 제안에 동조하면서도, 강력한 AI 시스템의 국가 안보 위험에 대비한 CAISI와의 협력 강화와 수출 통제 유지의 필요성을 주장합니다. 궁극적으로 Anthropic은 이러한 조치들이 미국의 AI 리더십을 유지하는 데 필수적이라고 보고 있습니다. Anthropic">
   <h2>🇺🇸 미국의 AI 행동 계획에 대한 생각 (2025.7.23)</h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span></span><button type="button" class="copy-btn" data-copy="미국의 AI 행동 계획에 대한 생각 (2025.7.23)
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="미국의 AI 행동 계획에 대한 생각 (2025.7.23)
 
 미국 백악관이 발표한 &quot;Winning the Race: America&#x27;s AI Action Plan&quot;에 대해 Anthropic은 긍정적으로 평가하며, 특히 AI 인프라 구축 가속화와 연방 정부의 AI 도입 확대, 안전성 테스트 강화 및 보안 조정에 주목했습니다. Anthropic은 엄격한 수출 통제와 AI 개발 투명성 기준의 중요성을 강조하며, 에너지 용량 확대와 같은 추가적인 조치가 필요하다고 제안합니다. 또한, AI의 이점을 민주화하고 안전한 AI 개발을 촉진하기 위한 계획의 여러 제안에 동조하면서도, 강력한 AI 시스템의 국가 안보 위험에 대비한 CAISI와의 협력 강화와 수출 통제 유지의 필요성을 주장합니다. 궁극적으로 Anthropic은 이러한 조치들이 미국의 AI 리더십을 유지하는 데 필수적이라고 보고 있습니다.
 
 https://www.anthropic.com/news/thoughts-on-america-s-ai-action-plan" onclick="copyEntry(this)">복사</button></div>
   <p>미국 백악관이 발표한 &quot;Winning the Race: America&#x27;s AI Action Plan&quot;에 대해 Anthropic은 긍정적으로 평가하며, 특히 AI 인프라 구축 가속화와 연방 정부의 AI 도입 확대, 안전성 테스트 강화 및 보안 조정에 주목했습니다. Anthropic은 엄격한 수출 통제와 AI 개발 투명성 기준의 중요성을 강조하며, 에너지 용량 확대와 같은 추가적인 조치가 필요하다고 제안합니다. 또한, AI의 이점을 민주화하고 안전한 AI 개발을 촉진하기 위한 계획의 여러 제안에 동조하면서도, 강력한 AI 시스템의 국가 안보 위험에 대비한 CAISI와의 협력 강화와 수출 통제 유지의 필요성을 주장합니다. 궁극적으로 Anthropic은 이러한 조치들이 미국의 AI 리더십을 유지하는 데 필수적이라고 보고 있습니다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/thoughts-on-america-s-ai-action-plan">https://www.anthropic.com/news/thoughts-on-america-s-ai-action-plan</a></p>
+  
+  
 </article>
-<article class="entry cat-company">
+<article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="인공지능 모델 Aeneas, 역사학자의 고대 기록 해석 방식 혁신 (2025.7.23) 구글 딥마인드는 고대 라틴어 비문을 복원·연대 측정·지리적으로 귀속하고 관련 자료를 찾도록 돕는 멀티모달 AI 모델 Aeneas를 공개했다. 17만 6,000개가 넘는 라틴어 비문 데이터셋을 학습한 Aeneas는 최대 10자 공백 복원에서 Top-20 정확도 73%, 고대 로마 62개 주 귀속에서 72%의 정확도를 기록했으며, 비문 작성 시점을 역사학자 추정 범위에서 13년 이내로 배치했다. 연구진은 23명의 역사학자와 진행한 협업 평가에서 Aeneas의 관련 자료와 예측을 함께 활용할 때 복원·지리적 귀속·연대 측정 작업의 성과와 연구자 확신이 향상됐다고 밝혔으며, 연구자·학생 등이 사용할 수 있는 웹 도구와 코드·데이터셋을 무료로 공개했다. 구글 딥마인드 공식 블로그">
   <h2>인공지능 모델 Aeneas, 역사학자의 고대 기록 해석 방식 혁신 (2025.7.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드 공식 블로그</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="인공지능 모델 Aeneas, 역사학자의 고대 기록 해석 방식 혁신 (2025.7.23)
 
@@ -409,7 +485,9 @@ https://www.anthropic.com/news/thoughts-on-america-s-ai-action-plan" onclick="co
 https://deepmind.google/blog/aeneas-transforms-how-historians-connect-the-past/" onclick="copyEntry(this)">복사</button></div>
   <p>구글 딥마인드는 고대 라틴어 비문을 복원·연대 측정·지리적으로 귀속하고 관련 자료를 찾도록 돕는 멀티모달 AI 모델 Aeneas를 공개했다. 17만 6,000개가 넘는 라틴어 비문 데이터셋을 학습한 Aeneas는 최대 10자 공백 복원에서 Top-20 정확도 73%, 고대 로마 62개 주 귀속에서 72%의 정확도를 기록했으며, 비문 작성 시점을 역사학자 추정 범위에서 13년 이내로 배치했다. 연구진은 23명의 역사학자와 진행한 협업 평가에서 Aeneas의 관련 자료와 예측을 함께 활용할 때 복원·지리적 귀속·연대 측정 작업의 성과와 연구자 확신이 향상됐다고 밝혔으며, 연구자·학생 등이 사용할 수 있는 웹 도구와 코드·데이터셋을 무료로 공개했다.</p>
   <p class="url"><a href="https://deepmind.google/blog/aeneas-transforms-how-historians-connect-the-past/">https://deepmind.google/blog/aeneas-transforms-how-historians-connect-the-past/</a></p>
-</article><nav class="day-nav"><a class="day-nav-btn" href="2025-07-22.html">← 2025-07-22</a><a class="day-nav-btn" href="2025-07-24.html">2025-07-24 →</a></nav>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-22.html">← 2025-07-22</a><a class="day-nav-btn" href="2025-07-24.html">2025-07-24 →</a></nav>
 </div>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
 <script>
@@ -445,6 +523,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

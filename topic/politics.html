@@ -350,14 +350,11 @@
   .pd-source-group b { display: block; margin-bottom: 2px; }
   .pd-source-group span { color: var(--muted); }
 
-  html[lang="en"] {
-    --bg: #e8eef4; --card-bg: #fbfcfe; --border: #c5d0dc; --hairline-strong: #b7c4d2;
-  }
   html[lang="en"] body {
     font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
   }
   .en-lede {
-    list-style: none; margin: 0 0 28px; padding: 14px 18px 14px 16px;
+    list-style: none; margin: 0 0 22px; padding: 14px 18px 14px 16px;
     border: 1px solid var(--border); border-radius: 12px; background: var(--card-bg);
   }
   .en-lede li {
@@ -368,13 +365,6 @@
     content: "·"; position: absolute; left: 0; color: var(--gold); font-weight: 700;
   }
   .en-lede b { color: var(--fg); font-weight: 650; }
-  .en-section {
-    margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border);
-  }
-  .en-section:last-of-type { border-bottom: none; }
-  .en-section h2 { font-size: 1.08rem; margin: 0 0 8px; font-weight: 650; }
-  .en-section p { margin: 0; font-size: 0.98rem; line-height: 1.9; }
-  .en-section sup a { text-decoration: none; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -2035,7 +2025,7 @@ function copyEntry(btn) {
   var text = btn.getAttribute('data-copy');
   var onDone = function () {
     var original = btn.textContent;
-    btn.textContent = '복사됨!';
+    btn.textContent = btn.getAttribute('data-copied') || '복사됨!';
     btn.classList.add('copied');
     setTimeout(function () {
       btn.textContent = original;

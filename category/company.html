@@ -6,7 +6,7 @@
 <title>AI Safety Digest — 기업</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: light dark;
@@ -349,6 +349,32 @@
   .pd-source-group:last-child { border-bottom: none; }
   .pd-source-group b { display: block; margin-bottom: 2px; }
   .pd-source-group span { color: var(--muted); }
+
+  html[lang="en"] {
+    --bg: #e8eef4; --card-bg: #fbfcfe; --border: #c5d0dc; --hairline-strong: #b7c4d2;
+  }
+  html[lang="en"] body {
+    font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
+  }
+  .en-lede {
+    list-style: none; margin: 0 0 28px; padding: 14px 18px 14px 16px;
+    border: 1px solid var(--border); border-radius: 12px; background: var(--card-bg);
+  }
+  .en-lede li {
+    font-size: 0.86rem; color: var(--muted); line-height: 1.55;
+    padding: 5px 0 5px 0.95em; position: relative;
+  }
+  .en-lede li::before {
+    content: "·"; position: absolute; left: 0; color: var(--gold); font-weight: 700;
+  }
+  .en-lede b { color: var(--fg); font-weight: 650; }
+  .en-section {
+    margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border);
+  }
+  .en-section:last-of-type { border-bottom: none; }
+  .en-section h2 { font-size: 1.08rem; margin: 0 0 8px; font-weight: 650; }
+  .en-section p { margin: 0; font-size: 0.98rem; line-height: 1.9; }
+  .en-section sup a { text-decoration: none; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -383,7 +409,7 @@ Google DeepMind는 장면을 최대 40초까지 연장하고 시작·마지막 �
 https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/" onclick="copyEntry(this)">복사</button></div>
   <p>Google DeepMind는 장면을 최대 40초까지 연장하고 시작·마지막 프레임을 지정해 자연스러운 전환과 카메라 움직임을 생성할 수 있는 Gemini Omni 1.1 Flash를 공개했다. 360p 미리보기는 720p 대비 최대 60% 빠르고 비용은 3분의 1이며, 완성 영상은 1080p 또는 4K로 업스케일할 수 있다. 이 모델은 동영상 참조 입력도 지원하며 Google AI Studio, Gemini Enterprise Agent Platform, Google Flow 등에 순차적으로 제공된다.</p>
   <p class="url"><a href="https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/">https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/</a></p>
-  <div class="related-links"><div class="related-links-label">관련 보도</div><ul><li><a href="https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations/">DeepMind · 세계 최초 이중 블라인드 AI 평가 시범 운영 (2026.8.27)</a></li></ul></div>
+  
   
 </article>
 <article class="entry cat-company" data-cat="company" data-topics="open_weight" data-search="세계 최초 이중 블라인드 AI 평가 시범 운영 (2026.8.27) Google DeepMind는 모델이 평가 문항을 사전에 학습하는 benchmark contamination을 막기 위해 독점 프런티어급 AI 모델의 이중 블라인드 평가를 시범 운영한다고 밝혔다. Singapore AI Safety Institute, OpenMined, AVERI, MLCommons와 협력해 Gemini Flash Lite를 비공개 벤치마크로 평가하며, Google Cloud의 Confidential Space를 활용해 평가자는 모델 가중치를, Google은 평가 문항을 볼 수 없도록 한다. 이 방식은 평가 데이터와 모델의 기밀성을 유지하면서 독립 기관의 고위험·민감한 AI 평가를 가능하게 하는 것을 목표로 한다. DeepMind">
@@ -419,7 +445,7 @@ Anthropic은 AI 에이전트가 현미경, 액체 처리기, 로봇 팔 등 프�
 https://www.anthropic.com/news/model-hardware-standard-research-preview" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 AI 에이전트가 현미경, 액체 처리기, 로봇 팔 등 프로그래밍 가능한 여러 물리 장비를 표준 방식으로 연결·운용할 수 있도록 하는 모델 하드웨어 표준(MHS)의 연구 프리뷰를 일부 연구소와 제조업체에 공개했다. MHS는 표준 드라이버와 MCP, 명령줄 인터페이스, 코드 파일을 통해 장비 검색·제어와 실시간 작업 조율을 지원하며, 초기 프로젝트에서 장비 통합 시간 단축과 자동화·오류 감지 사례가 확인됐다. Anthropic은 Claude의 물리적·공간적 추론에는 전문가 감독이 필요하고 프로그래밍 인터페이스가 없는 장비는 지원하지 않는다고 설명했으며, 연구 프리뷰를 통해 안전성 평가를 강화한 뒤 표준을 오픈소스로 공개할 계획이다.</p>
   <p class="url"><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview">https://www.anthropic.com/news/model-hardware-standard-research-preview</a></p>
-  <div class="related-links"><div class="related-links-label">관련 보도</div><ul><li><a href="https://www.newsis.com/view/NISX20260827_0003765762">뉴스RSS · 뉴시스 · 데이터독, AI 에이전트의 권한 밖 행동 실시간 감시 강조 (2026.8.27)</a></li></ul></div>
+  
   
 </article>
 <h3 class="cat-date-heading">2026-08-26 <span class="archive-count">(4건)</span></h3>
@@ -9779,7 +9805,7 @@ https://www.anthropic.com/research/a-general-언어-어시스턴트-as-a-laborat
   
 </article></div></details></div>
 </div>
-<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a> · <a href="../en.html">English</a></div></footer>
 <script>
 function _copyFallback(text) {
   var ta = document.createElement('textarea');

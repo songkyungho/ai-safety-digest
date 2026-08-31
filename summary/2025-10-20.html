@@ -6,7 +6,7 @@
 <title>AI Safety 주간 하이라이트 2025-10-20~2025-10-26</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: light dark;
@@ -29,6 +29,16 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +58,16 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -105,10 +125,39 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .source { color: var(--muted); }
+  .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
+  .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -144,6 +193,8 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -222,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -290,6 +349,22 @@
   .pd-source-group:last-child { border-bottom: none; }
   .pd-source-group b { display: block; margin-bottom: 2px; }
   .pd-source-group span { color: var(--muted); }
+
+  html[lang="en"] body {
+    font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
+  }
+  .en-lede {
+    list-style: none; margin: 0 0 22px; padding: 14px 18px 14px 16px;
+    border: 1px solid var(--border); border-radius: 12px; background: var(--card-bg);
+  }
+  .en-lede li {
+    font-size: 0.86rem; color: var(--muted); line-height: 1.55;
+    padding: 5px 0 5px 0.95em; position: relative;
+  }
+  .en-lede li::before {
+    content: "·"; position: absolute; left: 0; color: var(--gold); font-weight: 700;
+  }
+  .en-lede b { color: var(--fg); font-weight: 650; }
 </style>
 </head>
 <body>
@@ -331,7 +406,7 @@ AI 안전연구소들이 오픈웨이트 모델과 에이전트 보안 평가체
 [14] https://techpolicy.berkeley.edu/uc-berkeley-tech-policy-week-october-20%E2%80%9323-2025
 [15] https://www.njb.nl/nieuws/ap-ai-chatbots-geven-geen-neutrale-stemadviezen/
 [16] https://www.aisi.gov.uk/research/breaking-agent-backbones-evaluating-the-security-of-backbone-llms-in-ai-agents
-[17] https://www.aisi.gov.uk/research/open-technical-problems-in-open-weight-ai-model-risk-management" onclick="copyEntry(this)">복사</button>
+[17] https://www.aisi.gov.uk/research/open-technical-problems-in-open-weight-ai-model-risk-management" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>AI 안전연구소들이 오픈웨이트 모델과 에이전트 보안 평가체계를 정교화하는 사이, 각국은 소버린 AI 컴퓨팅 인프라 확충과 거버넌스 논의를 병행했고 프론티어 기업은 컴퓨팅 확장과 신사업 영역 확대를 이어갔다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -361,7 +436,7 @@ AI 안전연구소들이 오픈웨이트 모델과 에이전트 보안 평가체
 [4] https://www.kihasa.re.kr/api/kihasa/file/download?seq=31237
 [5] https://www.anthropic.com/research/economic-policy-responses
 [6] https://eiec.kdi.re.kr/policy/materialView.do?num=272159
-[7] https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/" onclick="copyEntry(this)">복사</button>
+[7] https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>이번 주는 Anthropic이 신모델과 에이전트 기능을 잇달아 공개하며 상업적 확산을 가속하는 동시에, 평가 무결성·복지행정 AI 규제 등 안전성·거버넌스 논의도 병행된 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -393,7 +468,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
 [7] https://computerhoy.20minutos.es/tecnologia/crece-numero-turistas-planifican-viajes-chatgpt-tambien-destinos-inventados-ia-1486314
 [8] https://arxiv.org/abs/2508.19258
 [9] https://metr.org/notes/2025-10-06-early-results-on-monitorability-in-qa-settings/
-[10] https://www.anthropic.com/research/petri-open-source-auditing" onclick="copyEntry(this)">복사</button>
+[10] https://www.anthropic.com/research/petri-open-source-auditing" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 정량화하는 사이, 한국의 AI기본법 후속 논의와 지정학적 AI 확장, 그리고 이용자 신뢰를 흔드는 실제 사건들이 동시에 부각된 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -434,7 +509,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
 [14] https://www.aisafetybook.com/virtual-course
 [15] https://www.bbc.com/travel/article/20250926-the-perils-of-letting-ai-plan-your-next-trip
 [16] https://www1.folha.uol.com.br/tec/2025/10/os-perigos-de-deixar-que-a-ia-organize-sua-proxima-viagem.shtml
-[17] https://www.aisi.gov.uk/research/inoculation-prompting-eliciting-traits-from-llms-during-training-can-suppress-them-at-test-time" onclick="copyEntry(this)">복사</button>
+[17] https://www.aisi.gov.uk/research/inoculation-prompting-eliciting-traits-from-llms-during-training-can-suppress-them-at-test-time" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>프론티어 모델 출시 경쟁이 이어지는 가운데, 각국이 AI 거버넌스 체계와 프론티어 AI 규제·안전연구소 표준을 동시에 정비하고 정렬 기법 연구도 진전된 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -469,7 +544,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
 [9] https://eiec.kdi.re.kr/policy/materialView.do?num=271650
 [10] https://www.aigl.blog/ai-governance-library-newsletter-10-requirements-controls-and-everything-else-they-forgot/
 [11] https://arxiv.org/abs/2508.08345
-[12] https://www.mlex.com/mlex/artificial-intelligence/articles/2390753?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7&amp;read_main=1&amp;nlsidx=0&amp;nlaidx=9" onclick="copyEntry(this)">복사</button>
+[12] https://www.mlex.com/mlex/artificial-intelligence/articles/2390753?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7&amp;read_main=1&amp;nlsidx=0&amp;nlaidx=9" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>이번 주는 국가안보 차원의 AI 경쟁 논의와 함께 EU AI Act 시행을 위한 세부 가이드라인이 잇따라 공개되고, AI 챗봇의 아동 성착취물 생성이라는 실제 사고가 확인되면서 규제의 실행력 확보가 핵심 과제로 떠올랐다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -500,7 +575,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
 [7] https://eiec.kdi.re.kr/policy/materialView.do?num=271277
 [8] https://eiec.kdi.re.kr/policy/materialView.do?num=271252
 [9] https://abcnews.go.com/Technology/wireStory/openais-advisory-board-calls-continued-strengthened-nonprofit-oversight-123848848
-[10] https://www.koti.re.kr/common/file/download.do?atch_no=RPLDxAAXOwfQb5pJtpBMxw%3D%3D" onclick="copyEntry(this)">복사</button>
+[10] https://www.koti.re.kr/common/file/download.do?atch_no=RPLDxAAXOwfQb5pJtpBMxw%3D%3D" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>이번 주는 반도체·인텔 투자를 통한 국가안보 강화와 한국 정부의 AI 거버넌스 체계 정비가 두드러진 가운데, 저작권·성차별 등 법적 쟁점과 설명가능성 기술 연구도 함께 다뤄졌다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -538,7 +613,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
 [12] https://zdnet.co.kr/view/?no=20250910003633
 [13] https://www.aisi.gov.uk/research/conversational-ai-increases-political-knowledge-as-effectively-as-self-directed-internet-search
 [14] https://www.chosun.com/english/national-en/2025/09/12/IRZBLUJ6S5BI7ANVIBIUKP5EJ4/
-[15] https://www.anthropic.com/news/strengthening-our-safeguards-through-collaboration-with-us-caisi-and-uk-aisi" onclick="copyEntry(this)">복사</button>
+[15] https://www.anthropic.com/news/strengthening-our-safeguards-through-collaboration-with-us-caisi-and-uk-aisi" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>한국·일본·미국이 국가 AI 컴퓨팅 인프라와 전략기구를 잇따라 출범시키며 주권 AI 경쟁이 가속화되는 가운데, 안전연구소들의 레드티밍 협력과 각국의 투명성·아동보호 규제가 동시에 강화된 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -581,7 +656,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
 [15] https://www.nbcnews.com/tech/innovation/chatgpt-adds-parental-controls-teen-users-openai-rcna228506
 [16] https://www.mlex.com/mlex/artificial-intelligence/articles/2383176
 [17] https://www.anthropic.com/research/biorisk
-[18] https://hub.jhu.edu/2025/09/02/multilingual-artificial-intelligence-often-reinforces-bias" onclick="copyEntry(this)">복사</button>
+[18] https://hub.jhu.edu/2025/09/02/multilingual-artificial-intelligence-often-reinforces-bias" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>중국·EU의 AI 콘텐츠 표식·투명성 규제 시행과 미국의 칩 수출통제·아동보호 조사가 동시에 진행되며, 안전연구소들은 취약점 공개와 잠재추론 연구로, 기업들은 소송·정책 대응으로 각자 신뢰 확보에 나선 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -594,7 +669,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
   </ul>
 </div>
 </div>
-<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a> · <a href="../en.html">English</a></div></footer>
 <script>
 function _copyFallback(text) {
   var ta = document.createElement('textarea');
@@ -611,7 +686,7 @@ function copyEntry(btn) {
   var text = btn.getAttribute('data-copy');
   var onDone = function () {
     var original = btn.textContent;
-    btn.textContent = '복사됨!';
+    btn.textContent = btn.getAttribute('data-copied') || '복사됨!';
     btn.classList.add('copied');
     setTimeout(function () {
       btn.textContent = original;
@@ -628,6 +703,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

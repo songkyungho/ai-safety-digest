@@ -6,7 +6,7 @@
 <title>AI Safety 주간 하이라이트 2025-03-24~2025-03-30</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: light dark;
@@ -29,6 +29,16 @@
     /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
     --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
     --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
+    --cat-public: #0d9488;
+    --cat-archive: #155e75;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -48,6 +58,16 @@
       --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
       --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
       --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
+      --cat-public: #2dd4bf;
+      --cat-archive: #22d3ee;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
     }
   }
   * { box-sizing: border-box; }
@@ -105,10 +125,39 @@
   .entry.cat-iitp { border-left-color: var(--cat-iitp); }
   .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
   .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .source { color: var(--muted); }
+  .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
+  .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
   .copy-btn {
     flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
     background: transparent; color: var(--muted); border-radius: 999px;
@@ -144,6 +193,8 @@
   .badge.cat-iitp { background: var(--cat-iitp); }
   .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
   .badge.cat-iaae { background: var(--cat-iaae); }
+  .badge.cat-public { background: var(--cat-public); }
+  .badge.cat-archive { background: var(--cat-archive); }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -222,6 +273,14 @@
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
   .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
   .trend-chart-wrap { overflow-x: auto; }
   .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
   .trend-grid { stroke: var(--border); stroke-width: 1; }
@@ -290,6 +349,22 @@
   .pd-source-group:last-child { border-bottom: none; }
   .pd-source-group b { display: block; margin-bottom: 2px; }
   .pd-source-group span { color: var(--muted); }
+
+  html[lang="en"] body {
+    font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
+  }
+  .en-lede {
+    list-style: none; margin: 0 0 22px; padding: 14px 18px 14px 16px;
+    border: 1px solid var(--border); border-radius: 12px; background: var(--card-bg);
+  }
+  .en-lede li {
+    font-size: 0.86rem; color: var(--muted); line-height: 1.55;
+    padding: 5px 0 5px 0.95em; position: relative;
+  }
+  .en-lede li::before {
+    content: "·"; position: absolute; left: 0; color: var(--gold); font-weight: 700;
+  }
+  .en-lede b { color: var(--fg); font-weight: 650; }
 </style>
 </head>
 <body>
@@ -320,7 +395,7 @@
 [5] https://eiec.kdi.re.kr/policy/materialView.do?num=264777
 [6] https://www.aisi.gov.uk/research/adversarial-machine-learning-a-taxonomy-and-terminology-of-attacks-and-mitigations
 [7] https://eiec.kdi.re.kr/policy/materialView.do?num=264863
-[8] https://www.anthropic.com/news/tracing-thoughts-language-model" onclick="copyEntry(this)">복사</button>
+[8] https://www.anthropic.com/news/tracing-thoughts-language-model" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>이번 주는 프론티어 모델 공개와 사용 패턴 분석이 이어지는 가운데, 국내에서는 AI 컴퓨팅 인프라 지원과 국제표준 인증 등 안전·거버넌스 기반 다지기가 병행된 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -346,7 +421,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
 [3] https://www.aei.org/research-products/report/the-precautionary-principle-safety-regulation-and-ai-this-time-it-really-is-different/
 [4] https://www.anthropic.com/news/anthropic-s-response-to-governor-newsom-s-ai-working-group-draft-report
 [5] https://arxiv.org/abs/2503.17354
-[6] https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" onclick="copyEntry(this)">복사</button>
+[6] https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워크를 다듬는 동안, 안전 연구 진영에서는 AI 에이전트의 자율 작업 수행 능력을 정량화하는 새로운 평가 지표가 부상했다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -379,7 +454,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
 [9] https://metr.org/blog/2025-03-11-good-for-ai-reason-legibly-and-faithfully/
 [10] https://metr.org/es/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/
 [11] https://metr.org/zh-Hans/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/
-[12] https://www.anthropic.com/research/auditing-hidden-objectives" onclick="copyEntry(this)">복사</button>
+[12] https://www.anthropic.com/research/auditing-hidden-objectives" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>구글과 Cohere의 신규 오픈모델 출시가 이어진 가운데, 각국은 규제보다 AI 투자 경쟁에 집중했고 연구기관들은 AI 추론의 투명성 확보와 숨겨진 목표 감사 기술 개발에 주력한 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -409,7 +484,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
 [4] https://www.nars.go.kr/report/view.do?cmsCode=CM0043&amp;brdSeq=46937
 [5] https://www.oecd.org/en/publications/towards-a-common-reporting-framework-for-ai-incidents_f326d4ac-en.html
 [6] https://www.nist.gov/artificial-intelligence/ai-research/nists-ai-standards-zero-drafts-pilot-project-accelerate
-[7] https://metr.org/evaluations/deepseek-r1-report/" onclick="copyEntry(this)">복사</button>
+[7] https://metr.org/evaluations/deepseek-r1-report/" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>프론티어 기업의 대규모 투자와 모델 평가가 이어지는 가운데, 각국은 AI 국가안보 전략과 표준·규범 정비를 동시에 서둘렀다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -443,7 +518,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
 [8] https://eiec.kdi.re.kr/policy/materialView.do?num=263803
 [9] https://www.aisi.gov.uk/research/model-tampering-attacks-enable-more-rigorous-evaluations-of-llm-capabilities-2
 [10] https://www.anthropic.com/research/forecasting-rare-behaviors
-[11] https://evidentlyai.com/blog/llm-safety-bias-benchmarks" onclick="copyEntry(this)">복사</button>
+[11] https://evidentlyai.com/blog/llm-safety-bias-benchmarks" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>프론티어 모델 공개와 사전배포 평가가 병행되는 가운데, 각국 정부는 AI 안전 가이드라인과 국제 표준화 논의를 동시에 진전시키고 안전연구소들은 드문 위험 행동 예측과 모델 조작 공격 평가 같은 기술적 방법론을 축적한 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -473,7 +548,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
 [4] https://eiec.kdi.re.kr/policy/materialView.do?num=263492
 [5] https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27680&amp;parentSeq=27680
 [6] https://www.kwdi.re.kr/inc/download.do?ut=A&amp;upIdx=132477&amp;no=1
-[7] https://www.aisi.gov.uk/research/fundamental-limitations-in-defending-llm-finetuning-apis-2" onclick="copyEntry(this)">복사</button>
+[7] https://www.aisi.gov.uk/research/fundamental-limitations-in-defending-llm-finetuning-apis-2" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>이번 주는 한국 정부의 국가 AI 인프라·역량 강화 발표와 글로벌 AI 거버넌스 대표성 문제, 안전연구소의 파인튜닝 오용 공격 연구, Anthropic의 해석가능성 연구가 동시에 부각된 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -509,7 +584,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
 [9] https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=4baefb35-bffb-42e5-8bea-d4f698749e2b
 [10] https://www.aisi.gov.uk/research/safety-cases-a-scalable-approach-to-frontier-ai-safety
 [11] https://www.bbc.com/korean/articles/c1wer4jzd49o
-[12] https://metr.org/blog/2025-02-14-measuring-automated-kernel-engineering/" onclick="copyEntry(this)">복사</button>
+[12] https://metr.org/blog/2025-02-14-measuring-automated-kernel-engineering/" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>이번 주는 METR·Anthropic 등이 프론티어 모델의 실제 경제적 파급력과 위험 역량을 정량 평가하는 가운데, 각국이 AI 인프라 구축과 국제 거버넌스 협력을 병행하며 딥페이크·감시 등 위험 대응 법제도 정비에도 속도를 낸 한 주였다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -536,7 +611,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
 [2] https://www.aisi.gov.uk/research/principles-for-evaluating-misuse-safeguards-of-frontier-ai-systems
 [3] https://www.aisi.gov.uk/research/emerging-practices-in-frontier-ai-safety-frameworks
 [4] https://www.anthropic.com/research/constitutional-classifiers
-[5] https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-alignment-2" onclick="copyEntry(this)">복사</button>
+[5] https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-alignment-2" data-copied="복사됨!" onclick="copyEntry(this)">복사</button>
   </div>
   <p style="font-size:0.98rem; line-height:1.9;"><strong>이번 주는 프런티어 AI의 오용 방지와 안전 프레임워크 표준화를 둘러싼 연구소·종교기관의 규범 제시가 두드러졌다.</strong></p>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
@@ -546,7 +621,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
   </ul>
 </div>
 </div>
-<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a> · <a href="../en.html">English</a></div></footer>
 <script>
 function _copyFallback(text) {
   var ta = document.createElement('textarea');
@@ -563,7 +638,7 @@ function copyEntry(btn) {
   var text = btn.getAttribute('data-copy');
   var onDone = function () {
     var original = btn.textContent;
-    btn.textContent = '복사됨!';
+    btn.textContent = btn.getAttribute('data-copied') || '복사됨!';
     btn.classList.add('copied');
     setTimeout(function () {
       btn.textContent = original;
@@ -580,6 +655,49 @@ function copyEntry(btn) {
     onDone();
   }
 }
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
 </script>
 </body>
 </html>

@@ -10,27 +10,26 @@
 <style>
   :root {
     color-scheme: light dark;
-    /* 이 지면(뉴스/공지 사이트)에 맞춘 웜페이퍼+네이비+골드 팔레트 —
-       배너 이미지의 색 언어(네이비 배경·골드 타이틀)에서 그대로 가져왔다. */
-    --bg: #f4efe3; --fg: #1b2430; --muted: #5b6472; --border: #e2d9c3;
-    --card-bg: #fffdf8; --link: #7e561a; --accent: #9c6c22;
-    --navy: #0c2035; --navy-2: #143049;
-    --gold: #9c6c22; --gold-strong: #7e561a;
-    --on-navy: #f2ece0; --on-navy-muted: #b7c3d1;
-    --hairline-strong: #d5c9ab;
-    --g1: #e3cf9a; --g2: #d3ac52;
-    --cat-research: #4f46e5; --cat-aisi: #16a34a; --cat-company: #ea580c;
-    --cat-kr-gov: #0d9488; --cat-intl: #7c3aed; --cat-notice: #dc2626;
-    --cat-other: #6b7280;
-    --cat-intl-org: #0369a1; --cat-gov: #a16207; --cat-research-org: #1d4ed8;
-    --cat-ngo: #4d7c0f; --cat-media: #a21caf; --cat-db: #57534e;
-    --cat-news-rss: #be123c; --cat-scrapmaster: #ca8a04; --cat-blog: #db2777;
-    --cat-aisi-weekly: #059669; --cat-aiid: #334155;
-    /* frontier·msit·iitp가 예전엔 셋 다 "notice"(빨강)를 같이 썼다 — 구분되게 새로 배정. */
-    --cat-frontier: #4d7a1e; --cat-msit: #1493b3; --cat-iitp: #7c3a9e;
-    --cat-kdi-eiec: #881337; --cat-iaae: #9a3412;
-    --cat-public: #0d9488;
-    --cat-archive: #155e75;
+    /* 페스티벌 팔레트(color-hex 37391) —
+       #ef3837 #ed7787 #f3b84f #474284 #6a8167 을 지면 토큰에 맞춘 것. */
+    --bg: #f6f1e4; --fg: #2a2848; --muted: #5a6258; --border: #e4dcc8;
+    --card-bg: #fffdf8; --link: #3f5340; --accent: #ef3837;
+    --navy: #474284; --navy-2: #565193;
+    --gold: #f3b84f; --gold-strong: #f7c86a;
+    --on-navy: #f6f1e4; --on-navy-muted: #c4c0d8;
+    --hairline-strong: #d8d0b8;
+    --g1: #f7dca0; --g2: #f3c8ce;
+    --cat-research: #474284; --cat-aisi: #3f5340; --cat-company: #8a5a18;
+    --cat-kr-gov: #3f5340; --cat-intl: #3d3a6e; --cat-notice: #b44a58;
+    --cat-other: #534f4a;
+    --cat-intl-org: #3d3a6e; --cat-gov: #3f5340; --cat-research-org: #474284;
+    --cat-ngo: #3f5340; --cat-media: #b44a58; --cat-db: #4a463e;
+    --cat-news-rss: #b44a58; --cat-scrapmaster: #8a5a18; --cat-blog: #b44a58;
+    --cat-aisi-weekly: #3f5340; --cat-aiid: #4a463e;
+    --cat-frontier: #3f5340; --cat-msit: #3d3a6e; --cat-iitp: #474284;
+    --cat-kdi-eiec: #b44a58; --cat-iaae: #8a5a18;
+    --cat-public: #3f5340;
+    --cat-archive: #3d3a6e;
     --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
     --topic-standards: #7c3aed; --topic-national-security: #b45309;
     --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
@@ -42,24 +41,24 @@
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #12181f; --fg: #e9e4d6; --muted: #9aa4ae; --border: #2b333c;
-      --card-bg: #171e26; --link: #e3b563; --accent: #e3b563;
-      --navy: #060d15; --navy-2: #0b1a29;
-      --gold: #e3b563; --gold-strong: #f0c876;
-      --on-navy: #f2ece0; --on-navy-muted: #8ea0b3;
-      --hairline-strong: #384049;
-      --g1: #4a3d24; --g2: #7a5c26;
-      --cat-research: #818cf8; --cat-aisi: #4ade80; --cat-company: #fb923c;
-      --cat-kr-gov: #2dd4bf; --cat-intl: #c084fc; --cat-notice: #f87171;
-      --cat-other: #9ca3af;
-      --cat-intl-org: #7dd3fc; --cat-gov: #fde047; --cat-research-org: #93c5fd;
-      --cat-ngo: #bef264; --cat-media: #e879f9; --cat-db: #a8a29e;
-      --cat-news-rss: #fb7185; --cat-scrapmaster: #facc15; --cat-blog: #f472b6;
-      --cat-aisi-weekly: #34d399; --cat-aiid: #94a3b8;
-      --cat-frontier: #8fd45c; --cat-msit: #5cd4e8; --cat-iitp: #d4a3f0;
-      --cat-kdi-eiec: #fda4af; --cat-iaae: #fdba8c;
-      --cat-public: #2dd4bf;
-      --cat-archive: #22d3ee;
+      --bg: #1a1828; --fg: #eee8dc; --muted: #a8a898; --border: #323048;
+      --card-bg: #221f32; --link: #9bb396; --accent: #ed7787;
+      --navy: #2e2b5c; --navy-2: #3a3770;
+      --gold: #f3b84f; --gold-strong: #f7c86a;
+      --on-navy: #f6f1e4; --on-navy-muted: #b8b4d0;
+      --hairline-strong: #3c3a52;
+      --g1: #4a3a20; --g2: #6a3a44;
+      --cat-research: #b0acd8; --cat-aisi: #9bb396; --cat-company: #f3b84f;
+      --cat-kr-gov: #9bb396; --cat-intl: #b8b4d0; --cat-notice: #ed7787;
+      --cat-other: #c4bdb4;
+      --cat-intl-org: #b8b4d0; --cat-gov: #9bb396; --cat-research-org: #b0acd8;
+      --cat-ngo: #9bb396; --cat-media: #ed7787; --cat-db: #c4bdb4;
+      --cat-news-rss: #ed7787; --cat-scrapmaster: #f3b84f; --cat-blog: #ed7787;
+      --cat-aisi-weekly: #9bb396; --cat-aiid: #c4bdb4;
+      --cat-frontier: #9bb396; --cat-msit: #b8b4d0; --cat-iitp: #b0acd8;
+      --cat-kdi-eiec: #ed7787; --cat-iaae: #f3b84f;
+      --cat-public: #9bb396;
+      --cat-archive: #b8b4d0;
       --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
       --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
       --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
@@ -168,33 +167,38 @@
   .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
   .badge {
     display: inline-block; padding: 2px 9px; border-radius: 999px;
-    font-size: 0.72rem; font-weight: 600; color: #fff;
+    font-size: 0.72rem; font-weight: 600;
   }
-  .badge.cat-research { background: var(--cat-research); }
-  .badge.cat-aisi { background: var(--cat-aisi); }
-  .badge.cat-company { background: var(--cat-company); }
-  .badge.cat-kr-gov { background: var(--cat-kr-gov); }
-  .badge.cat-intl { background: var(--cat-intl); }
-  .badge.cat-notice { background: var(--cat-notice); }
-  .badge.cat-other { background: var(--cat-other); }
-  .badge.cat-intl-org { background: var(--cat-intl-org); }
-  .badge.cat-gov { background: var(--cat-gov); }
-  .badge.cat-research-org { background: var(--cat-research-org); }
-  .badge.cat-ngo { background: var(--cat-ngo); }
-  .badge.cat-media { background: var(--cat-media); }
-  .badge.cat-news-rss { background: var(--cat-news-rss); }
-  .badge.cat-scrapmaster { background: var(--cat-scrapmaster); }
-  .badge.cat-db { background: var(--cat-db); }
-  .badge.cat-blog { background: var(--cat-blog); }
-  .badge.cat-aisi-weekly { background: var(--cat-aisi-weekly); }
-  .badge.cat-aiid { background: var(--cat-aiid); }
-  .badge.cat-frontier { background: var(--cat-frontier); }
-  .badge.cat-msit { background: var(--cat-msit); }
-  .badge.cat-iitp { background: var(--cat-iitp); }
-  .badge.cat-kdi-eiec { background: var(--cat-kdi-eiec); }
-  .badge.cat-iaae { background: var(--cat-iaae); }
-  .badge.cat-public { background: var(--cat-public); }
-  .badge.cat-archive { background: var(--cat-archive); }
+  .badge.cat-research { --chip: var(--cat-research); }
+  .badge.cat-aisi { --chip: var(--cat-aisi); }
+  .badge.cat-company { --chip: var(--cat-company); }
+  .badge.cat-kr-gov { --chip: var(--cat-kr-gov); }
+  .badge.cat-intl { --chip: var(--cat-intl); }
+  .badge.cat-notice { --chip: var(--cat-notice); }
+  .badge.cat-other { --chip: var(--cat-other); }
+  .badge.cat-intl-org { --chip: var(--cat-intl-org); }
+  .badge.cat-gov { --chip: var(--cat-gov); }
+  .badge.cat-research-org { --chip: var(--cat-research-org); }
+  .badge.cat-ngo { --chip: var(--cat-ngo); }
+  .badge.cat-media { --chip: var(--cat-media); }
+  .badge.cat-news-rss { --chip: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { --chip: var(--cat-scrapmaster); }
+  .badge.cat-db { --chip: var(--cat-db); }
+  .badge.cat-blog { --chip: var(--cat-blog); }
+  .badge.cat-aisi-weekly { --chip: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { --chip: var(--cat-aiid); }
+  .badge.cat-frontier { --chip: var(--cat-frontier); }
+  .badge.cat-msit { --chip: var(--cat-msit); }
+  .badge.cat-iitp { --chip: var(--cat-iitp); }
+  .badge.cat-kdi-eiec { --chip: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { --chip: var(--cat-iaae); }
+  .badge.cat-public { --chip: var(--cat-public); }
+  .badge.cat-archive { --chip: var(--cat-archive); }
+  .badge[class*="cat-"]:not(.cat-coll) {
+    background: color-mix(in srgb, var(--chip) 14%, var(--card-bg));
+    color: var(--chip);
+    border: 1px solid color-mix(in srgb, var(--chip) 32%, var(--border));
+  }
   .badge.cat-coll {
     background: transparent; color: var(--muted); border: 1.5px solid var(--border);
   }
@@ -249,9 +253,8 @@
   .archive-month summary::before { content: "▸ "; color: var(--muted); }
   .archive-month[open] summary::before { content: "▾ "; }
   .archive-month .archive-list { padding-left: 14px; }
-  /* 아카이브 격자(옵션 B) — 요일 정렬 없이 1일부터 촘촘히, 건수는 4단계
-     골드 톤으로. 배경이 밝을 때(g3·g4)는 --bg를, 옅을 때(g1·g2)는 --fg를
-     글자색으로 써서 라이트/다크 모드 둘 다 자동으로 대비가 맞게 한다. */
+  /* 아카이브 격자 — 건수 4단계. 페스티벌은 밝은 마리골드·로즈 칸에
+     인디고 글자, 가장 많은 날은 인디고 칸에 크림 글자. */
   .archive-month-current { margin: 10px 0 4px; }
   .month-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 10px; }
   .archive-month .archive-grid { margin-top: 8px; padding-left: 14px; }
@@ -265,9 +268,9 @@
   .archive-cell .c { font-size: 0.62rem; opacity: 0.85; line-height: 1.1; }
   .archive-cell.empty { color: var(--muted); }
   .archive-cell.g1 { background: var(--g1); color: var(--fg); border-color: transparent; }
-  .archive-cell.g2 { background: var(--g2); color: var(--fg); border-color: transparent; }
-  .archive-cell.g3 { background: var(--gold); color: var(--bg); border-color: transparent; }
-  .archive-cell.g4 { background: var(--gold-strong); color: var(--bg); border-color: transparent; }
+  .archive-cell.g2 { background: var(--g2); color: var(--navy); border-color: transparent; }
+  .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
+  .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }

@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest — 파이프라인 업데이트 로그</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 페스티벌 팔레트(color-hex 37391) —
+       #ef3837 #ed7787 #f3b84f #474284 #6a8167 을 지면 토큰에 맞춘 것. */
+    --bg: #f6f1e4; --fg: #2a2848; --muted: #5a6258; --border: #e4dcc8;
+    --card-bg: #fffdf8; --link: #3f5340; --accent: #ef3837;
+    --navy: #474284; --navy-2: #565193;
+    --gold: #f3b84f; --gold-strong: #f7c86a;
+    --on-navy: #f6f1e4; --on-navy-muted: #c4c0d8;
+    --hairline-strong: #d8d0b8;
+    --g1: #f7dca0; --g2: #f3c8ce;
+    --cat-research: #474284; --cat-aisi: #3f5340; --cat-company: #8a5a18;
+    --cat-kr-gov: #3f5340; --cat-intl: #3d3a6e; --cat-notice: #b44a58;
+    --cat-other: #534f4a;
+    --cat-intl-org: #3d3a6e; --cat-gov: #3f5340; --cat-research-org: #474284;
+    --cat-ngo: #3f5340; --cat-media: #b44a58; --cat-db: #4a463e;
+    --cat-news-rss: #b44a58; --cat-scrapmaster: #8a5a18; --cat-blog: #b44a58;
+    --cat-aisi-weekly: #3f5340; --cat-aiid: #4a463e;
+    --cat-frontier: #3f5340; --cat-msit: #3d3a6e; --cat-iitp: #474284;
+    --cat-kdi-eiec: #b44a58; --cat-iaae: #8a5a18;
+    --cat-public: #3f5340;
+    --cat-archive: #3d3a6e;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1828; --fg: #eee8dc; --muted: #a8a898; --border: #323048;
+      --card-bg: #221f32; --link: #9bb396; --accent: #ed7787;
+      --navy: #2e2b5c; --navy-2: #3a3770;
+      --gold: #f3b84f; --gold-strong: #f7c86a;
+      --on-navy: #f6f1e4; --on-navy-muted: #b8b4d0;
+      --hairline-strong: #3c3a52;
+      --g1: #4a3a20; --g2: #6a3a44;
+      --cat-research: #b0acd8; --cat-aisi: #9bb396; --cat-company: #f3b84f;
+      --cat-kr-gov: #9bb396; --cat-intl: #b8b4d0; --cat-notice: #ed7787;
+      --cat-other: #c4bdb4;
+      --cat-intl-org: #b8b4d0; --cat-gov: #9bb396; --cat-research-org: #b0acd8;
+      --cat-ngo: #9bb396; --cat-media: #ed7787; --cat-db: #c4bdb4;
+      --cat-news-rss: #ed7787; --cat-scrapmaster: #f3b84f; --cat-blog: #ed7787;
+      --cat-aisi-weekly: #9bb396; --cat-aiid: #c4bdb4;
+      --cat-frontier: #9bb396; --cat-msit: #b8b4d0; --cat-iitp: #b0acd8;
+      --cat-kdi-eiec: #ed7787; --cat-iaae: #f3b84f;
+      --cat-public: #9bb396;
+      --cat-archive: #b8b4d0;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .source { color: var(--muted); }
+  .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
+  .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600;
+  }
+  .badge.cat-research { --chip: var(--cat-research); }
+  .badge.cat-aisi { --chip: var(--cat-aisi); }
+  .badge.cat-company { --chip: var(--cat-company); }
+  .badge.cat-kr-gov { --chip: var(--cat-kr-gov); }
+  .badge.cat-intl { --chip: var(--cat-intl); }
+  .badge.cat-notice { --chip: var(--cat-notice); }
+  .badge.cat-other { --chip: var(--cat-other); }
+  .badge.cat-intl-org { --chip: var(--cat-intl-org); }
+  .badge.cat-gov { --chip: var(--cat-gov); }
+  .badge.cat-research-org { --chip: var(--cat-research-org); }
+  .badge.cat-ngo { --chip: var(--cat-ngo); }
+  .badge.cat-media { --chip: var(--cat-media); }
+  .badge.cat-news-rss { --chip: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { --chip: var(--cat-scrapmaster); }
+  .badge.cat-db { --chip: var(--cat-db); }
+  .badge.cat-blog { --chip: var(--cat-blog); }
+  .badge.cat-aisi-weekly { --chip: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { --chip: var(--cat-aiid); }
+  .badge.cat-frontier { --chip: var(--cat-frontier); }
+  .badge.cat-msit { --chip: var(--cat-msit); }
+  .badge.cat-iitp { --chip: var(--cat-iitp); }
+  .badge.cat-kdi-eiec { --chip: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { --chip: var(--cat-iaae); }
+  .badge.cat-public { --chip: var(--cat-public); }
+  .badge.cat-archive { --chip: var(--cat-archive); }
+  .badge[class*="cat-"]:not(.cat-coll) {
+    background: color-mix(in srgb, var(--chip) 14%, var(--card-bg));
+    color: var(--chip);
+    border: 1px solid color-mix(in srgb, var(--chip) 32%, var(--border));
+  }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .day-nav-btn {
+    display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    font-weight: 600; text-decoration: none; color: var(--fg); border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .day-nav-btn:hover { border-color: var(--gold); color: var(--gold-strong); }
+  .day-nav-btn.disabled { color: var(--muted); cursor: default; }
+  .day-nav-btn.disabled:hover { border-color: var(--border); color: var(--muted); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+  /* 아카이브 격자 — 건수 4단계. 페스티벌은 밝은 마리골드·로즈 칸에
+     인디고 글자, 가장 많은 날은 인디고 칸에 크림 글자. */
+  .archive-month-current { margin: 10px 0 4px; }
+  .month-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 10px; }
+  .archive-month .archive-grid { margin-top: 8px; padding-left: 14px; }
+  .archive-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .archive-cell {
+    width: 42px; height: 42px; border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 0.78rem; text-decoration: none;
+    border: 1px solid var(--border);
+  }
+  .archive-cell .n { font-weight: 700; line-height: 1.15; }
+  .archive-cell .c { font-size: 0.62rem; opacity: 0.85; line-height: 1.1; }
+  .archive-cell.empty { color: var(--muted); }
+  .archive-cell.g1 { background: var(--g1); color: var(--fg); border-color: transparent; }
+  .archive-cell.g2 { background: var(--g2); color: var(--navy); border-color: transparent; }
+  .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
+  .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
+  .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-intro p + p { margin-top: 10px; }
+  .pd-log-month {
+    font-size: 1.05rem; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pd-log-month:first-of-type { margin-top: 0; }
+  .pd-log-entry {
+    padding: 14px 0 16px; border-bottom: 1px solid var(--border);
+  }
+  .pd-log-entry:last-child { border-bottom: none; }
+  .pd-log-meta {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px;
+    margin-bottom: 6px;
+  }
+  .pd-log-date {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted);
+  }
+  .pd-log-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pd-log-tag {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-log-entry h3 { font-size: 0.98rem; margin: 0 0 6px; font-weight: 700; }
+  .pd-log-entry p { margin: 0; font-size: 0.88rem; color: var(--fg); line-height: 1.55; }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+
+  html[lang="en"] body {
+    font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
+  }
+  .en-lede {
+    list-style: none; margin: 0 0 22px; padding: 14px 18px 14px 16px;
+    border: 1px solid var(--border); border-radius: 12px; background: var(--card-bg);
+  }
+  .en-lede li {
+    font-size: 0.86rem; color: var(--muted); line-height: 1.55;
+    padding: 5px 0 5px 0.95em; position: relative;
+  }
+  .en-lede li::before {
+    content: "·"; position: absolute; left: 0; color: var(--gold); font-weight: 700;
+  }
+  .en-lede b { color: var(--fg); font-weight: 650; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">소개 / 파이프라인 · 업데이트 로그</div>
+    <div class="nav"><a href="../about.html">← 파이프라인</a><a href="../index.html">아카이브</a></div>
+  </div>
+</header>
+<div class="pd-intro"><p>파이프라인 소개 도식의 하위 페이지입니다. 수집이 매일 쌓인 기록은 빼고, 사이트 구조·수집 범위·요약 방식·파이프라인 단계가 바뀐 지점만 적습니다. 최신 달이 위입니다.</p></div><section><h2 class="pd-log-month">2026년 9월</h2><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-09-02">2026-09-02</time><span class="pd-log-tags"><span class="pd-log-tag">사이트</span><span class="pd-log-tag">파이프라인</span></span></div><h3>영문 한국 랜딩을 이번 달은 펼치고 지난달은 접는다</h3><p>en.html을 이번 달+어제 창만으로 통째로 덮어쓰면 월초에 지난달 카드가 사라졌다. 캐시에 있는 날은 페이지에 남기고, 주간 하이라이트 아카이브와 같이 지난달은 월별 접기로 둔다. 푸터의 English 링크는 빼 인덱스 버튼만 남겼다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-09-02">2026-09-02</time><span class="pd-log-tags"><span class="pd-log-tag">사이트</span><span class="pd-log-tag">파이프라인</span></span></div><h3>파이프라인 소개 아래에 업데이트 로그를 둔다</h3><p>도식은 지금 구조를 한 장으로 보여주고, 그동안 바뀐 이유는 이 페이지에서 날짜별로 읽도록 나눴다. 매일 쌓이는 수집분 커밋은 적지 않는다.</p></article></section><section><h2 class="pd-log-month">2026년 8월</h2><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-31">2026-08-31</time><span class="pd-log-tags"><span class="pd-log-tag">사이트</span><span class="pd-log-tag">요약</span></span></div><h3>같은 사안 묶기를 제목 휴리스틱과 애매한 쌍만 LLM으로 검증한다</h3><p>하루치를 한 번에 분류시키기보다, 비슷한 제목을 후보로 넉넉히 고른 뒤 애매한 쌍만 모델에 물어 ‘같은 사건인지’를 확인한다. 영어 제목과 한글 제목이 섞여도 한 이슈로 붙도록 손봤다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-29">2026-08-29</time><span class="pd-log-tags"><span class="pd-log-tag">사이트</span><span class="pd-log-tag">파이프라인</span><span class="pd-log-tag">요약</span></span></div><h3>영문 한국 랜딩(en.html)을 매일 파이프라인에 넣는다</h3><p>한글 카드 번역이 아니라, 한국에서 일어난 안전·거버넌스 사안만 주간 하이라이트와 같은 불릿으로 압축한다. 인용은 각호로 붙고, 게재일 재배치와 같은 사안 묶기 다음에 돌며 공개 저장소 push 직전에 쓴다. 이번 달과 어제만 다시 보고 안 바뀐 날은 캐시를 쓴다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-26">2026-08-26</time><span class="pd-log-tags"><span class="pd-log-tag">사이트</span><span class="pd-log-tag">수집</span></span></div><h3>한국 주제 모아보기와 아카이브 리본을 나눈다</h3><p>한국 공공·기업·국내 사건은 주제 칩 ‘한국’으로 모으고, 정보통·Last Week in AI·EU AI Act 뉴스레터 같은 묶음 브리핑은 발행 주체가 아니라 아카이브 리본으로 보낸다. 주간 추이 차트는 소스 대신 주제 태그로 그린다. 같은 이슈의 두 번째 클리핑은 요약을 반복하지 않고 링크만 붙인다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-26">2026-08-26</time><span class="pd-log-tags"><span class="pd-log-tag">파이프라인</span><span class="pd-log-tag">수집</span></span></div><h3>레인드롭을 수동 대기열로 바꾼다</h3><p>폴더 기준 컬렉션 축은 이미 걷어낸 뒤라, 레인드롭은 사람이 넣어 둔 대기열만 요약하고 digest에 들어간 북마크는 지운다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-25">2026-08-25</time><span class="pd-log-tags"><span class="pd-log-tag">수집</span><span class="pd-log-tag">사이트</span></span></div><h3>소스를 RSS로 옮기고 모아보기를 일곱 리본으로 묶는다</h3><p>HTML 스크레이핑이 깨지던 곳을 검증된 RSS로 바꾸고 Turing·Concordia·Mistral·CAIS·FLI·OpenAI 피드를 늘렸다. 소스별 페이지는 공공·언론·기업·DB 등 일곱 리본으로 합쳤고, 날짜 HTML은 daily/ 아래로 옮겼다. AI Lawsuit Tracker도 DB 리본에 넣었다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-23">2026-08-23</time><span class="pd-log-tags"><span class="pd-log-tag">사이트</span><span class="pd-log-tag">요약</span><span class="pd-log-tag">파이프라인</span></span></div><h3>일간 하이라이트를 주간 하이라이트로 바꾼다</h3><p>하루 파일은 재배치 시차 때문에 그날 기사가 섞여 있어 완결된 그림이 안 나왔다. 월요일에만 지난주 월~일을 모아 여섯 주제로 정리하고, 후보가 있는 주제만 보여 준다. IAAE와 K-AISI 주간동향을 넣었고, 날짜 드리프트를 잡기 위해 전체 재배치 스캔을 매일 돌린다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-22">2026-08-22</time><span class="pd-log-tags"><span class="pd-log-tag">사이트</span><span class="pd-log-tag">수집</span></span></div><h3>공개 사이트를 독립 저장소로 옮기고 지면을 다시 짠다</h3><p>HTML만 songkyungho/ai-safety-digest로 푸시하고 GitHub Pages로 연다. 웜페이퍼·네이비·골드 팔레트와 SVG 배너를 썼고, 아카이브는 월별 날짜 격자로 바꿨다. KDI 경제정보센터를 독립 리본으로 추가했다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-18">2026-08-18</time><span class="pd-log-tags"><span class="pd-log-tag">요약</span><span class="pd-log-tag">파이프라인</span></span></div><h3>요약을 OpenRouter로 옮긴다</h3><p>로컬 MLX 대신 OpenRouter를 쓴다. 대량 요약은 GPT-5.6 Luna, 하이라이트처럼 문장력이 필요한 작업은 Claude Sonnet 5로 나눈다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-16">2026-08-16</time><span class="pd-log-tags"><span class="pd-log-tag">수집</span><span class="pd-log-tag">사이트</span></span></div><h3>AI Incident Database를 전용 리본으로 넣는다</h3><p>사고 기록을 RSS로 받고, 한국과 관련된 건을 리본 안에서 먼저 보이게 한다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-07">2026-08-07</time><span class="pd-log-tags"><span class="pd-log-tag">사이트</span><span class="pd-log-tag">파이프라인</span></span></div><h3>소스별 모아보기와 검색 MCP를 연다</h3><p>리본마다 모아보기 페이지를 만들고, digest를 SQLite FTS5와 임베딩으로 찾는 MCP 서버를 붙여 Claude Desktop에서 온디맨드로 찾게 한다. 인덱스에는 컬렉션별 주간 추이 차트가 들어간다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-04">2026-08-04</time><span class="pd-log-tags"><span class="pd-log-tag">수집</span><span class="pd-log-tag">사이트</span></span></div><h3>한국 언론 클리핑을 두 갈래로 넣는다</h3><p>스크랩마스터(IITP 뉴스클리핑)와 국내 언론 24곳 RSS 합본을 전용 리본으로 받는다. 제목에 AI가 있어도 안전·거버넌스와 무관한 기사는 적합성 게이트로 걸러 낸다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-08-03">2026-08-03</time><span class="pd-log-tags"><span class="pd-log-tag">수집</span></span></div><h3>스크랩마스터와 AI 윤리 레터를 첫 수집한다</h3><p>IITP 계정 신문 스크랩 목록과 ai-ethics.kr Ghost 블로그를 소스에 넣고, 카드는 발표일 기준으로 다시 나눈다.</p></article></section><section><h2 class="pd-log-month">2026년 7월</h2><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-07-30">2026-07-30</time><span class="pd-log-tags"><span class="pd-log-tag">파이프라인</span></span></div><h3>다이제스트 파일을 수집일이 아니라 기사 날짜로 재정리한다</h3><p>제목에 적힌 게재일·본문 힌트로 항목을 옮긴다. 이후 파이프라인은 어제 파일을 재배치한 뒤 오늘 수집분을 다시 게재일 파일로 보낸다.</p></article><article class="pd-log-entry"><div class="pd-log-meta"><time class="pd-log-date" datetime="2026-07-29">2026-07-29</time><span class="pd-log-tags"><span class="pd-log-tag">수집</span><span class="pd-log-tag">사이트</span></span></div><h3>리본을 기관 유형별로 나누고 소스를 늘린다</h3><p>국제기구·정부·연구기관·NGO·미디어·DB로 카테고리를 쪼개고, 레인드롭에서 자주 보이던 소스 12곳과 Global AI Regulation Tracker를 추가한다. 페이지 하단에 수집 대상 목록을 넣었다.</p></article></section>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a> · <a href="../about/log.html">업데이트 로그</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = btn.getAttribute('data-copied') || '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
+</script>
+</body>
+</html>

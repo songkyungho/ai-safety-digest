@@ -78,6 +78,25 @@
     line-height: 1.7;
   }
   .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  .global-nav {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--navy); color: var(--on-navy); height: 40px;
+  }
+  .global-nav-inner {
+    max-width: 760px; margin: 0 auto; height: 40px; padding: 0 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: -0.02em;
+    overflow-x: auto;
+  }
+  .global-nav-left, .global-nav-right {
+    display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+  }
+  .global-nav a, .global-nav .nav-current {
+    color: var(--on-navy); text-decoration: none; white-space: nowrap;
+  }
+  .global-nav a { opacity: 0.78; }
+  .global-nav a:hover { opacity: 1; color: var(--gold); }
+  .global-nav .nav-current { opacity: 1; font-weight: 650; }
   /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
      흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
   header.page-head {
@@ -90,10 +109,12 @@
   header.page-head .masthead-banner {
     display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
   }
-  header.page-head .tagline { margin: 0 0 20px; font-size: 0.98rem; color: var(--on-navy-muted); }
+  header.page-head .tagline { margin: 0; font-size: 0.95rem; color: var(--on-navy-muted); line-height: 1.55; }
   header.page-head .tagline a { color: var(--on-navy-muted); }
   header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .sub:empty { display: none; }
   header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav:empty { display: none; }
   header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
   header.page-head .nav a:hover { color: var(--gold); }
   .entry {
@@ -310,6 +331,30 @@
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-intro p + p { margin-top: 10px; }
+  .pd-log-month {
+    font-size: 1.05rem; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pd-log-month:first-of-type { margin-top: 0; }
+  .pd-log-entry {
+    padding: 14px 0 16px; border-bottom: 1px solid var(--border);
+  }
+  .pd-log-entry:last-child { border-bottom: none; }
+  .pd-log-meta {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px;
+    margin-bottom: 6px;
+  }
+  .pd-log-date {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted);
+  }
+  .pd-log-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pd-log-tag {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-log-entry h3 { font-size: 0.98rem; margin: 0 0 6px; font-weight: 700; }
+  .pd-log-entry p { margin: 0; font-size: 0.88rem; color: var(--fg); line-height: 1.55; }
   .pd-figure { margin: 0 0 28px; }
   .pd-figure figcaption {
     margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
@@ -371,6 +416,7 @@
 </style>
 </head>
 <body>
+<nav class="global-nav" aria-label="사이트"><div class="global-nav-inner"><div class="global-nav-left"><span class="nav-current">최신 다이제스트</span><a href="../summary/index.html">주간 하이라이트</a><a href="../en.html">AI Safety in Korea</a></div><div class="global-nav-right"><a href="../about.html">소개</a><a href="../about/log.html">업데이트</a></div></div></nav>
 <div class="wrap">
 <header class="page-head">
   <div class="page-head-inner">
@@ -440,7 +486,7 @@ https://arxiv.org/abs/2601.18779" onclick="copyEntry(this)">복사</button></div
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-01-25.html">← 2026-01-25</a><a class="day-nav-btn" href="2026-01-27.html">2026-01-27 →</a></nav>
 </div>
-<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a><br>요약 모델: gpt-5.6-luna · AI Safety pipeline · <a href="../about.html">파이프라인</a></div></footer>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
   var ta = document.createElement('textarea');

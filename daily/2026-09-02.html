@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Digest 2026-09-02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 페스티벌 팔레트(color-hex 37391) —
+       #ef3837 #ed7787 #f3b84f #474284 #6a8167 을 지면 토큰에 맞춘 것. */
+    --bg: #f6f1e4; --fg: #2a2848; --muted: #5a6258; --border: #e4dcc8;
+    --card-bg: #fffdf8; --link: #3f5340; --accent: #ef3837;
+    --navy: #474284; --navy-2: #565193;
+    --gold: #f3b84f; --gold-strong: #f7c86a;
+    --on-navy: #f6f1e4; --on-navy-muted: #c4c0d8;
+    --hairline-strong: #d8d0b8;
+    --g1: #f7dca0; --g2: #f3c8ce;
+    --cat-research: #474284; --cat-aisi: #3f5340; --cat-company: #8a5a18;
+    --cat-kr-gov: #3f5340; --cat-intl: #3d3a6e; --cat-notice: #b44a58;
+    --cat-other: #534f4a;
+    --cat-intl-org: #3d3a6e; --cat-gov: #3f5340; --cat-research-org: #474284;
+    --cat-ngo: #3f5340; --cat-media: #b44a58; --cat-db: #4a463e;
+    --cat-news-rss: #b44a58; --cat-scrapmaster: #8a5a18; --cat-blog: #b44a58;
+    --cat-aisi-weekly: #3f5340; --cat-aiid: #4a463e;
+    --cat-frontier: #3f5340; --cat-msit: #3d3a6e; --cat-iitp: #474284;
+    --cat-kdi-eiec: #b44a58; --cat-iaae: #8a5a18;
+    --cat-public: #3f5340;
+    --cat-archive: #3d3a6e;
+    --topic-norms: #a16207; --topic-law: #1d4ed8; --topic-guideline: #0f766e;
+    --topic-standards: #7c3aed; --topic-national-security: #b45309;
+    --topic-cybersecurity: #0369a1; --topic-politics: #be123c;
+    --topic-sovereign-ai: #4338ca; --topic-healthcare: #059669;
+    --topic-youth: #db2777; --topic-aisi: #16a34a; --topic-agentic: #ea580c;
+    --topic-physical: #4d7c0f; --topic-safety: #4f46e5;
+    --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
+    --topic-frontier: #c2410c; --topic-incidents: #334155;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1828; --fg: #eee8dc; --muted: #a8a898; --border: #323048;
+      --card-bg: #221f32; --link: #9bb396; --accent: #ed7787;
+      --navy: #2e2b5c; --navy-2: #3a3770;
+      --gold: #f3b84f; --gold-strong: #f7c86a;
+      --on-navy: #f6f1e4; --on-navy-muted: #b8b4d0;
+      --hairline-strong: #3c3a52;
+      --g1: #4a3a20; --g2: #6a3a44;
+      --cat-research: #b0acd8; --cat-aisi: #9bb396; --cat-company: #f3b84f;
+      --cat-kr-gov: #9bb396; --cat-intl: #b8b4d0; --cat-notice: #ed7787;
+      --cat-other: #c4bdb4;
+      --cat-intl-org: #b8b4d0; --cat-gov: #9bb396; --cat-research-org: #b0acd8;
+      --cat-ngo: #9bb396; --cat-media: #ed7787; --cat-db: #c4bdb4;
+      --cat-news-rss: #ed7787; --cat-scrapmaster: #f3b84f; --cat-blog: #ed7787;
+      --cat-aisi-weekly: #9bb396; --cat-aiid: #c4bdb4;
+      --cat-frontier: #9bb396; --cat-msit: #b8b4d0; --cat-iitp: #b0acd8;
+      --cat-kdi-eiec: #ed7787; --cat-iaae: #f3b84f;
+      --cat-public: #9bb396;
+      --cat-archive: #b8b4d0;
+      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
+      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
+      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
+      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
+      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
+      --topic-physical: #bef264; --topic-safety: #818cf8;
+      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
+      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; overflow-x: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
+      'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  .global-nav {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--navy); color: var(--on-navy); height: 40px;
+  }
+  .global-nav-inner {
+    max-width: 760px; margin: 0 auto; height: 40px; padding: 0 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: -0.02em;
+    overflow-x: auto;
+  }
+  .global-nav-left, .global-nav-right {
+    display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+  }
+  .global-nav a, .global-nav .nav-current {
+    color: var(--on-navy); text-decoration: none; white-space: nowrap;
+  }
+  .global-nav a { opacity: 0.78; }
+  .global-nav a:hover { opacity: 1; color: var(--gold); }
+  .global-nav .nav-current { opacity: 1; font-weight: 650; }
+  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+     흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
+  header.page-head {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy);
+    margin: 0 calc(50% - 50vw) 28px;
+  }
+  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  header.page-head .masthead-banner {
+    display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
+  }
+  header.page-head .tagline { margin: 0; font-size: 0.95rem; color: var(--on-navy-muted); line-height: 1.55; }
+  header.page-head .tagline a { color: var(--on-navy-muted); }
+  header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
+  header.page-head .sub:empty { display: none; }
+  header.page-head .nav { margin-top: 12px; font-size: 0.88rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header.page-head .nav:empty { display: none; }
+  header.page-head .nav a { color: var(--on-navy-muted); text-decoration: none; }
+  header.page-head .nav a:hover { color: var(--gold); }
+  .entry {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 12px; padding: 18px 20px 18px 18px; margin-bottom: 16px;
+  }
+  .entry.cat-research { border-left-color: var(--cat-research); }
+  .entry.cat-aisi { border-left-color: var(--cat-aisi); }
+  .entry.cat-company { border-left-color: var(--cat-company); }
+  .entry.cat-kr-gov { border-left-color: var(--cat-kr-gov); }
+  .entry.cat-intl { border-left-color: var(--cat-intl); }
+  .entry.cat-notice { border-left-color: var(--cat-notice); }
+  .entry.cat-other { border-left-color: var(--cat-other); }
+  .entry.cat-intl-org { border-left-color: var(--cat-intl-org); }
+  .entry.cat-gov { border-left-color: var(--cat-gov); }
+  .entry.cat-research-org { border-left-color: var(--cat-research-org); }
+  .entry.cat-ngo { border-left-color: var(--cat-ngo); }
+  .entry.cat-media { border-left-color: var(--cat-media); }
+  .entry.cat-news-rss { border-left-color: var(--cat-news-rss); }
+  .entry.cat-scrapmaster { border-left-color: var(--cat-scrapmaster); }
+  .entry.cat-db { border-left-color: var(--cat-db); border-left-style: dashed; }
+  .entry.cat-blog { border-left-color: var(--cat-blog); }
+  .entry.cat-aisi-weekly { border-left-color: var(--cat-aisi-weekly); }
+  .entry.cat-aiid { border-left-color: var(--cat-aiid); }
+  .entry.cat-frontier { border-left-color: var(--cat-frontier); }
+  .entry.cat-msit { border-left-color: var(--cat-msit); }
+  .entry.cat-iitp { border-left-color: var(--cat-iitp); }
+  .entry.cat-kdi-eiec { border-left-color: var(--cat-kdi-eiec); }
+  .entry.cat-iaae { border-left-color: var(--cat-iaae); }
+  .entry.cat-public { border-left-color: var(--cat-public); }
+  .entry.cat-archive { border-left-color: var(--cat-archive); }
+  .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .source { color: var(--muted); }
+  .topic-icons { display: inline-flex; align-items: center; gap: 4px; }
+  .topic-icon { font-size: 0.95rem; line-height: 1; }
+  .digest-toolbar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--card-bg);
+  }
+  .digest-toolbar input[type="search"] {
+    flex: 1 1 180px; min-width: 140px; font: inherit; font-size: 0.88rem;
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg);
+  }
+  .filter-chip {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .filter-chip.active { border-color: var(--gold); color: var(--fg); font-weight: 600; }
+  .entry.digest-hidden { display: none; }
+  .related-stories { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .related-stories summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .related-stories .entry { margin: 10px 0 0; box-shadow: none; }
+  .related-links { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+  .related-links-label { font-weight: 600; margin-bottom: 4px; }
+  .related-links ul { margin: 0; padding-left: 1.2em; }
+  .related-links a { color: var(--link); }
+  .copy-btn {
+    flex-shrink: 0; margin-left: auto; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 0.75rem; font-family: inherit; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-btn:hover, .copy-btn:active { color: var(--link); border-color: var(--link); }
+  .copy-btn.copied { color: var(--cat-aisi); border-color: var(--cat-aisi); }
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600;
+  }
+  .badge.cat-research { --chip: var(--cat-research); }
+  .badge.cat-aisi { --chip: var(--cat-aisi); }
+  .badge.cat-company { --chip: var(--cat-company); }
+  .badge.cat-kr-gov { --chip: var(--cat-kr-gov); }
+  .badge.cat-intl { --chip: var(--cat-intl); }
+  .badge.cat-notice { --chip: var(--cat-notice); }
+  .badge.cat-other { --chip: var(--cat-other); }
+  .badge.cat-intl-org { --chip: var(--cat-intl-org); }
+  .badge.cat-gov { --chip: var(--cat-gov); }
+  .badge.cat-research-org { --chip: var(--cat-research-org); }
+  .badge.cat-ngo { --chip: var(--cat-ngo); }
+  .badge.cat-media { --chip: var(--cat-media); }
+  .badge.cat-news-rss { --chip: var(--cat-news-rss); }
+  .badge.cat-scrapmaster { --chip: var(--cat-scrapmaster); }
+  .badge.cat-db { --chip: var(--cat-db); }
+  .badge.cat-blog { --chip: var(--cat-blog); }
+  .badge.cat-aisi-weekly { --chip: var(--cat-aisi-weekly); }
+  .badge.cat-aiid { --chip: var(--cat-aiid); }
+  .badge.cat-frontier { --chip: var(--cat-frontier); }
+  .badge.cat-msit { --chip: var(--cat-msit); }
+  .badge.cat-iitp { --chip: var(--cat-iitp); }
+  .badge.cat-kdi-eiec { --chip: var(--cat-kdi-eiec); }
+  .badge.cat-iaae { --chip: var(--cat-iaae); }
+  .badge.cat-public { --chip: var(--cat-public); }
+  .badge.cat-archive { --chip: var(--cat-archive); }
+  .badge[class*="cat-"]:not(.cat-coll) {
+    background: color-mix(in srgb, var(--chip) 14%, var(--card-bg));
+    color: var(--chip);
+    border: 1px solid color-mix(in srgb, var(--chip) 32%, var(--border));
+  }
+  .badge.cat-coll {
+    background: transparent; color: var(--muted); border: 1.5px solid var(--border);
+  }
+  .badge.cat-coll:hover { color: var(--link); border-color: var(--link); }
+  .badge.topic-badge {
+    background: transparent; color: var(--fg); border: 1.5px solid var(--border);
+  }
+  .badge.topic-badge:hover { color: var(--link); border-color: var(--link); }
+  .entry p {
+    margin: 0 0 10px; font-size: 0.94rem; white-space: pre-line;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry p a { color: var(--link); }
+  .unavailable { color: var(--muted); font-style: italic; }
+  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
+  .url a { color: var(--muted); text-decoration: none; }
+  .url a:hover { color: var(--link); }
+  .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .day-nav-btn {
+    display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    font-weight: 600; text-decoration: none; color: var(--fg); border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .day-nav-btn:hover { border-color: var(--gold); color: var(--gold-strong); }
+  .day-nav-btn.disabled { color: var(--muted); cursor: default; }
+  .day-nav-btn.disabled:hover { border-color: var(--border); color: var(--muted); }
+  footer.site-footer {
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
+  }
+  .footer-inner {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    font-size: 0.78rem; text-align: center; line-height: 1.8;
+  }
+  footer a { color: var(--on-navy-muted); }
+  footer a:hover { color: var(--gold); }
+  footer details { margin-top: 10px; text-align: left; display: inline-block; }
+  footer summary { cursor: pointer; text-align: center; }
+  footer .source-list { margin-top: 8px; max-width: 640px; }
+  footer .source-list b { color: var(--on-navy); }
+  .archive-list a { display: block; padding: 10px 0; border-bottom: 1px solid var(--border);
+    color: var(--fg); text-decoration: none; }
+  .archive-list a:hover { color: var(--link); }
+  .archive-count { color: var(--muted); font-size: 0.85em; }
+  .archive-month { margin-top: 4px; }
+  .archive-month summary {
+    cursor: pointer; padding: 10px 0; border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .archive-month summary::-webkit-details-marker { display: none; }
+  .archive-month summary::before { content: "▸ "; color: var(--muted); }
+  .archive-month[open] summary::before { content: "▾ "; }
+  .archive-month .archive-list { padding-left: 14px; }
+  /* 아카이브 격자 — 건수 4단계. 페스티벌은 밝은 마리골드·로즈 칸에
+     인디고 글자, 가장 많은 날은 인디고 칸에 크림 글자. */
+  .archive-month-current { margin: 10px 0 4px; }
+  .month-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 10px; }
+  .archive-month .archive-grid { margin-top: 8px; padding-left: 14px; }
+  .archive-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .archive-cell {
+    width: 42px; height: 42px; border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 0.78rem; text-decoration: none;
+    border: 1px solid var(--border);
+  }
+  .archive-cell .n { font-weight: 700; line-height: 1.15; }
+  .archive-cell .c { font-size: 0.62rem; opacity: 0.85; line-height: 1.1; }
+  .archive-cell.empty { color: var(--muted); }
+  .archive-cell.g1 { background: var(--g1); color: var(--fg); border-color: transparent; }
+  .archive-cell.g2 { background: var(--g2); color: var(--navy); border-color: transparent; }
+  .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
+  .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
+  .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+
+  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
+  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
+  .trend-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .trend-swatch {
+    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
+  }
+  .trend-chart-wrap { overflow-x: auto; }
+  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
+  .trend-grid { stroke: var(--border); stroke-width: 1; }
+  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+
+  .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
+  .ribbon-link:hover { opacity: 0.85; }
+  .ribbon-count { font-weight: 800; margin-left: 2px; }
+  .ribbon-highlight { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .cat-date-heading { font-size: 0.85rem; color: var(--muted); margin: 22px 0 10px; padding-top: 4px; }
+  .cat-date-heading:first-child { margin-top: 0; }
+  .cat-month-body { padding-top: 6px; }
+  .section-more { margin-top: 10px; font-size: 0.85rem; text-align: right; }
+  .section-more a { color: var(--link); text-decoration: none; }
+  .section-more a:hover { text-decoration: underline; }
+  header.page-head .nav a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    margin-top: 4px;
+  }
+  header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+
+  .pd-intro { margin-bottom: 22px; }
+  .pd-intro p { margin: 0; color: var(--fg); }
+  .pd-intro p + p { margin-top: 10px; }
+  .pd-log-month {
+    font-size: 1.05rem; margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pd-log-month:first-of-type { margin-top: 0; }
+  .pd-log-entry {
+    padding: 14px 0 16px; border-bottom: 1px solid var(--border);
+  }
+  .pd-log-entry:last-child { border-bottom: none; }
+  .pd-log-meta {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px;
+    margin-bottom: 6px;
+  }
+  .pd-log-date {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted);
+  }
+  .pd-log-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pd-log-tag {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-log-entry h3 { font-size: 0.98rem; margin: 0 0 6px; font-weight: 700; }
+  .pd-log-entry p { margin: 0; font-size: 0.88rem; color: var(--fg); line-height: 1.55; }
+  .pd-figure { margin: 0 0 28px; }
+  .pd-figure figcaption {
+    margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .pd-diagram-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card-bg); }
+  .pd-svg { display: block; width: 100%; min-width: 720px; height: auto; color: var(--fg); }
+  .pd-box, .pd-box-sm, .pd-pill { fill: var(--bg); stroke: var(--border); stroke-width: 1.4; }
+  .pd-side { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .pd-side-accent { fill: var(--card-bg); stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .pd-pill { stroke-width: 1.8; }
+  .pd-end { stroke: var(--accent); }
+  .pd-title { fill: var(--fg); font-size: 12.5px; font-weight: 700; font-family: inherit; }
+  .pd-sub { fill: var(--muted); font-size: 10px; font-family: inherit; }
+  .pd-arrow { stroke: var(--muted); stroke-width: 1.4; }
+  .pd-arrow-accent { stroke: var(--accent); stroke-width: 1.4; }
+  .pd-arrow-label { fill: var(--muted); font-size: 9.5px; font-family: inherit; }
+  .pd-marker path { fill: var(--muted); }
+  .pd-marker-accent path { fill: var(--accent); }
+
+  .pd-manual-panel {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 28px; background: var(--card-bg);
+  }
+  .pd-manual-panel h3 { margin: 0 0 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .pd-manual-badge {
+    font-size: 0.68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 999px; padding: 1px 8px;
+  }
+  .pd-manual-item { font-size: 0.85rem; margin-bottom: 10px; }
+  .pd-manual-item:last-child { margin-bottom: 0; }
+  .pd-manual-item b { display: block; margin-bottom: 2px; }
+  .pd-manual-item code {
+    display: block; font-size: 0.78rem; color: var(--link); overflow-wrap: anywhere; margin-bottom: 2px;
+  }
+  .pd-manual-item span { color: var(--muted); font-size: 0.8rem; }
+
+  .pd-sources h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .pd-sources-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 14px; }
+  .pd-source-group { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .pd-source-group:last-child { border-bottom: none; }
+  .pd-source-group b { display: block; margin-bottom: 2px; }
+  .pd-source-group span { color: var(--muted); }
+
+  html[lang="en"] body {
+    font-family: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
+  }
+  .en-lede {
+    list-style: none; margin: 0 0 22px; padding: 14px 18px 14px 16px;
+    border: 1px solid var(--border); border-radius: 12px; background: var(--card-bg);
+  }
+  .en-lede li {
+    font-size: 0.86rem; color: var(--muted); line-height: 1.55;
+    padding: 5px 0 5px 0.95em; position: relative;
+  }
+  .en-lede li::before {
+    content: "·"; position: absolute; left: 0; color: var(--gold); font-weight: 700;
+  }
+  .en-lede b { color: var(--fg); font-weight: 650; }
+</style>
+</head>
+<body>
+<nav class="global-nav" aria-label="사이트"><div class="global-nav-inner"><div class="global-nav-left"><span class="nav-current">최신 다이제스트</span><a href="../summary/index.html">주간 하이라이트</a><a href="../en.html">AI Safety in Korea</a></div><div class="global-nav-right"><a href="../about.html">소개</a><a href="../about/log.html">업데이트</a></div></div></nav>
+<div class="wrap">
+<header class="page-head">
+  <div class="page-head-inner">
+    <h1>AI Safety Daily Digest</h1>
+    <div class="sub">2026-09-02 · 88/88 수집 성공, 14/15건 요약</div>
+    <div class="nav"><a href="../index.html">← 전체 목록</a></div>
+  </div>
+</header>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="cybersecurity" data-search="MSIT 신규 게시물 1건 [2026-09-02] ‘보이스피싱 근절 종합대책’ 1년,  발생건수 40%·피해액 43% 감소 성과 (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187730) MSIT">
+  <h2>🇰🇷 MSIT 신규 게시물 1건</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="MSIT 신규 게시물 1건
+
+[2026-09-02] ‘보이스피싱 근절 종합대책’ 1년,  발생건수 40%·피해액 43% 감소 성과 (https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187730)
+
+https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307" onclick="copyEntry(this)">복사</button></div>
+  <p><span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span> [2026-09-02] ‘보이스피싱 근절 종합대책’ 1년,  발생건수 40%·피해액 43% 감소 성과 (<a href="https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187730">https://www.msit.go.kr/bbs/view.do?sCode=user&amp;mPid=208&amp;mId=307&amp;bbsSeqNo=94&amp;nttSeqNo=3187730</a>)</p>
+  <p class="url"><a href="https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307">https://www.msit.go.kr/bbs/list.do?sCode=user&amp;mPid=208&amp;mId=307</a></p>
+  
+  
+</article>
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="제9회 인공지능(AI) 기술 이용과 소비자 문제에 관한 전문조사회 개최 안내 제9회 전문조사회는 2026년 9월 9일 오후 3시부터 소비자위원회 회의실과 온라인으로 열린다. 인공지능 기술 이용과 소비자 문제에 관한 검토 상황을 논의하고, 소비자의 적절한 AI 기술 활용을 주제로 전문가 청취를 진행한다. 온라인 방청 신청은 9월 8일 정오까지이며, 신청자가 많을 경우 추첨으로 참석자를 정할 수 있다. CAO-JP">
+  <h2>🇯🇵 제9회 인공지능(AI) 기술 이용과 소비자 문제에 관한 전문조사회 개최 안내</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">CAO-JP</span></span><button type="button" class="copy-btn" data-copy="제9회 인공지능(AI) 기술 이용과 소비자 문제에 관한 전문조사회 개최 안내
+
+제9회 전문조사회는 2026년 9월 9일 오후 3시부터 소비자위원회 회의실과 온라인으로 열린다. 인공지능 기술 이용과 소비자 문제에 관한 검토 상황을 논의하고, 소비자의 적절한 AI 기술 활용을 주제로 전문가 청취를 진행한다. 온라인 방청 신청은 9월 8일 정오까지이며, 신청자가 많을 경우 추첨으로 참석자를 정할 수 있다.
+
+https://www.cao.go.jp/consumer/kabusoshiki/ai_technology/009/kaisai/index.html" onclick="copyEntry(this)">복사</button></div>
+  <p>제9회 전문조사회는 2026년 9월 9일 오후 3시부터 소비자위원회 회의실과 온라인으로 열린다. 인공지능 기술 이용과 소비자 문제에 관한 검토 상황을 논의하고, 소비자의 적절한 AI 기술 활용을 주제로 전문가 청취를 진행한다. 온라인 방청 신청은 9월 8일 정오까지이며, 신청자가 많을 경우 추첨으로 참석자를 정할 수 있다.</p>
+  <p class="url"><a href="https://www.cao.go.jp/consumer/kabusoshiki/ai_technology/009/kaisai/index.html">https://www.cao.go.jp/consumer/kabusoshiki/ai_technology/009/kaisai/index.html</a></p>
+  
+  
+</article>
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="미국 반도체 제조 인력 강화 (2026.9.2) 미국의 첨단 반도체 제조 역량 확대를 위해서는 엔지니어·과학자, 장비·시설 기술자, 생산직 등 전문 인력의 안정적인 확보가 필요하다. 2023년 1월부터 2025년 4월까지 미국 반도체 제조 관련 채용 공고 3,441건을 분석한 결과, 31개 기업과 48개 주 및 워싱턴 D.C.가 포함됐으며 엔지니어와 기술자 직군이 가장 큰 비중을 차지했다. 보고서는 산업별 기술 및 소프트 스킬에 맞춘 교육, 숙련 이민자와 소외된 인재의 채용, 기업·대학 협력을 통한 산업 클러스터 구축을 권고한다. CSET-Georgetown">
+  <h2>🇺🇸 미국 반도체 제조 인력 강화 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">CSET-Georgetown</span></span><button type="button" class="copy-btn" data-copy="미국 반도체 제조 인력 강화 (2026.9.2)
+
+미국의 첨단 반도체 제조 역량 확대를 위해서는 엔지니어·과학자, 장비·시설 기술자, 생산직 등 전문 인력의 안정적인 확보가 필요하다. 2023년 1월부터 2025년 4월까지 미국 반도체 제조 관련 채용 공고 3,441건을 분석한 결과, 31개 기업과 48개 주 및 워싱턴 D.C.가 포함됐으며 엔지니어와 기술자 직군이 가장 큰 비중을 차지했다. 보고서는 산업별 기술 및 소프트 스킬에 맞춘 교육, 숙련 이민자와 소외된 인재의 채용, 기업·대학 협력을 통한 산업 클러스터 구축을 권고한다.
+
+https://cset.georgetown.edu/publication/strengthening-the-u-s-semiconductor-manufacturing-workforce/" onclick="copyEntry(this)">복사</button></div>
+  <p>미국의 첨단 반도체 제조 역량 확대를 위해서는 엔지니어·과학자, 장비·시설 기술자, 생산직 등 전문 인력의 안정적인 확보가 필요하다. 2023년 1월부터 2025년 4월까지 미국 반도체 제조 관련 채용 공고 3,441건을 분석한 결과, 31개 기업과 48개 주 및 워싱턴 D.C.가 포함됐으며 엔지니어와 기술자 직군이 가장 큰 비중을 차지했다. 보고서는 산업별 기술 및 소프트 스킬에 맞춘 교육, 숙련 이민자와 소외된 인재의 채용, 기업·대학 협력을 통한 산업 클러스터 구축을 권고한다.</p>
+  <p class="url"><a href="https://cset.georgetown.edu/publication/strengthening-the-u-s-semiconductor-manufacturing-workforce/">https://cset.georgetown.edu/publication/strengthening-the-u-s-semiconductor-manufacturing-workforce/</a></p>
+  
+  
+</article>
+<article class="entry cat-public" data-cat="public" data-topics="" data-search="공급망의 AI 운영 의존성과 새롭게 부상하는 보험 위험 (2026.9.2) 이 보고서는 운송·물류·창고·재고 관리에서 AI 활용이 확대되면서 데이터, 모델, 소프트웨어 공급업체, 클라우드 서비스 등에 대한 운영 의존성과 새로운 보험 위험이 발생한다고 분석한다. 동일한 AI 모델·클라우드·물류 소프트웨어 등에 여러 기업이 의존할 경우, 장애·사이버공격·규제 변화로 여러 보험계약자와 보험 종목에서 상관된 손실이 동시에 발생하는 aggregation risk가 커질 수 있다. 향후 5년간 모니터링·예측·최적화 등 상대적으로 위험이 낮은 활용이 먼저 확산될 것으로 전망되며, 보고서는 운영자·기술 제공업체·보험사·규제기관에 AI 사용 현황 관리, 인간 감독, 모니터링, 대체 절차 및 공동 대응체계 마련을 권고한다. RAND">
+  <h2>🇺🇸 공급망의 AI 운영 의존성과 새롭게 부상하는 보험 위험 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="공급망의 AI 운영 의존성과 새롭게 부상하는 보험 위험 (2026.9.2)
+
+이 보고서는 운송·물류·창고·재고 관리에서 AI 활용이 확대되면서 데이터, 모델, 소프트웨어 공급업체, 클라우드 서비스 등에 대한 운영 의존성과 새로운 보험 위험이 발생한다고 분석한다. 동일한 AI 모델·클라우드·물류 소프트웨어 등에 여러 기업이 의존할 경우, 장애·사이버공격·규제 변화로 여러 보험계약자와 보험 종목에서 상관된 손실이 동시에 발생하는 aggregation risk가 커질 수 있다. 향후 5년간 모니터링·예측·최적화 등 상대적으로 위험이 낮은 활용이 먼저 확산될 것으로 전망되며, 보고서는 운영자·기술 제공업체·보험사·규제기관에 AI 사용 현황 관리, 인간 감독, 모니터링, 대체 절차 및 공동 대응체계 마련을 권고한다.
+
+https://www.rand.org/pubs/research_reports/RRA5093-1.html" onclick="copyEntry(this)">복사</button></div>
+  <p>이 보고서는 운송·물류·창고·재고 관리에서 AI 활용이 확대되면서 데이터, 모델, 소프트웨어 공급업체, 클라우드 서비스 등에 대한 운영 의존성과 새로운 보험 위험이 발생한다고 분석한다. 동일한 AI 모델·클라우드·물류 소프트웨어 등에 여러 기업이 의존할 경우, 장애·사이버공격·규제 변화로 여러 보험계약자와 보험 종목에서 상관된 손실이 동시에 발생하는 aggregation risk가 커질 수 있다. 향후 5년간 모니터링·예측·최적화 등 상대적으로 위험이 낮은 활용이 먼저 확산될 것으로 전망되며, 보고서는 운영자·기술 제공업체·보험사·규제기관에 AI 사용 현황 관리, 인간 감독, 모니터링, 대체 절차 및 공동 대응체계 마련을 권고한다.</p>
+  <p class="url"><a href="https://www.rand.org/pubs/research_reports/RRA5093-1.html">https://www.rand.org/pubs/research_reports/RRA5093-1.html</a></p>
+  
+  <details class="related-stories" open><summary>같은 이슈 관련 1건 · RAND</summary><article class="entry cat-public" data-cat="public" data-topics="" data-search="공급망의 AI 운영 의존과 새롭게 부상하는 보험 위험 (2026.9.2) RAND Europe는 운송·물류·창고·재고 관리에서 AI 활용이 확대되면서 운영 회복력과 보험 위험이 어떻게 변화하는지 분석했다. AI 도입은 모니터링·수요 예측·경로 최적화·문서 처리 등 비교적 위험이 낮은 분야에서 빠르게 진행되지만, 동일한 소프트웨어·클라우드·AI 서비스에 대한 숨은 의존으로 하나의 장애나 사이버공격이 여러 기업과 보험 분야에 동시에 손실을 일으킬 수 있다. 연구진은 운영 과정에서 AI 의존 지점을 파악하고 고영향 의사결정에 대한 인간 감독과 비상 대체수단을 유지하며, 보험사와 규제기관은 공유 공급업체 의존성과 AI 사고 책임·보장 범위를 명확히 해야 한다고 권고했다. RAND">
+  <h2>🇺🇸 공급망의 AI 운영 의존과 새롭게 부상하는 보험 위험 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RAND</span></span><button type="button" class="copy-btn" data-copy="공급망의 AI 운영 의존과 새롭게 부상하는 보험 위험 (2026.9.2)
+
+RAND Europe는 운송·물류·창고·재고 관리에서 AI 활용이 확대되면서 운영 회복력과 보험 위험이 어떻게 변화하는지 분석했다. AI 도입은 모니터링·수요 예측·경로 최적화·문서 처리 등 비교적 위험이 낮은 분야에서 빠르게 진행되지만, 동일한 소프트웨어·클라우드·AI 서비스에 대한 숨은 의존으로 하나의 장애나 사이버공격이 여러 기업과 보험 분야에 동시에 손실을 일으킬 수 있다. 연구진은 운영 과정에서 AI 의존 지점을 파악하고 고영향 의사결정에 대한 인간 감독과 비상 대체수단을 유지하며, 보험사와 규제기관은 공유 공급업체 의존성과 AI 사고 책임·보장 범위를 명확히 해야 한다고 권고했다.
+
+https://www.rand.org/randeurope/research/projects/2026/operational-reliance-on-ai-in-supply-chains-and-emerging-insurance-risks.html" onclick="copyEntry(this)">복사</button></div>
+  <p>RAND Europe는 운송·물류·창고·재고 관리에서 AI 활용이 확대되면서 운영 회복력과 보험 위험이 어떻게 변화하는지 분석했다. AI 도입은 모니터링·수요 예측·경로 최적화·문서 처리 등 비교적 위험이 낮은 분야에서 빠르게 진행되지만, 동일한 소프트웨어·클라우드·AI 서비스에 대한 숨은 의존으로 하나의 장애나 사이버공격이 여러 기업과 보험 분야에 동시에 손실을 일으킬 수 있다. 연구진은 운영 과정에서 AI 의존 지점을 파악하고 고영향 의사결정에 대한 인간 감독과 비상 대체수단을 유지하며, 보험사와 규제기관은 공유 공급업체 의존성과 AI 사고 책임·보장 범위를 명확히 해야 한다고 권고했다.</p>
+  <p class="url"><a href="https://www.rand.org/randeurope/research/projects/2026/operational-reliance-on-ai-in-supply-chains-and-emerging-insurance-risks.html">https://www.rand.org/randeurope/research/projects/2026/operational-reliance-on-ai-in-supply-chains-and-emerging-insurance-risks.html</a></p>
+  
+  
+</article></details>
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="Reasoning 모델을 더 효율적으로 가르치는 방법 (2026.9.2) On-Policy Distillation(OPD)은 교사 모델이 미리 만든 정답 풀이가 아니라 학생 모델이 직접 생성한 응답에 교사의 토큰 단위 Dense Feedback을 제공해 학습하는 방법이다. 학생 모델의 초기 오류가 긴 추론 과정에서 누적되는 Prefix Failure가 발생하면 교사 모델의 짧은 개입으로 방향을 전환하는 Relay-OPD를 적용할 수 있다. Qwen3 실험에서 OPD는 강화학습보다 여러 평가에서 높은 성능을 보이면서 학습 비용은 약 1/10이었고, Relay-OPD는 Standard OPD보다 수학 추론 benchmark 평균 성능이 5.73%p 높고 학습 Trajectory 길이를 50% 이상 줄였다. Deep-Daiv">
+  <h2>🇰🇷 Reasoning 모델을 더 효율적으로 가르치는 방법 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">Weekly deep daiv</span></span><button type="button" class="copy-btn" data-copy="Reasoning 모델을 더 효율적으로 가르치는 방법 (2026.9.2)
+
+On-Policy Distillation(OPD)은 교사 모델이 미리 만든 정답 풀이가 아니라 학생 모델이 직접 생성한 응답에 교사의 토큰 단위 Dense Feedback을 제공해 학습하는 방법이다. 학생 모델의 초기 오류가 긴 추론 과정에서 누적되는 Prefix Failure가 발생하면 교사 모델의 짧은 개입으로 방향을 전환하는 Relay-OPD를 적용할 수 있다. Qwen3 실험에서 OPD는 강화학습보다 여러 평가에서 높은 성능을 보이면서 학습 비용은 약 1/10이었고, Relay-OPD는 Standard OPD보다 수학 추론 benchmark 평균 성능이 5.73%p 높고 학습 Trajectory 길이를 50% 이상 줄였다.
+
+https://deepdaiv.stibee.com/p/161" onclick="copyEntry(this)">복사</button></div>
+  <p>On-Policy Distillation(OPD)은 교사 모델이 미리 만든 정답 풀이가 아니라 학생 모델이 직접 생성한 응답에 교사의 토큰 단위 Dense Feedback을 제공해 학습하는 방법이다. 학생 모델의 초기 오류가 긴 추론 과정에서 누적되는 Prefix Failure가 발생하면 교사 모델의 짧은 개입으로 방향을 전환하는 Relay-OPD를 적용할 수 있다. Qwen3 실험에서 OPD는 강화학습보다 여러 평가에서 높은 성능을 보이면서 학습 비용은 약 1/10이었고, Relay-OPD는 Standard OPD보다 수학 추론 benchmark 평균 성능이 5.73%p 높고 학습 Trajectory 길이를 50% 이상 줄였다.</p>
+  <p class="url"><a href="https://deepdaiv.stibee.com/p/161">https://deepdaiv.stibee.com/p/161</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="incidents safety_research standards" data-search="기업을 위한 AI 거버넌스: AI 사용 사례 정의와 위험 관리 (2026.9.2) The Alan Turing Institute가 Innovate UK BridgeAI 프로그램을 통해 상업 조직의 AI 도입·확대를 지원하는 운영 프레임워크를 제시했다. 이 프레임워크는 사용 사례 정의, 실패 지점 진단, 비례적 완화책 선택, 지속적 모니터링의 4단계 생애주기로 구성되며, ISO/IEC 42001·23894와 NIST AI RMF 및 영국 기업 190곳의 실증 자료를 바탕으로 27개 AI 위험 원천과 65개 완화책을 정리했다. 위험 완화책은 제품 개발, 관리·감독, 정보·투명성, 교육·문화의 4개 통제 영역으로 분류되며, red teaming·인간 감독·사고 대응·위험 공개·역할별 교육 등이 포함된다. AIGovernanceLibrary">
+  <h2>🇬🇧🇺🇸 기업을 위한 AI 거버넌스: AI 사용 사례 정의와 위험 관리 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AIGovernanceLibrary</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="기업을 위한 AI 거버넌스: AI 사용 사례 정의와 위험 관리 (2026.9.2)
+
+The Alan Turing Institute가 Innovate UK BridgeAI 프로그램을 통해 상업 조직의 AI 도입·확대를 지원하는 운영 프레임워크를 제시했다. 이 프레임워크는 사용 사례 정의, 실패 지점 진단, 비례적 완화책 선택, 지속적 모니터링의 4단계 생애주기로 구성되며, ISO/IEC 42001·23894와 NIST AI RMF 및 영국 기업 190곳의 실증 자료를 바탕으로 27개 AI 위험 원천과 65개 완화책을 정리했다. 위험 완화책은 제품 개발, 관리·감독, 정보·투명성, 교육·문화의 4개 통제 영역으로 분류되며, red teaming·인간 감독·사고 대응·위험 공개·역할별 교육 등이 포함된다.
+
+https://www.aigl.blog/ai-governance-for-business-scoping-ai-use-cases-and-managing-risks/" onclick="copyEntry(this)">복사</button></div>
+  <p>The Alan Turing Institute가 Innovate UK BridgeAI 프로그램을 통해 상업 조직의 AI 도입·확대를 지원하는 운영 프레임워크를 제시했다. 이 프레임워크는 사용 사례 정의, 실패 지점 진단, 비례적 완화책 선택, 지속적 모니터링의 4단계 생애주기로 구성되며, ISO/IEC 42001·23894와 NIST AI RMF 및 영국 기업 190곳의 실증 자료를 바탕으로 27개 AI 위험 원천과 65개 완화책을 정리했다. 위험 완화책은 제품 개발, 관리·감독, 정보·투명성, 교육·문화의 4개 통제 영역으로 분류되며, red teaming·인간 감독·사고 대응·위험 공개·역할별 교육 등이 포함된다.</p>
+  <p class="url"><a href="https://www.aigl.blog/ai-governance-for-business-scoping-ai-use-cases-and-managing-risks/">https://www.aigl.blog/ai-governance-for-business-scoping-ai-use-cases-and-managing-risks/</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="AIGL 뉴스레터 22호: 설명할 수 없는 시스템 관리 (2026.9.2) AI 시스템의 내부 작동이 불투명하고 확률적·변동적이어도 조직은 책임성과 통제를 확보해야 하며, 이를 위해 설명 가능성만이 아니라 허용 가능한 행동 범위의 입증, 지속적 모니터링, 계약상 보호, 감사 기록, 대체 수단과 명확한 자율성 한계가 필요하다고 설명한다. 뉴스레터는 AI 공급업체 계약 협상, AI 보안 감사 체크리스트, 금융기관의 Model Risk Management 변화 자료를 추천하며, 전통적인 정기 검증만으로는 부족하므로 행동 테스트와 동적 guardrails, human-in-the-loop 감독, 버전 관리, fallback 모델 및 escalation 체계를 도입해야 한다고 강조한다. AIGovernanceLibrary">
+  <h2>AIGL 뉴스레터 22호: 설명할 수 없는 시스템 관리 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AIGovernanceLibrary</span></span><button type="button" class="copy-btn" data-copy="AIGL 뉴스레터 22호: 설명할 수 없는 시스템 관리 (2026.9.2)
+
+AI 시스템의 내부 작동이 불투명하고 확률적·변동적이어도 조직은 책임성과 통제를 확보해야 하며, 이를 위해 설명 가능성만이 아니라 허용 가능한 행동 범위의 입증, 지속적 모니터링, 계약상 보호, 감사 기록, 대체 수단과 명확한 자율성 한계가 필요하다고 설명한다. 뉴스레터는 AI 공급업체 계약 협상, AI 보안 감사 체크리스트, 금융기관의 Model Risk Management 변화 자료를 추천하며, 전통적인 정기 검증만으로는 부족하므로 행동 테스트와 동적 guardrails, human-in-the-loop 감독, 버전 관리, fallback 모델 및 escalation 체계를 도입해야 한다고 강조한다.
+
+https://www.aigl.blog/aigl-newsletter-22-managing-the-unexplainable/" onclick="copyEntry(this)">복사</button></div>
+  <p>AI 시스템의 내부 작동이 불투명하고 확률적·변동적이어도 조직은 책임성과 통제를 확보해야 하며, 이를 위해 설명 가능성만이 아니라 허용 가능한 행동 범위의 입증, 지속적 모니터링, 계약상 보호, 감사 기록, 대체 수단과 명확한 자율성 한계가 필요하다고 설명한다. 뉴스레터는 AI 공급업체 계약 협상, AI 보안 감사 체크리스트, 금융기관의 Model Risk Management 변화 자료를 추천하며, 전통적인 정기 검증만으로는 부족하므로 행동 테스트와 동적 guardrails, human-in-the-loop 감독, 버전 관리, fallback 모델 및 escalation 체계를 도입해야 한다고 강조한다.</p>
+  <p class="url"><a href="https://www.aigl.blog/aigl-newsletter-22-managing-the-unexplainable/">https://www.aigl.blog/aigl-newsletter-22-managing-the-unexplainable/</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="physical_ai" data-search="3.9조원 들여 GPU 1만장 확보…2.6조원 반도체특별회계 신설 (2026.9.2) 정부가 반도체·피지컬 AI·AI 데이터센터 등 3대 메가 프로젝트와 국가 AI 대전환에 내년 21조3000억원을 투입하고, 산업통상부는 13조2573억원의 예산안을 편성했다. 과학기술정보통신부는 최고 성능 GPU 1만장 확보에 3조9000억원을 포함해 AI 모델 개발과 데이터·인재 지원에 4조7000억원을 투입하며, 피지컬 AI 실증과 국산 AI 로봇 2000대 도입도 추진한다. 반도체 특별회계 2조6000억원과 자원 안보기금 1조4000억원을 신설하고, 서남권 반도체 클러스터와 전력·용수 인프라 확충에도 재정을 투입한다. 전자신문">
+  <h2>3.9조원 들여 GPU 1만장 확보…2.6조원 반도체특별회계 신설 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">전자신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="3.9조원 들여 GPU 1만장 확보…2.6조원 반도체특별회계 신설 (2026.9.2)
+
+정부가 반도체·피지컬 AI·AI 데이터센터 등 3대 메가 프로젝트와 국가 AI 대전환에 내년 21조3000억원을 투입하고, 산업통상부는 13조2573억원의 예산안을 편성했다. 과학기술정보통신부는 최고 성능 GPU 1만장 확보에 3조9000억원을 포함해 AI 모델 개발과 데이터·인재 지원에 4조7000억원을 투입하며, 피지컬 AI 실증과 국산 AI 로봇 2000대 도입도 추진한다. 반도체 특별회계 2조6000억원과 자원 안보기금 1조4000억원을 신설하고, 서남권 반도체 클러스터와 전력·용수 인프라 확충에도 재정을 투입한다.
+
+https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdE2BnDoBLJj/77MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" onclick="copyEntry(this)">복사</button></div>
+  <p>정부가 반도체·피지컬 AI·AI 데이터센터 등 3대 메가 프로젝트와 국가 AI 대전환에 내년 21조3000억원을 투입하고, 산업통상부는 13조2573억원의 예산안을 편성했다. 과학기술정보통신부는 최고 성능 GPU 1만장 확보에 3조9000억원을 포함해 AI 모델 개발과 데이터·인재 지원에 4조7000억원을 투입하며, 피지컬 AI 실증과 국산 AI 로봇 2000대 도입도 추진한다. 반도체 특별회계 2조6000억원과 자원 안보기금 1조4000억원을 신설하고, 서남권 반도체 클러스터와 전력·용수 인프라 확충에도 재정을 투입한다.</p>
+  <p class="url"><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdE2BnDoBLJj/77MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==">https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdE2BnDoBLJj/77MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="공공AI 활용, 이의제기 가능해야 (2026.9.2) 공공·행정 분야에서 AI를 활용할 때 정확성과 효율성뿐 아니라 투명성, 공정성, 기본권 보호가 보장돼야 한다는 의견이 제시됐다. AI의 의사결정 과정에 대한 설명과 국민의 이의제기·권리구제 기회를 보장하고, 기본권에 중대한 영향을 미치는 사안에는 인간이 실질적인 최종 판단권을 가져야 한다는 주장이다. 학습 데이터 편향과 행정 판단 오류를 막기 위해 사전 검증, 공무원의 실질적 개입, 사후 구제를 포함한 행정절차 체계가 필요하다는 제안도 나왔다. 전자신문">
+  <h2>공공AI 활용, 이의제기 가능해야 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">전자신문</span></span><button type="button" class="copy-btn" data-copy="공공AI 활용, 이의제기 가능해야 (2026.9.2)
+
+공공·행정 분야에서 AI를 활용할 때 정확성과 효율성뿐 아니라 투명성, 공정성, 기본권 보호가 보장돼야 한다는 의견이 제시됐다. AI의 의사결정 과정에 대한 설명과 국민의 이의제기·권리구제 기회를 보장하고, 기본권에 중대한 영향을 미치는 사안에는 인간이 실질적인 최종 판단권을 가져야 한다는 주장이다. 학습 데이터 편향과 행정 판단 오류를 막기 위해 사전 검증, 공무원의 실질적 개입, 사후 구제를 포함한 행정절차 체계가 필요하다는 제안도 나왔다.
+
+https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdEgj+iOevnLgr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" onclick="copyEntry(this)">복사</button></div>
+  <p>공공·행정 분야에서 AI를 활용할 때 정확성과 효율성뿐 아니라 투명성, 공정성, 기본권 보호가 보장돼야 한다는 의견이 제시됐다. AI의 의사결정 과정에 대한 설명과 국민의 이의제기·권리구제 기회를 보장하고, 기본권에 중대한 영향을 미치는 사안에는 인간이 실질적인 최종 판단권을 가져야 한다는 주장이다. 학습 데이터 편향과 행정 판단 오류를 막기 위해 사전 검증, 공무원의 실질적 개입, 사후 구제를 포함한 행정절차 체계가 필요하다는 제안도 나왔다.</p>
+  <p class="url"><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdEgj+iOevnLgr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==">https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdEgj+iOevnLgr7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="" data-search="정부, 민간 AIDC서 GPU 서비스 직접 조달 (2026.9.2) 정부가 고성능 AI 연산 자원 확보를 위해 삼성SDS 동탄 데이터센터의 GPU 서비스를 전용선으로 국가 행정망과 연계해 이용한다. 행정안전부는 민간 AIDC 안에 물리적으로 격리된 별도 구역을 마련해 보안을 유지하면서 외부 GPU 자원을 활용할 계획이다. 자체 GPU 인프라 증설보다 도입·전력·냉각 비용과 유휴 자원 부담을 줄일 수 있다는 판단에 따른 조치다. 전자신문">
+  <h2>🇰🇷 정부, 민간 AIDC서 GPU 서비스 직접 조달 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">전자신문</span></span><button type="button" class="copy-btn" data-copy="정부, 민간 AIDC서 GPU 서비스 직접 조달 (2026.9.2)
+
+정부가 고성능 AI 연산 자원 확보를 위해 삼성SDS 동탄 데이터센터의 GPU 서비스를 전용선으로 국가 행정망과 연계해 이용한다. 행정안전부는 민간 AIDC 안에 물리적으로 격리된 별도 구역을 마련해 보안을 유지하면서 외부 GPU 자원을 활용할 계획이다. 자체 GPU 인프라 증설보다 도입·전력·냉각 비용과 유휴 자원 부담을 줄일 수 있다는 판단에 따른 조치다.
+
+https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdFz0Su+iredfL7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" onclick="copyEntry(this)">복사</button></div>
+  <p>정부가 고성능 AI 연산 자원 확보를 위해 삼성SDS 동탄 데이터센터의 GPU 서비스를 전용선으로 국가 행정망과 연계해 이용한다. 행정안전부는 민간 AIDC 안에 물리적으로 격리된 별도 구역을 마련해 보안을 유지하면서 외부 GPU 자원을 활용할 계획이다. 자체 GPU 인프라 증설보다 도입·전력·냉각 비용과 유휴 자원 부담을 줄일 수 있다는 판단에 따른 조치다.</p>
+  <p class="url"><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdFz0Su+iredfL7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==">https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdFz0Su+iredfL7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="national_security physical_ai standards" data-search="AI 패권시대, 대체 불가 대한민국의 조건 (2026.9.2) 한국은 메모리 반도체와 K컬처를 기반으로 AI 산업·문명 표준 경쟁에서 주도권을 확보해야 하며, 반도체 기술을 산업과 사회 전반의 활용으로 확장해야 한다. 조선·자동차·방위산업·에너지 등 제조 현장에 AI와 로봇을 적용하는 피지컬 AI를 핵심 전략으로 삼고, 새만금을 자율주행·로봇·에너지·물류를 통합 검증하는 도시 AI-OS 실증구역으로 발전시킬 것을 제안한다. 정책 성과는 GPU와 예산 규모보다 현장 활용률, 생산성, 안전성, 중소기업 확산, 국제표준 채택과 수출 성과로 평가해야 한다. 경향신문">
+  <h2>🇰🇷 AI 패권시대, 대체 불가 대한민국의 조건 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">경향신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="AI 패권시대, 대체 불가 대한민국의 조건 (2026.9.2)
+
+한국은 메모리 반도체와 K컬처를 기반으로 AI 산업·문명 표준 경쟁에서 주도권을 확보해야 하며, 반도체 기술을 산업과 사회 전반의 활용으로 확장해야 한다. 조선·자동차·방위산업·에너지 등 제조 현장에 AI와 로봇을 적용하는 피지컬 AI를 핵심 전략으로 삼고, 새만금을 자율주행·로봇·에너지·물류를 통합 검증하는 도시 AI-OS 실증구역으로 발전시킬 것을 제안한다. 정책 성과는 GPU와 예산 규모보다 현장 활용률, 생산성, 안전성, 중소기업 확산, 국제표준 채택과 수출 성과로 평가해야 한다.
+
+https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdGVeuzk7xykmb7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" onclick="copyEntry(this)">복사</button></div>
+  <p>한국은 메모리 반도체와 K컬처를 기반으로 AI 산업·문명 표준 경쟁에서 주도권을 확보해야 하며, 반도체 기술을 산업과 사회 전반의 활용으로 확장해야 한다. 조선·자동차·방위산업·에너지 등 제조 현장에 AI와 로봇을 적용하는 피지컬 AI를 핵심 전략으로 삼고, 새만금을 자율주행·로봇·에너지·물류를 통합 검증하는 도시 AI-OS 실증구역으로 발전시킬 것을 제안한다. 정책 성과는 GPU와 예산 규모보다 현장 활용률, 생산성, 안전성, 중소기업 확산, 국제표준 채택과 수출 성과로 평가해야 한다.</p>
+  <p class="url"><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdGVeuzk7xykmb7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==">https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdGVeuzk7xykmb7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==</a></p>
+  <div class="related-links"><div class="related-links-label">관련 보도</div><ul><li><a href="https://www.khan.co.kr/article/202609012029005/">뉴스RSS · 경향신문 · [시론]AI 패권시대, 대체불가 대한민국의 조건</a></li></ul></div>
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="youth" data-search="EU, ‘챗GPT’에도 디지털법 규제 적용 (2026.9.2) 유럽연합(EU)이 생성형 AI 서비스 중 처음으로 OpenAI의 챗GPT를 디지털 서비스법(DSA)상 ‘초대형 검색엔진’으로 지정했다. 레딧과 로블록스도 ‘초대형 온라인 플랫폼’으로 지정돼 추가 의무와 강화된 감독을 받으며, 해당 기업들은 준수 준비에 4개월의 시간이 주어진다. EU는 불법 콘텐츠 유포, 미성년자에 대한 부정적 영향, 기본권 침해와 알고리즘 위험 등을 평가할 예정이다. 동아일보">
+  <h2>🇪🇺 EU, ‘챗GPT’에도 디지털법 규제 적용 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">동아일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="EU, ‘챗GPT’에도 디지털법 규제 적용 (2026.9.2)
+
+유럽연합(EU)이 생성형 AI 서비스 중 처음으로 OpenAI의 챗GPT를 디지털 서비스법(DSA)상 ‘초대형 검색엔진’으로 지정했다. 레딧과 로블록스도 ‘초대형 온라인 플랫폼’으로 지정돼 추가 의무와 강화된 감독을 받으며, 해당 기업들은 준수 준비에 4개월의 시간이 주어진다. EU는 불법 콘텐츠 유포, 미성년자에 대한 부정적 영향, 기본권 침해와 알고리즘 위험 등을 평가할 예정이다.
+
+https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdGrnyq+wdYm+L7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==" onclick="copyEntry(this)">복사</button></div>
+  <p>유럽연합(EU)이 생성형 AI 서비스 중 처음으로 OpenAI의 챗GPT를 디지털 서비스법(DSA)상 ‘초대형 검색엔진’으로 지정했다. 레딧과 로블록스도 ‘초대형 온라인 플랫폼’으로 지정돼 추가 의무와 강화된 감독을 받으며, 해당 기업들은 준수 준비에 4개월의 시간이 주어진다. EU는 불법 콘텐츠 유포, 미성년자에 대한 부정적 영향, 기본권 침해와 알고리즘 위험 등을 평가할 예정이다.</p>
+  <p class="url"><a href="https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdGrnyq+wdYm+L7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==">https://wv.scrapmaster.co.kr/outDetail.do?ev=0KVS8Z06bdGrnyq+wdYm+L7MRGIxZsL7KZ5tWQWAbiLQkn90T3iINw==</a></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="agentic_ai cybersecurity frontier safety_research" data-search="오픈AI 차기 모델 ‘아스트라’, 보안등급 ‘위험’ 판정 (2026.9.2) 오픈AI는 차기 AI 모델 아스트라가 보안이 잘 갖춰진 컴퓨터 시스템의 알려지지 않은 취약점을 찾아 공격할 수 있는 능력을 확인해 자체 기준상 ‘위험’ 등급으로 분류했다. 악의적 요청을 거부하고 jailbreak 지시를 따르지 않도록 추가 훈련을 진행하며, 일반 공개 버전에서는 고급 해킹 기능을 제한할 예정이다. 또한 AI 에이전트의 행동을 분석해 위험한 행동이 감지되면 작동을 중단하는 시스템을 도입할 계획이다. 뉴스RSS · 세계일보">
+  <h2>오픈AI 차기 모델 ‘아스트라’, 보안등급 ‘위험’ 판정 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">세계일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="오픈AI 차기 모델 ‘아스트라’, 보안등급 ‘위험’ 판정 (2026.9.2)
+
+오픈AI는 차기 AI 모델 아스트라가 보안이 잘 갖춰진 컴퓨터 시스템의 알려지지 않은 취약점을 찾아 공격할 수 있는 능력을 확인해 자체 기준상 ‘위험’ 등급으로 분류했다. 악의적 요청을 거부하고 jailbreak 지시를 따르지 않도록 추가 훈련을 진행하며, 일반 공개 버전에서는 고급 해킹 기능을 제한할 예정이다. 또한 AI 에이전트의 행동을 분석해 위험한 행동이 감지되면 작동을 중단하는 시스템을 도입할 계획이다.
+
+https://www.segye.com/newsView/20260902505892" onclick="copyEntry(this)">복사</button></div>
+  <p>오픈AI는 차기 AI 모델 아스트라가 보안이 잘 갖춰진 컴퓨터 시스템의 알려지지 않은 취약점을 찾아 공격할 수 있는 능력을 확인해 자체 기준상 ‘위험’ 등급으로 분류했다. 악의적 요청을 거부하고 jailbreak 지시를 따르지 않도록 추가 훈련을 진행하며, 일반 공개 버전에서는 고급 해킹 기능을 제한할 예정이다. 또한 AI 에이전트의 행동을 분석해 위험한 행동이 감지되면 작동을 중단하는 시스템을 도입할 계획이다.</p>
+  <p class="url"><a href="https://www.segye.com/newsView/20260902505892">https://www.segye.com/newsView/20260902505892</a></p>
+  
+  
+</article>
+<article class="entry cat-db" data-cat="db" data-topics="frontier" data-search="새로운 OpenAI 기법으로 Astra의 추론 모니터링이 어려워져 (2026.9.2) 요약불가 AI-Risk-Explorer">
+  <h2>🇺🇸 새로운 OpenAI 기법으로 Astra의 추론 모니터링이 어려워져 (2026.9.2)</h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="새로운 OpenAI 기법으로 Astra의 추론 모니터링이 어려워져 (2026.9.2)
+
+요약불가
+
+https://www.theinformation.com/articles/secret-technique-behind-openais-astra-model-sparks-security-concerns" onclick="copyEntry(this)">복사</button></div>
+  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  <p class="url"><a href="https://www.theinformation.com/articles/secret-technique-behind-openais-astra-model-sparks-security-concerns">https://www.theinformation.com/articles/secret-technique-behind-openais-astra-model-sparks-security-concerns</a></p>
+  
+  
+</article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-09-01.html">← 2026-09-01</a><span class="day-nav-btn disabled">다음 날짜 없음 →</span></nav>
+</div>
+<footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
+<script>
+function _copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function copyEntry(btn) {
+  var text = btn.getAttribute('data-copy');
+  var onDone = function () {
+    var original = btn.textContent;
+    btn.textContent = btn.getAttribute('data-copied') || '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onDone, function () {
+      _copyFallback(text);
+      onDone();
+    });
+  } else {
+    _copyFallback(text);
+    onDone();
+  }
+}
+function initDigestFilter() {
+  var feed = document.querySelector('.digest-feed');
+  if (!feed) return;
+  var q = document.getElementById('digest-q');
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = feed.querySelectorAll('article.entry');
+  var topic = '';
+  var cat = '';
+  function apply() {
+    var needle = (q && q.value || '').trim().toLowerCase();
+    cards.forEach(function (el) {
+      var ok = true;
+      if (topic && (el.getAttribute('data-topics') || '').split(/\s+/).indexOf(topic) < 0) ok = false;
+      if (cat && el.getAttribute('data-cat') !== cat) ok = false;
+      if (needle) {
+        var blob = (el.getAttribute('data-search') || '').toLowerCase();
+        if (blob.indexOf(needle) < 0) ok = false;
+      }
+      el.classList.toggle('digest-hidden', !ok);
+    });
+  }
+  if (q) q.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var t = chip.getAttribute('data-topic') || '';
+      var c = chip.getAttribute('data-cat-filter') || '';
+      if (t) {
+        topic = topic === t ? '' : t;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-topic')) x.classList.toggle('active', x.getAttribute('data-topic') === topic);
+        });
+      }
+      if (c) {
+        cat = cat === c ? '' : c;
+        chips.forEach(function (x) {
+          if (x.getAttribute('data-cat-filter')) x.classList.toggle('active', x.getAttribute('data-cat-filter') === cat);
+        });
+      }
+      apply();
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDigestFilter);
+</script>
+</body>
+</html>

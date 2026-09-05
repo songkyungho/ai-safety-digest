@@ -433,7 +433,7 @@
 
 https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=2d3085b9-5c69-41c7-9cb3-c941f131bf38" onclick="copyEntry(this)">복사</button></div>
   <p>정보통신정책연구원은 인공지능 활용이 확대되면서 효율성뿐 아니라 신뢰성과 사회윤리적 문제를 함께 고려해야 한다고 분석했다. 보고서는 인공지능 공정성의 개념과 차별이 발생한 실제 사례, 공정한 인공지능 구현을 위한 도구 및 최근 연구 동향을 다룬다.</p>
-  <p class="url"><a href="https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=2d3085b9-5c69-41c7-9cb3-c941f131bf38">https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=2d3085b9-5c69-41c7-9cb3-c941f131bf38</a></p>
+  <p class="url"><a href="https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=2d3085b9-5c69-41c7-9cb3-c941f131bf38" target="_blank" rel="noopener noreferrer">https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=2d3085b9-5c69-41c7-9cb3-c941f131bf38</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-05.html">← 2024-07-05</a><a class="day-nav-btn" href="2024-07-09.html">2024-07-09 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

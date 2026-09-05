@@ -433,7 +433,7 @@
 
 https://www.cato-unbound.org/2009/04/13/peter-thiel/education-libertarian/" onclick="copyEntry(this)">복사</button></div>
   <p>피터 틸은 과거에는 정치적 수단으로 자유를 만들 수 있다고 믿었지만, 시간이 지나며 자유와 민주주의가 양립하기 어렵다고 보게 됐다고 말한다. 그는 금융위기와 복지·선거권 확대 등 현실을 근거로 정치가 문제를 해결하기보다 악화시킬 가능성이 크며, 리버태리언의 과제는 정치에서 벗어나는 수단을 찾는 것이라고 주장한다. 이를 위해 인터넷(사이버스페이스), 우주(outer space), 해상 정착(seasteading) 같은 기술적 ‘전선’이 새로운 자유의 공간을 만들 수 있다고 보되, 기술 낙관론(기술이 자동으로 더 자유로운 미래를 보장한다는 믿음)은 경계한다. 또한 정치와 기술 사이에 ‘치명적인 경쟁’이 진행 중이며, 개인이 자유를 가능케 하는 장치를 만들거나 확산시키는 일이 세계의 향방에 중요할 수 있다고 강조한다.</p>
-  <p class="url"><a href="https://www.cato-unbound.org/2009/04/13/peter-thiel/education-libertarian/">https://www.cato-unbound.org/2009/04/13/peter-thiel/education-libertarian/</a></p>
+  <p class="url"><a href="https://www.cato-unbound.org/2009/04/13/peter-thiel/education-libertarian/" target="_blank" rel="noopener noreferrer">https://www.cato-unbound.org/2009/04/13/peter-thiel/education-libertarian/</a></p>
   
   
 </article></div><nav class="day-nav"><span class="day-nav-btn disabled">← 이전 날짜 없음</span><a class="day-nav-btn" href="2009-09-08.html">2009-09-08 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

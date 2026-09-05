@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=266660" onclick="copyEntry(this)">복사</button></div>
   <p>방송통신위원회와 정보통신정책연구원은 2025년 5월 15일 ‘인공지능서비스 이용자보호 민관협의회’ 제3차 회의를 열고 인공지능 기술 고도화에 따른 이용자 보호 현안과 대응 방안을 논의했다. 참석자들은 인공지능서비스 확산에 따른 통신서비스 변화와 정책 전환, 이용자 권익 증진을 위한 제도 마련 방안을 검토했다. 딥페이크와 환각현상 등 인공지능서비스의 새로운 역기능에 대응하기 위해 다양한 이해관계자 간 관계를 고려해야 한다는 의견도 제시됐다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=266660">https://eiec.kdi.re.kr/policy/materialView.do?num=266660</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=266660" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=266660</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-14.html">← 2025-05-14</a><a class="day-nav-btn" href="2025-05-20.html">2025-05-20 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

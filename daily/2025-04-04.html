@@ -446,7 +446,7 @@ https://metr.org/evaluations/claude-3-7-report/" onclick="copyEntry(this)">복�
 <p>- 일반 자율 능력 평가(GAC) 스위트에서 클로디 3.7 Sonnet 에이전트는 인간 전문가가 약 55분 걸리는 작업을 성공할 확률이 50%였습니다. 이는 다른 공개 모델들에 비해 높은 성능 추정치이지만, 신뢰 구간은 겹치는 경향이 있습니다. 더 나은 능력 추출을 통해 성능 향상이 가능할 것으로 보입니다.
 - RE-Bench의 일부 작업 집합(총 작업 시간 예산 32시간)에서 클로디 3.7 Sonnet 에이전트는 인간 전문가가 8시간 동안 작업할 때 달성한 중앙값 성능과 유사한 성과를 보였습니다.</p>
 <p>평가의 한계로 인해 강력한 능력 평가는 어렵습니다. 평가는 제한된 시간과 모델에 대한 불완전한 정보로 이루어졌으며, 방법론의 중요한 제약 사항들이 해결 중이라고 합니다. 단순한 에이전트 구조에서 더 높은 성능이 가능할 것으로 예상됩니다. 또한, 사전 배치 전 능력 테스트만으로는 충분한 위험 관리 전략이 아니며, 추가 평가 방법을 개발 중입니다.</p>
-  <p class="url"><a href="https://metr.org/evaluations/claude-3-7-report/">https://metr.org/evaluations/claude-3-7-report/</a></p>
+  <p class="url"><a href="https://metr.org/evaluations/claude-3-7-report/" target="_blank" rel="noopener noreferrer">https://metr.org/evaluations/claude-3-7-report/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-03.html">← 2025-04-03</a><a class="day-nav-btn" href="2025-04-05.html">2025-04-05 →</a></nav>
@@ -527,7 +527,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NDtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=59212715&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NDtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=59212715&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NDtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=59212715&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NDtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=59212715&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NDtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=59212715&amp;t=board</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ METR은 GPT-4o 모델의 자율 능력 평가를 위한 방법론을 설명하�
 
 https://metr.org/evaluations/gpt-4o-report/" onclick="copyEntry(this)">복사</button></div>
   <p>METR은 GPT-4o 모델의 자율 능력 평가를 위한 방법론을 설명하며, 이 평가는 소프트웨어 엔지니어링, 사이버 보안, 머신 러닝 등 다양한 분야의 77개 작업을 통해 수행되었습니다. 평가 결과, GPT-4o는 다른 모델들(Claude 3 Sonnet, GPT-4-Turbo)보다 우수한 성능을 보였으나, 인간 수준의 성능에는 다소 미치지 못했습니다. 특히, GPT-4o는 효율적인 피드백 활용과 체계적인 탐색 능력을 보였지만, 갑작스러운 결론 도출 중단이나 무의미한 출력 등의 실패 모드를 겪었습니다. 평가에서 발견된 오류의 약 절반은 태스크 무관한 개선 방법으로 해결 가능하다고 판단되었습니다. 또한, 특정 오류 모드를 수동으로 수정한 실험에서는 성공률이 향상되는 것을 확인하였습니다. 평가는 현재 진행 중인 연구의 일부로, 모델의 일반 능력을 측정하고 인간과 비교하는 방법을 탐색하고 있습니다.</p>
-  <p class="url"><a href="https://metr.org/evaluations/gpt-4o-report/">https://metr.org/evaluations/gpt-4o-report/</a></p>
+  <p class="url"><a href="https://metr.org/evaluations/gpt-4o-report/" target="_blank" rel="noopener noreferrer">https://metr.org/evaluations/gpt-4o-report/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-08-06.html">← 2024-08-06</a><a class="day-nav-btn" href="2024-08-13.html">2024-08-13 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

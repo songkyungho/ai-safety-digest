@@ -433,7 +433,7 @@
 
 https://www.oecd.org/en/publications/steering-ai-s-future_5480ff0a-en.html" onclick="copyEntry(this)">복사</button></div>
   <p>이 보고서는 인공지능의 빠른 발전과 복잡성에 대응하기 위해 유연한 거버넌스 체계가 필요하다고 강조한다. 미래의 변화를 예측하고 책임 있는 혁신을 보장하는 선제적 전략을 인공지능 거버넌스에 포함할 것을 제안한다. 또한 OECD의 신흥기술 선제적 거버넌스 프레임워크에 제시된 다섯 가지 요소가 인공지능 거버넌스에 어떻게 적용되는지 기존 OECD 및 관련 이니셔티브를 통해 분석하며, 이러한 시사점이 다른 신흥기술의 거버넌스에도 활용될 수 있다고 설명한다.</p>
-  <p class="url"><a href="https://www.oecd.org/en/publications/steering-ai-s-future_5480ff0a-en.html">https://www.oecd.org/en/publications/steering-ai-s-future_5480ff0a-en.html</a></p>
+  <p class="url"><a href="https://www.oecd.org/en/publications/steering-ai-s-future_5480ff0a-en.html" target="_blank" rel="noopener noreferrer">https://www.oecd.org/en/publications/steering-ai-s-future_5480ff0a-en.html</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-10.html">← 2025-02-10</a><a class="day-nav-btn" href="2025-02-12.html">2025-02-12 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

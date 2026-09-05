@@ -433,7 +433,7 @@ EU 인공지능법은 AI 시스템을 위험도에 따라 금지·고위험·제
 
 https://artificialintelligenceact.eu/high-level-summary/" onclick="copyEntry(this)">복사</button></div>
   <p>EU 인공지능법은 AI 시스템을 위험도에 따라 금지·고위험·제한적 위험·최소 위험으로 분류하며, 조작적 AI·사회적 평점·일부 실시간 원격 생체인식 등 금지 대상과 고위험 시스템의 관리 의무를 규정한다. 고위험 AI 제공자는 위험관리, 데이터 거버넌스, 기술문서화, 기록 보존, 인간 감독, 정확성·견고성·사이버보안 및 품질관리 체계를 마련해야 한다. 범용 AI 모델 제공자는 기술문서와 사용지침을 제공하고 학습 데이터 요약을 공개해야 하며, 시스템적 위험이 있는 모델은 평가·적대적 테스트·중대 사고 보고·사이버보안 조치도 수행해야 한다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/high-level-summary/">https://artificialintelligenceact.eu/high-level-summary/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/high-level-summary/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/high-level-summary/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-02-07.html">← 2024-02-07</a><a class="day-nav-btn" href="2024-02-28.html">2024-02-28 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

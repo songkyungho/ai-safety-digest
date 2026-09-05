@@ -433,7 +433,7 @@ Anthropic은 새로운 기술인 &#x27;Constitutional Classifiers&#x27;를 통�
 
 https://www.anthropic.com/research/constitutional-classifiers" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 새로운 기술인 &#x27;Constitutional Classifiers&#x27;를 통해 AI 모델이 보편적 탈옥(jailbreaks)에 대처할 수 있도록 방어 체계를 강화하고 있습니다. 이 기술은 합성 데이터를 기반으로 훈련된 입력 및 출력 분류기로 구성되어 있으며, 대부분의 탈옥 시도를 효과적으로 차단하면서 과도한 거부율과 계산 비용 증가를 최소화합니다. 실험 결과, 기존 모델 대비 탈옥 성공률이 95%까지 감소하였고, 거부율 증가는 미미하며 계산 비용은 약간 상승했습니다. 이 시스템은 특히 CBRN(화학, 생물학, 방사능, 핵) 능력 기준을 충족한 모델의 안전한 배포를 가능하게 합니다. 2월 3일부터 10일까지 진행된 라이브 데모에서는 339명의 참여자가 참여해 탈옥 시도를 진행했으나, 최종적으로 보편적 탈옥을 성공한 사례는 제한적이었습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/constitutional-classifiers">https://www.anthropic.com/research/constitutional-classifiers</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/constitutional-classifiers" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/constitutional-classifiers</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-31.html">← 2025-01-31</a><a class="day-nav-btn" href="2025-02-04.html">2025-02-04 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

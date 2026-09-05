@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning" onclick="copyEntry(this)">복사</button></div>
   <p>대형 언어 모델(LLMs)이 질문에 답하기 전에 단계별 추론 과정을 제시함으로써 성능이 향상되지만, 제시된 추론 과정이 모델의 실제 추론 과정을 정확하게 반영하는지는 불분명하다. 본 연구에서는 모델 예측이 체인 오브 생각(CoT) 추론 과정에 개입되었을 때 어떻게 변하는지 분석하여 CoT 추론의 충실도를 평가한다. 모델 간 성능 차이와 CoT의 영향력이 다양하게 나타나며, 모델 크기와 작업 유형에 따라 CoT의 충실도가 달라진다. 결과적으로, CoT의 성능 향상은 단순히 추가적인 계산량이나 특정 표현 방식에 의존하지 않으며, 모델이 커짐에 따라 대부분의 작업에서 CoT의 충실도가 감소하는 경향이 있다. 따라서 CoT의 충실도는 모델 크기와 작업 유형을 신중하게 선택함으로써 유지될 수 있다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning">https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-re
 
 https://www.anthropic.com/research/question-decomposition-improves-the-faithfulness-of-model-generated-reasoning" onclick="copyEntry(this)">복사</button></div>
   <p>대형 언어 모델(LLM)의 복잡한 작업 수행 시 정확성과 안전성 검증이 어려워지는데, 질문 분해 기법을 통해 모델이 질문을 하위 질문으로 나누어 추론 과정을 외부화함으로써 이러한 문제를 개선할 수 있다. 이 방법은 모델의 진술된 추론 과정이 실제 추론 과정을 더 정확하게 반영하도록 함으로써 충실성을 향상시킨다. 결과적으로 하위 질문에 대한 답변을 통해 모델의 추론 과정이 더욱 신뢰할 수 있게 되며, 기존 체인-오브-써드(CoT) 방법의 일부 성능 이점도 유지한다. 이러한 접근법은 LLM의 행동 검증 가능성 향상에 기여할 수 있다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/question-decomposition-improves-the-faithfulness-of-model-generated-reasoning">https://www.anthropic.com/research/question-decomposition-improves-the-faithfulness-of-model-generated-reasoning</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/question-decomposition-improves-the-faithfulness-of-model-generated-reasoning" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/question-decomposition-improves-the-faithfulness-of-model-generated-reasoning</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-07-10.html">← 2023-07-10</a><a class="day-nav-btn" href="2023-07-31.html">2023-07-31 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

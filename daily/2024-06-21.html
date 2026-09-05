@@ -433,7 +433,7 @@
 
 https://dream.kotra.or.kr/kotranews/cms/news/actionKotraBoardDetail.do?pageNo=1&amp;pagePerCnt=10&amp;SITE_NO=3&amp;MENU_ID=290&amp;CONTENTS_NO=1&amp;bbsGbn=464&amp;bbsSn=464&amp;pNttSn=216615&amp;recordCountPerPage=10&amp;viewType=&amp;pStartDt=&amp;pEndDt=&amp;sSearchVal=&amp;pRegnCd=&amp;pNatCd=&amp;pKbcCd=&amp;pNttCtgrySn=&amp;LCLSF_CD=&amp;CLSF_CD=&amp;sSearchVal=" onclick="copyEntry(this)">복사</button></div>
   <p>인도 AI 산업은 정부 정책, 기업 투자, 국제 협력을 바탕으로 연평균 25~35% 성장해 2027년 170억 달러 규모에 이를 것으로 전망된다. 인도 정부는 2018년 인공지능 국가전략을 발표하고 생태계 구축과 혁신을 우선하며, 책임 있는 AI 사용을 권고 중심으로 관리하고 있다. 의료·핀테크·교육·에너지·헬스케어·금융 등 인도의 현지 수요와 결합한 AI 서비스가 유망 분야로 제시됐다.</p>
-  <p class="url"><a href="https://dream.kotra.or.kr/kotranews/cms/news/actionKotraBoardDetail.do?pageNo=1&amp;pagePerCnt=10&amp;SITE_NO=3&amp;MENU_ID=290&amp;CONTENTS_NO=1&amp;bbsGbn=464&amp;bbsSn=464&amp;pNttSn=216615&amp;recordCountPerPage=10&amp;viewType=&amp;pStartDt=&amp;pEndDt=&amp;sSearchVal=&amp;pRegnCd=&amp;pNatCd=&amp;pKbcCd=&amp;pNttCtgrySn=&amp;LCLSF_CD=&amp;CLSF_CD=&amp;sSearchVal=">https://dream.kotra.or.kr/kotranews/cms/news/actionKotraBoardDetail.do?pageNo=1&amp;pagePerCnt=10&amp;SITE_NO=3&amp;MENU_ID=290&amp;CONTENTS_NO=1&amp;bbsGbn=464&amp;bbsSn=464&amp;pNttSn=216615&amp;recordCountPerPage=10&amp;viewType=&amp;pStartDt=&amp;pEndDt=&amp;sSearchVal=&amp;pRegnCd=&amp;pNatCd=&amp;pKbcCd=&amp;pNttCtgrySn=&amp;LCLSF_CD=&amp;CLSF_CD=&amp;sSearchVal=</a></p>
+  <p class="url"><a href="https://dream.kotra.or.kr/kotranews/cms/news/actionKotraBoardDetail.do?pageNo=1&amp;pagePerCnt=10&amp;SITE_NO=3&amp;MENU_ID=290&amp;CONTENTS_NO=1&amp;bbsGbn=464&amp;bbsSn=464&amp;pNttSn=216615&amp;recordCountPerPage=10&amp;viewType=&amp;pStartDt=&amp;pEndDt=&amp;sSearchVal=&amp;pRegnCd=&amp;pNatCd=&amp;pKbcCd=&amp;pNttCtgrySn=&amp;LCLSF_CD=&amp;CLSF_CD=&amp;sSearchVal=" target="_blank" rel="noopener noreferrer">https://dream.kotra.or.kr/kotranews/cms/news/actionKotraBoardDetail.do?pageNo=1&amp;pagePerCnt=10&amp;SITE_NO=3&amp;MENU_ID=290&amp;CONTENTS_NO=1&amp;bbsGbn=464&amp;bbsSn=464&amp;pNttSn=216615&amp;recordCountPerPage=10&amp;viewType=&amp;pStartDt=&amp;pEndDt=&amp;sSearchVal=&amp;pRegnCd=&amp;pNatCd=&amp;pKbcCd=&amp;pNttCtgrySn=&amp;LCLSF_CD=&amp;CLSF_CD=&amp;sSearchVal=</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-06-17.html">← 2024-06-17</a><a class="day-nav-btn" href="2024-06-24.html">2024-06-24 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

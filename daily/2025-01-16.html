@@ -433,7 +433,7 @@
 
 https://www.aei.org/research-products/report/ai-generated-regulation-not-ready-for-prime-time-yet/" onclick="copyEntry(this)">복사</button></div>
   <p>생성형 AI는 정부기관의 규제안 초안 작성에 아직 적합하지 않은 것으로 평가됐다. AI가 작성한 정책은 근거와 논리의 타당성보다 특정 입장을 지지하는 의견 수에 지나치게 영향을 받았고, 설명도 충분하지 않았다. 반면 의견서 요약에는 더 큰 가능성을 보여 행정 담당자의 업무 시간을 줄이고 중요한 의견을 놓칠 가능성을 낮출 수 있으며, 향후 AI 발전에 따라 규제안 평가와 의견 대응 능력이 개선될 것으로 전망된다.</p>
-  <p class="url"><a href="https://www.aei.org/research-products/report/ai-generated-regulation-not-ready-for-prime-time-yet/">https://www.aei.org/research-products/report/ai-generated-regulation-not-ready-for-prime-time-yet/</a></p>
+  <p class="url"><a href="https://www.aei.org/research-products/report/ai-generated-regulation-not-ready-for-prime-time-yet/" target="_blank" rel="noopener noreferrer">https://www.aei.org/research-products/report/ai-generated-regulation-not-ready-for-prime-time-yet/</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.aei.org/research-products/report/ai-generated-regulation-not-ready-f
 
 https://www.usccb.org/news/2025/vatican-city-state-puts-ai-guidelines-place?stream=top" onclick="copyEntry(this)">복사</button></div>
   <p>바티칸 시국은 AI를 윤리적·투명·책임 있게 개발·사용하기 위한 가이드라인을 발표했으며, “기술 혁신이 인간을 대체하거나 앞서지 못하게 해야 한다”는 원칙을 강조했다. 가이드라인은 13쪽 정책으로, 차별·심리적/신체적 위해·장애인 배제·인권 침해·범죄 조장 등과 관련된 AI 사용을 금지하고, 일부 업무(예: 사법)는 AI를 연구·업무 정리 목적에 한정하며 판결·양형 판단은 판사가 전담하도록 했다. 또한 5인 규모의 AI 위원회를 구성해 법·규정 마련, AI 시스템 활용에 대한 의견 제시, 개인·고용·환경에 대한 영향 모니터링을 맡기기로 했다.</p>
-  <p class="url"><a href="https://www.usccb.org/news/2025/vatican-city-state-puts-ai-guidelines-place?stream=top">https://www.usccb.org/news/2025/vatican-city-state-puts-ai-guidelines-place?stream=top</a></p>
+  <p class="url"><a href="https://www.usccb.org/news/2025/vatican-city-state-puts-ai-guidelines-place?stream=top" target="_blank" rel="noopener noreferrer">https://www.usccb.org/news/2025/vatican-city-state-puts-ai-guidelines-place?stream=top</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-15.html">← 2025-01-15</a><a class="day-nav-btn" href="2025-01-17.html">2025-01-17 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

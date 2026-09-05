@@ -433,7 +433,7 @@ Anthropic의 해석 가능성 연구팀이 사전 학습 특징을 활용한 분
 
 https://www.anthropic.com/research/features-as-classifiers" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic의 해석 가능성 연구팀이 사전 학습 특징을 활용한 분류기 개발에 대한 초기 연구 결과를 발표했습니다. 이 연구는 해당 분야에서 활동하는 연구자들에게 유용할 수 있으며, 아직 완성 단계는 아니지만 동료 간의 아이디어 공유처럼 다루어져야 합니다. 연구는 현재 모델의 행동 패턴과 그로 인한 예상치 못한 시스템적 문제들을 식별하고 이를 완화하기 위한 논의를 시작하려 합니다. 또한, 새로운 연구 버전의 Claude 모델이 리만 가설 관련 문제에서 진전을 이루었다는 내용도 포함되어 있습니다. 이 모델은 리만 제타 함수의 제로 중 리만 가설을 만족하는 비율의 하한을 향상시켰습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/features-as-classifiers">https://www.anthropic.com/research/features-as-classifiers</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/features-as-classifiers" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/features-as-classifiers</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-10-14.html">← 2024-10-14</a><a class="day-nav-btn" href="2024-10-18.html">2024-10-18 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

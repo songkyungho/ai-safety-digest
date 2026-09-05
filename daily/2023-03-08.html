@@ -453,7 +453,7 @@ https://www.anthropic.com/news/core-views-on-ai-safety" onclick="copyEntry(this)
 <p>AI 발전이 예측 가능한 이유는 훈련 데이터, 계산 능력, 그리고 개선된 알고리즘 때문입니다. 최근의 스케일링 법칙은 더 많은 계산을 통해 AI 성능이 예측 가능하게 향상된다는 것을 보여주며, 이는 AI 시스템이 인간 수준의 성능을 달성할 가능성을 시사합니다. 그러나 이러한 발전은 사회적 혼란을 초래하고 경쟁적인 활동을 유발할 수 있어 안전성이 중요한 이슈로 떠오릅니다.</p>
 <p>AI 안전 위험은 두 가지 주요 이유로 우려됩니다: 고도화된 AI 시스템이 설계자보다 더 지능적이고 자기 인식이 높아질 경우 안전하고 제어 가능한 시스템 구축이 어려울 수 있으며, 빠른 AI 발전은 경제적, 사회적 혼란을 일으켜 안전한 AI 개발을 더욱 어렵게 만들 수 있습니다.</p>
 <p>Anthropic는 경험적 근거를 기반으로 한 AI 안전성 연구를 추진하며, 특히 고도화된 모델에 대한 안전성 연구의 중요성을 강조하고 있습니다. 이 접근법은 예측 가능한 문제와 예측 불가능한 문제 모두에 대비하기 위한 것입니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/core-views-on-ai-safety">https://www.anthropic.com/news/core-views-on-ai-safety</a></p>
+  <p class="url"><a href="https://www.anthropic.com/news/core-views-on-ai-safety" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/core-views-on-ai-safety</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-02-15.html">← 2023-02-15</a><a class="day-nav-btn" href="2023-03-16.html">2023-03-16 →</a></nav>
@@ -534,7 +534,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

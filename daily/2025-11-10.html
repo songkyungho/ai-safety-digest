@@ -433,7 +433,7 @@
 
 https://deepmind.google/blog/how-ai-is-giving-northern-ireland-teachers-time-back/" onclick="copyEntry(this)">복사</button></div>
   <p>북아일랜드 교육 당국 C2k와 Google for Education의 6개월 시범사업에 참여한 교사 100명은 Gemini와 Google Workspace를 활용해 주당 평균 10시간을 절약했다고 보고했다. 교사들은 행정 업무 간소화, 수업 자료 제작, 아일랜드어 수업과 학생별 맞춤 학습 지원 등 600개 이상의 활용 사례를 만들었으며, 절약한 시간을 학생 참여와 전문성 개발에 재투자했다. C2k는 시범사업의 성과를 바탕으로 북아일랜드 내 더 많은 교사에게 Gemini 교육을 확대할 계획이다.</p>
-  <p class="url"><a href="https://deepmind.google/blog/how-ai-is-giving-northern-ireland-teachers-time-back/">https://deepmind.google/blog/how-ai-is-giving-northern-ireland-teachers-time-back/</a></p>
+  <p class="url"><a href="https://deepmind.google/blog/how-ai-is-giving-northern-ireland-teachers-time-back/" target="_blank" rel="noopener noreferrer">https://deepmind.google/blog/how-ai-is-giving-northern-ireland-teachers-time-back/</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://deepmind.google/blog/how-ai-is-giving-northern-ireland-teachers-time-bac
 
 https://ai-act-service-desk.ec.europa.eu/en/ai-act-service-desk" onclick="copyEntry(this)">복사</button></div>
   <p>유럽 집행위원회 AI Act Service Desk는 이해관계자가 AI Act 관련 질문을 AI Office에 제출할 수 있도록 하는 서비스다. EU Login으로 로그인(또는 계정 생성)한 뒤 신청서를 작성해 질문을 보내면 이메일로 접수 확인을 받으며, 답변과 후속 문의도 이메일로 제공된다. 개인정보는 개인정보보호 규정(규정(EU) 2018/1725)에 따라 처리하며, 관련 개인정보 처리 방식은 Privacy Statement에서 확인할 수 있다.</p>
-  <p class="url"><a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act-service-desk">https://ai-act-service-desk.ec.europa.eu/en/ai-act-service-desk</a></p>
+  <p class="url"><a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act-service-desk" target="_blank" rel="noopener noreferrer">https://ai-act-service-desk.ec.europa.eu/en/ai-act-service-desk</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-11-07.html">← 2025-11-07</a><a class="day-nav-btn" href="2025-11-11.html">2025-11-11 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

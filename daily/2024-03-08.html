@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/transformer-circuits" onclick="copyEntry(this)">복사</button></div>
   <p>본 노트는 해석 가능성 연구가 다른 분야에서보다 질적 측면이 중요할 수 있는 이유에 대한 주관적인 견해를 제시합니다. 또한 질적 연구에서 연구 방향을 설정하는 데 도움이 되는 몇 가지 원칙을 설명하고자 합니다. 연구에서는 현재 최첨단 모델의 행동 패턴과 그로 인한 예상치 못한 시스템적 실패 사례를 분석하여 위험 완화에 대한 논의를 시작하고자 합니다. 또한 독립 연구자 David Roodman와 함께 작업한 노동자 재교육 프로그램에 대한 증거 검토 결과도 공유하고 있으며, 비공개 버전의 Claude 모델이 리만 가설 관련 문제에서 진전을 이루었다는 점도 언급하고 있습니다. 이 모델은 리만 제타 함수의 제로 중 리만 가설을 만족하는 비율의 하한을 향상시켜 41.6%에서 67.2%로 끌어올렸습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/transformer-circuits">https://www.anthropic.com/research/transformer-circuits</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/transformer-circuits" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/transformer-circuits</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-02-29.html">← 2024-02-29</a><a class="day-nav-btn" href="2024-03-14.html">2024-03-14 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

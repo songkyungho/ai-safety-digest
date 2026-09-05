@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=260071" onclick="copyEntry(this)">복사</button></div>
   <p>특허청은 최근 10년간 주요국에 출원된 AI 보안 기술 특허를 분석한 결과, 출원 건수가 2012년 37건에서 2021년 1,492건으로 연평균 51% 증가했다고 밝혔다. 국적별 출원은 미국이 45.9%로 가장 많았고 중국 30.2%, 한국 7.6%, 일본 3.5% 순이었다. AI 보안 기술은 해킹 탐지·예방 등 AI 활용 기술이 85%를 차지했으며, 전체 출원의 78.5%는 기업이 주도한 것으로 나타났다. 10대 다출원인 중 미국 기업이 9곳이었고, 한국 기업으로는 삼성전자가 6위에 올랐다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260071">https://eiec.kdi.re.kr/policy/materialView.do?num=260071</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260071" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=260071</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=260071" onclick="copyEntry(thi
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=260093" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 인공지능 서울정상회의의 후속 조치로 열린 국제 인공지능 안전연구소 네트워크 행사에 참석했다. 한국 대표단은 다른 나라의 인공지능 안전연구소들과 협력관계를 구축했으며, 한국은 11월 말 인공지능 안전연구소 출범을 앞두고 있다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260093">https://eiec.kdi.re.kr/policy/materialView.do?num=260093</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260093" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=260093</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ KDB미래전략연구소는 국가가 독립적인 인공지능 역량과 데이
 
 https://file.kdb.co.kr/fileView?groupId=E1C95278-8C0F-E289-80EB-E0C6D1EA0539&amp;fileId=4641814D-6215-E977-75CE-C3C4408F91E1" onclick="copyEntry(this)">복사</button></div>
   <p>KDB미래전략연구소는 국가가 독립적인 인공지능 역량과 데이터 주권을 확보하는 주권형 인공지능의 필요성이 커지고 있다고 분석했다. 각국은 글로벌 빅테크 기업에 대한 기술 종속을 줄이기 위해 다양한 방식으로 주권형 인공지능을 구축하고 있으며, 자국 데이터 축적이 가능한 LLM에 공통적으로 주목하고 있다. 보고서는 한국이 네이버의 자체 LLM과 전자정부 경쟁력을 바탕으로 공공영역의 AI 전환을 선도하고, 디지털플랫폼정부를 통해 주권형 인공지능 구축 경험을 확산할 필요가 있다고 제안했다.</p>
-  <p class="url"><a href="https://file.kdb.co.kr/fileView?groupId=E1C95278-8C0F-E289-80EB-E0C6D1EA0539&amp;fileId=4641814D-6215-E977-75CE-C3C4408F91E1">https://file.kdb.co.kr/fileView?groupId=E1C95278-8C0F-E289-80EB-E0C6D1EA0539&amp;fileId=4641814D-6215-E977-75CE-C3C4408F91E1</a></p>
+  <p class="url"><a href="https://file.kdb.co.kr/fileView?groupId=E1C95278-8C0F-E289-80EB-E0C6D1EA0539&amp;fileId=4641814D-6215-E977-75CE-C3C4408F91E1" target="_blank" rel="noopener noreferrer">https://file.kdb.co.kr/fileView?groupId=E1C95278-8C0F-E289-80EB-E0C6D1EA0539&amp;fileId=4641814D-6215-E977-75CE-C3C4408F91E1</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-11-22.html">← 2024-11-22</a><a class="day-nav-btn" href="2024-11-26.html">2024-11-26 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

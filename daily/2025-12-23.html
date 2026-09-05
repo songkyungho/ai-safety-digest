@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=275180" onclick="copyEntry(this)">복사</button></div>
   <p>국가인공지능전략위원회는 초거대 AI 협의회 소속 기업들과 국가 인공지능 행동계획에 대한 의견 수렴 간담회를 개최했다. 참석 기업들은 AI 파운데이션 모델·AI 에이전트·산업 데이터 인프라를 활용한 실증 확대와 민관 협업의 중요성을 강조하고, 제조 공정의 AI 활용 및 AI 풀스택 수출 지원을 요청했다. 위원회는 앞으로도 민간 기업과 소통하며 산업 경쟁력 강화와 성장동력 창출을 위한 정책 지원을 강화할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=275180">https://eiec.kdi.re.kr/policy/materialView.do?num=275180</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=275180" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=275180</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=275180" onclick="copyEntry(thi
 
 https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025/" onclick="copyEntry(this)">복사</button></div>
   <p>구글은 2025년 Gemini 3·Gemma 3를 통해 reasoning, multimodal understanding, 효율성과 생성 기능을 발전시켰으며, 이를 검색·Pixel·개발 도구·NotebookLM 등 제품에 agentic capabilities로 적용했다. Veo, Imagen, Nano Banana, Flow 등의 생성 미디어 도구로 이미지·영상·음악·가상 세계 창작을 지원하고, Google Labs에서 Pomelli·Stitch·Jules·Google Beam 같은 실험도 선보였다. 또한 AlphaFold·AlphaGenome·DeepSomatic·AI co-scientist를 활용한 생명과학·의료 연구와 수학·코딩 발전을 소개했으며, Quantum Echoes와 Ironwood TPU를 통해 양자컴퓨팅·하드웨어·에너지 효율 분야의 진전도 강조했다.</p>
-  <p class="url"><a href="https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025/">https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025/</a></p>
+  <p class="url"><a href="https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025/" target="_blank" rel="noopener noreferrer">https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025/</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakt
 
 https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-12222025" onclick="copyEntry(this)">복사</button></div>
   <p>미국에서는 뉴욕주가 첨단 AI 모델 규제를 담은 AI 안전법을 제정하고 캘리포니아주와의 정합성을 높이는 개정을 추진했으며, FERC는 AI 데이터센터 수용을 위해 PJM에 전력망 규정 개정을 지시하고 2026년 1월 19일까지 진행 상황을 보고하도록 했다. 아일랜드는 2026년 국가 AI 사무국 설치와 EU AI Act 이행 강화를 제안했고, 모잠비크는 UNESCO 지원으로 국가 AI 전략을 마련 중이며, 인도 오디샤주는 2026년 India AI Impact Summit을 앞두고 AI 정상회의를 개최했다. OpenAI는 청소년용 ChatGPT 안전 규정을 강화했고, FTC는 Instacart의 AI 가격 책정 도구를 조사했으며, Microsoft는 AI 에이전트의 개인 파일 접근에 명시적 동의를 요구하도록 Windows 11 정책을 개정했다.</p>
-  <p class="url"><a href="https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-12222025">https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-12222025</a></p>
+  <p class="url"><a href="https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-12222025" target="_blank" rel="noopener noreferrer">https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-12222025</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-12-22.html">← 2025-12-22</a><a class="day-nav-btn" href="2025-12-24.html">2025-12-24 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1942256" onclick="copyEntry(this)">복사</button></div>
   <p>이 연구는 AI 제품·서비스의 개발부터 운영까지 전 생애주기에서 국민의 기본권에 미치는 영향을 식별·관리하기 위한 AI 영향평가 프레임워크(안)를 제시한다. 국내외 제도와 사례를 분석하고 전문가 협의체 논의를 바탕으로 평가계획 수립, 평가 수행, 결과 분석, 완화조치, 문서화·보관으로 이어지는 절차와 평가 요소를 마련했다. 2026년 1월 시행 예정인 인공지능 기본법에 대비해 사업자 책무와의 중복, 정부 조달의 실효성, 전담기관 필요성 등의 쟁점과 대응방안도 검토했다.</p>
-  <p class="url"><a href="https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1942256">https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1942256</a></p>
+  <p class="url"><a href="https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1942256" target="_blank" rel="noopener noreferrer">https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1942256</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&a
 
 https://www.aisi.gov.uk/research/a-mathematical-philosophy-of-explanations-in-mechanistic-interpretability" onclick="copyEntry(this)">복사</button></div>
   <p>메커니즘 해석(Mechanistic Interpretability)은 신경망을 인과적(causal) 설명을 통해 이해하려는 접근이며, 논문은 모델 안에 암묵적 설명이 존재하고 이를 추출·이해할 수 있다는 ‘Explanatory View Hypothesis’를 제시한다. 또한 설명이 모델에 얼마나 잘 부합하는지 평가하는 개념인 ‘Explanatory Faithfulness’가 잘 정의될 수 있음을 보이고, MI를 모델 수준의 온틱(ontic)·인과-기계론적(causal-mechanistic)·반증가능(falsifiable)한 설명을 산출하는 실천으로 정의해 다른 해석 패러다임과의 구분 및 한계를 정리한다. 마지막으로 Mechanistic Interpretability의 성공에 필요한 전제조건으로 ‘Principle of Explanatory Optimism’(추측/가설)을 제안한다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/a-mathematical-philosophy-of-explanations-in-mechanistic-interpretability">https://www.aisi.gov.uk/research/a-mathematical-philosophy-of-explanations-in-mechanistic-interpretability</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/a-mathematical-philosophy-of-explanations-in-mechanistic-interpretability" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/a-mathematical-philosophy-of-explanations-in-mechanistic-interpretability</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-30.html">← 2025-04-30</a><a class="day-nav-btn" href="2025-05-02.html">2025-05-02 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

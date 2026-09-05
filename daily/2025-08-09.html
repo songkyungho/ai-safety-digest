@@ -433,7 +433,7 @@
 
 https://thehackernews.com/2025/08/researchers-uncover-gpt-5-jailbreak-and.html" onclick="copyEntry(this)">복사</button></div>
   <p>생성형 AI 보안 연구자들이 OpenAI의 GPT-5에서 윤리적 가드레일을 우회해 금지된 지침을 유도하는 jailbreak 기법을 공개했다. NeuralTrust는 Echo Chamber(간접 참조·semantic steering·추론)와 narrative-driven steering을 결합하면 refusal 트리거를 줄이면서 유해한 절차 콘텐츠를 끌어낼 수 있다고 설명했다. 또한 AgentFlayer 등 zero-click 공격이 문서 내 간접 prompt injection이나 악성 Jira 티켓, 이메일 기반 prompt injection을 통해 API 키·시크릿 등 민감 데이터를 유출할 수 있으며, AI 에이전트의 자율성과 외부 시스템 연동이 공격면을 키운다고 전했다.</p>
-  <p class="url"><a href="https://thehackernews.com/2025/08/researchers-uncover-gpt-5-jailbreak-and.html">https://thehackernews.com/2025/08/researchers-uncover-gpt-5-jailbreak-and.html</a></p>
+  <p class="url"><a href="https://thehackernews.com/2025/08/researchers-uncover-gpt-5-jailbreak-and.html" target="_blank" rel="noopener noreferrer">https://thehackernews.com/2025/08/researchers-uncover-gpt-5-jailbreak-and.html</a></p>
   
   
 </article>
@@ -461,7 +461,7 @@ https://www.anthropic.com/research/cyber-competitions" onclick="copyEntry(this)"
 - **도구 활용**: 클로데어는 Kali Linux와 같은 전문 도구를 활용할 때 더 효과적으로 작동했습니다. 이는 AI가 적절한 도구를 사용할 때 인간 수준의 성과를 낼 수 있음을 보여줍니다.
 - **한계**: 대회 중 특정 서버의 애니메이션 콘텐츠로 인해 클로데어가 맥락을 잃는 등의 예상치 못한 실패 사례도 발견되었습니다. 또한 장시간 작업 시 맥락 창 제한으로 인한 성능 저하 문제도 확인되었습니다.</p>
 <p>이러한 연구는 AI가 사이버 보안 분야에서 어떻게 활용될 수 있는지에 대한 통찰력을 제공하며, 동시에 AI의 한계와 개선 방향을 제시합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/cyber-competitions">https://www.anthropic.com/research/cyber-competitions</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/cyber-competitions" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/cyber-competitions</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-08-08.html">← 2025-08-08</a><a class="day-nav-btn" href="2025-08-11.html">2025-08-11 →</a></nav>
@@ -542,7 +542,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://www.aisi.gov.uk/research/model-tampering-attacks-enable-more-rigorous-evaluations-of-llm-capabilities-2" onclick="copyEntry(this)">복사</button></div>
   <p>모델 위험·역량 평가는 주로 악성 행동을 유도하는 입력-출력 방식에 의존하지만, open-weight 모델의 현실 위험을 충분히 평가하기 어렵고 특정 실험 결과는 최악의 가능성을 하한으로만 보여주는 한계가 있다고 설명합니다. 이에 따라 잠재 activation 또는 weights를 수정하는 model tampering attacks로 LLM을 평가하는 보완 방법을 제안했으며, harmful capability 제거 기법들과 5개 입력공간·6개 model tampering 공격을 비교 벤치마크했습니다. 또한 tampering 공격의 성공률이 보유한 입력공간 공격의 성과를 예측·보수적으로 추정할 수 있고, 최신 unlearning 방법은 fine-tuning 16단계 내에 쉽게 되돌릴 수 있음을 제시합니다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/model-tampering-attacks-enable-more-rigorous-evaluations-of-llm-capabilities-2">https://www.aisi.gov.uk/research/model-tampering-attacks-enable-more-rigorous-evaluations-of-llm-capabilities-2</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/model-tampering-attacks-enable-more-rigorous-evaluations-of-llm-capabilities-2" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/model-tampering-attacks-enable-more-rigorous-evaluations-of-llm-capabilities-2</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-28.html">← 2025-02-28</a><a class="day-nav-btn" href="2025-03-03.html">2025-03-03 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

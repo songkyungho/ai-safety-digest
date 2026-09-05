@@ -433,7 +433,7 @@ METR는 Anthropic의 업그레이드된 Claude 3.5 Sonnet과 OpenAI의 o1에 대
 
 https://metr.org/blog/2025-01-31-update-sonnet-o1-evals/" onclick="copyEntry(this)">복사</button></div>
   <p>METR는 Anthropic의 업그레이드된 Claude 3.5 Sonnet과 OpenAI의 o1에 대한 초기 평가를 실시했습니다. 평가 결과, 두 시스템 모두 위험한 수준의 능력을 보여주지 않았지만, 능력 기반 안전성 주장의 어려움이 증가하고 있음을 나타냈습니다. 자율 위험 평가와 AI 연구 개발 평가에서, Sonnet은 인간 기준에 가깝게 수행되었고, o1은 적응 과정을 통해 성능이 향상되었습니다. 그러나 평가의 한계로 인해 시스템의 능력 경계를 확실히 설정하기 어려웠습니다. 추가적인 연구와 방법론 개발이 필요함을 시사합니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2025-01-31-update-sonnet-o1-evals/">https://metr.org/blog/2025-01-31-update-sonnet-o1-evals/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2025-01-31-update-sonnet-o1-evals/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2025-01-31-update-sonnet-o1-evals/</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://metr.org/blog/2025-01-31-update-sonnet-o1-evals/" onclick="copyEntry(thi
 
 https://futureoflife.org/ai-policy/context-and-agenda-2025-ai-action-summit/" onclick="copyEntry(this)">복사</button></div>
   <p>2025년 2월 10~11일 프랑스 파리에서 AI 행동 정상회의가 열리며, 이에 앞서 과학의 날과 AI 문화의 날이 진행될 예정이다. 정상회의에서는 개발도상국에 오픈소스 AI 도구를 제공하는 재단 설립과 5년간 25억 유로 지원, 의료·기후변화 적응 등 분야의 ‘수렴 과제’ 35개 발표가 예상된다. 또한 AI의 환경 영향을 다루는 다자간 협약과 30개국·OECD·EU가 지원한 국제 AI 안전 보고서가 공개될 예정이다.</p>
-  <p class="url"><a href="https://futureoflife.org/ai-policy/context-and-agenda-2025-ai-action-summit/">https://futureoflife.org/ai-policy/context-and-agenda-2025-ai-action-summit/</a></p>
+  <p class="url"><a href="https://futureoflife.org/ai-policy/context-and-agenda-2025-ai-action-summit/" target="_blank" rel="noopener noreferrer">https://futureoflife.org/ai-policy/context-and-agenda-2025-ai-action-summit/</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ LLM의 universal jailbreak 취약성을 막기 위해, 자연어 규칙(constitu
 
 https://arxiv.org/abs/2501.18837" onclick="copyEntry(this)">복사</button></div>
   <p>LLM의 universal jailbreak 취약성을 막기 위해, 자연어 규칙(constitution)으로 합성 데이터에 학습된 Constitutional Classifiers를 제안한다. 3,000시간 이상 red teaming에서 early classifier-guarded 모델이 unguarded 모델과 유사한 수준으로 정보를 추출하는 universal jailbreak을 찾지 못했으며, 자동 평가에서도 held-out 도메인별 jailbreak에 대해 견고한 방어 성능을 보였다. 배포 관점에서는 production-traffic refusals가 절대 0.38% 증가하고 inference 오버헤드는 23.7%로 보고되며, 실용적 운영 가능성을 강조한다.</p>
-  <p class="url"><a href="https://arxiv.org/abs/2501.18837">https://arxiv.org/abs/2501.18837</a></p>
+  <p class="url"><a href="https://arxiv.org/abs/2501.18837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2501.18837</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-30.html">← 2025-01-30</a><a class="day-nav-btn" href="2025-02-03.html">2025-02-03 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

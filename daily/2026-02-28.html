@@ -433,7 +433,7 @@
 
 https://foresightsafety-bench.beijing-aisi.ac.cn/" onclick="copyEntry(this)">복사</button></div>
   <p>북경 전첨인공지능안전거버넌스연구원(Beijing-AISI)은 중국과학원 등과 협력하여 94개 위험 차원을 포함하는 포괄적인 AI 안전 평가 체계인 &#x27;전첨 안전 기준&#x27;을 발표. 기초 안전, 확장 안전, 산업 안전을 3대 지주로 삼아 지능체 안전 및 생존 위험 등 신종 위협을 다룸.</p>
-  <p class="url"><a href="https://foresightsafety-bench.beijing-aisi.ac.cn/">https://foresightsafety-bench.beijing-aisi.ac.cn/</a></p>
+  <p class="url"><a href="https://foresightsafety-bench.beijing-aisi.ac.cn/" target="_blank" rel="noopener noreferrer">https://foresightsafety-bench.beijing-aisi.ac.cn/</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://foresightsafety-bench.beijing-aisi.ac.cn/" onclick="copyEntry(this)">복
 
 https://www.forbes.com/sites/geruiwang/2026/02/28/why-ai-safety-the-dilemma-of-profits-vs-guardrails/" onclick="copyEntry(this)">복사</button></div>
   <p>포브스는 OpenAI의 펜타곤 계약과 Anthropic의 연방 규제 압박 사례를 계기로, AI 안전을 단일 기업이 스스로 규제하기 어렵다고 지적했다. 이어 안전 스타트업이 정부·AI 랩과 함께 제3자 안전 레이어를 제공하고, AI 안전 기준을 표준화하며, AI agents에 실시간 모니터링과 kill switch 같은 ‘안티바이러스’ 기능을 내장하는 방향이 필요하다고 제안했다. 또한 고위험 분야별(금융·의료·물리) 맞춤형 안전과 국제 AI 안전 네트워크 구축을 통해 국가 간 ‘안전 경쟁’이 아닌 ‘공유 인프라’로 전환해야 한다고 강조했다.</p>
-  <p class="url"><a href="https://www.forbes.com/sites/geruiwang/2026/02/28/why-ai-safety-the-dilemma-of-profits-vs-guardrails/">https://www.forbes.com/sites/geruiwang/2026/02/28/why-ai-safety-the-dilemma-of-profits-vs-guardrails/</a></p>
+  <p class="url"><a href="https://www.forbes.com/sites/geruiwang/2026/02/28/why-ai-safety-the-dilemma-of-profits-vs-guardrails/" target="_blank" rel="noopener noreferrer">https://www.forbes.com/sites/geruiwang/2026/02/28/why-ai-safety-the-dilemma-of-profits-vs-guardrails/</a></p>
   
   
 </article>
@@ -462,7 +462,7 @@ Max Read는 트럼프의 지시와 국방부의 ‘supply-chain risk’ 선언�
 https://maxread.substack.com/p/what-anthropics-fight-with-the-pentagon" onclick="copyEntry(this)">복사</button></div>
   <p>트럼프는 2026.2.27 미국 연방기관에 Anthropic A.I. 기술 사용 중단을 지시했고, 국방장관은 Anthropic을 공급망 위험으로 선언해 정부 계약을 막을 수 있다고 밝혔다.</p>
 <p>Max Read는 트럼프의 지시와 국방부의 ‘supply-chain risk’ 선언이 Anthropic과 펜타곤 간 계약 조건(대규모 감시, 인명 통제 없는 치명적 자율무기 등) 갈등에서 비롯됐다고 설명한다. 펜타곤은 Claude의 안전장치 완화를 요구했지만 Anthropic은 “선의의 양심”을 이유로 요청을 수용하지 않았고, 그 결과 정부가 사용 중단 및 계약 제재를 추진하는 흐름으로 이어졌다고 전한다. 또한 이 갈등이 단순한 계약 분쟁을 넘어 실리콘밸리 내 정치·이념 성향과 정부 조달 경쟁이 얽힌 양상이라고 분석한다.</p>
-  <p class="url"><a href="https://maxread.substack.com/p/what-anthropics-fight-with-the-pentagon">https://maxread.substack.com/p/what-anthropics-fight-with-the-pentagon</a></p>
+  <p class="url"><a href="https://maxread.substack.com/p/what-anthropics-fight-with-the-pentagon" target="_blank" rel="noopener noreferrer">https://maxread.substack.com/p/what-anthropics-fight-with-the-pentagon</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-27.html">← 2026-02-27</a><a class="day-nav-btn" href="2026-03-01.html">2026-03-01 →</a></nav>
@@ -543,7 +543,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

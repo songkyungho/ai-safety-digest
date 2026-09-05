@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=254720" onclick="copyEntry(this)">복사</button></div>
   <p>방송통신위원회와 정보통신정책연구원은 인공지능 기술·정책 동향을 분석하고 이용자 보호 방안을 논의하기 위해 2024년 7월 19일 민관협의회 첫 회의를 열었다. 협의회는 학계·산업계·법조계·시민단체 등 전문가 36명으로 구성됐으며, 이원우 서울대 교수가 위원장을 맡았다. 방통위는 회의 의견을 반영해 2024년 하반기 중 인공지능서비스 이용자보호법을 마련하고 입법 절차를 진행할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=254720">https://eiec.kdi.re.kr/policy/materialView.do?num=254720</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=254720" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=254720</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-20.html">← 2024-07-20</a><a class="day-nav-btn" href="2024-07-24.html">2024-07-24 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

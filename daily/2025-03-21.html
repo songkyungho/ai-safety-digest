@@ -433,7 +433,7 @@
 
 https://futureoflife.org/ai/are-we-close-to-an-intelligence-explosion/" onclick="copyEntry(this)">복사</button></div>
   <p>인공지능 폭발은 AI가 인간 수준을 넘어 AI 연구 자체를 자동화하고, 반복적인 자기개선을 통해 기술 발전을 매우 빠르게 가속하는 상황을 뜻한다. 최근 AI의 능력 향상과 컴퓨팅 비용 하락으로 이 가능성에 대한 논의가 커졌으며, 2023년 AI 연구자 설문에서는 53%가 5년 이내 인공지능 폭발이 일어날 가능성을 50% 이상으로 평가했다. 다만 하드웨어·데이터센터 같은 현실적 제약과 점진적 능력 향상 가능성도 있어 발생 시점과 실현 여부는 불확실하며, 통제가 실패하면 인류 존립에 중대한 위험을 초래할 수 있다.</p>
-  <p class="url"><a href="https://futureoflife.org/ai/are-we-close-to-an-intelligence-explosion/">https://futureoflife.org/ai/are-we-close-to-an-intelligence-explosion/</a></p>
+  <p class="url"><a href="https://futureoflife.org/ai/are-we-close-to-an-intelligence-explosion/" target="_blank" rel="noopener noreferrer">https://futureoflife.org/ai/are-we-close-to-an-intelligence-explosion/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-20.html">← 2025-03-20</a><a class="day-nav-btn" href="2025-03-24.html">2025-03-24 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

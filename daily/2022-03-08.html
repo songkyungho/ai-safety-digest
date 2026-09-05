@@ -433,7 +433,7 @@ Anthropic은 맥락 내 학습(in-context learning)과 추론 헤드(induction h
 
 https://www.anthropic.com/research/in-context-learning-and-induction-heads" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 맥락 내 학습(in-context learning)과 추론 헤드(induction heads)에 대한 연구를 발표하며, 현재 최첨단 모델들의 행동 패턴과 그로 인한 예상치 못한 시스템적 실패 사례들을 분석하고 있습니다. 또한, 이 연구는 아직 공개되지 않은 Claude 모델의 수학적 능력 향상 사례를 소개하고 있는데, 특히 리만 가설(Riemann hypothesis) 관련 문제에서 기존의 하한치를 향상시킨 성과를 보여주고 있습니다. 이 모델은 리만 제타 함수의 제로들 중 리만 가설을 만족하는 비율의 하한치를 41.6%에서 67.2%로 높였습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/in-context-learning-and-induction-heads">https://www.anthropic.com/research/in-context-learning-and-induction-heads</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/in-context-learning-and-induction-heads" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/in-context-learning-and-induction-heads</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-02-15.html">← 2022-02-15</a><a class="day-nav-btn" href="2022-04-12.html">2022-04-12 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

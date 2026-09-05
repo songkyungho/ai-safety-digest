@@ -433,7 +433,7 @@ METR은 RE-Bench라는 새로운 벤치마크를 공개하여 인간과 최첨�
 
 https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/" onclick="copyEntry(this)">복사</button></div>
   <p>METR은 RE-Bench라는 새로운 벤치마크를 공개하여 인간과 최첨단 언어 모델 에이전트의 머신러닝 연구 엔지니어링 작업 수행 능력을 측정합니다. 이 벤치마크는 7개의 환경으로 구성되어 있으며, 각 환경은 GPU 활용, 코드 최적화 등 실제 연구 엔지니어링 과제를 중심으로 설계되었습니다. 연구 결과, 2시간 내에서는 AI 에이전트가 인간보다 우수한 성과를 보였으나, 시간 예산이 늘어날수록 인간의 성과가 더 나았습니다. 특히, AI 에이전트는 특정 작업에서 인간보다 훨씬 빠르게 진전을 이루었지만, 복잡한 정보 처리와 장기적인 작업 진행에는 어려움을 겪었습니다. 이 연구는 자율 AI 연구 개발 능력을 평가하기 위한 기준 설정에 기여할 것으로 기대됩니다. 자세한 내용은 공개된 논문과 GitHub 리포지토리에서 확인 가능합니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/">https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-11-19.html">← 2024-11-19</a><a class="day-nav-btn" href="2024-11-25.html">2024-11-25 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

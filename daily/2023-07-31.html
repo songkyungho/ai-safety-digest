@@ -433,7 +433,7 @@ METR는 최첨단 AI 시스템을 연구하고 평가하여 복잡한 자율 작
 
 https://metr.org/blog/2023-08-01-new-report/" onclick="copyEntry(this)">복사</button></div>
   <p>METR는 최첨단 AI 시스템을 연구하고 평가하여 복잡한 자율 작업 수행 능력을 측정합니다. 이번 보고서는 LLM 에이전트의 자율 복제 및 적응(ARA) 능력을 평가하는 방법론을 소개하며, Anthropic의 Claude와 OpenAI의 GPT-4 모델을 기반으로 한 네 가지 예시 에이전트를 테스트한 결과를 담고 있습니다. 테스트된 12가지 실제 작업 중 에이전트들은 가장 쉬운 작업만 완료할 수 있었으며, 이는 LLM 에이전트가 위험한 자율 능력을 갖추기 전에 조기 경보 시스템을 구축하는 데 중요한 통찰력을 제공합니다. 또한, 모델의 미세 조정이 ARA 관련 능력을 향상시킬 수 있음을 발견했습니다. 향후 연구에서는 더 발전된 에이전트와 더 다양한 작업을 평가하여 위험한 자율 능력을 더 정확하게 측정할 계획입니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2023-08-01-new-report/">https://metr.org/blog/2023-08-01-new-report/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2023-08-01-new-report/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2023-08-01-new-report/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-07-18.html">← 2023-07-18</a><a class="day-nav-btn" href="2023-08-04.html">2023-08-04 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

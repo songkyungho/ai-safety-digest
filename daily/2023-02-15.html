@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/the-capacity-for-moral-self-correction-in-large-language-models" onclick="copyEntry(this)">복사</button></div>
   <p>대형 언어 모델이 인간 피드백 기반 강화 학습(RLHF)을 통해 훈련될 경우, 도덕적으로 해로운 출력을 피하는 &#x27;도덕적 자기 수정&#x27; 능력을 갖추는지 검증한 연구 결과를 발표했습니다. 세 가지 실험을 통해 이 가설을 강력하게 뒷받침하는 증거를 제시했으며, 모델 크기가 22B 파라미터 이상일 때 도덕적 자기 수정 능력이 나타나고, 일반적으로 모델 크기가 커질수록 이 능력이 향상됨을 발견했습니다. 이러한 규모의 모델은 지시를 따르고 복잡한 윤리적 개념(예: 고정관념, 편견, 차별)을 학습하여 특정 유형의 해로운 출력을 피하도록 설계될 수 있습니다. 이 연구 결과는 언어 모델을 윤리적 원칙에 따라 훈련시키는 가능성에 대한 조심스러운 낙관주의를 불러일으킵니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/the-capacity-for-moral-self-correction-in-large-language-models">https://www.anthropic.com/research/the-capacity-for-moral-self-correction-in-large-language-models</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/the-capacity-for-moral-self-correction-in-large-language-models" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/the-capacity-for-moral-self-correction-in-large-language-models</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-02-13.html">← 2023-02-13</a><a class="day-nav-btn" href="2023-03-08.html">2023-03-08 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

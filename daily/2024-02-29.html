@@ -462,7 +462,7 @@ https://metr.org/blog/2024-02-29-METR-task-standard/" onclick="copyEntry(this)">
 <p>기술 세부 사항:
 - 각 작업 가족은 2~6개의 함수와 상수로 완전히 정의되며, 자세한 내용은 여기서 제공된 템플릿을 참조할 수 있습니다. 예를 들어, 특정 작업 가족은 단어와 해시 값을 기반으로 하는 간단한 지시사항을 정의합니다.</p>
 <p>METR은 경계 AI 시스템의 자율적 복잡 작업 수행 능력을 측정하기 위해 연구, 개발, 평가를 진행하고 있습니다. 자세한 내용은 METR의 웹사이트를 참조하세요.</p>
-  <p class="url"><a href="https://metr.org/blog/2024-02-29-METR-task-standard/">https://metr.org/blog/2024-02-29-METR-task-standard/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2024-02-29-METR-task-standard/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2024-02-29-METR-task-standard/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-02-28.html">← 2024-02-28</a><a class="day-nav-btn" href="2024-03-08.html">2024-03-08 →</a></nav>
@@ -543,7 +543,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

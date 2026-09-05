@@ -458,7 +458,7 @@ https://www.anthropic.com/news/anthropic-s-recommendations-ostp-u-s-ai-action-pl
 5. **정부 AI 채택 가속화**: AI가 공공 이익에 기여할 수 있는 워크플로우를 정부 전반에 걸쳐 조사하고 프로그램을 실행해야 합니다.
 6. **경제적 영향 대비**: AI의 이점이 사회 전반에 걸쳐 공평하게 분배되도록 경제 데이터 수집 메커니즘을 현대화해야 합니다.</p>
 <p>이러한 권고안은 혁신을 촉진하면서 동시에 점점 더 능력이 높아지는 AI 시스템의 심각한 위험을 완화하는 균형을 추구합니다. 자세한 내용은 앤써픽의 전체 제출 문서에서 확인 가능합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/anthropic-s-recommendations-ostp-u-s-ai-action-plan">https://www.anthropic.com/news/anthropic-s-recommendations-ostp-u-s-ai-action-plan</a></p>
+  <p class="url"><a href="https://www.anthropic.com/news/anthropic-s-recommendations-ostp-u-s-ai-action-plan" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/anthropic-s-recommendations-ostp-u-s-ai-action-plan</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-05.html">← 2025-03-05</a><a class="day-nav-btn" href="2025-03-07.html">2025-03-07 →</a></nav>
@@ -539,7 +539,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://www.kdic.or.kr/html/synap/skin/doc.html?key=HPB3767054EB3F4203A2C23DDFBC8989C5&amp;imageConverting=true&amp;convLocale=ko_KR&amp;contextPath=/html/synap/output/preview/202503/HPB3767054EB3F4203A2C23DDFBC8989C5/" onclick="copyEntry(this)">복사</button></div>
   <p>예금보험공사는 주요국의 금융 분야 AI 활용과 규제 동향을 분석한 보고서를 발표했다. 주요국은 투명성·책임성·신뢰성·공정성·소비자 보호 등을 포함한 원칙 중심의 AI 가이던스를 마련하고, 금융회사에는 기존 금융규제 적용 가이드라인을 제공하는 방식을 주로 채택하고 있다. 생성형 AI의 발전으로 AI 활용이 대출·보험계약 심사 등 핵심 업무로 확대되면서 책임소재와 설명 가능성 부족 문제가 커지고 있어, 국제 협력을 통한 위험 식별과 별도 가이던스 마련 등 규제·감독체계 재검토가 과제로 제시됐다.</p>
-  <p class="url"><a href="https://www.kdic.or.kr/html/synap/skin/doc.html?key=HPB3767054EB3F4203A2C23DDFBC8989C5&amp;imageConverting=true&amp;convLocale=ko_KR&amp;contextPath=/html/synap/output/preview/202503/HPB3767054EB3F4203A2C23DDFBC8989C5/">https://www.kdic.or.kr/html/synap/skin/doc.html?key=HPB3767054EB3F4203A2C23DDFBC8989C5&amp;imageConverting=true&amp;convLocale=ko_KR&amp;contextPath=/html/synap/output/preview/202503/HPB3767054EB3F4203A2C23DDFBC8989C5/</a></p>
+  <p class="url"><a href="https://www.kdic.or.kr/html/synap/skin/doc.html?key=HPB3767054EB3F4203A2C23DDFBC8989C5&amp;imageConverting=true&amp;convLocale=ko_KR&amp;contextPath=/html/synap/output/preview/202503/HPB3767054EB3F4203A2C23DDFBC8989C5/" target="_blank" rel="noopener noreferrer">https://www.kdic.or.kr/html/synap/skin/doc.html?key=HPB3767054EB3F4203A2C23DDFBC8989C5&amp;imageConverting=true&amp;convLocale=ko_KR&amp;contextPath=/html/synap/output/preview/202503/HPB3767054EB3F4203A2C23DDFBC8989C5/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-27.html">← 2025-03-27</a><a class="day-nav-btn" href="2025-04-01.html">2025-04-01 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

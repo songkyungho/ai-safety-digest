@@ -433,7 +433,7 @@ NIST는 AI 시스템 보안을 위해 SP 800-53 통제를 AI 특화 우려에 �
 
 https://csrc.nist.gov/Events/2025/ai-overlay-webinar" onclick="copyEntry(this)">복사</button></div>
   <p>NIST는 AI 시스템 보안을 위해 SP 800-53 통제를 AI 특화 우려에 맞게 적응·맞춤·보완하는 “Control Overlays” 개발 프로젝트를 소개하는 가상 웨비나를 2025년 9월 25일 개최한다고 밝혔다. 모델 무결성, 데이터 출처(provenance), 적대적 견고성(adversarial robustness), 투명성 등 AI 고유 이슈를 기존 프레임워크(NIST RMF, SP 800-53)에 기반해 다루는 방식을 설명할 예정이다. 웨비나에서는 Control overlays의 역할, AI 위협과 완화 방안, 조직 간 일관성·상호운용성·신뢰 제고, 참여 방법 등이 다뤄진다.</p>
-  <p class="url"><a href="https://csrc.nist.gov/Events/2025/ai-overlay-webinar">https://csrc.nist.gov/Events/2025/ai-overlay-webinar</a></p>
+  <p class="url"><a href="https://csrc.nist.gov/Events/2025/ai-overlay-webinar" target="_blank" rel="noopener noreferrer">https://csrc.nist.gov/Events/2025/ai-overlay-webinar</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-24.html">← 2025-09-24</a><a class="day-nav-btn" href="2025-09-26.html">2025-09-26 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

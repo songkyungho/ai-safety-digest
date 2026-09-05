@@ -443,7 +443,7 @@ https://llama.meta.com/" onclick="copyEntry(this)">복사</button></div>
   <p>General · Open · 10000K ctx</p>
 <p>MMLU 74.3% · AIME 83%</p>
 <p>MoE - 17B active / 109B total. 10M token context. Multimodal. Extremely compute-efficient.</p>
-  <p class="url"><a href="https://llama.meta.com/">https://llama.meta.com/</a></p>
+  <p class="url"><a href="https://llama.meta.com/" target="_blank" rel="noopener noreferrer">https://llama.meta.com/</a></p>
   
   <details class="related-stories" open><summary>같은 이슈 관련 1건 · DemandSphere</summary><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Llama 4 Maverick (Meta) (2025.4.5) General · Open · 1000K ctx
 
@@ -463,7 +463,7 @@ https://llama.meta.com/" onclick="copyEntry(this)">복사</button></div>
   <p>General · Open · 1000K ctx</p>
 <p>MMLU 80.5% · AIME 96.1%</p>
 <p>Meta top-tier open MoE - 17B active / ~400B total. 1M context, multimodal.</p>
-  <p class="url"><a href="https://llama.meta.com/">https://llama.meta.com/</a></p>
+  <p class="url"><a href="https://llama.meta.com/" target="_blank" rel="noopener noreferrer">https://llama.meta.com/</a></p>
   
   
 </article></details>
@@ -545,7 +545,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

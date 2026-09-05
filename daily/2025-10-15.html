@@ -433,7 +433,7 @@ Anthropic은 최신 소형 모델인 Claude Haiku 4.5를 출시했습니다. 이
 
 https://www.anthropic.com/news/claude-haiku-4-5" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 최신 소형 모델인 Claude Haiku 4.5를 출시했습니다. 이 모델은 이전의 최첨단 모델인 Claude Sonnet 4에 비해 비용의 약 1/3과 더 빠른 속도로 유사한 코딩 성능을 제공합니다. 특히 복잡한 작업 처리와 컴퓨터 활용 능력에서 향상된 성능을 보여주며, 실시간 응답성이 요구되는 채팅 어시스턴트나 코드 개발 등 다양한 분야에서 유용합니다. 안전성 평가에서도 낮은 위험률과 높은 정렬성을 보여주며, ASL-2 안전 기준을 충족하여 출시되었습니다. 가격은 입력 및 출력 토큰당 $1~$5로 책정되었습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/claude-haiku-4-5">https://www.anthropic.com/news/claude-haiku-4-5</a></p>
+  <p class="url"><a href="https://www.anthropic.com/news/claude-haiku-4-5" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/claude-haiku-4-5</a></p>
   
   <details class="related-stories" open><summary>같은 이슈 관련 1건 · DemandSphere</summary><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Claude Haiku 4.5 (Anthropic) (2025.10.15) General · Closed · 200K ctx · $1/M · $5/M
 
@@ -453,7 +453,7 @@ https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)
   <p>General · Closed · 200K ctx · $1/M · $5/M</p>
 <p>GPQA 73% · SWE 73.3% · MMLU 65% · HE 89% · MATH 72% · AIME 80.7%</p>
 <p>Fastest efficient Anthropic model. First Haiku with extended thinking and computer use. 73.3% SWE-bench.</p>
-  <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
+  <p class="url"><a href="https://docs.anthropic.com/en/docs/about-claude/models" target="_blank" rel="noopener noreferrer">https://docs.anthropic.com/en/docs/about-claude/models</a></p>
   
   
 </article></details>
@@ -535,7 +535,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

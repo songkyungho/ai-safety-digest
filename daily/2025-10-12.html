@@ -433,7 +433,7 @@
 
 https://www.giurisprudenzapenale.com/wp-content/uploads/2024/04/bozza-ddl.pdf" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.giurisprudenzapenale.com/wp-content/uploads/2024/04/bozza-ddl.pdf">https://www.giurisprudenzapenale.com/wp-content/uploads/2024/04/bozza-ddl.pdf</a></p>
+  <p class="url"><a href="https://www.giurisprudenzapenale.com/wp-content/uploads/2024/04/bozza-ddl.pdf" target="_blank" rel="noopener noreferrer">https://www.giurisprudenzapenale.com/wp-content/uploads/2024/04/bozza-ddl.pdf</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-10-10.html">← 2025-10-10</a><a class="day-nav-btn" href="2025-10-13.html">2025-10-13 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

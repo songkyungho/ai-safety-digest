@@ -433,7 +433,7 @@
 
 https://deepmind.google/blog/veo-3-1-ingredients-to-video-more-consistency-creativity-and-control/" onclick="copyEntry(this)">복사</button></div>
   <p>구글 딥마인드는 참조 이미지를 활용하는 Veo 3.1 Ingredients to Video 기능을 개선해 캐릭터·배경·객체의 일관성과 대화·스토리텔링 표현력을 높였다. 또한 9:16 세로 영상 생성과 1080p·4K 업스케일링을 지원하며, Gemini 앱·YouTube Shorts·Flow·Gemini API·Vertex AI·Google Vids에서 제공한다. 구글의 영상 생성물에는 SynthID 디지털 워터마크가 삽입되며, Gemini 앱에서 영상이 Google AI로 생성됐는지 확인할 수 있다.</p>
-  <p class="url"><a href="https://deepmind.google/blog/veo-3-1-ingredients-to-video-more-consistency-creativity-and-control/">https://deepmind.google/blog/veo-3-1-ingredients-to-video-more-consistency-creativity-and-control/</a></p>
+  <p class="url"><a href="https://deepmind.google/blog/veo-3-1-ingredients-to-video-more-consistency-creativity-and-control/" target="_blank" rel="noopener noreferrer">https://deepmind.google/blog/veo-3-1-ingredients-to-video-more-consistency-creativity-and-control/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-01-12.html">← 2026-01-12</a><a class="day-nav-btn" href="2026-01-14.html">2026-01-14 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

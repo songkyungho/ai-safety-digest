@@ -433,7 +433,7 @@ EU와 미국 AI 전문가들이 EU-US Trade and Technology Council(TTC) Working 
 
 https://digital-strategy.ec.europa.eu/en/library/eu-us-terminology-and-taxonomy-artificial-intelligence-second-edition" onclick="copyEntry(this)">복사</button></div>
   <p>EU와 미국 AI 전문가들이 EU-US Trade and Technology Council(TTC) Working Group 1(WG1) 산하 AI Taxonomy and Terminology 소그룹을 통해 ‘EU-U.S. Terminology and Taxonomy for Artificial Intelligence’ 2판을 개발했다. 이번 2판은 제6차 EU-U.S. TTC Ministerial(TTC6) 계기에 맞춰 공개되었으며, 1판의 약속을 이행하기 위한 후속 작업이다.</p>
-  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/library/eu-us-terminology-and-taxonomy-artificial-intelligence-second-edition">https://digital-strategy.ec.europa.eu/en/library/eu-us-terminology-and-taxonomy-artificial-intelligence-second-edition</a></p>
+  <p class="url"><a href="https://digital-strategy.ec.europa.eu/en/library/eu-us-terminology-and-taxonomy-artificial-intelligence-second-edition" target="_blank" rel="noopener noreferrer">https://digital-strategy.ec.europa.eu/en/library/eu-us-terminology-and-taxonomy-artificial-intelligence-second-edition</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-04-04.html">← 2024-04-04</a><a class="day-nav-btn" href="2024-04-09.html">2024-04-09 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

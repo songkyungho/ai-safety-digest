@@ -433,7 +433,7 @@
 
 https://www.theguardian.com/technology/2025/aug/11/ai-tools-used-by-english-councils-downplay-womens-health-issues-study-finds" onclick="copyEntry(this)">복사</button></div>
   <p>런던정경대(LSE) 연구에 따르면 잉글랜드 지방자치단체의 절반 이상이 사용하는 AI 도구가 여성의 신체·정신 건강 이슈를 남성보다 덜 심각하게 표현할 위험이 있다. 연구진은 실제 성인 사회돌봄 기록 617건을 성별만 바꿔 여러 LLM에 반복 입력한 뒤 요약 29,616쌍을 비교했으며, Google의 Gemma는 ‘disabled’, ‘unable’, ‘complex’ 같은 표현이 남성 설명에서 더 자주 나타났고 여성의 돌봄 필요가 누락되거나 완화돼 서술되는 경향이 관찰됐다. 반면 Meta의 Llama 3 모델은 성별에 따른 언어 차이를 덜 보였다고 연구는 밝혔다. 또한 공공부문에서 AI가 이미 사용 중이지만, 공정성 훼손 없이 투명성·편향에 대한 엄격한 시험·법적 감독이 필요하다고 지적했다.</p>
-  <p class="url"><a href="https://www.theguardian.com/technology/2025/aug/11/ai-tools-used-by-english-councils-downplay-womens-health-issues-study-finds">https://www.theguardian.com/technology/2025/aug/11/ai-tools-used-by-english-councils-downplay-womens-health-issues-study-finds</a></p>
+  <p class="url"><a href="https://www.theguardian.com/technology/2025/aug/11/ai-tools-used-by-english-councils-downplay-womens-health-issues-study-finds" target="_blank" rel="noopener noreferrer">https://www.theguardian.com/technology/2025/aug/11/ai-tools-used-by-english-councils-downplay-womens-health-issues-study-finds</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ Henkaku Center는 2025년 7월 5일 일본에서 AI safety를 주제로 한 첫 
 
 https://www.henkaku.center/en/news/reports/2025-08-11/workshop-2025-07-05-AI-Safety/" onclick="copyEntry(this)">복사</button></div>
   <p>Henkaku Center는 2025년 7월 5일 일본에서 AI safety를 주제로 한 첫 국제 워크숍을 개최했으며, Japan AI Safety Institute의 지원을 받았다. 행사는 Chiba Institute Technology의 Henkaku Center와 Digital Garage의 Digital Architecture Lab이 주관했고, 일본의 AI safety·governance·quality management에 초점을 맞춰 향후 커뮤니티 구축형 행사 시리즈를 예고했다. 일본뿐 아니라 한국·싱가포르·미국·영국·독일·네덜란드 등 해외 연구자와 실무자, OECD 및 일본 정부 관계자도 참여해 Hiroshima AI Process Framework의 최신 동향을 공유했다.</p>
-  <p class="url"><a href="https://www.henkaku.center/en/news/reports/2025-08-11/workshop-2025-07-05-AI-Safety/">https://www.henkaku.center/en/news/reports/2025-08-11/workshop-2025-07-05-AI-Safety/</a></p>
+  <p class="url"><a href="https://www.henkaku.center/en/news/reports/2025-08-11/workshop-2025-07-05-AI-Safety/" target="_blank" rel="noopener noreferrer">https://www.henkaku.center/en/news/reports/2025-08-11/workshop-2025-07-05-AI-Safety/</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ EU 내부고발자 보호 지침은 직원, 계약자, 공급업체, 구직자 �
 
 https://artificialintelligenceact.eu/whistleblowing-and-the-eu-ai-act/" onclick="copyEntry(this)">복사</button></div>
   <p>EU 내부고발자 보호 지침은 직원, 계약자, 공급업체, 구직자 등 직업적 관계에서 EU 법 위반을 신고한 사람을 보복으로부터 보호하고, 내부·외부 신고 및 특정 조건의 공개 신고 경로를 규정한다. 2026년 8월 2일부터 EU 인공지능법 위반 신고도 지침의 명시적 보호 대상에 포함되며, 그 전에도 제품 안전·소비자 보호·개인정보·정보보안과 관련된 AI 문제는 보호받을 수 있다. 신고자는 합리적으로 정보가 사실이라고 믿을 근거가 있어야 하며, 해고·강등·차별·괴롭힘 등 보복이 발생하면 복직과 임금 보전 등의 구제를 받을 수 있다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/whistleblowing-and-the-eu-ai-act/">https://artificialintelligenceact.eu/whistleblowing-and-the-eu-ai-act/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/whistleblowing-and-the-eu-ai-act/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/whistleblowing-and-the-eu-ai-act/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-08-09.html">← 2025-08-09</a><a class="day-nav-btn" href="2025-08-12.html">2025-08-12 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

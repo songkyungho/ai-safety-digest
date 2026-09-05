@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=260180" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 국내 인공지능 기업과 연구자 등 200여 명이 참여한 가운데 인공지능 신뢰·안전성 학술회의를 개최했다. 회의에서는 관련 기술·정책 동향과 2024년 정부 지원 연구성과, 민간의 이행 현황을 공유하고 국내 우수사례를 점검했다. 과기정통부는 책임있는 인공지능 개발·활용을 지원하고, 첨단 인공지능의 잠재적 위험에 대응하기 위해 11월 27일 인공지능 안전연구소를 출범할 예정이라고 밝혔다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260180">https://eiec.kdi.re.kr/policy/materialView.do?num=260180</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260180" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=260180</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=260180" onclick="copyEntry(thi
 
 https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27395&amp;parentSeq=27395" onclick="copyEntry(this)">복사</button></div>
   <p>미국 바이든 정부는 AI를 국가안보에 책임 있게 활용하기 위한 지침과 이행사항을 담은 AI 국가안보각서(AI NSM)를 발표했다. 각서는 안전하고 신뢰할 수 있는 AI 개발 주도, 국가안보 목적의 책임 있는 AI 활용, 국제 AI 거버넌스 구축을 주요 목표로 제시한다. 보고서는 AI를 국가 전략 자산으로 격상하고, 중국 등 경쟁국 견제를 위한 동맹 협력과 AI 인재·인프라·반도체 공급망 확보, AI 안전연구 및 다층적 거버넌스 강화를 주요 시사점으로 분석한다.</p>
-  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27395&amp;parentSeq=27395">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27395&amp;parentSeq=27395</a></p>
+  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27395&amp;parentSeq=27395" target="_blank" rel="noopener noreferrer">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27395&amp;parentSeq=27395</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-11-25.html">← 2024-11-25</a><a class="day-nav-btn" href="2024-11-27.html">2024-11-27 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

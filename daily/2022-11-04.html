@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/measuring-progress-on-scalable-oversight-for-large-language-models" onclick="copyEntry(this)">복사</button></div>
   <p>대형 언어 모델의 안전하고 유용한 활용을 위해서는 확장 가능한 감독 기술의 발전이 필수적입니다. 본 연구는 인간 전문가가 성공하지만 현재의 AI 시스템은 실패하는 특정 작업을 중심으로 실험 설계를 제시합니다. 이를 통해 대화형 인터페이스를 통한 기본적인 감독 전략이 인간 참여자의 성과를 크게 향상시킬 수 있음을 보여줍니다. 특히 MMLU와 QuALITY와 같은 질문 응답 작업에서 이러한 효과를 확인하였으며, 이는 현재 모델로 확장 가능한 감독 연구가 가능함을 시사합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/measuring-progress-on-scalable-oversight-for-large-language-models">https://www.anthropic.com/research/measuring-progress-on-scalable-oversight-for-large-language-models</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/measuring-progress-on-scalable-oversight-for-large-language-models" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/measuring-progress-on-scalable-oversight-for-large-language-models</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-10-07.html">← 2022-10-07</a><a class="day-nav-btn" href="2022-11-11.html">2022-11-11 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

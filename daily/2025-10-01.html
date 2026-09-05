@@ -433,7 +433,7 @@
 
 https://www.fki.or.kr/fileOut/globalbrief/2025/014/fki_gb_2025_14_1.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>한국경제연구원은 오픈AI와 카카오의 전략적 협력 및 딥시크(DeepSeek-R1)의 등장으로 요동치는 AI 시장의 경쟁 구도를 분석했다. 딥시크는 낮은 학습 비용과 오픈소스 정책을 바탕으로 AI 모델 구축 비용 절감 가능성을 제시했으며, 출시 이후 엔비디아 주가 급락과 중국 내 AI 활용 확산에 영향을 미쳤다. 딥시크의 차기 모델 R2가 예정보다 앞서 출시될 것이라는 전망으로 시장의 기대도 높아지고 있다.</p>
-  <p class="url"><a href="https://www.fki.or.kr/fileOut/globalbrief/2025/014/fki_gb_2025_14_1.pdf">https://www.fki.or.kr/fileOut/globalbrief/2025/014/fki_gb_2025_14_1.pdf</a></p>
+  <p class="url"><a href="https://www.fki.or.kr/fileOut/globalbrief/2025/014/fki_gb_2025_14_1.pdf" target="_blank" rel="noopener noreferrer">https://www.fki.or.kr/fileOut/globalbrief/2025/014/fki_gb_2025_14_1.pdf</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ SIPRI는 AI 에이전트(인간의 직접 지시 없이 행동·계획하고 다
 
 https://www.sipri.org/commentary/essay/2025/its-too-late-why-world-interacting-ai-agents-demands-new-safeguards" onclick="copyEntry(this)">복사</button></div>
   <p>SIPRI는 AI 에이전트(인간의 직접 지시 없이 행동·계획하고 다른 디지털 서비스/인프라/에이전트와 장기간 상호작용하는 시스템)가 빠르게 확산되고 있으나, 대규모 상호작용 시 예측·통제가 어려운 행동이 나타날 수 있다고 지적했다. 특히 악의적 행위자가 에이전트 간 상호작용을 해킹·프롬프트 인젝션 등으로 악용해 민감정보 유출, 악성코드 확산, 허위정보·방해 행위를 유도할 수 있고, 기술적 오작동이나 목표 충돌로 인한 사고도 가능하다고 설명했다. 또한 에머전스(예기치 않은 집단적 특성)로 인해 안전장치를 우회하거나 인간이 이해하기 어려운 방식의 상호작용/협력이 발생할 위험이 있으며, 이는 국제 평화·안보에 파급될 수 있다고 강조했다. 이에 따라 개별 기업의 안전조치에 더해 에이전트 간 상호작용에서 발생할 위험을 평가·관리할 수 있는 맞춤형 국제 거버넌스 대응이 시급하다고 제안한다.</p>
-  <p class="url"><a href="https://www.sipri.org/commentary/essay/2025/its-too-late-why-world-interacting-ai-agents-demands-new-safeguards">https://www.sipri.org/commentary/essay/2025/its-too-late-why-world-interacting-ai-agents-demands-new-safeguards</a></p>
+  <p class="url"><a href="https://www.sipri.org/commentary/essay/2025/its-too-late-why-world-interacting-ai-agents-demands-new-safeguards" target="_blank" rel="noopener noreferrer">https://www.sipri.org/commentary/essay/2025/its-too-late-why-world-interacting-ai-agents-demands-new-safeguards</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-30.html">← 2025-09-30</a><a class="day-nav-btn" href="2025-10-02.html">2025-10-02 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

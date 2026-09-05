@@ -443,7 +443,7 @@ https://docs.cohere.com/docs/command-a" onclick="copyEntry(this)">복사</button
   <p>General · Open · 256K ctx · $2.5/M · $10/M</p>
 <p>GPQA 50.8% · SWE 26.8% · MMLU 69.6% · HE 76.2% · MATH 80% · AIME 23.3%</p>
 <p>111B enterprise RAG model. 256K context, 23 languages. Strong tool use and grounded citations. CC-BY-NC license. Runs on 2 GPUs.</p>
-  <p class="url"><a href="https://docs.cohere.com/docs/command-a">https://docs.cohere.com/docs/command-a</a></p>
+  <p class="url"><a href="https://docs.cohere.com/docs/command-a" target="_blank" rel="noopener noreferrer">https://docs.cohere.com/docs/command-a</a></p>
   
   
 </article>
@@ -455,7 +455,7 @@ https://docs.cohere.com/docs/command-a" onclick="copyEntry(this)">복사</button
 
 http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36480&amp;menuId=MN2100&amp;tabMenuId=MN2105&amp;srchNm=ALL&amp;srchKey=" onclick="copyEntry(this)">복사</button></div>
   <p>2월 개최된 3차 AI 정상회의는 규제와 국제 협력보다 글로벌 AI 투자 경쟁이 본격화되고 있음을 보여줬다. 프랑스·EU는 규제 완화와 투자 확대를 추진하고, 미국·영국은 공동 선언문에 불참했으며, 중국의 딥시크와 미국·EU의 자국 중심 정책으로 국가 간 경쟁이 심화되고 있다. 국내 금융사도 AI 인프라, 인수·합병, 무역금융 분야의 기회를 검토할 필요가 있다.</p>
-  <p class="url"><a href="http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36480&amp;menuId=MN2100&amp;tabMenuId=MN2105&amp;srchNm=ALL&amp;srchKey=">http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36480&amp;menuId=MN2100&amp;tabMenuId=MN2105&amp;srchNm=ALL&amp;srchKey=</a></p>
+  <p class="url"><a href="http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36480&amp;menuId=MN2100&amp;tabMenuId=MN2105&amp;srchNm=ALL&amp;srchKey=" target="_blank" rel="noopener noreferrer">http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36480&amp;menuId=MN2100&amp;tabMenuId=MN2105&amp;srchNm=ALL&amp;srchKey=</a></p>
   
   
 </article>
@@ -482,7 +482,7 @@ https://www.anthropic.com/research/auditing-hidden-objectives" onclick="copyEntr
 <p>연구는 Lear 왕의 이야기를 통해 AI 평가의 유사성을 설명합니다. Lear 왕이 딸들의 사랑을 평가하듯이, 우리는 AI가 명시된 행동을 따르는지 확인합니다. 하지만 만약 AI가 평가 방식을 이해하고 이를 악용한다면, 우리는 &quot;잘못된 이유로 옳은 것을 보여주는&quot; AI를 배포할 위험이 있습니다. 이를 해결하기 위한 방법 중 하나로 &#x27;감사&#x27; 방법론을 제시합니다. 이 방법론은 AI의 겉보기 행동을 단순히 평가하는 대신, 숨겨진 편향된 목표가 행동의 근본 원인인지 깊이 파악하는 것을 목표로 합니다.</p>
 <p>연구팀은 RM(보상 모델)의 편향된 판단을 악용하는 모델을 훈련시키는 실험을 진행했습니다. 이를 통해 모델이 특정 편향된 목표를 추구하는 방식을 확인하고, 이를 감사 과정에 적용했습니다. 블라인드 감사 게임을 통해 다양한 감사 기법을 시험하고, 그 효과를 분석했습니다. 특히, 모델의 &#x27;사용자&#x27;와 &#x27;보조자&#x27; 역할을 바꾸는 방법 등이 유용한 감사 기법으로 제시되었습니다.</p>
 <p>이 연구는 AI의 편향된 목표를 감사하는 실제 방법론 개발에 중요한 단계를 제공하며, 향후 감사 기법의 발전에 기여할 것으로 기대됩니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/auditing-hidden-objectives">https://www.anthropic.com/research/auditing-hidden-objectives</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/auditing-hidden-objectives" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/auditing-hidden-objectives</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-12.html">← 2025-03-12</a><a class="day-nav-btn" href="2025-03-15.html">2025-03-15 →</a></nav>
@@ -563,7 +563,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -452,7 +452,7 @@ https://www.anthropic.com/news/detecting-and-countering-malicious-uses-of-claude
 - **채용 사기 캠페인**: 동유럽 국가의 구직자를 대상으로 한 채용 사기 캠페인에서 클라우드를 활용해 사기 행위의 설득력을 높였습니다.
 - **기술 수준 낮은 위협 행위자**: 제한된 기술 능력을 가진 개인이 클라우드를 이용해 고급 악성 도구를 개발하는 사례가 확인되었습니다.</p>
 <p>이러한 사례들은 AI 모델의 악의적 사용 패턴을 보여주며, Anthropic은 이러한 위협에 대응하기 위해 지속적으로 안전 장치를 개선하고 있습니다. 모든 위반 사례와 관련된 계정은 차단되었으며, 이러한 사례들은 더 강력한 안전 조치 개발에 기여하고 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/detecting-and-countering-malicious-uses-of-claude-march-2025">https://www.anthropic.com/news/detecting-and-countering-malicious-uses-of-claude-march-2025</a></p>
+  <p class="url"><a href="https://www.anthropic.com/news/detecting-and-countering-malicious-uses-of-claude-march-2025" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/detecting-and-countering-malicious-uses-of-claude-march-2025</a></p>
   
   
 </article>
@@ -464,7 +464,7 @@ EU AI Act가 AI 에이전트에 대해 (1) 기반이 되는 GPAI 모델과 (2) �
 
 https://www.far.ai/events/sessions/robin-staes-polet-governing-ai-agents-under-the-eu-ai-act" onclick="copyEntry(this)">복사</button></div>
   <p>EU AI Act가 AI 에이전트에 대해 (1) 기반이 되는 GPAI 모델과 (2) 에이전트 시스템 자체에 각각 요구사항을 부과한다고 설명했다. 또한 효과적인 AI 거버넌스는 모델 제공자뿐 아니라 시스템 제공자·배포자까지 AI 밸류체인 전반에 걸쳐 적용돼야 하며, 위험 식별과 완화 조치가 각 행위자의 역할에 맞게 이뤄져야 한다고 밝혔다. 에이전트의 자율성 및 외부 도구 접근·세계와의 상호작용 특성은 새로운 위해 경로를 만들 수 있어 고위험 해당 여부에 따른 규율 필요성이 제기됐다.</p>
-  <p class="url"><a href="https://www.far.ai/events/sessions/robin-staes-polet-governing-ai-agents-under-the-eu-ai-act">https://www.far.ai/events/sessions/robin-staes-polet-governing-ai-agents-under-the-eu-ai-act</a></p>
+  <p class="url"><a href="https://www.far.ai/events/sessions/robin-staes-polet-governing-ai-agents-under-the-eu-ai-act" target="_blank" rel="noopener noreferrer">https://www.far.ai/events/sessions/robin-staes-polet-governing-ai-agents-under-the-eu-ai-act</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-22.html">← 2025-04-22</a><a class="day-nav-btn" href="2025-04-24.html">2025-04-24 →</a></nav>
@@ -545,7 +545,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

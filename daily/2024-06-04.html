@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=252264" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부, 금융위원회, 개인정보보호위원회 등 관계기관 6곳은 보이스피싱 예방을 위한 AI·데이터 기반 업무협약을 체결했다. 금융당국과 수사기관의 실제 보이스피싱 통화 데이터를 민간 기업의 예방 AI 개발에 활용하고, 통신·금융업계 협력과 정부 주도 연구개발 사업을 추진하기로 했다. 개인정보보호위원회는 관련 기업들의 AI 서비스 개발 요청에 대해서도 관계 부처와 논의를 이어갈 예정이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=252264">https://eiec.kdi.re.kr/policy/materialView.do?num=252264</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=252264" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=252264</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=252264" onclick="copyEntry(thi
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=252267" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 2024년 5월 31일 영국 런던의 과학혁신기술부 AI 안전연구소를 방문해 인공지능 안전성 확보를 위한 양국 협력 방안을 논의했다. 이는 ‘AI 서울 정상회의’ 후속 조치로, 한국의 AI 안전연구소 설립과 글로벌 협력 방안을 구체화하기 위한 것이다. 과기정통부는 미국·일본 등 주요국 연구소와 협의를 이어가며 한국 AI 안전연구소의 조직과 기능을 구체화할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=252267">https://eiec.kdi.re.kr/policy/materialView.do?num=252267</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=252267" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=252267</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-06-03.html">← 2024-06-03</a><a class="day-nav-btn" href="2024-06-06.html">2024-06-06 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

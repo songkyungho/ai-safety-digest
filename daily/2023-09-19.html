@@ -433,7 +433,7 @@ ARC Evals가 ARC에서 독립 법인으로 분리되며, Beth Barnes가 새로�
 
 https://metr.org/blog/2023-09-19-spin-out-announcement/" onclick="copyEntry(this)">복사</button></div>
   <p>ARC Evals가 ARC에서 독립 법인으로 분리되며, Beth Barnes가 새로운 조직을 이끌게 됩니다. ARC Evals는 최근 독립적인 AI 모델 평가 작업을 통해 성장하여 자체 팀을 형성하고, GPT-4와 Claude의 평가를 포함한 여러 중요한 프로젝트를 수행했습니다. 이 분리로 인해 ARC의 이론 연구와 평가 활동 간의 명확한 구분이 이루어지며, 향후 ARC Evals의 명칭 변경 가능성도 제기되었습니다. Paul Christiano는 ARC의 수장으로 남지만, 새로운 역할로 인해 일부 자문 역할에서 제외되었습니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2023-09-19-spin-out-announcement/">https://metr.org/blog/2023-09-19-spin-out-announcement/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2023-09-19-spin-out-announcement/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2023-09-19-spin-out-announcement/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-09-04.html">← 2023-09-04</a><a class="day-nav-btn" href="2023-09-26.html">2023-09-26 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

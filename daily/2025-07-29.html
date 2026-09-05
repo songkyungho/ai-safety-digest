@@ -433,7 +433,7 @@
 
 https://link.springer.com/article/10.1007/s00146-025-02419-2" onclick="copyEntry(this)">복사</button></div>
   <p>인공지능이 사회·정치·경제의 핵심 기능에 깊이 통합될수록, 단순한 시스템 실패나 악의적 오남용 같은 근접 위협을 넘어서는 ‘구조적 위험’이 나타날 수 있다고 설명한다. 논문은 구조적 위험을 선행 구조적 원인, 선행 AI 시스템 원인, 해로운 피드백 루프의 세 범주로 나누고, 이 상호작용이 신뢰의 불안정, 권력 비대칭의 변화, 의사결정 주체성의 약화를 초래할 수 있음을 제시한다. 또한 시나리오 매핑, 시뮬레이션, 탐색적 포어사이트 등 방법론을 통해 이러한 역학을 예측·거버넌스하려는 연구 의제를 제안하며, 제도적 회복력과 적응형 거버넌스 전략을 정책 권고로 제시한다.</p>
-  <p class="url"><a href="https://link.springer.com/article/10.1007/s00146-025-02419-2">https://link.springer.com/article/10.1007/s00146-025-02419-2</a></p>
+  <p class="url"><a href="https://link.springer.com/article/10.1007/s00146-025-02419-2" target="_blank" rel="noopener noreferrer">https://link.springer.com/article/10.1007/s00146-025-02419-2</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-28.html">← 2025-07-28</a><a class="day-nav-btn" href="2025-07-30.html">2025-07-30 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

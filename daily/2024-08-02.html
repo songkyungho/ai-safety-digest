@@ -433,7 +433,7 @@
 
 https://law-ai.org/the-limits-of-liability/" onclick="copyEntry(this)">복사</button></div>
   <p>책임 제도는 AI 관리의 핵심 요소가 될 수 있지만, 공공 이익 문제나 구조적 피해, 매우 간접적인 인과 관계를 가진 위험 등에는 효과적이지 못하다. 특히, AI를 통한 허위 정보 확산이나 선거 개입과 같은 문제는 책임 청구로 해결하기 어렵다. 또한, 보상이 불가능한 위험(예: 너무 큰 피해로 인해 보상이 실질적으로 집행 불가능한 위험)은 책임 제도로 다루기 어렵다. 책임 제도는 정부 기관의 행동을 변화시키는 데도 제한적이며, 민간 부문에서 벗어나 국가화된 AI 기술의 사용을 규제하기 위해서는 추가적인 접근 방식이 필요하다. 국제적인 협력과 법 준수형 AI 개발 등이 고려될 수 있다.</p>
-  <p class="url"><a href="https://law-ai.org/the-limits-of-liability/">https://law-ai.org/the-limits-of-liability/</a></p>
+  <p class="url"><a href="https://law-ai.org/the-limits-of-liability/" target="_blank" rel="noopener noreferrer">https://law-ai.org/the-limits-of-liability/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-08-01.html">← 2024-08-01</a><a class="day-nav-btn" href="2024-08-06.html">2024-08-06 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

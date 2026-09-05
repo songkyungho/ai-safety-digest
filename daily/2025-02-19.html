@@ -433,7 +433,7 @@ EU 인공지능법은 중소기업의 준수를 지원하기 위해 규제 샌�
 
 https://artificialintelligenceact.eu/small-businesses-guide-to-the-ai-act/" onclick="copyEntry(this)">복사</button></div>
   <p>EU 인공지능법은 중소기업의 준수를 지원하기 위해 규제 샌드박스, 비례적인 심사 수수료와 과징금, 표준 설정 참여, 간소화된 기술문서와 맞춤형 교육, 전담 소통 창구를 마련한다. 중소기업은 규제 샌드박스에 우선적으로 무료로 참여할 수 있으며, 샌드박스 계획을 성실히 준수하면 법 위반에 대한 행정 과징금을 면제받을 수 있지만 실험으로 제3자에게 발생한 손해에 대한 책임은 면제되지 않는다. EU 기준상 중소기업은 중견기업·소기업·영세기업으로 구분되며, 범용 AI 모델 제공자에 대한 의무도 사업자 규모와 모델 유형에 비례해 적용되지만, 대부분의 중소기업에는 모델 자체보다 해당 AI 시스템의 용도와 위험 등급이 중요하다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/small-businesses-guide-to-the-ai-act/">https://artificialintelligenceact.eu/small-businesses-guide-to-the-ai-act/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/small-businesses-guide-to-the-ai-act/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/small-businesses-guide-to-the-ai-act/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-18.html">← 2025-02-18</a><a class="day-nav-btn" href="2025-02-20.html">2025-02-20 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

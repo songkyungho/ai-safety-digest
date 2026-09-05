@@ -433,7 +433,7 @@
 
 https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1671236" onclick="copyEntry(this)">복사</button></div>
   <p>이 연구는 인공지능 기술 확산에 따른 위험과 부작용을 예방하고 산업 발전을 저해하지 않기 위해 자율규제 중심의 윤리체계를 정립하는 것을 목적으로 한다. 국내외 인공지능 윤리·법·규제 동향을 분석하고, 채용 분야 자율점검표와 기업 윤리점검표를 개발했으며 인공지능 윤리영향평가 프레임워크를 제안했다. 또한 인공지능 윤리 이슈를 지속적으로 논의하기 위한 ‘인공지능 윤리 소통채널’을 구축하고, 윤리 실천과 자율규제 환경 조성을 위한 정책 방향을 제시했다.</p>
-  <p class="url"><a href="https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1671236">https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1671236</a></p>
+  <p class="url"><a href="https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1671236" target="_blank" rel="noopener noreferrer">https://www.kisdi.re.kr/report/view.do?key=m2101113024770&amp;masterId=3934580&amp;arrMasterId=3934580&amp;artId=1671236</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-04-26.html">← 2024-04-26</a><a class="day-nav-btn" href="2024-05-02.html">2024-05-02 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

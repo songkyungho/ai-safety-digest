@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=263886" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 3월 4일부터 7일까지 제70차 APEC 정보통신실무그룹(TELWG) 정례회의를 개최한다고 밝혔다. APEC 회원경제 정부 대표와 기업·국제기구 전문가 등 100여 명이 참석해 디지털·AI 혁신, 디지털 연결성·포용, 안전한 디지털·AI 생태계 조성을 논의한다. 이번 회의에서 정책을 공유하고 역내 협력 방향을 모색하며, 8월 예정된 APEC 디지털·AI 장관회의의 성공적인 개최를 위한 논의를 이어갈 예정이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263886">https://eiec.kdi.re.kr/policy/materialView.do?num=263886</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263886" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=263886</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ NIST는 AI 데이터셋·AI 모델 문서화 표준의 제로 드래프트(Zero 
 
 https://www.nist.gov/artificial-intelligence/ai-research/nists-ai-standards-zero-drafts-pilot-project-accelerate" onclick="copyEntry(this)">복사</button></div>
   <p>NIST는 AI 데이터셋·AI 모델 문서화 표준의 제로 드래프트(Zero Draft) 관련 확장 개요를 2025년 9월 공개했으며, 2025년 10월 17일까지 초기 공중(Initial public) 초안 반영을 위한 의견을 받는다. 이번 ‘Zero Drafts’ 파일럿은 이해관계자 주도의 예비 초안을 만들어 민간 SDO 표준화 절차로 제안하는 방식으로, 표준화의 신속성과 참여 확대를 동시에 노리는 취지다. 첫 파일럿 주제로는 AI testing, evaluation, verification, and validation(TEVV) 프레임워크와 AI 시스템·데이터 특성 문서화 가이드가 제시됐다.</p>
-  <p class="url"><a href="https://www.nist.gov/artificial-intelligence/ai-research/nists-ai-standards-zero-drafts-pilot-project-accelerate">https://www.nist.gov/artificial-intelligence/ai-research/nists-ai-standards-zero-drafts-pilot-project-accelerate</a></p>
+  <p class="url"><a href="https://www.nist.gov/artificial-intelligence/ai-research/nists-ai-standards-zero-drafts-pilot-project-accelerate" target="_blank" rel="noopener noreferrer">https://www.nist.gov/artificial-intelligence/ai-research/nists-ai-standards-zero-drafts-pilot-project-accelerate</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-03.html">← 2025-03-03</a><a class="day-nav-btn" href="2025-03-05.html">2025-03-05 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

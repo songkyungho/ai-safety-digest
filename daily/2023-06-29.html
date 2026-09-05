@@ -433,7 +433,7 @@ Anthropic 연구팀은 대규모 언어 모델(LLM)이 다양한 글로벌 관�
 
 https://www.anthropic.com/research/towards-measuring-the-representation-of-subjective-global-opinions-in-language-models" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic 연구팀은 대규모 언어 모델(LLM)이 다양한 글로벌 관점을 공평하게 반영하지 못할 수 있다는 문제를 탐구한다. 연구팀은 GlobalOpinionQA라는 데이터셋을 구축하여 다양한 국가의 글로벌 이슈에 대한 의견을 수집하고, 이를 바탕으로 LLM 생성 응답과 인간 응답 간의 유사성을 측정하는 지표를 정의한다. 실험 결과, 기본적으로 LLM 응답은 미국, 일부 유럽 및 남미 국가의 의견과 더 유사한 경향을 보이지만, 특정 국가 관점을 고려하도록 프롬프트하면 의견이 조정되지만 때로는 해로운 문화적 고정관념을 반영하기도 한다. 또한 언어 번역 과정에서도 모델의 응답이 해당 언어 사용자들의 의견과 반드시 일치하지 않는다는 점도 확인되었다. 연구팀은 이 데이터셋과 상호작용형 시각화 자료를 공개하여 후속 연구를 지원한다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/towards-measuring-the-representation-of-subjective-global-opinions-in-language-models">https://www.anthropic.com/research/towards-measuring-the-representation-of-subjective-global-opinions-in-language-models</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/towards-measuring-the-representation-of-subjective-global-opinions-in-language-models" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/towards-measuring-the-representation-of-subjective-global-opinions-in-language-models</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-06-17.html">← 2023-06-17</a><a class="day-nav-btn" href="2023-06-30.html">2023-06-30 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

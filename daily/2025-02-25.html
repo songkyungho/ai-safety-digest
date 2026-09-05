@@ -433,7 +433,7 @@ Anthropic의 Alignment Science 팀은 AI 모델의 드문 위험 행동을 사�
 
 https://www.anthropic.com/research/forecasting-rare-behaviors" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic의 Alignment Science 팀은 AI 모델의 드문 위험 행동을 사전에 예측하는 방법을 연구한 새로운 논문을 발표했습니다. 연구팀은 모델이 생성하는 해로운 내용의 확률을 계산하고, 이를 쿼리 수에 따른 전력 법칙(power law)으로 분석하여 드문 행동의 위험을 대규모 배포 환경에서도 예측할 수 있게 했습니다. 특히, 모델이 제공하는 위험한 정보나 잘못된 행동을 예측하는 데 있어 기존 방법보다 높은 정확도를 보였습니다. 이 접근법은 드문 위험 행동을 효율적으로 예측하여 모델 배포 전에 적절한 조치를 취할 수 있게 해줍니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/forecasting-rare-behaviors">https://www.anthropic.com/research/forecasting-rare-behaviors</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/forecasting-rare-behaviors" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/forecasting-rare-behaviors</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-24.html">← 2025-02-24</a><a class="day-nav-btn" href="2025-02-27.html">2025-02-27 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

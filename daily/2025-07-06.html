@@ -433,7 +433,7 @@
 
 https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-inclusive-and-sustainable-governance" onclick="copyEntry(this)">복사</button></div>
   <p>17차 정상회의에서 BRICS 11개국이 공동선언을 서명했으며, 글로벌 거버넌스·금융·보건·인공지능·기후 등 126개 이행 약속을 채택했다. 개발도상국(특히 아프리카·라틴아메리카·카리브)의 국제 의사결정 참여 확대와 국제법·UN 헌장 목적·원칙 수호를 강조했으며, IMF 쿼터 및 세계은행 지분 조정, 글로벌 보건 거버넌스 강화, AI 거버넌스의 위험 완화와 포용적 협력, COP30 준비 차원의 열대림 보전 TFFF 등도 포함됐다. 또한 분쟁·군비 지출 증가에 대한 우려와 안보 의제와 기후 의제의 연계 시도에 대한 우려를 언급했다.</p>
-  <p class="url"><a href="https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-inclusive-and-sustainable-governance">https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-inclusive-and-sustainable-governance</a></p>
+  <p class="url"><a href="https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-inclusive-and-sustainable-governance" target="_blank" rel="noopener noreferrer">https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-inclusive-and-sustainable-governance</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://brics.br/en/news/brics-summit-signs-historic-commitment-in-rio-for-more-
 
 https://www.chinadaily.com.cn/a/202507/06/WS6869b209a31000e9a573a5a5.html" onclick="copyEntry(this)">복사</button></div>
   <p>제네바에서 열린 UN 인권이사회(UNHRC) 59차 회기 기술협력·역량강화 관련 연례 주제 패널에서 중국 대표가 70개국 이상을 대표해 ‘Artificial Intelligence(AI) for Promoting Accessibility’ 공동성명을 전달했다. 성명은 AI가 물리·정보·문화 장벽을 줄이고 모두가 인권을 누리도록 접근성 환경을 조성할 잠재력이 크다고 강조했으며, 인권 존중을 바탕으로 한 사람중심 접근, AI 혜택의 공평한 공유, 개발도상국 지원과 국제협력을 통한 상생 협력을 제안했다. 또한 중국이 주도한 ‘모두를 위한 동등한 접근성’ 관련 결의 이행의 한 단계라고 밝혔다.</p>
-  <p class="url"><a href="https://www.chinadaily.com.cn/a/202507/06/WS6869b209a31000e9a573a5a5.html">https://www.chinadaily.com.cn/a/202507/06/WS6869b209a31000e9a573a5a5.html</a></p>
+  <p class="url"><a href="https://www.chinadaily.com.cn/a/202507/06/WS6869b209a31000e9a573a5a5.html" target="_blank" rel="noopener noreferrer">https://www.chinadaily.com.cn/a/202507/06/WS6869b209a31000e9a573a5a5.html</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ CBC는 캐나다인 Andrew Frelon(가명)이 Spotify의 AI 음악 프로젝트�
 
 https://www.cbc.ca/news/entertainment/ai-band-hoax-velvet-sundown-1.7575874" onclick="copyEntry(this)">복사</button></div>
   <p>CBC는 캐나다인 Andrew Frelon(가명)이 Spotify의 AI 음악 프로젝트를 둘러싼 정교한 사기극으로 언론을 속여 ‘The Velvet Sundown’이 월간 100만 청취자를 기록했다고 보도했다. 그는 Suno로 노래를 만들고, X 계정과 프로필·이미지 등을 활용해 “social engineering” 실험처럼 정체성 혼란을 의도했으며, 피해가 있었다면 사과한다고 밝혔다. 이후 밴드의 X 계정도 AI를 활용한 ‘synthetic music project’라고 인정했지만, 여전히 실제 배후는 완전히 확인되지 않았다고 전했다.</p>
-  <p class="url"><a href="https://www.cbc.ca/news/entertainment/ai-band-hoax-velvet-sundown-1.7575874">https://www.cbc.ca/news/entertainment/ai-band-hoax-velvet-sundown-1.7575874</a></p>
+  <p class="url"><a href="https://www.cbc.ca/news/entertainment/ai-band-hoax-velvet-sundown-1.7575874" target="_blank" rel="noopener noreferrer">https://www.cbc.ca/news/entertainment/ai-band-hoax-velvet-sundown-1.7575874</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-04.html">← 2025-07-04</a><a class="day-nav-btn" href="2025-07-07.html">2025-07-07 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

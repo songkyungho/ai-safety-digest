@@ -449,7 +449,7 @@ https://www.anthropic.com/research/circuits-upsep-2024" onclick="copyEntry(this)
 - **멀티에이전트 시스템의 패턴과 문제점**: 현재 최첨단 모델들의 행동 경향을 분석하고, 이들이 예상치 못한 시스템적 실패를 초래할 수 있는 위험을 논의합니다.
 - **Claude 모델의 수학적 능력**: 미발표 연구 버전의 Claude 모델이 리만 가설과 관련된 문제에서 진전을 이루었으며, 리만 제타 함수의 제로들 중 가설을 만족하는 비율의 하한을 향상시켰습니다 (41.6%에서 67.2%로 증가).</p>
 <p>자세한 내용은 각 링크를 통해 확인 가능합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/circuits-upsep-2024">https://www.anthropic.com/research/circuits-upsep-2024</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/circuits-upsep-2024" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/circuits-upsep-2024</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-08-28.html">← 2024-08-28</a><a class="day-nav-btn" href="2024-09-05.html">2024-09-05 →</a></nav>
@@ -530,7 +530,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

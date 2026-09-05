@@ -433,7 +433,7 @@ Anthropic은 Transformer 회로의 해석 가능성 향상을 위한 수학적 �
 
 https://www.anthropic.com/research/a-mathematical-framework-for-transformer-circuits" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 Transformer 회로의 해석 가능성 향상을 위한 수학적 프레임워크를 제시하며, 이 연구는 모델의 행동 경향과 그로 인한 예상치 못한 시스템적 실패 가능성에 대해 논의하고 있습니다. 또한, 비공개 버전의 Claude 모델이 리만 가설과 관련된 문제에서 진전을 이루었다는 점도 언급하고 있으며, 이 모델은 리만 제타 함수의 제로 중 리만 가설을 만족하는 비율의 하한을 향상시켰습니다 (41.6%에서 67.2%로 증가).</p>
-  <p class="url"><a href="https://www.anthropic.com/research/a-mathematical-framework-for-transformer-circuits">https://www.anthropic.com/research/a-mathematical-framework-for-transformer-circuits</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/a-mathematical-framework-for-transformer-circuits" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/a-mathematical-framework-for-transformer-circuits</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2021-12-20.html">← 2021-12-20</a><a class="day-nav-btn" href="2022-01-04.html">2022-01-04 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26803&amp;parentSeq=26803" onclick="copyEntry(this)">복사</button></div>
   <p>미국 상원 양당 의원들이 2024년 5월 1일 발의한 인공지능 관련 보안·안전 사고와 위험의 추적·관리 법안의 주요 내용을 소개한다. 보고서는 해당 법안이 인공지능 안전사고 및 위험 관리에 미칠 영향과 국내 인공지능 법·제도에 대한 시사점을 제시한다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26803&amp;parentSeq=26803">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26803&amp;parentSeq=26803</a></p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26803&amp;parentSeq=26803" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26803&amp;parentSeq=26803</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-06-08.html">← 2024-06-08</a><a class="day-nav-btn" href="2024-06-11.html">2024-06-11 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

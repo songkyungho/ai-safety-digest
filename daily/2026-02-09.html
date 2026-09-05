@@ -433,7 +433,7 @@
 
 https://futureoflife.org/press-release/fli-launches-multimillion-dollar-nationwide-ai-regulation-campaign/" onclick="copyEntry(this)">복사</button></div>
   <p>생명미래연구소(FLI)가 연방·주 차원의 상식적인 AI 안전 규제를 촉구하는 ‘Protect What’s Human’ 캠페인을 출범시켰다. 캠페인은 아이오와·켄터키·메인·미시간·노스캐롤라이나에서 시작하며, 최대 800만 달러를 투입해 AI의 일자리·사생활·의료·안전 영향에 대한 시민들의 목소리를 알릴 예정이다. 각 주에 초기 6~7자리 달러 규모를 투자하고, AI 규제에 대한 초당적 지지를 바탕으로 관련 법안 마련을 지원한다.</p>
-  <p class="url"><a href="https://futureoflife.org/press-release/fli-launches-multimillion-dollar-nationwide-ai-regulation-campaign/">https://futureoflife.org/press-release/fli-launches-multimillion-dollar-nationwide-ai-regulation-campaign/</a></p>
+  <p class="url"><a href="https://futureoflife.org/press-release/fli-launches-multimillion-dollar-nationwide-ai-regulation-campaign/" target="_blank" rel="noopener noreferrer">https://futureoflife.org/press-release/fli-launches-multimillion-dollar-nationwide-ai-regulation-campaign/</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://futureoflife.org/press-release/fli-launches-multimillion-dollar-nationwi
 
 https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" onclick="copyEntry(this)">복사</button></div>
   <p>많은 기업이 직원들이 AI를 더 잘 활용하도록 만드는 방법에 주목하고 있다. AI가 문서 작성·정보 요약·코드 디버깅 같은 반복 업무 부담을 줄이고, 대신 고부가가치 업무에 시간을 더 쓰게 해줄 것이라는 기대가 크지만, 실제로는 업무가 감소하기보다 ‘강화’될 수 있다는 문제의식이 제기된다.</p>
-  <p class="url"><a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it">https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it</a></p>
+  <p class="url"><a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener noreferrer">https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-06.html">← 2026-02-06</a><a class="day-nav-btn" href="2026-02-10.html">2026-02-10 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

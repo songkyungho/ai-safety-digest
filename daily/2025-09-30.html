@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=272193" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부가 부총리급 부처로 승격돼 과학기술·인공지능 분야의 국가 컨트롤타워로 출범한다. 부총리 직속 과학기술·인공지능정책협력관과 관계 장관회의를 신설하고, 인공지능 전담부서를 인공지능정책실로 확대해 범부처 협력을 강화한다. 대변인 직위를 실장급으로 상향해 과학기술·인공지능 정책에 대한 국민 소통도 강화할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=272193">https://eiec.kdi.re.kr/policy/materialView.do?num=272193</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=272193" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=272193</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=272193" onclick="copyEntry(thi
 
 https://www.nars.go.kr/report/view.do?cmsCode=CM0043&amp;brdSeq=48189" onclick="copyEntry(this)">복사</button></div>
   <p>정부는 인공지능 3대 강국 도약을 위해 대통령실에 AI미래기획수석을 신설하고, 국가인공지능전략위원회의 정책 조정 기능을 강화했다. 보고서는 국가인공지능전략위원회에 AI 예산 조정·배분 의견 제시 권한을 부여하고, 과학기술정보통신부의 AI 창업·성장 지원을 강화하며, 중장기적으로 산업통상부를 산업별 특화 AI 주무부처로 추가하는 방안을 제안한다.</p>
-  <p class="url"><a href="https://www.nars.go.kr/report/view.do?cmsCode=CM0043&amp;brdSeq=48189">https://www.nars.go.kr/report/view.do?cmsCode=CM0043&amp;brdSeq=48189</a></p>
+  <p class="url"><a href="https://www.nars.go.kr/report/view.do?cmsCode=CM0043&amp;brdSeq=48189" target="_blank" rel="noopener noreferrer">https://www.nars.go.kr/report/view.do?cmsCode=CM0043&amp;brdSeq=48189</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-29.html">← 2025-09-29</a><a class="day-nav-btn" href="2025-10-01.html">2025-10-01 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

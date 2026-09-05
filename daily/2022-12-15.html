@@ -433,7 +433,7 @@ Anthropic은 AI 시스템이 더 발전함에 따라 다른 AI를 감독하는 �
 
 https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 AI 시스템이 더 발전함에 따라 다른 AI를 감독하는 데 도움을 줄 수 있도록 무해한 AI 어시스턴트를 훈련하는 방법을 연구하고 있습니다. 이 연구에서는 인간의 라벨 없이 무해성을 달성하기 위해 &#x27;콘스티투셔널 AI&#x27; 방법론을 제시합니다. 이 방법론은 두 단계로 이루어져 있습니다: 첫 번째 단계는 감독 학습과 자가 비평 및 수정을 통한 모델 개선으로 이루어집니다. 두 번째 단계는 강화 학습을 통해 AI의 선호도 모델을 훈련시키는 것입니다. 결과적으로, 인간 판단에 따른 무해한 AI 어시스턴트를 개발할 수 있으며, 이는 해로운 질문에 대해 설명을 통해 대응할 수 있습니다. 이러한 접근법은 인간 라벨의 수를 크게 줄이면서 AI 행동을 더욱 정밀하게 제어할 수 있게 합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback">https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-11-28.html">← 2022-11-28</a><a class="day-nav-btn" href="2022-12-16.html">2022-12-16 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

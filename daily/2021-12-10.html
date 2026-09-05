@@ -433,7 +433,7 @@
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9104489&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9104489&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9104489&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9104489&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9104489&amp;t=board</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUi
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9103698&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9103698&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9103698&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9103698&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9103698&amp;t=board</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUi
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9100086&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9100086&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9100086&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9100086&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6OTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=9100086&amp;t=board</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2021-12-09.html">← 2021-12-09</a><a class="day-nav-btn" href="2021-12-20.html">2021-12-20 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

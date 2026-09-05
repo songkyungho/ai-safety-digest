@@ -433,7 +433,7 @@ Anthropic은 대규모 언어 모델을 통해 인간 가치에 부합하는 일
 
 https://www.anthropic.com/research/a-general-언어-어시스턴트-as-a-laboratory-for-alignment" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 대규모 언어 모델을 통해 인간 가치에 부합하는 일반적인 텍스트 기반 어시스턴트 개발을 연구하고 있습니다. 연구에서는 간단한 기법들, 예를 들어 프롬프트 활용을 통해 모델의 정렬 개선 효과를 확인했습니다. 모델 크기가 커질수록 이러한 개입의 이점이 증가하고 다양한 평가 지표에 적용 가능하며, 대형 모델의 성능을 저하시키지 않는다는 것을 발견했습니다. 또한, 선호도 모델링이 모방 학습보다 훨씬 우수한 성능을 보이며 모델 크기에 따라 더 유리하게 확장된다는 점도 확인했습니다. 마지막으로, 인간 선호도에 대한 미세 조정 시 효율성을 높이기 위한 선호도 모델 사전 학습 단계를 연구했습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/a-general-언어-어시스턴트-as-a-laboratory-for-alignment">https://www.anthropic.com/research/a-general-언어-어시스턴트-as-a-laboratory-for-alignment</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/a-general-언어-어시스턴트-as-a-laboratory-for-alignment" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/a-general-언어-어시스턴트-as-a-laboratory-for-alignment</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2021-11-28.html">← 2021-11-28</a><a class="day-nav-btn" href="2021-12-09.html">2021-12-09 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

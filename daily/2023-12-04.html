@@ -433,7 +433,7 @@ METR(모델 평가 및 위협 연구)이라는 새로운 이름으로 조직이 
 
 https://metr.org/blog/2023-12-04-metr-announcement/" onclick="copyEntry(this)">복사</button></div>
   <p>METR(모델 평가 및 위협 연구)이라는 새로운 이름으로 조직이 재탄생하였습니다. 이전 ARC Evals에서 분리된 METR은 자율적 복잡 작업 수행 능력을 측정하는 데 초점을 맞춥니다. 리더인 Beth Barnes가 팀을 이끌며, Paul Christiano는 US AI Safety Institute의 헤드 오브 세이프티로 새로운 역할을 맡아 METR의 이사회 멤버로 참여하지 않기로 했습니다. METR은 최첨단 AI 시스템의 연구와 평가를 진행하며, 기술 작업자의 생산성 변화와 AI 모니터링 가능성 등 다양한 연구를 진행 중입니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2023-12-04-metr-announcement/">https://metr.org/blog/2023-12-04-metr-announcement/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2023-12-04-metr-announcement/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2023-12-04-metr-announcement/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-11-13.html">← 2023-11-13</a><a class="day-nav-btn" href="2023-12-06.html">2023-12-06 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

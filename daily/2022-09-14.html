@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/toy-models-of-superposition" onclick="copyEntry(this)">복사</button></div>
   <p>본 연구는 합성 데이터와 희소 입력 특징을 가진 작은 ReLU 신경망 모델(초소형 모델)을 활용하여, 모델 차원보다 더 많은 특징을 표현하는 메커니즘인 &#x27;중첩 현상&#x27;을 탐구한다. 희소한 특징 상황에서 중첩은 선형 모델보다 더 높은 압축률을 제공하지만, 이를 위해서는 비선형 필터링을 필요로 하는 간섭 현상이 발생한다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/toy-models-of-superposition">https://www.anthropic.com/research/toy-models-of-superposition</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/toy-models-of-superposition" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/toy-models-of-superposition</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-09-01.html">← 2022-09-01</a><a class="day-nav-btn" href="2022-10-07.html">2022-10-07 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

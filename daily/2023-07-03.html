@@ -433,7 +433,7 @@
 
 https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=319825787" onclick="copyEntry(this)">복사</button></div>
   <p>존 다나허의 책 『생각을 기계가 하면, 인간은 무엇을 하나?』(원제 Automation and Utopia)가 알라딘에서 판매 중이며, 2023-07-03에 출간된 것으로 표시돼 있다. 책은 ‘일이 없는 미래 세계, 행복한 인간을 위한 철학’을 부제로 소개된다. 정가는 27,000원이며 판매가는 25,650원(5% 할인)으로, 배송료는 무료로 안내된다.</p>
-  <p class="url"><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=319825787">https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=319825787</a></p>
+  <p class="url"><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=319825787" target="_blank" rel="noopener noreferrer">https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=319825787</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-06-30.html">← 2023-06-30</a><a class="day-nav-btn" href="2023-07-07.html">2023-07-07 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

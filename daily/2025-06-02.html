@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=267270" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 국가 인공지능(AI) 컴퓨팅 센터 구축 사업 재공고를 2025년 6월 2일부터 6월 13일까지 진행하며, 공모 요건은 변경하지 않는다고 밝혔다. 민·관 공동 출자로 특수목적법인을 설립해 센터를 구축하고, 산업·연구계에 GPU를 제공하며 국산 AI 반도체 수요 창출, 해외 기업 협력, 정부 연구개발 성과 연계 등을 지원할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=267270">https://eiec.kdi.re.kr/policy/materialView.do?num=267270</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=267270" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=267270</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=267270" onclick="copyEntry(thi
 
 https://www.unesco.org/en/articles/ai-and-judiciary-balancing-innovation-integrity" onclick="copyEntry(this)">복사</button></div>
   <p>유네스코는 96개국 사법 실무자 중 44%가 ChatGPT 등 AI 도구를 업무에 활용하고 있다고 밝히며, AI가 사건·문서 처리와 법률 연구를 더 빠르게 돕고 판례·입법 해석의 일관성에 기여할 수 있다고 설명했다. 다만 AI의 알고리즘 편향, 시스템의 불투명성, AI 의존으로 인한 판사의 독립성 약화 위험이 있어 ‘사람이 최종 결정에 관여(people-in-the-loop)’해야 한다고 강조했다. 모로코 사례로는 노동·교통사고 사건의 예비판결 작성 지원, 다국어 계약 초안 작성·번역을 위한 NLP, 과거 데이터를 기반으로 한 예측적 사건 분석 등이 언급됐다. 이를 위해 모로코는 EU AI Act 등 글로벌 모범을 참고한 포괄적 AI 거버넌스 법과 윤리·데이터보호·법적 영향에 대한 역량 강화가 필요하다고 제안했다.</p>
-  <p class="url"><a href="https://www.unesco.org/en/articles/ai-and-judiciary-balancing-innovation-integrity">https://www.unesco.org/en/articles/ai-and-judiciary-balancing-innovation-integrity</a></p>
+  <p class="url"><a href="https://www.unesco.org/en/articles/ai-and-judiciary-balancing-innovation-integrity" target="_blank" rel="noopener noreferrer">https://www.unesco.org/en/articles/ai-and-judiciary-balancing-innovation-integrity</a></p>
   
   
 </article>
@@ -462,7 +462,7 @@ https://www.unesco.org/en/articles/ai-and-judiciary-balancing-innovation-integri
 https://mp.weixin.qq.com/s/yzxJ8pM-mhp7pwLBzjlb3w" onclick="copyEntry(this)">복사</button></div>
   <p>3일(4~5일) 스페인 라코루냐에서 열린 제3회 ‘군사 분야 책임 있는 AI 사용’ 정상회의 관련 내용으로, 중국은 AI 군사 적용의 위험 방지·안전 거버넌스와 다자주의를 강조했다.</p>
 <p>본문 요약: 중국 외교부 군축사 부사장 리치장(李驰江)은 군사 분야 AI의 책임 있는 사용이 국제 평화·안전과 직결된다고 밝혔다. 중국은 ‘사람 중심’ 군사 AI, 스마트가 선을 지향하도록 하는 원칙, 민첩한 거버넌스, 다자주의 등을 강조하며 각국이 신중한 책임의 바닥선을 지켜야 한다고 말했다. 또한 ‘15·5’ 계획 건의에 AI 거버넌스 강화를 포함하고, 다른 국가와 AI 군비 경쟁을 하지 않으며 정책 투명성을 유지하겠다고 전했다.</p>
-  <p class="url"><a href="https://mp.weixin.qq.com/s/yzxJ8pM-mhp7pwLBzjlb3w">https://mp.weixin.qq.com/s/yzxJ8pM-mhp7pwLBzjlb3w</a></p>
+  <p class="url"><a href="https://mp.weixin.qq.com/s/yzxJ8pM-mhp7pwLBzjlb3w" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/yzxJ8pM-mhp7pwLBzjlb3w</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-31.html">← 2025-05-31</a><a class="day-nav-btn" href="2025-06-03.html">2025-06-03 →</a></nav>
@@ -543,7 +543,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

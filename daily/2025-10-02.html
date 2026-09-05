@@ -433,7 +433,7 @@
 
 https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251002-000015" onclick="copyEntry(this)">복사</button></div>
   <p>웹 방화벽 보안 정책에 반하는 요청/응답이 차단되었다는 안내가 제시되어 있습니다. 차단 사유와 관련해 탐지 시간, 클라이언트 IP, 탐지 URL 정보가 함께 표시됩니다.</p>
-  <p class="url"><a href="https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251002-000015">https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251002-000015</a></p>
+  <p class="url"><a href="https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251002-000015" target="_blank" rel="noopener noreferrer">https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251002-000015</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251002-00
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=272014" onclick="copyEntry(this)">복사</button></div>
   <p>기획재정부는 공공기관의 AI 활용 활성화를 위해 AI 소위원회, AI 서포터즈, 5대 분야 10개 AI 선도기관이 참여하는 첫 간담회를 개최했다. 참석자들은 공공기관의 AI 활용 현황 공시와 경영평가에 적용할 인력·예산 기준, 중소기업마켓 AI 전용관 구축, 기관 간 협력 방안 등을 논의했다. 기획재정부는 정책 실행을 가속화해 국민이 체감하는 AI 혁신 성과를 창출하고 공공기관을 국가 AI 생태계 확산의 핵심 주체로 육성할 방침이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=272014">https://eiec.kdi.re.kr/policy/materialView.do?num=272014</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=272014" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=272014</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-10-01.html">← 2025-10-01</a><a class="day-nav-btn" href="2025-10-03.html">2025-10-03 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=274052" onclick="copyEntry(this)">복사</button></div>
   <p>국무총리는 2025년 11월 27일 네이버 데이터센터 각 세종을 방문해 AI 데이터센터 시설을 점검하고 관련 기업인들과 규제 개선 방안을 논의했다. 정부는 AI 산업의 발전을 지원하기 위해 기술·산업 변화에 맞춘 규제 이슈를 선제적으로 발굴·정비하는 AI 분야 신산업 규제합리화 로드맵을 발표했으며, 과제들을 차질 없이 이행하고 추가 개선 과제도 지속 발굴할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=274052">https://eiec.kdi.re.kr/policy/materialView.do?num=274052</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=274052" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=274052</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=274052" onclick="copyEntry(thi
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=274077" onclick="copyEntry(this)">복사</button></div>
   <p>고용노동부와 한국고용정보원이 매출액 상위 500대 기업 인사담당자와 청년 재직자 3,093명을 대상으로 조사한 결과, 기업의 86.7%가 인사 업무에 AI를 활용했지만 공식 채용 절차에 도입한 기업은 21.7%로 나타났다. 청년층의 AI 활용률은 취업 준비에서 42.3%, 업무에서 61.8%였으며, AI 채용을 경험한 비율은 23.7%였다. 고용노동부는 연내 채용 분야 AI 활용 가이드라인을 마련하고 채용 과정의 사전고지와 차별 금지를 추진하며, 2026년부터 고용24를 통해 AI 기반 구인공고 작성·채용 확률·인재 추천 서비스를 제공할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=274077">https://eiec.kdi.re.kr/policy/materialView.do?num=274077</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=274077" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=274077</a></p>
   
   
 </article>
@@ -462,7 +462,7 @@ AI Safety Unconference - Melbourne 2025는 호주의 AI safety 커뮤니티가 �
 https://aisum25.com/" onclick="copyEntry(this)">복사</button></div>
   <p>2025.11.28(금) 호주 멜버른 Parkville에서 개최 예정이며, 당일 참가자 투표·운영 방식의 협업 세션으로 진행됩니다.</p>
 <p>AI Safety Unconference - Melbourne 2025는 호주의 AI safety 커뮤니티가 핵심 과제를 논의하고 협업을 만들기 위한 하루 행사입니다. 참가자들이 세션 아이디어를 제안하고 투표해 세션을 구성하며, 오전에는 라이트닝 토크와 세션 피치·투표, 이후에는 스트림별 세션이 진행됩니다. 오후에는 세션 3과 세션 4(TBC), 마무리 네트워킹이 예정되어 있으며 특정 강연 중심의 ‘프로그램’이 아니라 커뮤니티와 유연성을 강조합니다.</p>
-  <p class="url"><a href="https://aisum25.com/">https://aisum25.com/</a></p>
+  <p class="url"><a href="https://aisum25.com/" target="_blank" rel="noopener noreferrer">https://aisum25.com/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-11-27.html">← 2025-11-27</a><a class="day-nav-btn" href="2025-12-01.html">2025-12-01 →</a></nav>
@@ -543,7 +543,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

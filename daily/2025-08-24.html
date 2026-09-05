@@ -433,7 +433,7 @@ xAI가 자사 AI 모델 Grok 2.5의 모델 가중치(weights)를 오픈소스 �
 
 https://techcrunch.com/2025/08/24/elon-musk-says-xai-has-open-sourced-grok-2-5" onclick="copyEntry(this)">복사</button></div>
   <p>xAI가 자사 AI 모델 Grok 2.5의 모델 가중치(weights)를 오픈소스 플랫폼 허깅페이스(Hugging Face)에 공개했다고 머스크가 밝혔다. 머스크는 Grok 3도 약 6개월 내 오픈소스로 공개할 예정이라고 덧붙였으며, AI 엔지니어 팀 켈로그는 Grok 라이선스가 “일부 반경쟁적 조건이 포함된 커스텀”이라고 평가했다. 한편 Grok는 X에서 논란이 있었고, xAI는 시스템 프롬프트를 GitHub에 공개한 바 있다.</p>
-  <p class="url"><a href="https://techcrunch.com/2025/08/24/elon-musk-says-xai-has-open-sourced-grok-2-5">https://techcrunch.com/2025/08/24/elon-musk-says-xai-has-open-sourced-grok-2-5</a></p>
+  <p class="url"><a href="https://techcrunch.com/2025/08/24/elon-musk-says-xai-has-open-sourced-grok-2-5" target="_blank" rel="noopener noreferrer">https://techcrunch.com/2025/08/24/elon-musk-says-xai-has-open-sourced-grok-2-5</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-08-22.html">← 2025-08-22</a><a class="day-nav-btn" href="2025-08-25.html">2025-08-25 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

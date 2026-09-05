@@ -433,7 +433,7 @@
 
 https://www.nrc.re.kr/board.es?mid=a10301000000&amp;bid=0008&amp;act=view&amp;list_no=179913&amp;otp_id=" onclick="copyEntry(this)">복사</button></div>
   <p>경제·인문사회연구회는 대한민국이 AI 3대 강국으로 도약하기 위한 국가전략을 분석한 보고서를 발표했다. 보고서는 국가인공지능위원회의 역할을 확대해 국가 AI 전략의 컨트롤타워로 강화하고, 2030년 AI 3대 강국 진입을 추진해야 한다고 제안했다. 이를 위해 AI 인프라·기술, 데이터 전략, AI 인재 양성, AI 정부혁신 등 4대 전략 요소를 제시했다.</p>
-  <p class="url"><a href="https://www.nrc.re.kr/board.es?mid=a10301000000&amp;bid=0008&amp;act=view&amp;list_no=179913&amp;otp_id=">https://www.nrc.re.kr/board.es?mid=a10301000000&amp;bid=0008&amp;act=view&amp;list_no=179913&amp;otp_id=</a></p>
+  <p class="url"><a href="https://www.nrc.re.kr/board.es?mid=a10301000000&amp;bid=0008&amp;act=view&amp;list_no=179913&amp;otp_id=" target="_blank" rel="noopener noreferrer">https://www.nrc.re.kr/board.es?mid=a10301000000&amp;bid=0008&amp;act=view&amp;list_no=179913&amp;otp_id=</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-01-06.html">← 2026-01-06</a><a class="day-nav-btn" href="2026-01-08.html">2026-01-08 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

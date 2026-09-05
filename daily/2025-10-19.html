@@ -433,7 +433,7 @@
 
 https://futureoflife.org/recent-news/americans-want-regulation-or-prohibition-of-superhuman-ai/" onclick="copyEntry(this)">복사</button></div>
   <p>미국 성인 2,000명을 대상으로 한 조사에서 73%가 AI의 느리고 강력한 규제를 지지했으며, 64%는 안전성과 통제 가능성이 입증될 때까지 초인간 AI 개발을 중단하거나 영구히 금지해야 한다고 답했다. 현재와 같은 신속하고 규제 없는 개발을 지지한 응답자는 5%에 그쳤고, 57%는 전문가 수준 AI도 안전성과 통제 가능성이 입증될 때까지 중단하거나 개발하지 말아야 한다고 봤다. 응답자들은 AI의 인간 대체·인류 멸종·권력 집중을 주요 개발 반대 이유로 꼽았으며, 국제 과학기구와 정부 기관이 AI의 발전 방향을 결정해야 한다고 선호했다. 조사 대상자의 49%는 전문가 수준 AI가 2년 안에, 초인간 AI가 5년 안에 개발될 것으로 예상했고, 61% 이상은 적절한 안전장치가 없으면 인류에 중대한 피해가 발생할 가능성이 높다고 우려했다.</p>
-  <p class="url"><a href="https://futureoflife.org/recent-news/americans-want-regulation-or-prohibition-of-superhuman-ai/">https://futureoflife.org/recent-news/americans-want-regulation-or-prohibition-of-superhuman-ai/</a></p>
+  <p class="url"><a href="https://futureoflife.org/recent-news/americans-want-regulation-or-prohibition-of-superhuman-ai/" target="_blank" rel="noopener noreferrer">https://futureoflife.org/recent-news/americans-want-regulation-or-prohibition-of-superhuman-ai/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-10-16.html">← 2025-10-16</a><a class="day-nav-btn" href="2025-10-20.html">2025-10-20 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798035&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798035&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798035&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798035&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798035&amp;t=board</a></p>
   
   <details class="related-stories" open><summary>같은 이슈 관련 1건 · G7</summary><article class="entry cat-public" data-cat="public" data-topics="" data-search="Hiroshima Process International Guiding Principles for Organizations Developing Advanced AI system (2023.11.6)  G7">
   <h2>Hiroshima Process International Guiding Principles for Organizations Developing Advanced AI system (2023.11.6)</h2>
@@ -443,7 +443,7 @@ https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUi
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798008&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798008&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798008&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798008&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6NTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=16798008&amp;t=board</a></p>
   
   
 </article></details>
@@ -525,7 +525,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

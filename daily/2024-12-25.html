@@ -433,7 +433,7 @@
 
 https://humancompatible.ai/news/2024/12/25/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor-2/" onclick="copyEntry(this)">복사</button></div>
   <p>이 논문은 에이전트가 불확실할 때 도움을 요청하도록 하면 목표 일반화 실패를 완화할 수 있는지 탐구한다. 연구진은 현재 방법에 상당한 한계가 있지만, 대체로 완화 효과가 있다고 설명한다. 이 논문은 2024년 NeurIPS Safe &amp; Trustworthy Agents 워크숍에 채택됐다.</p>
-  <p class="url"><a href="https://humancompatible.ai/news/2024/12/25/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor-2/">https://humancompatible.ai/news/2024/12/25/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor-2/</a></p>
+  <p class="url"><a href="https://humancompatible.ai/news/2024/12/25/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor-2/" target="_blank" rel="noopener noreferrer">https://humancompatible.ai/news/2024/12/25/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor-2/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-12-24.html">← 2024-12-24</a><a class="day-nav-btn" href="2024-12-27.html">2024-12-27 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

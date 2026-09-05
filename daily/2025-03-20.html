@@ -433,7 +433,7 @@
 
 https://www.aei.org/research-products/report/the-precautionary-principle-safety-regulation-and-ai-this-time-it-really-is-different/" onclick="copyEntry(this)">복사</button></div>
   <p>생성형 사전학습 변환기(GPT)는 기존 빅데이터 인공지능과 다른 컴퓨팅 패러다임을 사용하므로, 예방 원칙에 기반한 기존 위험관리 체계와 현행 인공지능 규제가 GPT의 위험을 관리하는 데 적합하지 않을 수 있다. 보고서는 포괄적·일률적 규제보다 특정 인공지능 활용 사례에 초점을 맞춘 사례 기반 규제가 더 효과적일 가능성이 높다고 주장한다. 유럽연합 인공지능법은 위험 수준에 따라 사전 시험·승인, 출시 후 감시·보고 및 중대한 피해 발생 시 중단 절차를 요구하며, 인공지능 책임 지침은 운영자에게 위험 수준에 따른 엄격책임 또는 과실책임을 적용한다.</p>
-  <p class="url"><a href="https://www.aei.org/research-products/report/the-precautionary-principle-safety-regulation-and-ai-this-time-it-really-is-different/">https://www.aei.org/research-products/report/the-precautionary-principle-safety-regulation-and-ai-this-time-it-really-is-different/</a></p>
+  <p class="url"><a href="https://www.aei.org/research-products/report/the-precautionary-principle-safety-regulation-and-ai-this-time-it-really-is-different/" target="_blank" rel="noopener noreferrer">https://www.aei.org/research-products/report/the-precautionary-principle-safety-regulation-and-ai-this-time-it-really-is-different/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-19.html">← 2025-03-19</a><a class="day-nav-btn" href="2025-03-21.html">2025-03-21 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

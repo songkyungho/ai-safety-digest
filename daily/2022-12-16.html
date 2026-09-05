@@ -433,7 +433,7 @@
 
 https://artificialintelligenceact.eu/standard-setting-overview/" onclick="copyEntry(this)">복사</button></div>
   <p>이 페이지는 EU 인공지능법에 따른 AI 안전 표준의 배경, 주요 참여 기관, 제정 절차를 설명하며, 고위험 AI 시스템 관련 표준은 CEN·CENELEC 공동위원회 JTC21에서 작성 중이지만 일정이 지연되고 있다고 전합니다. 절차는 유럽연합 집행위원회의 표준화 요청, 유럽 표준화 기관의 초안 작성, 의견 수렴, 공식 투표, 발행, 집행위원회의 적합성 평가 및 유럽연합 관보 게재 등 6단계로 구성됩니다. 조화 표준의 사용은 자율적이지만, 이를 준수하면 관련 법적 요건을 충족한 것으로 추정받을 수 있습니다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/standard-setting-overview/">https://artificialintelligenceact.eu/standard-setting-overview/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/standard-setting-overview/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/standard-setting-overview/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-12-15.html">← 2022-12-15</a><a class="day-nav-btn" href="2022-12-19.html">2022-12-19 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

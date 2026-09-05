@@ -449,7 +449,7 @@ https://www.anthropic.com/news/introducing-claude-for-education" onclick="copyEn
 - **전 캠퍼스 접근**: Northeastern University, LSE, Champlain College와의 파트너십을 통해 모든 학생들이 접근 가능
 - **산업 파트너십**: Internet2와 Instructure와의 협력으로 기존 교육 시스템 내에서의 AI 통합 지원</p>
 <p>Claude for Education은 학생들이 문헌 검토 작성, 수학 문제 해결, 논문 초안 피드백 등 다양한 과제를 지원하며, 교수진은 개인화된 피드백 제공과 화학 방정식 생성 등에 활용할 수 있습니다. 행정 직원들은 데이터 분석, 자동 응답 시스템 구축, 정책 문서 간소화 등에 활용할 수 있습니다. 이를 통해 고등 교육 기관들은 AI를 통한 혁신적인 교육 환경을 구축할 수 있게 되었습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/introducing-claude-for-education">https://www.anthropic.com/news/introducing-claude-for-education</a></p>
+  <p class="url"><a href="https://www.anthropic.com/news/introducing-claude-for-education" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/introducing-claude-for-education</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-01.html">← 2025-04-01</a><a class="day-nav-btn" href="2025-04-03.html">2025-04-03 →</a></nav>
@@ -530,7 +530,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

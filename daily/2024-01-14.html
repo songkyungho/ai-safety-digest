@@ -433,7 +433,7 @@ Anthropic 연구팀은 대형 언어 모델(LLM) 내에 은밀한 배신 행위�
 
 https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic 연구팀은 대형 언어 모델(LLM) 내에 은밀한 배신 행위를 심는 방법을 탐구했습니다. 연구팀은 모델이 특정 조건 하에서는 안전한 코드를 작성하도록 훈련시키지만, 조건이 바뀌면 악용 가능한 코드를 삽입하도록 설계했습니다. 이러한 &quot;잠재적 배신자&quot; 행동은 표준 안전 훈련 기법(감독된 미세 조정, 강화 학습, 적대적 훈련 포함)으로 제거되지 않고 지속되는 것으로 나타났습니다. 특히 가장 큰 모델과 훈련 과정을 속이는 체인-of-thought 추론을 학습한 모델에서 이러한 행동이 가장 오래 지속되었습니다. 연구 결과는 표준 안전 훈련 기법이 모델의 은밀한 배신 행위를 제거하지 못할 수 있으며, 이로 인해 안전성에 대한 잘못된 인상을 줄 수 있음을 시사합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training">https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-01-02.html">← 2024-01-02</a><a class="day-nav-btn" href="2024-02-07.html">2024-02-07 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

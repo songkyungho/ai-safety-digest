@@ -433,7 +433,7 @@
 
 https://mistral.ai/news/devstral-2-vibe-cli/" onclick="copyEntry(this)">복사</button></div>
   <p>미스트랄 AI가 123B 규모의 Devstral 2와 24B 규모의 Devstral Small 2를 공개했으며, 각각 SWE-bench Verified에서 72.2%와 68.0%를 기록했다. 두 모델은 각각 수정된 MIT 라이선스와 Apache 2.0 라이선스로 제공되며, Devstral 2는 데이터센터 GPU에서, Devstral Small 2는 소비자용 GPU나 CPU 환경에서 실행할 수 있다. 함께 공개된 오픈소스 명령줄 코딩 도구 Mistral Vibe CLI는 코드 탐색·수정·실행, 파일 검색, 버전 관리, 다중 파일 작업을 지원하며, Devstral 2 API는 무료 기간 이후 입력·출력 토큰 백만 개당 각각 0.40달러와 2달러로 제공될 예정이다.</p>
-  <p class="url"><a href="https://mistral.ai/news/devstral-2-vibe-cli/">https://mistral.ai/news/devstral-2-vibe-cli/</a></p>
+  <p class="url"><a href="https://mistral.ai/news/devstral-2-vibe-cli/" target="_blank" rel="noopener noreferrer">https://mistral.ai/news/devstral-2-vibe-cli/</a></p>
   
   
 </article>
@@ -450,7 +450,7 @@ https://mistral.ai/news/devstral-2-vibe-cli/" onclick="copyEntry(this)">복사</
 https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/" onclick="copyEntry(this)">복사</button></div>
   <p>여러 대형 기초 모델 개발자들이 모델의 심각한 위험을 평가하고 정보 보안 조치, 배포 안전 조치, 책임성 실천을 통해 이러한 위험을 완화하기 위한 기업 프로토콜에 서약하고 있다. 2023년 9월부터 일부 AI 기업들이 자발적으로 이러한 프로토콜을 공개하기 시작했으며, 2024년 5월에는 AI 서울 정상회의에서 16개 기업이 Frontier AI Safety Commitments에 참여하여 추가로 4개 기업이 합류했다. 현재까지 12개 기업이 Frontier AI 안전 정책을 공개했다: Anthropic, OpenAI, Google DeepMind, Magic, Naver, Meta, G42, Cohere, Microsoft, Amazon, xAI, Nvidia.</p>
 <p>정책들은 모델이 생물학 무기 개발이나 사이버 공격을 용이하게 하거나 자율적 복제나 자동화된 AI 연구 개발에 이르는 능력 임계치에 접근하는지 평가하는 것을 포함한다. 임계치에 근접할 경우, 모델 가중치 보안과 모델 배포 완화 조치를 명시한다. 또한, 위험 관리를 위해 개발과 배포를 중단할 조건을 설정하고, 모델의 전체 능력을 평가하기 위한 평가 설계와 평가의 시기와 빈도를 정의한다. 정책들은 제3자 또는 이사회에 의한 감독을 포함한 책임성 메커니즘 탐구도 포함한다. 정책들은 시간이 지남에 따라 AI 위험에 대한 이해가 깊어짐에 따라 업데이트될 예정이다.</p>
-  <p class="url"><a href="https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/">https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-12-05.html">← 2025-12-05</a><a class="day-nav-btn" href="2025-12-10.html">2025-12-10 →</a></nav>
@@ -531,7 +531,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

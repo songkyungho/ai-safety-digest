@@ -433,7 +433,7 @@ AI Impact Summit 2026은 2026년 2월 18~19일 뉴델리에서 열렸으며, 92�
 
 https://www.pib.gov.in/PressReleasePage.aspx?PRID=2231208&amp;v=4&amp;reg=3&amp;lang=2" onclick="copyEntry(this)">복사</button></div>
   <p>AI Impact Summit 2026은 2026년 2월 18~19일 뉴델리에서 열렸으며, 92개국과 국제기구가 ‘AI Impact’에 관한 뉴델리 선언을 채택하며 협력 의지를 확인했다. 선언은 AI의 이익을 인류에 공평하게 공유하고, 국가 주권을 존중하면서 접근 가능하고 신뢰할 수 있는 AI 프레임워크를 발전시키는 것을 강조한다. 또한 7개 ‘필라(Chakras)’를 중심으로 민주적 AI 자원 확산, Secure &amp; Trusted AI, 과학 분야 활용, 인적자본 개발, 에너지 효율 등과 연계된 자발적·협력 이니셔티브(예: Democratic Diffusion of AI Charter, Trusted AI Commons 등)를 주요 성과로 제시했다.</p>
-  <p class="url"><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2231208&amp;v=4&amp;reg=3&amp;lang=2">https://www.pib.gov.in/PressReleasePage.aspx?PRID=2231208&amp;v=4&amp;reg=3&amp;lang=2</a></p>
+  <p class="url"><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2231208&amp;v=4&amp;reg=3&amp;lang=2" target="_blank" rel="noopener noreferrer">https://www.pib.gov.in/PressReleasePage.aspx?PRID=2231208&amp;v=4&amp;reg=3&amp;lang=2</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-20.html">← 2026-02-20</a><a class="day-nav-btn" href="2026-02-22.html">2026-02-22 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

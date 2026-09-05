@@ -433,7 +433,7 @@
 
 https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=30&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정책연구원은 중국이 AI를 과학기술·산업 변혁의 핵심 동력으로 활용하고, 기업과 산업의 연계를 강화하며 지역 AI 혁신 클러스터 간 협력을 확대하는 정책을 분석했다. 알리바바·바이두·바이트댄스의 AI 대형모델 가격 경쟁, 바이두·화웨이 중심의 지능형 커넥티드카 산업 확대 등 중국 IT기업의 시장 선점 움직임도 소개했다. 보고서는 한국에 핵심기업의 기술력과 산업 간 연계를 강화하는 정책, 한중 AI 협력 및 대안적 글로벌 협력망 확대, 육성과 윤리를 병행하는 종합적 AI 거버넌스와 이원화된 입법전략이 필요하다고 제안했다.</p>
-  <p class="url"><a href="https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=30&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=">https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=30&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=</a></p>
+  <p class="url"><a href="https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=30&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=" target="_blank" rel="noopener noreferrer">https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=30&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-08.html">← 2024-07-08</a><a class="day-nav-btn" href="2024-07-11.html">2024-07-11 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

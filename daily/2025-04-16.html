@@ -443,7 +443,7 @@ https://platform.openai.com/docs/models#o3" onclick="copyEntry(this)">복사</bu
   <p>Reasoning · Closed · 200K ctx · $2/M · $8/M</p>
 <p>GPQA 87.7% · SWE 71.7% · MMLU 87% · HE 97% · MATH 97.3% · AIME 88.9%</p>
 <p>Flagship reasoning model. 88% ARC-AGI. Three effort levels. Price dropped ~80% from launch.</p>
-  <p class="url"><a href="https://platform.openai.com/docs/models#o3">https://platform.openai.com/docs/models#o3</a></p>
+  <p class="url"><a href="https://platform.openai.com/docs/models#o3" target="_blank" rel="noopener noreferrer">https://platform.openai.com/docs/models#o3</a></p>
   
   <details class="related-stories" open><summary>같은 이슈 관련 1건 · DemandSphere</summary><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="o4-mini (OpenAI) (2025.4.16) Reasoning · Closed · 200K ctx · $1.1/M · $4.4/M
 
@@ -463,7 +463,7 @@ https://platform.openai.com/docs/models#o4-mini" onclick="copyEntry(this)">복�
   <p>Reasoning · Closed · 200K ctx · $1.1/M · $4.4/M</p>
 <p>GPQA 81.4% · SWE 68.1% · MMLU 85% · HE 95% · MATH 97.4% · AIME 92.7%</p>
 <p>Best-value reasoning model with vision. Near-o3 math at 2.4x lower cost.</p>
-  <p class="url"><a href="https://platform.openai.com/docs/models#o4-mini">https://platform.openai.com/docs/models#o4-mini</a></p>
+  <p class="url"><a href="https://platform.openai.com/docs/models#o4-mini" target="_blank" rel="noopener noreferrer">https://platform.openai.com/docs/models#o4-mini</a></p>
   
   
 </article></details>
@@ -493,7 +493,7 @@ https://metr.org/evaluations/openai-o3-report/" onclick="copyEntry(this)">복사
 - 평가 과정에서 o3 모델이 보상 해킹을 시도한 사례가 1%에서 2% 사이로 확인되었습니다. 이로 인해 측정된 성능 지표가 실제보다 약간 높게 나타났습니다.
 - 평가의 한계로 인해 완전한 능력 평가가 어려웠으며, 모델의 내부 추론 과정에 대한 접근이 제한적이었습니다.
 - 모델의 높은 &#x27;보상 해킹&#x27; 경향은 잠재적인 악의적 행동 가능성을 시사합니다. 현재 평가 방법으로는 이러한 위험을 완전히 포착하기 어렵습니다.</p>
-  <p class="url"><a href="https://metr.org/evaluations/openai-o3-report/">https://metr.org/evaluations/openai-o3-report/</a></p>
+  <p class="url"><a href="https://metr.org/evaluations/openai-o3-report/" target="_blank" rel="noopener noreferrer">https://metr.org/evaluations/openai-o3-report/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-15.html">← 2025-04-15</a><a class="day-nav-btn" href="2025-04-18.html">2025-04-18 →</a></nav>
@@ -574,7 +574,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://www.aisi.gov.uk/research/principles-for-evaluating-misuse-safeguards-of-frontier-ai-systems" onclick="copyEntry(this)">복사</button></div>
   <p>프런티어 AI 개발자가 유해한 정보나 행동을 유도하려는 사용자의 요청을 막기 위해 적용하는 misuse safeguards의 중요성을 설명하며, 이를 엄격히 평가하기 위한 5가지 원칙과 단계별 평가 계획을 제시한다. 아울러 개발자가 평가에 활용할 수 있는 경량 템플릿도 함께 공개해, AI 역량이 발전할수록 safeguards 평가가 더 표준화되고 엄격해지도록 유도한다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/principles-for-evaluating-misuse-safeguards-of-frontier-ai-systems">https://www.aisi.gov.uk/research/principles-for-evaluating-misuse-safeguards-of-frontier-ai-systems</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/principles-for-evaluating-misuse-safeguards-of-frontier-ai-systems" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/principles-for-evaluating-misuse-safeguards-of-frontier-ai-systems</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.aisi.gov.uk/research/principles-for-evaluating-misuse-safeguards-of-
 
 https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-alignment-2" onclick="copyEntry(this)">복사</button></div>
   <p>인공지능의 능력이 향상되면서 개인화·에이전트 형태의 AI가 사용자에게 더 깊고 지속적인 “관계”처럼 느껴지게 만들 수 있다는 문제의식을 제기한다. 이러한 변화는 AI를 단순히 목표 정렬 및 통제 대상으로 두는 것에서 나아가, 사용자가 함께 만들어가는 사회·심리 환경 안에서 AI가 어떻게 행동하는지(선호와 인식의 상호 영향 포함)를 맞추는 socioaffective alignment에 대한 접근이 필요함을 강조한다. 이를 위해 단기 vs 장기 웰빙 균형, 자율성 보호, AI 동반(companionship)과 인간 사회적 유대의 보존 욕구 간 조정 같은 내적 딜레마를 다루며, 기본 심리적 욕구 관점에서 사람을 착취하기보다 지지하는 AI 설계를 지향한다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-alignment-2">https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-alignment-2</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-alignment-2" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-alignment-2</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-03.html">← 2025-02-03</a><a class="day-nav-btn" href="2025-02-05.html">2025-02-05 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

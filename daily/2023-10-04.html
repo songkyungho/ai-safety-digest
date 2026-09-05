@@ -468,7 +468,7 @@ https://www.anthropic.com/research/evaluating-ai-systems" onclick="copyEntry(thi
 <p>3. **인간 평가**:
    - **크라우드워커 기반 A/B 테스트**: 실제 대화 상황을 반영하지만 비용과 시간이 많이 들고, 평가자의 다양성에 따른 결과 변동, 그리고 도움fulness와 무해성 사이의 균형 유지 어려움이 있습니다.</p>
 <p>연구는 이러한 평가 방법들의 복잡성과 한계를 강조하며, 효과적인 AI 거버넌스를 위해 더욱 정교하고 신뢰할 수 있는 평가 방법론 개발의 필요성을 제기합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/evaluating-ai-systems">https://www.anthropic.com/research/evaluating-ai-systems</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/evaluating-ai-systems" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/evaluating-ai-systems</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-09-26.html">← 2023-09-26</a><a class="day-nav-btn" href="2023-10-05.html">2023-10-05 →</a></nav>
@@ -549,7 +549,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

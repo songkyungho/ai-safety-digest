@@ -433,7 +433,7 @@ Anthropic의 해석 가능성 팀이 개발 중인 여러 아이디어를 보고
 
 https://www.anthropic.com/research/circuits-updates-june-2024" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic의 해석 가능성 팀이 개발 중인 여러 아이디어를 보고합니다. 이 업데이트는 연구자들에게 흥미로운 몇 가지 초기 연구 아이디어와 작은 포인트들을 공유하며, 이 내용들은 동료 간의 간략한 연구 아이디어 공유처럼 다루어져야 합니다. 주요 내용으로는 다중 에이전트 시스템에서 나타나는 행동 패턴과 문제점, 근로자 재교육 프로그램에 대한 증거 검토, 그리고 새로운 Claude 버전의 수학적 능력 향상 사례(특히 리만 가설 관련 성과)가 포함되어 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/circuits-updates-june-2024">https://www.anthropic.com/research/circuits-updates-june-2024</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/circuits-updates-june-2024" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/circuits-updates-june-2024</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-06-27.html">← 2024-06-27</a><a class="day-nav-btn" href="2024-07-01.html">2024-07-01 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

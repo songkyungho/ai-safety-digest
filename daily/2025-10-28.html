@@ -452,7 +452,7 @@ https://metr.org/blog/2025-10-28-sabotage-report-review/" onclick="copyEntry(thi
 - **불일치 사항**: 보고서의 핵심 주장에 대해, Opus 4가 잠재적으로 중요한 편향된 추론을 수행할 수 있다는 견해로 인해 전체 결론에 대한 신뢰성이 약간 감소했습니다. 그러나 이전 모델들의 경험과 Opus 4의 제한된 능력을 고려할 때, 이는 여전히 낮은 사보타주 위험으로 평가됩니다.
 - **위험 감소 제안**: 사건 추적, 추가 테스트 실행, 훈련 데이터 필터링 등에 대한 구체적인 제안을 제시했습니다.</p>
 <p>전반적으로 METR은 Anthropic과 마찬가지로 Claude Opus 4 및 4.1 모델의 치명적 사보타주 위험이 낮다고 동의하며, 보고서의 적용 범위 내 다른 모델들에도 동일하게 적용된다고 봅니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2025-10-28-sabotage-report-review/">https://metr.org/blog/2025-10-28-sabotage-report-review/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2025-10-28-sabotage-report-review/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2025-10-28-sabotage-report-review/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-10-27.html">← 2025-10-27</a><a class="day-nav-btn" href="2025-10-29.html">2025-10-29 →</a></nav>
@@ -533,7 +533,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

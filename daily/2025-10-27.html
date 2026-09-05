@@ -433,7 +433,7 @@ Anthropic은 금융 서비스 분야에서 Claude AI의 기능을 확장하여 �
 
 https://www.anthropic.com/news/advancing-claude-for-financial-services" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 금융 서비스 분야에서 Claude AI의 기능을 확장하여 엑셀 애드인, 실시간 시장 데이터 및 포트폴리오 분석기와의 추가 커넥터, 새로운 사전 구축 에이전트 스킬 등을 도입했습니다. 이러한 업데이트는 금융 작업에 대한 시간 소모적이지만 중요한 작업을 자동화하여 업계 선호 도구에 통합되었습니다. 특히, 새로운 에이전트 스킬로는 할인 현금 흐름 모델 구축, 커버리지 보고서 작성 등이 포함됩니다. Claude for Excel 베타 버전 출시와 함께 실시간 데이터에 대한 직접적인 접근을 위한 여러 커넥터 추가로 금융 전문가들이 효율성을 높일 수 있게 되었습니다. 이러한 기능들은 금융 서비스 분야에서의 Claude의 성능을 향상시키고 있으며, 여러 금융 기관들이 이미 이 기술을 활용하여 업무 효율성을 증대시키고 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/advancing-claude-for-financial-services">https://www.anthropic.com/news/advancing-claude-for-financial-services</a></p>
+  <p class="url"><a href="https://www.anthropic.com/news/advancing-claude-for-financial-services" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/advancing-claude-for-financial-services</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-10-26.html">← 2025-10-26</a><a class="day-nav-btn" href="2025-10-28.html">2025-10-28 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

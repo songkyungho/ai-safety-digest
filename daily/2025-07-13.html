@@ -433,7 +433,7 @@ HiBayES는 LLM 등 AI 시스템의 본질적 확률적 출력에서 능력을 �
 
 https://www.aisi.gov.uk/research/hibayes-a-hierarchical-bayesian-modeling-framework-for-ai-evaluation-statistics" onclick="copyEntry(this)">복사</button></div>
   <p>HiBayES는 LLM 등 AI 시스템의 본질적 확률적 출력에서 능력을 견고하게 추정하고, 추정치의 불확실성을 체계적으로 정량화하기 위한 계층 베이지안 모델링 프레임워크다. 일반적인 질문-응답 벤치마크와 에이전트형 평가를 모두 지원하며, 평가당 데이터가 20개 미만처럼 적은 저데이터 상황에서도 추론을 강화하도록 설계됐다. GLM, 베이지안 데이터 분석, 정식 모델 비교를 기반으로 원칙적인 불확실성 정량화와 견고한 파라미터 추정을 제공하며, 베타 소프트웨어 패키지도 함께 제공한다고 설명한다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/hibayes-a-hierarchical-bayesian-modeling-framework-for-ai-evaluation-statistics">https://www.aisi.gov.uk/research/hibayes-a-hierarchical-bayesian-modeling-framework-for-ai-evaluation-statistics</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/hibayes-a-hierarchical-bayesian-modeling-framework-for-ai-evaluation-statistics" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/hibayes-a-hierarchical-bayesian-modeling-framework-for-ai-evaluation-statistics</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-11.html">← 2025-07-11</a><a class="day-nav-btn" href="2025-07-14.html">2025-07-14 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

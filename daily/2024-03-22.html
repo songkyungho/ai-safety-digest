@@ -433,7 +433,7 @@
 
 https://artificialintelligenceact.eu/the-ai-office-is-hiring/" onclick="copyEntry(this)">복사</button></div>
   <p>유럽연합 집행위원회는 인공지능 기술 전문가인 계약직 직원을 채용하며, 지원 마감은 2024년 3월 27일 12시(중부유럽시간)이다. 채용 인력은 범용 AI(GPAI) 모델의 규정 준수 감독, 시스템 위험 분석, 조사와 위험 완화 조치 등을 담당한다. 지원자는 EU 시민권, 두 개 EU 공식 언어 능력, EPSO CAST 등록, 관련 석사학위와 최소 1년의 기술 경력이 필요하며, 초기 계약 기간은 1년이다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/the-ai-office-is-hiring/">https://artificialintelligenceact.eu/the-ai-office-is-hiring/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/the-ai-office-is-hiring/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/the-ai-office-is-hiring/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-03-21.html">← 2024-03-21</a><a class="day-nav-btn" href="2024-03-27.html">2024-03-27 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

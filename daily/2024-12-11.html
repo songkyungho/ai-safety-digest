@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=260938" onclick="copyEntry(this)">복사</button></div>
   <p>식품의약품안전처와 싱가포르 보건과학청이 인공지능 의료기기 임상시험 가이드라인을 공동 개발해 양국 기관 누리집에 공개했다. 가이드라인은 임상시험 설계, 환자·데이터셋 선정, 임상 참조 표준, 유효성 평가와 결과 분석 원칙을 다루며, 향후 양국에서 수행되는 임상시험과 싱가포르의 제품 인증·허가 심사 기준으로 활용될 예정이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260938">https://eiec.kdi.re.kr/policy/materialView.do?num=260938</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260938" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=260938</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-12-10.html">← 2024-12-10</a><a class="day-nav-btn" href="2024-12-12.html">2024-12-12 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

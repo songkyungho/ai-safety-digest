@@ -455,7 +455,7 @@ https://law-ai.org/the-national-security-memo-on-ai-what-to-expect-in-trump-2-0/
 - **인프라 구축**: AI 발전과 배포를 위한 에너지 생산 능력 강화 및 국내 칩 생산 확대 정책은 지속될 것으로 예상된다.
 - **인재 및 이민 정책**: AI 인재 채용 및 유지 정책은 유지될 가능성이 높으나, 고급 이민 관련 조항은 불확실하다.</p>
 <p>요약불가</p>
-  <p class="url"><a href="https://law-ai.org/the-national-security-memo-on-ai-what-to-expect-in-trump-2-0/">https://law-ai.org/the-national-security-memo-on-ai-what-to-expect-in-trump-2-0/</a></p>
+  <p class="url"><a href="https://law-ai.org/the-national-security-memo-on-ai-what-to-expect-in-trump-2-0/" target="_blank" rel="noopener noreferrer">https://law-ai.org/the-national-security-memo-on-ai-what-to-expect-in-trump-2-0/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-18.html">← 2025-01-18</a><a class="day-nav-btn" href="2025-01-20.html">2025-01-20 →</a></nav>
@@ -536,7 +536,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@ AISI-UK는 2026년 2월 기준, 자율형 사이버 작업에서 80% 신뢰도(t
 
 https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing" onclick="copyEntry(this)">복사</button></div>
   <p>AISI-UK는 2026년 2월 기준, 자율형 사이버 작업에서 80% 신뢰도(time horizon)로 볼 때 AI 모델이 수행할 수 있는 작업 길이가 2024년 말 이후 약 4.7개월마다 2배로 늘었다고 추정했다. 다만 이후 공개된 Claude Mythos Preview와 GPT-5.5는 이 추세를 크게 상회했으며, 이러한 변화가 일시적 ‘단절’인지 새로운 더 빠른 추세인지는 불확실하다고 밝혔다. 또한 AISI의 사이버 레인지 테스트에서 Mythos Preview 체크포인트는 두 레인지 중 두 번째를 처음으로 완주했으며, GPT-5.5도 일부 시도에서 성공했다고 설명했다. AISI는 이러한 결과가 방어·실전 환경으로의 전환 속도와 임계치 도달 시점은 아직 예측하기 어렵지만, 공격·방어 모두에 영향을 줄 수 있는 위험과 기회가 커지고 있다고 강조했다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing">https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-01-30.html">← 2026-01-30</a><a class="day-nav-btn" href="2026-02-02.html">2026-02-02 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

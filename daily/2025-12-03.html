@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=274263" onclick="copyEntry(this)">복사</button></div>
   <p>국방부는 2025년 12월 3일 국방 AI 생태계발전포럼을 열고 국방 AI 발전을 위한 범정부 협력 거버넌스 강화와 2026년 주요 국방 AI 사업 추진 방안을 논의했다. 포럼에서는 국방 AX 전략, 국방·ICT 협업 실행전략, 방산 AX 지원방안, 국방혁신 스타트업 지원사업 및 2026년 국방 AI 수요 등이 발표됐다. 관계 부처는 전문성과 역량을 결집해 국방 전반에 AI 기술을 확산하고 국가 AI 생태계 발전을 지원하기로 했다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=274263">https://eiec.kdi.re.kr/policy/materialView.do?num=274263</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=274263" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=274263</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=274263" onclick="copyEntry(thi
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=168872981&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=168872981&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=168872981&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=168872981&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=168872981&amp;t=board</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-12-02.html">← 2025-12-02</a><a class="day-nav-btn" href="2025-12-04.html">2025-12-04 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

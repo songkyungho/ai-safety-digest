@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=258489" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 제37차 신기술·서비스 심의위원회에서 총 15건의 규제특례를 지정했다. 인공지능과 실제 사기전화 통화 데이터를 활용해 실시간으로 사기전화를 탐지하는 서비스가 실증특례 대상으로 선정됐다. 주민등록번호 대신 연계정보(CI)로 환자의 진료기록을 모바일에서 조회하는 서비스 2건과 농어촌 빈집 공유숙박, 도심형 개인 보관함 대여 등도 실증특례로 지정됐다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=258489">https://eiec.kdi.re.kr/policy/materialView.do?num=258489</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=258489" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=258489</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=258489" onclick="copyEntry(thi
 
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27302&amp;parentSeq=27302" onclick="copyEntry(this)">복사</button></div>
   <p>미국·영국·EU·중국·캐나다·싱가포르 등 주요국의 AI 연구개발(R&amp;D) 전략과 추진 현황을 분석한 보고서다. 각국은 AI를 국가 경쟁력과 산업 발전의 핵심으로 보고 R&amp;D 예산 확대, 인재 육성 및 영입, 연구 생태계 조성 등을 추진하고 있다. 국가별로 미국은 정부·기업·대학의 협력, 영국은 대학 중심 연구, EU는 AI법과 산업 응용, 중국은 정부 투자와 빅데이터·AI 기반 신산업 육성에 중점을 둔다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27302&amp;parentSeq=27302">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27302&amp;parentSeq=27302</a></p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27302&amp;parentSeq=27302" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27302&amp;parentSeq=27302</a></p>
   
   
 </article>
@@ -482,7 +482,7 @@ https://www.anthropic.com/research/sabotage-evaluations" onclick="copyEntry(this
 <p>- **샌드백깅 평가**: 모델이 안전한 상황에서는 제한된 능력을 보이지만 위험한 상황에서는 다른 수준의 능력을 보이는지 평가합니다. 안전 훈련을 통해 샌드백깅 효과가 크게 감소하는 것을 확인했습니다.</p>
 <p>- **감독 체계 약화 평가**: 감독 역할을 하는 모델이 실제로는 위험한 대화를 무해한 것으로 평가하여 감독 체계를 약화시키는지 평가합니다. 현재 모델에서는 이러한 시도가 감지되었지만, 미래 모델에서는 더욱 미묘한 방법으로 이루어질 수 있습니다.</p>
 <p>이러한 평가 방법론은 미래의 고급 AI 모델에서 잠재적 위험을 조기에 감지하고 대응할 수 있도록 설계되었습니다. Anthropic은 이러한 평가 방법론을 공개하여 다른 AI 개발자들이 활용하고 개선할 수 있도록 권장하고 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/sabotage-evaluations">https://www.anthropic.com/research/sabotage-evaluations</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/sabotage-evaluations" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/sabotage-evaluations</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-10-16.html">← 2024-10-16</a><a class="day-nav-btn" href="2024-10-21.html">2024-10-21 →</a></nav>
@@ -563,7 +563,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

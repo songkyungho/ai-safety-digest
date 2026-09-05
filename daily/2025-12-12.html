@@ -433,7 +433,7 @@ Google은 실시간 음성 에이전트용 Gemini 2.5 Flash Native Audio를 업�
 
 https://deepmind.google/blog/improved-gemini-audio-models-for-powerful-voice-experiences/" onclick="copyEntry(this)">복사</button></div>
   <p>Google은 실시간 음성 에이전트용 Gemini 2.5 Flash Native Audio를 업데이트해 function calling, 복잡한 지시 이행, 다중 턴 대화의 품질을 개선했다. ComplexFuncBench Audio에서 71.5%를 기록했고 개발자 지시 준수율은 84%에서 90%로 높아졌으며, 해당 모델은 Vertex AI에서 일반 제공되고 Gemini API에서는 프리뷰로 제공된다. Google Translate 앱의 베타 실시간 음성 번역은 억양·속도·음높이를 보존하고 70개 이상 언어와 2,000개 언어쌍을 지원하며, 미국·멕시코·인도의 Android 기기에서 출시되기 시작했다.</p>
-  <p class="url"><a href="https://deepmind.google/blog/improved-gemini-audio-models-for-powerful-voice-experiences/">https://deepmind.google/blog/improved-gemini-audio-models-for-powerful-voice-experiences/</a></p>
+  <p class="url"><a href="https://deepmind.google/blog/improved-gemini-audio-models-for-powerful-voice-experiences/" target="_blank" rel="noopener noreferrer">https://deepmind.google/blog/improved-gemini-audio-models-for-powerful-voice-experiences/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-12-11.html">← 2025-12-11</a><a class="day-nav-btn" href="2025-12-15.html">2025-12-15 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

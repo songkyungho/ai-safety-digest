@@ -433,7 +433,7 @@
 
 https://www.kwdi.re.kr/publications/issuePaperView.do?idx=133038" onclick="copyEntry(this)">복사</button></div>
   <p>인공지능의 의사결정 편향과 성차별을 방지하기 위해 유럽연합 인공지능법안 등을 검토하고 국내 법제화 방향을 제시했다. 주요 과제로 성별 차별 금지 명시, 잠재적 편향·차별을 위험관리 대상에 포함, 공정성 기준과 표준화된 완화 지침 마련, 사업자 기술 지원, 관리·감독 및 제재, 인공지능 위험 평가 의무화를 제안했다.</p>
-  <p class="url"><a href="https://www.kwdi.re.kr/publications/issuePaperView.do?idx=133038">https://www.kwdi.re.kr/publications/issuePaperView.do?idx=133038</a></p>
+  <p class="url"><a href="https://www.kwdi.re.kr/publications/issuePaperView.do?idx=133038" target="_blank" rel="noopener noreferrer">https://www.kwdi.re.kr/publications/issuePaperView.do?idx=133038</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.kwdi.re.kr/publications/issuePaperView.do?idx=133038" onclick="copyE
 
 https://www.koti.re.kr/common/file/download.do?atch_no=RPLDxAAXOwfQb5pJtpBMxw%3D%3D" onclick="copyEntry(this)">복사</button></div>
   <p>한국교통연구원은 복잡해지는 AI 데이터와 모델 구조에 대응하기 위한 XAI 기술 프레임워크를 소개했다. 특히 XRL은 정책 시각화, 상태 기여도 분석, Q-value 분해 등을 통해 AI 에이전트가 특정 행동을 선택한 이유와 보상 요인을 분석하며, 자율주행과 교통 신호 제어 같은 순차적 의사결정 분야에 활용될 수 있다고 설명했다.</p>
-  <p class="url"><a href="https://www.koti.re.kr/common/file/download.do?atch_no=RPLDxAAXOwfQb5pJtpBMxw%3D%3D">https://www.koti.re.kr/common/file/download.do?atch_no=RPLDxAAXOwfQb5pJtpBMxw%3D%3D</a></p>
+  <p class="url"><a href="https://www.koti.re.kr/common/file/download.do?atch_no=RPLDxAAXOwfQb5pJtpBMxw%3D%3D" target="_blank" rel="noopener noreferrer">https://www.koti.re.kr/common/file/download.do?atch_no=RPLDxAAXOwfQb5pJtpBMxw%3D%3D</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-15.html">← 2025-09-15</a><a class="day-nav-btn" href="2025-09-17.html">2025-09-17 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://www.aisi.gov.uk/research/lessons-from-studying-two-hop-latent-reasoning" onclick="copyEntry(this)">복사</button></div>
   <p>대형 언어모델이 chain-of-thought(CoT)로 추론을 외부화하면, 더 유능한 LLM 에이전트를 감독(oversight)하는 데 도움이 될 수 있다는 배경에서 출발했다. 연구진은 두 단계(two-hop) 질의응답을 사례로, 합성(synthetic) 사실로 미세조정한 뒤 두-hop 추론을 평가해 암기나 단축(reasoning shortcuts)에 의한 성능을 배제하려 했다. 그 결과 모델은 두 개의 합성 사실을 조합해(two-hop composition) 답하는 데는 실패하는 경우가 많았지만, 한 사실은 합성이고 다른 한 사실은 자연(natural)일 때는 성공하는 양상이 관찰됐다. 또한 연구의 핵심 교훈으로, latent reasoning에 대한 결론을 내릴 때 암기·단축에서 비롯된 ‘spurious successes’뿐 아니라 인위적 실험 설정에서 비롯된 ‘spurious failures’를 모두 피해야 한다고 강조했다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/lessons-from-studying-two-hop-latent-reasoning">https://www.aisi.gov.uk/research/lessons-from-studying-two-hop-latent-reasoning</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/lessons-from-studying-two-hop-latent-reasoning" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/lessons-from-studying-two-hop-latent-reasoning</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-05.html">← 2025-09-05</a><a class="day-nav-btn" href="2025-09-08.html">2025-09-08 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

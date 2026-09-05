@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/building-effective-agents" onclick="copyEntry(this)">복사</button></div>
   <p>효과적인 언어 모델 에이전트 구축을 위한 실용적 조언과 실제 사례 공유. 에이전트의 정의와 다양한 구현 방식(워크플로우와 에이전트)을 설명하며, 단순한 패턴부터 자율 에이전트까지의 구축 방법을 탐구. 복잡성 증가의 필요성과 적절한 프레임워크 사용에 대한 권장 사항 제공. 에이전트 구축 시 주의사항과 실제 적용 사례 포함.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/building-effective-agents">https://www.anthropic.com/research/building-effective-agents</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/building-effective-agents" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/building-effective-agents</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-12-18.html">← 2024-12-18</a><a class="day-nav-btn" href="2024-12-20.html">2024-12-20 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

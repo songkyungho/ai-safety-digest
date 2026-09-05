@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=266541" onclick="copyEntry(this)">복사</button></div>
   <p>정부는 총 1조 4,600억 원 규모의 추가경정예산을 바탕으로 첨단 GPU 1만 장을 확보하기 위한 추진 방안을 마련했다. 민관 협력을 통해 GPU 구매·구축·사용 전 과정을 진행하고, 클라우드 기업을 공모·선정해 신속히 확보·운용할 계획이다. 구축된 GPU는 국가 인공지능 컴퓨팅 센터를 중심으로 국내 산학연과 국가적 프로젝트에 전략적으로 배분한다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=266541">https://eiec.kdi.re.kr/policy/materialView.do?num=266541</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=266541" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=266541</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ Anthropic은 최신 안전 조치를 스트레스 테스트하기 위해 새로�
 
 https://www.anthropic.com/news/testing-our-safety-defenses-with-a-new-bug-bounty-program" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 최신 안전 조치를 스트레스 테스트하기 위해 새로운 버그 바운티 프로그램을 시작했습니다. 이 프로그램은 HackerOne과 협력하여 진행되며, 참여자들은 업데이트된 Constitutional Classifiers 시스템을 통해 Claude 3.7 Sonnet 모델의 보편적인 &#x27;탈옥&#x27; 취약점을 찾아내는 데 집중합니다. 특히 CBRN(화학, 생물학, 방사능, 핵) 관련 주제에서의 악용 가능성을 탐색합니다. 발견된 보편적인 취약점에 대해 최대 $25,000의 보상을 제공하며, 프로그램은 5월 18일까지 진행되었습니다. 이 노력은 AI 안전성 수준 3(ASL-3) 표준을 충족하기 위한 Anthropic의 책임 있는 확장 정책의 일환입니다. 이후 새로운 버그 바운티 프로그램이 시작되어 Claude Opus 4 모델의 안전성을 테스트하고 있습니다. 또한, 생물학적 위협 관련 정보를 유발할 수 있는 보편적인 취약점에 대한 공개 플랫폼 보고도 수용하고 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/testing-our-safety-defenses-with-a-new-bug-bounty-program">https://www.anthropic.com/news/testing-our-safety-defenses-with-a-new-bug-bounty-program</a></p>
+  <p class="url"><a href="https://www.anthropic.com/news/testing-our-safety-defenses-with-a-new-bug-bounty-program" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/testing-our-safety-defenses-with-a-new-bug-bounty-program</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-09.html">← 2025-05-09</a><a class="day-nav-btn" href="2025-05-16.html">2025-05-16 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

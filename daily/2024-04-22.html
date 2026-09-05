@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=250564" onclick="copyEntry(this)">복사</button></div>
   <p>산업통상자원부 국가기술표준원은 4월 22일부터 26일까지 서울에서 미국·영국·독일·일본 등 40여 개국 270여 명의 전문가가 참석하는 AI 국제표준화 총회를 개최한다. 총회에서는 생성형 AI 윤리, AI 신뢰성 평가, AI 성숙도 모델, AI 경영시스템 가이드 등의 국제표준 개발이 진행된다. 국가기술표준원은 AI 표준화 자문조직 신설과 AI 윤리 점검서식·AI 성숙도 모델 등 신규 국제표준 2종을 제안할 계획이며, 4월 24일과 5월 2일 관련 공개행사도 열린다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=250564">https://eiec.kdi.re.kr/policy/materialView.do?num=250564</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=250564" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=250564</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-04-19.html">← 2024-04-19</a><a class="day-nav-btn" href="2024-04-23.html">2024-04-23 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

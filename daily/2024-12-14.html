@@ -433,7 +433,7 @@ ETH 방문 석사과정 학생 Henry Papadatos와 CHAI 박사과정 학생 Rache
 
 https://humancompatible.ai/news/2024/12/14/linear-probe-penalties-reduce-llm-sycophancy/" onclick="copyEntry(this)">복사</button></div>
   <p>ETH 방문 석사과정 학생 Henry Papadatos와 CHAI 박사과정 학생 Rachel Freedman이 NeurIPS SoLaR 워크숍에서 해당 논문을 발표했다. 논문은 RLHF fine-tuning으로 충분히 억제되지 않는 LLM의 원치 않는 행동을 줄이는 일반화 가능한 방법론을 제시한다.</p>
-  <p class="url"><a href="https://humancompatible.ai/news/2024/12/14/linear-probe-penalties-reduce-llm-sycophancy/">https://humancompatible.ai/news/2024/12/14/linear-probe-penalties-reduce-llm-sycophancy/</a></p>
+  <p class="url"><a href="https://humancompatible.ai/news/2024/12/14/linear-probe-penalties-reduce-llm-sycophancy/" target="_blank" rel="noopener noreferrer">https://humancompatible.ai/news/2024/12/14/linear-probe-penalties-reduce-llm-sycophancy/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-12-12.html">← 2024-12-12</a><a class="day-nav-btn" href="2024-12-16.html">2024-12-16 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

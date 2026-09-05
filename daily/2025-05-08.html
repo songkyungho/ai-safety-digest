@@ -433,7 +433,7 @@
 
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=674A595944B9E91C0BDC7A4F4852F727.8861c407821f06361103?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date" onclick="copyEntry(this)">복사</button></div>
   <p>트럼프 대통령은 미국의 AI 리더십 강화를 위해 2025년 1월 23일 AI 액션플랜 수립을 지시하고, 실효성 있는 정책 마련을 위해 대중 정보요청을 실시했다. 미국 백악관 과학기술정책국과 국립과학재단이 취합한 8,755개 의견 중 공개적으로 제안된 AI 산업계 의견을 중심으로 정책 제언과 시사점을 분석했다. 분석 대상에는 오픈AI, 구글, IBM, 앤트로픽, 허깅페이스, 반도체협회, CRA, HAI, 오픈소스 이니셔티브 등이 포함됐다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=674A595944B9E91C0BDC7A4F4852F727.8861c407821f06361103?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=674A595944B9E91C0BDC7A4F4852F727.8861c407821f06361103?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date</a></p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=674A595944B9E91C0BDC7A4F4852F727.8861c407821f06361103?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=674A595944B9E91C0BDC7A4F4852F727.8861c407821f06361103?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-07.html">← 2025-05-07</a><a class="day-nav-btn" href="2025-05-09.html">2025-05-09 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

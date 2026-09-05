@@ -443,7 +443,7 @@ https://deepmind.google/models/gemma/gemma-3/" onclick="copyEntry(this)">복사<
   <p>General · Open · 128K ctx</p>
 <p>GPQA 30.8% · MMLU 43.6% · HE 71.3% · MATH 75.6%</p>
 <p>Compact multimodal Gemma 3. 128K context. Outperforms Gemma 2 27B despite 7x fewer params. On-device optimized.</p>
-  <p class="url"><a href="https://deepmind.google/models/gemma/gemma-3/">https://deepmind.google/models/gemma/gemma-3/</a></p>
+  <p class="url"><a href="https://deepmind.google/models/gemma/gemma-3/" target="_blank" rel="noopener noreferrer">https://deepmind.google/models/gemma/gemma-3/</a></p>
   
   <details class="related-stories" open><summary>같은 이슈 관련 2건 · DemandSphere</summary><article class="entry cat-company" data-cat="company" data-topics="" data-search="Gemma 3 12B (Google) (2025.3.12) General · Open · 128K ctx
 
@@ -463,7 +463,7 @@ https://deepmind.google/models/gemma/gemma-3/" onclick="copyEntry(this)">복사<
   <p>General · Open · 128K ctx</p>
 <p>GPQA 40.9% · MMLU 60.6% · HE 85.4% · MATH 83.8%</p>
 <p>Mid-size Gemma 3. 128K context, multimodal. Strong multilingual and reasoning for its size class.</p>
-  <p class="url"><a href="https://deepmind.google/models/gemma/gemma-3/">https://deepmind.google/models/gemma/gemma-3/</a></p>
+  <p class="url"><a href="https://deepmind.google/models/gemma/gemma-3/" target="_blank" rel="noopener noreferrer">https://deepmind.google/models/gemma/gemma-3/</a></p>
   
   
 </article>
@@ -485,7 +485,7 @@ https://deepmind.google/models/gemma/gemma-3/" onclick="copyEntry(this)">복사<
   <p>General · Open · 128K ctx</p>
 <p>GPQA 42.4% · MMLU 67.5% · HE 87.8% · MATH 89%</p>
 <p>Google&#x27;s largest open Gemma model. 128K context, multimodal. Competitive with several closed mid-tier models.</p>
-  <p class="url"><a href="https://deepmind.google/models/gemma/gemma-3/">https://deepmind.google/models/gemma/gemma-3/</a></p>
+  <p class="url"><a href="https://deepmind.google/models/gemma/gemma-3/" target="_blank" rel="noopener noreferrer">https://deepmind.google/models/gemma/gemma-3/</a></p>
   
   
 </article></details>
@@ -498,7 +498,7 @@ https://deepmind.google/models/gemma/gemma-3/" onclick="copyEntry(this)">복사<
 
 https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=202507290342086936.pdf&amp;filepath=202507" onclick="copyEntry(this)">복사</button></div>
   <p>국회미래연구원은 보건의료 분야에서 인공지능의 활용 가능성과 개인정보 보호, 설명가능성, 공정성, 안전성·책임성 등 윤리·법적 과제를 분석한 보고서를 발표했다. 보고서는 정밀의료, 질병 예방·진단, 환자 중심 치료, 환자 모니터링 등 주요 활용 분야와 미국·캐나다·유럽연합·일본·싱가포르의 관련 전략 및 법제도를 비교했다. 또한 국내 보건의료 AI의 잠재력을 높이기 위해 다학제 연구, 사회적 합의, 독립적 규제 기구 설립이 필요하다고 제안했다.</p>
-  <p class="url"><a href="https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=202507290342086936.pdf&amp;filepath=202507">https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=202507290342086936.pdf&amp;filepath=202507</a></p>
+  <p class="url"><a href="https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=202507290342086936.pdf&amp;filepath=202507" target="_blank" rel="noopener noreferrer">https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=202507290342086936.pdf&amp;filepath=202507</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-11.html">← 2025-03-11</a><a class="day-nav-btn" href="2025-03-13.html">2025-03-13 →</a></nav>
@@ -579,7 +579,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

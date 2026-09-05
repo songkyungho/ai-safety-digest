@@ -433,7 +433,7 @@ EU 인공지능법의 범용 인공지능(GPAI) 실행규범은 관련 의무가
 
 https://artificialintelligenceact.eu/introduction-to-code-of-practice/" onclick="copyEntry(this)">복사</button></div>
   <p>EU 인공지능법의 범용 인공지능(GPAI) 실행규범은 관련 의무가 시행된 2025년 8월부터 유럽 표준이 마련될 때까지 사업자가 준수를 입증할 수 있도록 마련된 비법적 구속력의 자율 준수 도구다. 실행규범은 투명성, 저작권, 안전·보안의 세 장으로 구성되며, 안전·보안 장은 10^25 FLOP를 초과하는 시스템적 위험 GPAI 모델 제공자에게만 적용된다. 주요 의무에는 기술문서와 학습데이터 요약 제공, 저작권 준수 정책 수립, 시스템적 위험 평가·완화, 중대사고 보고 및 사이버보안 확보가 포함된다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/introduction-to-code-of-practice/">https://artificialintelligenceact.eu/introduction-to-code-of-practice/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/introduction-to-code-of-practice/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/introduction-to-code-of-practice/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-01.html">← 2024-07-01</a><a class="day-nav-btn" href="2024-07-05.html">2024-07-05 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

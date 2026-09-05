@@ -433,7 +433,7 @@ AI Security Institute(AISI)가 Anthropic의 Claude Mythos Preview(2025년 4월 7
 
 https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities" onclick="copyEntry(this)">복사</button></div>
   <p>AI Security Institute(AISI)가 Anthropic의 Claude Mythos Preview(2025년 4월 7일 발표)를 대상으로 사이버 보안 역량 평가를 수행했다. CTF(캡처더플래그)에서는 전문가 수준 과제에서 73% 성공을 보였고, 네트워크 공격 시뮬레이션(32단계)에서는 10회 시도 중 3회에 걸쳐 처음부터 끝까지 완료했으며 평균 22/32단계를 수행했다. 다만 AISI의 OT(운영기술) 중심 범위인 ‘Cooling Tower’는 IT 구간에서 막혀 완료하지 못했으며, 평가 환경이 실제 환경보다 방어 기능과 보안 경고 트리거가 부족해 잘 방어된 시스템에 대한 확실한 결론은 어렵다고 밝혔다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities">https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-05.html">← 2025-04-05</a><a class="day-nav-btn" href="2025-04-08.html">2025-04-08 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

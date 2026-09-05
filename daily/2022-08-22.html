@@ -444,7 +444,7 @@ https://www.anthropic.com/research/red-teaming-language-models-to-reduce-harms-m
 <p>1. **확장 행동 분석**: 3가지 모델 크기(2.7B, 13B, 52B 매개변수)와 4가지 모델 유형(기본 언어 모델, 도움이 되고 무해한 프롬프트 언어 모델, 거부 샘플링 언어 모델, 인간 피드백 기반 강화 학습을 통한 도움이 되고 무해한 모델)에 대한 레드 팀핑 확장 행동을 조사했습니다. RLHF 모델은 확장됨에 따라 레드 팀핑이 점점 더 어려워지는 반면, 다른 유형의 모델은 확장에 따른 평평한 추세를 보였습니다.
 2. **레드 팀 공격 데이터 공개**: 38,961개의 레드 팀 공격 데이터셋을 공개하여 다른 연구자들이 분석하고 배울 수 있도록 했습니다. 분석 결과는 공격적 언어에서부터 미묘한 비폭력적 불공정 출력까지 다양한 해로운 출력을 확인했습니다.
 3. **투명성 제고**: 레드 팀핑을 위한 지침, 프로세스, 통계적 방법론, 그리고 불확실성에 대한 상세한 설명을 제공하여 커뮤니티가 공동의 규범, 관행, 기술 표준을 개발하는 데 도움을 주고자 합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/red-teaming-language-models-to-reduce-harms-methods-scaling-behaviors-and-lessons-learned">https://www.anthropic.com/research/red-teaming-language-models-to-reduce-harms-methods-scaling-behaviors-and-lessons-learned</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/red-teaming-language-models-to-reduce-harms-methods-scaling-behaviors-and-lessons-learned" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/red-teaming-language-models-to-reduce-harms-methods-scaling-behaviors-and-lessons-learned</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-08-12.html">← 2022-08-12</a><a class="day-nav-btn" href="2022-08-24.html">2022-08-24 →</a></nav>
@@ -525,7 +525,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

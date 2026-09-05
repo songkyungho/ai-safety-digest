@@ -433,7 +433,7 @@
 
 https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=MzZdtzdkAMVkuVVipoHi.pdf&amp;filepath=202410" onclick="copyEntry(this)">복사</button></div>
   <p>국회미래연구원은 초거대 AI 시대의 도래에 따른 글로벌 AI 정책 변화의 특징과 전망을 분석했다. 주요 특징으로 AI 진흥에서 진흥과 규제의 조화로의 전환, AI 안전·신뢰 정책 강화, 국가별로 다른 규제 강도, AI에 주목하는 지방자치단체의 확대를 제시했다. 국내 정책 수립 시 급변하는 AI 환경과 공간 지능(Spatial Intelligence) 등 미래 변화를 반영해 규제 시차를 줄여야 한다고 제안했다.</p>
-  <p class="url"><a href="https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=MzZdtzdkAMVkuVVipoHi.pdf&amp;filepath=202410">https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=MzZdtzdkAMVkuVVipoHi.pdf&amp;filepath=202410</a></p>
+  <p class="url"><a href="https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=MzZdtzdkAMVkuVVipoHi.pdf&amp;filepath=202410" target="_blank" rel="noopener noreferrer">https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=MzZdtzdkAMVkuVVipoHi.pdf&amp;filepath=202410</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-10-25.html">← 2024-10-25</a><a class="day-nav-btn" href="2024-10-29.html">2024-10-29 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

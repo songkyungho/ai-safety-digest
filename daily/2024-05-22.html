@@ -433,7 +433,7 @@
 
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26695&amp;parentSeq=26695" onclick="copyEntry(this)">복사</button></div>
   <p>한국지능정보사회진흥원은 미국 유타주가 생성형 인공지능 이용 고지와 인공지능 기술 개발 규제 완화를 위해 마련한 「인공지능 수정법」의 주요 내용과 시사점을 분석했다. 이 법은 2024년 3월 13일 제정돼 5월 1일부터 시행됐으며, 규제 직종은 사전 고지, 그 외 직종은 소비자 요청 시 고지하도록 의무를 이원화했다. 또한 자격이나 인허가가 없는 사람이 생성형 인공지능을 이용해 규제 직종의 서비스를 제공하는 것은 허용되지 않음을 명확히 하고, 인공지능 연구 프로그램에는 규제 완화와 세이프 하버를 제공한다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26695&amp;parentSeq=26695">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26695&amp;parentSeq=26695</a></p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26695&amp;parentSeq=26695" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26695&amp;parentSeq=26695</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-05-21.html">← 2024-05-21</a><a class="day-nav-btn" href="2024-05-23.html">2024-05-23 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

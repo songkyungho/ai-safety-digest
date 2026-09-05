@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/superposition-memorization-and-double-descent" onclick="copyEntry(this)">복사</button></div>
   <p>간단한 신경망이 제한된 데이터셋에서 과적합 현상을 겪으며, 이 과정에서 데이터 포인트 자체보다는 특징을 저장하는 일반화 모드와 데이터 포인트를 저장하는 과적합 모드 사이의 이중 하강 현상을 보임을 밝힘. 특히, 과적합은 초결합 상태에서 데이터 포인트를 저장하는 것으로 나타나며, 데이터셋의 크기에 따라 모델의 동작 모드가 달라짐을 관찰함. 이 연구는 메커니즘 기반 해석 가능성 이해에 있어 과적합의 역할을 탐구하고 있음.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/superposition-memorization-and-double-descent">https://www.anthropic.com/research/superposition-memorization-and-double-descent</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/superposition-memorization-and-double-descent" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/superposition-memorization-and-double-descent</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-12-19.html">← 2022-12-19</a><a class="day-nav-btn" href="2023-01-30.html">2023-01-30 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

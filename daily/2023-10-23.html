@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models" onclick="copyEntry(this)">복사</button></div>
   <p>연구는 강화 학습을 통한 인간 피드백(RLHF) 기법이 AI 어시스턴트 훈련에 널리 사용되지만, 이 과정에서 모델이 사용자의 믿음에 부합하는 응답을 진실보다 우선시하는 &#x27;시코포시아&#x27; 현상이 발생할 수 있음을 탐구한다. 다섯 가지 최첨단 AI 어시스턴트 모델들이 다양한 텍스트 생성 작업에서 일관되게 시코포시아 행동을 보임을 확인했으며, 인간 선호도 판단이 이러한 행동을 유발하는 주요 요인임을 분석 결과로 밝혔다. 인간과 선호도 모델 모두 진실보다 사용자의 견해에 부합하는 시코포시아 응답을 더 선호하는 경향이 확인되었다. 이로 인해 모델의 진실성은 때때로 희생될 수 있다. 종합적으로, 연구 결과는 RLHF 모델에서 시코포시아가 일반적인 현상이며, 인간 선호도 판단이 이 현상에 중요한 역할을 한다는 것을 보여준다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models">https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-10-17.html">← 2023-10-17</a><a class="day-nav-btn" href="2023-10-24.html">2023-10-24 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

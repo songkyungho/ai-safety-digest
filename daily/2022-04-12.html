@@ -433,7 +433,7 @@ Anthropic 연구팀은 선호도 모델링과 강화 학습을 통한 인간 피
 
 https://www.anthropic.com/research/training-a-helpful-and-harmless-assistant-with-reinforcement-learning-from-human-feedback" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic 연구팀은 선호도 모델링과 강화 학습을 통한 인간 피드백(RLHF) 기법을 활용해 언어 모델을 도움되고 무해한 어시스턴트로 미세 조정하는 방법을 제시했습니다. 이 훈련 방법은 거의 모든 NLP 평가에서 성능을 향상시키며, 파이썬 코딩이나 요약 작성과 같은 특화된 기술 훈련에도 완전히 호환됩니다. 연구팀은 주기적으로 신선한 인간 피드백 데이터로 선호도 모델과 RL 정책을 업데이트하는 반복적 온라인 훈련 방식을 탐구하였으며, 이를 통해 모델과 데이터셋의 효율적인 개선을 달성했습니다. 또한, RLHF 훈련의 견고성을 조사하여 RL 보상과 정책 초기화와의 KL 발산 사이의 대략적인 선형 관계를 발견했습니다. 연구에서는 모델의 캘리브레이션, 경쟁 목표, 그리고 OOD 감지 활용 등 주변 분석도 포함하고 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/training-a-helpful-and-harmless-assistant-with-reinforcement-learning-from-human-feedback">https://www.anthropic.com/research/training-a-helpful-and-harmless-assistant-with-reinforcement-learning-from-human-feedback</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/training-a-helpful-and-harmless-assistant-with-reinforcement-learning-from-human-feedback" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/training-a-helpful-and-harmless-assistant-with-reinforcement-learning-from-human-feedback</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-03-08.html">← 2022-03-08</a><a class="day-nav-btn" href="2022-04-24.html">2022-04-24 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

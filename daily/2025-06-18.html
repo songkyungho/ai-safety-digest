@@ -433,7 +433,7 @@
 
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034" onclick="copyEntry(this)">복사</button></div>
   <p>트럼프 대통령은 미국의 AI 리더십 강화를 위해 2025년 1월 23일 AI 액션플랜 수립을 지시하고, 실효성 있는 정책 마련을 위해 대중 정보요청(RFI)을 실시했다. 백악관 과학기술정책국(OSTP)과 국립과학재단(NSF)은 총 8,755건의 의견을 수렴했으며, 보고서는 이 중 OpenAI·Google·IBM·Anthropic 등 AI 산업계가 공개적으로 제안한 정책 내용을 중심으로 분석했다. 이를 바탕으로 미국 AI 정책의 동향과 시사점을 도출했다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034</a></p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=28034&amp;parentSeq=28034</a></p>
   
   
 </article>
@@ -474,7 +474,7 @@ https://www.anthropic.com/research/confidential-inference-trusted-vms" onclick="
 - **신뢰할 수 있는 가상 머신** 내에서 암호화 키를 관리하고, 코드 실행의 신뢰성을 확인합니다.</p>
 <p>결과적으로, 이 접근법은 데이터가 안전하게 보호되도록 하여 사용자 데이터의 기밀성을 확보합니다. Anthropic은 이 연구를 통해 지속적인 보안 개선을 추구하고 있으며, 관련 분야의 전문가들과 협력하여 더 강력한 보안 기능을 개발할 계획입니다.</p>
 <p>더 자세한 내용은 [보고서 읽기](링크)를 참조하세요. 보안 분야에서의 협력 기회도 열려 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/confidential-inference-trusted-vms">https://www.anthropic.com/research/confidential-inference-trusted-vms</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/confidential-inference-trusted-vms" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/confidential-inference-trusted-vms</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-06-17.html">← 2025-06-17</a><a class="day-nav-btn" href="2025-06-20.html">2025-06-20 →</a></nav>
@@ -555,7 +555,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

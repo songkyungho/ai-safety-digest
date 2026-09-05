@@ -433,7 +433,7 @@
 
 https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26770&amp;parentSeq=26770" onclick="copyEntry(this)">복사</button></div>
   <p>지자체 CCTV 통합관제, 군의 과학화 경계 시스템, 무인 매장 등 무인 경계 시스템의 기술·정책 현황과 시장 규모 및 전망을 분석한다. 관련 기술의 발전 방향과 정부의 역할을 제시한다.</p>
-  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26770&amp;parentSeq=26770">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26770&amp;parentSeq=26770</a></p>
+  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26770&amp;parentSeq=26770" target="_blank" rel="noopener noreferrer">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26770&amp;parentSeq=26770</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26770&amp;pa
 
 https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26776&amp;parentSeq=26776" onclick="copyEntry(this)">복사</button></div>
   <p>한국지능정보사회진흥원 AI법제도센터가 OECD AI 원칙에 포함된 ‘AI 시스템’ 정의의 개정 내용을 해설하고 관련 시사점을 제시한 법제 브리프를 발간했다. 자료는 2024년 5월 30일 게시됐으며, PDF로 제공된다.</p>
-  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26776&amp;parentSeq=26776">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26776&amp;parentSeq=26776</a></p>
+  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26776&amp;parentSeq=26776" target="_blank" rel="noopener noreferrer">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26776&amp;parentSeq=26776</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-05-29.html">← 2024-05-29</a><a class="day-nav-btn" href="2024-06-02.html">2024-06-02 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

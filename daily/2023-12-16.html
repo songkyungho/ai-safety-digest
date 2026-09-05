@@ -433,7 +433,7 @@ METR (이전 ARC Evals)은 자율 LLM 에이전트의 성능을 측정하기 위
 
 https://metr.org/blog/2023-12-16-bounty-diverse-hard-tasks-for-llm-agents/" onclick="copyEntry(this)">복사</button></div>
   <p>METR (이전 ARC Evals)은 자율 LLM 에이전트의 성능을 측정하기 위한 아이디어, 상세 사양, 그리고 검증된 구현을 찾고 있습니다. 공모의 핵심 기준은 인간 전문가가 2시간 이상, 가능하다면 20시간 이상 소요되는 난이도 있는 작업을 포함하며, 위험 요소를 최소화하고 LLM 에이전트의 강점을 살릴 수 있는 작업을 선호합니다. 주요 목표는 다양한 난이도의 작업을 통해 에이전트의 능력을 연속적으로 측정하고, 특정 위협 모델(예: 사이버 범죄, 자기 개선)에 대한 정보를 제공하는 것입니다. 참여자들은 작업 아이디어, 사양, 구현을 제출할 수 있으며, 각 범주별로 보상이 주어집니다. 제출된 작업은 훈련 데이터에 포함되지 않아야 합니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2023-12-16-bounty-diverse-hard-tasks-for-llm-agents/">https://metr.org/blog/2023-12-16-bounty-diverse-hard-tasks-for-llm-agents/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2023-12-16-bounty-diverse-hard-tasks-for-llm-agents/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2023-12-16-bounty-diverse-hard-tasks-for-llm-agents/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-12-07.html">← 2023-12-07</a><a class="day-nav-btn" href="2023-12-27.html">2023-12-27 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

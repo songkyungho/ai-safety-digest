@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=263224" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 2025년 2월 10~11일 프랑스 파리에서 열린 인공지능 행동 정상회의에 참석해 인공지능 국제 협치와 경쟁력·지속가능성 확보 방안을 논의했다. 87개국과 기업·국제기구·시민단체 관계자 등 약 1,000명이 참여했으며, 60개국이 공동으로 ‘인류와 지구를 위한 포용적이고 지속가능한 인공지능 선언문’을 발표했다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263224">https://eiec.kdi.re.kr/policy/materialView.do?num=263224</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263224" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=263224</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=263224" onclick="copyEntry(thi
 
 https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=4baefb35-bffb-42e5-8bea-d4f698749e2b" onclick="copyEntry(this)">복사</button></div>
   <p>정보통신정책연구원은 인공지능 감시 기술이 범죄 예방과 질서 유지 등 공익적 목적으로 활용될 수 있지만, 권력 확대와 기본권 제한·침해 및 민주주의 위협으로 이어질 가능성이 있다고 분석했다. 보고서는 인공지능 감시와 권력 확대의 위험성을 검토하고, 국내외 규제 동향을 바탕으로 규범적 대응방안을 모색한다.</p>
-  <p class="url"><a href="https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=4baefb35-bffb-42e5-8bea-d4f698749e2b">https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=4baefb35-bffb-42e5-8bea-d4f698749e2b</a></p>
+  <p class="url"><a href="https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=4baefb35-bffb-42e5-8bea-d4f698749e2b" target="_blank" rel="noopener noreferrer">https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=4baefb35-bffb-42e5-8bea-d4f698749e2b</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ AI는 개인화 학습과 교사의 행정 업무 지원 등 교육 혁신 기�
 
 https://futureoflife.org/guest-post/the-impact-of-ai-in-education-navigating-the-imminent-future/" onclick="copyEntry(this)">복사</button></div>
   <p>AI는 개인화 학습과 교사의 행정 업무 지원 등 교육 혁신 기회를 제공하지만, 데이터 집중에 따른 사이버 보안·편향·개인정보 침해와 deepfakes 확산 위험도 키운다. 글은 교육 현장 교사와 정책입안자의 협력을 강화하고, 아동 대상 AI 도구에 적절한 privacy·safety controls를 마련해야 한다고 강조한다. 또한 미래 교육은 AI 활용뿐 아니라 정서지능·시민성·창의성·협업을 포함해야 하며, 디지털 접근 격차와 기술 기업의 데이터·고용 식민화 가능성도 함께 다뤄야 한다.</p>
-  <p class="url"><a href="https://futureoflife.org/guest-post/the-impact-of-ai-in-education-navigating-the-imminent-future/">https://futureoflife.org/guest-post/the-impact-of-ai-in-education-navigating-the-imminent-future/</a></p>
+  <p class="url"><a href="https://futureoflife.org/guest-post/the-impact-of-ai-in-education-navigating-the-imminent-future/" target="_blank" rel="noopener noreferrer">https://futureoflife.org/guest-post/the-impact-of-ai-in-education-navigating-the-imminent-future/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-12.html">← 2025-02-12</a><a class="day-nav-btn" href="2025-02-14.html">2025-02-14 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

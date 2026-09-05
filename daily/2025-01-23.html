@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=262718" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부와 한국정보통신기술협회가 인공지능 생성물의 안전한 생성과 활용을 지원하기 위해 AI 워터마크 기술 동향 보고서를 발간했다. 보고서는 미국·유럽 등 주요국의 관련 권고안과 법률 동향, 인공지능 생성물에 식별무늬를 삽입하는 기술적 적용 방법과 활용 사례를 정리했다. 우리나라도 2025년 1월 21일 제정된 인공지능 기본법을 통해 생성물의 투명성 확보와 워터마크 표시 의무를 마련했다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=262718">https://eiec.kdi.re.kr/policy/materialView.do?num=262718</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=262718" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=262718</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-22.html">← 2025-01-22</a><a class="day-nav-btn" href="2025-01-28.html">2025-01-28 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

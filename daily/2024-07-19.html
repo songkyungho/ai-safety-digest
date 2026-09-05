@@ -433,7 +433,7 @@
 
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=F0202AF845935286C8FADBF20588E4DC.e3a02baeeded06361135?cbIdx=82618&amp;bcIdx=26955&amp;parentSeq=26955&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date" onclick="copyEntry(this)">복사</button></div>
   <p>한국지능정보사회진흥원 AI법제도센터가 EU AI법의 주요 내용을 정리하고 관련 시사점을 제시한 법제 브리프다. 자료는 2024년 7월 16일 게시됐으며, 채은선 수석이 작성했다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=F0202AF845935286C8FADBF20588E4DC.e3a02baeeded06361135?cbIdx=82618&amp;bcIdx=26955&amp;parentSeq=26955&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=F0202AF845935286C8FADBF20588E4DC.e3a02baeeded06361135?cbIdx=82618&amp;bcIdx=26955&amp;parentSeq=26955&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date</a></p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=F0202AF845935286C8FADBF20588E4DC.e3a02baeeded06361135?cbIdx=82618&amp;bcIdx=26955&amp;parentSeq=26955&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do;jsessionid=F0202AF845935286C8FADBF20588E4DC.e3a02baeeded06361135?cbIdx=82618&amp;bcIdx=26955&amp;parentSeq=26955&amp;pageIndex=1&amp;mode=&amp;searchKey=&amp;orderbyDiv=date</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-18.html">← 2024-07-18</a><a class="day-nav-btn" href="2024-07-20.html">2024-07-20 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

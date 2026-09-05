@@ -433,7 +433,7 @@ AI 기반 사이버 역량에 대한 접근을 조절해 방어 측이 공격자
 
 https://www.iaps.ai/research/differential-access" onclick="copyEntry(this)">복사</button></div>
   <p>AI 기반 사이버 역량에 대한 접근을 조절해 방어 측이 공격자보다 비대칭적 이점을 갖도록 하는 전략인 ‘differential access’를 제안한다. 접근 방식은 Promote Access(개방·확산), Manage Access(중간 위험 역량의 통제·우선 배분), Deny by Default(고위험 역량의 제한)로 나뉘며, 역량이 강해질수록 더 제한적으로 운영되는 연속선 형태라고 설명한다. 또한 개발자가 모델의 cyber capabilities, 방어자의 성숙도·역할, 전략·기술 구현 요소를 고려해 세 가지 중 하나를 선택·적용할 수 있는 프로세스와 예시 스킴 4가지를 제시한다.</p>
-  <p class="url"><a href="https://www.iaps.ai/research/differential-access">https://www.iaps.ai/research/differential-access</a></p>
+  <p class="url"><a href="https://www.iaps.ai/research/differential-access" target="_blank" rel="noopener noreferrer">https://www.iaps.ai/research/differential-access</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.iaps.ai/research/differential-access" onclick="copyEntry(this)">복�
 
 https://artificialintelligenceact.eu/ai-literacy-programs/" onclick="copyEntry(this)">복사</button></div>
   <p>이 자료는 EU AI법 제4조에 따른 AI 리터러시 역량 강화를 지원하는 유럽 내 교육 프로그램을 비종합적으로 소개하며, AI의 작동 방식과 위험·편익·윤리적 고려사항, 책임 있는 사용과 인간 감독을 다룬다. 프로그램은 제4조와의 연계성, 대상과 접근성, 정보의 투명성, 지역·분야별 다양성을 기준으로 선정됐으며, 2025년 4월 공개 정보를 바탕으로 작성됐다. 목록은 정기적으로 업데이트될 예정이지만 법적 준수나 특정 프로그램에 대한 보증을 의미하지 않으며, 이용자는 각 제공기관에서 세부 정보를 확인해야 한다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/ai-literacy-programs/">https://artificialintelligenceact.eu/ai-literacy-programs/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/ai-literacy-programs/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/ai-literacy-programs/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-22.html">← 2025-05-22</a><a class="day-nav-btn" href="2025-05-28.html">2025-05-28 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

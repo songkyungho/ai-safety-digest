@@ -433,7 +433,7 @@
 
 https://law-ai.org/frontier-ai-definitions" onclick="copyEntry(this)">복사</button></div>
   <p>미국 의회는 법률로 ‘프런티어 AI’의 규제 범위를 정하고, 행정기관은 규정과 사례를 통해 이를 구체화할 수 있다. 행정적 정의를 법적 구속력이 있도록 변경하려면 원칙적으로 행정절차법상 고지·의견수렴 절차를 거쳐야 하며, 규제 개정에는 통상 6개월에서 4년 이상이 걸릴 수 있지만 긴급 상황이나 의회의 별도授权이 있으면 절차가 단축될 수 있다. 이러한 규제는 주요 쟁점 원칙과 비위임 원칙에 따라 의회의 명확한授权 및 행정기관의 재량을 제한하는 기준이 요구될 수 있다.</p>
-  <p class="url"><a href="https://law-ai.org/frontier-ai-definitions">https://law-ai.org/frontier-ai-definitions</a></p>
+  <p class="url"><a href="https://law-ai.org/frontier-ai-definitions" target="_blank" rel="noopener noreferrer">https://law-ai.org/frontier-ai-definitions</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-07-31.html">← 2023-07-31</a><a class="day-nav-btn" href="2023-08-08.html">2023-08-08 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

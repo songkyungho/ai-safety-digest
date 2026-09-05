@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/scaling-laws-and-interpretability-of-learning-from-repeated-data" onclick="copyEntry(this)">복사</button></div>
   <p>대형 언어 모델들이 방대한 데이터셋뿐만 아니라 의도적으로 고품질 데이터를 강조하거나 데이터 중복 제거가 완벽하지 않아 모델이 문장, 단락, 문서 수준에서 반복 데이터에 노출되는 경우가 많습니다. 일부 연구에서는 반복 데이터가 성능에 부정적인 영향을 미친다는 보고가 있었습니다. 본 논문에서는 반복 데이터의 영향을 체계적으로 연구하고 메커니즘을 이해하려고 합니다. 모델 집단을 훈련시켜 대부분의 데이터는 고유하지만 일부 데이터는 여러 번 반복되도록 하여 이를 분석합니다. 연구 결과, 반복 데이터는 훈련 중반에 테스트 손실을 증가시키는 강한 이중 하강 현상을 보입니다. 예측 가능한 반복 빈도 범위는 성능 저하를 놀라울 정도로 심각하게 만듭니다. 예를 들어, 800M 매개변수 모델의 성능이 데이터의 0.1%를 100번 반복하면 400M 매개변수 모델 수준으로 저하될 수 있습니다. 이는 모델의 용량 대부분을 데이터 암기에 소비하는 중간 범위에서 발생할 가능성이 있으며, 이 과정이 성능 저하의 피크를 형성할 수 있습니다. 마지막으로, 이러한 관찰 결과를 최근의 해석 가능성 연구와 연결하여 반복 데이터가 일반화와 관련된 구조, 예를 들어 인듀션 헤드를 과도하게 손상시켜 일반화에서 암기로의 전환 메커니즘을 제시합니다. 이러한 결과는 반복 데이터가 상대적으로 작은 양으로도 대형 언어 모델의 성능에 큰 악영향을 미칠 수 있는 가설을 제공합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/scaling-laws-and-interpretability-of-learning-from-repeated-data">https://www.anthropic.com/research/scaling-laws-and-interpretability-of-learning-from-repeated-data</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/scaling-laws-and-interpretability-of-learning-from-repeated-data" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/scaling-laws-and-interpretability-of-learning-from-repeated-data</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-05-18.html">← 2022-05-18</a><a class="day-nav-btn" href="2022-06-17.html">2022-06-17 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

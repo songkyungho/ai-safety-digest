@@ -433,7 +433,7 @@
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=169335966&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=169335966&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=169335966&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=169335966&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=169335966&amp;t=board</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUi
 
 https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-01062026" onclick="copyEntry(this)">복사</button></div>
   <p>미국 플로리다는 AI 사용 공개, 부모 통제, 정치 광고 표시와 외국 적대국 연계 AI 기업 제한을 담은 AI 권리장전을 제안했고, 보건복지부는 임상 진료에서의 AI 활용 확대 방안을 위한 의견을 수렴했다. 중국은 인간과 유사한 상호작용·감정 교류 AI에 대한 안전 및 의존성 관리 규칙 초안을 발표했으며, 대만은 AI 기본법을 통과시키고 카자흐스탄은 위험 기반 규제와 생성물 표시 의무를 포함한 AI 법을 채택해 2026년 1월 18일부터 시행한다. Grok의 비동의 성적 딥페이크 생성, Instacart의 6천만 달러 FTC 합의, WhatsApp의 경쟁 AI 챗봇 차단 정책에 대한 이탈리아의 중단 명령 등 산업계 논란도 다뤘다.</p>
-  <p class="url"><a href="https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-01062026">https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-01062026</a></p>
+  <p class="url"><a href="https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-01062026" target="_blank" rel="noopener noreferrer">https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-01062026</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ AI 생성 콘텐츠의 표시·라벨링 요건 준수를 지원하기 위한 �
 
 https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-93-transparency" onclick="copyEntry(this)">복사</button></div>
   <p>AI 생성 콘텐츠의 표시·라벨링 요건 준수를 지원하기 위한 투명성 실천강령 첫 초안이 공개됐으며, 187건의 의견과 워크숍·전문가 연구를 반영해 기계 판독 가능하고 상호운용 가능한 표시 방식을 제안한다. 초안은 딥페이크 식별을 위한 EU 공통 아이콘과 AI 생성 콘텐츠임을 나타내는 표식을 검토하며, 이해관계자 의견을 2026년 1월 23일까지 받는다. 뉴스레터는 고위험 AI 배포자를 위한 기본권 영향평가 가이드와 자동차 산업의 AI 법 적용도 소개하며, 고위험 AI 관련 주요 규정은 2026년 8월부터, 일부 제품 분류 규정은 2027년 8월부터 적용된다고 설명한다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-93-transparency">https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-93-transparency</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-93-transparency" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-93-transparency</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-01-05.html">← 2026-01-05</a><a class="day-nav-btn" href="2026-01-07.html">2026-01-07 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

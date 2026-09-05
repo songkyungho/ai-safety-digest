@@ -433,7 +433,7 @@ LLM agents가 더 큰 해를 끼칠 수 있어 개발자가 monitoring 같은 co
 
 https://www.aisi.gov.uk/research/a-sketch-of-an-ai-control-safety-case" onclick="copyEntry(this)">복사</button></div>
   <p>LLM agents가 더 큰 해를 끼칠 수 있어 개발자가 monitoring 같은 control 조치로 안전성을 정당화할 수 있다고 보고, ‘control safety case’라는 구조화된 주장을 제안한다. 가상의 내부 LLM 에이전트가 민감정보를 유출하지 못한다는 사례를 들어, red team이 배포 환경을 대리해 데이터 exfiltration을 유도하는 ‘control evaluation’에 기반해 통제의 유효성과 개발자의 보수적 성능 외삽을 핵심 주장으로 둔다. 글은 위험한 수준의 LLM 에이전트를 실제 배포해도 안전하다는 더 구체적 논증을 향한 단계라고 설명한다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/a-sketch-of-an-ai-control-safety-case">https://www.aisi.gov.uk/research/a-sketch-of-an-ai-control-safety-case</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/a-sketch-of-an-ai-control-safety-case" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/a-sketch-of-an-ai-control-safety-case</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-23.html">← 2025-01-23</a><a class="day-nav-btn" href="2025-01-30.html">2025-01-30 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

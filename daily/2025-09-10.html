@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=270856" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 5개 정예팀을 선정한 데 이어 2025년 9월 9일 독자 인공지능 기초 모형 사업 착수식을 개최했다. 참석자들은 세계적 수준의 독자 인공지능 모형 개발, 단계평가, 공공·경제·사회 분야의 인공지능 전환 지원, ‘모두의 인공지능’ 생태계 조성 및 국제적 확산 방안을 논의했다. മന്ത്രി 배경훈은 인공지능 기술 자립과 생태계 확장을 당부했으며, 정예팀 대표들은 인공지능 주권 확보와 생태계 혁신에 대한 의지를 밝혔다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=270856">https://eiec.kdi.re.kr/policy/materialView.do?num=270856</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=270856" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=270856</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=270856" onclick="copyEntry(thi
 
 https://www.nars.go.kr/report/view.do?cmsCode=CM0155&amp;brdSeq=48085" onclick="copyEntry(this)">복사</button></div>
   <p>국회입법조사처는 한국의 AI 3대 강국 도약을 위한 정책과제를 제시한 보고서를 발표했다. 정부는 1만 장 이상의 GPU 확보와 한국형 AI 모델 개발을 위한 정예팀 육성 등 자원·인프라 공급 정책을 추진하고 있지만, 주요국의 대규모 투자와 미국 AI 기업의 GPU 운영 규모를 고려하면 공급 정책만으로는 한계가 있다고 분석했다. 이에 따라 자원·인프라 공급 정책과 함께 경쟁력 있는 AI 시장 환경을 조성하는 수요 측 정책을 강화하는 양손잡이 전략이 필요하다고 제안했다.</p>
-  <p class="url"><a href="https://www.nars.go.kr/report/view.do?cmsCode=CM0155&amp;brdSeq=48085">https://www.nars.go.kr/report/view.do?cmsCode=CM0155&amp;brdSeq=48085</a></p>
+  <p class="url"><a href="https://www.nars.go.kr/report/view.do?cmsCode=CM0155&amp;brdSeq=48085" target="_blank" rel="noopener noreferrer">https://www.nars.go.kr/report/view.do?cmsCode=CM0155&amp;brdSeq=48085</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://www.nars.go.kr/report/view.do?cmsCode=CM0155&amp;brdSeq=48085" onclick="
 
 https://zdnet.co.kr/view/?no=20250910003633" onclick="copyEntry(this)">복사</button></div>
   <p>김명주 AI안전연구소장(ETRI 부설 AISI)은 연구소가 규제기관이 아니라 국내 AI 기업의 글로벌 경쟁력 확보를 돕는 협력기관이라고 설명했다. 향후 2년간 자체 AI안전 기술과 자체 평가 툴, 리스크 모델을 개발하고 EU 실천강령 대응책의 일환으로 AI 리스크 맵을 구축해 연내 발표할 예정이다. 또한 딥페이크 탐지, 멀티모달 딥페이크 실시간 탐지, AI 공격 시 회복탄력성 연구 등을 진행하며, AI인증은 인력 부족으로 당장은 어렵다고 밝혔다.</p>
-  <p class="url"><a href="https://zdnet.co.kr/view/?no=20250910003633">https://zdnet.co.kr/view/?no=20250910003633</a></p>
+  <p class="url"><a href="https://zdnet.co.kr/view/?no=20250910003633" target="_blank" rel="noopener noreferrer">https://zdnet.co.kr/view/?no=20250910003633</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-09.html">← 2025-09-09</a><a class="day-nav-btn" href="2025-09-11.html">2025-09-11 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

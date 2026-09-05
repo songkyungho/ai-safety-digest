@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=260388" onclick="copyEntry(this)">복사</button></div>
   <p>유상임 과학기술정보통신부 장관은 한국전자통신연구원을 방문해 인공지능·반도체 연구성과와 추진전략을 청취하고 연구자들을 격려했다. 다국적 음성인식 통역 서비스와 텍스트 기반 이미지 생성 인공지능 기술을 직접 시연했으며, 관련 연구진의 공공분야 적용 및 사업화 노력을 점검했다. 산·학·연 간담회에서는 세계 기술패권 경쟁에 대응한 인공지능·반도체 미래기술 선도전략과 연구 현장의 의견을 논의했다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260388">https://eiec.kdi.re.kr/policy/materialView.do?num=260388</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260388" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=260388</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=260388" onclick="copyEntry(thi
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=260399" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부와 정보통신정책연구원은 2024년 11월 28일 ‘2024 인공지능 윤리·신뢰성 토론회 공개발표회’를 개최했다. 이번 발표회에서는 인공지능 국제 논의와 윤리 쟁점을 점검하고, 인공지능 윤리영향평가 및 실무자 대상 윤리교육에 관한 발표와 토론이 진행됐다. 과기정통부는 국가 인공지능(AI)위원회와 안전·신뢰분과, 인공지능(AI) 안전연구소 등을 기반으로 국가 차원의 인공지능 신뢰·안전정책 협치체계를 구축할 계획이라고 밝혔다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260399">https://eiec.kdi.re.kr/policy/materialView.do?num=260399</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260399" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=260399</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-11-27.html">← 2024-11-27</a><a class="day-nav-btn" href="2024-11-30.html">2024-11-30 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

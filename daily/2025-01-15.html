@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=262320" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부가 인공지능 발전과 신뢰 기반 조성을 위한 AI기본법의 하위법령 정비단을 출범시켰다. AI기본법은 국가 인공지능 거버넌스 구축, 산업 육성, 인공지능 위험 예방 등을 담고 있으며 2026년 1월부터 시행될 예정이다. 정부는 기업의 예측가능성과 투자를 높이기 위해 하위법령 마련과 산업 지원 시책 수립을 신속히 추진할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=262320">https://eiec.kdi.re.kr/policy/materialView.do?num=262320</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=262320" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=262320</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-14.html">← 2025-01-14</a><a class="day-nav-btn" href="2025-01-16.html">2025-01-16 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

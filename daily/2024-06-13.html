@@ -449,7 +449,7 @@ https://www.anthropic.com/research/engineering-challenges-interpretability" oncl
 1. **분산 셔플(Distributed Shuffle)**: 모델 활성화 데이터를 셔플하여 모델이 순서에 의존하는 패턴을 학습하지 않도록 하는 과정에서, 데이터 규모가 커져 메모리를 초과하는 문제를 해결하기 위한 분산 셔플 기법을 개발했습니다.
 2. **특징 시각화 파이프라인(Feature Visualization Pipeline)**: 수백만 개의 특징에 대한 데이터를 효율적으로 생성하고 처리하기 위한 분산 시스템 문제를 해결했습니다. 이를 통해 사용자가 개별 특징에서 가장 강하게 활성화되는 토큰을 볼 수 있게 했습니다.</p>
 <p>이러한 엔지니어링 노력은 해석 가능성과 AI 안전성 연구의 주요 장벽 중 하나임을 강조하며, 유연하게 다양한 분야에서 일할 수 있는 제너럴리스트 엔지니어를 찾고 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/engineering-challenges-interpretability">https://www.anthropic.com/research/engineering-challenges-interpretability</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/engineering-challenges-interpretability" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/engineering-challenges-interpretability</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-06-11.html">← 2024-06-11</a><a class="day-nav-btn" href="2024-06-17.html">2024-06-17 →</a></nav>
@@ -530,7 +530,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

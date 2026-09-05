@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude" onclick="copyEntry(this)">복사</button></div>
   <p>본 보고서는 대학 학생들이 AI 도구인 클라우디를 어떻게 실제 학습 환경에 통합하는지 분석한 첫 번째 대규모 연구를 통해, STEM 학생들이 특히 컴퓨터 과학 학생들이 클라우디 사용에서 선도적인 역할을 하고 있음을 보여줍니다. 학생들은 주로 클라우디를 교육 콘텐츠 생성 및 분석에 활용하며, 이는 고등 인지 기능에 해당합니다. 그러나 이러한 AI 활용은 학업 정직성과 비판적 사고 능력 개발 측면에서 새로운 도전을 제기하기도 합니다. 보고서는 또한 학문 분야별로 클라우디 사용 패턴의 차이를 분석하고, 학생-AI 상호작용의 네 가지 주요 패턴을 식별합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude">https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude</a></p>
+  <p class="url"><a href="https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude</a></p>
   
   <details class="related-stories" open><summary>같은 이슈 관련 1건 · Anthropic-Research</summary><article class="entry cat-company" data-cat="company" data-topics="frontier law" data-search="Anthropic 교육 보고서: 대학 학생들의 클라우드 활용 방식 (2025.4.8) 본 보고서는 대학 학생들이 AI 도구인 클라우드(Claude)를 어떻게 실제 학습 환경에 통합하는지 분석한 첫 번째 대규모 연구를 다룹니다. 약 100만 건의 익명화된 학생 대화를 분석한 결과, 주요 발견 사항은 다음과 같습니다:
 
@@ -465,7 +465,7 @@ https://www.anthropic.com/research/anthropic-education-report-how-university-stu
 - **분야별 차이**: 컴퓨터 과학, 자연과학, 수학 분야에서 클라우드 활용이 상대적으로 높았으며, 비즈니스, 보건, 인문학 분야에서는 활용도가 낮았습니다.
 - **인지 기능 위임**: 클라우드는 주로 창조(Creating)와 분석(Analyzing) 기능을 수행하며, 이는 블룸즈 분류 체계의 상위 인지 기능에 해당합니다.</p>
 <p>이러한 결과는 학생들의 학습 과정에서 AI의 역할과 관련된 윤리적, 교육적 고려 사항을 제기합니다. 특히 학업 부정행위 가능성과 비판적 사고 능력 개발의 중요성을 강조합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/anthropic-education-report-how-university-students-use-claude">https://www.anthropic.com/research/anthropic-education-report-how-university-students-use-claude</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/anthropic-education-report-how-university-students-use-claude" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/anthropic-education-report-how-university-students-use-claude</a></p>
   
   
 </article></details>
@@ -547,7 +547,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

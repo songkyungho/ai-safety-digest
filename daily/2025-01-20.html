@@ -443,7 +443,7 @@ https://api-docs.deepseek.com/news/news250120" onclick="copyEntry(this)">복사<
   <p>Reasoning · Open · 128K ctx · $0.55/M · $2.19/M</p>
 <p>MMLU 84% · MATH 97.3% · AIME 87.5%</p>
 <p>Open reasoning model matching o1 on math/science. Full 671B weights. Distilled 1.5B-70B variants. Triggered open-source reasoning boom.</p>
-  <p class="url"><a href="https://api-docs.deepseek.com/news/news250120">https://api-docs.deepseek.com/news/news250120</a></p>
+  <p class="url"><a href="https://api-docs.deepseek.com/news/news250120" target="_blank" rel="noopener noreferrer">https://api-docs.deepseek.com/news/news250120</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-19.html">← 2025-01-19</a><a class="day-nav-btn" href="2025-01-22.html">2025-01-22 →</a></nav>
@@ -524,7 +524,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

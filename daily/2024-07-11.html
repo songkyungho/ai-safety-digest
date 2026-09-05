@@ -433,7 +433,7 @@
 
 https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26920&amp;parentSeq=26920" onclick="copyEntry(this)">복사</button></div>
   <p>한국지능정보사회진흥원은 미국 바이든 행정부의 ‘안전·보안 및 신뢰할 수 있는 인공지능에 관한 행정명령’의 주요 내용과 이행 현황을 분석한 브리프를 발표했다. 행정명령은 연방행정기관과 소속기관이 AI 위험과 기회에 대응하도록 구체적인 이행사항과 기한을 제시했으며, 각 기관은 이에 따라 관련 업무를 추진하고 있다. 브리프는 백악관 중심의 추진체계와 구체적인 이행기한이 정책 추진력을 높였다고 평가하고, 미국의 이행 상황이 다른 국가의 AI 규제에도 영향을 줄 수 있어 미완료 사항을 지속적으로 관찰할 필요가 있다고 밝혔다.</p>
-  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26920&amp;parentSeq=26920">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26920&amp;parentSeq=26920</a></p>
+  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26920&amp;parentSeq=26920" target="_blank" rel="noopener noreferrer">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26920&amp;parentSeq=26920</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=26920&amp;pa
 
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=26890&amp;parentSeq=26890" onclick="copyEntry(this)">복사</button></div>
   <p>연구는 2022년 12월부터 2024년 1월까지 arXiv에 게재된 컴퓨터과학 분야 논문 중 초록에 ‘환각’이 포함된 654편을 분석해 주요 저자·키워드·연구 분야와 분야 간 관계를 파악했다. 주요 연구 분야는 계산 및 언어, 인공지능, 컴퓨터비전 및 패턴인식, 기계학습으로 나타났으며, 환각 탐지와 완화를 위해 SFT와 RLHF, CoT 기반 추론 강화, 자동화와 인간 개입의 병행, 멀티모달 AI 연구가 진행되고 있다고 설명한다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=26890&amp;parentSeq=26890">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=26890&amp;parentSeq=26890</a></p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=26890&amp;parentSeq=26890" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=26890&amp;parentSeq=26890</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-09.html">← 2024-07-09</a><a class="day-nav-btn" href="2024-07-12.html">2024-07-12 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

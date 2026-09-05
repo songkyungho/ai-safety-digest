@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=271252" onclick="copyEntry(this)">복사</button></div>
   <p>행정안전부는 인공지능의 학습·분석·추론에 바로 활용할 수 있도록 정제·가공된 ‘AI-Ready 공공데이터’ 개념을 공공데이터에 처음 도입한다. 데이터는 인공지능이 직접 읽고 이해할 수 있는 형식과 풍부한 메타데이터를 갖추고, 주소·행정코드 등 식별 값에 표준코드를 적용하며 품질기준을 충족해야 한다. 행정안전부는 전문가 실무단을 운영해 세부 기준과 관리 방안을 마련하고, 관련 지침을 올해 배포할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=271252">https://eiec.kdi.re.kr/policy/materialView.do?num=271252</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=271252" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=271252</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-17.html">← 2025-09-17</a><a class="day-nav-btn" href="2025-09-19.html">2025-09-19 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

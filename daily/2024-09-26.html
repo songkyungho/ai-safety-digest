@@ -433,7 +433,7 @@
 
 https://www.kiat.or.kr/front/board/boardContentsView.do?board_id=71&amp;contents_id=00f26e0aefc344e484776339e5ba9d83&amp;MenuId=878cb9b6d5ec41bf914ad5c0f590ed14" onclick="copyEntry(this)">복사</button></div>
   <p>유럽연합의 인공지능법(AI법)은 AI의 개발과 사용을 규제하는 세계 최초의 포괄적 규정으로, 2024년 8월 1일 발효됐다. 이 법은 제품 안전성과 위험 기반 접근법에 따라 AI를 분류하고 위험도별로 규제를 차등 적용하며, EU 시장에 출시되거나 역내 거주민에게 영향을 미치는 AI 시스템의 역내외 공공·민간 주체에 적용된다. 회원국 당국과 EU 차원의 범용 AI 모델 관리로 구성된 2단계 거버넌스를 마련하고 위반 시 벌금을 부과하도록 했으며, 대부분의 규정은 2026년 8월 2일부터 전면 적용된다.</p>
-  <p class="url"><a href="https://www.kiat.or.kr/front/board/boardContentsView.do?board_id=71&amp;contents_id=00f26e0aefc344e484776339e5ba9d83&amp;MenuId=878cb9b6d5ec41bf914ad5c0f590ed14">https://www.kiat.or.kr/front/board/boardContentsView.do?board_id=71&amp;contents_id=00f26e0aefc344e484776339e5ba9d83&amp;MenuId=878cb9b6d5ec41bf914ad5c0f590ed14</a></p>
+  <p class="url"><a href="https://www.kiat.or.kr/front/board/boardContentsView.do?board_id=71&amp;contents_id=00f26e0aefc344e484776339e5ba9d83&amp;MenuId=878cb9b6d5ec41bf914ad5c0f590ed14" target="_blank" rel="noopener noreferrer">https://www.kiat.or.kr/front/board/boardContentsView.do?board_id=71&amp;contents_id=00f26e0aefc344e484776339e5ba9d83&amp;MenuId=878cb9b6d5ec41bf914ad5c0f590ed14</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-09-25.html">← 2024-09-25</a><a class="day-nav-btn" href="2024-09-27.html">2024-09-27 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

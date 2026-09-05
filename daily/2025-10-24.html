@@ -433,7 +433,7 @@
 
 https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251024-000007" onclick="copyEntry(this)">복사</button></div>
   <p>웹 방화벽 보안 정책에 반하는 요청/응답이 차단되었으며, 탐지 시간·클라이언트 IP·요청 URL을 기준으로 탐지한 것으로 안내한다.</p>
-  <p class="url"><a href="https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251024-000007">https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251024-000007</a></p>
+  <p class="url"><a href="https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251024-000007" target="_blank" rel="noopener noreferrer">https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251024-000007</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251024-00
 
 https://www.kiep.go.kr/gallery.es?mid=a10102030000&amp;bid=0004&amp;tag=&amp;b_list=10&amp;act=view&amp;list_no=12057&amp;keyField=&amp;keyWord=&amp;orderby=" onclick="copyEntry(this)">복사</button></div>
   <p>제80차 UN 총회에서는 신뢰성 있고 책임 있는 AI 활용을 위한 글로벌 AI 거버넌스 구축을 논의하고, 글로벌 다이얼로그와 국제과학패널 출범 등 협력 기반을 마련했다. 각국은 자율무기, 디지털 격차와 디지털 식민주의, AI 규제 등 안보·포용성 문제를 다뤘지만, 주요국 간 이견으로 단기간 내 실행력 있는 거버넌스 체계 수립에는 한계가 확인됐다. 한국에는 UN 논의에 적극 참여하고 AI 중견국 및 글로벌 사우스와 협력해 선진국과 개발도상국 간 가교 역할을 강화할 필요가 제시됐다.</p>
-  <p class="url"><a href="https://www.kiep.go.kr/gallery.es?mid=a10102030000&amp;bid=0004&amp;tag=&amp;b_list=10&amp;act=view&amp;list_no=12057&amp;keyField=&amp;keyWord=&amp;orderby=">https://www.kiep.go.kr/gallery.es?mid=a10102030000&amp;bid=0004&amp;tag=&amp;b_list=10&amp;act=view&amp;list_no=12057&amp;keyField=&amp;keyWord=&amp;orderby=</a></p>
+  <p class="url"><a href="https://www.kiep.go.kr/gallery.es?mid=a10102030000&amp;bid=0004&amp;tag=&amp;b_list=10&amp;act=view&amp;list_no=12057&amp;keyField=&amp;keyWord=&amp;orderby=" target="_blank" rel="noopener noreferrer">https://www.kiep.go.kr/gallery.es?mid=a10102030000&amp;bid=0004&amp;tag=&amp;b_list=10&amp;act=view&amp;list_no=12057&amp;keyField=&amp;keyWord=&amp;orderby=</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://www.kiep.go.kr/gallery.es?mid=a10102030000&amp;bid=0004&amp;tag=&amp;b_l
 
 https://mistral.ai/news/ai-studio/" onclick="copyEntry(this)">복사</button></div>
   <p>미스트랄 AI가 기업의 AI 프로토타입을 평가·배포·운영 단계로 전환하도록 지원하는 AI Studio를 공개했다. 플랫폼은 Observability, Agent Runtime, AI Registry를 중심으로 사용량 추적, 평가와 피드백 수집, 버전·계보 관리, 거버넌스 및 재현 가능한 에이전트 실행을 제공한다. 하이브리드·전용·자체 호스팅 배포를 지원하며, 기업은 비공개 베타에 신청할 수 있다.</p>
-  <p class="url"><a href="https://mistral.ai/news/ai-studio/">https://mistral.ai/news/ai-studio/</a></p>
+  <p class="url"><a href="https://mistral.ai/news/ai-studio/" target="_blank" rel="noopener noreferrer">https://mistral.ai/news/ai-studio/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-10-23.html">← 2025-10-23</a><a class="day-nav-btn" href="2025-10-25.html">2025-10-25 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

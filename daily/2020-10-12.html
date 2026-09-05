@@ -433,7 +433,7 @@
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTI7czoxMjoia2V5d29yZF90eXBlIjtzOjM6ImFsbCI7fQ%3D%3D&amp;bmode=view&amp;idx=5075932&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTI7czoxMjoia2V5d29yZF90eXBlIjtzOjM6ImFsbCI7fQ%3D%3D&amp;bmode=view&amp;idx=5075932&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTI7czoxMjoia2V5d29yZF90eXBlIjtzOjM6ImFsbCI7fQ%3D%3D&amp;bmode=view&amp;idx=5075932&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTI7czoxMjoia2V5d29yZF90eXBlIjtzOjM6ImFsbCI7fQ%3D%3D&amp;bmode=view&amp;idx=5075932&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTI7czoxMjoia2V5d29yZF90eXBlIjtzOjM6ImFsbCI7fQ%3D%3D&amp;bmode=view&amp;idx=5075932&amp;t=board</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2020-09-19.html">← 2020-09-19</a><a class="day-nav-btn" href="2020-11-04.html">2020-11-04 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

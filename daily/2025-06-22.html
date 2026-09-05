@@ -433,7 +433,7 @@
 
 https://www.lw.com/en/insights/texas-signs-responsible-ai-governance-act-into-law" onclick="copyEntry(this)">복사</button></div>
   <p>텍사스 주지사가 2025년 6월 22일 Texas Responsible AI Governance Act(TRAIGA)를 법으로 서명했다. 이 법은 특정 목적(행동 조작, 차별, 아동 성착취물 또는 불법 딥페이크 생성·배포, 헌법상 권리 침해 등)으로 AI 시스템을 개발·배치하는 것을 금지하고, 위반 시 텍사스 법무장관(AG)이 조사요구(CID)와 민사집행을 할 수 있으며 최대 일일 4만 달러 등 벌금이 부과될 수 있다. 또한 DIR이 운영하는 규제 샌드박스(최대 36개월)와 주(州) AI 정책을 지원하는 Texas Artificial Intelligence Advisory Council(구속력 있는 규정 제정은 불가)을 신설했다.</p>
-  <p class="url"><a href="https://www.lw.com/en/insights/texas-signs-responsible-ai-governance-act-into-law">https://www.lw.com/en/insights/texas-signs-responsible-ai-governance-act-into-law</a></p>
+  <p class="url"><a href="https://www.lw.com/en/insights/texas-signs-responsible-ai-governance-act-into-law" target="_blank" rel="noopener noreferrer">https://www.lw.com/en/insights/texas-signs-responsible-ai-governance-act-into-law</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-06-20.html">← 2025-06-20</a><a class="day-nav-btn" href="2025-06-23.html">2025-06-23 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

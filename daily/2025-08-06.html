@@ -433,7 +433,7 @@ EIOPA는 국가 감독당국을 대상으로 AI 시스템의 사용과 감독에
 
 https://www.eiopa.europa.eu/publications/opinion-artificial-intelligence-governance-and-risk-management_en" onclick="copyEntry(this)">복사</button></div>
   <p>EIOPA는 국가 감독당국을 대상으로 AI 시스템의 사용과 감독에 관한 보험 부문 법령의 핵심 원칙과 요구사항을 정리한 의견(Opinion)을 발표했다. AI 시스템의 이익과 위험 간 균형을 위해 위험기반(risk-based)·비례적(proportionate) 접근을 따른다고 밝혔다. 또한 올해 초 초안에 대해 공개 협의를 진행한 바 있다.</p>
-  <p class="url"><a href="https://www.eiopa.europa.eu/publications/opinion-artificial-intelligence-governance-and-risk-management_en">https://www.eiopa.europa.eu/publications/opinion-artificial-intelligence-governance-and-risk-management_en</a></p>
+  <p class="url"><a href="https://www.eiopa.europa.eu/publications/opinion-artificial-intelligence-governance-and-risk-management_en" target="_blank" rel="noopener noreferrer">https://www.eiopa.europa.eu/publications/opinion-artificial-intelligence-governance-and-risk-management_en</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.eiopa.europa.eu/publications/opinion-artificial-intelligence-governa
 
 https://www.euronews.com/next/2025/08/06/german-government-urged-to-start-proper-supervision-of-ai" onclick="copyEntry(this)">복사</button></div>
   <p>독일이 AI Act 관련 시장감시(market surveillance) 권한을 마련해 2025년 8월 2일까지 유럽연합 집행위원회에 통보해야 했지만 기한을 넘겼다고 보도했다. 함부르크 데이터보호 감독관과 독일 소비자단체는 국가 감독 권한이 공식 지정되지 않아 기업과 당국이 규정 문의를 할 ‘연락 담당자’를 놓치고, 감독 공백으로 소비자 조작 등 위반이 발생할 수 있다고 우려했다. 기사에 따르면 일부 EU 회원국은 임명 관련 통보를 했지만 대부분은 마감일을 지킨 것으로 보이지 않으며, AI Act는 2024년 8월 발효 후 단계적으로 적용되고 이달부터 일반 목적 제공자 규정 등이 적용된다.</p>
-  <p class="url"><a href="https://www.euronews.com/next/2025/08/06/german-government-urged-to-start-proper-supervision-of-ai">https://www.euronews.com/next/2025/08/06/german-government-urged-to-start-proper-supervision-of-ai</a></p>
+  <p class="url"><a href="https://www.euronews.com/next/2025/08/06/german-government-urged-to-start-proper-supervision-of-ai" target="_blank" rel="noopener noreferrer">https://www.euronews.com/next/2025/08/06/german-government-urged-to-start-proper-supervision-of-ai</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-08-05.html">← 2025-08-05</a><a class="day-nav-btn" href="2025-08-07.html">2025-08-07 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

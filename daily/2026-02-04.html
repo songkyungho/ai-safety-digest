@@ -433,7 +433,7 @@
 
 https://mistral.ai/news/voxtral-transcribe-2/" onclick="copyEntry(this)">복사</button></div>
   <p>미스트랄 AI가 배치 처리용 Voxtral Mini Transcribe V2와 실시간 음성 인식용 Voxtral Realtime 등 차세대 음성-텍스트 변환 모델 2종을 출시했다. 두 모델은 13개 언어, 화자 분리, 단어 단위 타임스탬프를 지원하며, Realtime은 지연 시간을 200ms 미만으로 설정할 수 있고 Apache 2.0 라이선스로 공개됐다. Mini Transcribe V2의 오류율은 FLEURS 기준 약 4%이며 API 이용료는 분당 0.003달러, Realtime은 분당 0.006달러다. 3시간 길이 오디오 처리와 Mistral Studio의 오디오 플레이그라운드도 제공된다.</p>
-  <p class="url"><a href="https://mistral.ai/news/voxtral-transcribe-2/">https://mistral.ai/news/voxtral-transcribe-2/</a></p>
+  <p class="url"><a href="https://mistral.ai/news/voxtral-transcribe-2/" target="_blank" rel="noopener noreferrer">https://mistral.ai/news/voxtral-transcribe-2/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-03.html">← 2026-02-03</a><a class="day-nav-btn" href="2026-02-05.html">2026-02-05 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

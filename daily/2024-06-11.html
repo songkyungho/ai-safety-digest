@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=252518" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 6월 12일부터 개편된 디지털 공론장을 통해 안전하고 신뢰할 수 있는 인공지능을 주제로 사회적 공론화를 시작한다. 인공지능 기술의 기회와 위협, 규제 방향, 정부 정책 우선순위 등에 대한 국민 의견을 쟁점 투표로 수렴해 향후 인공지능 규범 마련에 활용할 계획이다. 인공지능 이용 격차, 개발자의 윤리 의식, 개인 권리 침해 방지와 관련한 정책 아이디어 공모전도 개최한다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=252518">https://eiec.kdi.re.kr/policy/materialView.do?num=252518</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=252518" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=252518</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-06-10.html">← 2024-06-10</a><a class="day-nav-btn" href="2024-06-13.html">2024-06-13 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

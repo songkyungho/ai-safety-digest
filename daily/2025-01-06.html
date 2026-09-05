@@ -433,7 +433,7 @@ KB금융지주경영연구소는 AI가 효율성과 비용 절감을 가져오�
 
 https://www.kbfg.com/kbresearch/cmm/fms/FileDown.do?atchFileId=FILE_000000002001425&amp;fileSn=1" onclick="copyEntry(this)">복사</button></div>
   <p>KB금융지주경영연구소는 AI가 효율성과 비용 절감을 가져오는 동시에 오류와 범죄 악용 위험을 지녀 규제가 필요하다고 분석했다. EU는 AI 시스템의 위험 수준에 따라 규제 강도를 달리하는 세계 최초의 포괄적 AI 규제 법안인 AI Act를 도입했으며, 미국도 행정명령 등을 통해 규제를 강화하고 있다. 각국에서 산업 발전과 위험 관리 사이의 균형을 두고 갈등이 이어지는 만큼, 차별 방지와 투명성 제고 등 명확한 위험에 초점을 맞춘 규제를 단계적으로 마련할 필요가 있다고 제안했다.</p>
-  <p class="url"><a href="https://www.kbfg.com/kbresearch/cmm/fms/FileDown.do?atchFileId=FILE_000000002001425&amp;fileSn=1">https://www.kbfg.com/kbresearch/cmm/fms/FileDown.do?atchFileId=FILE_000000002001425&amp;fileSn=1</a></p>
+  <p class="url"><a href="https://www.kbfg.com/kbresearch/cmm/fms/FileDown.do?atchFileId=FILE_000000002001425&amp;fileSn=1" target="_blank" rel="noopener noreferrer">https://www.kbfg.com/kbresearch/cmm/fms/FileDown.do?atchFileId=FILE_000000002001425&amp;fileSn=1</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-03.html">← 2025-01-03</a><a class="day-nav-btn" href="2025-01-14.html">2025-01-14 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

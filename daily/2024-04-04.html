@@ -443,7 +443,7 @@ https://docs.cohere.com/docs/command-r-plus" onclick="copyEntry(this)">복사</b
   <p>General · Closed · 128K ctx · $2.5/M · $10/M</p>
 <p>MMLU 60% · HE 72% · MATH 50.7%</p>
 <p>104B enterprise RAG model. Optimized for retrieval, tool use, grounded citations. Popular in regulated industries.</p>
-  <p class="url"><a href="https://docs.cohere.com/docs/command-r-plus">https://docs.cohere.com/docs/command-r-plus</a></p>
+  <p class="url"><a href="https://docs.cohere.com/docs/command-r-plus" target="_blank" rel="noopener noreferrer">https://docs.cohere.com/docs/command-r-plus</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-04-03.html">← 2024-04-03</a><a class="day-nav-btn" href="2024-04-05.html">2024-04-05 →</a></nav>
@@ -524,7 +524,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

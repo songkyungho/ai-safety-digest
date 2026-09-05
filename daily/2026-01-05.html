@@ -433,7 +433,7 @@
 
 https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-260105-000001" onclick="copyEntry(this)">복사</button></div>
   <p>웹 방화벽 보안 정책에 위배되는 요청/응답이 차단되었으며, 탐지 시간(Detect time), 클라이언트 IP(Detect client IP), URL(Detect URL) 정보가 함께 표시됨.</p>
-  <p class="url"><a href="https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-260105-000001">https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-260105-000001</a></p>
+  <p class="url"><a href="https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-260105-000001" target="_blank" rel="noopener noreferrer">https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-260105-000001</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-260105-00
 
 https://law-ai.org/automated-compliance-and-the-regulation-of-ai/" onclick="copyEntry(this)">복사</button></div>
   <p>자동화된 compliance는 AI 발전으로 규제 준수에 필요한 많은 작업을 저비용·자율적으로 수행할 수 있게 될 것이라는 예측이다. 논문은 AI 규제에서 ‘너무 이르게/엄격하게 규제해 혁신을 저해’할지, ‘너무 늦게/느슨하게 규제해 위해를 키울’지의 트레이드오프가 자동화된 compliance로 완화될 수 있다고 본다. 예로, 규정이 AI가 해당 준수 작업을 충분히 자동화할 수 있을 때만 효력이 생기도록 하는 “automatability triggers”를 제안하며, 스타트업보다 비용 부담이 쉬운 대기업에 유리해질 우려도 줄일 수 있다고 설명한다. 또한 규제기관의 감독·거버넌스 업무까지 책임 있게 자동화하는 방식과 결합될 때 효과가 커질 수 있다고 덧붙인다.</p>
-  <p class="url"><a href="https://law-ai.org/automated-compliance-and-the-regulation-of-ai/">https://law-ai.org/automated-compliance-and-the-regulation-of-ai/</a></p>
+  <p class="url"><a href="https://law-ai.org/automated-compliance-and-the-regulation-of-ai/" target="_blank" rel="noopener noreferrer">https://law-ai.org/automated-compliance-and-the-regulation-of-ai/</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://law-ai.org/automated-compliance-and-the-regulation-of-ai/" onclick="copy
 
 https://www.turing.ac.uk/blog/change-cant-wait-creating-sustainable-world-through-data-science-and-ai" onclick="copyEntry(this)">복사</button></div>
   <p>앨런 튜링 연구소는 기후위기 대응과 넷제로 달성을 위해 데이터 과학과 AI를 교통·제조·핵심 인프라에 적용하고 있다. Lloyd’s Register Foundation과 협력해 해운의 탄소 배출 저감과 회복력 강화를 추진하며, 관련 연구를 통해 배출량을 18% 줄일 가능성을 제시했다. 또한 디지털 제조, 핵심 국가 인프라의 이상 탐지·예측, 실제 환경에서 작동하는 포용적 AI와 효율적인 데이터 파이프라인 개발을 통해 지속가능성 생태계 구축을 목표로 한다.</p>
-  <p class="url"><a href="https://www.turing.ac.uk/blog/change-cant-wait-creating-sustainable-world-through-data-science-and-ai">https://www.turing.ac.uk/blog/change-cant-wait-creating-sustainable-world-through-data-science-and-ai</a></p>
+  <p class="url"><a href="https://www.turing.ac.uk/blog/change-cant-wait-creating-sustainable-world-through-data-science-and-ai" target="_blank" rel="noopener noreferrer">https://www.turing.ac.uk/blog/change-cant-wait-creating-sustainable-world-through-data-science-and-ai</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-01-02.html">← 2026-01-02</a><a class="day-nav-btn" href="2026-01-06.html">2026-01-06 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -438,7 +438,7 @@
 https://www.econlib.org/archives/2011/06/the_ideological.html" onclick="copyEntry(this)">복사</button></div>
   <p>이 글은 “이념적 튜링 테스트”를 실제로 설계해(예: 채팅방에서 상대 진영을 얼마나 설득력 있게 설명하는지 투표로 판정) 크루그먼의 경험적 주장(진영 간 모사 능력의 비대칭)을 검증하자고 제안한다.</p>
 <p>본문 요약: 튜링 테스트처럼, 한 진영의 사람이 상대 진영의 입장을 얼마나 명확히 설명하는지를 겨루는 “이념적 튜링 테스트” 개념을 소개한다. 크루그먼은 자유주의(또는 케인스주의) 진영이 보수(반케인스) 입장을 잘 모사하지만, 보수는 자유주의 논리를 제대로 설명하지 못한다고 주장한다. 글쓴이는 이 능력이 객관성과 지혜의 징후일 수는 있으나, 비교 대상(동일 분야/동일 수준)과 표본을 공정하게 맞추지 않으면 결론을 내리기 어렵다고 본다. 또한 실제 테스트를 설계해 자유주의·자유지상주의(리버테리언) 학자들이 서로를 얼마나 잘 “속일” 수 있는지 투표로 측정하자고 제안한다.</p>
-  <p class="url"><a href="https://www.econlib.org/archives/2011/06/the_ideological.html">https://www.econlib.org/archives/2011/06/the_ideological.html</a></p>
+  <p class="url"><a href="https://www.econlib.org/archives/2011/06/the_ideological.html" target="_blank" rel="noopener noreferrer">https://www.econlib.org/archives/2011/06/the_ideological.html</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2009-09-08.html">← 2009-09-08</a><a class="day-nav-btn" href="2019-06-21.html">2019-06-21 →</a></nav>
@@ -519,7 +519,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -453,7 +453,7 @@ https://www.anthropic.com/research/collective-constitutional-ai-aligning-a-langu
 - 공개 헌법은 앤서픽 내부 헌법과 대략 50%의 개념과 가치를 공유하지만, 객관성, 접근성, 그리고 바람직한 행동을 촉진하는 데 더 중점을 두었습니다.
 - 공개 헌법을 기반으로 훈련된 모델은 기존 모델과 유사한 성능을 보였지만, 사회적 편향성이 감소하는 경향을 보였습니다.
 - 연구는 투명성을 높이기 위해 주관적인 판단 과정을 공개하였습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/collective-constitutional-ai-aligning-a-language-model-with-public-input">https://www.anthropic.com/research/collective-constitutional-ai-aligning-a-language-model-with-public-input</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/collective-constitutional-ai-aligning-a-language-model-with-public-input" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/collective-constitutional-ai-aligning-a-language-model-with-public-input</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-10-05.html">← 2023-10-05</a><a class="day-nav-btn" href="2023-10-23.html">2023-10-23 →</a></nav>
@@ -534,7 +534,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

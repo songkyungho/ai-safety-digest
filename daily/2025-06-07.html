@@ -433,7 +433,7 @@
 
 https://www.forbes.com/sites/emilsayegh/2025/06/07/trump-drops-a-cybersecurity-bombshell-with-biden-era-policy-reversal" onclick="copyEntry(this)">복사</button></div>
   <p>도널드 트럼프 대통령이 2025년 6월 6일 사이버보안 행정명령을 서명해 바이든 행정부의 2025년 1월(EO 14144) 최종 지침을 수정했다. 주요 내용으로는 연방 계약자 대상 소프트웨어 보안 관련 ‘attestations’(증명 제출) 의무를 없애고, 디지털 신원 관련 파일럿과 상호운용/연합(identitiy federation) 추진을 중단하며, AI는 방어·취약점/침해지표 관리 중심으로 범위를 좁혔다. 또한 중국을 포함한 특정 국가를 위협의 주요 원인으로 명시하고, 사이버 제재는 외국인으로 한정하는 등 정책의 방향을 ‘규제 확대’보다 ‘실행 중심’으로 재정렬했다.</p>
-  <p class="url"><a href="https://www.forbes.com/sites/emilsayegh/2025/06/07/trump-drops-a-cybersecurity-bombshell-with-biden-era-policy-reversal">https://www.forbes.com/sites/emilsayegh/2025/06/07/trump-drops-a-cybersecurity-bombshell-with-biden-era-policy-reversal</a></p>
+  <p class="url"><a href="https://www.forbes.com/sites/emilsayegh/2025/06/07/trump-drops-a-cybersecurity-bombshell-with-biden-era-policy-reversal" target="_blank" rel="noopener noreferrer">https://www.forbes.com/sites/emilsayegh/2025/06/07/trump-drops-a-cybersecurity-bombshell-with-biden-era-policy-reversal</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.forbes.com/sites/emilsayegh/2025/06/07/trump-drops-a-cybersecurity-b
 
 https://oliverpatel.substack.com/p/top-12-papers-on-agentic-ai-governance" onclick="copyEntry(this)">복사</button></div>
   <p>에이전틱 AI의 안전·책임 있는 운영을 위해, 통제/가드레일 수립과 평가 방법을 다룬 논문들을 묶어 소개한다. OpenAI의 연구는 과업 적합성 평가, action space 제한과 승인, 기본 행동 설정, 활동의 legibility, 자동 모니터링, attributability, interruptibility 등 7가지 실천을 제시하며, Center for AI Policy 보고서는 미국 연방정부를 대상으로 autonomy passport 등록, 지속적 감독, 고위험 의사결정의 전문적 승인, 노동·경제 영향 추적을 권고한다. 또한 UK AI Security Institute 논문은 에이전틱 AI의 자율성/능력 수준에 맞춰 safety controls를 조정하고, red-teaming(공격 측)과 blue-teaming(방어 측)으로 통제 효과를 사전 검증하는 평가 프레임워크를 제안한다.</p>
-  <p class="url"><a href="https://oliverpatel.substack.com/p/top-12-papers-on-agentic-ai-governance">https://oliverpatel.substack.com/p/top-12-papers-on-agentic-ai-governance</a></p>
+  <p class="url"><a href="https://oliverpatel.substack.com/p/top-12-papers-on-agentic-ai-governance" target="_blank" rel="noopener noreferrer">https://oliverpatel.substack.com/p/top-12-papers-on-agentic-ai-governance</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-06-06.html">← 2025-06-06</a><a class="day-nav-btn" href="2025-06-09.html">2025-06-09 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

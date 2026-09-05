@@ -433,7 +433,7 @@
 
 https://www.nars.go.kr/fileDownload2.do?doc_id=1PGKJL7qtqO&amp;fileName=(NARS%20입법정책%20162호-20241231)%20인공지능의%20내재적%20위험과%20입법%26%23xB7%3B정책%20과제%20-%20데이터%26%23xB7%3B기술%26%23xB7%3B이용자를%20중심으로%20-.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>국회입법조사처는 인공지능의 위험을 특정 분야에 AI를 적용하면서 발생하는 파생적 위험과, 데이터 학습·모델 구축·작동 등 생애주기 전반에서 발생하는 내재적 위험으로 구분하고, 후자를 학습데이터·기술·이용자 위험으로 나누어 분석했다. 유럽연합 인공지능법은 데이터 관리와 학습데이터 요약본 공개, 기술문서 작성, 적합성 평가 등을 통해 내재적 위험에 대한 체계적인 안전장치를 마련하고 있다. 우리나라에서는 고영향 AI의 안전성과 신뢰성 관리 체계를 담은 인공지능 기본법안이 2024년 12월 26일 국회 본회의를 통과했으며, 공포 후 1년 뒤 시행될 예정이다. 보고서는 이러한 국내외 법제도를 바탕으로 향후 입법·정책 과제를 제시했다.</p>
-  <p class="url"><a href="https://www.nars.go.kr/fileDownload2.do?doc_id=1PGKJL7qtqO&amp;fileName=(NARS%20입법정책%20162호-20241231)%20인공지능의%20내재적%20위험과%20입법%26%23xB7%3B정책%20과제%20-%20데이터%26%23xB7%3B기술%26%23xB7%3B이용자를%20중심으로%20-.pdf">https://www.nars.go.kr/fileDownload2.do?doc_id=1PGKJL7qtqO&amp;fileName=(NARS%20입법정책%20162호-20241231)%20인공지능의%20내재적%20위험과%20입법%26%23xB7%3B정책%20과제%20-%20데이터%26%23xB7%3B기술%26%23xB7%3B이용자를%20중심으로%20-.pdf</a></p>
+  <p class="url"><a href="https://www.nars.go.kr/fileDownload2.do?doc_id=1PGKJL7qtqO&amp;fileName=(NARS%20입법정책%20162호-20241231)%20인공지능의%20내재적%20위험과%20입법%26%23xB7%3B정책%20과제%20-%20데이터%26%23xB7%3B기술%26%23xB7%3B이용자를%20중심으로%20-.pdf" target="_blank" rel="noopener noreferrer">https://www.nars.go.kr/fileDownload2.do?doc_id=1PGKJL7qtqO&amp;fileName=(NARS%20입법정책%20162호-20241231)%20인공지능의%20내재적%20위험과%20입법%26%23xB7%3B정책%20과제%20-%20데이터%26%23xB7%3B기술%26%23xB7%3B이용자를%20중심으로%20-.pdf</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-01.html">← 2025-01-01</a><a class="day-nav-btn" href="2025-01-06.html">2025-01-06 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

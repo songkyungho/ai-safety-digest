@@ -433,7 +433,7 @@
 
 https://qwen.ai/blog?id=qwen3.6-max-preview" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://qwen.ai/blog?id=qwen3.6-max-preview">https://qwen.ai/blog?id=qwen3.6-max-preview</a></p>
+  <p class="url"><a href="https://qwen.ai/blog?id=qwen3.6-max-preview" target="_blank" rel="noopener noreferrer">https://qwen.ai/blog?id=qwen3.6-max-preview</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-04-17.html">← 2026-04-17</a><a class="day-nav-btn" href="2026-04-20.html">2026-04-20 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://humancompatible.ai/news/2024/11/30/rachel-freedman-selected-as-inaugural-cooperative-ai-fellow/" onclick="copyEntry(this)">복사</button></div>
   <p>박사과정 학생 레이철 프리드먼이 Cooperative AI 박사 펠로십 프로그램의 첫 펠로 중 한 명으로 선정됐다. 이 프로그램은 협력형 AI 분야의 현재 및 예비 박사과정 학생들에게 연구와 성장을 위한 재정 지원을 제공한다.</p>
-  <p class="url"><a href="https://humancompatible.ai/news/2024/11/30/rachel-freedman-selected-as-inaugural-cooperative-ai-fellow/">https://humancompatible.ai/news/2024/11/30/rachel-freedman-selected-as-inaugural-cooperative-ai-fellow/</a></p>
+  <p class="url"><a href="https://humancompatible.ai/news/2024/11/30/rachel-freedman-selected-as-inaugural-cooperative-ai-fellow/" target="_blank" rel="noopener noreferrer">https://humancompatible.ai/news/2024/11/30/rachel-freedman-selected-as-inaugural-cooperative-ai-fellow/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-11-29.html">← 2024-11-29</a><a class="day-nav-btn" href="2024-12-03.html">2024-12-03 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

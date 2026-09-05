@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=250670" onclick="copyEntry(this)">복사</button></div>
   <p>산업통상자원부 국가기술표준원은 2024년 4월 24일 구글·엔비디아 등 국제표준 작업반 리더와 KT·네이버 등 국내 산학연 전문가 140여 명이 참석한 가운데 ‘AI 국제표준 오픈 워크숍’을 개최했다. 워크숍에서는 AI의 사회적·윤리적 신뢰성, 안전한 설계·개발·검증, 머신러닝 성능평가, AI 기반 헬스케어 정보 표준 등이 소개됐다. 국내 기업과 연구기관의 AI 추진 동향도 발표돼 AI 국제표준에 대한 산업계의 높은 관심을 확인했다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=250670">https://eiec.kdi.re.kr/policy/materialView.do?num=250670</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=250670" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=250670</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-04-23.html">← 2024-04-23</a><a class="day-nav-btn" href="2024-04-26.html">2024-04-26 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

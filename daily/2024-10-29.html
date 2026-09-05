@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=258878" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부와 정보통신기획평가원은 2024년 10월 28일 양재 서울 인공지능 중심지에 국가 인공지능 연구거점을 개소했다. 연구거점은 국내외 연구진의 교류와 국제공동연구, 인공지능 지도자 양성, 산·학·연 생태계 결집을 지원하는 구심점으로 운영될 예정이다. 미국·캐나다·프랑스·아랍에미리트 등 해외 연구자들과 뉴럴 스케일링 법칙 초월연구 및 로봇 파운데이션 모델 연구 등을 추진하고, 인공지능 발전과 안전·신뢰 기반 조성을 위한 인공지능 기본법 제정도 지원할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=258878">https://eiec.kdi.re.kr/policy/materialView.do?num=258878</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=258878" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=258878</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-10-28.html">← 2024-10-28</a><a class="day-nav-btn" href="2024-10-30.html">2024-10-30 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://www.canada.ca/en/innovation-science-economic-development/news/2026/02/canada-and-germany-sign-ai-joint-declaration-and-launch-sovereign-technology-alliance.html" onclick="copyEntry(this)">복사</button></div>
   <p>캐나다와 독일 정부는 뮌헨 안보 회의에서 &#x27;주권 기술 동맹(Sovereign Technology Alliance)&#x27;을 출범시키고 AI 협력을 위한 공동 선언문에 서명. 컴퓨팅 인프라 확장, 연구 가속화 및 인재 육성을 통해 기술 의존도를 낮추고 동맹국 간의 안전한 AI 주권 역량과 경제적 회복력을 강화하는 것이 목적.</p>
-  <p class="url"><a href="https://www.canada.ca/en/innovation-science-economic-development/news/2026/02/canada-and-germany-sign-ai-joint-declaration-and-launch-sovereign-technology-alliance.html">https://www.canada.ca/en/innovation-science-economic-development/news/2026/02/canada-and-germany-sign-ai-joint-declaration-and-launch-sovereign-technology-alliance.html</a></p>
+  <p class="url"><a href="https://www.canada.ca/en/innovation-science-economic-development/news/2026/02/canada-and-germany-sign-ai-joint-declaration-and-launch-sovereign-technology-alliance.html" target="_blank" rel="noopener noreferrer">https://www.canada.ca/en/innovation-science-economic-development/news/2026/02/canada-and-germany-sign-ai-joint-declaration-and-launch-sovereign-technology-alliance.html</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-13.html">← 2026-02-13</a><a class="day-nav-btn" href="2026-02-16.html">2026-02-16 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

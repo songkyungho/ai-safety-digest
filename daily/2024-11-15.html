@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=259685" onclick="copyEntry(this)">복사</button></div>
   <p>공정거래위원회는 11월 14일 산업계와 학계 전문가들이 참석한 가운데 AI 반도체 관련 기업결합 간담회를 개최했다. 간담회에서는 급성장하는 AI 반도체 시장 동향을 파악하고 향후 기업결합 심사의 전문성을 높이기 위한 의견을 청취했다. 생성형 AI와 자율주행차 등 활용 분야가 확대되면서 2023년 AI 반도체 시장은 전체 반도체 시장의 침체에도 성장하고 시장 비중도 높아졌다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=259685">https://eiec.kdi.re.kr/policy/materialView.do?num=259685</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=259685" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=259685</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-11-12.html">← 2024-11-12</a><a class="day-nav-btn" href="2024-11-18.html">2024-11-18 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

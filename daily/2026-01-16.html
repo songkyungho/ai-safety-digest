@@ -433,7 +433,7 @@ AI 모델, 특히 Anthropic의 Claude 모델이 표준 오픈소스 도구만을
 
 https://www.anthropic.com/research/cyber-toolkits-update" onclick="copyEntry(this)">복사</button></div>
   <p>AI 모델, 특히 Anthropic의 Claude 모델이 표준 오픈소스 도구만을 사용하여 복잡한 네트워크에서 다단계 공격을 성공적으로 수행할 수 있는 능력을 보여주고 있다. 이전 버전에서는 맞춤형 사이버 툴킷이 필요했지만, 최신 모델인 Sonnet 4.5는 이러한 도구 없이도 일부 네트워크에서 성공적으로 작동한다. 특히, Sonnet 4.5는 공개된 CVE(취약점)를 즉시 인식하고 악용하여 Equifax 데이터 침해 시뮬레이션을 성공적으로 수행할 수 있다. 이는 알려진 취약점에 대한 신속한 패치의 중요성을 강조하며, 사이버 보안의 기본 원칙을 준수해야 함을 시사한다. 이러한 발전은 사이버 보안 분야에서 AI 도구의 필요성과 중요성을 더욱 부각시키고 있다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/cyber-toolkits-update">https://www.anthropic.com/research/cyber-toolkits-update</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/cyber-toolkits-update" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/cyber-toolkits-update</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ Asymmetric Security는 내부에서 개발한 AI 시스템으로 수백 건의 �
 
 https://www.asymmetricsecurity.com/launch" onclick="copyEntry(this)">복사</button></div>
   <p>Asymmetric Security는 내부에서 개발한 AI 시스템으로 수백 건의 사이버 공격에 대응해온 경험을 바탕으로, AI Digital Forensics and Incident Response(DFIR) 풀스택 기업을 출범한다고 밝혔다. 회사는 현실적인 훈련 시나리오와 평가를 구축해 AI 사이버방어 역량과 프런티어 랩의 역량을 함께 높이겠다는 미션을 제시했다. 또한 프리시드 420만 달러를 조달했으며, DFIR을 자동화해 위협 탐지를 표준화하고 제품 개발 피드백 루프 및 기업과의 신뢰 기반 관계를 강화하는 전략을 설명했다.</p>
-  <p class="url"><a href="https://www.asymmetricsecurity.com/launch">https://www.asymmetricsecurity.com/launch</a></p>
+  <p class="url"><a href="https://www.asymmetricsecurity.com/launch" target="_blank" rel="noopener noreferrer">https://www.asymmetricsecurity.com/launch</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-01-15.html">← 2026-01-15</a><a class="day-nav-btn" href="2026-01-19.html">2026-01-19 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

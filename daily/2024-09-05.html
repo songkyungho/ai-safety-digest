@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=256914" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 2024년 9월 3~5일 카자흐스탄 아스타나에서 열린 유엔 아시아태평양경제사회위원회 디지털 장관회의에 참석하고 부의장으로서 디지털 협력 논의를 주도했다. 한국의 디지털 권리장전과 새로운 디지털 질서 정립 추진계획, 인공지능 서울 정상회의 사례를 소개하며 인공지능 안전·혁신·포용을 아우르는 국제 발전 방향을 제시했다. 또한 아태지역 국경 간 데이터 공유 연찬회를 공동 개최해 한국의 데이터 진흥 정책과 국제 데이터 공유 협력 사례를 공유했다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=256914">https://eiec.kdi.re.kr/policy/materialView.do?num=256914</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=256914" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=256914</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-09-01.html">← 2024-09-01</a><a class="day-nav-btn" href="2024-09-08.html">2024-09-08 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

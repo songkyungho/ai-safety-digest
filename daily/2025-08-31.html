@@ -433,7 +433,7 @@
 
 https://hai.stanford.edu/news/an-ai-social-coach-is-teaching-empathy-to-people-with-autism" onclick="copyEntry(this)">복사</button></div>
   <p>스탠퍼드 HAI는 자폐 스펙트럼 장애(ASD) 당사자가 사회적 상황에서 공감 표현을 연습할 수 있도록 LLM 기반 챗봇 ‘Noora’를 소개했다. 연구진은 공감 모듈에서 사용자가 제시된 문장에 대해 긍정/중립/부정 평가 후, 공감적으로 답하도록 유도하고 그 결과에 따라 피드백을 제공하도록 설계했다. 무작위 시험(참가자 30명)에서 Noora 사용군은 4주 후 공감적 응답 비율이 71% 개선됐고, 대인 대화 상황에서도 대조군 대비 평균 38% 향상된 점수를 보였다. 연구진은 현재 다른 모듈도 11~35세를 대상으로 시험 중이며 베타 참여를 모집하고 있다.</p>
-  <p class="url"><a href="https://hai.stanford.edu/news/an-ai-social-coach-is-teaching-empathy-to-people-with-autism">https://hai.stanford.edu/news/an-ai-social-coach-is-teaching-empathy-to-people-with-autism</a></p>
+  <p class="url"><a href="https://hai.stanford.edu/news/an-ai-social-coach-is-teaching-empathy-to-people-with-autism" target="_blank" rel="noopener noreferrer">https://hai.stanford.edu/news/an-ai-social-coach-is-teaching-empathy-to-people-with-autism</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-08-29.html">← 2025-08-29</a><a class="day-nav-btn" href="2025-09-01.html">2025-09-01 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

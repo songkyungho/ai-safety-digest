@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=275508" onclick="copyEntry(this)">복사</button></div>
   <p>방송미디어통신위원회와 한국지능정보원은 ‘2025 디지털윤리대전 및 인터넷·통신 이용자 보호 유공 포상 수여식’을 열고 디지털윤리 비전을 선포했다. ‘안전을 더하는 인공지능, 아름다운 디지털 세상’을 비전으로 제시하고, 딥페이크와 허위조작정보 등 디지털 역기능에 대응해 안전하고 책임 있는 인공지능 활용 문화를 확산하겠다는 취지를 밝혔다. 행사에서는 디지털윤리 및 이용자 보호 유공자 포상과 창작콘텐츠 공모전 시상 등 총 37점이 수여됐다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=275508">https://eiec.kdi.re.kr/policy/materialView.do?num=275508</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=275508" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=275508</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ Alisar Mustafa는 4,000명 이상의 구독자를 보유한 AI 정책 뉴스레�
 
 https://alisarmustafa.substack.com/p/a-note-of-gratitude-and-updates-for" onclick="copyEntry(this)">복사</button></div>
   <p>Alisar Mustafa는 4,000명 이상의 구독자를 보유한 AI 정책 뉴스레터에 대한 독자들의 성원에 감사를 전하고, 자신의 업무가 AI safety와 평가 데이터셋 구축, 모델 red-teaming, 기업의 정책 실행 지원으로 확대됐다고 밝혔다. 2026년부터 기존 주간 AI 정책 뉴스레터를 유지하면서 월간 AI safety 뉴스레터를 새로 발행하고, Responsible AI 관련 심층 글과 논평을 격월로 제공할 예정이다.</p>
-  <p class="url"><a href="https://alisarmustafa.substack.com/p/a-note-of-gratitude-and-updates-for">https://alisarmustafa.substack.com/p/a-note-of-gratitude-and-updates-for</a></p>
+  <p class="url"><a href="https://alisarmustafa.substack.com/p/a-note-of-gratitude-and-updates-for" target="_blank" rel="noopener noreferrer">https://alisarmustafa.substack.com/p/a-note-of-gratitude-and-updates-for</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-12-29.html">← 2025-12-29</a><a class="day-nav-btn" href="2025-12-31.html">2025-12-31 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

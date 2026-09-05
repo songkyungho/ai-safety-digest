@@ -433,7 +433,7 @@
 
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=27263&amp;parentSeq=27263" onclick="copyEntry(this)">복사</button></div>
   <p>논문은 생성형 AI로 인해 발생하는 기본권 침해, 신종 범죄와 통제, 시장 독점, 환경 문제 등 주요 법적 쟁점을 정리하고 각국과 국제기구의 규제 논의를 검토한다. 국가별로 규제의 필요성과 방향에는 차이가 있지만, 생성형 AI의 위험을 줄이고 안전한 활용을 도모해야 한다는 점에서는 대체로 유사한 입장을 보인다. 국제 동향을 지속적으로 분석해 국내 상황에 맞는 AI 규제와 세부 정책을 정비할 필요가 있다고 제안한다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=27263&amp;parentSeq=27263">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=27263&amp;parentSeq=27263</a></p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=27263&amp;parentSeq=27263" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=27263&amp;parentSeq=27263</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=27263&am
 
 https://www.nars.go.kr/fileDownload2.do?doc_id=1P9XzRB0TB4&amp;fileName=(240928)%20%EA%B3%BC%EB%B0%A9_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%20%EC%9C%A4%EB%A6%AC%EC%99%80%20%EC%A0%80%EC%9E%91%EA%B6%8C%EC%9D%98%20%규제체계%20연구.pdf" onclick="copyEntry(this)">복사</button></div>
   <p>국회입법조사처는 인공지능 기술의 윤리·저작권 관련 국내외 규제 동향을 분석하고 입법 방향을 제시한 보고서를 발표했다. 보고서는 EU 인공지능법과 미국의 행정명령 및 주별 규제를 검토하고, 인공지능 윤리 원칙의 규범력과 강제력 확보를 위한 정책·입법의 필요성을 강조했다. 또한 딥페이크 등 허위조작정보는 강하게 금지하되 인공지능 생성물 표시 의무는 현실적으로 설계하고, 규제 집행과 책임 분배를 위해 컨트롤타워를 마련할 것을 제안했다.</p>
-  <p class="url"><a href="https://www.nars.go.kr/fileDownload2.do?doc_id=1P9XzRB0TB4&amp;fileName=(240928)%20%EA%B3%BC%EB%B0%A9_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%20%EC%9C%A4%EB%A6%AC%EC%99%80%20%EC%A0%80%EC%9E%91%EA%B6%8C%EC%9D%98%20%규제체계%20연구.pdf">https://www.nars.go.kr/fileDownload2.do?doc_id=1P9XzRB0TB4&amp;fileName=(240928)%20%EA%B3%BC%EB%B0%A9_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%20%EC%9C%A4%EB%A6%AC%EC%99%80%20%EC%A0%80%EC%9E%91%EA%B6%8C%EC%9D%98%20%규제체계%20연구.pdf</a></p>
+  <p class="url"><a href="https://www.nars.go.kr/fileDownload2.do?doc_id=1P9XzRB0TB4&amp;fileName=(240928)%20%EA%B3%BC%EB%B0%A9_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%20%EC%9C%A4%EB%A6%AC%EC%99%80%20%EC%A0%80%EC%9E%91%EA%B6%8C%EC%9D%98%20%규제체계%20연구.pdf" target="_blank" rel="noopener noreferrer">https://www.nars.go.kr/fileDownload2.do?doc_id=1P9XzRB0TB4&amp;fileName=(240928)%20%EA%B3%BC%EB%B0%A9_%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%20%EC%9C%A4%EB%A6%AC%EC%99%80%20%EC%A0%80%EC%9E%91%EA%B6%8C%EC%9D%98%20%규제체계%20연구.pdf</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-10-04.html">← 2024-10-04</a><a class="day-nav-btn" href="2024-10-09.html">2024-10-09 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

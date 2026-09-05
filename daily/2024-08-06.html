@@ -455,7 +455,7 @@ https://metr.org/blog/2024-08-06-update-on-evaluations/" onclick="copyEntry(this
 - **성능 한계**: 현재 에이전트의 성능은 약 20만 토큰에서 한계를 보이는 것으로 확인되었습니다.
 - **비용 효율성**: 에이전트는 수행 가능한 작업에서 인간보다 훨씬 저렴한 비용으로 작업을 수행할 수 있었습니다.</p>
 <p>METR은 앞으로 더 많은 인간 기준선, 다양한 과제, 개선된 지침 및 평가 기법을 통해 일반 자율성 과제 스위트를 발전시킬 계획입니다. 이 연구는 최첨단 모델의 실제 영향을 예측하고 위험을 측정하며, 실증 데이터 기반의 합리적이고 적절한 정책 수립에 기여할 것으로 기대됩니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2024-08-06-update-on-evaluations/">https://metr.org/blog/2024-08-06-update-on-evaluations/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2024-08-06-update-on-evaluations/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2024-08-06-update-on-evaluations/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-08-02.html">← 2024-08-02</a><a class="day-nav-btn" href="2024-08-07.html">2024-08-07 →</a></nav>
@@ -536,7 +536,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

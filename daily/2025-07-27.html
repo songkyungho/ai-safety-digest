@@ -433,7 +433,7 @@
 
 https://www.aisi.gov.uk/research/security-challenges-in-ai-agent-deployment-insights-from-a-large-scale-public-competition" onclick="copyEntry(this)">복사</button></div>
   <p>대규모 공개 red-teaming 경쟁을 통해 22개 frontier AI agents를 44개 현실 배치 시나리오에서 평가했으며, 참가자들은 180만 건의 prompt-injection 공격을 제출했다. 그중 6만 건 이상이 정책 위반(무단 데이터 접근, 불법 금융행위, 규제 미준수 등)을 유발하는 데 성공했다. 연구진은 고위험 공격을 모은 Agent Red Teaming(ART) benchmark를 만들고 19개 최신 모델에 적용했으며, 대부분 agent가 10~100회 내 행동에서 정책 위반을 보였고 공격은 모델·과제 전반에 높은 전이성을 보였다고 밝혔다. 또한 agent 견고성이 모델 크기·능력·추론 시 compute와의 상관이 제한적이라 추가 방어책이 필요하다고 결론냈다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/security-challenges-in-ai-agent-deployment-insights-from-a-large-scale-public-competition">https://www.aisi.gov.uk/research/security-challenges-in-ai-agent-deployment-insights-from-a-large-scale-public-competition</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/security-challenges-in-ai-agent-deployment-insights-from-a-large-scale-public-competition" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/security-challenges-in-ai-agent-deployment-insights-from-a-large-scale-public-competition</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.aisi.gov.uk/research/security-challenges-in-ai-agent-deployment-insi
 
 https://www.globaltimes.cn/page/202507/1339405.shtml" onclick="copyEntry(this)">복사</button></div>
   <p>중국이 글로벌 인공지능(AI) 거버넌스를 위한 행동계획을 발표하고, 정부·국제기구·기업·연구기관이 협력해 국제 교류를 확대하자고 제안했다. 같은 날 중국 정부는 글로벌 AI 협력기구 설립을 추진하며, 본부를 상하이에 두는 방안도 검토 중이라고 전해졌다. 2025년 세계 AI 컨퍼런스(WAIC 2025, 7/26~7/28)에서 리창 총리는 글로벌 AI 거버넌스의 중요성을 강조하며 더 많은 중국의 해법을 제시할 의지가 있다고 밝혔다.</p>
-  <p class="url"><a href="https://www.globaltimes.cn/page/202507/1339405.shtml">https://www.globaltimes.cn/page/202507/1339405.shtml</a></p>
+  <p class="url"><a href="https://www.globaltimes.cn/page/202507/1339405.shtml" target="_blank" rel="noopener noreferrer">https://www.globaltimes.cn/page/202507/1339405.shtml</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-26.html">← 2025-07-26</a><a class="day-nav-btn" href="2025-07-28.html">2025-07-28 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

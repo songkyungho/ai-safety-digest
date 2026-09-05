@@ -443,7 +443,7 @@ https://aws.amazon.com/nova/" onclick="copyEntry(this)">복사</button></div>
   <p>General · Closed · 300K ctx · $0.8/M · $3.2/M</p>
 <p>MMLU 64.9% · HE 89% · MATH 79.5% · AIME 7%</p>
 <p>Amazon multimodal via Bedrock. Deep AWS integrations. Enterprise document, image, video workflows.</p>
-  <p class="url"><a href="https://aws.amazon.com/nova/">https://aws.amazon.com/nova/</a></p>
+  <p class="url"><a href="https://aws.amazon.com/nova/" target="_blank" rel="noopener noreferrer">https://aws.amazon.com/nova/</a></p>
   
   
 </article>
@@ -455,7 +455,7 @@ https://aws.amazon.com/nova/" onclick="copyEntry(this)">복사</button></div>
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=260541" onclick="copyEntry(this)">복사</button></div>
   <p>대통령 직속 국가인공지능위원회가 2024년 12월 2일 첫 연찬회를 열고 인공지능 세계 3대 강국 도약을 위한 국가 인공지능 전략 수립에 착수했다. 위원회는 정부·기업·민간 전문가의 역량을 결집해 연구개발, 인력 양성, 신뢰 기반 조성 등 정책 과제를 구체화할 계획이며, 행사에는 위원과 관계자 등 80여 명이 참석했다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260541">https://eiec.kdi.re.kr/policy/materialView.do?num=260541</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=260541" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=260541</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-11-30.html">← 2024-11-30</a><a class="day-nav-btn" href="2024-12-05.html">2024-12-05 →</a></nav>
@@ -536,7 +536,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://www.kiat.or.kr/commonfile/fileidDownLoad.do?file_id=6572027D482345678C778C30B794AE30" onclick="copyEntry(this)">복사</button></div>
   <p>한국산업기술진흥원은 유럽연합 인공지능법(AI Act)의 승인에 따른 우리나라의 대응 방안을 분석한 브리프를 발표했다. EU AI Act는 2024년 5월 최종 승인됐으며 단계적으로 적용된 뒤 2026년 전면 시행될 예정이다. 국내 AI 산업 육성을 위해 해외 주요국의 규제에 대비하고, 우리나라의 현실과 기업 육성 방향을 반영한 대응 방안 마련이 필요하다고 제시했다.</p>
-  <p class="url"><a href="https://www.kiat.or.kr/commonfile/fileidDownLoad.do?file_id=6572027D482345678C778C30B794AE30">https://www.kiat.or.kr/commonfile/fileidDownLoad.do?file_id=6572027D482345678C778C30B794AE30</a></p>
+  <p class="url"><a href="https://www.kiat.or.kr/commonfile/fileidDownLoad.do?file_id=6572027D482345678C778C30B794AE30" target="_blank" rel="noopener noreferrer">https://www.kiat.or.kr/commonfile/fileidDownLoad.do?file_id=6572027D482345678C778C30B794AE30</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-12.html">← 2024-07-12</a><a class="day-nav-btn" href="2024-07-18.html">2024-07-18 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

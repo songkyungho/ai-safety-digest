@@ -433,7 +433,7 @@ ARC는 미래의 고급 머신러닝 모델들이 자율적으로 자원을 획�
 
 https://metr.org/blog/2023-03-18-update-on-recent-evals/" onclick="copyEntry(this)">복사</button></div>
   <p>ARC는 미래의 고급 머신러닝 모델들이 자율적으로 자원을 획득하고 인간의 감독을 회피할 수 있는 위험한 능력을 갖추지 못하도록 평가하기 위해 선도적인 AI 연구소들과 협력하고 있습니다. 최근 평가에서는 현재 최첨단 모델들이 자율적인 활동을 수행하거나 위험한 계획을 실행하는 데 필요한 충분한 능력을 갖추지 못하고 있음을 확인했습니다. 그러나 모델들이 인터넷을 탐색하거나 인간에게 작업을 위임하는 등의 일부 하위 작업들은 성공적으로 수행할 수 있었습니다. 이 연구는 모델들이 더욱 발전함에 따라 더욱 엄격한 평가가 필요함을 강조하며, 잠재적 위험을 미리 감지하고 방지하기 위한 체계적인 테스트의 중요성을 강조합니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2023-03-18-update-on-recent-evals/">https://metr.org/blog/2023-03-18-update-on-recent-evals/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2023-03-18-update-on-recent-evals/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2023-03-18-update-on-recent-evals/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-03-16.html">← 2023-03-16</a><a class="day-nav-btn" href="2023-03-23.html">2023-03-23 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

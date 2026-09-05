@@ -433,7 +433,7 @@
 
 https://www.axios.com/2026/03/15/palmer-luckey-anduril-anthropic-pentagon" onclick="copyEntry(this)">복사</button></div>
   <p>팰머 럭키가 펜타곤이 AI 기업 Anthropic에 대해 더 강력한 입장을 취할 수 있었던 것으로 보인다고 언급한 내용이다. 다만 제공된 정보에는 본문 내용이 없어 구체적인 발언 맥락(어떤 사안에 대한 비판인지)과 관련된 사실관계는 확인이 필요하다.</p>
-  <p class="url"><a href="https://www.axios.com/2026/03/15/palmer-luckey-anduril-anthropic-pentagon">https://www.axios.com/2026/03/15/palmer-luckey-anduril-anthropic-pentagon</a></p>
+  <p class="url"><a href="https://www.axios.com/2026/03/15/palmer-luckey-anduril-anthropic-pentagon" target="_blank" rel="noopener noreferrer">https://www.axios.com/2026/03/15/palmer-luckey-anduril-anthropic-pentagon</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.axios.com/2026/03/15/palmer-luckey-anduril-anthropic-pentagon" oncli
 
 https://www.bloomberg.com/news/articles/2026-03-04/google-gemini-accused-of-coaching-user-to-suicide-in-new-suit" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.bloomberg.com/news/articles/2026-03-04/google-gemini-accused-of-coaching-user-to-suicide-in-new-suit">https://www.bloomberg.com/news/articles/2026-03-04/google-gemini-accused-of-coaching-user-to-suicide-in-new-suit</a></p>
+  <p class="url"><a href="https://www.bloomberg.com/news/articles/2026-03-04/google-gemini-accused-of-coaching-user-to-suicide-in-new-suit" target="_blank" rel="noopener noreferrer">https://www.bloomberg.com/news/articles/2026-03-04/google-gemini-accused-of-coaching-user-to-suicide-in-new-suit</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://www.bloomberg.com/news/articles/2026-03-04/google-gemini-accused-of-coac
 
 https://www.axios.com/2026/02/15/white-house-utah-ai-transparency-bill" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://www.axios.com/2026/02/15/white-house-utah-ai-transparency-bill">https://www.axios.com/2026/02/15/white-house-utah-ai-transparency-bill</a></p>
+  <p class="url"><a href="https://www.axios.com/2026/02/15/white-house-utah-ai-transparency-bill" target="_blank" rel="noopener noreferrer">https://www.axios.com/2026/02/15/white-house-utah-ai-transparency-bill</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-03-14.html">← 2026-03-14</a><a class="day-nav-btn" href="2026-03-16.html">2026-03-16 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

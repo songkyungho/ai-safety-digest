@@ -433,7 +433,7 @@ Anthropic 연구팀은 언어 모델(LM)이 고위험 사회 결정(예: 자금 
 
 https://www.anthropic.com/research/evaluating-and-mitigating-discrimination-in-language-model-decisions" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic 연구팀은 언어 모델(LM)이 고위험 사회 결정(예: 자금 지원 또는 주거 자격 결정)에 활용될 때 발생할 수 있는 차별 문제를 평가하고 완화하기 위한 방법론을 제시합니다. 연구팀은 다양한 사회적 상황(70가지 시나리오 포함)에서 잠재적인 프롬프트를 생성하고, 각 프롬프트에 인구 통계 정보를 변화시켜 차별 패턴을 분석했습니다. 이를 통해 Claude 2.0 모델에서 긍정적 및 부정적 차별의 패턴을 확인했습니다. 연구는 신중한 프롬프트 설계를 통해 차별을 크게 줄일 수 있는 방법을 보여주며, 언어 모델의 안전한 적용을 위한 지침을 제공합니다. 연구 결과와 프롬프트 데이터셋은 공개되었습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/evaluating-and-mitigating-discrimination-in-language-model-decisions">https://www.anthropic.com/research/evaluating-and-mitigating-discrimination-in-language-model-decisions</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/evaluating-and-mitigating-discrimination-in-language-model-decisions" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/evaluating-and-mitigating-discrimination-in-language-model-decisions</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-12-06.html">← 2023-12-06</a><a class="day-nav-btn" href="2023-12-16.html">2023-12-16 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

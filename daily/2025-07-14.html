@@ -433,7 +433,7 @@
 
 https://www.forbes.com/sites/zakdoffman/2025/07/14/googles-gmail-warning-if-you-see-this-youre-being-hacked" onclick="copyEntry(this)">복사</button></div>
   <p>0din이 Gemini for Workspace의 prompt-injection 취약성을 시연했으며, 사용자가 ‘이메일 요약’ 기능을 누르면 숨겨진 프롬프트가 피싱 경고로 이어질 수 있다고 설명했다. 기사에 따르면 공격은 흰색 글씨 등으로 사용자가 보지 못하는 방식으로 이메일에 악성 지시를 삽입하며, Gemini는 이를 숨은 지시로 인식해 Google이 보낸 것처럼 보이는 경고를 덧붙일 수 있다. 0din은 보안팀이 Gemini 요약을 ‘보안 경고’가 아니라 ‘정보’로 교육하고, 숨은 텍스트/zero-width 또는 흰색 텍스트를 포함한 이메일은 자동 격리하라고 권고했다.</p>
-  <p class="url"><a href="https://www.forbes.com/sites/zakdoffman/2025/07/14/googles-gmail-warning-if-you-see-this-youre-being-hacked">https://www.forbes.com/sites/zakdoffman/2025/07/14/googles-gmail-warning-if-you-see-this-youre-being-hacked</a></p>
+  <p class="url"><a href="https://www.forbes.com/sites/zakdoffman/2025/07/14/googles-gmail-warning-if-you-see-this-youre-being-hacked" target="_blank" rel="noopener noreferrer">https://www.forbes.com/sites/zakdoffman/2025/07/14/googles-gmail-warning-if-you-see-this-youre-being-hacked</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ METR 연구진은 2019년 이후 출시된 최첨단 모델들의 시간 지평(
 
 https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/" onclick="copyEntry(this)">복사</button></div>
   <p>METR 연구진은 2019년 이후 출시된 최첨단 모델들의 시간 지평(AI가 작업을 완료할 확률이 50%인 작업 길이)을 분석했습니다. 분석 결과, 시간 지평은 약 7개월마다 두 배로 증가했으며, 2024년에는 이 증가 속도가 약 4개월로 가속화된 것으로 나타났습니다. 다양한 도메인(소프트웨어 개발, 수학 경진대회 등)에서 비슷한 경향이 관찰되었으며, 이는 향후 몇 년 동안 시간 지평이 일 주일에서 몇 주까지 증가할 가능성을 시사합니다. 그러나 컴퓨터 시각 인식과 자율 주행 분야에서는 성장률이 다르게 나타났습니다. 방법론적 개선을 통해 실험 재실시 없이도 시간 지평을 추정할 수 있게 되었습니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/">https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/</a></p>
+  <p class="url"><a href="https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/" onc
 
 https://www.reuters.com/business/autos-transportation/us-department-defense-awards-contracts-google-xai-2025-07-14/" onclick="copyEntry(this)">복사</button></div>
   <p>미국 국방부가 Google과 Musk의 xAI에 계약을 수여했다는 내용의 로이터 기사로 확인됩니다. 다만 본문을 제공받지 못해 계약 규모, 목적(예: AI/데이터/연구 등), 일정과 조건 등 핵심 세부사항은 확인이 필요합니다.</p>
-  <p class="url"><a href="https://www.reuters.com/business/autos-transportation/us-department-defense-awards-contracts-google-xai-2025-07-14/">https://www.reuters.com/business/autos-transportation/us-department-defense-awards-contracts-google-xai-2025-07-14/</a></p>
+  <p class="url"><a href="https://www.reuters.com/business/autos-transportation/us-department-defense-awards-contracts-google-xai-2025-07-14/" target="_blank" rel="noopener noreferrer">https://www.reuters.com/business/autos-transportation/us-department-defense-awards-contracts-google-xai-2025-07-14/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-13.html">← 2025-07-13</a><a class="day-nav-btn" href="2025-07-15.html">2025-07-15 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

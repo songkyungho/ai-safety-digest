@@ -433,7 +433,7 @@
 
 https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=158098071&amp;t=board" onclick="copyEntry(this)">복사</button></div>
   
-  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=158098071&amp;t=board">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=158098071&amp;t=board</a></p>
+  <p class="url"><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=158098071&amp;t=board" target="_blank" rel="noopener noreferrer">https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=158098071&amp;t=board</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUi
 
 https://metr.org/METR_ai_action_plan_comment.pdf" onclick="copyEntry(this)">복사</button></div>
   <p class="unavailable">요약불가 (본문 확인 필요)</p>
-  <p class="url"><a href="https://metr.org/METR_ai_action_plan_comment.pdf">https://metr.org/METR_ai_action_plan_comment.pdf</a></p>
+  <p class="url"><a href="https://metr.org/METR_ai_action_plan_comment.pdf" target="_blank" rel="noopener noreferrer">https://metr.org/METR_ai_action_plan_comment.pdf</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ Global AI Regulation Tracker를 개인이 개발해 195개+ 국가의 AI 법·�
 
 https://techieray.substack.com/p/solo-to-global-how-i-mapped-the-worlds" onclick="copyEntry(this)">복사</button></div>
   <p>Global AI Regulation Tracker를 개인이 개발해 195개+ 국가의 AI 법·규제·정책 동향을 지도 형태로 정리했다고 소개한다. 2023년 5월 출시 후 사용자 수가 늘었고, 2025년 2월에 전 세계 195개+ 국가 지도를 완성했으며 각 국가별 프로필과 최신 뉴스 업데이트를 제공한다. 초기에는 수집·요약·코드 반영을 수작업으로 했으나, 뉴스 큐레이션을 위한 Python 봇과 웹사이트 구조를 동적 웹앱/클라우드로 전환하는 방식으로 업데이트 효율을 높였다고 설명한다.</p>
-  <p class="url"><a href="https://techieray.substack.com/p/solo-to-global-how-i-mapped-the-worlds">https://techieray.substack.com/p/solo-to-global-how-i-mapped-the-worlds</a></p>
+  <p class="url"><a href="https://techieray.substack.com/p/solo-to-global-how-i-mapped-the-worlds" target="_blank" rel="noopener noreferrer">https://techieray.substack.com/p/solo-to-global-how-i-mapped-the-worlds</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-13.html">← 2025-03-13</a><a class="day-nav-btn" href="2025-03-17.html">2025-03-17 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

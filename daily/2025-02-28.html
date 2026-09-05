@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=263803" onclick="copyEntry(this)">복사</button></div>
   <p>산업통상자원부 국가기술표준원은 2025년 2월 27~28일 APEC 18개 회원국 대표단이 참석한 표준·적합성 위원회(SCSC) 총회를 열고 AI·수소경제 등 첨단산업의 표준·인증 협력 방안을 논의했다. 주요 의제로 표준·인증 규제 개선, 중소기업의 국제표준화 참여, 표준전문가 양성, 산업 AI 활용을 지원하는 표준 및 수소·연료전지 표준 공동연구 등이 다뤄졌다. 국가기술표준원은 AI 국제표준화와 인증체계 공동연구를 위한 ‘APEC AI 표준포럼’ 신설을 제안했으며, 2025년 8월 첫 포럼 컨퍼런스를 개최할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263803">https://eiec.kdi.re.kr/policy/materialView.do?num=263803</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263803" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=263803</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=263803" onclick="copyEntry(thi
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=263856" onclick="copyEntry(this)">복사</button></div>
   <p>방송통신위원회는 생성형 인공지능 개발사와 서비스 제공자를 대상으로 서비스 전반의 이용자 보호를 위한 가이드라인을 발표했으며, 3월 28일부터 시행한다. 가이드라인은 이용자 보호를 위한 4가지 기본원칙과 이를 실현하기 위한 6가지 실행 방식을 제시한다. 방통위는 생성형 인공지능의 부작용에 대응하기 위해 정보통신정책연구원과 인공지능 전문가가 참여한 연구반을 구성하고 국내외 피해 사례와 이용자 보호 현황을 검토해 마련했다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263856">https://eiec.kdi.re.kr/policy/materialView.do?num=263856</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=263856" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=263856</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ LLM이 실제 서비스에 적용될수록 안전성 확보가 중요해졌으�
 
 https://evidentlyai.com/blog/llm-safety-bias-benchmarks" onclick="copyEntry(this)">복사</button></div>
   <p>LLM이 실제 서비스에 적용될수록 안전성 확보가 중요해졌으며, 이를 위해 진실성·독성·편향·강건성 등 다양한 위험을 평가하는 전용 safety benchmarks가 활용된다고 소개한다. 글에서는 TruthfulQA(거짓/오해 유도), ToxiGen(독성·혐오 검출), HHH(도움/정직/무해성), ForbiddenQuestions(안전하지 않은 요청 거부) 등 10개 대표 벤치마크의 데이터 규모와 평가 목적을 요약한다. 또한 DecodingTrust(다각도 신뢰성 프레임워크), AdvBench·AnthropicRedTeam(공격/우회에 대한 취약성), HELM Safety(표준화된 안전평가 구성), RealToxicityPrompt·DoNotAnswer(자연발생 독성 및 가드레일 거부 성능)도 함께 설명한다.</p>
-  <p class="url"><a href="https://evidentlyai.com/blog/llm-safety-bias-benchmarks">https://evidentlyai.com/blog/llm-safety-bias-benchmarks</a></p>
+  <p class="url"><a href="https://evidentlyai.com/blog/llm-safety-bias-benchmarks" target="_blank" rel="noopener noreferrer">https://evidentlyai.com/blog/llm-safety-bias-benchmarks</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-27.html">← 2025-02-27</a><a class="day-nav-btn" href="2025-03-02.html">2025-03-02 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

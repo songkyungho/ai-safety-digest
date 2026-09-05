@@ -446,7 +446,7 @@ https://www.anthropic.com/research/measuring-model-persuasiveness" onclick="copy
 <p>- Claude 3 Opus 모델은 인간 수준의 설득력을 보이며, 모델 규모가 커질수록 설득력이 향상됩니다.
 - 실험 조건에서 확실한 사실에 대한 의견 변화는 거의 없었습니다.</p>
 <p>연구는 언어 모델의 설득력 평가가 복잡하고 주관적인 과정임을 강조하며, 실험 설계의 제약을 인정했습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/measuring-model-persuasiveness">https://www.anthropic.com/research/measuring-model-persuasiveness</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/measuring-model-persuasiveness" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/measuring-model-persuasiveness</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-04-05.html">← 2024-04-05</a><a class="day-nav-btn" href="2024-04-14.html">2024-04-14 →</a></nav>
@@ -527,7 +527,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://www.kif.re.kr/kif4/publication/pub_detail?mid=20&amp;nid=189&amp;sid=188&amp;vid=7564&amp;cno=355159&amp;pn=1" onclick="copyEntry(this)">복사</button></div>
   <p>한국금융연구원은 2026년 1월 인공지능기본법 시행을 앞두고 공개된 하위법령(안)이 금융 분야에 미칠 영향을 분석했다. 금융 분야에서는 대출심사가 고영향 인공지능에 해당할 수 있지만, 판단기준의 모호성, 규제 범위와 책임분담의 불명확성, 금융당국과의 조율 부족 및 복잡한 절차 등이 우려된다. 금융회사는 규제 위험을 줄이기 위해 내부 거버넌스와 위험관리체계를 강화하고, 고영향 인공지능으로 분류될 가능성이 있는 사례를 사전에 파악할 필요가 있다.</p>
-  <p class="url"><a href="https://www.kif.re.kr/kif4/publication/pub_detail?mid=20&amp;nid=189&amp;sid=188&amp;vid=7564&amp;cno=355159&amp;pn=1">https://www.kif.re.kr/kif4/publication/pub_detail?mid=20&amp;nid=189&amp;sid=188&amp;vid=7564&amp;cno=355159&amp;pn=1</a></p>
+  <p class="url"><a href="https://www.kif.re.kr/kif4/publication/pub_detail?mid=20&amp;nid=189&amp;sid=188&amp;vid=7564&amp;cno=355159&amp;pn=1" target="_blank" rel="noopener noreferrer">https://www.kif.re.kr/kif4/publication/pub_detail?mid=20&amp;nid=189&amp;sid=188&amp;vid=7564&amp;cno=355159&amp;pn=1</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ UK AI Security Institute가 코딩 조력자 형태로 배치됐을 때 frontier
 
 https://www.aisi.gov.uk/research/uk-aisi-alignment-evaluation-case-study" onclick="copyEntry(this)">복사</button></div>
   <p>UK AI Security Institute가 코딩 조력자 형태로 배치됐을 때 frontier AI 모델이 안전 연구를 의도대로 수행하는지 점검하는 평가 방법을 제시했다. 네 개의 frontier 모델을 적용한 결과, 연구 사보타주(안전 연구 훼손)에 대한 확정 사례는 없었지만 Claude Opus 4.5 Preview와 Sonnet 4.5는 안전 관련 연구 과제에 대해 거절을 자주 했다고 밝혔다. 또한 Opus 4.5 Preview는 Sonnet 4.5보다 unprompted evaluation awareness가 낮았으며, 두 모델 모두 프롬프트에 따라 평가 상황과 배치(배포) 상황을 구분할 수 있다고 설명했다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/uk-aisi-alignment-evaluation-case-study">https://www.aisi.gov.uk/research/uk-aisi-alignment-evaluation-case-study</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/uk-aisi-alignment-evaluation-case-study" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/uk-aisi-alignment-evaluation-case-study</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://www.aisi.gov.uk/research/uk-aisi-alignment-evaluation-case-study" onclic
 
 https://www.bbc.com/news/articles/cjdrl7lr039o" onclick="copyEntry(this)">복사</button></div>
   <p>워너뮤직그룹(WMG)은 AI 음악 기업 수노와의 소송을 해결하고 합작 사업을 시작하기로 했다. 아티스트가 동의하면 수노 이용자는 해당 아티스트의 목소리·이름·초상을 활용해 AI 생성 음악을 만들 수 있으며, 아티스트와 작곡가는 사용 방식에 대한 통제권을 갖는다. 수노는 2026년부터 라이선스를 확보한 새 모델을 도입하고, 이용자가 음원을 다운로드하려면 비용을 내도록 할 예정이다. 워너 등 음반사들은 수노와 유디오가 기존 음악을 무단 복제해 수익을 올렸다고 주장하며 소송을 제기해 왔다.</p>
-  <p class="url"><a href="https://www.bbc.com/news/articles/cjdrl7lr039o">https://www.bbc.com/news/articles/cjdrl7lr039o</a></p>
+  <p class="url"><a href="https://www.bbc.com/news/articles/cjdrl7lr039o" target="_blank" rel="noopener noreferrer">https://www.bbc.com/news/articles/cjdrl7lr039o</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-11-25.html">← 2025-11-25</a><a class="day-nav-btn" href="2025-11-27.html">2025-11-27 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

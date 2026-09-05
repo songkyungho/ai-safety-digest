@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=269166" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 ‘독자 인공지능 기초 모형(AI 파운데이션 모델)’ 사업에 신청한 15개 정예팀을 서면평가해 10개 팀으로 압축했다. 외부 전문가로 구성된 평가위원회가 객관적·공정하게 심사했으며, 발표평가를 통해 최종 5개 팀을 선정한 뒤 사업비 심의·조정을 거쳐 2025년 8월 초 협약을 체결할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=269166">https://eiec.kdi.re.kr/policy/materialView.do?num=269166</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=269166" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=269166</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=269166" onclick="copyEntry(thi
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=269167" onclick="copyEntry(this)">복사</button></div>
   <p>배경훈 과학기술정보통신부 장관은 7월 27일 한국인터넷진흥원 인터넷침해대응센터를 방문해 AI로 지능화·고도화되는 사이버위협 대응체계를 점검했다. 과기정통부와 KISA는 센터를 중심으로 24시간 사이버위협 모니터링과 관계기관·통신사·주요 기업 간 상시 대응체계를 운영하고 있다. 침해대응 시스템에 AI를 도입해 탐지 역량을 높이고, 사고 발생 시 긴급차단·확산 방지·기술지원과 피해 회복 및 재발 방지를 지원하고 있다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=269167">https://eiec.kdi.re.kr/policy/materialView.do?num=269167</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=269167" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=269167</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=269167" onclick="copyEntry(thi
 
 https://www.eba.europa.eu/publications-and-media/press-releases/careless-use-innovative-compliance-products-can-lead-money-laundering-and-terrorism-financing-risks" onclick="copyEntry(this)">복사</button></div>
   <p>유럽은행감독청(EBA)은 EU 금융부문에서 자금세탁·테러자금조달(ML/TF) 위험이 커지고 있으며, 새로운 규제체계의 일관된 적용이 핵심이라고 밝혔다. FinTech는 AML/CFT 통제와 거버넌스가 약해지고 성장 우선으로 컴플라이언스가 뒷전이 되는 사례가 많다고 지적했으며, RegTech는 전문성과 감독 부족으로 부적절하게 사용되는 경우가 절반 이상(심각한 컴플라이언스 실패 사례 기준)이라고 설명했다. 또한 암호자산 분야는 고위험으로, 승인된 CASP 수가 2022~2024년 사이 2.5배 증가했지만 효과적인 AML/CFT 시스템이 부족한 곳이 있다고 했다. AI를 이용한 세탁 자동화·문서 위조·탐지 회피와, EU 제재 체계의 복잡성으로 인한 제재 이행 시스템 미비도 위험 요인으로 제시했다.</p>
-  <p class="url"><a href="https://www.eba.europa.eu/publications-and-media/press-releases/careless-use-innovative-compliance-products-can-lead-money-laundering-and-terrorism-financing-risks">https://www.eba.europa.eu/publications-and-media/press-releases/careless-use-innovative-compliance-products-can-lead-money-laundering-and-terrorism-financing-risks</a></p>
+  <p class="url"><a href="https://www.eba.europa.eu/publications-and-media/press-releases/careless-use-innovative-compliance-products-can-lead-money-laundering-and-terrorism-financing-risks" target="_blank" rel="noopener noreferrer">https://www.eba.europa.eu/publications-and-media/press-releases/careless-use-innovative-compliance-products-can-lead-money-laundering-and-terrorism-financing-risks</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-27.html">← 2025-07-27</a><a class="day-nav-btn" href="2025-07-29.html">2025-07-29 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

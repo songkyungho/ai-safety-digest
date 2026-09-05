@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=258157" onclick="copyEntry(this)">복사</button></div>
   <p>행정안전부는 국민안전, 근로·복지, 국민건강, 국민편의, 일하는 방식 개선 등 5개 분야에서 12개 데이터 분석과제를 추진한다고 밝혔다. 주요 과제는 AI를 활용한 딥페이크 불법 콘텐츠 분석, 상병·요양데이터 기반 장해등급 예측, 재해조사 분류, 식품안전 점검대상 추천, 의약품 품절 예측 등이다. 행정안전부는 관계기관 및 전문가와 협업해 분석 모델을 개발하고, 다양한 기관에서 활용할 수 있도록 지속 관리할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=258157">https://eiec.kdi.re.kr/policy/materialView.do?num=258157</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=258157" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=258157</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=258157" onclick="copyEntry(thi
 
 https://humancompatible.ai/news/2024/10/10/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor/" onclick="copyEntry(this)">복사</button></div>
   <p>이 논문은 강화학습 에이전트가 실제 환경의 분포 변화에서 학습 중의 대리 목표를 실제 목표로 잘못 일반화하는 문제를 다룬다. 연구진은 에이전트가 낯선 상황에서 감독자에게 도움을 요청하도록 하면 이러한 목표 오일반화를 완화할 수 있는지 탐구했다. 이 논문은 NeurIPS 2024의 안전하고 신뢰할 수 있는 에이전트 워크숍에서 발표됐다.</p>
-  <p class="url"><a href="https://humancompatible.ai/news/2024/10/10/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor/">https://humancompatible.ai/news/2024/10/10/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor/</a></p>
+  <p class="url"><a href="https://humancompatible.ai/news/2024/10/10/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor/" target="_blank" rel="noopener noreferrer">https://humancompatible.ai/news/2024/10/10/getting-by-goal-misgeneralization-with-a-little-help-from-a-mentor/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-10-09.html">← 2024-10-09</a><a class="day-nav-btn" href="2024-10-11.html">2024-10-11 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

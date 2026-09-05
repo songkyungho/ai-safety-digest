@@ -433,7 +433,7 @@
 
 https://hai.stanford.edu/news/reading-todays-headlines-through-ai-a-real-time-audit-of-six-commercial-chatbots" onclick="copyEntry(this)">복사</button></div>
   <p>스탠퍼드 HAI 연구진은 6개 상용 AI 챗봇을 6개 지역·언어의 당일 뉴스 2,100개(총 12,600개 응답) 객관식 질문으로 평가해 대체로 90%대 정확도를 보였다고 밝혔다. 다만 지역 간 성능 격차가 컸으며 특히 Hindi는 최저로, 오류율이 다른 지역 대비 크게 높게 나타났다. 또한 질문의 전제가 약간 틀리면 견고성이 급격히 떨어져, 적대적 조건에서 Grok 4는 70.0% 정확도인 반면 GPT-5는 19.0%까지 하락했다. 오류는 추론 자체보다 ‘증거 검색 실패’와 ‘출처 대체로 인한 사실 불일치’ 비중이 높고, 인용 URL 또한 합의되지 않은 방식으로 영어권 소스에 의존하는 경향이 관찰됐다.</p>
-  <p class="url"><a href="https://hai.stanford.edu/news/reading-todays-headlines-through-ai-a-real-time-audit-of-six-commercial-chatbots">https://hai.stanford.edu/news/reading-todays-headlines-through-ai-a-real-time-audit-of-six-commercial-chatbots</a></p>
+  <p class="url"><a href="https://hai.stanford.edu/news/reading-todays-headlines-through-ai-a-real-time-audit-of-six-commercial-chatbots" target="_blank" rel="noopener noreferrer">https://hai.stanford.edu/news/reading-todays-headlines-through-ai-a-real-time-audit-of-six-commercial-chatbots</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-21.html">← 2026-02-21</a><a class="day-nav-btn" href="2026-02-23.html">2026-02-23 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

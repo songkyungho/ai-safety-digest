@@ -433,7 +433,7 @@
 
 https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=bb1a62ff-5252-4fdd-b575-36c4572688bf" onclick="copyEntry(this)">복사</button></div>
   <p>보고서는 AI가 정보·감시·정찰(ISR), 전투 시뮬레이션, 군사 물류 등 현대 전장의 핵심 분야에 활용되고 있으며, 주요국이 이를 바탕으로 군사 역량을 강화하고 있다고 설명한다. 한국의 국방 AI 경쟁력 강화를 위해 실전 중심 인재 양성, 민·군 협력 연구개발, 무인 시스템과 군사 정보 분석 기술 확대가 필요하다고 제안한다. 또한 AI 기반 ISR과 물류 혁신을 추진하는 동시에 국제적 군비 경쟁과 윤리 문제에 대응하기 위해 국제 협력과 독자 역량 강화를 병행해야 한다고 강조한다.</p>
-  <p class="url"><a href="https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=bb1a62ff-5252-4fdd-b575-36c4572688bf">https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=bb1a62ff-5252-4fdd-b575-36c4572688bf</a></p>
+  <p class="url"><a href="https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=bb1a62ff-5252-4fdd-b575-36c4572688bf" target="_blank" rel="noopener noreferrer">https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL_ID=1007002&amp;URL_KEY=bb1a62ff-5252-4fdd-b575-36c4572688bf</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://mediasvr.egentouch.com/egentouch.media/apiFile.do?action=down&amp;SCHOOL
 
 https://law-ai.org/how-to-design-ai-whistleblower-legislation/" onclick="copyEntry(this)">복사</button></div>
   <p>캘리포니아 노동법 제1102.5조는 AI 기업 직원들이 법이나 규정 위반 사항을 정부나 회사 내부에 신고했을 때 해고나 보복을 당하지 않도록 보호하는 중요한 기존 휘슬블로어 보호법이다. 하지만 이 법에도 공공 안전에 대한 심각한 위험 정보를 공개하는 휘슬블로어들을 보호하지 못하는 허점이 있으며, 광범위한 비밀유지계약서(NDA) 요구로 인해 휘슬블로어 보호법의 효과가 무력화될 위험이 있다. 미래의 연방 및 주 차원의 AI 휘슬블로어 보호법은 이러한 허점을 보완해야 한다. 주요 설계 고려사항은 휘슬블로어 보고 시스템 구축 여부, 보호법의 범위 설정, 비밀유지계약서 내 휘슬블로어 보호 조항의 무효화 조항 포함 여부 등이다. 현재까지의 논의와 법안 제안을 통해 AI 휘슬블로어 보호법은 업계 내에서도 비교적 덜 논란이 되는 주제로 인식되고 있으며, 양당 모두에서 지지 가능성이 제기되고 있다.</p>
-  <p class="url"><a href="https://law-ai.org/how-to-design-ai-whistleblower-legislation/">https://law-ai.org/how-to-design-ai-whistleblower-legislation/</a></p>
+  <p class="url"><a href="https://law-ai.org/how-to-design-ai-whistleblower-legislation/" target="_blank" rel="noopener noreferrer">https://law-ai.org/how-to-design-ai-whistleblower-legislation/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-21.html">← 2025-04-21</a><a class="day-nav-btn" href="2025-04-23.html">2025-04-23 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

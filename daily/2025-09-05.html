@@ -433,7 +433,7 @@
 
 https://www.jimin.jp/news/policy/211369.html" onclick="copyEntry(this)">복사</button></div>
   <p>자유민주당 디지털사회추진본부는 외국 세력의 디지털 정보干渉에 대해 실효성 있는 대책을 요구하는 긴급 제언을 마련해 9월 5일 관방장관(하야시 요시마사)에게 전달했다. 정부가 국가안보전략에서 인지영역 정보전에 대한 대응역량 강화를 명시했지만, AI 발전으로 가짜·오정보의 대량 확산과 봇넷 전개가 쉬워지며 위협이 심각해졌다고 설명했다. 제언은 정부 차원의 체제 강화와 함께 민간 전문가·싱크탱크 활용을 통한 정보 수집·분석·집약 및 적절한 대외발신, X 등 대형 플랫폼의 불법·유해정보 삭제와 계정 제재 강화, 동맹·우방국과의 정보공유 및 국제 공조 강화를 요구한다.</p>
-  <p class="url"><a href="https://www.jimin.jp/news/policy/211369.html">https://www.jimin.jp/news/policy/211369.html</a></p>
+  <p class="url"><a href="https://www.jimin.jp/news/policy/211369.html" target="_blank" rel="noopener noreferrer">https://www.jimin.jp/news/policy/211369.html</a></p>
   
   
 </article>
@@ -450,7 +450,7 @@ Anthropic이 저자 집단의 저작권 침해 소송을 합의하며 최소 15�
 https://www.cnbc.com/2025/09/05/anthropic-to-pay-1point5-billion-to-settle-authors-copyright-lawsuit-.html" onclick="copyEntry(this)">복사</button></div>
   <p>합의금 승인 시 역사상 최대 규모로 공개된 저작권 회수 사례가 될 수 있으며, 법원은 Library Genesis·Pirate Library Mirror 관련 침해 여부를 판단하기 위한 재판을 진행해 왔음</p>
 <p>Anthropic이 저자 집단의 저작권 침해 소송을 합의하며 최소 15억 달러를 지급하기로 했다고 소송 서류가 전했다. 저자들은 AI 스타트업이 자신들의 책을 불법적으로 접근해 학습에 사용했다고 주장했으며, 합의가 승인되면 책 1권당 약 3,000달러와 이자를 지급하고 문제로 지목된 데이터셋을 파기하기로 한 것으로 알려졌다. 미국 캘리포니아 북부지방법원에서 진행된 사건은 앞서 일부 사용이 fair use라는 판단이 있었지만, Library Genesis와 Pirate Library Mirror에서 얻은 자료의 취득 과정이 저작권 침해인지 여부는 재판 대상이 됐다.</p>
-  <p class="url"><a href="https://www.cnbc.com/2025/09/05/anthropic-to-pay-1point5-billion-to-settle-authors-copyright-lawsuit-.html">https://www.cnbc.com/2025/09/05/anthropic-to-pay-1point5-billion-to-settle-authors-copyright-lawsuit-.html</a></p>
+  <p class="url"><a href="https://www.cnbc.com/2025/09/05/anthropic-to-pay-1point5-billion-to-settle-authors-copyright-lawsuit-.html" target="_blank" rel="noopener noreferrer">https://www.cnbc.com/2025/09/05/anthropic-to-pay-1point5-billion-to-settle-authors-copyright-lawsuit-.html</a></p>
   
   
 </article>
@@ -462,7 +462,7 @@ Anthropic은 AI가 생물학 및 의학 분야의 과학적 발견을 촉진하�
 
 https://www.anthropic.com/research/biorisk" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 AI가 생물학 및 의학 분야의 과학적 발견을 촉진하고 인간의 삶을 개선할 잠재력을 강조하면서도, 악성 행위자들이 AI의 동일한 능력을 악용할 가능성을 식별하고 완화하려는 노력을 기울이고 있습니다. 특히, LLM(대형 언어 모델)이 생물학적 무기 개발과 같은 위험한 활동을 돕는 역할을 할 수 있다는 우려가 있습니다. 이 글에서는 이러한 리스크 평가와 완화 방안의 중요성을 설명합니다. LLM은 방대한 데이터를 통해 생물학적 지식을 습득하고 있으며, 이 지식은 전문가 수준에 근접하거나 때로는 초과하는 성능을 보여줍니다. 실제 실험실 환경에서의 적용 가능성과 관련된 연구도 진행 중이며, 이를 통해 AI가 비전문가에게 고급 실험실 작업을 가능하게 하는 잠재력을 평가하고 있습니다. 위험 완화를 위해 정보 공유와 같은 접근법을 고려하고 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/biorisk">https://www.anthropic.com/research/biorisk</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/biorisk" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/biorisk</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-04.html">← 2025-09-04</a><a class="day-nav-btn" href="2025-09-06.html">2025-09-06 →</a></nav>
@@ -543,7 +543,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

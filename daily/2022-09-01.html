@@ -433,7 +433,7 @@ AI 시스템이 사용자 의사와 무관하게 피해를 만들 수 있으며,
 
 https://www.ethos-ai.org/p/managing-ai-incidents-part-1" onclick="copyEntry(this)">복사</button></div>
   <p>AI 시스템이 사용자 의사와 무관하게 피해를 만들 수 있으며, 사고 발생 시 책임·대응·학습 체계를 갖추지 않으면 사태가 커질 수 있다고 설명한다. Air Canada 챗봇 환불 거부 사례와 Cruise 로봇택시 사고는 기술 실패뿐 아니라 보고·대응 실패가 피해를 확대하고 기업 붕괴로 이어졌다고 언급한다. 반대로 Microsoft의 세션 제한·가드레일 강화, OpenAI의 서비스 중단·사후분석 공개·영향 사용자 통지처럼 빠른 격리와 명확한 소유가 확산을 줄였다고 비교한다. 또한 정책이 ‘컴플라이언스 체크박스’로 취급되면 무용지물이 되며, 조직 내 조기징후 미보고·과잉에스컬레이션·지연·사실 회피 같은 문화적 실패가 대응을 망칠 수 있다고 강조한다.</p>
-  <p class="url"><a href="https://www.ethos-ai.org/p/managing-ai-incidents-part-1">https://www.ethos-ai.org/p/managing-ai-incidents-part-1</a></p>
+  <p class="url"><a href="https://www.ethos-ai.org/p/managing-ai-incidents-part-1" target="_blank" rel="noopener noreferrer">https://www.ethos-ai.org/p/managing-ai-incidents-part-1</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2022-08-27.html">← 2022-08-27</a><a class="day-nav-btn" href="2022-09-14.html">2022-09-14 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

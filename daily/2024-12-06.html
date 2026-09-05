@@ -443,7 +443,7 @@ https://llama.meta.com/docs/model-cards-and-prompt-formats/llama3_3/" onclick="c
   <p>General · Open · 128K ctx</p>
 <p>MMLU 68.9% · HE 88.4% · MATH 77%</p>
 <p>Best dense open 70B. Matches Llama 3.1 405B on most tasks. Reference model for fine-tuning.</p>
-  <p class="url"><a href="https://llama.meta.com/docs/model-cards-and-prompt-formats/llama3_3/">https://llama.meta.com/docs/model-cards-and-prompt-formats/llama3_3/</a></p>
+  <p class="url"><a href="https://llama.meta.com/docs/model-cards-and-prompt-formats/llama3_3/" target="_blank" rel="noopener noreferrer">https://llama.meta.com/docs/model-cards-and-prompt-formats/llama3_3/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-12-05.html">← 2024-12-05</a><a class="day-nav-btn" href="2024-12-10.html">2024-12-10 →</a></nav>
@@ -524,7 +524,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

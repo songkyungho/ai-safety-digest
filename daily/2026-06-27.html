@@ -433,7 +433,7 @@
 
 https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862" onclick="copyEntry(this)">복사</button></div>
   <p>기술 업계는 규제 완화를 기대하고 트럼프 대통령을 지지했으나, 최근 백악관이 보안 우려로 첨단 AI 모델 출시를 제한하자 혼란에 빠짐. OpenAI와 Anthropic의 최신 모델 배포가 제한되는 등 예측 불가능한 규제 조치가 이어지면서, 업계는 명확하고 일관된 AI 규제 프레임워크 마련을 촉구. * 1/2페이지.</p>
-  <p class="url"><a href="https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862">https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862</a></p>
+  <p class="url"><a href="https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862" target="_blank" rel="noopener noreferrer">https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862</a></p>
   
   
 </article>
@@ -450,7 +450,7 @@ https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862" 
 https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies" onclick="copyEntry(this)">복사</button></div>
   <p>해당 문서에 따르면 2026.6.26(EDT) 블록 해제 결정으로, Mythos 5는 100개 이상 미국 기관(대기업·정부기관 포함)에 제공될 수 있도록 조치됨</p>
 <p>미국 정부가 Anthropic의 ‘Claude Mythos 5’ 모델에 대한 차단을 해제해, 100개 이상 미국 기관이 모델에 접근할 수 있게 했다. 이는 앞서 행정부가 Mythos에 대해 수출통제 조치를 내리며 모델과 관련 모델(Fable 5)을 중단시킨 뒤, 정부와 Anthropic 간 협상에서 “적절한 안전장치”가 마련됐다는 판단에 따른 것으로 전해진다. 다만 Fable 5의 해제 시점은 언급이 없거나 일정이 불명확하다고 보도했다.</p>
-  <p class="url"><a href="https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies">https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies</a></p>
+  <p class="url"><a href="https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies" target="_blank" rel="noopener noreferrer">https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-06-26.html">← 2026-06-26</a><a class="day-nav-btn" href="2026-06-28.html">2026-06-28 →</a></nav>
@@ -531,7 +531,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

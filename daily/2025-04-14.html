@@ -443,7 +443,7 @@ https://platform.openai.com/docs/models#gpt-4-1" onclick="copyEntry(this)">복�
   <p>General · Closed · 1000K ctx · $2/M · $8/M</p>
 <p>GPQA 66.3% · SWE 54.6% · MMLU 78% · HE 93% · MATH 90% · AIME 34.7%</p>
 <p>1M token context window. Strong coding and instruction following between GPT-4o and GPT-5.</p>
-  <p class="url"><a href="https://platform.openai.com/docs/models#gpt-4-1">https://platform.openai.com/docs/models#gpt-4-1</a></p>
+  <p class="url"><a href="https://platform.openai.com/docs/models#gpt-4-1" target="_blank" rel="noopener noreferrer">https://platform.openai.com/docs/models#gpt-4-1</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-08.html">← 2025-04-08</a><a class="day-nav-btn" href="2025-04-15.html">2025-04-15 →</a></nav>
@@ -524,7 +524,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

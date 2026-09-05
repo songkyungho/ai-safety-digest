@@ -433,7 +433,7 @@
 
 https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251224-000001" onclick="copyEntry(this)">복사</button></div>
   <p>웹 방화벽 보안 정책과 상충하는 요청/응답이 차단되었다고 안내합니다. 차단 과정에서 탐지 시간(Detect time), 클라이언트 IP(Detect client IP), 요청 URL(Detect URL) 정보가 함께 표시됩니다.</p>
-  <p class="url"><a href="https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251224-000001">https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251224-000001</a></p>
+  <p class="url"><a href="https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251224-000001" target="_blank" rel="noopener noreferrer">https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251224-000001</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://www.itfind.or.kr/admin/getStreamDocsRegi.htm?identifier=02-001-251224-00
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=275288" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 제43차 ICT 규제샌드박스 신기술·서비스 심의위원회를 열고 지자체 폐쇄회로 텔레비전(CCTV) 원본 데이터 활용 등 6건의 규제 특례를 지정했다. 개인정보보호위원회의 영상데이터 원본 활용 안전조치 기준을 준수하면 학습 후 인공지능 결과물만 반출해 지자체 관제 시스템 개선에 활용할 수 있다. 이를 통해 인공지능 경쟁력 강화와 재난·안전 상황에서 주민 안전 개선이 기대된다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=275288">https://eiec.kdi.re.kr/policy/materialView.do?num=275288</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=275288" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=275288</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-12-23.html">← 2025-12-23</a><a class="day-nav-btn" href="2025-12-26.html">2025-12-26 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

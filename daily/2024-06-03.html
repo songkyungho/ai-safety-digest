@@ -433,7 +433,7 @@
 
 https://www.wfri.re.kr/module/lib/board_file_download.php?idx=1408&amp;board_code=research_report&amp;file_cnt=2" onclick="copyEntry(this)">복사</button></div>
   <p>우리금융경영연구소는 금융업계의 AI 활용 확산에 따른 리스크를 데이터 관련 리스크, 산출물 관련 리스크, 시장 변동성 확대 리스크로 분류했다. 데이터 관련 리스크에는 개인정보 유출, 편향, 데이터 오염이 포함되며, 산출물 관련 리스크에는 생성형 AI의 환각으로 인한 오류가 포함된다. 또한 금융기관들이 동일하거나 유사한 AI 모델을 활용하면 시장에서 비슷한 투자 포지션이 확대돼 버블·버스트 사이클이 심화될 수 있으므로, 금융기관은 AI 도입과 함께 자체적인 대비·대응방안을 마련해야 한다.</p>
-  <p class="url"><a href="https://www.wfri.re.kr/module/lib/board_file_download.php?idx=1408&amp;board_code=research_report&amp;file_cnt=2">https://www.wfri.re.kr/module/lib/board_file_download.php?idx=1408&amp;board_code=research_report&amp;file_cnt=2</a></p>
+  <p class="url"><a href="https://www.wfri.re.kr/module/lib/board_file_download.php?idx=1408&amp;board_code=research_report&amp;file_cnt=2" target="_blank" rel="noopener noreferrer">https://www.wfri.re.kr/module/lib/board_file_download.php?idx=1408&amp;board_code=research_report&amp;file_cnt=2</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-06-02.html">← 2024-06-02</a><a class="day-nav-btn" href="2024-06-04.html">2024-06-04 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

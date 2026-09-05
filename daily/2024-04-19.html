@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=250486" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부와 정보통신정책연구원은 2024년 4월 18일 제3기 ‘AI 윤리·신뢰성 포럼’ 출범식을 개최했다. 포럼은 AI전략최고위협의회 윤리·안전분과로 운영되며, 범부처 AI 윤리·신뢰성 과제를 발굴하고 정책을 구체화해 민관이 함께 이행할 계획이다. 이날 채용 분야 AI 윤리 자율점검표, AI 윤리영향평가 프레임워크, AI 윤리교육 교재를 공개하고 국내 AI 윤리·신뢰성 확보를 위한 정책 방향을 논의했다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=250486">https://eiec.kdi.re.kr/policy/materialView.do?num=250486</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=250486" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=250486</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-04-14.html">← 2024-04-14</a><a class="day-nav-btn" href="2024-04-22.html">2024-04-22 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

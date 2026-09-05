@@ -433,7 +433,7 @@ Novelli 등은 EU AI법의 거버넌스 체계와 일관되고 조정된 집행�
 
 https://artificialintelligenceact.eu/robust-governance-for-the-ai-act/" onclick="copyEntry(this)">복사</button></div>
   <p>Novelli 등은 EU AI법의 거버넌스 체계와 일관되고 조정된 집행을 위한 권고를 제시하며, 집행위원회의 절차·분류·투명성·감독 책임을 정리했다. AI Office, AI Board, 과학 패널 등 초국가·회원국 기관의 역할을 설명하고, 특히 GPAI의 systemic risk 분류에 따라 평가·red-teaming·위험 완화·사고 보고·사이버보안 의무가 강화된다고 분석했다. 기존 GPAI에는 24개월의 유예기간이 적용되고, 이미 시장에 출시된 일부 고위험 시스템은 significant changes가 있을 때까지 AI법 적용이 면제되어 기존 사업자에게 유리할 수 있다는 점도 지적했다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/robust-governance-for-the-ai-act/">https://artificialintelligenceact.eu/robust-governance-for-the-ai-act/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/robust-governance-for-the-ai-act/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/robust-governance-for-the-ai-act/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-05-23.html">← 2024-05-23</a><a class="day-nav-btn" href="2024-05-26.html">2024-05-26 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

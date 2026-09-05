@@ -433,7 +433,7 @@
 
 https://deepmind.google/blog/weathernext-2-our-most-advanced-weather-forecasting-model/" onclick="copyEntry(this)">복사</button></div>
   <p>구글 딥마인드와 구글 리서치가 기존 모델보다 최대 8배 빠르고 최대 1시간 단위의 고해상도 예측이 가능한 WeatherNext 2를 공개했다. 이 모델은 단일 TPU에서 1분 이내에 수백 가지 기상 시나리오를 생성하며, 0~15일 예측 범위의 변수와 선행시간 중 99.9%에서 이전 WeatherNext 모델을 능가했다. 예측 데이터는 Earth Engine과 BigQuery에서 제공되며, Google Cloud Vertex AI에서는 맞춤형 추론을 위한 얼리 액세스 프로그램이 시작된다.</p>
-  <p class="url"><a href="https://deepmind.google/blog/weathernext-2-our-most-advanced-weather-forecasting-model/">https://deepmind.google/blog/weathernext-2-our-most-advanced-weather-forecasting-model/</a></p>
+  <p class="url"><a href="https://deepmind.google/blog/weathernext-2-our-most-advanced-weather-forecasting-model/" target="_blank" rel="noopener noreferrer">https://deepmind.google/blog/weathernext-2-our-most-advanced-weather-forecasting-model/</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://deepmind.google/blog/weathernext-2-our-most-advanced-weather-forecasting
 
 https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-90-digital" onclick="copyEntry(this)">복사</button></div>
   <p>유럽연합 집행위원회는 디지털 간소화 패키지에서 고위험 AI 시스템 규정의 시행을 1년 늦춰 2027년 8월로 연기하는 방안을 제안할 것으로 예상된다. AI 생성 콘텐츠의 표시·라벨링을 위한 자발적 실천규범 마련도 시작됐으며, 관련 투명성 요건은 2026년 8월부터 적용될 예정이다. 유럽의회 사회민주당과 Greens/EFA는 이러한 개정안이 투명성·기본권 보호·AI 리터러시를 약화시킬 수 있다며 반대했고, 뉴스레터는 생물학적 AI 모델이 현행 지침의 규제 공백에 놓여 있다고 지적했다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-90-digital">https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-90-digital</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-90-digital" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.substack.com/p/the-eu-ai-act-newsletter-90-digital</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-11-14.html">← 2025-11-14</a><a class="day-nav-btn" href="2025-11-18.html">2025-11-18 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

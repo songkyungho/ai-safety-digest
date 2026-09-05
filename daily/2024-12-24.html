@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=261619" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부와 한국정보통신기술협회가 한국의 ‘신뢰할 수 있는 인공지능 개발안내서’와 미국 국립표준기술연구소의 인공지능 위험관리체계(AI RMF)를 교차분석해 세부 항목 간 정합성을 확인했다. 한국 안내서는 15개 기술 요구사항과 67개 세부 검증항목을 제시하며, 인공지능 신뢰성 확보와 관련 표준 마련을 지원해왔다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=261619">https://eiec.kdi.re.kr/policy/materialView.do?num=261619</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=261619" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=261619</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-12-20.html">← 2024-12-20</a><a class="day-nav-btn" href="2024-12-25.html">2024-12-25 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

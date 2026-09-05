@@ -433,7 +433,7 @@
 
 https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27680&amp;parentSeq=27680" onclick="copyEntry(this)">복사</button></div>
   <p>보고서는 개발도상국의 AI 활용 기회와 인프라·데이터·인력·거버넌스 측면의 구조적 도전과제를 분석했다. AI는 농업·의료·교육·금융 분야에서 지속가능발전목표 달성을 촉진할 수 있지만, 디지털 격차를 심화할 위험도 있으며 118개국이 주요 AI 거버넌스 이니셔티브에 참여하지 않아 대표성 격차가 나타났다. 유엔의 AI 국제 과학 패널, 정책 대화, 표준 교환소, 역량 개발 네트워크, 글로벌 펀드 조성 등 7대 권고안을 검토하고, 한국이 포용적 AI 규범을 주도하며 글로벌 사우스와의 AI 개발협력 전략을 수립해야 한다고 제안했다.</p>
-  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27680&amp;parentSeq=27680">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27680&amp;parentSeq=27680</a></p>
+  <p class="url"><a href="https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27680&amp;parentSeq=27680" target="_blank" rel="noopener noreferrer">https://nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27680&amp;parentSeq=27680</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-16.html">← 2025-02-16</a><a class="day-nav-btn" href="2025-02-18.html">2025-02-18 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

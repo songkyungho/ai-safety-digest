@@ -438,7 +438,7 @@
 https://www.arxiv.org/abs/2507.14805" onclick="copyEntry(this)">복사</button></div>
   <p>제출일(논문 공개일): 2025.7.20</p>
 <p>언어모델이 의미적으로 무관한 데이터에서 ‘subliminal learning’을 통해 행동 특성(예: 특정 대상 선호, misalignment)을 전달할 수 있음을 연구했다. teacher 모델이 특정 trait T를 가진 상태에서 숫자 수열만으로 구성된 데이터셋(또는 코드/추론 트레이스)을 생성해도, student 모델은 데이터에서 T 관련 표현을 제거해도 T를 학습하는 현상이 관찰됐다. 다만 teacher와 student의 base model이 다르면 해당 효과는 관찰되지 않았으며, 이 현상이 특정 조건에서 일반 신경망 전반에 나타날 수 있음을 이론적으로도 보였다.</p>
-  <p class="url"><a href="https://www.arxiv.org/abs/2507.14805">https://www.arxiv.org/abs/2507.14805</a></p>
+  <p class="url"><a href="https://www.arxiv.org/abs/2507.14805" target="_blank" rel="noopener noreferrer">https://www.arxiv.org/abs/2507.14805</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-18.html">← 2025-07-18</a><a class="day-nav-btn" href="2025-07-21.html">2025-07-21 →</a></nav>
@@ -519,7 +519,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

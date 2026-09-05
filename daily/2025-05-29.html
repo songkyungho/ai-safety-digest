@@ -454,7 +454,7 @@ https://www.anthropic.com/research/open-source-circuit-tracing" onclick="copyEnt
 - 모델 출력 변화를 관찰하기 위한 특징 값 수정을 통한 가설 검증</p>
 <p>이 도구는 Gemma-2-2b와 Llama-3.2-1b 모델의 다중 단계 추론 및 다국어 표현 등 흥미로운 행동을 연구하는 데 활용되었습니다. CEO Dario Amodei는 해석 가능성 연구의 중요성을 강조하며, 이 오픈 소스 도구를 통해 AI 모델 내부 작동 원리를 더 잘 이해할 수 있도록 커뮤니티에 기여하고자 합니다.</p>
 <p>자세한 내용은 코드 저장소와 Neuronpedia 인터페이스를 통해 확인 가능합니다. 문의 사항은 GitHub 이슈 트래커를 통해 제출할 수 있습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/open-source-circuit-tracing">https://www.anthropic.com/research/open-source-circuit-tracing</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/open-source-circuit-tracing" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/open-source-circuit-tracing</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-28.html">← 2025-05-28</a><a class="day-nav-btn" href="2025-05-31.html">2025-05-31 →</a></nav>
@@ -535,7 +535,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

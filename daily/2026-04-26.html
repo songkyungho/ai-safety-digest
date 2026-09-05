@@ -433,7 +433,7 @@ OpenAI는 사용자가 ChatGPT를 이용해 현실 세계의 폭력이나 범죄
 
 https://openai.com/index/our-commitment-to-community-safety/" onclick="copyEntry(this)">복사</button></div>
   <p>OpenAI는 사용자가 ChatGPT를 이용해 현실 세계의 폭력이나 범죄를 모의하는 것을 차단하기 위해 유해 콘텐츠 감지 시스템을 고도화하는 등의 안전 조치를 공지. 자동화 시스템과 인간의 문맥 평가를 병행해 위험 신호를 감지 및 계정을 즉시 차단하며, 임박한 폭력 위험 판단 시 사법 당국 통보와 청소년 자녀 보호 기능 등을 운영.</p>
-  <p class="url"><a href="https://openai.com/index/our-commitment-to-community-safety/">https://openai.com/index/our-commitment-to-community-safety/</a></p>
+  <p class="url"><a href="https://openai.com/index/our-commitment-to-community-safety/" target="_blank" rel="noopener noreferrer">https://openai.com/index/our-commitment-to-community-safety/</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://openai.com/index/our-commitment-to-community-safety/" onclick="copyEntry
 
 https://www.axios.com/2026/04/26/ai-cost-human-workers" onclick="copyEntry(this)">복사</button></div>
   <p>일부 기업들이 AI 도입·운영 비용이 사람의 노동(인건비)보다 더 높다고 보고했다는 내용으로 보입니다. 다만 제공된 정보에는 본문 내용이 없어 구체적인 수치, 사례, 비교 기준은 확인이 필요합니다.</p>
-  <p class="url"><a href="https://www.axios.com/2026/04/26/ai-cost-human-workers">https://www.axios.com/2026/04/26/ai-cost-human-workers</a></p>
+  <p class="url"><a href="https://www.axios.com/2026/04/26/ai-cost-human-workers" target="_blank" rel="noopener noreferrer">https://www.axios.com/2026/04/26/ai-cost-human-workers</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ VLA(비전-언어-행동) 모델이 체화된(embodied) 지능의 공통 기반�
 
 https://arxiv.org/abs/2604.23775" onclick="copyEntry(this)">복사</button></div>
   <p>VLA(비전-언어-행동) 모델이 체화된(embodied) 지능의 공통 기반으로 확산되면서, 물리적으로 되돌릴 수 없는 결과, 비전·언어·상태 전반에 걸친 멀티모달 공격면, 실시간 지연 제약 하의 방어, 장기 궤적에서의 오류 전파, 데이터 공급망 취약성 등 새로운 안전 문제가 부각된다. 본 연구는 기존에 로봇 학습/적대적 ML/정렬/자율시스템 안전으로 분산된 문헌을 통합해, 위협을 “공격 타이밍(학습 vs 추론)”과 “방어 타이밍(학습 vs 추론)”의 두 축으로 정리하고 Attacks-Defenses-Evaluation-Deployment의 네 관점으로 체계화한다. 평가 측면에서는 학습 시점 위협(데이터 포이즈닝, 백도어)과 추론 시점 공격(적대 패치, 크로스모달 섭동, 시맨틱 재일브레이크, 프리징 공격)을 검토하고, 기존 벤치마크/지표를 정리하며 도메인별 안전 과제를 논의한다. 한계로는 체화 궤적에 대한 인증(certified) 강건성, 물리적으로 실현 가능한 방어, 안전 인지 학습, 통합 런타임 안전 아키텍처, 표준화된 평가의 부재가 핵심 오픈 문제로 제시된다. 정책·규제 및 국가 전략 측면에서는 로봇/자율시스템의 멀티모달·실시간 특성을 반영한 안전 평가 표준과, 데이터 공급망 및 배포 전 검증 체계(벤치마크/지표 표준화 포함) 마련의 필요성이 시사된다.</p>
-  <p class="url"><a href="https://arxiv.org/abs/2604.23775">https://arxiv.org/abs/2604.23775</a></p>
+  <p class="url"><a href="https://arxiv.org/abs/2604.23775" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2604.23775</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-04-25.html">← 2026-04-25</a><a class="day-nav-btn" href="2026-04-27.html">2026-04-27 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

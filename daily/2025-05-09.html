@@ -433,7 +433,7 @@
 
 https://desapublications.un.org/file/21159/download" onclick="copyEntry(this)">복사</button></div>
   <p>책임 있게 도입된 인공지능은 보건·교육·기후변화 등 핵심 분야의 효율성, 혁신, 의사결정을 높여 지속가능발전목표(SDGs) 달성을 앞당길 수 있다. 전략적 미래예측은 인공지능의 급속한 발전과 사회적 영향을 전망하고, 새로운 위험을 파악하며, 윤리 원칙과 사회적 가치에 부합하는 혁신을 촉진하는 데 도움을 준다. 공공행정은 인공지능 발전을 예측할 수 있도록 견고한 미래예측 역량을 구축해야 한다.</p>
-  <p class="url"><a href="https://desapublications.un.org/file/21159/download">https://desapublications.un.org/file/21159/download</a></p>
+  <p class="url"><a href="https://desapublications.un.org/file/21159/download" target="_blank" rel="noopener noreferrer">https://desapublications.un.org/file/21159/download</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-08.html">← 2025-05-08</a><a class="day-nav-btn" href="2025-05-14.html">2025-05-14 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

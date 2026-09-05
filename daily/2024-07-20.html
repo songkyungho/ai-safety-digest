@@ -458,7 +458,7 @@ https://law-ai.org/international-law-and-advanced-ai/" onclick="copyEntry(this)"
   - **산업적 입력 통제**: AI 시스템을 구동하는 컴퓨팅 자원의 수출 통제 등을 통한 통제.
 - **미래 전망**: 유엔 정상회담과 국제 AI 정상회의 등을 앞두고, 이러한 규제 방안들이 어떻게 구현될 수 있는지 분석하고 있다. 또한, AI 기술의 급속한 발전으로 인해 국가 간의 법적으로 구속력 있는 규제가 필요할 수 있다는 점을 강조한다.</p>
 <p>이 기사는 국제적인 AI 규제의 가능성을 탐색하며, 특히 법적으로 구속력 있는 규제의 필요성과 그 구현 방안에 초점을 맞추고 있다.</p>
-  <p class="url"><a href="https://law-ai.org/international-law-and-advanced-ai/">https://law-ai.org/international-law-and-advanced-ai/</a></p>
+  <p class="url"><a href="https://law-ai.org/international-law-and-advanced-ai/" target="_blank" rel="noopener noreferrer">https://law-ai.org/international-law-and-advanced-ai/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-19.html">← 2024-07-19</a><a class="day-nav-btn" href="2024-07-22.html">2024-07-22 →</a></nav>
@@ -539,7 +539,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

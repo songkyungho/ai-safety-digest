@@ -433,7 +433,7 @@
 
 https://artificialintelligenceact.eu/ai-act-implementation-next-steps/" onclick="copyEntry(this)">복사</button></div>
   <p>이 글은 EU 인공지능법 발효 후 6개월부터 36개월까지 금지된 AI, 범용 AI(GPAI), 고위험 AI 시스템에 적용되는 주요 의무와 회원국 당국 지정·규제 샌드박스 설치 등의 일정을 정리한다. 유럽연합 집행위원회는 고위험 AI 기준, GPAI 관련 기술문서와 적합성 평가, 행동강령 및 규제 샌드박스 운영 등에 관한 위임법·시행법과 지침을 마련할 수 있다. 다만 본문은 작성 당시 기준의 일정으로 현재는 최신 일정이 아닐 수 있다고 명시한다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/ai-act-implementation-next-steps/">https://artificialintelligenceact.eu/ai-act-implementation-next-steps/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/ai-act-implementation-next-steps/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/ai-act-implementation-next-steps/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-02-27.html">← 2024-02-27</a><a class="day-nav-btn" href="2024-02-29.html">2024-02-29 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

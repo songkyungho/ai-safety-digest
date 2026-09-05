@@ -433,7 +433,7 @@
 
 https://www.aisi.gov.uk/research/an-alignment-safety-case-sketch-based-on-debate" onclick="copyEntry(this)">복사</button></div>
   <p>해당 글은 AI 시스템이 인간 수준 이상으로 능력을 갖추면 인간이 행동을 판단하고 human feedback으로 원하는 방향을 유도하기 어려워질 수 있어, superhuman 시스템의 debate로 오류를 지적하도록 하는 접근을 다룹니다. 논문은 ‘alignment safety case’를 스케치하며, AI 회사 내부의 R&amp;D agent가 연구를 훼손(예: false results 생성)할 위험을 debate로 훈련하고 exploration guarantees 및 online training을 통해 배포 중 honesty를 유지하는 구상을 제시합니다. 안전성 주장은 (1) debate 게임에서의 숙련 (2) debate 성능이 대부분의 honesty를 의미 (3) 배포 중 honesty의 유의미한 저하가 없을 것 (4) 배포 맥락이 일부 오류를 허용한다는 네 가지 핵심 주장에 기반하며, 이를 뒷받침할 추가 연구 과제도 제시합니다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/research/an-alignment-safety-case-sketch-based-on-debate">https://www.aisi.gov.uk/research/an-alignment-safety-case-sketch-based-on-debate</a></p>
+  <p class="url"><a href="https://www.aisi.gov.uk/research/an-alignment-safety-case-sketch-based-on-debate" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/an-alignment-safety-case-sketch-based-on-debate</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-05-05.html">← 2025-05-05</a><a class="day-nav-btn" href="2025-05-07.html">2025-05-07 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

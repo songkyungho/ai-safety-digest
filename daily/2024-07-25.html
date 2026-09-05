@@ -433,7 +433,7 @@
 
 https://www.kcmi.re.kr/publications/pub_dt_view?cno=6371&amp;syear=2024&amp;zcd=002001016&amp;zno=1797&amp;fcd=002001016002" onclick="copyEntry(this)">복사</button></div>
   <p>영국 FCA는 특정 AI 기술을 금지하기보다 위험 식별·완화와 5가지 기본원칙, 기존 고위경영자 인증제도(SM&amp;CR)에 따른 책임 및 거버넌스를 중심으로 AI를 규율한다. 싱가포르 MAS는 FEAT 원칙과 Veritas·MindForge 등 위험관리 이니셔티브를 통해 금융기관의 책임 있는 AI와 생성형 AI 활용을 지원하고, 대만 FSC는 비구속적 AI 활용 가이드라인을 제시했다. 국내 금융당국도 AI 활용 확대와 망분리 규제 개선을 논의하는 가운데, 신뢰성 확보를 위한 체계적인 위험관리와 구체적인 실무 지침 마련이 필요하다.</p>
-  <p class="url"><a href="https://www.kcmi.re.kr/publications/pub_dt_view?cno=6371&amp;syear=2024&amp;zcd=002001016&amp;zno=1797&amp;fcd=002001016002">https://www.kcmi.re.kr/publications/pub_dt_view?cno=6371&amp;syear=2024&amp;zcd=002001016&amp;zno=1797&amp;fcd=002001016002</a></p>
+  <p class="url"><a href="https://www.kcmi.re.kr/publications/pub_dt_view?cno=6371&amp;syear=2024&amp;zcd=002001016&amp;zno=1797&amp;fcd=002001016002" target="_blank" rel="noopener noreferrer">https://www.kcmi.re.kr/publications/pub_dt_view?cno=6371&amp;syear=2024&amp;zcd=002001016&amp;zno=1797&amp;fcd=002001016002</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-24.html">← 2024-07-24</a><a class="day-nav-btn" href="2024-07-26.html">2024-07-26 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

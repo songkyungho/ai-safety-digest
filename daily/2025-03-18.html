@@ -433,7 +433,7 @@
 
 https://www.cfe.org/20250317_27401" onclick="copyEntry(this)">복사</button></div>
   <p>우리나라는 2025년 1월 21일 AI 기본법을 제정했으며, 2026년 1월 22일부터 시행할 예정이다. 보고서는 AI 산업 발전과 신뢰 기반 조성을 위해 기업 지원을 강화하되, 고영향 AI의 범위와 규제 부담에 대한 기업 우려를 반영해 하위법령을 유연하게 설계해야 한다고 제안한다. 주요국의 AI 정책이 경성규제에서 산업 육성 중심의 연성규제로 전환되는 흐름을 소개하며, 정부와 산업계 간 소통 강화를 강조한다.</p>
-  <p class="url"><a href="https://www.cfe.org/20250317_27401">https://www.cfe.org/20250317_27401</a></p>
+  <p class="url"><a href="https://www.cfe.org/20250317_27401" target="_blank" rel="noopener noreferrer">https://www.cfe.org/20250317_27401</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-17.html">← 2025-03-17</a><a class="day-nav-btn" href="2025-03-19.html">2025-03-19 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

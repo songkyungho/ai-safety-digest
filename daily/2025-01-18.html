@@ -433,7 +433,7 @@
 
 https://humancompatible.ai/news/2025/01/18/rvs-what-is-essential-for-offline-rl-via-supervised-learning/" onclick="copyEntry(this)">복사</button></div>
   <p>오프라인 강화학습에서는 temporal difference(TD) 학습 없이도 지도학습만으로 높은 성능을 낼 수 있으며, 두 층 feedforward MLP의 likelihood 최대화만으로도 복잡한 TD·Transformer 기반 방법과 경쟁력 있는 결과를 보였다. 성능을 위해서는 정규화나 구조를 통한 모델 용량 조절과 목표·보상 등 어떤 정보를 조건으로 사용할지 선택하는 것이 중요하다. 연구진은 이를 지도학습을 통한 강화학습(RvS learning)의 실용적 지침으로 정리했으며, 기존 RvS 방법이 무작위 데이터에서 상대적으로 약하다는 한계와 추가 연구 과제도 제시했다.</p>
-  <p class="url"><a href="https://humancompatible.ai/news/2025/01/18/rvs-what-is-essential-for-offline-rl-via-supervised-learning/">https://humancompatible.ai/news/2025/01/18/rvs-what-is-essential-for-offline-rl-via-supervised-learning/</a></p>
+  <p class="url"><a href="https://humancompatible.ai/news/2025/01/18/rvs-what-is-essential-for-offline-rl-via-supervised-learning/" target="_blank" rel="noopener noreferrer">https://humancompatible.ai/news/2025/01/18/rvs-what-is-essential-for-offline-rl-via-supervised-learning/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-01-17.html">← 2025-01-17</a><a class="day-nav-btn" href="2025-01-19.html">2025-01-19 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

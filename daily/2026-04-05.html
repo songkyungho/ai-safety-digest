@@ -433,7 +433,7 @@
 
 https://arxiv.org/pdf/2604.03976" onclick="copyEntry(this)">복사</button></div>
   <p>자율 AI 에이전트의 실행 실패나 의도치 않은 피해로 인한 위험을 해결하기 위해, 금융 보험에서 착안한 결제 표준인 &#x27;ARS&#x27;를 도입하자는 논문이 발표. 에이전트의 작동 실패 시 사전에 합의된 보상을 사용자에게 제공함으로써, 막연한 기술적 신뢰를 측정 가능하고 법적으로 집행 가능한 계약적 보증으로 전환하자고 제안.</p>
-  <p class="url"><a href="https://arxiv.org/pdf/2604.03976">https://arxiv.org/pdf/2604.03976</a></p>
+  <p class="url"><a href="https://arxiv.org/pdf/2604.03976" target="_blank" rel="noopener noreferrer">https://arxiv.org/pdf/2604.03976</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-04-04.html">← 2026-04-04</a><a class="day-nav-btn" href="2026-04-06.html">2026-04-06 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

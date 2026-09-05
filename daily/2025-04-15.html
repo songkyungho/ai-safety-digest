@@ -433,7 +433,7 @@ EU AI법은 AI 시스템을 위험 수준에 따라 4가지로 구분해 차등 
 
 https://www.kosi.re.kr/front/functionDisplay?menuFrontNo=59996687477237983229272069890802427549&amp;menuFrontURL=front/basicResearchDetail?dataSequence=H250219K05" onclick="copyEntry(this)">복사</button></div>
   <p>EU AI법은 AI 시스템을 위험 수준에 따라 4가지로 구분해 차등 규제하며, 중소기업과 스타트업에는 규제 샌드박스, 준수 비용 감면, 간소화된 요구사항 등을 제공한다. 중소기업은 기술 개발 초기부터 규제 요구사항에 맞춰 기술 문서화와 위험 평가, 적합성 인증을 준비하고 EU 내 규제 동향과 사례를 지속적으로 모니터링해야 한다. 연구는 정부가 규제 교육과 정보 제공, AI 기술평가 시스템 및 지원 환경을 강화해 국내 기업의 EU 시장 진출과 글로벌 경쟁력 확보를 지원해야 한다고 제언한다.</p>
-  <p class="url"><a href="https://www.kosi.re.kr/front/functionDisplay?menuFrontNo=59996687477237983229272069890802427549&amp;menuFrontURL=front/basicResearchDetail?dataSequence=H250219K05">https://www.kosi.re.kr/front/functionDisplay?menuFrontNo=59996687477237983229272069890802427549&amp;menuFrontURL=front/basicResearchDetail?dataSequence=H250219K05</a></p>
+  <p class="url"><a href="https://www.kosi.re.kr/front/functionDisplay?menuFrontNo=59996687477237983229272069890802427549&amp;menuFrontURL=front/basicResearchDetail?dataSequence=H250219K05" target="_blank" rel="noopener noreferrer">https://www.kosi.re.kr/front/functionDisplay?menuFrontNo=59996687477237983229272069890802427549&amp;menuFrontURL=front/basicResearchDetail?dataSequence=H250219K05</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-14.html">← 2025-04-14</a><a class="day-nav-btn" href="2025-04-16.html">2025-04-16 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

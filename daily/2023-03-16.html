@@ -433,7 +433,7 @@
 
 https://www.anthropic.com/research/privileged-bases-in-the-transformer-residual-stream" onclick="copyEntry(this)">복사</button></div>
   <p>본 연구는 Transformer 아키텍처 내 잔여 스트림의 개별 좌표가 실제로는 무작위 방향보다 정보를 더 잘 인코딩한다는 실무적 관찰을 분석한다. 연구진은 이 현상이 Adam 최적화기의 차원별 정규화 과정에 의해 발생한다고 잠정적으로 결론짓고, 레이어 정규화와 유한 정밀도 부동소수점 계산은 이 현상의 원인이 아님을 확인했다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/privileged-bases-in-the-transformer-residual-stream">https://www.anthropic.com/research/privileged-bases-in-the-transformer-residual-stream</a></p>
+  <p class="url"><a href="https://www.anthropic.com/research/privileged-bases-in-the-transformer-residual-stream" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/privileged-bases-in-the-transformer-residual-stream</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-03-08.html">← 2023-03-08</a><a class="day-nav-btn" href="2023-03-17.html">2023-03-17 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

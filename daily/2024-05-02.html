@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=251049" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부와 개인정보보호위원회는 인공지능·디지털 정책 추진을 가속화하기 위해 정책협의회를 출범하고 2024년 4월 30일 첫 회의를 열었다. 양 기관은 정책 현안을 공유하고 협업 방안을 논의하기로 했다. 회의에서는 마이데이터 하위법령 개정, 가명정보 활성화, 인공지능 기반 보이스피싱 조기 탐지를 위한 음성정보 활용, 개인정보 활용 실증 특례 지원, 새로운 디지털 질서 정립 등이 논의됐다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=251049">https://eiec.kdi.re.kr/policy/materialView.do?num=251049</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=251049" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=251049</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-04-30.html">← 2024-04-30</a><a class="day-nav-btn" href="2024-05-16.html">2024-05-16 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

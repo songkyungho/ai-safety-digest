@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/internationalView.do?ac=0000188335" onclick="copyEntry(this)">복사</button></div>
   <p>보고서는 AI 위험을 정의하고 실효성 있는 완화 방안을 마련하기 위해 국제 협력을 확대해야 한다고 강조한다. 2025년 2월 프랑스에서 열리는 AI 행동 정상회의를 앞두고 각국 정부와 연구자, 시민사회, 특히 글로벌 사우스의 참여를 확대해 AI의 위험과 피해에 대응하고 혜택을 공평하게 분배해야 한다고 제안한다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/internationalView.do?ac=0000188335">https://eiec.kdi.re.kr/policy/internationalView.do?ac=0000188335</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/internationalView.do?ac=0000188335" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/internationalView.do?ac=0000188335</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ https://eiec.kdi.re.kr/policy/internationalView.do?ac=0000188335" onclick="copyE
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=257789" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 제1차 국가인공지능위원회에서 AI G3 강국 실현을 위한 「국가 AI전략 정책방향」을 발표했다. 주요 내용은 최대 2조 원 규모의 국가 AI컴퓨팅 센터 구축, 2024~2027년 민간의 AI 분야 65조 원 투자, 전 산업·공공·사회·국방의 AI 전환, AI안전연구소 설립 등이다. 국가인공지능위원회는 이를 구체화한 「국가 AI전략」을 수립하고 이행할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=257789">https://eiec.kdi.re.kr/policy/materialView.do?num=257789</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=257789" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=257789</a></p>
   
   
 </article>
@@ -457,7 +457,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=257789" onclick="copyEntry(thi
 
 https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27248&amp;parentSeq=27248" onclick="copyEntry(this)">복사</button></div>
   <p>보고서는 미국 역대 행정부의 AI 정책 변화와 세계 최고 수준의 AI 경쟁력을 유지·강화하기 위한 행정부·연방의회·연방거래위원회·빅테크 기업의 대응을 분석한다. 미국은 AI 안전·안심·신뢰·책임을 강조하며 대통령 주도의 정책 추진과 행정명령을 통해 관련 규범과 대책을 마련해 왔다. 또한 정부의 연구개발 투자와 입법 활동을 확대해 AI 지배력과 초강대국 지위를 강화하고, 자국 이익을 우선하는 글로벌 AI 규칙을 계속 만들 것으로 전망된다.</p>
-  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27248&amp;parentSeq=27248">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27248&amp;parentSeq=27248</a></p>
+  <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27248&amp;parentSeq=27248" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27248&amp;parentSeq=27248</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-09-26.html">← 2024-09-26</a><a class="day-nav-btn" href="2024-10-02.html">2024-10-02 →</a></nav>
@@ -538,7 +538,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

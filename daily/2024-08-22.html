@@ -433,7 +433,7 @@
 
 https://artificialintelligenceact.eu/responsibilities-of-european-commission-ai-office/" onclick="copyEntry(this)">복사</button></div>
   <p>이 글은 유럽연합 인공지능법에 따라 유럽연합 집행위원회와 AI Office가 수행해야 할 130개 책임을 정리하며, 거버넌스 구축 39개, 2차 법령 제정 39개, 집행 활동 34개, 사후 평가 18개로 구분한다. 인공지능법은 2024년 8월 1일 발효되고 대부분 2026년 8월 2일부터 적용되며, 금지된 AI 관련 규정은 2025년 2월 2일, 거버넌스·범용 AI 모델 관련 규정은 2025년 8월 2일부터 적용된다. AI Office는 AI 거버넌스와 AI 시스템·범용 AI 모델의 이행·감독을 담당하며, 기존 AI Board와의 권한 배분 및 법적 역할이 불명확해질 수 있다는 문제도 제기된다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/responsibilities-of-european-commission-ai-office/">https://artificialintelligenceact.eu/responsibilities-of-european-commission-ai-office/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/responsibilities-of-european-commission-ai-office/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/responsibilities-of-european-commission-ai-office/</a></p>
   
   
 </article>
@@ -445,7 +445,7 @@ EU 인공지능법은 회원국에 국가 차원의 인공지능 거버넌스 �
 
 https://artificialintelligenceact.eu/responsibilities-of-member-states/" onclick="copyEntry(this)">복사</button></div>
   <p>EU 인공지능법은 회원국에 국가 차원의 인공지능 거버넌스 구축, 법 집행, 사후 평가 등 총 88개의 책임을 부여한다. 회원국은 최소 한 곳의 통지기관과 시장감시기관을 지정해야 하며, 국가 규제 샌드박스 설치와 관련 당국의 독립적·공정한 운영도 추진해야 한다. 법은 2024년 8월 1일 발효되고 대부분 2026년 8월 2일부터 적용되지만, 금지행위 규정은 2025년 2월 2일, 거버넌스·범용 인공지능 모델 관련 규정은 2025년 8월 2일부터 적용된다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/responsibilities-of-member-states/">https://artificialintelligenceact.eu/responsibilities-of-member-states/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/responsibilities-of-member-states/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/responsibilities-of-member-states/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-08-21.html">← 2024-08-21</a><a class="day-nav-btn" href="2024-08-23.html">2024-08-23 →</a></nav>
@@ -526,7 +526,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

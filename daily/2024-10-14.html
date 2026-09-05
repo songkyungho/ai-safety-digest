@@ -433,7 +433,7 @@ AI 확산에 따라 관련 위험이 부각되면서 규제 강화 요구가 커
 
 http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36286&amp;menuId=MN1000&amp;tabMenuId=N&amp;srchNm=ALL&amp;srchKey=" onclick="copyEntry(this)">복사</button></div>
   <p>AI 확산에 따라 관련 위험이 부각되면서 규제 강화 요구가 커지고 있으며, 2024년 5월 EU AI법 확정 이후 각국의 규제도 강화되고 있다. 금융 분야에서는 AI 활용을 촉진하는 동시에 고위험 모델로 분류되는 금융 AI를 규제하고 시스템 리스크에 대응하기 위한 국제 공조가 추진될 전망이다. 금융사는 세부 규정이 마련되기를 기다리기보다 AI 모델에 대한 책임 강화를 고려해 원칙 중심으로 대응할 필요가 있다.</p>
-  <p class="url"><a href="http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36286&amp;menuId=MN1000&amp;tabMenuId=N&amp;srchNm=ALL&amp;srchKey=">http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36286&amp;menuId=MN1000&amp;tabMenuId=N&amp;srchNm=ALL&amp;srchKey=</a></p>
+  <p class="url"><a href="http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36286&amp;menuId=MN1000&amp;tabMenuId=N&amp;srchNm=ALL&amp;srchKey=" target="_blank" rel="noopener noreferrer">http://www.hanaif.re.kr/boardDetail.do?hmpeSeqNo=36286&amp;menuId=MN1000&amp;tabMenuId=N&amp;srchNm=ALL&amp;srchKey=</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-10-11.html">← 2024-10-11</a><a class="day-nav-btn" href="2024-10-16.html">2024-10-16 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

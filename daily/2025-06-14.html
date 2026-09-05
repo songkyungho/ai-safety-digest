@@ -433,7 +433,7 @@
 
 https://www.hbsslaw.com/cases/suno-ai-music-generation-copyright-class-action" onclick="copyEntry(this)">복사</button></div>
   <p>독립 음악가들이 Suno가 동의나 대가 없이 인터넷 스트리밍 플랫폼의 음악을 AI 모델 학습·검증·미세조정·운영에 사용했다며 제기한 저작권 집단소송으로, 사건은 현재 진행 중이다. 소송은 저작권 침해, 디지털 보호조치 우회, 불공정 경쟁을 주장하며, 2021년 1월 1일 이후 온라인에 공개된 음원·음악 저작물의 권리자 중 Suno가 무단 사용한 이들을 대상으로 한다. 원고 측은 손해배상과 침해 중지를 요구하고 있으며, 2025년 6월 14일 소장이 제출됐다.</p>
-  <p class="url"><a href="https://www.hbsslaw.com/cases/suno-ai-music-generation-copyright-class-action">https://www.hbsslaw.com/cases/suno-ai-music-generation-copyright-class-action</a></p>
+  <p class="url"><a href="https://www.hbsslaw.com/cases/suno-ai-music-generation-copyright-class-action" target="_blank" rel="noopener noreferrer">https://www.hbsslaw.com/cases/suno-ai-music-generation-copyright-class-action</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-06-13.html">← 2025-06-13</a><a class="day-nav-btn" href="2025-06-15.html">2025-06-15 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

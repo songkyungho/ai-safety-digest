@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=254573" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 한국이 주도한 인공지능 데이터 품질 평가·관리 공통기준이 ISO/IEC JTC 1 SC 42에서 국제표준 ISO/IEC 5259-1:2024로 최종 승인·제정됐다고 밝혔다. 이 표준은 인공지능 개발 과정에서 데이터 품질을 평가·관리·개선하는 도구와 방법을 제시하며, 안전한 모델 개발과 오류·편향 최소화, 시스템 신뢰성 및 리스크 관리 강화를 목표로 한다. 정부와 연구진은 앞으로 국내외 전문가들과 협력해 인공지능 안전성과 신뢰성을 지원하는 데이터 요구사항 및 활용 정보 관련 국제표준 개발을 계속할 계획이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=254573">https://eiec.kdi.re.kr/policy/materialView.do?num=254573</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=254573" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=254573</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-16.html">← 2024-07-16</a><a class="day-nav-btn" href="2024-07-19.html">2024-07-19 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

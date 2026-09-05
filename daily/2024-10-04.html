@@ -433,7 +433,7 @@
 
 https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=35&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정책연구원은 AI 주권 확보를 둘러싼 국가 간 경쟁과 미국·EU·중국의 AI 관련 정책 동향을 분석하고, 한국이 산업 육성과 진흥에 초점을 두고 있다고 설명했다. 국내 AI 산업의 경쟁력과 규제 불확실성을 줄이기 위해 AI 통상규범을 마련하고 국제표준 논의에 적극 참여해야 한다고 제안했다. 또한 향후 쟁점이 될 디지털세에 대응하기 위해 주요국 입법 동향을 반영한 전략을 마련할 필요가 있다고 밝혔다.</p>
-  <p class="url"><a href="https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=35&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=">https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=35&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=</a></p>
+  <p class="url"><a href="https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=35&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=" target="_blank" rel="noopener noreferrer">https://www.stepi.re.kr/site/stepiko/report/View.do?cateTypeCd=&amp;tgtTypeCd=&amp;searchType=&amp;reIdx=35&amp;cateCont=A0513&amp;cbIdx=1292&amp;searchKey=</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-10-02.html">← 2024-10-02</a><a class="day-nav-btn" href="2024-10-08.html">2024-10-08 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

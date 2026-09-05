@@ -433,7 +433,7 @@
 
 https://metr.org/evaluations/deepseek-v3-report/" onclick="copyEntry(this)">복사</button></div>
   <p>딥시익-V3 모델의 자율 능력과 AI 연구 개발 능력에 대한 METR의 예비 평가 결과에 따르면, 평가에서 딥시익-V3는 기존 모델들과 비슷하거나 약간 낮은 수준의 자율 능력을 보였다. 특히 사이버 공격, AI 연구 개발, 일반 소프트웨어 엔지니어링, 자율 복제 및 적응 능력을 평가한 83개의 작업에서 딥시익-V3는 인간 전문가의 성과와 비교했을 때 50% 성공률을 보이는 작업의 길이가 평균적으로 30분 정도였다. AI 연구 개발 분야에서는 딥시익-V3의 성능이 클라인 3 오퍼스와 유사하며, GPT-4o보다는 약간 우수하지만 클라인 3.5 선넷(올드/뉴) 모델들보다는 열등한 것으로 나타났다. GPQA 검증에서도 딥시익-V3는 다른 모델들에 비해 상대적으로 안정적인 성능을 보였다. 그러나 평가 과정에서 모델의 전체 능력을 완전히 드러내지 못했을 가능성이 있어, 추가적인 유도 기법을 통해 성능이 크게 향상될 것이라는 확신은 없다.</p>
-  <p class="url"><a href="https://metr.org/evaluations/deepseek-v3-report/">https://metr.org/evaluations/deepseek-v3-report/</a></p>
+  <p class="url"><a href="https://metr.org/evaluations/deepseek-v3-report/" target="_blank" rel="noopener noreferrer">https://metr.org/evaluations/deepseek-v3-report/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-11.html">← 2025-02-11</a><a class="day-nav-btn" href="2025-02-13.html">2025-02-13 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

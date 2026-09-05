@@ -433,7 +433,7 @@
 
 https://www.kisdi.re.kr/report/view.do?key=m2102058837181&amp;masterId=4334696&amp;arrMasterId=4334696&amp;artId=1776697" onclick="copyEntry(this)">복사</button></div>
   <p>유럽연합은 EU AI Act를 통해 특정 고위험 AI 시스템 배포자가 사용 전에 기본권 영향평가를 실시하도록 규정했다. 미국은 연방정부의 AI 거버넌스·혁신·위험 관리를 강화하는 정책을 발표하고, 안전과 권리에 영향을 미치는 AI 위험을 관리하기 위한 최소 조치로 AI 영향평가 등을 권장했다. 양측은 영향평가 대상 시스템과 평가 주체·방법을 법률이나 정책에 명시하고 있으며, 국내에서도 관련 법적 근거와 제도적 지원이 필요하다고 제안한다.</p>
-  <p class="url"><a href="https://www.kisdi.re.kr/report/view.do?key=m2102058837181&amp;masterId=4334696&amp;arrMasterId=4334696&amp;artId=1776697">https://www.kisdi.re.kr/report/view.do?key=m2102058837181&amp;masterId=4334696&amp;arrMasterId=4334696&amp;artId=1776697</a></p>
+  <p class="url"><a href="https://www.kisdi.re.kr/report/view.do?key=m2102058837181&amp;masterId=4334696&amp;arrMasterId=4334696&amp;artId=1776697" target="_blank" rel="noopener noreferrer">https://www.kisdi.re.kr/report/view.do?key=m2102058837181&amp;masterId=4334696&amp;arrMasterId=4334696&amp;artId=1776697</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-08-13.html">← 2024-08-13</a><a class="day-nav-btn" href="2024-08-19.html">2024-08-19 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

@@ -433,7 +433,7 @@
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=259736" onclick="copyEntry(this)">복사</button></div>
   <p>방송통신위원회와 정보통신정책연구원은 2024년 11월 15일 인공지능서비스 이용자보호 민관협의회 2차 회의를 개최했다. 회의에서는 인공지능 에이전트 시대의 이용자 보호를 주제로 혁신과 이용자 보호의 조화 방안, 기술 발전 과정에서 고려할 보호 기준, 방통위의 역할 등을 논의했다. 협의회는 지난 7월 출범했으며, 인공지능서비스 이용자보호법을 포함한 국내 인공지능 법제와 제도 추진 방안도 검토해 왔다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=259736">https://eiec.kdi.re.kr/policy/materialView.do?num=259736</a></p>
+  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=259736" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=259736</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-11-15.html">← 2024-11-15</a><a class="day-nav-btn" href="2024-11-19.html">2024-11-19 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

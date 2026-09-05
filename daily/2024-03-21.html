@@ -433,7 +433,7 @@
 
 https://artificialintelligenceact.eu/the-ai-office-summary/" onclick="copyEntry(this)">복사</button></div>
   <p>유럽 인공지능청은 유럽연합 집행위원회 산하 기관으로, 27개 회원국에서 범용 AI(GPAI) 모델과 시스템에 대한 인공지능법의 이행을 감독·집행한다. AI 모델의 역량과 시스템적 위험을 평가하고, 위반 조사·공동 조사 지원·시정 조치·시장 제한 등을 수행하며, 회원국 규제기관 간 협력을 조정한다. 또한 AI 이사회 사무국을 맡고 규제 샌드박스, 자발적 실행규범, 과학 전문가 패널 및 국제 AI 협력을 지원하며, 2024년 3월 27일 12시(CET)까지 AI 기술 전문가 채용을 진행했다.</p>
-  <p class="url"><a href="https://artificialintelligenceact.eu/the-ai-office-summary/">https://artificialintelligenceact.eu/the-ai-office-summary/</a></p>
+  <p class="url"><a href="https://artificialintelligenceact.eu/the-ai-office-summary/" target="_blank" rel="noopener noreferrer">https://artificialintelligenceact.eu/the-ai-office-summary/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-03-15.html">← 2024-03-15</a><a class="day-nav-btn" href="2024-03-22.html">2024-03-22 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

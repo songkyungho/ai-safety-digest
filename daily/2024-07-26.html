@@ -433,7 +433,7 @@
 
 https://www.kita.net/researchTrade/report/commerceReport/downloadCommerceReportFile.do;JSESSIONID_KITA=474E9EE0A16366E8C55C86EA9433A90B.Hyper?no=D3D9308BDFC9B783F46AAC61204E1D3B&amp;fileSeq=B0721B9F23054DDC7FE56C2811A12715" onclick="copyEntry(this)">복사</button></div>
   <p>한국무역협회는 AI 시장의 급성장과 함께 데이터 활용 위험, 개인 권리 침해, 윤리 문제 등을 둘러싼 규제와 혁신 사이의 딜레마를 분석했다. EU·미국·중국이 서로 다른 비전 아래 AI 기술과 규제 주도권을 놓고 경쟁하는 가운데, 국제 협력과 기업의 선제적인 규제 모니터링이 필요하다고 제시했다.</p>
-  <p class="url"><a href="https://www.kita.net/researchTrade/report/commerceReport/downloadCommerceReportFile.do;JSESSIONID_KITA=474E9EE0A16366E8C55C86EA9433A90B.Hyper?no=D3D9308BDFC9B783F46AAC61204E1D3B&amp;fileSeq=B0721B9F23054DDC7FE56C2811A12715">https://www.kita.net/researchTrade/report/commerceReport/downloadCommerceReportFile.do;JSESSIONID_KITA=474E9EE0A16366E8C55C86EA9433A90B.Hyper?no=D3D9308BDFC9B783F46AAC61204E1D3B&amp;fileSeq=B0721B9F23054DDC7FE56C2811A12715</a></p>
+  <p class="url"><a href="https://www.kita.net/researchTrade/report/commerceReport/downloadCommerceReportFile.do;JSESSIONID_KITA=474E9EE0A16366E8C55C86EA9433A90B.Hyper?no=D3D9308BDFC9B783F46AAC61204E1D3B&amp;fileSeq=B0721B9F23054DDC7FE56C2811A12715" target="_blank" rel="noopener noreferrer">https://www.kita.net/researchTrade/report/commerceReport/downloadCommerceReportFile.do;JSESSIONID_KITA=474E9EE0A16366E8C55C86EA9433A90B.Hyper?no=D3D9308BDFC9B783F46AAC61204E1D3B&amp;fileSeq=B0721B9F23054DDC7FE56C2811A12715</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-07-25.html">← 2024-07-25</a><a class="day-nav-btn" href="2024-07-29.html">2024-07-29 →</a></nav>
@@ -514,7 +514,17 @@ function initDigestFilter() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initDigestFilter);
+document.addEventListener('DOMContentLoaded', function () {
+  initDigestFilter();
+  document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
+    try {
+      if (a.hostname && a.hostname !== location.hostname) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (e) {}
+  });
+});
 </script>
 </body>
 </html>

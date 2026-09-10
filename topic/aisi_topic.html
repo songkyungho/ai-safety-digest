@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-08 <span class="archive-count">(1건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-08 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-archive" data-cat="archive" data-topics="agentic_ai aisi_topic cybersecurity safety_research" data-search="AI 정보통: 9월 7일 15시 정보 (2026.9.8) OpenAI는 소프트웨어 개발·사이버보안·과학 연구 역량을 강화한 GPT-6 Astra를 발표했으며, 코드 감사와 취약성 분석 등 방어적 사이버 작업을 수행하고 허가 범위를 벗어난 행동을 자동 차단하는 안전장치를 적용했다고 밝혔다. 또한 기업·기관의 사이버 방어를 지원하는 Daybreak 프로그램을 확대하고, 수도·전력 사업자와 지방정부·지역 금융기관 등에 접근권, 교육, 기술 지원 등을 제공하기 위해 총 10억 달러를 투입할 계획이다. 이 밖에도 AI 에이전트의 연구 수행, AI 모델 평가 지표 개정, 고객 환경의 edge AI 보안, ASCII smuggling을 활용한 phishing 회피 공격 관련 동향을 소개했다. AISI-Japan">
   <h2>🇯🇵 AI 정보통: 9월 7일 15시 정보 (2026.9.8)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-archive">아카이브</span> · <span class="source">Japan AISI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="AI 정보통: 9월 7일 15시 정보 (2026.9.8)
@@ -2222,7 +2249,7 @@ https://www.aisi.gov.uk/research/alignment-pretraining-ai-discourse-causes-self-
   <p class="url"><a href="https://www.aisi.gov.uk/research/alignment-pretraining-ai-discourse-causes-self-fulfilling-mis-alignment" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/alignment-pretraining-ai-discourse-causes-self-fulfilling-mis-alignment</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(4건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-18 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(4건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-18 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="aisi_topic frontier national_security" data-search="AISI “Frontier AI Trends Report (2025)” 발간(2025.12.18) 영국 AI 보안연구소(AISI)는 2023년 11월부터 국가안보와 공공안전에 핵심적인 분야에서 frontier AI 시스템을 평가해 왔으며, 이를 바탕으로 첫 공개 분석 보고서인 “Frontier AI Trends Report (2025)”를 발표했다. 보고서는 관찰된 AI 역량의 추세를 데이터 기반으로 정리해 정부·산업·일반 대중이 공통의 이해를 갖도록 돕는 것을 목표로 한다. 영국 AI 보안연구소(AISI-UK)">
   <h2>🇬🇧 AISI “Frontier AI Trends Report (2025)” 발간(2025.12.18)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">영국 AI 보안연구소(AISI-UK)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="AISI “Frontier AI Trends Report (2025)” 발간(2025.12.18)
@@ -2770,7 +2797,7 @@ https://www.aisi.gov.uk/blog/test-blog" onclick="copyEntry(this)">복사</button
   <p class="url"><a href="https://www.aisi.gov.uk/blog/test-blog" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/test-blog</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-12 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-12 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="프런티어 AI 안전성 ‘사이버 불능(cyber inability)’ 논증 템플릿 제안 (**2024.12.12**) 프런티어 AI가 사회에 미칠 위험이 커짐에 따라 개발자가 안전성 보장을 제시해야 한다는 전제에서, 공격적 사이버 역량을 대상으로 한 safety case 템플릿을 제안한다. 위험을 허용 가능한 수준으로 만들었다는 주장을 Claims Arguments Evidence(CAE) 프레임워크로 구조화해, 모델이 불수용적 사이버 위험을 야기할 능력이 없다는 하위 주장들을 근거와 함께 단계적으로 구성하도록 설명한다. 템플릿은 risk model을 사용해 proxy task와 평가 설정을 정의하고, 평가 결과를 주장과 연결하는 방식으로 기존 위험 모델·프록시 과제·능력 평가의 암묵적 논증을 명시적으로 통합하는 것을 목표로 한다. AISI-UK">
   <h2>🇬🇧 프런티어 AI 안전성 ‘사이버 불능(cyber inability)’ 논증 템플릿 제안 (**2024.12.12**)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="프런티어 AI 안전성 ‘사이버 불능(cyber inability)’ 논증 템플릿 제안 (**2024.12.12**)
@@ -2811,8 +2838,9 @@ https://www.aisi.gov.uk/blog/international-evaluation-best-practice-and-open-que
   <p class="url"><a href="https://www.aisi.gov.uk/blog/international-evaluation-best-practice-and-open-questions-in-ai-measurement" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/international-evaluation-best-practice-and-open-questions-in-ai-measurement</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -2889,8 +2917,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

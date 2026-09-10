@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 digest</a></div>
   </div>
 </header>
-<section class="cat-recent"><p>이번 달 하이라이트 없음.</p></section><details class="archive-month"><summary>2026년 8월 <span class="archive-count">(5건)</span></summary><div class="cat-month-body"><div class="entry">
+<section class="year-group" id="year-2026"><section class="cat-recent"><p>이번 달 하이라이트 없음.</p></section><details class="archive-month"><summary>2026년 8월 <span class="archive-count">(5건)</span></summary><div class="cat-month-body"><div class="entry">
   <div class="meta">
     <span class="meta-tags"><b>2026.8.31 ~ 2026.9.6</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.8.31~2026.9.6)
@@ -2219,7 +2246,7 @@ AI의 경제적 파급력과 사이버 공격 역량이 동시에 커지는 가�
     <li>🇺🇸 미 NIST 산하 CAISI가 AI 에이전트 시스템의 보안 위협·취약점·평가 방법에 대한 의견을 수집하는 정보요청(RFI)을 공고했다<sup><a href="https://www.federalregister.gov/documents/2026/01/08/2026-00206/request-for-information-regarding-security-considerations-for-artificial-intelligence-agents" title="미국 연방관보(Federal Register) NIST(미 상무부 국립표준기술연구소)">[8]</a></sup>.</li>
     <li>🧪 Anthropic이 차세대 'Constitutional Classifiers++'를 통해 유니버설 탈옥 방어 성능을 유지하면서 무해 질의 거부율을 <u>87% 감소</u>시켰다고 밝혔으며, 198,000회 레드팀 시도 중 고위험 취약점은 1건에 그쳤다고 설명했다<sup><a href="https://www.anthropic.com/research/next-generation-constitutional-classifiers" title="앤트로픽(Anthropic) 공식 연구 페이지">[9]</a></sup>.</li>
   </ul>
-</div></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(5건)</span></summary><div class="cat-month-body"><div class="entry">
+</div></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(5건)</span></summary><div class="cat-month-body"><div class="entry">
   <div class="meta">
     <span class="meta-tags"><b>2025.12.29 ~ 2026.1.4</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.12.29~2026.1.4)
@@ -3955,8 +3982,9 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
     <li>🇺🇸 KB금융지주경영연구소가 AI의 효율성·비용 절감 효과와 오류·범죄 악용 위험을 함께 지적하며 규제 필요성을 분석했다 - EU의 <u>AI Act</u>는 위험 수준별 차등 규제를 적용하는 세계 최초의 포괄적 AI 규제 법안으로 소개됐고, 미국도 행정명령 등을 통해 규제를 강화하고 있다고 밝혔다<sup><a href="https://www.kbfg.com/kbresearch/cmm/fms/FileDown.do?atchFileId=FILE_000000002001425&amp;fileSn=1" title="KB경영연구소">[1]</a></sup>. 산업 발전과 위험 관리 사이 갈등이 지속되는 가운데, 차별 방지·투명성 제고 등 <strong>명확한 위험 중심의 단계적 규제 마련</strong>이 제안됐다<sup><a href="https://www.kbfg.com/kbresearch/cmm/fms/FileDown.do?atchFileId=FILE_000000002001425&amp;fileSn=1" title="KB경영연구소">[1]</a></sup>.</li>
   </ul>
-</div></div></details>
+</div></div></details></section>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -4033,8 +4061,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

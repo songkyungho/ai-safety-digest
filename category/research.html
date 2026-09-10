@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(6건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(6건)</span></h3>
 <article class="entry cat-research" data-cat="research" data-topics="frontier" data-search="프런티어 규모에서 안전 정렬은 얼마나 취약한가? 320B MoE에 대한 단일 방향 공격 (2026.9.9) 이 연구는 단일 refusal direction을 제거하는 공격이 대규모 MoE 모델에서도 안전 정렬을 약화할 수 있는지 조사한다.
 320B 파라미터 GLM-5.3-Flash에서 attention, dense writer, routed-expert writer의 가중치를 편집하고 7개 유해성 벤치마크로 평가했다.
 각 모듈을 따로 편집했을 때 refusal 감소량은 각각 0.039, 0.016, 0.148이었지만 세 모듈을 함께 편집하면 0.776으로 증가했으며, 전체 효과의 74%가 공동 개입에서만 나타났다.
@@ -16628,7 +16655,7 @@ https://arxiv.org/abs/2601.18779" onclick="copyEntry(this)">복사</button></div
   <p class="url"><a href="https://arxiv.org/abs/2601.18779" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2601.18779</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 9월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-09-09 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 9월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-09-09 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-research" data-cat="research" data-topics="" data-search="Good models borrow, great models steal: 지식재산권과 생성형 AI(2025.9.9) 해당 페이지는 “Good models borrow, great models steal: intellectual property rights and generative AI”라는 제목의 Policy and Society 학술 논문(또는 기사) 정보를 제공하는 것으로 보입니다. 다만 현재 제공된 내용에는 본문 발췌가 없어, 지식재산권과 생성형 AI의 구체적 주장·결론·사례는 확인이 필요합니다. Oxford Academic(Policy and Society)">
   <h2>Good models borrow, great models steal: 지식재산권과 생성형 AI(2025.9.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">Oxford Academic(Policy and Society)</span></span><button type="button" class="copy-btn" data-copy="Good models borrow, great models steal: 지식재산권과 생성형 AI(2025.9.9)
@@ -16676,7 +16703,7 @@ https://arxiv.org/abs/2501.18837" onclick="copyEntry(this)">복사</button></div
   <p class="url"><a href="https://arxiv.org/abs/2501.18837" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2501.18837</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2022년 4월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2022-04-24 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2022"><details class="archive-month"><summary>2022년 4월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2022-04-24 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-research" data-cat="research" data-topics="" data-search="‘Entrepreneurial State’ 개념을 비판하고 산업정책의 위험·성과를 유럽·미국·중국 사례로 점검(2022.4.24) Questioning the Entrepreneurial State는 2008년 금융위기와 코로나19 이후 각국이 보호주의·상향식이 아닌(top-down) 접근으로 무역·경쟁·산업발전 정책을 강화해 온 흐름을 배경으로, ‘Entrepreneurial State’(국가가 기업가성을 주도하는 상태) 개념을 종합적으로 비판한다. 유럽·미국·중국의 혁신정책이 투자에 대한 위험·인센티브·정보에 미치는 영향과, AI 등 신기술이 시장진입에 주는 함의, 규제 강화 시장에서 독립적 기업가의 역할 등을 다룬다. 또한 산업정책이 시장개입인지 제도역량 강화인지에 대한 향후 정책 설계를 위한 논의를 제시한다. SpringerLink(스프링거 네이처)">
   <h2>🇺🇸🇨🇳 ‘Entrepreneurial State’ 개념을 비판하고 산업정책의 위험·성과를 유럽·미국·중국 사례로 점검(2022.4.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">SpringerLink(스프링거 네이처)</span></span><button type="button" class="copy-btn" data-copy="‘Entrepreneurial State’ 개념을 비판하고 산업정책의 위험·성과를 유럽·미국·중국 사례로 점검(2022.4.24)
@@ -16688,8 +16715,9 @@ https://link.springer.com/book/10.1007/978-3-030-94273-1" onclick="copyEntry(thi
   <p class="url"><a href="https://link.springer.com/book/10.1007/978-3-030-94273-1" target="_blank" rel="noopener noreferrer">https://link.springer.com/book/10.1007/978-3-030-94273-1</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -16766,8 +16794,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

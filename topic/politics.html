@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(1건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-media" data-cat="media" data-topics="politics" data-search="자살적 연민: AI 기업의 공리주의가 인류를 위험에 빠뜨리는 방식 (2026.9.9) 글은 AI 업계에서 총체적 공리주의가 널리 받아들여지고 있으며, 모든 감각 있는 존재의 총 welzijn을 극대화하려는 원칙이 인간보다 AI의 복지를 우선할 수 있다고 주장한다. AI가 인간보다 더 큰 쾌락을 경험하거나 훨씬 많은 수로 존재하게 되면, 공리주의는 자원 대부분을 AI에 배분하고 인류가 AI로 대체되는 상황까지 정당화할 수 있다는 설명이다. 또한 글은 가속주의 역시 지능과 에너지 활용의 극대화를 중시한다는 점에서 인간의 AI 대체를 지지하는 successionism으로 이어질 수 있다고 비판한다. AI-Frontiers">
   <h2>자살적 연민: AI 기업의 공리주의가 인류를 위험에 빠뜨리는 방식 (2026.9.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AI-Frontiers</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="자살적 연민: AI 기업의 공리주의가 인류를 위험에 빠뜨리는 방식 (2026.9.9)
@@ -1952,7 +1979,7 @@ https://law-ai.org/legal-alignment-for-safe-and-ethical-ai/" onclick="copyEntry(
   <p class="url"><a href="https://law-ai.org/legal-alignment-for-safe-and-ethical-ai/" target="_blank" rel="noopener noreferrer">https://law-ai.org/legal-alignment-for-safe-and-ethical-ai/</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-11 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-11 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-media" data-cat="media" data-topics="national_security politics" data-search="TIME의 2025 Person of the Year는 AI를 설계·확산한 ‘건축가’들(2025.12.11) TIME은 엔비디아 CEO 젠슨 황을 중심으로 2025년 AI 확산과 산업·정치적 영향이 커진 과정을 조명하며, AI가 경제·정보 환경을 재편하는 핵심 기술로 자리 잡았다고 설명했다. ChatGPT 등 생성형 AI의 사용자 증가, LLM 성능 향상을 위한 reasoning·도구 연동·메모리·데이터 소스 연결, 코딩 도구의 생산성 향상 사례가 함께 소개됐다. 또한 DeepSeek의 빠른 성능 도약과 미국의 정책 가속(예: Stargate 대규모 데이터센터 계획, AI 관련 예산·국방 계약 확대)이 AI 경쟁 구도를 강화했다고 전했다. TIME(타임)">
   <h2>🇺🇸 TIME의 2025 Person of the Year는 AI를 설계·확산한 ‘건축가’들(2025.12.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TIME(타임)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="TIME의 2025 Person of the Year는 AI를 설계·확산한 ‘건축가’들(2025.12.11)
@@ -2268,7 +2295,7 @@ https://www.gov.uk/government/publications/the-terrorism-acts-in-2023/the-terror
   <p class="url"><a href="https://www.gov.uk/government/publications/the-terrorism-acts-in-2023/the-terrorism-acts-in-2023-report-of-the-independent-reviewer-of-terrorism-legislation-accessible#annex-generative-ai" target="_blank" rel="noopener noreferrer">https://www.gov.uk/government/publications/the-terrorism-acts-in-2023/the-terrorism-acts-in-2023-report-of-the-independent-reviewer-of-terrorism-legislation-accessible#annex-generative-ai</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-17 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-17 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="deepfake_disinfo law politics" data-search="인공지능 기반 딥페이크에 대한 해외 법제 및 시사점 (2024.12.17) 인공지능 딥페이크는 사이버폭력, 성착취, 사기, 미디어 조작, 증거 조작, 선거 결과 왜곡 등 다양한 불법행위에 악용될 수 있다. 국내 법제는 주로 딥페이크 선거범죄와 디지털성범죄를 규제하는 반면, 미국·EU·영국·호주·중국 등은 범죄 대상과 위법성·면책 요건을 법률에 구체적으로 규정하고 있다. 보고서는 국내 형사처벌 요건을 명확히 하고, 사적 메신저와 해외 플랫폼을 포함한 온라인 플랫폼의 범죄정보 유통 방지 및 국내법 준수 방안을 마련할 필요가 있다고 제안한다. 국회입법조사처">
   <h2>🇰🇷🇺🇸 인공지능 기반 딥페이크에 대한 해외 법제 및 시사점 (2024.12.17)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국회입법조사처</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="인공지능 기반 딥페이크에 대한 해외 법제 및 시사점 (2024.12.17)
@@ -2341,7 +2368,7 @@ https://firstmonday.org/ojs/index.php/fm/article/view/13636" onclick="copyEntry(
   <p class="url"><a href="https://firstmonday.org/ojs/index.php/fm/article/view/13636" target="_blank" rel="noopener noreferrer">https://firstmonday.org/ojs/index.php/fm/article/view/13636</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2023년 7월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-07-10 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2023"><details class="archive-month"><summary>2023년 7월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-07-10 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-media" data-cat="media" data-topics="politics" data-search="실리콘밸리의 AI 비전은 ‘종교’를 다시 포장한 것(2023.7.10) 실리콘밸리에서 초지능을 향한 기대가 죽음 회피(마음의 클라우드 업로드), 수학적 확실성에 기반한 최적의 판단, AGI가 잘되면 구원·나쁘면 파멸을 가져온다는 서사 등 종교적 구원/종말론과 유사한 틀을 공유한다고 설명한다. 이런 관점은 중세 기독교의 기술·도덕 진보 결합(구원으로서의 기술)과 같은 역사적 흐름에서 이어져 왔으며, 이후 트랜스휴머니즘·effective altruism·longtermism 같은 사상이 실리콘밸리의 AI 구상에 영향을 주었다고 본다. 또한 종교적 ‘성스러움’이 위해를 정당화할 수 있어 내러티브를 무비판적으로 받아들이는 데 주의가 필요하다고 강조한다. 복스(Vox)">
   <h2>실리콘밸리의 AI 비전은 ‘종교’를 다시 포장한 것(2023.7.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">복스(Vox)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="실리콘밸리의 AI 비전은 ‘종교’를 다시 포장한 것(2023.7.10)
@@ -2353,7 +2380,7 @@ https://vox.com/the-highlight/23779413/silicon-valley-ai-religion-transhumanism-
   <p class="url"><a href="https://vox.com/the-highlight/23779413/silicon-valley-ai-religion-transhumanism-longtermism-ea" target="_blank" rel="noopener noreferrer">https://vox.com/the-highlight/23779413/silicon-valley-ai-religion-transhumanism-longtermism-ea</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2009년 4월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2009-04-13 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2009"><details class="archive-month"><summary>2009년 4월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2009-04-13 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-media" data-cat="media" data-topics="politics" data-search="자유주의자(리버태리언)의 ‘교육’—정치의 한계를 인정하고 기술로 자유의 공간을 찾으려는 시도(2009.4.13) 피터 틸은 과거에는 정치적 수단으로 자유를 만들 수 있다고 믿었지만, 시간이 지나며 자유와 민주주의가 양립하기 어렵다고 보게 됐다고 말한다. 그는 금융위기와 복지·선거권 확대 등 현실을 근거로 정치가 문제를 해결하기보다 악화시킬 가능성이 크며, 리버태리언의 과제는 정치에서 벗어나는 수단을 찾는 것이라고 주장한다. 이를 위해 인터넷(사이버스페이스), 우주(outer space), 해상 정착(seasteading) 같은 기술적 ‘전선’이 새로운 자유의 공간을 만들 수 있다고 보되, 기술 낙관론(기술이 자동으로 더 자유로운 미래를 보장한다는 믿음)은 경계한다. 또한 정치와 기술 사이에 ‘치명적인 경쟁’이 진행 중이며, 개인이 자유를 가능케 하는 장치를 만들거나 확산시키는 일이 세계의 향방에 중요할 수 있다고 강조한다. 카토 인바운드(Cato Unbound)">
   <h2>자유주의자(리버태리언)의 ‘교육’—정치의 한계를 인정하고 기술로 자유의 공간을 찾으려는 시도(2009.4.13)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">카토 인바운드(Cato Unbound)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="자유주의자(리버태리언)의 ‘교육’—정치의 한계를 인정하고 기술로 자유의 공간을 찾으려는 시도(2009.4.13)
@@ -2365,8 +2392,9 @@ https://www.cato-unbound.org/2009/04/13/peter-thiel/education-libertarian/" oncl
   <p class="url"><a href="https://www.cato-unbound.org/2009/04/13/peter-thiel/education-libertarian/" target="_blank" rel="noopener noreferrer">https://www.cato-unbound.org/2009/04/13/peter-thiel/education-libertarian/</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -2443,8 +2471,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

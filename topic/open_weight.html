@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-08 <span class="archive-count">(3건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-08 <span class="archive-count">(3건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="open_weight" data-search="Mistral, 주권형 오픈 웨이트 AI 개발을 위해 30억 유로 조달 (2026.9.8) Mistral은 삼성전자가 주도하고 EQT의 Scaleup Europe Fund와 기존 투자자 PSG Equity가 참여한 Series D에서 30억 유로를 조달했으며, 투자 후 기업가치는 210억 유로를 넘었다. 이번 자금은 프런티어 연구, 모델 훈련용 컴퓨팅 역량, 인프라 확장과 국제 사업 확대에 사용된다. Mistral은 오픈 웨이트 모델, 인프라·컴퓨팅, 상용 제품을 아우르는 풀스택을 통해 데이터·모델·컴퓨팅·운영 시스템에 대한 조직의 통제권을 유지하는 주권형 AI를 제공한다고 밝혔다. حاليا 20개국에서 사업을 운영하며 Airbus, ASML, HSBC 등 125곳 이상의 글로벌 기업을 지원하고 있다. Mistral">
   <h2>🇰🇷 Mistral, 주권형 오픈 웨이트 AI 개발을 위해 30억 유로 조달 (2026.9.8)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Mistral</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="오픈소스·오픈웨이트">🔓</span></span></span><button type="button" class="copy-btn" data-copy="Mistral, 주권형 오픈 웨이트 AI 개발을 위해 30억 유로 조달 (2026.9.8)
@@ -2646,7 +2673,7 @@ https://www.anthropic.com/research/assistant-axis" onclick="copyEntry(this)">복
   <p class="url"><a href="https://www.anthropic.com/research/assistant-axis" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/assistant-axis</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(3건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-09 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(3건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-09 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="frontier norms open_weight" data-search="**Frontier AI 안전 정책의 공통 요소 (2025년 12월 업데이트)** (2025.12.9) 여러 대형 기초 모델 개발자들이 모델의 심각한 위험을 평가하고 정보 보안 조치, 배포 안전 조치, 책임성 실천을 통해 이러한 위험을 완화하기 위한 기업 프로토콜에 서약하고 있다. 2023년 9월부터 일부 AI 기업들이 자발적으로 이러한 프로토콜을 공개하기 시작했으며, 2024년 5월에는 AI 서울 정상회의에서 16개 기업이 Frontier AI Safety Commitments에 참여하여 추가로 4개 기업이 합류했다. 현재까지 12개 기업이 Frontier AI 안전 정책을 공개했다: Anthropic, OpenAI, Google DeepMind, Magic, Naver, Meta, G42, Cohere, Microsoft, Amazon, xAI, Nvidia.
 
 정책들은 모델이 생물학 무기 개발이나 사이버 공격을 용이하게 하거나 자율적 복제나 자동화된 AI 연구 개발에 이르는 능력 임계치에 접근하는지 평가하는 것을 포함한다. 임계치에 근접할 경우, 모델 가중치 보안과 모델 배포 완화 조치를 명시한다. 또한, 위험 관리를 위해 개발과 배포를 중단할 조건을 설정하고, 모델의 전체 능력을 평가하기 위한 평가 설계와 평가의 시기와 빈도를 정의한다. 정책들은 제3자 또는 이사회에 의한 감독을 포함한 책임성 메커니즘 탐구도 포함한다. 정책들은 시간이 지남에 따라 AI 위험에 대한 이해가 깊어짐에 따라 업데이트될 예정이다. METR">
@@ -2979,7 +3006,7 @@ https://futureoflife.org/ai-policy/context-and-agenda-2025-ai-action-summit/" on
   <p class="url"><a href="https://futureoflife.org/ai-policy/context-and-agenda-2025-ai-action-summit/" target="_blank" rel="noopener noreferrer">https://futureoflife.org/ai-policy/context-and-agenda-2025-ai-action-summit/</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 7월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-07-24 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 7월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-07-24 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="open_weight" data-search="Mistral Large 2 (Mistral AI) (2024.7.24) General · Open · 128K ctx · $2/M · $6/M
 
 MMLU 66% · HE 92% · MATH 71.5%
@@ -3001,8 +3028,9 @@ https://mistral.ai/news/mistral-large-2407" onclick="copyEntry(this)">복사</bu
   <p class="url"><a href="https://mistral.ai/news/mistral-large-2407" target="_blank" rel="noopener noreferrer">https://mistral.ai/news/mistral-large-2407</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -3079,8 +3107,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

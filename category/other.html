@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(1건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-other" data-cat="other" data-topics="frontier" data-search="트럼프의 AI 통제 속 Anthropic, 영국 AI 안전 기구의 최신 모델 테스트 차단 요약불가 firstpost.com">
   <h2>🇺🇸🇬🇧 트럼프의 AI 통제 속 Anthropic, 영국 AI 안전 기구의 최신 모델 테스트 차단</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">firstpost.com</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="트럼프의 AI 통제 속 Anthropic, 영국 AI 안전 기구의 최신 모델 테스트 차단
@@ -2920,7 +2947,7 @@ https://goteleport.com/blog/ai-agentic-identity-framework/" onclick="copyEntry(t
   <p class="url"><a href="https://goteleport.com/blog/ai-agentic-identity-framework/" target="_blank" rel="noopener noreferrer">https://goteleport.com/blog/ai-agentic-identity-framework/</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-02 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-02 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-other" data-cat="other" data-topics="youth" data-search="(2025.12.2) 2026년 EU·영국 온라인 안전 규제는 ‘집행 강화’와 ‘연령확인’ 중심으로 전개 EU에서는 2025년부터 디지털서비스법(DSA) 집행이 본격화되었고, 음란물 연령확인 실패·미성년자 보호 의무 위반, 위험완화 조항 위반, 불법콘텐츠 신고·이의제기 기능 미흡 등에 대한 절차가 진행됐다. 2026년에는 진행 중인 조사 마무리와 더불어 연령확인 관련 감독이 강화될 가능성이 크며, 소규모 플랫폼까지 아동보호 의무 집행이 확장될 수 있다고 본다. 독일·프랑스·이탈리아·스페인 등 회원국도 미성년자 보호를 위해 연령검증 의무를 포함한 자체 체계를 강화하고 있으며, 프랑스는 EU법 적합성 쟁점에 대한 CJEU 판단이 2026년 초에 나올 수 있어 제도에 큰 영향을 줄 수 있다. 테일러 윌싱(Taylor Wessing)">
   <h2>🇪🇺🇬🇧 (2025.12.2) 2026년 EU·영국 온라인 안전 규제는 ‘집행 강화’와 ‘연령확인’ 중심으로 전개</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">테일러 윌싱(Taylor Wessing)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="(2025.12.2) 2026년 EU·영국 온라인 안전 규제는 ‘집행 강화’와 ‘연령확인’ 중심으로 전개
@@ -3053,8 +3080,9 @@ https://www.usccb.org/news/2025/vatican-city-state-puts-ai-guidelines-place?stre
   <p class="url"><a href="https://www.usccb.org/news/2025/vatican-city-state-puts-ai-guidelines-place?stream=top" target="_blank" rel="noopener noreferrer">https://www.usccb.org/news/2025/vatican-city-state-puts-ai-guidelines-place?stream=top</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -3131,8 +3159,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

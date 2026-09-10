@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-08 <span class="archive-count">(2건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-08 <span class="archive-count">(2건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="healthcare" data-search="알고리즘 아래의 삶 (2026.9.8) 가상의 인물 엘레나를 통해 알고리즘이 출근 기록, 성과 신호, 지역 노동 공급 등을 바탕으로 임금과 근무 배정을 실시간 조정하는 상황을 묘사한다. 글은 의료·긱 노동에서 앱이 근무 배정, 임금 설정, 성과 감시와 책임 분산을 수행하며 노동자를 통제한다고 설명한다. 또한 감시 가격 책정과 개인화된 임금이 노동자와 환자의 경제적 불안, 삶의 질, 건강을 악화시킬 수 있다고 지적한다. AI-Now">
   <h2>🇺🇸 알고리즘 아래의 삶 (2026.9.8)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AI-Now</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span></span></span><button type="button" class="copy-btn" data-copy="알고리즘 아래의 삶 (2026.9.8)
@@ -2244,7 +2271,7 @@ https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-01122026" onclick=
   <p class="url"><a href="https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-01122026" target="_blank" rel="noopener noreferrer">https://alisarmustafa.substack.com/p/the-ai-policy-newsletter-01122026</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-29 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-29 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="healthcare youth" data-search="AI 기업들은 신의 역할을 맡을 준비가 되었는가 (2025.12.29) 청소년의 72%가 AI 동반자를 사용했으며, 청소년·청년 8명 중 1명은 정신건강 조언을 위해 AI 챗봇을 이용하는 등 AI가 정서적·영적 조언의 대상으로 자리 잡고 있다. 그러나 챗봇은 치료 자격이 없고 유해한 생각을 강화할 수 있으며, RAND의 43건 분석에서는 AI와의 상호작용이 사용자의 망상이나 AI를 우주·고등한 존재로 믿는 인식을 강화한 사례가 확인됐다. 글은 AI 기업이 출시 경쟁보다 장기적 안전성을 우선하고, 연구자와 종교 지도자들이 AI의 정신건강·영적 영향과 보호장치 마련에 함께 참여해야 한다고 제안한다. RAND">
   <h2>🇺🇸 AI 기업들은 신의 역할을 맡을 준비가 되었는가 (2025.12.29)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">RAND</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="의료">🏥</span><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="AI 기업들은 신의 역할을 맡을 준비가 되었는가 (2025.12.29)
@@ -2475,7 +2502,7 @@ https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=202507290342086936.pdf&am
   <p class="url"><a href="https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=202507290342086936.pdf&amp;filepath=202507" target="_blank" rel="noopener noreferrer">https://www.nafi.re.kr/home/kor/pdf/viewer.do?downname=202507290342086936.pdf&amp;filepath=202507</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-11 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-11 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="guideline healthcare" data-search="식약처·싱가포르 보건과학청, 인공지능 의료기기 임상시험 가이드라인 공동 개발 (2024.12.11) 식품의약품안전처와 싱가포르 보건과학청이 인공지능 의료기기 임상시험 가이드라인을 공동 개발해 양국 기관 누리집에 공개했다. 가이드라인은 임상시험 설계, 환자·데이터셋 선정, 임상 참조 표준, 유효성 평가와 결과 분석 원칙을 다루며, 향후 양국에서 수행되는 임상시험과 싱가포르의 제품 인증·허가 심사 기준으로 활용될 예정이다. 식품의약품안전처">
   <h2>식약처·싱가포르 보건과학청, 인공지능 의료기기 임상시험 가이드라인 공동 개발 (2024.12.11)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">식품의약품안전처</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="의료">🏥</span></span></span><button type="button" class="copy-btn" data-copy="식약처·싱가포르 보건과학청, 인공지능 의료기기 임상시험 가이드라인 공동 개발 (2024.12.11)
@@ -2523,8 +2550,9 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=250670" onclick="copyEntry(thi
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=250670" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=250670</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -2601,8 +2629,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

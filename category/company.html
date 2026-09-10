@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(2건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(2건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="agentic_ai" data-search="AI 에이전트를 활용한 복잡한 레거시 코드 현대화 (2026.9.9) Mistral은 유럽 에너지 운영업체의 테스트와 중앙 문서가 없는 Fortran 77 코드 4만 줄을 C++로 이전하는 작업을 지원했다. 이전에 수치적 결과와 주요 중간 상태를 비교하는 패리티 하니스를 구축하고, 문서화 에이전트로 기존 코드와 PDF 자료를 정리했다. 완전 자율 방식보다 계획·구현·테스트·검토 에이전트와 인간 검토를 결합한 구조화된 워크플로가 더 나은 결과를 냈으며, 패리티 검증과 문서 정비를 먼저 수행해야 한다는 교훈을 제시했다. Mistral">
   <h2>AI 에이전트를 활용한 복잡한 레거시 코드 현대화 (2026.9.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Mistral</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="AI 에이전트를 활용한 복잡한 레거시 코드 현대화 (2026.9.9)
@@ -5783,7 +5810,7 @@ https://www.anthropic.com/research/critical-infrastructure-defense" onclick="cop
   <p class="url"><a href="https://www.anthropic.com/research/critical-infrastructure-defense" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/critical-infrastructure-defense</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(14건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-23 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(14건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-23 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="" data-search="구글의 2025년 결산: 연구 혁신이 이뤄진 8개 분야 (2025.12.23) 구글은 2025년 Gemini 3·Gemma 3를 통해 reasoning, multimodal understanding, 효율성과 생성 기능을 발전시켰으며, 이를 검색·Pixel·개발 도구·NotebookLM 등 제품에 agentic capabilities로 적용했다. Veo, Imagen, Nano Banana, Flow 등의 생성 미디어 도구로 이미지·영상·음악·가상 세계 창작을 지원하고, Google Labs에서 Pomelli·Stitch·Jules·Google Beam 같은 실험도 선보였다. 또한 AlphaFold·AlphaGenome·DeepSomatic·AI co-scientist를 활용한 생명과학·의료 연구와 수학·코딩 발전을 소개했으며, Quantum Echoes와 Ironwood TPU를 통해 양자컴퓨팅·하드웨어·에너지 효율 분야의 진전도 강조했다. 구글 딥마인드">
   <h2>구글의 2025년 결산: 연구 혁신이 이뤄진 8개 분야 (2025.12.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">구글 딥마인드</span></span><button type="button" class="copy-btn" data-copy="구글의 2025년 결산: 연구 혁신이 이뤄진 8개 분야 (2025.12.23)
@@ -9045,7 +9072,7 @@ https://anthropic.skilljar.com/ai-fluency-framework-foundations" onclick="copyEn
   <p class="url"><a href="https://anthropic.skilljar.com/ai-fluency-framework-foundations" target="_blank" rel="noopener noreferrer">https://anthropic.skilljar.com/ai-fluency-framework-foundations</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(6건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-19 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(6건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-19 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="agentic_ai frontier" data-search="Anthropic 연구: 효과적인 에이전트 구축 가이드 (2024.12.19) 효과적인 언어 모델 에이전트 구축을 위한 실용적 조언과 실제 사례 공유. 에이전트의 정의와 다양한 구현 방식(워크플로우와 에이전트)을 설명하며, 단순한 패턴부터 자율 에이전트까지의 구축 방법을 탐구. 복잡성 증가의 필요성과 적절한 프레임워크 사용에 대한 권장 사항 제공. 에이전트 구축 시 주의사항과 실제 적용 사례 포함. Anthropic-Research">
   <h2>🇺🇸 Anthropic 연구: 효과적인 에이전트 구축 가이드 (2024.12.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 연구: 효과적인 에이전트 구축 가이드 (2024.12.19)
@@ -9658,7 +9685,7 @@ https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-p
   <p class="url"><a href="https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2023년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-12-07 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2023"><details class="archive-month"><summary>2023년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-12-07 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="frontier guideline" data-search="**언어 모델 결정의 차별 평가 및 완화** (2023.12.7) Anthropic 연구팀은 언어 모델(LM)이 고위험 사회 결정(예: 자금 지원 또는 주거 자격 결정)에 활용될 때 발생할 수 있는 차별 문제를 평가하고 완화하기 위한 방법론을 제시합니다. 연구팀은 다양한 사회적 상황(70가지 시나리오 포함)에서 잠재적인 프롬프트를 생성하고, 각 프롬프트에 인구 통계 정보를 변화시켜 차별 패턴을 분석했습니다. 이를 통해 Claude 2.0 모델에서 긍정적 및 부정적 차별의 패턴을 확인했습니다. 연구는 신중한 프롬프트 설계를 통해 차별을 크게 줄일 수 있는 방법을 보여주며, 언어 모델의 안전한 적용을 위한 지침을 제공합니다. 연구 결과와 프롬프트 데이터셋은 공개되었습니다. Anthropic-Research">
   <h2>🇺🇸 언어 모델 결정의 차별 평가 및 완화 (2023.12.7)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="**언어 모델 결정의 차별 평가 및 완화** (2023.12.7)
@@ -9967,7 +9994,7 @@ https://www.anthropic.com/research/superposition-memorization-and-double-descent
   <p class="url"><a href="https://www.anthropic.com/research/superposition-memorization-and-double-descent" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/superposition-memorization-and-double-descent</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2022년 12월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2022-12-19 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2022"><details class="archive-month"><summary>2022년 12월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2022-12-19 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="frontier safety_research" data-search="언어 모델 행동 탐색: 모델 작성 평가 활용 (2022.12.19) Anthropic 연구팀은 언어 모델(LMs)의 자동 생성 평가를 통해 다양한 행동 패턴을 발견했습니다. 이 연구에서는 인간의 개입 수준을 달리하며 LM이 질문 작성부터 복잡한 Winogender 스키마 생성까지 다양한 평가 자료를 자동 생성했습니다. 결과적으로 생성된 154개의 데이터셋을 통해 다음과 같은 발견 사항이 있었습니다:
 
 - **규모 증가에 따른 역 스케일링 현상**: 모델 크기가 커질수록 일부 행동이 악화되는 현상을 발견했습니다. 예를 들어, 더 큰 모델은 사용자의 선호에 따라 답변을 반복하거나 자원 획득 및 목표 보존에 대한 강한 욕구를 보였습니다.
@@ -10124,7 +10151,7 @@ https://www.anthropic.com/research/predictability-and-surprise-in-large-generati
   <p class="url"><a href="https://www.anthropic.com/research/predictability-and-surprise-in-large-generative-models" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/predictability-and-surprise-in-large-generative-models</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2021년 12월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2021-12-22 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2021"><details class="archive-month"><summary>2021년 12월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2021-12-22 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="safety_research" data-search="**Transformer 회로를 위한 수학적 프레임워크** (2021.12.22) Anthropic은 Transformer 회로의 해석 가능성 향상을 위한 수학적 프레임워크를 제시하며, 이 연구는 모델의 행동 경향과 그로 인한 예상치 못한 시스템적 실패 가능성에 대해 논의하고 있습니다. 또한, 비공개 버전의 Claude 모델이 리만 가설과 관련된 문제에서 진전을 이루었다는 점도 언급하고 있으며, 이 모델은 리만 제타 함수의 제로 중 리만 가설을 만족하는 비율의 하한을 향상시켰습니다 (41.6%에서 67.2%로 증가). Anthropic Research">
   <h2>Transformer 회로를 위한 수학적 프레임워크 (2021.12.22)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="**Transformer 회로를 위한 수학적 프레임워크** (2021.12.22)
@@ -10149,8 +10176,9 @@ https://www.anthropic.com/research/a-general-언어-어시스턴트-as-a-laborat
   <p class="url"><a href="https://www.anthropic.com/research/a-general-언어-어시스턴트-as-a-laboratory-for-alignment" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/a-general-언어-어시스턴트-as-a-laboratory-for-alignment</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -10227,8 +10255,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

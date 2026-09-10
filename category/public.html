@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(5건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(5건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="" data-search="과기정통부, 인공지능 데이터센터 특별법 하위법령 마련 공개토론회 개최 (2026.9.9) 요약불가 MSIT">
   <h2>🇰🇷 과기정통부, 인공지능 데이터센터 특별법 하위법령 마련 공개토론회 개최 (2026.9.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">MSIT</span></span><button type="button" class="copy-btn" data-copy="과기정통부, 인공지능 데이터센터 특별법 하위법령 마련 공개토론회 개최 (2026.9.9)
@@ -14952,7 +14979,7 @@ https://windfalltrust.org/policy-atlas" onclick="copyEntry(this)">복사</button
   <p class="url"><a href="https://windfalltrust.org/policy-atlas" target="_blank" rel="noopener noreferrer">https://windfalltrust.org/policy-atlas</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(75건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-31 <span class="archive-count">(31건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(75건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-31 <span class="archive-count">(31건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="" data-search="생성형 AI의 생산성 분석 (2025.12.31) 요약불가 KISDI">
   <h2>🇰🇷 생성형 AI의 생산성 분석 (2025.12.31)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="생성형 AI의 생산성 분석 (2025.12.31)
@@ -19458,7 +19485,7 @@ https://www.aisi.gov.uk/blog/test-blog" onclick="copyEntry(this)">복사</button
   <p class="url"><a href="https://www.aisi.gov.uk/blog/test-blog" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/test-blog</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(17건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-30 <span class="archive-count">(3건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(17건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-30 <span class="archive-count">(3건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="national_security norms" data-search="글로벌 인공지능 군사혁신과 미래 전쟁: 주요 군사강국의 전략·거버넌스·기술 생태계 (2024.12.30) 보고서는 미국·러시아·중국·인도·영국·이스라엘과 NATO의 인공지능 군사혁신 전략, 군구조 개혁, 기술혁신 생태계, 인재양성 및 윤리 문제를 비교·분석한다. 주요국이 인공지능을 미래 안보의 핵심 과제로 인식하고 군사전략과 기술, 인재양성에 대한 투자를 확대하고 있다고 평가한다. 한국에는 중장기 인공지능 군사혁신 전략 수립과 함께 군구조 개혁, 민군 파트너십, 국방AI 인재양성, 국제협력 및 AI 군사화 관련 윤리·글로벌 규범 주도가 필요하다고 제안한다. 국회미래연구원">
   <h2>🇺🇸🇨🇳 글로벌 인공지능 군사혁신과 미래 전쟁: 주요 군사강국의 전략·거버넌스·기술 생태계 (2024.12.30)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국회미래연구원</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="글로벌 인공지능 군사혁신과 미래 전쟁: 주요 군사강국의 전략·거버넌스·기술 생태계 (2024.12.30)
@@ -21409,7 +21436,7 @@ https://www.aisi.gov.uk/blog/international-evaluation-best-practice-and-open-que
   <p class="url"><a href="https://www.aisi.gov.uk/blog/international-evaluation-best-practice-and-open-questions-in-ai-measurement" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/international-evaluation-best-practice-and-open-questions-in-ai-measurement</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2023년 12월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-12-16 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2023"><details class="archive-month"><summary>2023년 12월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-12-16 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="" data-search="METR 제안하는 LLM 에이전트 성능 측정을 위한 다양한 난이도의 어려운 작업 공모 (2023.12.16) METR (이전 ARC Evals)은 자율 LLM 에이전트의 성능을 측정하기 위한 아이디어, 상세 사양, 그리고 검증된 구현을 찾고 있습니다. 공모의 핵심 기준은 인간 전문가가 2시간 이상, 가능하다면 20시간 이상 소요되는 난이도 있는 작업을 포함하며, 위험 요소를 최소화하고 LLM 에이전트의 강점을 살릴 수 있는 작업을 선호합니다. 주요 목표는 다양한 난이도의 작업을 통해 에이전트의 능력을 연속적으로 측정하고, 특정 위협 모델(예: 사이버 범죄, 자기 개선)에 대한 정보를 제공하는 것입니다. 참여자들은 작업 아이디어, 사양, 구현을 제출할 수 있으며, 각 범주별로 보상이 주어집니다. 제출된 작업은 훈련 데이터에 포함되지 않아야 합니다. METR">
   <h2>🇺🇸 METR 제안하는 LLM 에이전트 성능 측정을 위한 다양한 난이도의 어려운 작업 공모 (2023.12.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="METR 제안하는 LLM 에이전트 성능 측정을 위한 다양한 난이도의 어려운 작업 공모 (2023.12.16)
@@ -21531,7 +21558,7 @@ https://metr.org/blog/2023-03-18-update-on-recent-evals/" onclick="copyEntry(thi
   <p class="url"><a href="https://metr.org/blog/2023-03-18-update-on-recent-evals/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2023-03-18-update-on-recent-evals/</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2022년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2022-12-16 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2022"><details class="archive-month"><summary>2022년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2022-12-16 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="standards" data-search="EU 인공지능법 표준 제정 개요 (2022.12.16) 이 페이지는 EU 인공지능법에 따른 AI 안전 표준의 배경, 주요 참여 기관, 제정 절차를 설명하며, 고위험 AI 시스템 관련 표준은 CEN·CENELEC 공동위원회 JTC21에서 작성 중이지만 일정이 지연되고 있다고 전합니다. 절차는 유럽연합 집행위원회의 표준화 요청, 유럽 표준화 기관의 초안 작성, 의견 수렴, 공식 투표, 발행, 집행위원회의 적합성 평가 및 유럽연합 관보 게재 등 6단계로 구성됩니다. 조화 표준의 사용은 자율적이지만, 이를 준수하면 관련 법적 요건을 충족한 것으로 추정받을 수 있습니다. EU 인공지능법 안내 사이트">
   <h2>🇪🇺 EU 인공지능법 표준 제정 개요 (2022.12.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">EU 인공지능법 안내 사이트</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span></span></span><button type="button" class="copy-btn" data-copy="EU 인공지능법 표준 제정 개요 (2022.12.16)
@@ -21555,7 +21582,7 @@ https://www.ethos-ai.org/p/managing-ai-incidents-part-1" onclick="copyEntry(this
   <p class="url"><a href="https://www.ethos-ai.org/p/managing-ai-incidents-part-1" target="_blank" rel="noopener noreferrer">https://www.ethos-ai.org/p/managing-ai-incidents-part-1</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2009년 9월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2009-09-08 <span class="archive-count">(2건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2009"><details class="archive-month"><summary>2009년 9월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2009-09-08 <span class="archive-count">(2건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="" data-search="[정보화정책 발간 규정] (2009.9.8) 한국지능정보사회진흥원의 학술논문집 「정보화정책」에 대한 투고, 심사, 편집 및 발간 절차를 규정한 「정보화정책 발간 규정」을 게시했다. 「정보화정책」은 연 4회 발간을 원칙으로 하며, 리뷰논문과 연구논문을 심사를 통해 게재 여부를 확정한다. 심사 결과는 “게재가”, “부분수정”, “근본수정”, “게재불가”로 구분하고, 수정·재심 절차와 기한(통상 2주/1주, 제출 14일 및 재투고 제한 등) 및 이의신청, 저작재산권 침해 처리, 비밀유지, 판권 귀속 원칙 등을 포함한다. 한국지능정보사회진흥원(NIA)">
   <h2>🇰🇷 [정보화정책 발간 규정] (2009.9.8)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">한국지능정보사회진흥원(NIA)</span></span><button type="button" class="copy-btn" data-copy="[정보화정책 발간 규정] (2009.9.8)
@@ -21579,8 +21606,9 @@ https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=5191" on
   <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=5191" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=65684&amp;bcIdx=5191</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -21657,8 +21685,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

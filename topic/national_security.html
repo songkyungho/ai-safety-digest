@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(5건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-09 <span class="archive-count">(5건)</span></h3>
 <article class="entry cat-media" data-cat="media" data-topics="national_security" data-search="정부, 전투용 AI 글라스 개발 추진 (2026.9.9) ETRI와 육군사관학교가 AI 기반 미래 국방기술 공동 연구와 군 운용 개념 정립, 현장 실증을 위한 업무협약을 체결했다. 연구 대상인 AI 글라스는 주변 상황을 실시간으로 이해해 전투원에게 위험 요소와 작전 정보를 제공하고, 지휘관의 현장 판단과 지휘 결심을 지원하는 기술이다. 양 기관은 전투원 지원부터 소부대 지휘통제, 국방 네트워크, 유·무인 복합체계까지 협력 범위를 확대할 계획이다. 스크랩마스터 · 서울경제">
   <h2>정부, 전투용 AI 글라스 개발 추진 (2026.9.9)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">서울경제</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="정부, 전투용 AI 글라스 개발 추진 (2026.9.9)
@@ -4406,7 +4433,7 @@ https://www.anthropic.com/research/critical-infrastructure-defense" onclick="cop
   <p class="url"><a href="https://www.anthropic.com/research/critical-infrastructure-defense" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/critical-infrastructure-defense</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(6건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-18 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(6건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-18 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="aisi_topic frontier national_security" data-search="AISI “Frontier AI Trends Report (2025)” 발간(2025.12.18) 영국 AI 보안연구소(AISI)는 2023년 11월부터 국가안보와 공공안전에 핵심적인 분야에서 frontier AI 시스템을 평가해 왔으며, 이를 바탕으로 첫 공개 분석 보고서인 “Frontier AI Trends Report (2025)”를 발표했다. 보고서는 관찰된 AI 역량의 추세를 데이터 기반으로 정리해 정부·산업·일반 대중이 공통의 이해를 갖도록 돕는 것을 목표로 한다. 영국 AI 보안연구소(AISI-UK)">
   <h2>🇬🇧 AISI “Frontier AI Trends Report (2025)” 발간(2025.12.18)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">영국 AI 보안연구소(AISI-UK)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="AISI “Frontier AI Trends Report (2025)” 발간(2025.12.18)
@@ -5218,7 +5245,7 @@ https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually
   <p class="url"><a href="https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons" target="_blank" rel="noopener noreferrer">https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-30 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-30 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="national_security norms" data-search="글로벌 인공지능 군사혁신과 미래 전쟁: 주요 군사강국의 전략·거버넌스·기술 생태계 (2024.12.30) 보고서는 미국·러시아·중국·인도·영국·이스라엘과 NATO의 인공지능 군사혁신 전략, 군구조 개혁, 기술혁신 생태계, 인재양성 및 윤리 문제를 비교·분석한다. 주요국이 인공지능을 미래 안보의 핵심 과제로 인식하고 군사전략과 기술, 인재양성에 대한 투자를 확대하고 있다고 평가한다. 한국에는 중장기 인공지능 군사혁신 전략 수립과 함께 군구조 개혁, 민군 파트너십, 국방AI 인재양성, 국제협력 및 AI 군사화 관련 윤리·글로벌 규범 주도가 필요하다고 제안한다. 국회미래연구원">
   <h2>🇺🇸🇨🇳 글로벌 인공지능 군사혁신과 미래 전쟁: 주요 군사강국의 전략·거버넌스·기술 생태계 (2024.12.30)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국회미래연구원</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="글로벌 인공지능 군사혁신과 미래 전쟁: 주요 군사강국의 전략·거버넌스·기술 생태계 (2024.12.30)
@@ -5291,8 +5318,9 @@ https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27121&am
   <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27121&amp;parentSeq=27121" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=82618&amp;bcIdx=27121&amp;parentSeq=27121</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -5369,8 +5397,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

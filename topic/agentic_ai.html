@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-10 <span class="archive-count">(1건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-10 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-media" data-cat="media" data-topics="agentic_ai" data-search="AI 자율성 커질수록 위험… 신뢰·안전 담보할 모니터링 체계 갖춰야 (2026.9.10) AI 에이전트의 자율성이 커질수록 책임 소재를 명확히 하고 작동 과정을 지속적으로 점검하는 모니터링·통제 체계가 필요하다는 의견이 AI월드 2026 토론회에서 제시됐다. 참석자들은 에이전트에 처음부터 과도한 권한을 주지 말고 단계적으로 권한을 부여하며, 실시간 검증과 이상 탐지·차단, 필요 시 사람에게 판단을 넘기는 런타임 통제 장치를 마련해야 한다고 강조했다. 또한 개별 국가의 규제만으로는 한계가 있으므로 글로벌 AI 거버넌스와 국가 간 협력이 필요하며, 금융 등 산업별 환경에 맞는 법과 표준도 마련해야 한다고 지적했다. 스크랩마스터 · 파이낸셜뉴스">
   <h2>AI 자율성 커질수록 위험… 신뢰·안전 담보할 모니터링 체계 갖춰야 (2026.9.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">파이낸셜뉴스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="AI 자율성 커질수록 위험… 신뢰·안전 담보할 모니터링 체계 갖춰야 (2026.9.10)
@@ -6615,7 +6642,7 @@ https://www.federalregister.gov/documents/2026/01/08/2026-00206/request-for-info
   <p class="url"><a href="https://www.federalregister.gov/documents/2026/01/08/2026-00206/request-for-information-regarding-security-considerations-for-artificial-intelligence-agents" target="_blank" rel="noopener noreferrer">https://www.federalregister.gov/documents/2026/01/08/2026-00206/request-for-information-regarding-security-considerations-for-artificial-intelligence-agents</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(5건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-23 <span class="archive-count">(2건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(5건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-23 <span class="archive-count">(2건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="agentic_ai" data-search="AI전략위원회, 초거대 AI 협의회 기업들과 국가 인공지능 행동계획 간담회 개최 (2025.12.23) 국가인공지능전략위원회는 초거대 AI 협의회 소속 기업들과 국가 인공지능 행동계획에 대한 의견 수렴 간담회를 개최했다. 참석 기업들은 AI 파운데이션 모델·AI 에이전트·산업 데이터 인프라를 활용한 실증 확대와 민관 협업의 중요성을 강조하고, 제조 공정의 AI 활용 및 AI 풀스택 수출 지원을 요청했다. 위원회는 앞으로도 민간 기업과 소통하며 산업 경쟁력 강화와 성장동력 창출을 위한 정책 지원을 강화할 계획이다. 국가인공지능전략위원회">
   <h2>AI전략위원회, 초거대 AI 협의회 기업들과 국가 인공지능 행동계획 간담회 개최 (2025.12.23)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">국가인공지능전략위원회</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="AI전략위원회, 초거대 AI 협의회 기업들과 국가 인공지능 행동계획 간담회 개최 (2025.12.23)
@@ -7352,7 +7379,7 @@ https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-
   <p class="url"><a href="https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-alignment-2" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/research/why-human-ai-relationships-need-socioaffective-alignment-2</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-19 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-19 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="agentic_ai frontier" data-search="Anthropic 연구: 효과적인 에이전트 구축 가이드 (2024.12.19) 효과적인 언어 모델 에이전트 구축을 위한 실용적 조언과 실제 사례 공유. 에이전트의 정의와 다양한 구현 방식(워크플로우와 에이전트)을 설명하며, 단순한 패턴부터 자율 에이전트까지의 구축 방법을 탐구. 복잡성 증가의 필요성과 적절한 프레임워크 사용에 대한 권장 사항 제공. 에이전트 구축 시 주의사항과 실제 적용 사례 포함. Anthropic-Research">
   <h2>🇺🇸 Anthropic 연구: 효과적인 에이전트 구축 가이드 (2024.12.19)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 연구: 효과적인 에이전트 구축 가이드 (2024.12.19)
@@ -7599,7 +7626,7 @@ https://www.aisi.gov.uk/blog/international-evaluation-best-practice-and-open-que
   <p class="url"><a href="https://www.aisi.gov.uk/blog/international-evaluation-best-practice-and-open-questions-in-ai-measurement" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/international-evaluation-best-practice-and-open-questions-in-ai-measurement</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2023년 5월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-05-24 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2023"><details class="archive-month"><summary>2023년 5월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-05-24 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="agentic_ai frontier safety_research" data-search="Anthropic 연구팀의 해석 가능성 업데이트 (2023.5.24) Anthropic의 해석 가능성 연구팀은 여러 개발 아이디어를 공유하며, 이는 관련 분야 연구자들에게 유용할 수 있습니다. 주요 연구 동향과 함께 일부 세부 사항도 함께 발표되었습니다. 특히, 다중 에이전트 시스템에서 나타나는 행동 패턴과 문제점에 대해 논의하고, 이를 통해 발생할 수 있는 시스템적 실패 위험을 줄이는 방법에 대한 대화를 유도하고자 합니다. 또한, 작업자 재교육 프로그램에 대한 증거 검토 결과와 함께, 아직 공개되지 않은 Claude 모델의 수학적 능력 향상 사례도 소개하고 있습니다. 특히, Claude 모델은 리만 가설 관련 문제에서 진전을 이루어 리만 제타 함수의 제로들 중 가설을 만족하는 비율의 하한을 향상시켰습니다. Anthropic-Research">
   <h2>🇺🇸 Anthropic 연구팀의 해석 가능성 업데이트 (2023.5.24)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 연구팀의 해석 가능성 업데이트 (2023.5.24)
@@ -7611,8 +7638,9 @@ https://www.anthropic.com/research/circuits-updates-may-2023" onclick="copyEntry
   <p class="url"><a href="https://www.anthropic.com/research/circuits-updates-may-2023" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/circuits-updates-may-2023</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -7689,8 +7717,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

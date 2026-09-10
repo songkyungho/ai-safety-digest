@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-10 <span class="archive-count">(1건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-10 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-media" data-cat="media" data-topics="physical_ai sovereign_ai" data-search="한국 독자 AI 모델로 세계 3강 도약 및 안전·보안 역량 확보 추진 (2026.9.10) 과학기술정보통신부는 내년 상반기 9개 국제기구의 AI 기능을 모은 AI 글로벌 허브를 국내에 열고, 국제 AI 규범·프레임워크 실증과 교육을 강화할 계획이다. 정부는 독자 파운데이션 모델인 독파모의 고도화·확산, AI 전환(AX), 글로벌 AI 확산을 중심으로 정책을 추진하며 보안·공공 분야 특화 모델과 국산 챗GPT 출시도 추진한다. 또한 AI 데이터 국산화와 피지컬 AI용 합성 데이터 확보, 연간 500만 명 이상 교육, AX 대학원 15개 설립 등을 통해 국내 AI 생태계와 활용 기반을 확대할 방침이다. 스크랩마스터 · 파이낸셜뉴스">
   <h2>🇰🇷 한국 독자 AI 모델로 세계 3강 도약 및 안전·보안 역량 확보 추진 (2026.9.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">파이낸셜뉴스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="소버린AI">🏛️</span><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="한국 독자 AI 모델로 세계 3강 도약 및 안전·보안 역량 확보 추진 (2026.9.10)
@@ -1856,7 +1883,7 @@ https://eiec.kdi.re.kr/policy/materialView.do?num=276999" onclick="copyEntry(thi
   <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=276999" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=276999</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 10월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-10-16 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 10월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-10-16 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="sovereign_ai" data-search="주요국 소버린 AI 추진 현황 분석 관련 페이지 접근 차단(2025.10.16) 해당 페이지 요청이 웹 방화벽 보안 정책에 위배되어 차단되었다는 안내가 표시됩니다. 차단 사유와 관련해 탐지 시간, 클라이언트 IP, 요청 URL을 확인하는 항목이 함께 제시됩니다. IITP">
   <h2>🇰🇷 주요국 소버린 AI 추진 현황 분석 관련 페이지 접근 차단(2025.10.16)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">IITP</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="소버린AI">🏛️</span></span></span><button type="button" class="copy-btn" data-copy="주요국 소버린 AI 추진 현황 분석 관련 페이지 접근 차단(2025.10.16)
@@ -1892,7 +1919,7 @@ https://www.gov.uk/government/publications/uk-compute-roadmap/uk-compute-roadmap
   <p class="url"><a href="https://www.gov.uk/government/publications/uk-compute-roadmap/uk-compute-roadmap" target="_blank" rel="noopener noreferrer">https://www.gov.uk/government/publications/uk-compute-roadmap/uk-compute-roadmap</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 11월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-11-25 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 11월 <span class="archive-count">(1건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-11-25 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="sovereign_ai" data-search="주권형 인공지능 동향 및 시사점 (2024.11.25) KDB미래전략연구소는 국가가 독립적인 인공지능 역량과 데이터 주권을 확보하는 주권형 인공지능의 필요성이 커지고 있다고 분석했다. 각국은 글로벌 빅테크 기업에 대한 기술 종속을 줄이기 위해 다양한 방식으로 주권형 인공지능을 구축하고 있으며, 자국 데이터 축적이 가능한 LLM에 공통적으로 주목하고 있다. 보고서는 한국이 네이버의 자체 LLM과 전자정부 경쟁력을 바탕으로 공공영역의 AI 전환을 선도하고, 디지털플랫폼정부를 통해 주권형 인공지능 구축 경험을 확산할 필요가 있다고 제안했다. KDB 미래전략연구소">
   <h2>🇰🇷 주권형 인공지능 동향 및 시사점 (2024.11.25)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">KDB 미래전략연구소</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="소버린AI">🏛️</span></span></span><button type="button" class="copy-btn" data-copy="주권형 인공지능 동향 및 시사점 (2024.11.25)
@@ -1916,8 +1943,9 @@ https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=25932&amp;bcIdx=26837" o
   <p class="url"><a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=25932&amp;bcIdx=26837" target="_blank" rel="noopener noreferrer">https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=25932&amp;bcIdx=26837</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -1994,8 +2022,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

@@ -293,6 +293,33 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    display: flex; flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
+  @media (max-width: 960px) {
+    .year-nav { right: 10px; padding: 6px 4px; }
+    .year-nav-item { padding: 3px 6px; font-size: 11px; }
+  }
+  @media (max-width: 720px) {
+    .year-nav { display: none; }
+  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -433,7 +460,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button></div><div class="digest-feed"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-10 <span class="archive-count">(1건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-09-10 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-media" data-cat="media" data-topics="law" data-search="AIDC 기준, 학습·서비스용 다르게 적용해야 (2026.9.10) 과학기술정보통신부는 인공지능 가속기와 전용 전력·냉각설비를 갖추고 일정 전력밀도와 AI 장비 전력 기준을 충족하는 시설을 AIDC로 규정하는 시행령 제정 방향을 공개했다. 하위법령에는 AIDC 정의, 구축·운영 신고, 인허가 일괄 처리, 비수도권 전력계통영향평가 면제, 특구 지정·지원 기준 등이 포함되며, 특별법은 2027년 3월 10일 시행된다. 업계는 학습용과 서비스(추론)용 데이터센터의 GPU 구성 차이를 고려해 용도별 기준을 달리하고, 구체적인 전력밀도·비율·용량·효율 수치를 마련해야 한다고 제안했다. 스크랩마스터 · 전자신문">
   <h2>AIDC 기준, 학습·서비스용 다르게 적용해야 (2026.9.10)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">전자신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="AIDC 기준, 학습·서비스용 다르게 적용해야 (2026.9.10)
@@ -9119,7 +9146,7 @@ https://www.brookings.edu/articles/why-ai-policy-thrives-in-some-states-and-fade
   <p class="url"><a href="https://www.brookings.edu/articles/why-ai-policy-thrives-in-some-states-and-fades-in-others/" target="_blank" rel="noopener noreferrer">https://www.brookings.edu/articles/why-ai-policy-thrives-in-some-states-and-fades-in-others/</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(12건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-31 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2025"><details class="archive-month"><summary>2025년 12월 <span class="archive-count">(12건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2025-12-31 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="law" data-search="AI 혁신을 위한 「AI기본법」 개정안 국회 본회의 통과 (2025.12.31) 「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법」 개정안이 여야 합의로 발의된 9건의 개정안을 병합해 국회 본회의를 통과했다. 개정안은 국가인공지능전략위원회의 기능 강화, 인공지능연구소 설립 근거, 공공기관의 AI 제품·서비스 우선 도입, AI 창업 지원 펀드 조성 등을 담았다. 장애인·고령자 등 취약계층의 정책 참여와 저소득층의 AI 서비스 이용 비용 지원 근거도 마련했으며, 2026년 1월 22일부터 시행될 예정이다. 과학기술정보통신부">
   <h2>AI 혁신을 위한 「AI기본법」 개정안 국회 본회의 통과 (2025.12.31)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">과학기술정보통신부</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="AI 혁신을 위한 「AI기본법」 개정안 국회 본회의 통과 (2025.12.31)
@@ -10866,7 +10893,7 @@ https://www.congress.gov/bill/119th-congress/senate-bill/2714" onclick="copyEntr
   <p class="url"><a href="https://www.congress.gov/bill/119th-congress/senate-bill/2714" target="_blank" rel="noopener noreferrer">https://www.congress.gov/bill/119th-congress/senate-bill/2714</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(3건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-27 <span class="archive-count">(1건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2024"><details class="archive-month"><summary>2024년 12월 <span class="archive-count">(3건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2024-12-27 <span class="archive-count">(1건)</span></h3>
 <article class="entry cat-public" data-cat="public" data-topics="guideline law" data-search="인공지능 시대의 새로운 서막, 인공지능 기본법 국회 본회의 통과 (2024.12.27) 과학기술정보통신부는 「인공지능 발전과 신뢰기반조성 등에 관한 기본법」 제정안이 2024년 12월 26일 국회 본회의에서 의결됐다고 밝혔다. 법안은 국가 차원의 인공지능 거버넌스를 정립하고 인공지능 산업을 육성하며, 인공지능으로 인한 위험을 사전에 예방하는 내용을 담고 있다. 국무회의 의결과 공포 후 1년의 경과 기간을 거쳐 2026년 1월부터 시행될 예정이며, 정부는 2025년 상반기부터 하위법령과 가이드라인 마련 등 후속 조치를 추진할 계획이다. 과학기술정보통신부">
   <h2>인공지능 시대의 새로운 서막, 인공지능 기본법 국회 본회의 통과 (2024.12.27)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">과학기술정보통신부</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="인공지능 시대의 새로운 서막, 인공지능 기본법 국회 본회의 통과 (2024.12.27)
@@ -11270,7 +11297,7 @@ https://www.linkedin.com/posts/martin-ebers-4984444b_eprs-enforcement-of-the-ai-
   <p class="url"><a href="https://www.linkedin.com/posts/martin-ebers-4984444b_eprs-enforcement-of-the-ai-act-uxko?rcm=ACoAABNWa7YBYzzYJeBJVjwQfP_OORjs0P1yTtA" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/posts/martin-ebers-4984444b_eprs-enforcement-of-the-ai-act-uxko?rcm=ACoAABNWa7YBYzzYJeBJVjwQfP_OORjs0P1yTtA</a></p>
   
   
-</article></div></details><details class="archive-month"><summary>2023년 10월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-10-05 <span class="archive-count">(2건)</span></h3>
+</article></div></details></section><section class="year-group" id="year-2023"><details class="archive-month"><summary>2023년 10월 <span class="archive-count">(2건)</span></summary><div class="cat-month-body"><h3 class="cat-date-heading">2023-10-05 <span class="archive-count">(2건)</span></h3>
 <article class="entry cat-company" data-cat="company" data-topics="law safety_research" data-search="**언어 모델을 이해 가능한 구성 요소로 분해하기** (2023.10.5) 신경망의 복잡한 행동을 이해하기 위해 개별 뉴런 대신 패턴 기반의 &#x27;특징&#x27;을 찾아내는 연구를 발표했습니다. 기존 언어 모델의 개별 뉴런은 다양한 맥락에서 활성화되어 해석이 어려웠지만, 본 연구에서는 작은 트랜스포머 모델 내에서 일관된 의미를 가진 수천 개의 특징을 발견했습니다. 이러한 특징들은 DNA 시퀀스, 법률 용어, HTTP 요청 등 다양한 패턴을 나타내며, 인간 평가자와 자동 해석 모델을 통해 기존 뉴런보다 훨씬 더 해석 가능성이 높음을 입증했습니다. 이 접근법은 모델의 안전과 신뢰성을 향상시키는 데 기여할 것으로 기대됩니다. 향후 연구에서는 이러한 방법을 더 큰 모델에 적용하는 데 초점을 맞출 계획입니다. Anthropic-Research">
   <h2>🇺🇸 언어 모델을 이해 가능한 구성 요소로 분해하기 (2023.10.5)</h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="**언어 모델을 이해 가능한 구성 요소로 분해하기** (2023.10.5)
@@ -11306,8 +11333,9 @@ https://law-ai.org/frontier-ai-definitions" onclick="copyEntry(this)">복사</bu
   <p class="url"><a href="https://law-ai.org/frontier-ai-definitions" target="_blank" rel="noopener noreferrer">https://law-ai.org/frontier-ai-definitions</a></p>
   
   
-</article></div></details></div>
+</article></div></details></section></div>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -11384,8 +11412,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
     /* 페스티벌 팔레트(color-hex 37391) —
        #ef3837 #ed7787 #f3b84f #474284 #6a8167 을 지면 토큰에 맞춘 것. */
     --bg: #f4f2eb; --fg: #243044; --muted: #5c6670; --border: #ddd6c8;
@@ -39,54 +39,27 @@
     --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
     --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1a1828; --fg: #eee8dc; --muted: #a8a898; --border: #323048;
-      --card-bg: #221f32; --link: #9bb396; --accent: #ed7787;
-      --navy: #2e2b5c; --navy-2: #3a3770;
-      --gold: #f3b84f; --gold-strong: #f7c86a;
-      --on-navy: #f6f1e4; --on-navy-muted: #b8b4d0;
-      --hairline-strong: #3c3a52;
-      --g1: #4a3a20; --g2: #6a3a44;
-      --cat-research: #b0acd8; --cat-aisi: #9bb396; --cat-company: #f3b84f;
-      --cat-kr-gov: #9bb396; --cat-intl: #b8b4d0; --cat-notice: #ed7787;
-      --cat-other: #c4bdb4;
-      --cat-intl-org: #b8b4d0; --cat-gov: #9bb396; --cat-research-org: #b0acd8;
-      --cat-ngo: #9bb396; --cat-media: #ed7787; --cat-db: #c4bdb4;
-      --cat-news-rss: #ed7787; --cat-scrapmaster: #f3b84f; --cat-blog: #ed7787;
-      --cat-aisi-weekly: #9bb396; --cat-aiid: #c4bdb4;
-      --cat-frontier: #9bb396; --cat-msit: #b8b4d0; --cat-iitp: #b0acd8;
-      --cat-kdi-eiec: #ed7787; --cat-iaae: #f3b84f;
-      --cat-public: #9bb396;
-      --cat-archive: #b8b4d0;
-      --topic-norms: #fbbf24; --topic-law: #93c5fd; --topic-guideline: #5eead4;
-      --topic-standards: #c4b5fd; --topic-national-security: #fdba74;
-      --topic-cybersecurity: #7dd3fc; --topic-politics: #fb7185;
-      --topic-sovereign-ai: #a5b4fc; --topic-healthcare: #6ee7b7;
-      --topic-youth: #f9a8d4; --topic-aisi: #4ade80; --topic-agentic: #fb923c;
-      --topic-physical: #bef264; --topic-safety: #818cf8;
-      --topic-deepfake: #fda4af; --topic-open-weight: #2dd4bf;
-      --topic-frontier: #fdba8c; --topic-incidents: #94a3b8;
-    }
-  }
+  html { font-size: 16px; overflow-x: hidden; }
   * { box-sizing: border-box; }
   body {
     margin: 0; padding: 0; overflow-x: hidden;
     background: var(--bg); color: var(--fg);
     font-family: 'IBM Plex Sans KR', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont,
       'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    font-size: 16px;
     line-height: 1.7;
   }
   .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px 80px; }
   .global-nav {
     position: sticky; top: 0; z-index: 40;
     background: var(--navy); color: var(--on-navy); height: 40px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
   }
   .global-nav-inner {
     max-width: 980px; margin: 0 auto; height: 40px; padding: 0 20px;
     display: flex; align-items: center; justify-content: space-between; gap: 24px;
     font-size: 0.78rem; font-weight: 500; letter-spacing: -0.02em;
-    overflow-x: auto;
+    min-width: 0; width: 100%;
   }
   .global-nav-left, .global-nav-right {
     display: flex; align-items: center; gap: 16px; flex-shrink: 0;
@@ -293,6 +266,30 @@
   .archive-cell.g3 { background: var(--gold); color: var(--navy); border-color: transparent; }
   .archive-cell.g4 { background: var(--navy); color: var(--on-navy); border-color: transparent; }
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
+  .year-nav {
+    display: none;
+    position: fixed; right: 16px; top: 50%;
+    transform: translateY(-50%); z-index: 40;
+    flex-direction: column; gap: 2px;
+    max-height: 70vh; overflow-y: auto; padding: 8px 6px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
+  }
+  .year-nav.hidden { display: none; }
+  @media (min-width: 1024px) {
+    .year-nav:not(.hidden) { display: flex; }
+  }
+  .year-nav-item {
+    appearance: none; border: 0; background: transparent; cursor: pointer;
+    font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
+    font-variant-numeric: tabular-nums; color: var(--muted);
+    text-align: center; line-height: 1.2;
+  }
+  .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+  .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -312,13 +309,13 @@
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px;
+    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
   }
   .digest-shortcuts a.cta-btn {
     display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
   }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -332,7 +329,7 @@
   .section-more a:hover { text-decoration: underline; }
   header.page-head .nav a.cta-btn {
     display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
@@ -458,6 +455,7 @@ https://metr.org/blog/2025-02-14-measuring-automated-kernel-engineering/" onclic
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-02-13.html">← 2025-02-13</a><a class="day-nav-btn" href="2025-02-16.html">2025-02-16 →</a></nav>
 </div>
+<nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>
 <footer class="site-footer"><div class="footer-inner">만든 사람: 인공지능안전연구소 <a href="https://songkyungho.github.io" target="_blank" rel="noopener">송경호</a> · 문의/오류제보: <a href="mailto:songkyungho@etri.re.kr">songkyungho@etri.re.kr</a></div></footer>
 <script>
 function _copyFallback(text) {
@@ -534,8 +532,48 @@ function initDigestFilter() {
     });
   });
 }
+function initYearNav() {
+  var nav = document.getElementById('yearNav');
+  if (!nav) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.year-group[id^="year-"]'));
+  if (groups.length < 2) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+  nav.classList.remove('hidden');
+  nav.innerHTML = groups.map(function (g) {
+    var y = g.id.replace(/^year-/, '');
+    return '<button type="button" class="year-nav-item" data-year="' + y + '">' + y + '</button>';
+  }).join('');
+  function setActive(y) {
+    nav.querySelectorAll('.year-nav-item').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-year') === y);
+    });
+  }
+  nav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.year-nav-item');
+    if (!btn) return;
+    var y = btn.getAttribute('data-year');
+    var el = document.getElementById('year-' + y);
+    if (!el) return;
+    var first = el.querySelector('details.archive-month');
+    if (first && !first.open) first.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(y);
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var vis = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (vis[0]) setActive(vis[0].target.id.replace(/^year-/, ''));
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   initDigestFilter();
+  initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
     try {
       if (a.hostname && a.hostname !== location.hostname) {

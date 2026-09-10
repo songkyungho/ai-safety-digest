@@ -39,7 +39,7 @@
     --topic-deepfake: #9f1239; --topic-open-weight: #0d9488;
     --topic-frontier: #c2410c; --topic-incidents: #334155;
   }
-  html { font-size: 16px; }
+  html { font-size: 16px; overflow-x: hidden; }
   * { box-sizing: border-box; }
   body {
     margin: 0; padding: 0; overflow-x: hidden;
@@ -53,12 +53,13 @@
   .global-nav {
     position: sticky; top: 0; z-index: 40;
     background: var(--navy); color: var(--on-navy); height: 40px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
   }
   .global-nav-inner {
     max-width: 980px; margin: 0 auto; height: 40px; padding: 0 20px;
     display: flex; align-items: center; justify-content: space-between; gap: 24px;
     font-size: 0.78rem; font-weight: 500; letter-spacing: -0.02em;
-    overflow-x: auto;
+    min-width: 0; width: 100%;
   }
   .global-nav-left, .global-nav-right {
     display: flex; align-items: center; gap: 16px; flex-shrink: 0;
@@ -78,9 +79,11 @@
   }
   .page-head-inner { max-width: 980px; margin: 0 auto; padding: 30px 20px 22px; }
   header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
+  /* 배너 이미지는 쓰지 않는다.
   header.page-head .masthead-banner {
     display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
   }
+  */
   header.page-head .tagline { margin: 0; font-size: 0.95rem; color: var(--on-navy-muted); line-height: 1.55; }
   header.page-head .tagline a { color: var(--on-navy-muted); }
   header.page-head .sub { color: var(--on-navy-muted); font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; }
@@ -267,9 +270,10 @@
   .archive-cell:hover { outline: 2px solid var(--gold); outline-offset: -2px; }
   .year-group { margin-bottom: 8px; scroll-margin-top: 56px; }
   .year-nav {
+    display: none;
     position: fixed; right: 16px; top: 50%;
     transform: translateY(-50%); z-index: 40;
-    display: flex; flex-direction: column; gap: 2px;
+    flex-direction: column; gap: 2px;
     max-height: 70vh; overflow-y: auto; padding: 8px 6px;
     border: 1px solid var(--border); border-radius: 12px;
     background: color-mix(in srgb, var(--card-bg) 92%, transparent);
@@ -277,6 +281,9 @@
     box-shadow: 0 4px 20px color-mix(in srgb, var(--fg) 8%, transparent);
   }
   .year-nav.hidden { display: none; }
+  @media (min-width: 1024px) {
+    .year-nav:not(.hidden) { display: flex; }
+  }
   .year-nav-item {
     appearance: none; border: 0; background: transparent; cursor: pointer;
     font: inherit; padding: 4px 8px; border-radius: 8px; font-size: 12px;
@@ -285,13 +292,6 @@
   }
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
-  @media (max-width: 960px) {
-    .year-nav { right: 10px; padding: 6px 4px; }
-    .year-nav-item { padding: 3px 6px; font-size: 11px; }
-  }
-  @media (max-width: 720px) {
-    .year-nav { display: none; }
-  }
 
   .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
@@ -311,13 +311,13 @@
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px;
+    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
   }
   .digest-shortcuts a.cta-btn {
     display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
   }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -331,7 +331,7 @@
   .section-more a:hover { text-decoration: underline; }
   header.page-head .nav a.cta-btn {
     display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
@@ -427,7 +427,7 @@
 <div class="wrap">
 <header class="page-head">
   <div class="page-head-inner">
-    <h1>AI Safety Daily Digest</h1>
+    <h1>AI 안전 다이제스트</h1>
     <div class="sub">2 August 2026 – 10 September 2026 · 141 source cards</div>
     <div class="nav"></div>
   </div>
@@ -437,15 +437,12 @@
     <span class="meta-tags"><b>10 September 2026</b></span>
     <button type="button" class="copy-btn" data-copy="AI Safety in Korea (10 September 2026)
 
-- MSIT unveiled plans to advance the Independent AI Foundation Model project (Dokpamo) while building safety and security capabilities, alongside a new international AI governance hub and specialized public/security models [1]
-- NIA is deploying NPU-based servers for a government AI chatbot and considering giving priority to Dokpamo-participating models for the public-sector service [2]
+- MSIT announced plans to open an AI Global Hub integrating functions from 9 international organizations, aimed at testing international AI norms/frameworks and advancing security- and public-sector-specialized foundation models under the Dokpamo program. [1]
 
-[1] http://www.fnnews.com/news/202609091833231311
-[2] https://www.sedaily.com/article/20089045" data-copied="Copied!" onclick="copyEntry(this)">Copy</button>
+[1] http://www.fnnews.com/news/202609091833231311" data-copied="Copied!" onclick="copyEntry(this)">Copy</button>
   </div>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
-    <li>MSIT unveiled plans to advance the <strong>Independent AI Foundation Model project (Dokpamo)</strong> while building safety and security capabilities, alongside a new international AI governance hub and specialized public/security models <sup><a href="http://www.fnnews.com/news/202609091833231311" title="스크랩마스터 · 파이낸셜뉴스" target="_blank" rel="noopener noreferrer">[1]</a></sup></li>
-    <li>NIA is deploying <strong>NPU-based servers</strong> for a government AI chatbot and considering giving priority to <strong>Dokpamo</strong>-participating models for the public-sector service <sup><a href="https://www.sedaily.com/article/20089045" title="스크랩마스터 · 서울경제" target="_blank" rel="noopener noreferrer">[2]</a></sup></li>
+    <li>MSIT announced plans to open an <strong>AI Global Hub</strong> integrating functions from <u>9</u> international organizations, aimed at testing international AI norms/frameworks and advancing security- and public-sector-specialized foundation models under the Dokpamo program. <sup><a href="http://www.fnnews.com/news/202609091833231311" title="스크랩마스터 · 파이낸셜뉴스" target="_blank" rel="noopener noreferrer">[1]</a></sup></li>
   </ul>
 </div><div class="entry">
   <div class="meta">
@@ -570,7 +567,7 @@
     <li><strong>Lawmaker Ahn Sang-hoon and 10 others proposed amending the AI Basic Act</strong> to require AI operators to clearly notify users when they are interacting with a conversational AI system, with violations subject to fact-finding and corrective orders; the bill is under legislative notice through <u>September 12</u>. <sup><a href="https://likms.assembly.go.kr/bill/bi/billDetailPage.do?billId=PRC_I2J6H0I7G2G2D1B3B3Z9A1Z7Z3H0H3" title="GlobalAIRegTracker">[2]</a></sup></li>
     <li><strong>A Korea Capital Market Institute analysis found generative AI use in the financial sector expanding</strong> beyond internal support into investment advice, credit assessment, and customer consultation following relaxed network-separation rules, urging regulators to track performance and feed real-world risk experience into future policy. <sup><a href="https://www.kcmi.re.kr/publications/pub_detail_view?syear=2026&amp;zcd=002001016&amp;zno=1932&amp;cno=6832" title="자본시장연구원">[3]</a></sup></li>
   </ul>
-</div></section><details class="archive-month"><summary>August 2026 <span class="archive-count">(24 days)</span></summary><div class="cat-month-body"><div class="entry">
+</div></section><details class="archive-month"><summary>August 2026 <span class="archive-count">(23 days)</span></summary><div class="cat-month-body"><div class="entry">
   <div class="meta">
     <span class="meta-tags"><b>31 August 2026</b></span>
     <button type="button" class="copy-btn" data-copy="AI Safety in Korea (31 August 2026)
@@ -888,24 +885,6 @@
   </div>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
     <li><strong>MSIT and KISA published an AI security red-teaming guide</strong> to help companies conduct pre-emptive risk checks on training data, core models, applications, and autonomous agent behavior. <sup><a href="https://www.donga.com/news/It/article/all/20260806/134433885/1" title="뉴스RSS · 동아일보">[1]</a></sup></li>
-  </ul>
-</div><div class="entry">
-  <div class="meta">
-    <span class="meta-tags"><b>4 August 2026</b></span>
-    <button type="button" class="copy-btn" data-copy="AI Safety in Korea (4 August 2026)
-
-- MSIT released AI data quality management guides, including a generative-AI-specific data quality guide and an AI data construction guide. [1]
-- The Ministry of Health and Welfare issued guidelines on the use of health and medical data. [2]
-- The Personal Information Protection Commission published guidelines on the processing of pseudonymized information. [3]
-
-[1] https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=172866423&amp;t=board
-[2] https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=172866259&amp;t=board
-[3] https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=172866208&amp;t=board" data-copied="Copied!" onclick="copyEntry(this)">Copy</button>
-  </div>
-  <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
-    <li><strong>MSIT released AI data quality management guides</strong>, including a generative-AI-specific data quality guide and an AI data construction guide. <sup><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=172866423&amp;t=board" title="과학기술정보통신부">[1]</a></sup></li>
-    <li><strong>The Ministry of Health and Welfare issued guidelines on the use of health and medical data</strong>. <sup><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=172866259&amp;t=board" title="보건복지부">[2]</a></sup></li>
-    <li><strong>The Personal Information Protection Commission published guidelines on the processing of pseudonymized information</strong>. <sup><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MTtzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=172866208&amp;t=board" title="개인정보보호위원회">[3]</a></sup></li>
   </ul>
 </div><div class="entry">
   <div class="meta">

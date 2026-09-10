@@ -12,11 +12,11 @@
     color-scheme: light dark;
     /* 페스티벌 팔레트(color-hex 37391) —
        #ef3837 #ed7787 #f3b84f #474284 #6a8167 을 지면 토큰에 맞춘 것. */
-    --bg: #f6f1e4; --fg: #2a2848; --muted: #5a6258; --border: #e4dcc8;
-    --card-bg: #fffdf8; --link: #3f5340; --accent: #ef3837;
+    --bg: #f4f2eb; --fg: #243044; --muted: #5c6670; --border: #ddd6c8;
+    --card-bg: #fffcf6; --link: #3f5340; --accent: #ef3837;
     --navy: #474284; --navy-2: #565193;
     --gold: #f3b84f; --gold-strong: #f7c86a;
-    --on-navy: #f6f1e4; --on-navy-muted: #c4c0d8;
+    --on-navy: #f4f2eb; --on-navy-muted: #c4c0d8;
     --hairline-strong: #d8d0b8;
     --g1: #f7dca0; --g2: #f3c8ce;
     --cat-research: #474284; --cat-aisi: #3f5340; --cat-company: #8a5a18;
@@ -77,13 +77,13 @@
       'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
     line-height: 1.7;
   }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px 80px; }
   .global-nav {
     position: sticky; top: 0; z-index: 40;
     background: var(--navy); color: var(--on-navy); height: 40px;
   }
   .global-nav-inner {
-    max-width: 760px; margin: 0 auto; height: 40px; padding: 0 20px;
+    max-width: 980px; margin: 0 auto; height: 40px; padding: 0 20px;
     display: flex; align-items: center; justify-content: space-between; gap: 24px;
     font-size: 0.78rem; font-weight: 500; letter-spacing: -0.02em;
     overflow-x: auto;
@@ -97,14 +97,14 @@
   .global-nav a { opacity: 0.78; }
   .global-nav a:hover { opacity: 1; color: var(--gold); }
   .global-nav .nav-current { opacity: 1; font-weight: 650; }
-  /* 네이비 헤더 밴드 — .wrap이 720px로 좁혀놔도 뷰포트 끝까지 색이 번지도록
+  /* 네이비 헤더 밴드 — .wrap이 본문 폭으로 좁혀놔도 뷰포트 끝까지 색이 번지도록
      흔한 "풀블리드 브레이크아웃" 트릭(뷰포트 기준 음수 마진)을 쓴다. */
   header.page-head {
     background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
     color: var(--on-navy);
     margin: 0 calc(50% - 50vw) 28px;
   }
-  .page-head-inner { max-width: 760px; margin: 0 auto; padding: 30px 20px 22px; }
+  .page-head-inner { max-width: 980px; margin: 0 auto; padding: 30px 20px 22px; }
   header.page-head h1 { font-size: 1.6rem; margin: 0 0 4px; font-weight: 700; letter-spacing: -0.01em; }
   header.page-head .masthead-banner {
     display: block; width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px;
@@ -252,7 +252,7 @@
     color: var(--on-navy-muted); margin: 0 calc(50% - 50vw);
   }
   .footer-inner {
-    max-width: 760px; margin: 0 auto; padding: 28px 20px 32px;
+    max-width: 980px; margin: 0 auto; padding: 28px 20px 32px;
     font-size: 0.78rem; text-align: center; line-height: 1.8;
   }
   footer a { color: var(--on-navy-muted); }
@@ -311,6 +311,14 @@
   .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .digest-shortcuts {
+    display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px;
+  }
+  .digest-shortcuts a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 9px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 700;
+  }
+  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -416,7 +424,7 @@
 </style>
 </head>
 <body>
-<nav class="global-nav" aria-label="사이트"><div class="global-nav-inner"><div class="global-nav-left"><a href="../index.html">전체 목록</a><span class="nav-current">최신 다이제스트</span><a href="../summary/index.html">주간 하이라이트</a><a href="../en.html">AI Safety in Korea</a><a href="https://songkyungho.github.io/ai-safety-library/" target="_blank" rel="noopener">AI 안전 라이브러리</a></div><div class="global-nav-right"><a href="../about.html">소개</a><a href="../about/log.html">업데이트</a></div></div></nav>
+<nav class="global-nav" aria-label="사이트"><div class="global-nav-inner"><div class="global-nav-left"><span class="nav-current">AI 안전 다이제스트</span><a href="https://songkyungho.github.io/ai-safety-library/" target="_blank" rel="noopener">AI 안전 라이브러리</a><a href="https://songkyungho.github.io/ai-safety-glossary/" target="_blank" rel="noopener">AI 안전 용어집</a></div><div class="global-nav-right"><a href="../about.html">소개</a><a href="../about/log.html">업데이트</a></div></div></nav>
 <div class="wrap">
 <header class="page-head">
   <div class="page-head-inner">

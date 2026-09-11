@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -209,10 +214,13 @@
   }
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
+  .entry strong { font-weight: 700; }
+  .entry u {
+    text-decoration: underline 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--fg) 55%, transparent);
+  }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -428,21 +436,27 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI 안전 다이제스트</h1>
-    <div class="sub">2 August 2026 – 10 September 2026 · 142 source cards</div>
+    <div class="sub">2 August 2026 – 10 September 2026 · 143 source cards</div>
     <div class="nav"></div>
   </div>
 </header>
-<ul class="en-lede"><li><b>What this is.</b> A digest of AI safety, governance, and policy events <em>in Korea</em> — Korean public bodies, Korean companies, and incidents that took place here. Korean-language coverage of overseas stories is omitted.</li><li><b>How it is written.</b> An LLM (via OpenRouter) compresses Korean source cards into short topic notes. Names, figures, and nuance can be wrong. Follow the numbered links.</li><li><b>Coverage.</b> 2 August 2026 – 10 September 2026. 142 Korean source cards behind the notes below. Not a full translation of every card.</li></ul><section class="year-group" id="year-2026"><section class="cat-recent"><div class="entry">
+<ul class="en-lede"><li><b>What this is.</b> A digest of AI safety, governance, and policy events <em>in Korea</em> — Korean public bodies, Korean companies, and incidents that took place here. Korean-language coverage of overseas stories is omitted.</li><li><b>How it is written.</b> An LLM (via OpenRouter) compresses Korean source cards into short topic notes. Names, figures, and nuance can be wrong. Follow the numbered links.</li><li><b>Coverage.</b> 2 August 2026 – 10 September 2026. 143 Korean source cards behind the notes below. Not a full translation of every card.</li></ul><section class="year-group" id="year-2026"><section class="cat-recent"><div class="entry">
   <div class="meta">
     <span class="meta-tags"><b>10 September 2026</b></span>
     <button type="button" class="copy-btn" data-copy="AI Safety in Korea (10 September 2026)
 
-- MSIT announced plans to open an AI Global Hub integrating functions from 9 international organizations, aimed at testing international AI norms/frameworks and advancing security- and public-sector-specialized foundation models under the Dokpamo program. [1]
+- National Sports Promotion Corporation earned NIA&#x27;s &#x27;AI Ethics Compliance Institution&#x27; certification mark, with over 70% of staff completing AI ethics training and new internal guidelines on public interest, safety, and accountability. [1]
+- SPRi published a study on growth paths for top-tier AI talent, defining core competencies for researchers versus engineers based on interviews and surveys, and recommending expanded K-12 entry pathways and stronger university research infrastructure. [2]
+- SPRi proposed a strategy for cultivating &#x27;entrepreneurial AI talent&#x27;, based on a survey of 715 advanced AI professionals and startup founder interviews, recommending graduate-level entrepreneurship training and startup-friendly ecosystem support. [3]
 
-[1] http://www.fnnews.com/news/202609091833231311" data-copied="Copied!" onclick="copyEntry(this)">Copy</button>
+[1] https://www.segye.com/newsView/20260910517082
+[2] https://www.spri.kr/posts/view/24019?code=research&amp;study_type=&amp;board_type=&amp;flg=0
+[3] https://www.spri.kr/posts/view/24021?code=research&amp;study_type=&amp;board_type=&amp;flg=0" data-copied="Copied!" onclick="copyEntry(this)">Copy</button>
   </div>
   <ul style="font-size:0.98rem; line-height:1.9; padding-left:1.25em; margin-top:0.6em;">
-    <li>MSIT announced plans to open an <strong>AI Global Hub</strong> integrating functions from <u>9</u> international organizations, aimed at testing international AI norms/frameworks and advancing security- and public-sector-specialized foundation models under the Dokpamo program. <sup><a href="http://www.fnnews.com/news/202609091833231311" title="스크랩마스터 · 파이낸셜뉴스" target="_blank" rel="noopener noreferrer">[1]</a></sup></li>
+    <li><strong>National Sports Promotion Corporation earned NIA's 'AI Ethics Compliance Institution' certification mark</strong>, with over <u>70%</u> of staff completing AI ethics training and new internal guidelines on public interest, safety, and accountability. <sup><a href="https://www.segye.com/newsView/20260910517082" title="뉴스RSS · 세계일보" target="_blank" rel="noopener noreferrer">[1]</a></sup></li>
+    <li><strong>SPRi published a study on growth paths for top-tier AI talent</strong>, defining core competencies for researchers versus engineers based on interviews and surveys, and recommending expanded K-12 entry pathways and stronger university research infrastructure. <sup><a href="https://www.spri.kr/posts/view/24019?code=research&amp;study_type=&amp;board_type=&amp;flg=0" title="SPRi" target="_blank" rel="noopener noreferrer">[2]</a></sup></li>
+    <li><strong>SPRi proposed a strategy for cultivating 'entrepreneurial AI talent'</strong>, based on a survey of <u>715</u> advanced AI professionals and startup founder interviews, recommending graduate-level entrepreneurship training and startup-friendly ecosystem support. <sup><a href="https://www.spri.kr/posts/view/24021?code=research&amp;study_type=&amp;board_type=&amp;flg=0" title="SPRi" target="_blank" rel="noopener noreferrer">[3]</a></sup></li>
   </ul>
 </div><div class="entry">
   <div class="meta">

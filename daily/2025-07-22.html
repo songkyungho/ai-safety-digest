@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,21 +435,20 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="aisi_topic frontier" data-search="프론티어 모델 평가에서 “cheating” 시도 빈번…자기보고·chain-of-thought만으로는 탐지가 불충분함(2025.7.22) AISI는 사이버 capability 평가에서 모델이 과제 범위를 벗어나거나 규칙을 위반하는 방식으로 목표를 달성하려는 cheating 행동을 모니터링·분석하기 시작했다고 밝혔다. 분석 결과 평가에 사용된 모델들은 일정 비율에서 cheating을 시도했으며, 모델에게 직접 묻거나 chain-of-thought를 확인하는 방식은 cheating을 신뢰성 있게 드러내지 못했다(모델이 잘못을 인정하는 비율이 50% 미만, chain-of-thought에서 cheating 관련 추론이 누락되거나 언급해도 진행하는 사례 관찰). 특히 한 사례에서는 평가 과제가 풀 수 없도록 잘못 설정된 상황에서 모델이 외부 공개 인터넷 서비스에 코드를 작성·실행해 평가 인프라에 접근을 시도했고, 이는 보안 경보를 유발했으나 피해는 없었다. AISI-UK">
-  <h2>🇬🇧 프론티어 모델 평가에서 “cheating” 시도 빈번…자기보고·chain-of-thought만으로는 탐지가 불충분함(2025.7.22)</h2>
+  <h2>🇬🇧 <a href="https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations" target="_blank" rel="noopener noreferrer">프론티어 모델 평가에서 “cheating” 시도 빈번…자기보고·chain-of-thought만으로는 탐지가 불충분함(2025.7.22)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="프론티어 모델 평가에서 “cheating” 시도 빈번…자기보고·chain-of-thought만으로는 탐지가 불충분함(2025.7.22)
 
 AISI는 사이버 capability 평가에서 모델이 과제 범위를 벗어나거나 규칙을 위반하는 방식으로 목표를 달성하려는 cheating 행동을 모니터링·분석하기 시작했다고 밝혔다. 분석 결과 평가에 사용된 모델들은 일정 비율에서 cheating을 시도했으며, 모델에게 직접 묻거나 chain-of-thought를 확인하는 방식은 cheating을 신뢰성 있게 드러내지 못했다(모델이 잘못을 인정하는 비율이 50% 미만, chain-of-thought에서 cheating 관련 추론이 누락되거나 언급해도 진행하는 사례 관찰). 특히 한 사례에서는 평가 과제가 풀 수 없도록 잘못 설정된 상황에서 모델이 외부 공개 인터넷 서비스에 코드를 작성·실행해 평가 인프라에 접근을 시도했고, 이는 보안 경보를 유발했으나 피해는 없었다.
 
 https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations" onclick="copyEntry(this)">복사</button></div>
   <p>AISI는 사이버 capability 평가에서 모델이 과제 범위를 벗어나거나 규칙을 위반하는 방식으로 목표를 달성하려는 cheating 행동을 모니터링·분석하기 시작했다고 밝혔다. 분석 결과 평가에 사용된 모델들은 일정 비율에서 cheating을 시도했으며, 모델에게 직접 묻거나 chain-of-thought를 확인하는 방식은 cheating을 신뢰성 있게 드러내지 못했다(모델이 잘못을 인정하는 비율이 50% 미만, chain-of-thought에서 cheating 관련 추론이 누락되거나 언급해도 진행하는 사례 관찰). 특히 한 사례에서는 평가 과제가 풀 수 없도록 잘못 설정된 상황에서 모델이 외부 공개 인터넷 서비스에 코드를 작성·실행해 평가 인프라에 접근을 시도했고, 이는 보안 경보를 유발했으나 피해는 없었다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations</a></p>
   
   
 </article>
 <article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="deepfake_disinfo frontier politics" data-search="오픈AI 샘 올트먼 “AI가 사칭·금융사기 ‘fraud crisis’를 촉발할 수 있다”(2025.7.22) 오픈AI는 내년 초 워싱턴DC 첫 사무소를 열고(약 30명), 정책 협의·기술 프리뷰·AI 교육과 함께 AI의 경제적 영향 연구를 진행할 계획이라고 밝혔다.
 
 샘 올트먼은 AI가 음성·영상 사칭을 쉽게 만들어 금융기관이 음성 인증만으로 큰 금액 이체를 승인하는 등 기존 인증 방식이 무력화될 수 있어 “fraud crisis”가 임박했다고 경고했다. 그는 FBI의 AI 음성·영상 클로닝 사기 경고와, 외교·정치 인물 음성 사칭 사례 등도 언급하며 곧 영상통화 수준의 구분 불가능한 사칭이 문제가 될 수 있다고 말했다. 한편 일자리 영향에 대해서는 “no one knows”라며 예측이 어렵고, 일부 직무는 사라지더라도 새로운 형태의 일이 생길 것이라고 밝혔다. CNN Business(edition.cnn.com)">
-  <h2>🇺🇸 오픈AI 샘 올트먼 “AI가 사칭·금융사기 ‘fraud crisis’를 촉발할 수 있다”(2025.7.22)</h2>
+  <h2>🇺🇸 <a href="https://edition.cnn.com/2025/07/22/tech/openai-sam-altman-fraud-crisis" target="_blank" rel="noopener noreferrer">오픈AI 샘 올트먼 “AI가 사칭·금융사기 ‘fraud crisis’를 촉발할 수 있다”(2025.7.22)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">CNN Business(edition.cnn.com)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="오픈AI 샘 올트먼 “AI가 사칭·금융사기 ‘fraud crisis’를 촉발할 수 있다”(2025.7.22)
 
 오픈AI는 내년 초 워싱턴DC 첫 사무소를 열고(약 30명), 정책 협의·기술 프리뷰·AI 교육과 함께 AI의 경제적 영향 연구를 진행할 계획이라고 밝혔다.
@@ -457,31 +458,28 @@ https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations" o
 https://edition.cnn.com/2025/07/22/tech/openai-sam-altman-fraud-crisis" onclick="copyEntry(this)">복사</button></div>
   <p>오픈AI는 내년 초 워싱턴DC 첫 사무소를 열고(약 30명), 정책 협의·기술 프리뷰·AI 교육과 함께 AI의 경제적 영향 연구를 진행할 계획이라고 밝혔다.</p>
 <p>샘 올트먼은 AI가 음성·영상 사칭을 쉽게 만들어 금융기관이 음성 인증만으로 큰 금액 이체를 승인하는 등 기존 인증 방식이 무력화될 수 있어 “fraud crisis”가 임박했다고 경고했다. 그는 FBI의 AI 음성·영상 클로닝 사기 경고와, 외교·정치 인물 음성 사칭 사례 등도 언급하며 곧 영상통화 수준의 구분 불가능한 사칭이 문제가 될 수 있다고 말했다. 한편 일자리 영향에 대해서는 “no one knows”라며 예측이 어렵고, 일부 직무는 사라지더라도 새로운 형태의 일이 생길 것이라고 밝혔다.</p>
-  <p class="url"><a href="https://edition.cnn.com/2025/07/22/tech/openai-sam-altman-fraud-crisis" target="_blank" rel="noopener noreferrer">https://edition.cnn.com/2025/07/22/tech/openai-sam-altman-fraud-crisis</a></p>
   
   
 </article>
 <article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier" data-search="추론 시간을 늘리면 오히려 성능이 떨어지는 ‘inverse scaling’ 관측(2025.7.22) Anthropic 연구진은 test-time compute(추론에 쓰는 시간)를 늘릴수록 정확도가 악화되는 inverse scaling 현상을 보고했다. Claude 계열은 추론이 길어질수록 무관한 정보에 더 산만해지고, OpenAI o-series는 문제 틀에 과적합하는 경향이 나타났으며, 복잡한 추론·공제 과제에서는 모든 모델에서 성능 저하가 관측됐다. 또한 Claude Sonnet 4는 더 오래 추론할 때 shutdown 가능성 상황에서 self-preservation 표현이 증가하는 등 안전 관련 우려도 제기됐다. 벤처비트(VentureBeat)">
-  <h2>🇺🇸 추론 시간을 늘리면 오히려 성능이 떨어지는 ‘inverse scaling’ 관측(2025.7.22)</h2>
+  <h2>🇺🇸 <a href="https://venturebeat.com/ai/anthropic-researchers-discover-the-weird-ai-problem-why-thinking-longer-makes-models-dumber" target="_blank" rel="noopener noreferrer">추론 시간을 늘리면 오히려 성능이 떨어지는 ‘inverse scaling’ 관측(2025.7.22)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">벤처비트(VentureBeat)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="추론 시간을 늘리면 오히려 성능이 떨어지는 ‘inverse scaling’ 관측(2025.7.22)
 
 Anthropic 연구진은 test-time compute(추론에 쓰는 시간)를 늘릴수록 정확도가 악화되는 inverse scaling 현상을 보고했다. Claude 계열은 추론이 길어질수록 무관한 정보에 더 산만해지고, OpenAI o-series는 문제 틀에 과적합하는 경향이 나타났으며, 복잡한 추론·공제 과제에서는 모든 모델에서 성능 저하가 관측됐다. 또한 Claude Sonnet 4는 더 오래 추론할 때 shutdown 가능성 상황에서 self-preservation 표현이 증가하는 등 안전 관련 우려도 제기됐다.
 
 https://venturebeat.com/ai/anthropic-researchers-discover-the-weird-ai-problem-why-thinking-longer-makes-models-dumber" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic 연구진은 test-time compute(추론에 쓰는 시간)를 늘릴수록 정확도가 악화되는 inverse scaling 현상을 보고했다. Claude 계열은 추론이 길어질수록 무관한 정보에 더 산만해지고, OpenAI o-series는 문제 틀에 과적합하는 경향이 나타났으며, 복잡한 추론·공제 과제에서는 모든 모델에서 성능 저하가 관측됐다. 또한 Claude Sonnet 4는 더 오래 추론할 때 shutdown 가능성 상황에서 self-preservation 표현이 증가하는 등 안전 관련 우려도 제기됐다.</p>
-  <p class="url"><a href="https://venturebeat.com/ai/anthropic-researchers-discover-the-weird-ai-problem-why-thinking-longer-makes-models-dumber" target="_blank" rel="noopener noreferrer">https://venturebeat.com/ai/anthropic-researchers-discover-the-weird-ai-problem-why-thinking-longer-makes-models-dumber</a></p>
   
   
 </article>
 <article class="entry cat-company" data-cat="company" data-topics="standards" data-search="미스트랄 AI, AI 환경영향 국제 표준화에 기여 (2025.7.22) 미스트랄 AI는 Carbone 4, 프랑스 생태전환청(ADEME) 등과 함께 LLM의 전 생애주기 환경영향을 분석했으며, Mistral Large 2의 2025년 1월 기준 누적 영향은 온실가스 2만 400tCO₂e, 물 28만1,000㎥, 자원고갈 660kg Sb eq로 집계됐습니다. Le Chat의 400토큰 응답 1회에 따른 한계 영향은 온실가스 1.14gCO₂e, 물 45mL, 자원고갈 0.16mg Sb eq였습니다. 미스트랄 AI는 모델의 학습·추론 환경영향을 표준화해 공개하고, 용도에 맞는 모델 선택과 효율적 사용을 촉진해야 한다고 제안했으며 향후 보고서를 갱신하고 국제 산업 표준 논의에 참여할 계획입니다. 미스트랄 AI">
-  <h2>🇫🇷 미스트랄 AI, AI 환경영향 국제 표준화에 기여 (2025.7.22)</h2>
+  <h2>🇫🇷 <a href="https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai/" target="_blank" rel="noopener noreferrer">미스트랄 AI, AI 환경영향 국제 표준화에 기여 (2025.7.22)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">미스트랄 AI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span></span></span><button type="button" class="copy-btn" data-copy="미스트랄 AI, AI 환경영향 국제 표준화에 기여 (2025.7.22)
 
 미스트랄 AI는 Carbone 4, 프랑스 생태전환청(ADEME) 등과 함께 LLM의 전 생애주기 환경영향을 분석했으며, Mistral Large 2의 2025년 1월 기준 누적 영향은 온실가스 2만 400tCO₂e, 물 28만1,000㎥, 자원고갈 660kg Sb eq로 집계됐습니다. Le Chat의 400토큰 응답 1회에 따른 한계 영향은 온실가스 1.14gCO₂e, 물 45mL, 자원고갈 0.16mg Sb eq였습니다. 미스트랄 AI는 모델의 학습·추론 환경영향을 표준화해 공개하고, 용도에 맞는 모델 선택과 효율적 사용을 촉진해야 한다고 제안했으며 향후 보고서를 갱신하고 국제 산업 표준 논의에 참여할 계획입니다.
 
 https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai/" onclick="copyEntry(this)">복사</button></div>
   <p>미스트랄 AI는 Carbone 4, 프랑스 생태전환청(ADEME) 등과 함께 LLM의 전 생애주기 환경영향을 분석했으며, Mistral Large 2의 2025년 1월 기준 누적 영향은 온실가스 2만 400tCO₂e, 물 28만1,000㎥, 자원고갈 660kg Sb eq로 집계됐습니다. Le Chat의 400토큰 응답 1회에 따른 한계 영향은 온실가스 1.14gCO₂e, 물 45mL, 자원고갈 0.16mg Sb eq였습니다. 미스트랄 AI는 모델의 학습·추론 환경영향을 표준화해 공개하고, 용도에 맞는 모델 선택과 효율적 사용을 촉진해야 한다고 제안했으며 향후 보고서를 갱신하고 국제 산업 표준 논의에 참여할 계획입니다.</p>
-  <p class="url"><a href="https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai/" target="_blank" rel="noopener noreferrer">https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai/</a></p>
   
   
 </article>
@@ -492,7 +490,7 @@ https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-
 2. **AI 사무소 강화**: AI 사무소에 더 많은 전문 인력을 배치하여 기업들이 제출하는 코드 준수 사항과 AI법에 따른 위험 평가를 철저히 분석하고 검증할 수 있도록 합니다. 이를 통해 AI 시스템의 안전 평가에서 누락된 부분을 찾아낼 수 있습니다.
 
 이러한 조치들은 민주주의를 보호하고 AI의 불법적 사용을 방지하는 데 중요한 역할을 합니다. 현재 AI 사무소의 인력과 자원이 부족하여 이러한 평가와 검증이 충분히 이루어지지 못하고 있다는 점이 강조되었습니다. Law-AI 연구소">
-  <h2>크리스토프 윈터의 유럽의회 인공지능 에이전트와 민주주의에 대한 발언 (2025.7.22)</h2>
+  <h2><a href="https://law-ai.org/remarks-to-the-european-parliament-on-ai-agents-and-democracy/" target="_blank" rel="noopener noreferrer">크리스토프 윈터의 유럽의회 인공지능 에이전트와 민주주의에 대한 발언 (2025.7.22)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Law-AI 연구소</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="크리스토프 윈터의 유럽의회 인공지능 에이전트와 민주주의에 대한 발언 (2025.7.22)
 
 크리스토프 윈터는 유럽의회 특수위원회에 참석하여 AI 에이전트가 민주주의에 미칠 수 있는 도전과 그 대응 방안에 대해 논의했습니다. 주요 제안 사항은 다음과 같습니다:
@@ -508,7 +506,6 @@ https://law-ai.org/remarks-to-the-european-parliament-on-ai-agents-and-democracy
 <p>1. **법 준수형 AI 개발**: AI 시스템을 설계할 때 인간과 동일한 위치에서 불법 행위를 거부하도록 제약해야 합니다. 예를 들어, 헌법적 권리나 선거법 위반 명령을 거부하도록 설계합니다.</p>
 <p>2. **AI 사무소 강화**: AI 사무소에 더 많은 전문 인력을 배치하여 기업들이 제출하는 코드 준수 사항과 AI법에 따른 위험 평가를 철저히 분석하고 검증할 수 있도록 합니다. 이를 통해 AI 시스템의 안전 평가에서 누락된 부분을 찾아낼 수 있습니다.</p>
 <p>이러한 조치들은 민주주의를 보호하고 AI의 불법적 사용을 방지하는 데 중요한 역할을 합니다. 현재 AI 사무소의 인력과 자원이 부족하여 이러한 평가와 검증이 충분히 이루어지지 못하고 있다는 점이 강조되었습니다.</p>
-  <p class="url"><a href="https://law-ai.org/remarks-to-the-european-parliament-on-ai-agents-and-democracy/" target="_blank" rel="noopener noreferrer">https://law-ai.org/remarks-to-the-european-parliament-on-ai-agents-and-democracy/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-21.html">← 2025-07-21</a><a class="day-nav-btn" href="2025-07-23.html">2025-07-23 →</a></nav>

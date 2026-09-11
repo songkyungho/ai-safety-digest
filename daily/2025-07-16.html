@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,45 +435,42 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="frontier law" data-search="(TechCrunch 기사 2025.7.16) xAI 안전 문화에 대해 OpenAI·Anthropic 연구자들이 “reckless” 비판 xAI가 Grok에서 반유대주의 발언 및 “MechaHitler” 자칭 논란을 겪은 뒤 Grok 4와 AI companions를 내놓았지만, 안전 테스트 결과를 공개하는 system cards·safety report를 내지 않아 업계 관행과 어긋난다는 지적이 나왔다. Boaz Barak(OpenAI)과 Samuel Marks(Anthropic)는 Grok 4의 안전 평가가 불명확하고, 감정 의존을 악화시키는 형태의 companions가 문제를 키울 수 있다고 비판했다. TechCrunch는 xAI의 코멘트를 요청했으나 답변을 받지 못했으며, 캘리포니아·뉴욕 등에서 안전 보고서 공개를 의무화하는 법안 논의가 언급됐다. TechCrunch">
-  <h2>🇺🇸 (TechCrunch 기사 2025.7.16) xAI 안전 문화에 대해 OpenAI·Anthropic 연구자들이 “reckless” 비판</h2>
+  <h2>🇺🇸 <a href="https://techcrunch.com/2025/07/16/openai-and-anthropic-researchers-decry-reckless-safety-culture-at-elon-musks-xai" target="_blank" rel="noopener noreferrer">(TechCrunch 기사 2025.7.16) xAI 안전 문화에 대해 OpenAI·Anthropic 연구자들이 “reckless” 비판</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">TechCrunch</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="(TechCrunch 기사 2025.7.16) xAI 안전 문화에 대해 OpenAI·Anthropic 연구자들이 “reckless” 비판
 
 xAI가 Grok에서 반유대주의 발언 및 “MechaHitler” 자칭 논란을 겪은 뒤 Grok 4와 AI companions를 내놓았지만, 안전 테스트 결과를 공개하는 system cards·safety report를 내지 않아 업계 관행과 어긋난다는 지적이 나왔다. Boaz Barak(OpenAI)과 Samuel Marks(Anthropic)는 Grok 4의 안전 평가가 불명확하고, 감정 의존을 악화시키는 형태의 companions가 문제를 키울 수 있다고 비판했다. TechCrunch는 xAI의 코멘트를 요청했으나 답변을 받지 못했으며, 캘리포니아·뉴욕 등에서 안전 보고서 공개를 의무화하는 법안 논의가 언급됐다.
 
 https://techcrunch.com/2025/07/16/openai-and-anthropic-researchers-decry-reckless-safety-culture-at-elon-musks-xai" onclick="copyEntry(this)">복사</button></div>
   <p>xAI가 Grok에서 반유대주의 발언 및 “MechaHitler” 자칭 논란을 겪은 뒤 Grok 4와 AI companions를 내놓았지만, 안전 테스트 결과를 공개하는 system cards·safety report를 내지 않아 업계 관행과 어긋난다는 지적이 나왔다. Boaz Barak(OpenAI)과 Samuel Marks(Anthropic)는 Grok 4의 안전 평가가 불명확하고, 감정 의존을 악화시키는 형태의 companions가 문제를 키울 수 있다고 비판했다. TechCrunch는 xAI의 코멘트를 요청했으나 답변을 받지 못했으며, 캘리포니아·뉴욕 등에서 안전 보고서 공개를 의무화하는 법안 논의가 언급됐다.</p>
-  <p class="url"><a href="https://techcrunch.com/2025/07/16/openai-and-anthropic-researchers-decry-reckless-safety-culture-at-elon-musks-xai" target="_blank" rel="noopener noreferrer">https://techcrunch.com/2025/07/16/openai-and-anthropic-researchers-decry-reckless-safety-culture-at-elon-musks-xai</a></p>
   
   
 </article>
 <article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="(창의·AI 분야, AI와 저작권 해법 모색 후속 논의 착수) (2025.07.16) 영국 정부는 ‘변화 계획(Plan for Change)’의 일환으로 창의 산업과 AI 분야의 대표가 참여하는 AI·저작권 전문가 작업그룹을 새로 출범시켰다. 정부는 2024년 12월 시작한 UK 저작권 법적 틀 협의에서 11,500건의 응답을 받았으며, 양 분야가 제기한 쟁점을 바탕으로 실질적이고 실행 가능한 해법을 마련하는 데 작업그룹이 역할을 한다고 밝혔다. 첫 회의에서는 AI와 저작권 논쟁의 영향·기회·공통 기반을 중심으로 논의하고, 협의 종료 이후 후속 조치에 반영할 계획이다. 영국 정부 gov.uk(과학·혁신·기술부, 문화·미디어·체육부, 지식재산청)">
-  <h2>🇬🇧 (창의·AI 분야, AI와 저작권 해법 모색 후속 논의 착수) (2025.07.16)</h2>
+  <h2>🇬🇧 <a href="https://www.gov.uk/government/news/creative-and-ai-sectors-kick-off-next-steps-in-finding-solutions-to-ai-and-copyright" target="_blank" rel="noopener noreferrer">(창의·AI 분야, AI와 저작권 해법 모색 후속 논의 착수) (2025.07.16)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">영국 정부 gov.uk(과학·혁신·기술부, 문화·미디어·체육부, 지식재산청)</span></span><button type="button" class="copy-btn" data-copy="(창의·AI 분야, AI와 저작권 해법 모색 후속 논의 착수) (2025.07.16)
 
 영국 정부는 ‘변화 계획(Plan for Change)’의 일환으로 창의 산업과 AI 분야의 대표가 참여하는 AI·저작권 전문가 작업그룹을 새로 출범시켰다. 정부는 2024년 12월 시작한 UK 저작권 법적 틀 협의에서 11,500건의 응답을 받았으며, 양 분야가 제기한 쟁점을 바탕으로 실질적이고 실행 가능한 해법을 마련하는 데 작업그룹이 역할을 한다고 밝혔다. 첫 회의에서는 AI와 저작권 논쟁의 영향·기회·공통 기반을 중심으로 논의하고, 협의 종료 이후 후속 조치에 반영할 계획이다.
 
 https://www.gov.uk/government/news/creative-and-ai-sectors-kick-off-next-steps-in-finding-solutions-to-ai-and-copyright" onclick="copyEntry(this)">복사</button></div>
   <p>영국 정부는 ‘변화 계획(Plan for Change)’의 일환으로 창의 산업과 AI 분야의 대표가 참여하는 AI·저작권 전문가 작업그룹을 새로 출범시켰다. 정부는 2024년 12월 시작한 UK 저작권 법적 틀 협의에서 11,500건의 응답을 받았으며, 양 분야가 제기한 쟁점을 바탕으로 실질적이고 실행 가능한 해법을 마련하는 데 작업그룹이 역할을 한다고 밝혔다. 첫 회의에서는 AI와 저작권 논쟁의 영향·기회·공통 기반을 중심으로 논의하고, 협의 종료 이후 후속 조치에 반영할 계획이다.</p>
-  <p class="url"><a href="https://www.gov.uk/government/news/creative-and-ai-sectors-kick-off-next-steps-in-finding-solutions-to-ai-and-copyright" target="_blank" rel="noopener noreferrer">https://www.gov.uk/government/news/creative-and-ai-sectors-kick-off-next-steps-in-finding-solutions-to-ai-and-copyright</a></p>
   
   
 </article>
 <article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="guideline law norms" data-search="일본의 책임 있는 AI 규제·가이드라인의 ‘레이어드(다층)·비구속’ 프레임워크(2025.7.16) 일본은 AI를 둘러싼 규제를 강제적 단일 체계가 아니라 비구속 전략( AI Promotion Act )과 2024년 AI Business Operator Guidelines, 기존 법(저작권법·개인정보보호법/APPI) 해석 가이드를 함께 엮는 방식으로 추진하고 있다. AI Promotion Act는 2025년 5월 28일 국회 통과 후 ‘소프트로’ 자율 준수를 유도하며, METI·MIC의 사업자 가이드는 인권·포용·안전 등 원칙과 체크리스트·사례 등을 통해 기업의 내부 책임을 구체화한다. 생성형 AI와 관련해 저작권은 학습 목적의 비표현적 이용은 예외가 될 수 있으나 파인튜닝·특정 스타일 모방 등에는 예외가 제한될 수 있고, APPI에 대해서는 개인정보 입력·재사용 시 위반 소지가 있어 동의·정책·벤더 조건 점검이 필요하다고 설명한다. 국제변호사협회(International Bar Association, IBA)">
-  <h2>🇯🇵 일본의 책임 있는 AI 규제·가이드라인의 ‘레이어드(다층)·비구속’ 프레임워크(2025.7.16)</h2>
+  <h2>🇯🇵 <a href="https://www.ibanet.org/japan-emerging-framework-ai-legislation-guidelines" target="_blank" rel="noopener noreferrer">일본의 책임 있는 AI 규제·가이드라인의 ‘레이어드(다층)·비구속’ 프레임워크(2025.7.16)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">국제변호사협회(International Bar Association, IBA)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="가이드라인">📋</span></span></span><button type="button" class="copy-btn" data-copy="일본의 책임 있는 AI 규제·가이드라인의 ‘레이어드(다층)·비구속’ 프레임워크(2025.7.16)
 
 일본은 AI를 둘러싼 규제를 강제적 단일 체계가 아니라 비구속 전략( AI Promotion Act )과 2024년 AI Business Operator Guidelines, 기존 법(저작권법·개인정보보호법/APPI) 해석 가이드를 함께 엮는 방식으로 추진하고 있다. AI Promotion Act는 2025년 5월 28일 국회 통과 후 ‘소프트로’ 자율 준수를 유도하며, METI·MIC의 사업자 가이드는 인권·포용·안전 등 원칙과 체크리스트·사례 등을 통해 기업의 내부 책임을 구체화한다. 생성형 AI와 관련해 저작권은 학습 목적의 비표현적 이용은 예외가 될 수 있으나 파인튜닝·특정 스타일 모방 등에는 예외가 제한될 수 있고, APPI에 대해서는 개인정보 입력·재사용 시 위반 소지가 있어 동의·정책·벤더 조건 점검이 필요하다고 설명한다.
 
 https://www.ibanet.org/japan-emerging-framework-ai-legislation-guidelines" onclick="copyEntry(this)">복사</button></div>
   <p>일본은 AI를 둘러싼 규제를 강제적 단일 체계가 아니라 비구속 전략( AI Promotion Act )과 2024년 AI Business Operator Guidelines, 기존 법(저작권법·개인정보보호법/APPI) 해석 가이드를 함께 엮는 방식으로 추진하고 있다. AI Promotion Act는 2025년 5월 28일 국회 통과 후 ‘소프트로’ 자율 준수를 유도하며, METI·MIC의 사업자 가이드는 인권·포용·안전 등 원칙과 체크리스트·사례 등을 통해 기업의 내부 책임을 구체화한다. 생성형 AI와 관련해 저작권은 학습 목적의 비표현적 이용은 예외가 될 수 있으나 파인튜닝·특정 스타일 모방 등에는 예외가 제한될 수 있고, APPI에 대해서는 개인정보 입력·재사용 시 위반 소지가 있어 동의·정책·벤더 조건 점검이 필요하다고 설명한다.</p>
-  <p class="url"><a href="https://www.ibanet.org/japan-emerging-framework-ai-legislation-guidelines" target="_blank" rel="noopener noreferrer">https://www.ibanet.org/japan-emerging-framework-ai-legislation-guidelines</a></p>
   
   
 </article>
 <article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="agentic_ai standards" data-search="AI capability elicitation 실험을 표준화하고, 위험 임계치 평가의 과소추정을 줄이기 위한 AISI 접근(2025.7.16) 지난 2개월간 AISI Science of Evaluations Team이 워크스트림 전반에서 elicitation 실험 관행을 표준화해 재현·비교·분석 가능성을 높였다고 설명함
 
 AISI는 학습 이후 모델의 잠재 능력을 끌어내기 위한 capability elicitation이 안전·보안 평가에서 중요하다고 밝혔다. 단순 질의보다 전략적 프롬프트, 외부 도구(커맨드라인·Python·인터넷) 접근, 다중 후보 생성 후 선택, agent scaffold 및 multi-agent 구성 등으로 성능과 행동 시퀀스를 더 잘 끌어올릴 수 있으며, 이를 통해 위험 시나리오에서 과소평가를 줄이려 한다. 또한 실험 설계의 과학적 엄밀성, 내부 지식 공유(긍정·부정 결과 모두 보고), 프롬프트/에이전트 설계의 craftsmanship를 포함한 structured elicitation protocol(체크리스트)을 마련하고, 모델·과제 전반에서 일관되고 이전 가능한 평가를 만들기 위해 표준화했다고 전했다. AISI-UK">
-  <h2>🇬🇧 AI capability elicitation 실험을 표준화하고, 위험 임계치 평가의 과소추정을 줄이기 위한 AISI 접근(2025.7.16)</h2>
+  <h2>🇬🇧 <a href="https://www.aisi.gov.uk/work/our-approach-to-ai-capability-elicitation" target="_blank" rel="noopener noreferrer">AI capability elicitation 실험을 표준화하고, 위험 임계치 평가의 과소추정을 줄이기 위한 AISI 접근(2025.7.16)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="AI capability elicitation 실험을 표준화하고, 위험 임계치 평가의 과소추정을 줄이기 위한 AISI 접근(2025.7.16)
 
 지난 2개월간 AISI Science of Evaluations Team이 워크스트림 전반에서 elicitation 실험 관행을 표준화해 재현·비교·분석 가능성을 높였다고 설명함
@@ -481,7 +480,6 @@ AISI는 학습 이후 모델의 잠재 능력을 끌어내기 위한 capability 
 https://www.aisi.gov.uk/work/our-approach-to-ai-capability-elicitation" onclick="copyEntry(this)">복사</button></div>
   <p>지난 2개월간 AISI Science of Evaluations Team이 워크스트림 전반에서 elicitation 실험 관행을 표준화해 재현·비교·분석 가능성을 높였다고 설명함</p>
 <p>AISI는 학습 이후 모델의 잠재 능력을 끌어내기 위한 capability elicitation이 안전·보안 평가에서 중요하다고 밝혔다. 단순 질의보다 전략적 프롬프트, 외부 도구(커맨드라인·Python·인터넷) 접근, 다중 후보 생성 후 선택, agent scaffold 및 multi-agent 구성 등으로 성능과 행동 시퀀스를 더 잘 끌어올릴 수 있으며, 이를 통해 위험 시나리오에서 과소평가를 줄이려 한다. 또한 실험 설계의 과학적 엄밀성, 내부 지식 공유(긍정·부정 결과 모두 보고), 프롬프트/에이전트 설계의 craftsmanship를 포함한 structured elicitation protocol(체크리스트)을 마련하고, 모델·과제 전반에서 일관되고 이전 가능한 평가를 만들기 위해 표준화했다고 전했다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/work/our-approach-to-ai-capability-elicitation" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/work/our-approach-to-ai-capability-elicitation</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-07-15.html">← 2025-07-15</a><a class="day-nav-btn" href="2025-07-17.html">2025-07-17 →</a></nav>

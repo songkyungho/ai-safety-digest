@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -435,7 +437,7 @@
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="cybersecurity safety_research" data-search="Chrome용 Claude를 파일럿으로 공개하며 prompt injection 위험을 줄이기 위한 권한·확인 절차와 분류기 개선을 진행(2025.8.25) Anthropic은 Chrome 확장 프로그램을 Max 플랜 1,000명 대상으로 제한 테스트하며, waitlist(claude.ai/chrome)를 통해 참여자를 모집한다.
 
 Anthropic은 브라우저에서 Claude가 사용자의 화면을 보고 클릭·폼 입력 등 작업을 수행할 수 있도록 Chrome 확장 기능을 파일럿으로 테스트한다고 밝혔다. 다만 브라우저 환경에서는 웹사이트 등에 숨겨진 지시로 AI가 악의적 행동을 하게 만드는 prompt injection 공격이 가능하며, red-teaming 결과 안전장치가 없을 때 공격 성공률이 23.6%였다고 설명했다. 새 mitigations 적용 후 공격 성공률을 11.2%로 낮췄고, 브라우저 특화 공격 4종 “challenge” 세트에서는 35.7%에서 0%로 줄였다고 덧붙였다. 또한 사이트별 권한, 고위험 행동에 대한 action confirmations, 고위험 카테고리 차단, 의심 패턴 탐지 분류기 등을 현재 방어 체계로 제시했다. 앤트로픽(Anthropic) 공식 뉴스">
-  <h2>Chrome용 Claude를 파일럿으로 공개하며 prompt injection 위험을 줄이기 위한 권한·확인 절차와 분류기 개선을 진행(2025.8.25)</h2>
+  <h2><a href="https://www.anthropic.com/news/claude-for-chrome" target="_blank" rel="noopener noreferrer">Chrome용 Claude를 파일럿으로 공개하며 prompt injection 위험을 줄이기 위한 권한·확인 절차와 분류기 개선을 진행(2025.8.25)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">앤트로픽(Anthropic) 공식 뉴스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="Chrome용 Claude를 파일럿으로 공개하며 prompt injection 위험을 줄이기 위한 권한·확인 절차와 분류기 개선을 진행(2025.8.25)
 
 Anthropic은 Chrome 확장 프로그램을 Max 플랜 1,000명 대상으로 제한 테스트하며, waitlist(claude.ai/chrome)를 통해 참여자를 모집한다.
@@ -445,14 +447,13 @@ Anthropic은 브라우저에서 Claude가 사용자의 화면을 보고 클릭·
 https://www.anthropic.com/news/claude-for-chrome" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 Chrome 확장 프로그램을 Max 플랜 1,000명 대상으로 제한 테스트하며, waitlist(claude.ai/chrome)를 통해 참여자를 모집한다.</p>
 <p>Anthropic은 브라우저에서 Claude가 사용자의 화면을 보고 클릭·폼 입력 등 작업을 수행할 수 있도록 Chrome 확장 기능을 파일럿으로 테스트한다고 밝혔다. 다만 브라우저 환경에서는 웹사이트 등에 숨겨진 지시로 AI가 악의적 행동을 하게 만드는 prompt injection 공격이 가능하며, red-teaming 결과 안전장치가 없을 때 공격 성공률이 23.6%였다고 설명했다. 새 mitigations 적용 후 공격 성공률을 11.2%로 낮췄고, 브라우저 특화 공격 4종 “challenge” 세트에서는 35.7%에서 0%로 줄였다고 덧붙였다. 또한 사이트별 권한, 고위험 행동에 대한 action confirmations, 고위험 카테고리 차단, 의심 패턴 탐지 분류기 등을 현재 방어 체계로 제시했다.</p>
-  <p class="url"><a href="https://www.anthropic.com/news/claude-for-chrome" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/claude-for-chrome</a></p>
   
   
 </article>
 <article class="entry cat-public" data-cat="public" data-topics="cybersecurity incidents" data-search="AI 사고 보고에서 ‘safety’와 ‘security’는 다르다(2025.8.25) OECD AI 사고 공통 보고 프레임워크를 AI security 보고에 맞게 확장(취약점 분류 등)하거나, security 사건을 별도 병행 프로세스로 표시해 호환성을 유지하자는 제안이 제시됨
 
 OECD의 AI Incidents 공통 보고 프레임워크가 데이터 공유 기반을 빠르게 마련하고 있지만, 보안 커뮤니티의 광범위한 채택을 막는 장애로 ‘사이버보안 이슈를 더 잘 다루기 위한 정보 부족’이 지적된다. 글은 AI security 사건은 악의적 행위자와 취약점 악용 가능성 등 추가 데이터가 필요하며, 이를 모든 비(非)보안 AI 사고에 억지로 적용하면 오히려 핵심 요소가 가려질 수 있다고 설명한다. 해결책으로는 OECD 프레임워크에 AI security 전용 확장 필드를 추가하거나, security 사건을 명확히 플래그해 병행 프로세스를 운영하되 공통 기반은 유지하는 방안을 제안한다. OECD-AI">
-  <h2>AI 사고 보고에서 ‘safety’와 ‘security’는 다르다(2025.8.25)</h2>
+  <h2><a href="https://oecd.ai/en/wonk/when-it-comes-to-ai-incidents-safety-and-security-are-not-the-same" target="_blank" rel="noopener noreferrer">AI 사고 보고에서 ‘safety’와 ‘security’는 다르다(2025.8.25)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">OECD-AI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="AI 사고 보고에서 ‘safety’와 ‘security’는 다르다(2025.8.25)
 
 OECD AI 사고 공통 보고 프레임워크를 AI security 보고에 맞게 확장(취약점 분류 등)하거나, security 사건을 별도 병행 프로세스로 표시해 호환성을 유지하자는 제안이 제시됨
@@ -462,19 +463,17 @@ OECD의 AI Incidents 공통 보고 프레임워크가 데이터 공유 기반을
 https://oecd.ai/en/wonk/when-it-comes-to-ai-incidents-safety-and-security-are-not-the-same" onclick="copyEntry(this)">복사</button></div>
   <p>OECD AI 사고 공통 보고 프레임워크를 AI security 보고에 맞게 확장(취약점 분류 등)하거나, security 사건을 별도 병행 프로세스로 표시해 호환성을 유지하자는 제안이 제시됨</p>
 <p>OECD의 AI Incidents 공통 보고 프레임워크가 데이터 공유 기반을 빠르게 마련하고 있지만, 보안 커뮤니티의 광범위한 채택을 막는 장애로 ‘사이버보안 이슈를 더 잘 다루기 위한 정보 부족’이 지적된다. 글은 AI security 사건은 악의적 행위자와 취약점 악용 가능성 등 추가 데이터가 필요하며, 이를 모든 비(非)보안 AI 사고에 억지로 적용하면 오히려 핵심 요소가 가려질 수 있다고 설명한다. 해결책으로는 OECD 프레임워크에 AI security 전용 확장 필드를 추가하거나, security 사건을 명확히 플래그해 병행 프로세스를 운영하되 공통 기반은 유지하는 방안을 제안한다.</p>
-  <p class="url"><a href="https://oecd.ai/en/wonk/when-it-comes-to-ai-incidents-safety-and-security-are-not-the-same" target="_blank" rel="noopener noreferrer">https://oecd.ai/en/wonk/when-it-comes-to-ai-incidents-safety-and-security-are-not-the-same</a></p>
   
   
 </article>
 <article class="entry cat-other" data-cat="other" data-topics="" data-search="The practical ‘human in the loop’ framework (기사·공고 게재일 2025.8.25) 인간이 AI 의사결정에 개입하는 “human in the loop”를 단순한 문구로만 보지 말고, 실제로 인간에게 권한·시간·상황 이해가 주어지는 구조가 필요하다고 강조한다. 소련의 스탠니슬라프 페트로프 사례를 들어, 컴퓨터 경보(미사일 5발, 28분)를 무시하고 “false alarm”을 선택한 판단이 핵전쟁을 막았다고 설명한다. 이어 조직이 AI를 만들 때 최적화 목표와 무엇이 걸려 있는지부터 묻고, 이를 바탕으로 되돌릴 수 없는 결정에는 circuit breaker, 저위험 자동화에는 feedback learning 등 16가지 접근을 제시하며, 목적은 “그럴듯한 분류”가 아니라 의도한 시스템을 구현하는 것이라고 말한다. teybannerman.com">
-  <h2>The practical ‘human in the loop’ framework (기사·공고 게재일 2025.8.25)</h2>
+  <h2><a href="https://teybannerman.com/ai/2025/08/25/human-in-the-loop-framework.html" target="_blank" rel="noopener noreferrer">The practical ‘human in the loop’ framework (기사·공고 게재일 2025.8.25)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">teybannerman.com</span></span><button type="button" class="copy-btn" data-copy="The practical ‘human in the loop’ framework (기사·공고 게재일 2025.8.25)
 
 인간이 AI 의사결정에 개입하는 “human in the loop”를 단순한 문구로만 보지 말고, 실제로 인간에게 권한·시간·상황 이해가 주어지는 구조가 필요하다고 강조한다. 소련의 스탠니슬라프 페트로프 사례를 들어, 컴퓨터 경보(미사일 5발, 28분)를 무시하고 “false alarm”을 선택한 판단이 핵전쟁을 막았다고 설명한다. 이어 조직이 AI를 만들 때 최적화 목표와 무엇이 걸려 있는지부터 묻고, 이를 바탕으로 되돌릴 수 없는 결정에는 circuit breaker, 저위험 자동화에는 feedback learning 등 16가지 접근을 제시하며, 목적은 “그럴듯한 분류”가 아니라 의도한 시스템을 구현하는 것이라고 말한다.
 
 https://teybannerman.com/ai/2025/08/25/human-in-the-loop-framework.html" onclick="copyEntry(this)">복사</button></div>
   <p>인간이 AI 의사결정에 개입하는 “human in the loop”를 단순한 문구로만 보지 말고, 실제로 인간에게 권한·시간·상황 이해가 주어지는 구조가 필요하다고 강조한다. 소련의 스탠니슬라프 페트로프 사례를 들어, 컴퓨터 경보(미사일 5발, 28분)를 무시하고 “false alarm”을 선택한 판단이 핵전쟁을 막았다고 설명한다. 이어 조직이 AI를 만들 때 최적화 목표와 무엇이 걸려 있는지부터 묻고, 이를 바탕으로 되돌릴 수 없는 결정에는 circuit breaker, 저위험 자동화에는 feedback learning 등 16가지 접근을 제시하며, 목적은 “그럴듯한 분류”가 아니라 의도한 시스템을 구현하는 것이라고 말한다.</p>
-  <p class="url"><a href="https://teybannerman.com/ai/2025/08/25/human-in-the-loop-framework.html" target="_blank" rel="noopener noreferrer">https://teybannerman.com/ai/2025/08/25/human-in-the-loop-framework.html</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-08-24.html">← 2025-08-24</a><a class="day-nav-btn" href="2025-08-26.html">2025-08-26 →</a></nav>

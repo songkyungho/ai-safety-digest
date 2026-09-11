@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,38 +435,35 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="" data-search="네이버 검색 인공지능 에이전트 ‘AI Tab’ 사전적정성 검토 결과 의결 (2026.5.31) 개인정보보호위원회는 네이버의 검색 인공지능 에이전트 ‘AI Tab’ 서비스에 대한 사전적정성 검토 결과를 의결했다. 서비스는 데이터 활용 거부 옵션과 이용자의 실질적인 통제권을 보장하고, 맞춤형 정보 항목을 개인정보 처리방침에 투명하게 공개하며 안전조치를 강화하는 조건에서 적법하게 운영할 수 있다. 위원회는 정식 출시 후 네이버의 협의사항 이행 여부를 점검할 예정이다. 개인정보보호위원회">
-  <h2>🇰🇷 네이버 검색 인공지능 에이전트 ‘AI Tab’ 사전적정성 검토 결과 의결 (2026.5.31)</h2>
+  <h2>🇰🇷 <a href="https://eiec.kdi.re.kr/policy/materialView.do?num=282047" target="_blank" rel="noopener noreferrer">네이버 검색 인공지능 에이전트 ‘AI Tab’ 사전적정성 검토 결과 의결 (2026.5.31)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">개인정보보호위원회</span></span><button type="button" class="copy-btn" data-copy="네이버 검색 인공지능 에이전트 ‘AI Tab’ 사전적정성 검토 결과 의결 (2026.5.31)
 
 개인정보보호위원회는 네이버의 검색 인공지능 에이전트 ‘AI Tab’ 서비스에 대한 사전적정성 검토 결과를 의결했다. 서비스는 데이터 활용 거부 옵션과 이용자의 실질적인 통제권을 보장하고, 맞춤형 정보 항목을 개인정보 처리방침에 투명하게 공개하며 안전조치를 강화하는 조건에서 적법하게 운영할 수 있다. 위원회는 정식 출시 후 네이버의 협의사항 이행 여부를 점검할 예정이다.
 
 https://eiec.kdi.re.kr/policy/materialView.do?num=282047" onclick="copyEntry(this)">복사</button></div>
   <p>개인정보보호위원회는 네이버의 검색 인공지능 에이전트 ‘AI Tab’ 서비스에 대한 사전적정성 검토 결과를 의결했다. 서비스는 데이터 활용 거부 옵션과 이용자의 실질적인 통제권을 보장하고, 맞춤형 정보 항목을 개인정보 처리방침에 투명하게 공개하며 안전조치를 강화하는 조건에서 적법하게 운영할 수 있다. 위원회는 정식 출시 후 네이버의 협의사항 이행 여부를 점검할 예정이다.</p>
-  <p class="url"><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=282047" target="_blank" rel="noopener noreferrer">https://eiec.kdi.re.kr/policy/materialView.do?num=282047</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="national_security norms" data-search="전쟁과 AI 윤리의 교차점: 인간 존엄성과 평화를 위한 기술 통제 필요성 (2026.5.31) 본 기사는 AI 기술이 이미 군사 분야에 깊숙이 스며들어 빠른 의사결정과 살상 능력을 향상시키고 있음을 지적한다. 특히 미국과 이스라엘의 작전에서 AI 기반 시스템이 표적 식별과 우선순위 판단을 지원하며 빠른 작전 수행을 가능케 한 사례를 소개한다. 북한의 경우 AI 기반 미사일 개발을 추진 중이지만, 기술적 제약이 존재한다. 이와 함께 과기정통부는 AI 윤리 원칙 초안을 공개하고 대국민 의견수렴을 진행하여 AI 혁신이 인간과 사회의 신뢰를 바탕으로 이루어져야 함을 강조한다. 핵심 가치로 인간 존엄성, 사회 공공선, 기술 신뢰성을 제시하며, 이를 위한 원칙들을 통해 기술의 윤리적 활용을 촉구하고 있다. AI-Ethics-KR">
-  <h2>🇰🇷 전쟁과 AI 윤리의 교차점: 인간 존엄성과 평화를 위한 기술 통제 필요성 (2026.5.31)</h2>
+  <h2>🇰🇷 <a href="https://ai-ethics.kr/no-just-algorithm-for-war-2026-06-01/" target="_blank" rel="noopener noreferrer">전쟁과 AI 윤리의 교차점: 인간 존엄성과 평화를 위한 기술 통제 필요성 (2026.5.31)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AI-Ethics-KR</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="전쟁과 AI 윤리의 교차점: 인간 존엄성과 평화를 위한 기술 통제 필요성 (2026.5.31)
 
 본 기사는 AI 기술이 이미 군사 분야에 깊숙이 스며들어 빠른 의사결정과 살상 능력을 향상시키고 있음을 지적한다. 특히 미국과 이스라엘의 작전에서 AI 기반 시스템이 표적 식별과 우선순위 판단을 지원하며 빠른 작전 수행을 가능케 한 사례를 소개한다. 북한의 경우 AI 기반 미사일 개발을 추진 중이지만, 기술적 제약이 존재한다. 이와 함께 과기정통부는 AI 윤리 원칙 초안을 공개하고 대국민 의견수렴을 진행하여 AI 혁신이 인간과 사회의 신뢰를 바탕으로 이루어져야 함을 강조한다. 핵심 가치로 인간 존엄성, 사회 공공선, 기술 신뢰성을 제시하며, 이를 위한 원칙들을 통해 기술의 윤리적 활용을 촉구하고 있다.
 
 https://ai-ethics.kr/no-just-algorithm-for-war-2026-06-01/" onclick="copyEntry(this)">복사</button></div>
   <p>본 기사는 AI 기술이 이미 군사 분야에 깊숙이 스며들어 빠른 의사결정과 살상 능력을 향상시키고 있음을 지적한다. 특히 미국과 이스라엘의 작전에서 AI 기반 시스템이 표적 식별과 우선순위 판단을 지원하며 빠른 작전 수행을 가능케 한 사례를 소개한다. 북한의 경우 AI 기반 미사일 개발을 추진 중이지만, 기술적 제약이 존재한다. 이와 함께 과기정통부는 AI 윤리 원칙 초안을 공개하고 대국민 의견수렴을 진행하여 AI 혁신이 인간과 사회의 신뢰를 바탕으로 이루어져야 함을 강조한다. 핵심 가치로 인간 존엄성, 사회 공공선, 기술 신뢰성을 제시하며, 이를 위한 원칙들을 통해 기술의 윤리적 활용을 촉구하고 있다.</p>
-  <p class="url"><a href="https://ai-ethics.kr/no-just-algorithm-for-war-2026-06-01/" target="_blank" rel="noopener noreferrer">https://ai-ethics.kr/no-just-algorithm-for-war-2026-06-01/</a></p>
   
   
 </article>
 <article class="entry cat-research" data-cat="research" data-topics="" data-search="SABER: Benchmarking Operational Safety of LLM Coding Agents in Stateful Project Workspaces (2026.5.31) LLM 코딩 에이전트가 상태(state)를 가진 프로젝트 작업공간에서 수행한 일련의 행동이 최종 환경에 어떤 안전 문제를 남기는지 평가하는 벤치마크를 제안한다. SABER는 모델을 에이전트 스타일의 실제 프로젝트 환경에 배치하고, 일련의 액션 후 최종 환경 상태를 기준으로 안전을 측정하며, 단순 위반/비위반을 넘어 위반 원인별로 분류한다. 평가 결과, 최상위 성능 모델에서도 harmful safety-violation rate(HSR)가 54%를 초과했으며(“more than a 54%”), 모델 간에 서로 다른 safety profile이 관찰되었다. ">
-  <h2>SABER: Benchmarking Operational Safety of LLM Coding Agents in Stateful Project Workspaces (2026.5.31)</h2>
+  <h2><a href="https://arxiv.org/abs/2606.01317" target="_blank" rel="noopener noreferrer">SABER: Benchmarking Operational Safety of LLM Coding Agents in Stateful Project Workspaces (2026.5.31)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span></span><button type="button" class="copy-btn" data-copy="SABER: Benchmarking Operational Safety of LLM Coding Agents in Stateful Project Workspaces (2026.5.31)
 
 LLM 코딩 에이전트가 상태(state)를 가진 프로젝트 작업공간에서 수행한 일련의 행동이 최종 환경에 어떤 안전 문제를 남기는지 평가하는 벤치마크를 제안한다. SABER는 모델을 에이전트 스타일의 실제 프로젝트 환경에 배치하고, 일련의 액션 후 최종 환경 상태를 기준으로 안전을 측정하며, 단순 위반/비위반을 넘어 위반 원인별로 분류한다. 평가 결과, 최상위 성능 모델에서도 harmful safety-violation rate(HSR)가 54%를 초과했으며(“more than a 54%”), 모델 간에 서로 다른 safety profile이 관찰되었다.
 
 https://arxiv.org/abs/2606.01317" onclick="copyEntry(this)">복사</button></div>
   <p>LLM 코딩 에이전트가 상태(state)를 가진 프로젝트 작업공간에서 수행한 일련의 행동이 최종 환경에 어떤 안전 문제를 남기는지 평가하는 벤치마크를 제안한다. SABER는 모델을 에이전트 스타일의 실제 프로젝트 환경에 배치하고, 일련의 액션 후 최종 환경 상태를 기준으로 안전을 측정하며, 단순 위반/비위반을 넘어 위반 원인별로 분류한다. 평가 결과, 최상위 성능 모델에서도 harmful safety-violation rate(HSR)가 54%를 초과했으며(“more than a 54%”), 모델 간에 서로 다른 safety profile이 관찰되었다.</p>
-  <p class="url"><a href="https://arxiv.org/abs/2606.01317" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2606.01317</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-05-30.html">← 2026-05-30</a><a class="day-nav-btn" href="2026-06-01.html">2026-06-01 →</a></nav>

@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,38 +435,35 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="" data-search="AI 시스템의 투명하고 충실한 추론 과정이 중요함 (2025.3.11) AI 시스템이 최종 출력을 생성하기 전에 텍스트로 추론 과정을 거치는 것이 안전한 AI 개발과 사용에 필수적입니다. 여기서 &#x27;투명한(legible)&#x27; 추론은 인간이 이해할 수 있는 형식으로 제공되며, &#x27;충실한(faithful)&#x27; 추론은 모델의 실제 의사결정 과정을 정확하게 반영합니다. 이러한 특성은 AI 오류를 탐지하고, 숨겨진 의도를 감지하며, 시스템 능력을 이해하고, 기만적인 행동을 모니터링하는 데 도움이 됩니다. 현재 개발 중인 AI 모델들이 이러한 기준을 충족하도록 하여 안전성을 높이는 것이 권장됩니다. 그러나 경제적 압박이나 최적화 압력으로 인해 추론 과정의 투명성이 저하될 위험이 있으며, 개발자들은 이러한 문제에 주의해야 합니다. METR">
-  <h2>🇺🇸 AI 시스템의 투명하고 충실한 추론 과정이 중요함 (2025.3.11)</h2>
+  <h2>🇺🇸 <a href="https://metr.org/blog/2025-03-11-good-for-ai-reason-legibly-and-faithfully/" target="_blank" rel="noopener noreferrer">AI 시스템의 투명하고 충실한 추론 과정이 중요함 (2025.3.11)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="AI 시스템의 투명하고 충실한 추론 과정이 중요함 (2025.3.11)
 
 AI 시스템이 최종 출력을 생성하기 전에 텍스트로 추론 과정을 거치는 것이 안전한 AI 개발과 사용에 필수적입니다. 여기서 &#x27;투명한(legible)&#x27; 추론은 인간이 이해할 수 있는 형식으로 제공되며, &#x27;충실한(faithful)&#x27; 추론은 모델의 실제 의사결정 과정을 정확하게 반영합니다. 이러한 특성은 AI 오류를 탐지하고, 숨겨진 의도를 감지하며, 시스템 능력을 이해하고, 기만적인 행동을 모니터링하는 데 도움이 됩니다. 현재 개발 중인 AI 모델들이 이러한 기준을 충족하도록 하여 안전성을 높이는 것이 권장됩니다. 그러나 경제적 압박이나 최적화 압력으로 인해 추론 과정의 투명성이 저하될 위험이 있으며, 개발자들은 이러한 문제에 주의해야 합니다.
 
 https://metr.org/blog/2025-03-11-good-for-ai-reason-legibly-and-faithfully/" onclick="copyEntry(this)">복사</button></div>
   <p>AI 시스템이 최종 출력을 생성하기 전에 텍스트로 추론 과정을 거치는 것이 안전한 AI 개발과 사용에 필수적입니다. 여기서 &#x27;투명한(legible)&#x27; 추론은 인간이 이해할 수 있는 형식으로 제공되며, &#x27;충실한(faithful)&#x27; 추론은 모델의 실제 의사결정 과정을 정확하게 반영합니다. 이러한 특성은 AI 오류를 탐지하고, 숨겨진 의도를 감지하며, 시스템 능력을 이해하고, 기만적인 행동을 모니터링하는 데 도움이 됩니다. 현재 개발 중인 AI 모델들이 이러한 기준을 충족하도록 하여 안전성을 높이는 것이 권장됩니다. 그러나 경제적 압박이나 최적화 압력으로 인해 추론 과정의 투명성이 저하될 위험이 있으며, 개발자들은 이러한 문제에 주의해야 합니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2025-03-11-good-for-ai-reason-legibly-and-faithfully/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2025-03-11-good-for-ai-reason-legibly-and-faithfully/</a></p>
   
   
 </article>
 <article class="entry cat-public" data-cat="public" data-topics="" data-search="METR, IA의 논리가 이해하기 쉽고 충실하게 되어야 하는 이유 (2025.3.11) METR은 인공지능(AI)의 논리 과정이 이해하기 쉽고 실제 의사결정 과정을 정확하게 반영해야 하는 이유를 설명합니다. 이해하기 쉬운 논리 과정은 인간이 읽고 분석할 수 있어야 하며, 충실한 논리 과정은 모델의 내부 의사결정 과정을 정확하게 나타내야 합니다. 이를 통해 오류 탐지, 숨겨진 의제 발견, 시스템 능력 이해, 속임수 행위 모니터링, 그리고 보안 문제 사전 식별 등이 가능해집니다. 현재 여러 AI 선두 기업들이 논리 모델을 개발하고 있지만, 경제적 압박으로 인해 논리 과정의 투명성이 저하될 수 있으며, 개발자들은 논리 과정의 충실성을 유지하기 위해 주의해야 합니다. METR">
-  <h2>🇺🇸 METR, IA의 논리가 이해하기 쉽고 충실하게 되어야 하는 이유 (2025.3.11)</h2>
+  <h2>🇺🇸 <a href="https://metr.org/es/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/" target="_blank" rel="noopener noreferrer">METR, IA의 논리가 이해하기 쉽고 충실하게 되어야 하는 이유 (2025.3.11)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="METR, IA의 논리가 이해하기 쉽고 충실하게 되어야 하는 이유 (2025.3.11)
 
 METR은 인공지능(AI)의 논리 과정이 이해하기 쉽고 실제 의사결정 과정을 정확하게 반영해야 하는 이유를 설명합니다. 이해하기 쉬운 논리 과정은 인간이 읽고 분석할 수 있어야 하며, 충실한 논리 과정은 모델의 내부 의사결정 과정을 정확하게 나타내야 합니다. 이를 통해 오류 탐지, 숨겨진 의제 발견, 시스템 능력 이해, 속임수 행위 모니터링, 그리고 보안 문제 사전 식별 등이 가능해집니다. 현재 여러 AI 선두 기업들이 논리 모델을 개발하고 있지만, 경제적 압박으로 인해 논리 과정의 투명성이 저하될 수 있으며, 개발자들은 논리 과정의 충실성을 유지하기 위해 주의해야 합니다.
 
 https://metr.org/es/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/" onclick="copyEntry(this)">복사</button></div>
   <p>METR은 인공지능(AI)의 논리 과정이 이해하기 쉽고 실제 의사결정 과정을 정확하게 반영해야 하는 이유를 설명합니다. 이해하기 쉬운 논리 과정은 인간이 읽고 분석할 수 있어야 하며, 충실한 논리 과정은 모델의 내부 의사결정 과정을 정확하게 나타내야 합니다. 이를 통해 오류 탐지, 숨겨진 의제 발견, 시스템 능력 이해, 속임수 행위 모니터링, 그리고 보안 문제 사전 식별 등이 가능해집니다. 현재 여러 AI 선두 기업들이 논리 모델을 개발하고 있지만, 경제적 압박으로 인해 논리 과정의 투명성이 저하될 수 있으며, 개발자들은 논리 과정의 충실성을 유지하기 위해 주의해야 합니다.</p>
-  <p class="url"><a href="https://metr.org/es/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/" target="_blank" rel="noopener noreferrer">https://metr.org/es/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/</a></p>
   
   
 </article>
 <article class="entry cat-public" data-cat="public" data-topics="" data-search="AI 추론이 읽기 쉽고 모델의 실제 결정 과정을 충실하게 반영해야 하는 이유 (2025.3.11) AI 시스템의 추론 과정이 명확하고 인간이 이해할 수 있어야 하며, 모델의 실제 결정 과정을 정확하게 반영해야 한다는 주장은 안전한 AI 개발과 사용을 위해 중요하다는 내용이다. 읽기 쉽고 충실한 추론 과정은 오류 발견, 숨겨진 의도 인식, 시스템 능력 이해, 사기 행위 감지 등에 도움이 된다. 그러나 현재 모델들의 추론 과정은 완벽하지 않으며, 비용과 투명성 사이의 균형을 맞추는 것이 중요하다. METR은 이러한 측면을 고려하여 AI 모델의 투명성과 충실성을 평가하는 방법을 연구하고 있다. METR">
-  <h2>🇺🇸 AI 추론이 읽기 쉽고 모델의 실제 결정 과정을 충실하게 반영해야 하는 이유 (2025.3.11)</h2>
+  <h2>🇺🇸 <a href="https://metr.org/zh-Hans/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/" target="_blank" rel="noopener noreferrer">AI 추론이 읽기 쉽고 모델의 실제 결정 과정을 충실하게 반영해야 하는 이유 (2025.3.11)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="AI 추론이 읽기 쉽고 모델의 실제 결정 과정을 충실하게 반영해야 하는 이유 (2025.3.11)
 
 AI 시스템의 추론 과정이 명확하고 인간이 이해할 수 있어야 하며, 모델의 실제 결정 과정을 정확하게 반영해야 한다는 주장은 안전한 AI 개발과 사용을 위해 중요하다는 내용이다. 읽기 쉽고 충실한 추론 과정은 오류 발견, 숨겨진 의도 인식, 시스템 능력 이해, 사기 행위 감지 등에 도움이 된다. 그러나 현재 모델들의 추론 과정은 완벽하지 않으며, 비용과 투명성 사이의 균형을 맞추는 것이 중요하다. METR은 이러한 측면을 고려하여 AI 모델의 투명성과 충실성을 평가하는 방법을 연구하고 있다.
 
 https://metr.org/zh-Hans/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/" onclick="copyEntry(this)">복사</button></div>
   <p>AI 시스템의 추론 과정이 명확하고 인간이 이해할 수 있어야 하며, 모델의 실제 결정 과정을 정확하게 반영해야 한다는 주장은 안전한 AI 개발과 사용을 위해 중요하다는 내용이다. 읽기 쉽고 충실한 추론 과정은 오류 발견, 숨겨진 의도 인식, 시스템 능력 이해, 사기 행위 감지 등에 도움이 된다. 그러나 현재 모델들의 추론 과정은 완벽하지 않으며, 비용과 투명성 사이의 균형을 맞추는 것이 중요하다. METR은 이러한 측면을 고려하여 AI 모델의 투명성과 충실성을 평가하는 방법을 연구하고 있다.</p>
-  <p class="url"><a href="https://metr.org/zh-Hans/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/" target="_blank" rel="noopener noreferrer">https://metr.org/zh-Hans/blog/2025-03-11-good-for-ai-to-reason-legibly-and-faithfully/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-03-07.html">← 2025-03-07</a><a class="day-nav-btn" href="2025-03-12.html">2025-03-12 →</a></nav>

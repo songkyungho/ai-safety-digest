@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,14 +435,13 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="safety_research" data-search="**해석 가능성 연구에 대한 반성** (2024.3.8) 본 노트는 해석 가능성 연구가 다른 분야에서보다 질적 측면이 중요할 수 있는 이유에 대한 주관적인 견해를 제시합니다. 또한 질적 연구에서 연구 방향을 설정하는 데 도움이 되는 몇 가지 원칙을 설명하고자 합니다. 연구에서는 현재 최첨단 모델의 행동 패턴과 그로 인한 예상치 못한 시스템적 실패 사례를 분석하여 위험 완화에 대한 논의를 시작하고자 합니다. 또한 독립 연구자 David Roodman와 함께 작업한 노동자 재교육 프로그램에 대한 증거 검토 결과도 공유하고 있으며, 비공개 버전의 Claude 모델이 리만 가설 관련 문제에서 진전을 이루었다는 점도 언급하고 있습니다. 이 모델은 리만 제타 함수의 제로 중 리만 가설을 만족하는 비율의 하한을 향상시켜 41.6%에서 67.2%로 끌어올렸습니다. Anthropic Research">
-  <h2>해석 가능성 연구에 대한 반성 (2024.3.8)</h2>
+  <h2><a href="https://www.anthropic.com/research/transformer-circuits" target="_blank" rel="noopener noreferrer">해석 가능성 연구에 대한 반성 (2024.3.8)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="**해석 가능성 연구에 대한 반성** (2024.3.8)
 
 본 노트는 해석 가능성 연구가 다른 분야에서보다 질적 측면이 중요할 수 있는 이유에 대한 주관적인 견해를 제시합니다. 또한 질적 연구에서 연구 방향을 설정하는 데 도움이 되는 몇 가지 원칙을 설명하고자 합니다. 연구에서는 현재 최첨단 모델의 행동 패턴과 그로 인한 예상치 못한 시스템적 실패 사례를 분석하여 위험 완화에 대한 논의를 시작하고자 합니다. 또한 독립 연구자 David Roodman와 함께 작업한 노동자 재교육 프로그램에 대한 증거 검토 결과도 공유하고 있으며, 비공개 버전의 Claude 모델이 리만 가설 관련 문제에서 진전을 이루었다는 점도 언급하고 있습니다. 이 모델은 리만 제타 함수의 제로 중 리만 가설을 만족하는 비율의 하한을 향상시켜 41.6%에서 67.2%로 끌어올렸습니다.
 
 https://www.anthropic.com/research/transformer-circuits" onclick="copyEntry(this)">복사</button></div>
   <p>본 노트는 해석 가능성 연구가 다른 분야에서보다 질적 측면이 중요할 수 있는 이유에 대한 주관적인 견해를 제시합니다. 또한 질적 연구에서 연구 방향을 설정하는 데 도움이 되는 몇 가지 원칙을 설명하고자 합니다. 연구에서는 현재 최첨단 모델의 행동 패턴과 그로 인한 예상치 못한 시스템적 실패 사례를 분석하여 위험 완화에 대한 논의를 시작하고자 합니다. 또한 독립 연구자 David Roodman와 함께 작업한 노동자 재교육 프로그램에 대한 증거 검토 결과도 공유하고 있으며, 비공개 버전의 Claude 모델이 리만 가설 관련 문제에서 진전을 이루었다는 점도 언급하고 있습니다. 이 모델은 리만 제타 함수의 제로 중 리만 가설을 만족하는 비율의 하한을 향상시켜 41.6%에서 67.2%로 끌어올렸습니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/transformer-circuits" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/transformer-circuits</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-02-29.html">← 2024-02-29</a><a class="day-nav-btn" href="2024-03-15.html">2024-03-15 →</a></nav>

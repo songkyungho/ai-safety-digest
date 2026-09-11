@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,26 +435,24 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="politics" data-search="논평: 중국은 AI 안전을 गंभीर하게 받아들이고 있다, 미국도 그래야 한다 (2025.9.3) Concordia AI는 브라이언 체 대표가 타임에 기고한 글을 소개하며, 중국이 AI 안전을 중시하지 않는다는 인식은 미국의 무리한 AI 경쟁을 정당화하는 위험한 논리라고 주장한다. 중국은 AI 안전을 정치적 우선순위로 삼고, 국가 비상대응계획에 AI 안전을 포함했으며, 생성형 AI 출시 전 안전평가와 규제 기준을 강화하고 있다고 설명한다. 또한 미국과 중국이 AI 위험을 논의한 마지막 정상급 회의가 2024년 5월이었다며, 양국 간 대화 재개가 필요하다고 강조한다. Concordia AI">
-  <h2>🇨🇳🇺🇸 논평: 중국은 AI 안전을 गंभीर하게 받아들이고 있다, 미국도 그래야 한다 (2025.9.3)</h2>
+  <h2>🇨🇳🇺🇸 <a href="https://concordia-ai.com/op-ed-china-is-taking-ai-safety-seriously-so-must-the-u-s/" target="_blank" rel="noopener noreferrer">논평: 중국은 AI 안전을 गंभीर하게 받아들이고 있다, 미국도 그래야 한다 (2025.9.3)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">Concordia AI</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="논평: 중국은 AI 안전을 गंभीर하게 받아들이고 있다, 미국도 그래야 한다 (2025.9.3)
 
 Concordia AI는 브라이언 체 대표가 타임에 기고한 글을 소개하며, 중국이 AI 안전을 중시하지 않는다는 인식은 미국의 무리한 AI 경쟁을 정당화하는 위험한 논리라고 주장한다. 중국은 AI 안전을 정치적 우선순위로 삼고, 국가 비상대응계획에 AI 안전을 포함했으며, 생성형 AI 출시 전 안전평가와 규제 기준을 강화하고 있다고 설명한다. 또한 미국과 중국이 AI 위험을 논의한 마지막 정상급 회의가 2024년 5월이었다며, 양국 간 대화 재개가 필요하다고 강조한다.
 
 https://concordia-ai.com/op-ed-china-is-taking-ai-safety-seriously-so-must-the-u-s/" onclick="copyEntry(this)">복사</button></div>
   <p>Concordia AI는 브라이언 체 대표가 타임에 기고한 글을 소개하며, 중국이 AI 안전을 중시하지 않는다는 인식은 미국의 무리한 AI 경쟁을 정당화하는 위험한 논리라고 주장한다. 중국은 AI 안전을 정치적 우선순위로 삼고, 국가 비상대응계획에 AI 안전을 포함했으며, 생성형 AI 출시 전 안전평가와 규제 기준을 강화하고 있다고 설명한다. 또한 미국과 중국이 AI 위험을 논의한 마지막 정상급 회의가 2024년 5월이었다며, 양국 간 대화 재개가 필요하다고 강조한다.</p>
-  <p class="url"><a href="https://concordia-ai.com/op-ed-china-is-taking-ai-safety-seriously-so-must-the-u-s/" target="_blank" rel="noopener noreferrer">https://concordia-ai.com/op-ed-china-is-taking-ai-safety-seriously-so-must-the-u-s/</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="" data-search="고등학생인 저자의 시선에서 본 AI가 교육을 ‘대체·평준화’하는 영향(2025.9.3) 뉴욕 공립고 12학년 학생은 수업과 과제 전반에서 ChatGPT 등 AI가 널리 쓰이며, 베끼기·자동 주석·문제풀이 생성이 일상화됐다고 전했다. 학교가 탐지 도구와 화면 모니터링을 도입해도 humanizer 도구 사용, 수동 편집, 시험 중 우회 등으로 완전한 차단이 어렵다고 지적한다. 또한 AI가 학습의 ‘내적 성장’보다 외부 성적에 집중하게 만들고, 토론·글쓰기·구두 평가·포트폴리오 등 기술에 쉽게 위임되지 않는 평가로 전환해야 한다고 제안한다. 애틀랜틱(The Atlantic)">
-  <h2>고등학생인 저자의 시선에서 본 AI가 교육을 ‘대체·평준화’하는 영향(2025.9.3)</h2>
+  <h2><a href="https://www.theatlantic.com/technology/archive/2025/09/high-school-student-ai-education/684088/" target="_blank" rel="noopener noreferrer">고등학생인 저자의 시선에서 본 AI가 교육을 ‘대체·평준화’하는 영향(2025.9.3)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">애틀랜틱(The Atlantic)</span></span><button type="button" class="copy-btn" data-copy="고등학생인 저자의 시선에서 본 AI가 교육을 ‘대체·평준화’하는 영향(2025.9.3)
 
 뉴욕 공립고 12학년 학생은 수업과 과제 전반에서 ChatGPT 등 AI가 널리 쓰이며, 베끼기·자동 주석·문제풀이 생성이 일상화됐다고 전했다. 학교가 탐지 도구와 화면 모니터링을 도입해도 humanizer 도구 사용, 수동 편집, 시험 중 우회 등으로 완전한 차단이 어렵다고 지적한다. 또한 AI가 학습의 ‘내적 성장’보다 외부 성적에 집중하게 만들고, 토론·글쓰기·구두 평가·포트폴리오 등 기술에 쉽게 위임되지 않는 평가로 전환해야 한다고 제안한다.
 
 https://www.theatlantic.com/technology/archive/2025/09/high-school-student-ai-education/684088/" onclick="copyEntry(this)">복사</button></div>
   <p>뉴욕 공립고 12학년 학생은 수업과 과제 전반에서 ChatGPT 등 AI가 널리 쓰이며, 베끼기·자동 주석·문제풀이 생성이 일상화됐다고 전했다. 학교가 탐지 도구와 화면 모니터링을 도입해도 humanizer 도구 사용, 수동 편집, 시험 중 우회 등으로 완전한 차단이 어렵다고 지적한다. 또한 AI가 학습의 ‘내적 성장’보다 외부 성적에 집중하게 만들고, 토론·글쓰기·구두 평가·포트폴리오 등 기술에 쉽게 위임되지 않는 평가로 전환해야 한다고 제안한다.</p>
-  <p class="url"><a href="https://www.theatlantic.com/technology/archive/2025/09/high-school-student-ai-education/684088/" target="_blank" rel="noopener noreferrer">https://www.theatlantic.com/technology/archive/2025/09/high-school-student-ai-education/684088/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-09-02.html">← 2025-09-02</a><a class="day-nav-btn" href="2025-09-04.html">2025-09-04 →</a></nav>

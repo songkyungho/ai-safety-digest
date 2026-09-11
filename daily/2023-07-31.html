@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,14 +435,13 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="" data-search="METR, 언어 모델 에이전트의 자율 작업 평가 보고서 발표 (2023.7.31) METR는 최첨단 AI 시스템을 연구하고 평가하여 복잡한 자율 작업 수행 능력을 측정합니다. 이번 보고서는 LLM 에이전트의 자율 복제 및 적응(ARA) 능력을 평가하는 방법론을 소개하며, Anthropic의 Claude와 OpenAI의 GPT-4 모델을 기반으로 한 네 가지 예시 에이전트를 테스트한 결과를 담고 있습니다. 테스트된 12가지 실제 작업 중 에이전트들은 가장 쉬운 작업만 완료할 수 있었으며, 이는 LLM 에이전트가 위험한 자율 능력을 갖추기 전에 조기 경보 시스템을 구축하는 데 중요한 통찰력을 제공합니다. 또한, 모델의 미세 조정이 ARA 관련 능력을 향상시킬 수 있음을 발견했습니다. 향후 연구에서는 더 발전된 에이전트와 더 다양한 작업을 평가하여 위험한 자율 능력을 더 정확하게 측정할 계획입니다. METR">
-  <h2>🇺🇸 METR, 언어 모델 에이전트의 자율 작업 평가 보고서 발표 (2023.7.31)</h2>
+  <h2>🇺🇸 <a href="https://metr.org/blog/2023-08-01-new-report/" target="_blank" rel="noopener noreferrer">METR, 언어 모델 에이전트의 자율 작업 평가 보고서 발표 (2023.7.31)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">METR</span></span><button type="button" class="copy-btn" data-copy="METR, 언어 모델 에이전트의 자율 작업 평가 보고서 발표 (2023.7.31)
 
 METR는 최첨단 AI 시스템을 연구하고 평가하여 복잡한 자율 작업 수행 능력을 측정합니다. 이번 보고서는 LLM 에이전트의 자율 복제 및 적응(ARA) 능력을 평가하는 방법론을 소개하며, Anthropic의 Claude와 OpenAI의 GPT-4 모델을 기반으로 한 네 가지 예시 에이전트를 테스트한 결과를 담고 있습니다. 테스트된 12가지 실제 작업 중 에이전트들은 가장 쉬운 작업만 완료할 수 있었으며, 이는 LLM 에이전트가 위험한 자율 능력을 갖추기 전에 조기 경보 시스템을 구축하는 데 중요한 통찰력을 제공합니다. 또한, 모델의 미세 조정이 ARA 관련 능력을 향상시킬 수 있음을 발견했습니다. 향후 연구에서는 더 발전된 에이전트와 더 다양한 작업을 평가하여 위험한 자율 능력을 더 정확하게 측정할 계획입니다.
 
 https://metr.org/blog/2023-08-01-new-report/" onclick="copyEntry(this)">복사</button></div>
   <p>METR는 최첨단 AI 시스템을 연구하고 평가하여 복잡한 자율 작업 수행 능력을 측정합니다. 이번 보고서는 LLM 에이전트의 자율 복제 및 적응(ARA) 능력을 평가하는 방법론을 소개하며, Anthropic의 Claude와 OpenAI의 GPT-4 모델을 기반으로 한 네 가지 예시 에이전트를 테스트한 결과를 담고 있습니다. 테스트된 12가지 실제 작업 중 에이전트들은 가장 쉬운 작업만 완료할 수 있었으며, 이는 LLM 에이전트가 위험한 자율 능력을 갖추기 전에 조기 경보 시스템을 구축하는 데 중요한 통찰력을 제공합니다. 또한, 모델의 미세 조정이 ARA 관련 능력을 향상시킬 수 있음을 발견했습니다. 향후 연구에서는 더 발전된 에이전트와 더 다양한 작업을 평가하여 위험한 자율 능력을 더 정확하게 측정할 계획입니다.</p>
-  <p class="url"><a href="https://metr.org/blog/2023-08-01-new-report/" target="_blank" rel="noopener noreferrer">https://metr.org/blog/2023-08-01-new-report/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2023-07-18.html">← 2023-07-18</a><a class="day-nav-btn" href="2023-08-04.html">2023-08-04 →</a></nav>

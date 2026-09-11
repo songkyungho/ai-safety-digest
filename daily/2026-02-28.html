@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,33 +435,31 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="베이징 첨단 인공지능 보안 및 거버넌스 연구소, &quot;고급 보안 벤치마크&quot; 발표 (2026.2.28) 북경 전첨인공지능안전거버넌스연구원(Beijing-AISI)은 중국과학원 등과 협력하여 94개 위험 차원을 포함하는 포괄적인 AI 안전 평가 체계인 &#x27;전첨 안전 기준&#x27;을 발표. 기초 안전, 확장 안전, 산업 안전을 3대 지주로 삼아 지능체 안전 및 생존 위험 등 신종 위협을 다룸. Beijing-AISI">
-  <h2>🇨🇳 베이징 첨단 인공지능 보안 및 거버넌스 연구소, &quot;고급 보안 벤치마크&quot; 발표 (2026.2.28)</h2>
+  <h2>🇨🇳 <a href="https://foresightsafety-bench.beijing-aisi.ac.cn/" target="_blank" rel="noopener noreferrer">베이징 첨단 인공지능 보안 및 거버넌스 연구소, &quot;고급 보안 벤치마크&quot; 발표 (2026.2.28)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">Beijing-AISI</span></span><button type="button" class="copy-btn" data-copy="베이징 첨단 인공지능 보안 및 거버넌스 연구소, &quot;고급 보안 벤치마크&quot; 발표 (2026.2.28)
 
 북경 전첨인공지능안전거버넌스연구원(Beijing-AISI)은 중국과학원 등과 협력하여 94개 위험 차원을 포함하는 포괄적인 AI 안전 평가 체계인 &#x27;전첨 안전 기준&#x27;을 발표. 기초 안전, 확장 안전, 산업 안전을 3대 지주로 삼아 지능체 안전 및 생존 위험 등 신종 위협을 다룸.
 
 https://foresightsafety-bench.beijing-aisi.ac.cn/" onclick="copyEntry(this)">복사</button></div>
   <p>북경 전첨인공지능안전거버넌스연구원(Beijing-AISI)은 중국과학원 등과 협력하여 94개 위험 차원을 포함하는 포괄적인 AI 안전 평가 체계인 &#x27;전첨 안전 기준&#x27;을 발표. 기초 안전, 확장 안전, 산업 안전을 3대 지주로 삼아 지능체 안전 및 생존 위험 등 신종 위협을 다룸.</p>
-  <p class="url"><a href="https://foresightsafety-bench.beijing-aisi.ac.cn/" target="_blank" rel="noopener noreferrer">https://foresightsafety-bench.beijing-aisi.ac.cn/</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="standards" data-search="AI 안전을 ‘이윤’과 ‘가드레일’의 충돌로 보고, 제3자 안전 산업의 필요성을 제시 (**2026.2.28**) 포브스는 OpenAI의 펜타곤 계약과 Anthropic의 연방 규제 압박 사례를 계기로, AI 안전을 단일 기업이 스스로 규제하기 어렵다고 지적했다. 이어 안전 스타트업이 정부·AI 랩과 함께 제3자 안전 레이어를 제공하고, AI 안전 기준을 표준화하며, AI agents에 실시간 모니터링과 kill switch 같은 ‘안티바이러스’ 기능을 내장하는 방향이 필요하다고 제안했다. 또한 고위험 분야별(금융·의료·물리) 맞춤형 안전과 국제 AI 안전 네트워크 구축을 통해 국가 간 ‘안전 경쟁’이 아닌 ‘공유 인프라’로 전환해야 한다고 강조했다. 포브스(Forbes)">
-  <h2>AI 안전을 ‘이윤’과 ‘가드레일’의 충돌로 보고, 제3자 안전 산업의 필요성을 제시 (**2026.2.28**)</h2>
+  <h2><a href="https://www.forbes.com/sites/geruiwang/2026/02/28/why-ai-safety-the-dilemma-of-profits-vs-guardrails/" target="_blank" rel="noopener noreferrer">AI 안전을 ‘이윤’과 ‘가드레일’의 충돌로 보고, 제3자 안전 산업의 필요성을 제시 (**2026.2.28**)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">포브스(Forbes)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="표준">📏</span></span></span><button type="button" class="copy-btn" data-copy="AI 안전을 ‘이윤’과 ‘가드레일’의 충돌로 보고, 제3자 안전 산업의 필요성을 제시 (**2026.2.28**)
 
 포브스는 OpenAI의 펜타곤 계약과 Anthropic의 연방 규제 압박 사례를 계기로, AI 안전을 단일 기업이 스스로 규제하기 어렵다고 지적했다. 이어 안전 스타트업이 정부·AI 랩과 함께 제3자 안전 레이어를 제공하고, AI 안전 기준을 표준화하며, AI agents에 실시간 모니터링과 kill switch 같은 ‘안티바이러스’ 기능을 내장하는 방향이 필요하다고 제안했다. 또한 고위험 분야별(금융·의료·물리) 맞춤형 안전과 국제 AI 안전 네트워크 구축을 통해 국가 간 ‘안전 경쟁’이 아닌 ‘공유 인프라’로 전환해야 한다고 강조했다.
 
 https://www.forbes.com/sites/geruiwang/2026/02/28/why-ai-safety-the-dilemma-of-profits-vs-guardrails/" onclick="copyEntry(this)">복사</button></div>
   <p>포브스는 OpenAI의 펜타곤 계약과 Anthropic의 연방 규제 압박 사례를 계기로, AI 안전을 단일 기업이 스스로 규제하기 어렵다고 지적했다. 이어 안전 스타트업이 정부·AI 랩과 함께 제3자 안전 레이어를 제공하고, AI 안전 기준을 표준화하며, AI agents에 실시간 모니터링과 kill switch 같은 ‘안티바이러스’ 기능을 내장하는 방향이 필요하다고 제안했다. 또한 고위험 분야별(금융·의료·물리) 맞춤형 안전과 국제 AI 안전 네트워크 구축을 통해 국가 간 ‘안전 경쟁’이 아닌 ‘공유 인프라’로 전환해야 한다고 강조했다.</p>
-  <p class="url"><a href="https://www.forbes.com/sites/geruiwang/2026/02/28/why-ai-safety-the-dilemma-of-profits-vs-guardrails/" target="_blank" rel="noopener noreferrer">https://www.forbes.com/sites/geruiwang/2026/02/28/why-ai-safety-the-dilemma-of-profits-vs-guardrails/</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="frontier national_security safety_research" data-search="트럼프·국방부가 Anthropic을 ‘supply-chain risk’로 규정하며 Claude 사용 중단 압박(2026.2.28) 트럼프는 2026.2.27 미국 연방기관에 Anthropic A.I. 기술 사용 중단을 지시했고, 국방장관은 Anthropic을 공급망 위험으로 선언해 정부 계약을 막을 수 있다고 밝혔다.
 
 Max Read는 트럼프의 지시와 국방부의 ‘supply-chain risk’ 선언이 Anthropic과 펜타곤 간 계약 조건(대규모 감시, 인명 통제 없는 치명적 자율무기 등) 갈등에서 비롯됐다고 설명한다. 펜타곤은 Claude의 안전장치 완화를 요구했지만 Anthropic은 “선의의 양심”을 이유로 요청을 수용하지 않았고, 그 결과 정부가 사용 중단 및 계약 제재를 추진하는 흐름으로 이어졌다고 전한다. 또한 이 갈등이 단순한 계약 분쟁을 넘어 실리콘밸리 내 정치·이념 성향과 정부 조달 경쟁이 얽힌 양상이라고 분석한다. maxread.substack.com">
-  <h2>🇺🇸 트럼프·국방부가 Anthropic을 ‘supply-chain risk’로 규정하며 Claude 사용 중단 압박(2026.2.28)</h2>
+  <h2>🇺🇸 <a href="https://maxread.substack.com/p/what-anthropics-fight-with-the-pentagon" target="_blank" rel="noopener noreferrer">트럼프·국방부가 Anthropic을 ‘supply-chain risk’로 규정하며 Claude 사용 중단 압박(2026.2.28)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">maxread.substack.com</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="트럼프·국방부가 Anthropic을 ‘supply-chain risk’로 규정하며 Claude 사용 중단 압박(2026.2.28)
 
 트럼프는 2026.2.27 미국 연방기관에 Anthropic A.I. 기술 사용 중단을 지시했고, 국방장관은 Anthropic을 공급망 위험으로 선언해 정부 계약을 막을 수 있다고 밝혔다.
@@ -469,7 +469,6 @@ Max Read는 트럼프의 지시와 국방부의 ‘supply-chain risk’ 선언�
 https://maxread.substack.com/p/what-anthropics-fight-with-the-pentagon" onclick="copyEntry(this)">복사</button></div>
   <p>트럼프는 2026.2.27 미국 연방기관에 Anthropic A.I. 기술 사용 중단을 지시했고, 국방장관은 Anthropic을 공급망 위험으로 선언해 정부 계약을 막을 수 있다고 밝혔다.</p>
 <p>Max Read는 트럼프의 지시와 국방부의 ‘supply-chain risk’ 선언이 Anthropic과 펜타곤 간 계약 조건(대규모 감시, 인명 통제 없는 치명적 자율무기 등) 갈등에서 비롯됐다고 설명한다. 펜타곤은 Claude의 안전장치 완화를 요구했지만 Anthropic은 “선의의 양심”을 이유로 요청을 수용하지 않았고, 그 결과 정부가 사용 중단 및 계약 제재를 추진하는 흐름으로 이어졌다고 전한다. 또한 이 갈등이 단순한 계약 분쟁을 넘어 실리콘밸리 내 정치·이념 성향과 정부 조달 경쟁이 얽힌 양상이라고 분석한다.</p>
-  <p class="url"><a href="https://maxread.substack.com/p/what-anthropics-fight-with-the-pentagon" target="_blank" rel="noopener noreferrer">https://maxread.substack.com/p/what-anthropics-fight-with-the-pentagon</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-02-27.html">← 2026-02-27</a><a class="day-nav-btn" href="2026-03-01.html">2026-03-01 →</a></nav>

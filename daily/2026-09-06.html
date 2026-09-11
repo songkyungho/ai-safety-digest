@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,127 +435,117 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button></div><div class="digest-feed"><article class="entry cat-media" data-cat="media" data-topics="frontier open_weight" data-search="오픈 모델은 AI의 통일전선 (2026.9.6) 중국 오픈 모델의 성능이 빠르게 개선되면서 미국 폐쇄형 모델과의 격차가 좁혀지고 있으며, AI 경쟁은 일방적 패배가 아닌 장기전으로 전환됐다고 분석한다. K3와 Qwen 3.8 Max 등 오픈 모델은 비용과 접근성 측면에서 경쟁력을 확보했고, 특히 270억 개 매개변수의 Qwen 3.8은 소비자용 GPU에서도 실행할 수 있어 지능의 대중화를 앞당겼다고 평가한다. 다만 Grok 등 폐쇄형 모델도 빠르게 발전하고 있어 오픈 모델 진영의 우위가 확정된 것은 아니며, 국내 칩으로 학습·추론 전 과정을 수행하는 등 컴퓨팅의 국산화가 장기 경쟁의 핵심 과제로 제시된다. ChinaTalk">
-  <h2>🇨🇳 오픈 모델은 AI의 통일전선 (2026.9.6)</h2>
+  <h2>🇨🇳 <a href="https://www.chinatalk.media/p/open-models-are-the-united-front" target="_blank" rel="noopener noreferrer">오픈 모델은 AI의 통일전선 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">ChinaTalk</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="오픈소스·오픈웨이트">🔓</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="오픈 모델은 AI의 통일전선 (2026.9.6)
 
 중국 오픈 모델의 성능이 빠르게 개선되면서 미국 폐쇄형 모델과의 격차가 좁혀지고 있으며, AI 경쟁은 일방적 패배가 아닌 장기전으로 전환됐다고 분석한다. K3와 Qwen 3.8 Max 등 오픈 모델은 비용과 접근성 측면에서 경쟁력을 확보했고, 특히 270억 개 매개변수의 Qwen 3.8은 소비자용 GPU에서도 실행할 수 있어 지능의 대중화를 앞당겼다고 평가한다. 다만 Grok 등 폐쇄형 모델도 빠르게 발전하고 있어 오픈 모델 진영의 우위가 확정된 것은 아니며, 국내 칩으로 학습·추론 전 과정을 수행하는 등 컴퓨팅의 국산화가 장기 경쟁의 핵심 과제로 제시된다.
 
 https://www.chinatalk.media/p/open-models-are-the-united-front" onclick="copyEntry(this)">복사</button></div>
   <p>중국 오픈 모델의 성능이 빠르게 개선되면서 미국 폐쇄형 모델과의 격차가 좁혀지고 있으며, AI 경쟁은 일방적 패배가 아닌 장기전으로 전환됐다고 분석한다. K3와 Qwen 3.8 Max 등 오픈 모델은 비용과 접근성 측면에서 경쟁력을 확보했고, 특히 270억 개 매개변수의 Qwen 3.8은 소비자용 GPU에서도 실행할 수 있어 지능의 대중화를 앞당겼다고 평가한다. 다만 Grok 등 폐쇄형 모델도 빠르게 발전하고 있어 오픈 모델 진영의 우위가 확정된 것은 아니며, 국내 칩으로 학습·추론 전 과정을 수행하는 등 컴퓨팅의 국산화가 장기 경쟁의 핵심 과제로 제시된다.</p>
-  <p class="url"><a href="https://www.chinatalk.media/p/open-models-are-the-united-front" target="_blank" rel="noopener noreferrer">https://www.chinatalk.media/p/open-models-are-the-united-front</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="national_security safety_research" data-search="구글 어스의 롤백: 스푸트니크는 왜 나노 바나나가 되었나 (2026.9.6) 구글은 7월 30일 구글 어스에 생성형 AI 나노 바나나 2를 활용해 위성 이미지를 편집하는 기능을 추가했지만, 전쟁·재난 현장과 군사 시설 이미지가 조작될 수 있다는 우려가 제기됐다. 구글은 생성 이미지에 디지털 워터마크를 넣고 AI로 생성 여부를 확인할 수 있다고 설명했으나, 전문가와 언론은 구글 어스가 가진 위성 이미지의 객관성과 신뢰가 훼손될 수 있다고 지적했다. 구글은 안전장치를 강화하겠다며 발표 하루 만에 해당 기능을 철회했다. AI-Ethics-KR">
-  <h2>🇰🇷 구글 어스의 롤백: 스푸트니크는 왜 나노 바나나가 되었나 (2026.9.6)</h2>
+  <h2>🇰🇷 <a href="https://ai-ethics.kr/google-earth-sputnik-nano-banana-2026-09-07/" target="_blank" rel="noopener noreferrer">구글 어스의 롤백: 스푸트니크는 왜 나노 바나나가 되었나 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AI-Ethics-KR</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="구글 어스의 롤백: 스푸트니크는 왜 나노 바나나가 되었나 (2026.9.6)
 
 구글은 7월 30일 구글 어스에 생성형 AI 나노 바나나 2를 활용해 위성 이미지를 편집하는 기능을 추가했지만, 전쟁·재난 현장과 군사 시설 이미지가 조작될 수 있다는 우려가 제기됐다. 구글은 생성 이미지에 디지털 워터마크를 넣고 AI로 생성 여부를 확인할 수 있다고 설명했으나, 전문가와 언론은 구글 어스가 가진 위성 이미지의 객관성과 신뢰가 훼손될 수 있다고 지적했다. 구글은 안전장치를 강화하겠다며 발표 하루 만에 해당 기능을 철회했다.
 
 https://ai-ethics.kr/google-earth-sputnik-nano-banana-2026-09-07/" onclick="copyEntry(this)">복사</button></div>
   <p>구글은 7월 30일 구글 어스에 생성형 AI 나노 바나나 2를 활용해 위성 이미지를 편집하는 기능을 추가했지만, 전쟁·재난 현장과 군사 시설 이미지가 조작될 수 있다는 우려가 제기됐다. 구글은 생성 이미지에 디지털 워터마크를 넣고 AI로 생성 여부를 확인할 수 있다고 설명했으나, 전문가와 언론은 구글 어스가 가진 위성 이미지의 객관성과 신뢰가 훼손될 수 있다고 지적했다. 구글은 안전장치를 강화하겠다며 발표 하루 만에 해당 기능을 철회했다.</p>
-  <p class="url"><a href="https://ai-ethics.kr/google-earth-sputnik-nano-banana-2026-09-07/" target="_blank" rel="noopener noreferrer">https://ai-ethics.kr/google-earth-sputnik-nano-banana-2026-09-07/</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="politics" data-search="Zoe Lofgren 의원, FISA 감시와 수정헌법 제4조 논의 (2026.9.6) Zoe Lofgren 의원은 FISA 702가 해외 비미국인의 통신을 영장 없이 수집하는 데 유용하지만, 미국인의 통신도 데이터베이스에 포함돼 FBI 등이 영장 없이 검색할 수 있는 문제가 있다고 지적했다. 그는 과거 시위 참가자, 선거운동 기부자, 의원, 언론인 등의 통신이 부적절하게 검색됐다며, 미국인을 대상으로 데이터베이스를 조회할 때는 영장을 요구해야 한다고 주장했다. FISA 702의 만료 시한은 지났지만 기존 감시 명령은 2027년 초까지 이어질 수 있으며, 관련 개혁안은 의회에서 다시 논의될 전망이다. TechPolicyPress">
-  <h2>🇺🇸 Zoe Lofgren 의원, FISA 감시와 수정헌법 제4조 논의 (2026.9.6)</h2>
+  <h2>🇺🇸 <a href="https://www.techpolicy.press/rep-zoe-lofgren-on-fisa-surveillance-and-the-fourth-amendment" target="_blank" rel="noopener noreferrer">Zoe Lofgren 의원, FISA 감시와 수정헌법 제4조 논의 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TechPolicyPress</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="Zoe Lofgren 의원, FISA 감시와 수정헌법 제4조 논의 (2026.9.6)
 
 Zoe Lofgren 의원은 FISA 702가 해외 비미국인의 통신을 영장 없이 수집하는 데 유용하지만, 미국인의 통신도 데이터베이스에 포함돼 FBI 등이 영장 없이 검색할 수 있는 문제가 있다고 지적했다. 그는 과거 시위 참가자, 선거운동 기부자, 의원, 언론인 등의 통신이 부적절하게 검색됐다며, 미국인을 대상으로 데이터베이스를 조회할 때는 영장을 요구해야 한다고 주장했다. FISA 702의 만료 시한은 지났지만 기존 감시 명령은 2027년 초까지 이어질 수 있으며, 관련 개혁안은 의회에서 다시 논의될 전망이다.
 
 https://www.techpolicy.press/rep-zoe-lofgren-on-fisa-surveillance-and-the-fourth-amendment" onclick="copyEntry(this)">복사</button></div>
   <p>Zoe Lofgren 의원은 FISA 702가 해외 비미국인의 통신을 영장 없이 수집하는 데 유용하지만, 미국인의 통신도 데이터베이스에 포함돼 FBI 등이 영장 없이 검색할 수 있는 문제가 있다고 지적했다. 그는 과거 시위 참가자, 선거운동 기부자, 의원, 언론인 등의 통신이 부적절하게 검색됐다며, 미국인을 대상으로 데이터베이스를 조회할 때는 영장을 요구해야 한다고 주장했다. FISA 702의 만료 시한은 지났지만 기존 감시 명령은 2027년 초까지 이어질 수 있으며, 관련 개혁안은 의회에서 다시 논의될 전망이다.</p>
-  <p class="url"><a href="https://www.techpolicy.press/rep-zoe-lofgren-on-fisa-surveillance-and-the-fourth-amendment" target="_blank" rel="noopener noreferrer">https://www.techpolicy.press/rep-zoe-lofgren-on-fisa-surveillance-and-the-fourth-amendment</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="law youth" data-search="버지니아, 확인된 위험에 대응해 AI 챗봇 규제 검토 (2026.9.6) 버지니아 총회의 기술·과학 공동위원회(JCOTS)는 AI 챗봇과 미성년자 관련 법안이 회기 중 무산된 뒤, 챗봇 사용으로 인한 피해를 줄일 정책 방안을 검토하는 보충 보고서를 마련했다. 해당 법안들은 연방정부의 AI 규제 접근과 주정부의 부담스러운 규제에 대한 제재 우려, 특히 BEAD broadband funding 철회 가능성 때문에 추진되지 못했다. 보고서는 자살, 망상적 악화 등 챗봇과 관련된 사례가 공론화된 가운데, ‘companion chatbot’이라는 제품 분류보다 챗봇의 설계와 행동, 이용자와의 감정적 상호작용을 중심으로 규제 필요성을 살펴본다. TechPolicyPress">
-  <h2>🇺🇸 버지니아, 확인된 위험에 대응해 AI 챗봇 규제 검토 (2026.9.6)</h2>
+  <h2>🇺🇸 <a href="https://www.techpolicy.press/virginia-eyes-ai-chatbot-rules-as-observable-risks-warrant-action" target="_blank" rel="noopener noreferrer">버지니아, 확인된 위험에 대응해 AI 챗봇 규제 검토 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TechPolicyPress</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="청소년">🧒</span></span></span><button type="button" class="copy-btn" data-copy="버지니아, 확인된 위험에 대응해 AI 챗봇 규제 검토 (2026.9.6)
 
 버지니아 총회의 기술·과학 공동위원회(JCOTS)는 AI 챗봇과 미성년자 관련 법안이 회기 중 무산된 뒤, 챗봇 사용으로 인한 피해를 줄일 정책 방안을 검토하는 보충 보고서를 마련했다. 해당 법안들은 연방정부의 AI 규제 접근과 주정부의 부담스러운 규제에 대한 제재 우려, 특히 BEAD broadband funding 철회 가능성 때문에 추진되지 못했다. 보고서는 자살, 망상적 악화 등 챗봇과 관련된 사례가 공론화된 가운데, ‘companion chatbot’이라는 제품 분류보다 챗봇의 설계와 행동, 이용자와의 감정적 상호작용을 중심으로 규제 필요성을 살펴본다.
 
 https://www.techpolicy.press/virginia-eyes-ai-chatbot-rules-as-observable-risks-warrant-action" onclick="copyEntry(this)">복사</button></div>
   <p>버지니아 총회의 기술·과학 공동위원회(JCOTS)는 AI 챗봇과 미성년자 관련 법안이 회기 중 무산된 뒤, 챗봇 사용으로 인한 피해를 줄일 정책 방안을 검토하는 보충 보고서를 마련했다. 해당 법안들은 연방정부의 AI 규제 접근과 주정부의 부담스러운 규제에 대한 제재 우려, 특히 BEAD broadband funding 철회 가능성 때문에 추진되지 못했다. 보고서는 자살, 망상적 악화 등 챗봇과 관련된 사례가 공론화된 가운데, ‘companion chatbot’이라는 제품 분류보다 챗봇의 설계와 행동, 이용자와의 감정적 상호작용을 중심으로 규제 필요성을 살펴본다.</p>
-  <p class="url"><a href="https://www.techpolicy.press/virginia-eyes-ai-chatbot-rules-as-observable-risks-warrant-action" target="_blank" rel="noopener noreferrer">https://www.techpolicy.press/virginia-eyes-ai-chatbot-rules-as-observable-risks-warrant-action</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="deepfake_disinfo law" data-search="이번 노동절, 채용에 미치는 AI의 영향을 생각하다 (2026.9.6) 뉴스레터는 AI 채용 도구가 설명하기 어려운 이유로 자격을 갖춘 지원자를 탈락시킬 수 있으며, 차별적 영향에 관한 법률 약화가 문제를 악화시킬 수 있다고 전한다. 또한 AI 동반자 챗봇 규제, 학교 내 AI 사용 제한, 유럽연합의 ChatGPT·Roblox 대형 플랫폼 지정, 독일의 이민·난민 절차 AI 활용과 관련한 권리·편향 우려를 다룬다. EU AI Act의 투명성 규정은 8월 2일부터 시행됐으며, 뉴스레터는 Meta 합의, Google 광고기술 반독점 구제조치, 허위정보와 이주 문제 등 기술 정책 현안도 소개한다. TechPolicyPress">
-  <h2>🇪🇺 이번 노동절, 채용에 미치는 AI의 영향을 생각하다 (2026.9.6)</h2>
+  <h2>🇪🇺 <a href="https://www.techpolicy.press/newsletter-september-6-2026" target="_blank" rel="noopener noreferrer">이번 노동절, 채용에 미치는 AI의 영향을 생각하다 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">TechPolicyPress</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="이번 노동절, 채용에 미치는 AI의 영향을 생각하다 (2026.9.6)
 
 뉴스레터는 AI 채용 도구가 설명하기 어려운 이유로 자격을 갖춘 지원자를 탈락시킬 수 있으며, 차별적 영향에 관한 법률 약화가 문제를 악화시킬 수 있다고 전한다. 또한 AI 동반자 챗봇 규제, 학교 내 AI 사용 제한, 유럽연합의 ChatGPT·Roblox 대형 플랫폼 지정, 독일의 이민·난민 절차 AI 활용과 관련한 권리·편향 우려를 다룬다. EU AI Act의 투명성 규정은 8월 2일부터 시행됐으며, 뉴스레터는 Meta 합의, Google 광고기술 반독점 구제조치, 허위정보와 이주 문제 등 기술 정책 현안도 소개한다.
 
 https://www.techpolicy.press/newsletter-september-6-2026" onclick="copyEntry(this)">복사</button></div>
   <p>뉴스레터는 AI 채용 도구가 설명하기 어려운 이유로 자격을 갖춘 지원자를 탈락시킬 수 있으며, 차별적 영향에 관한 법률 약화가 문제를 악화시킬 수 있다고 전한다. 또한 AI 동반자 챗봇 규제, 학교 내 AI 사용 제한, 유럽연합의 ChatGPT·Roblox 대형 플랫폼 지정, 독일의 이민·난민 절차 AI 활용과 관련한 권리·편향 우려를 다룬다. EU AI Act의 투명성 규정은 8월 2일부터 시행됐으며, 뉴스레터는 Meta 합의, Google 광고기술 반독점 구제조치, 허위정보와 이주 문제 등 기술 정책 현안도 소개한다.</p>
-  <p class="url"><a href="https://www.techpolicy.press/newsletter-september-6-2026" target="_blank" rel="noopener noreferrer">https://www.techpolicy.press/newsletter-september-6-2026</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="" data-search="뉴욕, 초·중학교 AI 사용 금지…“어떤 챗봇도 성장·고민 재현할 수 없다” (2026.9.6) 뉴욕시는 가을 새 학기부터 공립 초등학교와 중학교에서 1년간 AI 도구 사용을 금지하고, 초등학교 3학년까지 개인용 모니터가 있는 전자기기 사용도 제한한다. 중학생의 화면 기기 사용은 하루 45분 이내로 제한되며, 교사의 채점 목적 AI 활용도 금지된다. 고등학생은 일부 AI 도구만 제한적으로 사용할 수 있고, 모든 고등학생에게 AI 리터러시 교육이 제공된다. 뉴스RSS · 미디어오늘">
-  <h2>뉴욕, 초·중학교 AI 사용 금지…“어떤 챗봇도 성장·고민 재현할 수 없다” (2026.9.6)</h2>
+  <h2><a href="https://www.mediatoday.co.kr/news/articleView.html?idxno=336921" target="_blank" rel="noopener noreferrer">뉴욕, 초·중학교 AI 사용 금지…“어떤 챗봇도 성장·고민 재현할 수 없다” (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">미디어오늘</span></span><button type="button" class="copy-btn" data-copy="뉴욕, 초·중학교 AI 사용 금지…“어떤 챗봇도 성장·고민 재현할 수 없다” (2026.9.6)
 
 뉴욕시는 가을 새 학기부터 공립 초등학교와 중학교에서 1년간 AI 도구 사용을 금지하고, 초등학교 3학년까지 개인용 모니터가 있는 전자기기 사용도 제한한다. 중학생의 화면 기기 사용은 하루 45분 이내로 제한되며, 교사의 채점 목적 AI 활용도 금지된다. 고등학생은 일부 AI 도구만 제한적으로 사용할 수 있고, 모든 고등학생에게 AI 리터러시 교육이 제공된다.
 
 https://www.mediatoday.co.kr/news/articleView.html?idxno=336921" onclick="copyEntry(this)">복사</button></div>
   <p>뉴욕시는 가을 새 학기부터 공립 초등학교와 중학교에서 1년간 AI 도구 사용을 금지하고, 초등학교 3학년까지 개인용 모니터가 있는 전자기기 사용도 제한한다. 중학생의 화면 기기 사용은 하루 45분 이내로 제한되며, 교사의 채점 목적 AI 활용도 금지된다. 고등학생은 일부 AI 도구만 제한적으로 사용할 수 있고, 모든 고등학생에게 AI 리터러시 교육이 제공된다.</p>
-  <p class="url"><a href="https://www.mediatoday.co.kr/news/articleView.html?idxno=336921" target="_blank" rel="noopener noreferrer">https://www.mediatoday.co.kr/news/articleView.html?idxno=336921</a></p>
   
   <details class="related-stories" open><summary>같은 이슈 관련 1건 · 조선일보</summary><article class="entry cat-media" data-cat="media" data-topics="" data-search="뉴욕시, 학교 내 학생 AI 사용 1년간 금지…교육 격차 확대 우려 (2026.9.6) 뉴욕시는 이번 학기부터 유치원과 초·중학교에서 학생들의 교실 내 AI 사용을 1년간 금지하고 전자기기 사용 시간도 제한하기로 했다. 전문가들은 어린 학생을 보호할 필요가 있지만, 학교 밖에서 AI를 접하는 학생과 그렇지 못한 학생 간 교육 격차가 커질 수 있다고 지적했다. 정책 평가는 AI 사용량이 아니라 수업 참여도, 학업 성취도, 비판적 사고력, 교사 경험과 학생의 AI 이해도 등을 기준으로 이뤄져야 한다고 제안했다. 뉴스RSS · 조선일보">
-  <h2>뉴욕시, 학교 내 학생 AI 사용 1년간 금지…교육 격차 확대 우려 (2026.9.6)</h2>
+  <h2><a href="https://www.chosun.com/international/international_general/2026/09/07/LB4SLLBVYZGPREZGVPX25VYRRI/" target="_blank" rel="noopener noreferrer">뉴욕시, 학교 내 학생 AI 사용 1년간 금지…교육 격차 확대 우려 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">조선일보</span></span><button type="button" class="copy-btn" data-copy="뉴욕시, 학교 내 학생 AI 사용 1년간 금지…교육 격차 확대 우려 (2026.9.6)
 
 뉴욕시는 이번 학기부터 유치원과 초·중학교에서 학생들의 교실 내 AI 사용을 1년간 금지하고 전자기기 사용 시간도 제한하기로 했다. 전문가들은 어린 학생을 보호할 필요가 있지만, 학교 밖에서 AI를 접하는 학생과 그렇지 못한 학생 간 교육 격차가 커질 수 있다고 지적했다. 정책 평가는 AI 사용량이 아니라 수업 참여도, 학업 성취도, 비판적 사고력, 교사 경험과 학생의 AI 이해도 등을 기준으로 이뤄져야 한다고 제안했다.
 
 https://www.chosun.com/international/international_general/2026/09/07/LB4SLLBVYZGPREZGVPX25VYRRI/" onclick="copyEntry(this)">복사</button></div>
   <p>뉴욕시는 이번 학기부터 유치원과 초·중학교에서 학생들의 교실 내 AI 사용을 1년간 금지하고 전자기기 사용 시간도 제한하기로 했다. 전문가들은 어린 학생을 보호할 필요가 있지만, 학교 밖에서 AI를 접하는 학생과 그렇지 못한 학생 간 교육 격차가 커질 수 있다고 지적했다. 정책 평가는 AI 사용량이 아니라 수업 참여도, 학업 성취도, 비판적 사고력, 교사 경험과 학생의 AI 이해도 등을 기준으로 이뤄져야 한다고 제안했다.</p>
-  <p class="url"><a href="https://www.chosun.com/international/international_general/2026/09/07/LB4SLLBVYZGPREZGVPX25VYRRI/" target="_blank" rel="noopener noreferrer">https://www.chosun.com/international/international_general/2026/09/07/LB4SLLBVYZGPREZGVPX25VYRRI/</a></p>
   
   
 </article></details>
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="politics" data-search="데이터센터 건설을 둘러싸고 엇갈린 트럼프 행정부의 AI 정책 (2026.9.6) 트럼프 대통령과 밴스 부통령은 데이터센터 건설 확대에는 공감했지만, AI의 위험성과 사회·영적 영향에 대해서는 상반된 발언을 내놨다. 트럼프 행정부는 AI를 경제성장과 대중국 경쟁의 핵심 수단으로 보고 있으나, 데이터센터의 고용 효과가 제한적인 반면 전력·물 소비가 크다는 지적이 나오며 반대 여론이 커지고 있다. 데이터센터 문제가 11월 중간선거의 쟁점으로 떠오르면서 행정부 내부의 정책적·정치적 딜레마도 부각되고 있다. 뉴스RSS · 경향신문">
-  <h2>🇨🇳 데이터센터 건설을 둘러싸고 엇갈린 트럼프 행정부의 AI 정책 (2026.9.6)</h2>
+  <h2>🇨🇳 <a href="https://www.khan.co.kr/article/202609062043005/" target="_blank" rel="noopener noreferrer">데이터센터 건설을 둘러싸고 엇갈린 트럼프 행정부의 AI 정책 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">경향신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="데이터센터 건설을 둘러싸고 엇갈린 트럼프 행정부의 AI 정책 (2026.9.6)
 
 트럼프 대통령과 밴스 부통령은 데이터센터 건설 확대에는 공감했지만, AI의 위험성과 사회·영적 영향에 대해서는 상반된 발언을 내놨다. 트럼프 행정부는 AI를 경제성장과 대중국 경쟁의 핵심 수단으로 보고 있으나, 데이터센터의 고용 효과가 제한적인 반면 전력·물 소비가 크다는 지적이 나오며 반대 여론이 커지고 있다. 데이터센터 문제가 11월 중간선거의 쟁점으로 떠오르면서 행정부 내부의 정책적·정치적 딜레마도 부각되고 있다.
 
 https://www.khan.co.kr/article/202609062043005/" onclick="copyEntry(this)">복사</button></div>
   <p>트럼프 대통령과 밴스 부통령은 데이터센터 건설 확대에는 공감했지만, AI의 위험성과 사회·영적 영향에 대해서는 상반된 발언을 내놨다. 트럼프 행정부는 AI를 경제성장과 대중국 경쟁의 핵심 수단으로 보고 있으나, 데이터센터의 고용 효과가 제한적인 반면 전력·물 소비가 크다는 지적이 나오며 반대 여론이 커지고 있다. 데이터센터 문제가 11월 중간선거의 쟁점으로 떠오르면서 행정부 내부의 정책적·정치적 딜레마도 부각되고 있다.</p>
-  <p class="url"><a href="https://www.khan.co.kr/article/202609062043005/" target="_blank" rel="noopener noreferrer">https://www.khan.co.kr/article/202609062043005/</a></p>
   
   <details class="related-stories" open><summary>같은 이슈 관련 1건 · 경향신문</summary><article class="entry cat-media" data-cat="media" data-topics="politics" data-search="데이터센터는 ‘강행’하면서 AI엔 “악마적”?···미 정부, AI 정책 딜레마 (2026.9.6) 트럼프 행정부는 AI를 경제 성장과 대중국 경쟁의 핵심 수단으로 보고 데이터센터 건설을 추진하면서도, 밴스 부통령을 비롯한 일부 인사들은 AI의 사회적·영적 위험성을 우려하고 있다. 데이터센터의 고용 효과는 제한적인 반면 전력과 물 소비가 크다는 지적이 나오면서 미국 내 반대 여론이 커지고 있으며, 11월 중간선거의 쟁점으로도 부상했다. 상반된 발언은 AI의 가능성과 위험성 사이에서 균형을 잡으려는 트럼프 행정부의 정책적·정치적 딜레마를 보여준다고 외신은 평가했다. 뉴스RSS · 경향신문">
-  <h2>🇨🇳🇺🇸 데이터센터는 ‘강행’하면서 AI엔 “악마적”?···미 정부, AI 정책 딜레마 (2026.9.6)</h2>
+  <h2>🇨🇳🇺🇸 <a href="https://www.khan.co.kr/article/202609061653001/" target="_blank" rel="noopener noreferrer">데이터센터는 ‘강행’하면서 AI엔 “악마적”?···미 정부, AI 정책 딜레마 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">경향신문</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span></span></span><button type="button" class="copy-btn" data-copy="데이터센터는 ‘강행’하면서 AI엔 “악마적”?···미 정부, AI 정책 딜레마 (2026.9.6)
 
 트럼프 행정부는 AI를 경제 성장과 대중국 경쟁의 핵심 수단으로 보고 데이터센터 건설을 추진하면서도, 밴스 부통령을 비롯한 일부 인사들은 AI의 사회적·영적 위험성을 우려하고 있다. 데이터센터의 고용 효과는 제한적인 반면 전력과 물 소비가 크다는 지적이 나오면서 미국 내 반대 여론이 커지고 있으며, 11월 중간선거의 쟁점으로도 부상했다. 상반된 발언은 AI의 가능성과 위험성 사이에서 균형을 잡으려는 트럼프 행정부의 정책적·정치적 딜레마를 보여준다고 외신은 평가했다.
 
 https://www.khan.co.kr/article/202609061653001/" onclick="copyEntry(this)">복사</button></div>
   <p>트럼프 행정부는 AI를 경제 성장과 대중국 경쟁의 핵심 수단으로 보고 데이터센터 건설을 추진하면서도, 밴스 부통령을 비롯한 일부 인사들은 AI의 사회적·영적 위험성을 우려하고 있다. 데이터센터의 고용 효과는 제한적인 반면 전력과 물 소비가 크다는 지적이 나오면서 미국 내 반대 여론이 커지고 있으며, 11월 중간선거의 쟁점으로도 부상했다. 상반된 발언은 AI의 가능성과 위험성 사이에서 균형을 잡으려는 트럼프 행정부의 정책적·정치적 딜레마를 보여준다고 외신은 평가했다.</p>
-  <p class="url"><a href="https://www.khan.co.kr/article/202609061653001/" target="_blank" rel="noopener noreferrer">https://www.khan.co.kr/article/202609061653001/</a></p>
   
   
 </article></details>
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="cybersecurity" data-search="정부, AI 예산 9.4조원 투입해 보안·전 국민 서비스 추진 (2026.9.6) 과학기술정보통신부는 2027년도 AI 관련 예산을 전년보다 84.3% 늘린 9조4211억원으로 편성하고, 기술 자립과 국가 AI 서비스 확대를 추진한다. 네이버클라우드가 주도하고 32개 기관이 참여하는 컨소시엄은 네이버와 LG의 AI 모델을 기반으로 700B 규모의 사이버 보안 특화 AI를 개발하며, 정부는 GPU B200 256장을 지원한다. 또한 SK텔레콤·KT·카카오 컨소시엄이 참여하는 ‘모두의 AI’에 2500억원을 투입해 12월 대국민 서비스 출시를 목표로 하고, 약 1000만 명이 국산 AI를 무료로 이용할 수 있도록 엔비디아 B200 약 2000장 규모의 임차 비용도 지원한다. 뉴스RSS · 천지일보">
-  <h2>🇰🇷 정부, AI 예산 9.4조원 투입해 보안·전 국민 서비스 추진 (2026.9.6)</h2>
+  <h2>🇰🇷 <a href="https://www.newscj.com/news/articleView.html?idxno=3430376" target="_blank" rel="noopener noreferrer">정부, AI 예산 9.4조원 투입해 보안·전 국민 서비스 추진 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">천지일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="정부, AI 예산 9.4조원 투입해 보안·전 국민 서비스 추진 (2026.9.6)
 
 과학기술정보통신부는 2027년도 AI 관련 예산을 전년보다 84.3% 늘린 9조4211억원으로 편성하고, 기술 자립과 국가 AI 서비스 확대를 추진한다. 네이버클라우드가 주도하고 32개 기관이 참여하는 컨소시엄은 네이버와 LG의 AI 모델을 기반으로 700B 규모의 사이버 보안 특화 AI를 개발하며, 정부는 GPU B200 256장을 지원한다. 또한 SK텔레콤·KT·카카오 컨소시엄이 참여하는 ‘모두의 AI’에 2500억원을 투입해 12월 대국민 서비스 출시를 목표로 하고, 약 1000만 명이 국산 AI를 무료로 이용할 수 있도록 엔비디아 B200 약 2000장 규모의 임차 비용도 지원한다.
 
 https://www.newscj.com/news/articleView.html?idxno=3430376" onclick="copyEntry(this)">복사</button></div>
   <p>과학기술정보통신부는 2027년도 AI 관련 예산을 전년보다 84.3% 늘린 9조4211억원으로 편성하고, 기술 자립과 국가 AI 서비스 확대를 추진한다. 네이버클라우드가 주도하고 32개 기관이 참여하는 컨소시엄은 네이버와 LG의 AI 모델을 기반으로 700B 규모의 사이버 보안 특화 AI를 개발하며, 정부는 GPU B200 256장을 지원한다. 또한 SK텔레콤·KT·카카오 컨소시엄이 참여하는 ‘모두의 AI’에 2500억원을 투입해 12월 대국민 서비스 출시를 목표로 하고, 약 1000만 명이 국산 AI를 무료로 이용할 수 있도록 엔비디아 B200 약 2000장 규모의 임차 비용도 지원한다.</p>
-  <p class="url"><a href="https://www.newscj.com/news/articleView.html?idxno=3430376" target="_blank" rel="noopener noreferrer">https://www.newscj.com/news/articleView.html?idxno=3430376</a></p>
   
   
 </article>
 <article class="entry cat-research" data-cat="research" data-topics="safety_research" data-search="LLM이 구동하는 기업 서비스 워크플로의 안전성 평가 벤치마크 JailFlowEval (2026.9.6) JailFlowEval은 단일 대화가 아니라 기업 업무 흐름을 따라 유해한 의도가 이어지는 위험을 평가하는 벤치마크다.
 plan, exec, review, improve 네 가지 워크플로 맥락에서 유해 의도를 단계별 기록으로 만들고, 744개의 평가 기록을 구축했다.
 10개 모델을 평가한 결과, workflow-aware 하위 과제가 prompt-level 평가에서 포착하지 못한 unsafe continuation risks를 드러냈으며, 모델과 평가 지표에 따라 가장 위험한 워크플로 단계가 달랐다. ">
-  <h2>LLM이 구동하는 기업 서비스 워크플로의 안전성 평가 벤치마크 JailFlowEval (2026.9.6)</h2>
+  <h2><a href="https://doi.org/10.1007/s11761-026-00511-z" target="_blank" rel="noopener noreferrer">LLM이 구동하는 기업 서비스 워크플로의 안전성 평가 벤치마크 JailFlowEval (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="LLM이 구동하는 기업 서비스 워크플로의 안전성 평가 벤치마크 JailFlowEval (2026.9.6)
 
 JailFlowEval은 단일 대화가 아니라 기업 업무 흐름을 따라 유해한 의도가 이어지는 위험을 평가하는 벤치마크다.
@@ -564,7 +556,6 @@ https://doi.org/10.1007/s11761-026-00511-z" onclick="copyEntry(this)">복사</bu
   <p>JailFlowEval은 단일 대화가 아니라 기업 업무 흐름을 따라 유해한 의도가 이어지는 위험을 평가하는 벤치마크다.
 plan, exec, review, improve 네 가지 워크플로 맥락에서 유해 의도를 단계별 기록으로 만들고, 744개의 평가 기록을 구축했다.
 10개 모델을 평가한 결과, workflow-aware 하위 과제가 prompt-level 평가에서 포착하지 못한 unsafe continuation risks를 드러냈으며, 모델과 평가 지표에 따라 가장 위험한 워크플로 단계가 달랐다.</p>
-  <p class="url"><a href="https://doi.org/10.1007/s11761-026-00511-z" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s11761-026-00511-z</a></p>
   
   
 </article>
@@ -572,7 +563,7 @@ plan, exec, review, improve 네 가지 워크플로 맥락에서 유해 의도�
 교통 사전 지식으로 충돌 시점과 위치를 정한 뒤 새 차량을 목표 차량과 접촉한 상태로 삽입하고, 조건부 변분 오토인코더로 삽입 차량의 궤적을 시간 역방향으로 복원한다.
 COSTER는 기존 방법보다 시나리오의 현실성, 다양성, 데이터 효율성에서 우수했다.
 COSTER로 생성한 시나리오를 학습한 에이전트는 Waymo Open Motion Dataset의 안전 핵심 시나리오에서 충돌률을 31% 낮추면서 ego task completion도 향상했다. ">
-  <h2>충돌 스냅샷 기반 시간 역방향 안전 핵심 시나리오 생성 (2026.9.6)</h2>
+  <h2><a href="https://arxiv.org/abs/2609.06433v1" target="_blank" rel="noopener noreferrer">충돌 스냅샷 기반 시간 역방향 안전 핵심 시나리오 생성 (2026.9.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="피지컬AI">🦾</span></span></span><button type="button" class="copy-btn" data-copy="충돌 스냅샷 기반 시간 역방향 안전 핵심 시나리오 생성 (2026.9.6)
 
 자율주행 차량의 훈련과 평가를 위해 더 현실적이고 다양한 안전 핵심 교통 시나리오를 생성하는 COSTER를 제안한다.
@@ -585,7 +576,6 @@ https://arxiv.org/abs/2609.06433v1" onclick="copyEntry(this)">복사</button></d
 교통 사전 지식으로 충돌 시점과 위치를 정한 뒤 새 차량을 목표 차량과 접촉한 상태로 삽입하고, 조건부 변분 오토인코더로 삽입 차량의 궤적을 시간 역방향으로 복원한다.
 COSTER는 기존 방법보다 시나리오의 현실성, 다양성, 데이터 효율성에서 우수했다.
 COSTER로 생성한 시나리오를 학습한 에이전트는 Waymo Open Motion Dataset의 안전 핵심 시나리오에서 충돌률을 31% 낮추면서 ego task completion도 향상했다.</p>
-  <p class="url"><a href="https://arxiv.org/abs/2609.06433v1" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.06433v1</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-09-05.html">← 2026-09-05</a><a class="day-nav-btn" href="2026-09-07.html">2026-09-07 →</a></nav>

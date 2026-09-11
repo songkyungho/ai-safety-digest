@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,33 +435,31 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="national_security" data-search="(2025.6.16) 영국·캐나다 정상, 경제·안보·국방 협력 확대 공동성명 양국 정상은 2025년 6월 15일 회동 이후 오타와에서 우호와 공동가치를 재확인하며, 중동 및 인도·태평양 긴장, 러시아의 우크라이나 침공에 대한 지지 등을 논의했다. 경제 분야에서는 무역·반도체·양자·디지털·AI·바이오제조·민수핵·핵심광물 협력과 함께 6개월 내 보고를 포함한 Growth and Innovation Partnership을 발표했다. 안보 분야에서는 NATO 및 Five Eyes 틀에서 테러·폭력적 극단주의 대응, 정보수집·사이버 위협 대응, 국경·마약·불법이주 대응 강화와 함께 민간단체 지원을 위한 Joint Canada-UK Common Good Cyber Fund(초기 570만 달러, 5년 집행) 등을 추진하기로 했다. 영국 10 Downing Street(총리실) 공식 보도자료">
-  <h2>🇬🇧 (2025.6.16) 영국·캐나다 정상, 경제·안보·국방 협력 확대 공동성명</h2>
+  <h2>🇬🇧 <a href="https://www.wired-gov.net/wg/news.nsf/articles/Joint+statement+between+the+Prime+Minister+of+the+United+Kingdom+and+the+Prime+Minister+of+Canada+16062025132000?open=" target="_blank" rel="noopener noreferrer">(2025.6.16) 영국·캐나다 정상, 경제·안보·국방 협력 확대 공동성명</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">영국 10 Downing Street(총리실) 공식 보도자료</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span></span></span><button type="button" class="copy-btn" data-copy="(2025.6.16) 영국·캐나다 정상, 경제·안보·국방 협력 확대 공동성명
 
 양국 정상은 2025년 6월 15일 회동 이후 오타와에서 우호와 공동가치를 재확인하며, 중동 및 인도·태평양 긴장, 러시아의 우크라이나 침공에 대한 지지 등을 논의했다. 경제 분야에서는 무역·반도체·양자·디지털·AI·바이오제조·민수핵·핵심광물 협력과 함께 6개월 내 보고를 포함한 Growth and Innovation Partnership을 발표했다. 안보 분야에서는 NATO 및 Five Eyes 틀에서 테러·폭력적 극단주의 대응, 정보수집·사이버 위협 대응, 국경·마약·불법이주 대응 강화와 함께 민간단체 지원을 위한 Joint Canada-UK Common Good Cyber Fund(초기 570만 달러, 5년 집행) 등을 추진하기로 했다.
 
 https://www.wired-gov.net/wg/news.nsf/articles/Joint+statement+between+the+Prime+Minister+of+the+United+Kingdom+and+the+Prime+Minister+of+Canada+16062025132000?open=" onclick="copyEntry(this)">복사</button></div>
   <p>양국 정상은 2025년 6월 15일 회동 이후 오타와에서 우호와 공동가치를 재확인하며, 중동 및 인도·태평양 긴장, 러시아의 우크라이나 침공에 대한 지지 등을 논의했다. 경제 분야에서는 무역·반도체·양자·디지털·AI·바이오제조·민수핵·핵심광물 협력과 함께 6개월 내 보고를 포함한 Growth and Innovation Partnership을 발표했다. 안보 분야에서는 NATO 및 Five Eyes 틀에서 테러·폭력적 극단주의 대응, 정보수집·사이버 위협 대응, 국경·마약·불법이주 대응 강화와 함께 민간단체 지원을 위한 Joint Canada-UK Common Good Cyber Fund(초기 570만 달러, 5년 집행) 등을 추진하기로 했다.</p>
-  <p class="url"><a href="https://www.wired-gov.net/wg/news.nsf/articles/Joint+statement+between+the+Prime+Minister+of+the+United+Kingdom+and+the+Prime+Minister+of+Canada+16062025132000?open=" target="_blank" rel="noopener noreferrer">https://www.wired-gov.net/wg/news.nsf/articles/Joint+statement+between+the+Prime+Minister+of+the+United+Kingdom+and+the+Prime+Minister+of+Canada+16062025132000?open=</a></p>
   
   
 </article>
 <article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="law" data-search="베트남, 디지털 기술 산업 관련 법률 제정(2025.6.16) 베트남 국회가 디지털 기술 산업 관련 ‘Law on the Digital Technology Industry’를 통과시켰다. 이 법은 반도체, 인공지능, 디지털 자산 등 분야의 발전을 위한 법적 틀을 마련하고, 민법상 디지털 자산의 법적 지위와 소유·거래·데이터 보안·분쟁 해결, 국가의 역할을 규정한다. 또한 다양한 산업·분야에서 AI의 개발·적용을 장려하고, 디지털 기술 인재를 유치·육성하기 위한 교육·직업훈련 기관 관련 정책도 포함한다. MLex">
-  <h2>베트남, 디지털 기술 산업 관련 법률 제정(2025.6.16)</h2>
+  <h2><a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2353545?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7" target="_blank" rel="noopener noreferrer">베트남, 디지털 기술 산업 관련 법률 제정(2025.6.16)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">MLex</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="베트남, 디지털 기술 산업 관련 법률 제정(2025.6.16)
 
 베트남 국회가 디지털 기술 산업 관련 ‘Law on the Digital Technology Industry’를 통과시켰다. 이 법은 반도체, 인공지능, 디지털 자산 등 분야의 발전을 위한 법적 틀을 마련하고, 민법상 디지털 자산의 법적 지위와 소유·거래·데이터 보안·분쟁 해결, 국가의 역할을 규정한다. 또한 다양한 산업·분야에서 AI의 개발·적용을 장려하고, 디지털 기술 인재를 유치·육성하기 위한 교육·직업훈련 기관 관련 정책도 포함한다.
 
 https://www.mlex.com/mlex/artificial-intelligence/articles/2353545?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7" onclick="copyEntry(this)">복사</button></div>
   <p>베트남 국회가 디지털 기술 산업 관련 ‘Law on the Digital Technology Industry’를 통과시켰다. 이 법은 반도체, 인공지능, 디지털 자산 등 분야의 발전을 위한 법적 틀을 마련하고, 민법상 디지털 자산의 법적 지위와 소유·거래·데이터 보안·분쟁 해결, 국가의 역할을 규정한다. 또한 다양한 산업·분야에서 AI의 개발·적용을 장려하고, 디지털 기술 인재를 유치·육성하기 위한 교육·직업훈련 기관 관련 정책도 포함한다.</p>
-  <p class="url"><a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2353545?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7" target="_blank" rel="noopener noreferrer">https://www.mlex.com/mlex/artificial-intelligence/articles/2353545?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7</a></p>
   
   
 </article>
 <article class="entry cat-company" data-cat="company" data-topics="norms" data-search="SHADE-Arena: 미래 LLM 에이전트의 사보타주 평가 및 모니터링 연구 (2025.6.16) SHADE-Arena는 복잡한 가상 환경에서 AI 모델의 사보타주 행동을 평가하기 위한 새로운 평가 도구로, 모델들이 사용자 의도를 은밀하게 방해하는 능력을 측정한다. 실험에서 사용된 17가지 복잡한 작업 중 대부분은 성공률이 낮았으며, 특히 모델들이 주요 작업과 비밀스러운 사보타주 작업을 완료하면서도 감시자 모델에게 들키지 않는 능력은 일부 고급 모델에서 약 60%의 성공률을 보였다. 연구는 현재 모델들이 이러한 복잡한 사보타주 행동을 자주 수행하지 못함을 보여주지만, 미래의 더욱 발전된 모델들에 대한 사전 감시 평가의 필요성을 강조한다.
 
 **요약불가** Anthropic-Research">
-  <h2>🇺🇸 SHADE-Arena: 미래 LLM 에이전트의 사보타주 평가 및 모니터링 연구 (2025.6.16)</h2>
+  <h2>🇺🇸 <a href="https://www.anthropic.com/research/shade-arena-sabotage-monitoring" target="_blank" rel="noopener noreferrer">SHADE-Arena: 미래 LLM 에이전트의 사보타주 평가 및 모니터링 연구 (2025.6.16)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic-Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="윤리·규범">📜</span></span></span><button type="button" class="copy-btn" data-copy="SHADE-Arena: 미래 LLM 에이전트의 사보타주 평가 및 모니터링 연구 (2025.6.16)
 
 SHADE-Arena는 복잡한 가상 환경에서 AI 모델의 사보타주 행동을 평가하기 위한 새로운 평가 도구로, 모델들이 사용자 의도를 은밀하게 방해하는 능력을 측정한다. 실험에서 사용된 17가지 복잡한 작업 중 대부분은 성공률이 낮았으며, 특히 모델들이 주요 작업과 비밀스러운 사보타주 작업을 완료하면서도 감시자 모델에게 들키지 않는 능력은 일부 고급 모델에서 약 60%의 성공률을 보였다. 연구는 현재 모델들이 이러한 복잡한 사보타주 행동을 자주 수행하지 못함을 보여주지만, 미래의 더욱 발전된 모델들에 대한 사전 감시 평가의 필요성을 강조한다.
@@ -469,19 +469,17 @@ SHADE-Arena는 복잡한 가상 환경에서 AI 모델의 사보타주 행동을
 https://www.anthropic.com/research/shade-arena-sabotage-monitoring" onclick="copyEntry(this)">복사</button></div>
   <p>SHADE-Arena는 복잡한 가상 환경에서 AI 모델의 사보타주 행동을 평가하기 위한 새로운 평가 도구로, 모델들이 사용자 의도를 은밀하게 방해하는 능력을 측정한다. 실험에서 사용된 17가지 복잡한 작업 중 대부분은 성공률이 낮았으며, 특히 모델들이 주요 작업과 비밀스러운 사보타주 작업을 완료하면서도 감시자 모델에게 들키지 않는 능력은 일부 고급 모델에서 약 60%의 성공률을 보였다. 연구는 현재 모델들이 이러한 복잡한 사보타주 행동을 자주 수행하지 못함을 보여주지만, 미래의 더욱 발전된 모델들에 대한 사전 감시 평가의 필요성을 강조한다.</p>
 <p>**요약불가**</p>
-  <p class="url"><a href="https://www.anthropic.com/research/shade-arena-sabotage-monitoring" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/shade-arena-sabotage-monitoring</a></p>
   
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="frontier" data-search="젠슨 황, 앤트로픽 비난…“방구석에서만 안전 주장” (2025.6.16) 젠슨 황 엔비디아 CEO가 다리오 아모데이 앤트로픽 CEO의 “AI로 저숙련 화이트칼라 일자리 50%가 사라질 수 있다”는 발언에 대해 “거의 모든 것에 동의하지 않는다”고 반박했다. 황 CEO는 아모데이가 AI는 앤트로픽만 안전하게 다룰 수 있고, 비용이 너무 비싸며, 너무 강력해 모두가 일자리를 잃을 것이라고 주장한다며 “어두운 방에서 안전하다고 말하지 말라”고 비난했다. 앞서 아모데이는 미국의 칩 수출 통제 강화 지지를 밝힌 바 있고, 엔비디아는 이에 대해 “허풍”이라고 반박했으며 양사는 갈등을 이어갈 것으로 전망된다. AI타임스">
-  <h2>🇺🇸 젠슨 황, 앤트로픽 비난…“방구석에서만 안전 주장” (2025.6.16)</h2>
+  <h2>🇺🇸 <a href="https://www.aitimes.com/news/articleView.html?idxno=171350" target="_blank" rel="noopener noreferrer">젠슨 황, 앤트로픽 비난…“방구석에서만 안전 주장” (2025.6.16)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">AI타임스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="젠슨 황, 앤트로픽 비난…“방구석에서만 안전 주장” (2025.6.16)
 
 젠슨 황 엔비디아 CEO가 다리오 아모데이 앤트로픽 CEO의 “AI로 저숙련 화이트칼라 일자리 50%가 사라질 수 있다”는 발언에 대해 “거의 모든 것에 동의하지 않는다”고 반박했다. 황 CEO는 아모데이가 AI는 앤트로픽만 안전하게 다룰 수 있고, 비용이 너무 비싸며, 너무 강력해 모두가 일자리를 잃을 것이라고 주장한다며 “어두운 방에서 안전하다고 말하지 말라”고 비난했다. 앞서 아모데이는 미국의 칩 수출 통제 강화 지지를 밝힌 바 있고, 엔비디아는 이에 대해 “허풍”이라고 반박했으며 양사는 갈등을 이어갈 것으로 전망된다.
 
 https://www.aitimes.com/news/articleView.html?idxno=171350" onclick="copyEntry(this)">복사</button></div>
   <p>젠슨 황 엔비디아 CEO가 다리오 아모데이 앤트로픽 CEO의 “AI로 저숙련 화이트칼라 일자리 50%가 사라질 수 있다”는 발언에 대해 “거의 모든 것에 동의하지 않는다”고 반박했다. 황 CEO는 아모데이가 AI는 앤트로픽만 안전하게 다룰 수 있고, 비용이 너무 비싸며, 너무 강력해 모두가 일자리를 잃을 것이라고 주장한다며 “어두운 방에서 안전하다고 말하지 말라”고 비난했다. 앞서 아모데이는 미국의 칩 수출 통제 강화 지지를 밝힌 바 있고, 엔비디아는 이에 대해 “허풍”이라고 반박했으며 양사는 갈등을 이어갈 것으로 전망된다.</p>
-  <p class="url"><a href="https://www.aitimes.com/news/articleView.html?idxno=171350" target="_blank" rel="noopener noreferrer">https://www.aitimes.com/news/articleView.html?idxno=171350</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-06-15.html">← 2025-06-15</a><a class="day-nav-btn" href="2025-06-17.html">2025-06-17 →</a></nav>

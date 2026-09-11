@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,21 +435,20 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="기술 업계, 트럼프 행정부의 갑작스러운 AI 정책 변화에 고심 (2026.6.27) 기술 업계는 규제 완화를 기대하고 트럼프 대통령을 지지했으나, 최근 백악관이 보안 우려로 첨단 AI 모델 출시를 제한하자 혼란에 빠짐. OpenAI와 Anthropic의 최신 모델 배포가 제한되는 등 예측 불가능한 규제 조치가 이어지면서, 업계는 명확하고 일관된 AI 규제 프레임워크 마련을 촉구. * 1/2페이지. POLITICO">
-  <h2>🇺🇸 기술 업계, 트럼프 행정부의 갑작스러운 AI 정책 변화에 고심 (2026.6.27)</h2>
+  <h2>🇺🇸 <a href="https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862" target="_blank" rel="noopener noreferrer">기술 업계, 트럼프 행정부의 갑작스러운 AI 정책 변화에 고심 (2026.6.27)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">POLITICO</span></span><button type="button" class="copy-btn" data-copy="기술 업계, 트럼프 행정부의 갑작스러운 AI 정책 변화에 고심 (2026.6.27)
 
 기술 업계는 규제 완화를 기대하고 트럼프 대통령을 지지했으나, 최근 백악관이 보안 우려로 첨단 AI 모델 출시를 제한하자 혼란에 빠짐. OpenAI와 Anthropic의 최신 모델 배포가 제한되는 등 예측 불가능한 규제 조치가 이어지면서, 업계는 명확하고 일관된 AI 규제 프레임워크 마련을 촉구. * 1/2페이지.
 
 https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862" onclick="copyEntry(this)">복사</button></div>
   <p>기술 업계는 규제 완화를 기대하고 트럼프 대통령을 지지했으나, 최근 백악관이 보안 우려로 첨단 AI 모델 출시를 제한하자 혼란에 빠짐. OpenAI와 Anthropic의 최신 모델 배포가 제한되는 등 예측 불가능한 규제 조치가 이어지면서, 업계는 명확하고 일관된 AI 규제 프레임워크 마련을 촉구. * 1/2페이지.</p>
-  <p class="url"><a href="https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862" target="_blank" rel="noopener noreferrer">https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862</a></p>
   
   
 </article>
 <article class="entry cat-db" data-cat="db" data-topics="frontier safety_research" data-search="미 정부, Anthropic ‘Claude Mythos 5’ 일부 기관에 재공개(2026.6.27) 해당 문서에 따르면 2026.6.26(EDT) 블록 해제 결정으로, Mythos 5는 100개 이상 미국 기관(대기업·정부기관 포함)에 제공될 수 있도록 조치됨
 
 미국 정부가 Anthropic의 ‘Claude Mythos 5’ 모델에 대한 차단을 해제해, 100개 이상 미국 기관이 모델에 접근할 수 있게 했다. 이는 앞서 행정부가 Mythos에 대해 수출통제 조치를 내리며 모델과 관련 모델(Fable 5)을 중단시킨 뒤, 정부와 Anthropic 간 협상에서 “적절한 안전장치”가 마련됐다는 판단에 따른 것으로 전해진다. 다만 Fable 5의 해제 시점은 언급이 없거나 일정이 불명확하다고 보도했다. Semafor">
-  <h2>🇺🇸 미 정부, Anthropic ‘Claude Mythos 5’ 일부 기관에 재공개(2026.6.27)</h2>
+  <h2>🇺🇸 <a href="https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies" target="_blank" rel="noopener noreferrer">미 정부, Anthropic ‘Claude Mythos 5’ 일부 기관에 재공개(2026.6.27)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">Semafor</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="미 정부, Anthropic ‘Claude Mythos 5’ 일부 기관에 재공개(2026.6.27)
 
 해당 문서에 따르면 2026.6.26(EDT) 블록 해제 결정으로, Mythos 5는 100개 이상 미국 기관(대기업·정부기관 포함)에 제공될 수 있도록 조치됨
@@ -457,7 +458,6 @@ https://www.politico.com/news/2026/06/27/tech-trump-ai-silicon-valley-00978862" 
 https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies" onclick="copyEntry(this)">복사</button></div>
   <p>해당 문서에 따르면 2026.6.26(EDT) 블록 해제 결정으로, Mythos 5는 100개 이상 미국 기관(대기업·정부기관 포함)에 제공될 수 있도록 조치됨</p>
 <p>미국 정부가 Anthropic의 ‘Claude Mythos 5’ 모델에 대한 차단을 해제해, 100개 이상 미국 기관이 모델에 접근할 수 있게 했다. 이는 앞서 행정부가 Mythos에 대해 수출통제 조치를 내리며 모델과 관련 모델(Fable 5)을 중단시킨 뒤, 정부와 Anthropic 간 협상에서 “적절한 안전장치”가 마련됐다는 판단에 따른 것으로 전해진다. 다만 Fable 5의 해제 시점은 언급이 없거나 일정이 불명확하다고 보도했다.</p>
-  <p class="url"><a href="https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies" target="_blank" rel="noopener noreferrer">https://www.semafor.com/article/06/27/2026/us-releases-powerful-anthropic-model-mythos-to-some-us-companies</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-06-26.html">← 2026-06-26</a><a class="day-nav-btn" href="2026-06-28.html">2026-06-28 →</a></nav>

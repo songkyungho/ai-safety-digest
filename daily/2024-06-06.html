@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,14 +435,13 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="frontier politics" data-search="Anthropic 연구: 선거 관련 위험 테스트 및 완화 전략 (2024.6.6) Anthropic은 진화하는 AI 기술 속에서 선거의 공정성을 보장하기 위해 모델 테스트 및 위험 완화 전략을 소개합니다. 정책 취약성 테스트(PVT)와 대규모 자동 평가를 결합한 유연한 프로세스를 통해 선거 관련 질문에 대한 모델의 반응을 분석하고 위험을 식별하며 대응 방안을 마련합니다. 이를 통해 모델의 선거 관련 질문 처리 방식을 더 잘 이해하고, 다양한 지역의 선거 주제에 적용할 수 있습니다. 또한, 이 프로세스의 일부인 자동 평가 도구를 공개하여 다른 기관들이 선거 공정성 향상에 도움을 받을 수 있도록 합니다. PVT와 자동 평가의 결과를 바탕으로 정책 업데이트, 도구 개선, 모델 미세 조정 등의 완화 전략을 구현하고 그 효과를 재테스트를 통해 검증합니다. Anthropic Research">
-  <h2>🇺🇸 Anthropic 연구: 선거 관련 위험 테스트 및 완화 전략 (2024.6.6)</h2>
+  <h2>🇺🇸 <a href="https://www.anthropic.com/research/testing-and-mitigating-elections-related-risks" target="_blank" rel="noopener noreferrer">Anthropic 연구: 선거 관련 위험 테스트 및 완화 전략 (2024.6.6)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic Research</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="정치">🗳️</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="Anthropic 연구: 선거 관련 위험 테스트 및 완화 전략 (2024.6.6)
 
 Anthropic은 진화하는 AI 기술 속에서 선거의 공정성을 보장하기 위해 모델 테스트 및 위험 완화 전략을 소개합니다. 정책 취약성 테스트(PVT)와 대규모 자동 평가를 결합한 유연한 프로세스를 통해 선거 관련 질문에 대한 모델의 반응을 분석하고 위험을 식별하며 대응 방안을 마련합니다. 이를 통해 모델의 선거 관련 질문 처리 방식을 더 잘 이해하고, 다양한 지역의 선거 주제에 적용할 수 있습니다. 또한, 이 프로세스의 일부인 자동 평가 도구를 공개하여 다른 기관들이 선거 공정성 향상에 도움을 받을 수 있도록 합니다. PVT와 자동 평가의 결과를 바탕으로 정책 업데이트, 도구 개선, 모델 미세 조정 등의 완화 전략을 구현하고 그 효과를 재테스트를 통해 검증합니다.
 
 https://www.anthropic.com/research/testing-and-mitigating-elections-related-risks" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 진화하는 AI 기술 속에서 선거의 공정성을 보장하기 위해 모델 테스트 및 위험 완화 전략을 소개합니다. 정책 취약성 테스트(PVT)와 대규모 자동 평가를 결합한 유연한 프로세스를 통해 선거 관련 질문에 대한 모델의 반응을 분석하고 위험을 식별하며 대응 방안을 마련합니다. 이를 통해 모델의 선거 관련 질문 처리 방식을 더 잘 이해하고, 다양한 지역의 선거 주제에 적용할 수 있습니다. 또한, 이 프로세스의 일부인 자동 평가 도구를 공개하여 다른 기관들이 선거 공정성 향상에 도움을 받을 수 있도록 합니다. PVT와 자동 평가의 결과를 바탕으로 정책 업데이트, 도구 개선, 모델 미세 조정 등의 완화 전략을 구현하고 그 효과를 재테스트를 통해 검증합니다.</p>
-  <p class="url"><a href="https://www.anthropic.com/research/testing-and-mitigating-elections-related-risks" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/research/testing-and-mitigating-elections-related-risks</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2024-06-04.html">← 2024-06-04</a><a class="day-nav-btn" href="2024-06-07.html">2024-06-07 →</a></nav>

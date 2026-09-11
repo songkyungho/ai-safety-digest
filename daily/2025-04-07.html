@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,14 +435,13 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="aisi_topic cybersecurity" data-search="AISI, Claude Mythos Preview 사이버 역량 평가 결과 공개(2025.4.7) AI Security Institute(AISI)가 Anthropic의 Claude Mythos Preview(2025년 4월 7일 발표)를 대상으로 사이버 보안 역량 평가를 수행했다. CTF(캡처더플래그)에서는 전문가 수준 과제에서 73% 성공을 보였고, 네트워크 공격 시뮬레이션(32단계)에서는 10회 시도 중 3회에 걸쳐 처음부터 끝까지 완료했으며 평균 22/32단계를 수행했다. 다만 AISI의 OT(운영기술) 중심 범위인 ‘Cooling Tower’는 IT 구간에서 막혀 완료하지 못했으며, 평가 환경이 실제 환경보다 방어 기능과 보안 경고 트리거가 부족해 잘 방어된 시스템에 대한 확실한 결론은 어렵다고 밝혔다. AI Security Institute (AISI-UK)">
-  <h2>🇬🇧 AISI, Claude Mythos Preview 사이버 역량 평가 결과 공개(2025.4.7)</h2>
+  <h2>🇬🇧 <a href="https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities" target="_blank" rel="noopener noreferrer">AISI, Claude Mythos Preview 사이버 역량 평가 결과 공개(2025.4.7)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AI Security Institute (AISI-UK)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="AISI, Claude Mythos Preview 사이버 역량 평가 결과 공개(2025.4.7)
 
 AI Security Institute(AISI)가 Anthropic의 Claude Mythos Preview(2025년 4월 7일 발표)를 대상으로 사이버 보안 역량 평가를 수행했다. CTF(캡처더플래그)에서는 전문가 수준 과제에서 73% 성공을 보였고, 네트워크 공격 시뮬레이션(32단계)에서는 10회 시도 중 3회에 걸쳐 처음부터 끝까지 완료했으며 평균 22/32단계를 수행했다. 다만 AISI의 OT(운영기술) 중심 범위인 ‘Cooling Tower’는 IT 구간에서 막혀 완료하지 못했으며, 평가 환경이 실제 환경보다 방어 기능과 보안 경고 트리거가 부족해 잘 방어된 시스템에 대한 확실한 결론은 어렵다고 밝혔다.
 
 https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities" onclick="copyEntry(this)">복사</button></div>
   <p>AI Security Institute(AISI)가 Anthropic의 Claude Mythos Preview(2025년 4월 7일 발표)를 대상으로 사이버 보안 역량 평가를 수행했다. CTF(캡처더플래그)에서는 전문가 수준 과제에서 73% 성공을 보였고, 네트워크 공격 시뮬레이션(32단계)에서는 10회 시도 중 3회에 걸쳐 처음부터 끝까지 완료했으며 평균 22/32단계를 수행했다. 다만 AISI의 OT(운영기술) 중심 범위인 ‘Cooling Tower’는 IT 구간에서 막혀 완료하지 못했으며, 평가 환경이 실제 환경보다 방어 기능과 보안 경고 트리거가 부족해 잘 방어된 시스템에 대한 확실한 결론은 어렵다고 밝혔다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-04-05.html">← 2025-04-05</a><a class="day-nav-btn" href="2025-04-08.html">2025-04-08 →</a></nav>

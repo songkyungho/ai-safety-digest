@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -435,7 +437,7 @@
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="agentic_ai cybersecurity" data-search="NIST, AI 시스템 보안을 위한 Control Overlays 개념서 및 제안 실행계획 공개(2025.8.14) NIST SP 800-53 Control Overlays for Securing AI Systems 개발을 위한 피드백을 받으며, 관련 Slack 채널을 운영
 
 NIST는 AI 시스템 보안을 위한 NIST SP 800-53 Control Overlays 개발과 관련된 개념서 및 제안 실행계획을 공개했다. 개념서에는 생성형 AI, 예측형 AI, 단일·다중 에이전트 AI 시스템, 그리고 AI 개발자를 위한 통제(control) 등 사이버보안 위험 관리용 AI 사용사례가 포함된다. 또한 이해관계자가 Slack 채널을 통해 개발에 참여하고 NIST 연구책임자 및 하위 그룹과 논의하며 실시간 의견을 제공할 수 있도록 했다. 미국 국립표준기술연구소(NIST) CSRC">
-  <h2>🇺🇸 NIST, AI 시스템 보안을 위한 Control Overlays 개념서 및 제안 실행계획 공개(2025.8.14)</h2>
+  <h2>🇺🇸 <a href="https://csrc.nist.gov/News/2025/control-overlays-for-securing-ai-systems" target="_blank" rel="noopener noreferrer">NIST, AI 시스템 보안을 위한 Control Overlays 개념서 및 제안 실행계획 공개(2025.8.14)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 국립표준기술연구소(NIST) CSRC</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="NIST, AI 시스템 보안을 위한 Control Overlays 개념서 및 제안 실행계획 공개(2025.8.14)
 
 NIST SP 800-53 Control Overlays for Securing AI Systems 개발을 위한 피드백을 받으며, 관련 Slack 채널을 운영
@@ -445,26 +447,24 @@ NIST는 AI 시스템 보안을 위한 NIST SP 800-53 Control Overlays 개발과 
 https://csrc.nist.gov/News/2025/control-overlays-for-securing-ai-systems" onclick="copyEntry(this)">복사</button></div>
   <p>NIST SP 800-53 Control Overlays for Securing AI Systems 개발을 위한 피드백을 받으며, 관련 Slack 채널을 운영</p>
 <p>NIST는 AI 시스템 보안을 위한 NIST SP 800-53 Control Overlays 개발과 관련된 개념서 및 제안 실행계획을 공개했다. 개념서에는 생성형 AI, 예측형 AI, 단일·다중 에이전트 AI 시스템, 그리고 AI 개발자를 위한 통제(control) 등 사이버보안 위험 관리용 AI 사용사례가 포함된다. 또한 이해관계자가 Slack 채널을 통해 개발에 참여하고 NIST 연구책임자 및 하위 그룹과 논의하며 실시간 의견을 제공할 수 있도록 했다.</p>
-  <p class="url"><a href="https://csrc.nist.gov/News/2025/control-overlays-for-securing-ai-systems" target="_blank" rel="noopener noreferrer">https://csrc.nist.gov/News/2025/control-overlays-for-securing-ai-systems</a></p>
   
   
 </article>
 <article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="guideline law safety_research" data-search="영국 정부, 7개 경찰에 라이브 얼굴인식(LFR) 밴 10대 추가 배치(2025.8.14) 영국 내무부는 7개 경찰에 LFR 밴 10대를 추가로 제공해 용의자(성범죄, 폭행, 살인 등) 탐지에 활용하고, 런던에서 12개월간 580명 체포(등록 성범죄자 52명 위반 포함) 성과를 제시했다. 반면 시민단체 Big Brother Watch와 인권단체는 감시 확대와 법적 근거·프라이버시·집회 자유·오인 가능성을 우려하며 추가 배치를 중단하고 입법적 안전장치 마련을 요구했다. 정보보호감독기구(ICO)는 얼굴인식 기술이 데이터보호법의 적용을 받으며 적법·공정·비례해야 한다고 밝혔고, 내무부는 표지(signposting)와 보관 기간 제한, 경찰 가이드라인 준수 및 알고리즘의 정확성·편향 부재(인종·연령·성별) 점검 결과를 강조했다. BBC">
-  <h2>🇬🇧 영국 정부, 7개 경찰에 라이브 얼굴인식(LFR) 밴 10대 추가 배치(2025.8.14)</h2>
+  <h2>🇬🇧 <a href="https://www.bbc.com/news/articles/cj4wy21dwkwo?at_campaign=rss&amp;at_medium=RSS" target="_blank" rel="noopener noreferrer">영국 정부, 7개 경찰에 라이브 얼굴인식(LFR) 밴 10대 추가 배치(2025.8.14)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">BBC</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="영국 정부, 7개 경찰에 라이브 얼굴인식(LFR) 밴 10대 추가 배치(2025.8.14)
 
 영국 내무부는 7개 경찰에 LFR 밴 10대를 추가로 제공해 용의자(성범죄, 폭행, 살인 등) 탐지에 활용하고, 런던에서 12개월간 580명 체포(등록 성범죄자 52명 위반 포함) 성과를 제시했다. 반면 시민단체 Big Brother Watch와 인권단체는 감시 확대와 법적 근거·프라이버시·집회 자유·오인 가능성을 우려하며 추가 배치를 중단하고 입법적 안전장치 마련을 요구했다. 정보보호감독기구(ICO)는 얼굴인식 기술이 데이터보호법의 적용을 받으며 적법·공정·비례해야 한다고 밝혔고, 내무부는 표지(signposting)와 보관 기간 제한, 경찰 가이드라인 준수 및 알고리즘의 정확성·편향 부재(인종·연령·성별) 점검 결과를 강조했다.
 
 https://www.bbc.com/news/articles/cj4wy21dwkwo?at_campaign=rss&amp;at_medium=RSS" onclick="copyEntry(this)">복사</button></div>
   <p>영국 내무부는 7개 경찰에 LFR 밴 10대를 추가로 제공해 용의자(성범죄, 폭행, 살인 등) 탐지에 활용하고, 런던에서 12개월간 580명 체포(등록 성범죄자 52명 위반 포함) 성과를 제시했다. 반면 시민단체 Big Brother Watch와 인권단체는 감시 확대와 법적 근거·프라이버시·집회 자유·오인 가능성을 우려하며 추가 배치를 중단하고 입법적 안전장치 마련을 요구했다. 정보보호감독기구(ICO)는 얼굴인식 기술이 데이터보호법의 적용을 받으며 적법·공정·비례해야 한다고 밝혔고, 내무부는 표지(signposting)와 보관 기간 제한, 경찰 가이드라인 준수 및 알고리즘의 정확성·편향 부재(인종·연령·성별) 점검 결과를 강조했다.</p>
-  <p class="url"><a href="https://www.bbc.com/news/articles/cj4wy21dwkwo?at_campaign=rss&amp;at_medium=RSS" target="_blank" rel="noopener noreferrer">https://www.bbc.com/news/articles/cj4wy21dwkwo?at_campaign=rss&amp;at_medium=RSS</a></p>
   
   
 </article>
 <article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="" data-search="GSA, USAi 출시로 ‘America’s AI Action Plan’ 지원(2025.8.14) USAi.gov에서 제공되며, 연방기관은 USAi 접근 요청 또는 문의(partnerships@usai.gov)를 통해 이용할 수 있음
 
 미국 GSA는 연방기관이 AI를 더 빠르고 안전하게 도입·실험할 수 있도록 ‘USAi’라는 secure generative AI 평가(평가 스위트) 플랫폼을 출시했다고 밝혔다. USAi는 chat-based AI, code generation, document summarization 등 기능을 정부 사용자에게 제공하며, White House의 ‘America’s AI Action Plan’의 인프라 고도화와 연방 차원의 조정된 도입을 지원하는 목적이라고 설명했다. 또한 기관들이 다양한 AI 시스템의 성능을 측정하고 강점·한계를 파악해 채택·커스터마이즈·통합 결정을 내릴 수 있도록 하며, 비용 절감과 효율 향상, 보안·신뢰 유지, 사용 현황 분석을 통한 인력 역량 강화에도 기여한다고 전했다. 미국 GSA(General Services Administration) 공식 뉴스릴리스">
-  <h2>🇺🇸 GSA, USAi 출시로 ‘America’s AI Action Plan’ 지원(2025.8.14)</h2>
+  <h2>🇺🇸 <a href="https://www.gsa.gov/about-us/newsroom/news-releases/gsa-launches-usai-to-advance-white-house-americas-ai-action-plan-08142025" target="_blank" rel="noopener noreferrer">GSA, USAi 출시로 ‘America’s AI Action Plan’ 지원(2025.8.14)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">미국 GSA(General Services Administration) 공식 뉴스릴리스</span></span><button type="button" class="copy-btn" data-copy="GSA, USAi 출시로 ‘America’s AI Action Plan’ 지원(2025.8.14)
 
 USAi.gov에서 제공되며, 연방기관은 USAi 접근 요청 또는 문의(partnerships@usai.gov)를 통해 이용할 수 있음
@@ -474,7 +474,6 @@ USAi.gov에서 제공되며, 연방기관은 USAi 접근 요청 또는 문의(pa
 https://www.gsa.gov/about-us/newsroom/news-releases/gsa-launches-usai-to-advance-white-house-americas-ai-action-plan-08142025" onclick="copyEntry(this)">복사</button></div>
   <p>USAi.gov에서 제공되며, 연방기관은 USAi 접근 요청 또는 문의(partnerships@usai.gov)를 통해 이용할 수 있음</p>
 <p>미국 GSA는 연방기관이 AI를 더 빠르고 안전하게 도입·실험할 수 있도록 ‘USAi’라는 secure generative AI 평가(평가 스위트) 플랫폼을 출시했다고 밝혔다. USAi는 chat-based AI, code generation, document summarization 등 기능을 정부 사용자에게 제공하며, White House의 ‘America’s AI Action Plan’의 인프라 고도화와 연방 차원의 조정된 도입을 지원하는 목적이라고 설명했다. 또한 기관들이 다양한 AI 시스템의 성능을 측정하고 강점·한계를 파악해 채택·커스터마이즈·통합 결정을 내릴 수 있도록 하며, 비용 절감과 효율 향상, 보안·신뢰 유지, 사용 현황 분석을 통한 인력 역량 강화에도 기여한다고 전했다.</p>
-  <p class="url"><a href="https://www.gsa.gov/about-us/newsroom/news-releases/gsa-launches-usai-to-advance-white-house-americas-ai-action-plan-08142025" target="_blank" rel="noopener noreferrer">https://www.gsa.gov/about-us/newsroom/news-releases/gsa-launches-usai-to-advance-white-house-americas-ai-action-plan-08142025</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2025-08-13.html">← 2025-08-13</a><a class="day-nav-btn" href="2025-08-15.html">2025-08-15 →</a></nav>

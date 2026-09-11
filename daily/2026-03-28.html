@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,26 +435,24 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button></div><div class="digest-feed"><article class="entry cat-aisi-weekly" data-cat="aisi-weekly" data-topics="deepfake_disinfo law standards youth" data-search="연방 정부 교착 상태 속, 독자적인 AI 규제 법안을 제정하는 미국 주 정부들 (2026.3.28) 미국 주 의원들은 연방 의회의 입법 지연에 불만을 품고 딥페이크 방지 및 아동 안전 확보를 위한 독자적인 AI 규제 법안들을 속속 통과. 트럼프 행정부는 일관된 국가 표준이 혁신에 필수적이라며 주 단위의 파편화된 법안을 반대하고 있으나, 텍사스 및 유타주 의원 등은 주 정부 차원의 신속한 조치가 필수적이라고 반박. NPR">
-  <h2>🇺🇸 연방 정부 교착 상태 속, 독자적인 AI 규제 법안을 제정하는 미국 주 정부들 (2026.3.28)</h2>
+  <h2>🇺🇸 <a href="https://www.npr.org/2026/03/28/nx-s1-5755062/trump-wants-a-deadlocked-congress-to-move-on-ai-frustrated-states-say-they-already-have" target="_blank" rel="noopener noreferrer">연방 정부 교착 상태 속, 독자적인 AI 규제 법안을 제정하는 미국 주 정부들 (2026.3.28)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-aisi-weekly">K-AISI 주간동향</span> · <span class="source">NPR</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span><span class="topic-icon" title="표준">📏</span><span class="topic-icon" title="청소년">🧒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="연방 정부 교착 상태 속, 독자적인 AI 규제 법안을 제정하는 미국 주 정부들 (2026.3.28)
 
 미국 주 의원들은 연방 의회의 입법 지연에 불만을 품고 딥페이크 방지 및 아동 안전 확보를 위한 독자적인 AI 규제 법안들을 속속 통과. 트럼프 행정부는 일관된 국가 표준이 혁신에 필수적이라며 주 단위의 파편화된 법안을 반대하고 있으나, 텍사스 및 유타주 의원 등은 주 정부 차원의 신속한 조치가 필수적이라고 반박.
 
 https://www.npr.org/2026/03/28/nx-s1-5755062/trump-wants-a-deadlocked-congress-to-move-on-ai-frustrated-states-say-they-already-have" onclick="copyEntry(this)">복사</button></div>
   <p>미국 주 의원들은 연방 의회의 입법 지연에 불만을 품고 딥페이크 방지 및 아동 안전 확보를 위한 독자적인 AI 규제 법안들을 속속 통과. 트럼프 행정부는 일관된 국가 표준이 혁신에 필수적이라며 주 단위의 파편화된 법안을 반대하고 있으나, 텍사스 및 유타주 의원 등은 주 정부 차원의 신속한 조치가 필수적이라고 반박.</p>
-  <p class="url"><a href="https://www.npr.org/2026/03/28/nx-s1-5755062/trump-wants-a-deadlocked-congress-to-move-on-ai-frustrated-states-say-they-already-have" target="_blank" rel="noopener noreferrer">https://www.npr.org/2026/03/28/nx-s1-5755062/trump-wants-a-deadlocked-congress-to-move-on-ai-frustrated-states-say-they-already-have</a></p>
   
   
 </article>
 <article class="entry cat-public" data-cat="public" data-topics="safety_research sovereign_ai" data-search="(2026.3.28) CIFAR, AI 안전의 사회기술적 과제 연구에 100만 달러+ 지원 CIFAR는 CAISI 연구프로그램의 ‘AI Safety Catalyst Projects’ 2기 8개 과제에 100만 달러 이상을 지원한다고 밝혔다. 이번 과제들은 사회과학·인문학 관점을 포함해 AI 안전, 책임성, 윤리적 배치의 시급한 문제를 다루며, 원주민 데이터 주권·전문직 역할별 AI 인증·민주적 의사결정의 설득 편향 방지 등 주제를 포함한다. 또한 반복 대화형 AI가 정치적 태도에 미치는 영향, 언어모델의 인과·제도적 추론 통합, ‘기만적 정렬’ 위험을 줄이기 위한 공감 기능 검증, 실시간 ‘레드팀’ 안전장치 평가 등 구체적 연구를 수행할 계획이다. 캐나다 고등연구원(CIFAR)">
-  <h2>(2026.3.28) CIFAR, AI 안전의 사회기술적 과제 연구에 100만 달러+ 지원</h2>
+  <h2><a href="https://cifar.ca/cifarnews/2026/03/28/cifar-awards-over-1m-to-support-sociotechnical-challenges-in-ai-safety/" target="_blank" rel="noopener noreferrer">(2026.3.28) CIFAR, AI 안전의 사회기술적 과제 연구에 100만 달러+ 지원</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">캐나다 고등연구원(CIFAR)</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="소버린AI">🏛️</span><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="(2026.3.28) CIFAR, AI 안전의 사회기술적 과제 연구에 100만 달러+ 지원
 
 CIFAR는 CAISI 연구프로그램의 ‘AI Safety Catalyst Projects’ 2기 8개 과제에 100만 달러 이상을 지원한다고 밝혔다. 이번 과제들은 사회과학·인문학 관점을 포함해 AI 안전, 책임성, 윤리적 배치의 시급한 문제를 다루며, 원주민 데이터 주권·전문직 역할별 AI 인증·민주적 의사결정의 설득 편향 방지 등 주제를 포함한다. 또한 반복 대화형 AI가 정치적 태도에 미치는 영향, 언어모델의 인과·제도적 추론 통합, ‘기만적 정렬’ 위험을 줄이기 위한 공감 기능 검증, 실시간 ‘레드팀’ 안전장치 평가 등 구체적 연구를 수행할 계획이다.
 
 https://cifar.ca/cifarnews/2026/03/28/cifar-awards-over-1m-to-support-sociotechnical-challenges-in-ai-safety/" onclick="copyEntry(this)">복사</button></div>
   <p>CIFAR는 CAISI 연구프로그램의 ‘AI Safety Catalyst Projects’ 2기 8개 과제에 100만 달러 이상을 지원한다고 밝혔다. 이번 과제들은 사회과학·인문학 관점을 포함해 AI 안전, 책임성, 윤리적 배치의 시급한 문제를 다루며, 원주민 데이터 주권·전문직 역할별 AI 인증·민주적 의사결정의 설득 편향 방지 등 주제를 포함한다. 또한 반복 대화형 AI가 정치적 태도에 미치는 영향, 언어모델의 인과·제도적 추론 통합, ‘기만적 정렬’ 위험을 줄이기 위한 공감 기능 검증, 실시간 ‘레드팀’ 안전장치 평가 등 구체적 연구를 수행할 계획이다.</p>
-  <p class="url"><a href="https://cifar.ca/cifarnews/2026/03/28/cifar-awards-over-1m-to-support-sociotechnical-challenges-in-ai-safety/" target="_blank" rel="noopener noreferrer">https://cifar.ca/cifarnews/2026/03/28/cifar-awards-over-1m-to-support-sociotechnical-challenges-in-ai-safety/</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-03-27.html">← 2026-03-27</a><a class="day-nav-btn" href="2026-03-30.html">2026-03-30 →</a></nav>

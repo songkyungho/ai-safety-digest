@@ -123,6 +123,11 @@
   .entry.cat-public { border-left-color: var(--cat-public); }
   .entry.cat-archive { border-left-color: var(--cat-archive); }
   .entry h2 { font-size: 1.05rem; margin: 0 0 8px; line-height: 1.4; color: var(--fg); }
+  .entry h2 a {
+    color: var(--link); font-weight: 700;
+    text-decoration: underline 1px; text-underline-offset: 3px;
+  }
+  .entry h2 a:hover, .entry h2 a:focus-visible { color: var(--fg); }
   .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;
     display: flex; align-items: center; gap: 8px; }
   .meta-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
@@ -210,9 +215,6 @@
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
   .unavailable { color: var(--muted); font-style: italic; }
-  .url { margin-top: 12px; font-size: 0.78rem; word-break: break-all; }
-  .url a { color: var(--muted); text-decoration: none; }
-  .url a:hover { color: var(--link); }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
     display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
@@ -433,14 +435,13 @@
   </div>
 </header>
 <div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="(2026.2.1) 자율형 AI의 사이버 작업 수행 시간 한계가 수개월 단위로 2배 가속 AISI-UK는 2026년 2월 기준, 자율형 사이버 작업에서 80% 신뢰도(time horizon)로 볼 때 AI 모델이 수행할 수 있는 작업 길이가 2024년 말 이후 약 4.7개월마다 2배로 늘었다고 추정했다. 다만 이후 공개된 Claude Mythos Preview와 GPT-5.5는 이 추세를 크게 상회했으며, 이러한 변화가 일시적 ‘단절’인지 새로운 더 빠른 추세인지는 불확실하다고 밝혔다. 또한 AISI의 사이버 레인지 테스트에서 Mythos Preview 체크포인트는 두 레인지 중 두 번째를 처음으로 완주했으며, GPT-5.5도 일부 시도에서 성공했다고 설명했다. AISI는 이러한 결과가 방어·실전 환경으로의 전환 속도와 임계치 도달 시점은 아직 예측하기 어렵지만, 공격·방어 모두에 영향을 줄 수 있는 위험과 기회가 커지고 있다고 강조했다. AISI-UK">
-  <h2>🇬🇧 (2026.2.1) 자율형 AI의 사이버 작업 수행 시간 한계가 수개월 단위로 2배 가속</h2>
+  <h2>🇬🇧 <a href="https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing" target="_blank" rel="noopener noreferrer">(2026.2.1) 자율형 AI의 사이버 작업 수행 시간 한계가 수개월 단위로 2배 가속</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-UK</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="(2026.2.1) 자율형 AI의 사이버 작업 수행 시간 한계가 수개월 단위로 2배 가속
 
 AISI-UK는 2026년 2월 기준, 자율형 사이버 작업에서 80% 신뢰도(time horizon)로 볼 때 AI 모델이 수행할 수 있는 작업 길이가 2024년 말 이후 약 4.7개월마다 2배로 늘었다고 추정했다. 다만 이후 공개된 Claude Mythos Preview와 GPT-5.5는 이 추세를 크게 상회했으며, 이러한 변화가 일시적 ‘단절’인지 새로운 더 빠른 추세인지는 불확실하다고 밝혔다. 또한 AISI의 사이버 레인지 테스트에서 Mythos Preview 체크포인트는 두 레인지 중 두 번째를 처음으로 완주했으며, GPT-5.5도 일부 시도에서 성공했다고 설명했다. AISI는 이러한 결과가 방어·실전 환경으로의 전환 속도와 임계치 도달 시점은 아직 예측하기 어렵지만, 공격·방어 모두에 영향을 줄 수 있는 위험과 기회가 커지고 있다고 강조했다.
 
 https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing" onclick="copyEntry(this)">복사</button></div>
   <p>AISI-UK는 2026년 2월 기준, 자율형 사이버 작업에서 80% 신뢰도(time horizon)로 볼 때 AI 모델이 수행할 수 있는 작업 길이가 2024년 말 이후 약 4.7개월마다 2배로 늘었다고 추정했다. 다만 이후 공개된 Claude Mythos Preview와 GPT-5.5는 이 추세를 크게 상회했으며, 이러한 변화가 일시적 ‘단절’인지 새로운 더 빠른 추세인지는 불확실하다고 밝혔다. 또한 AISI의 사이버 레인지 테스트에서 Mythos Preview 체크포인트는 두 레인지 중 두 번째를 처음으로 완주했으며, GPT-5.5도 일부 시도에서 성공했다고 설명했다. AISI는 이러한 결과가 방어·실전 환경으로의 전환 속도와 임계치 도달 시점은 아직 예측하기 어렵지만, 공격·방어 모두에 영향을 줄 수 있는 위험과 기회가 커지고 있다고 강조했다.</p>
-  <p class="url"><a href="https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing" target="_blank" rel="noopener noreferrer">https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing</a></p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-01-30.html">← 2026-01-30</a><a class="day-nav-btn" href="2026-02-02.html">2026-02-02 →</a></nav>

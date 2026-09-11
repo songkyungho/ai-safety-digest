@@ -214,6 +214,12 @@
   }
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
+  .entry strong { font-weight: 700; }
+  .entry u {
+    text-decoration: underline 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--fg) 55%, transparent);
+  }
   .unavailable { color: var(--muted); font-style: italic; }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
@@ -434,14 +440,12 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="인공지능안전연구소, 캐나다 인공지능안전연구소(CAISI)와 AI 안전 협력 업무협약 체결 요약불가 AISI-Korea">
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-cat-filter="research">연구</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button></div><div class="digest-feed"><article class="entry cat-public" data-cat="public" data-topics="aisi_topic" data-search="인공지능안전연구소, 캐나다 인공지능안전연구소(CAISI)와 AI 안전 협력 업무협약 체결  AISI-Korea">
   <h2>🇰🇷 <a href="https://www.aisi.re.kr/kor/article/view.do?articleId=113" target="_blank" rel="noopener noreferrer">인공지능안전연구소, 캐나다 인공지능안전연구소(CAISI)와 AI 안전 협력 업무협약 체결</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">AISI-Korea</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전연구소">🔬</span></span></span><button type="button" class="copy-btn" data-copy="인공지능안전연구소, 캐나다 인공지능안전연구소(CAISI)와 AI 안전 협력 업무협약 체결
 
-요약불가
-
 https://www.aisi.re.kr/kor/article/view.do?articleId=113" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  
   
   
 </article>
@@ -593,14 +597,12 @@ https://ai-2040.com" onclick="copyEntry(this)">복사</button></div>
   
   
 </article>
-<article class="entry cat-db" data-cat="db" data-topics="" data-search="Boko Haram Used AI Chatbots to Plan Motorcycle-Jump Attack (2026.7.10) 요약불가 AI-Risk-Explorer">
+<article class="entry cat-db" data-cat="db" data-topics="" data-search="Boko Haram Used AI Chatbots to Plan Motorcycle-Jump Attack (2026.7.10)  AI-Risk-Explorer">
   <h2><a href="https://www.nytimes.com/2026/07/10/us/politics/ai-terrorism-boko-haram-nigeria.html" target="_blank" rel="noopener noreferrer">Boko Haram Used AI Chatbots to Plan Motorcycle-Jump Attack (2026.7.10)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AI-Risk-Explorer</span></span><button type="button" class="copy-btn" data-copy="Boko Haram Used AI Chatbots to Plan Motorcycle-Jump Attack (2026.7.10)
 
-요약불가
-
 https://www.nytimes.com/2026/07/10/us/politics/ai-terrorism-boko-haram-nigeria.html" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  
   
   
 </article>
@@ -626,14 +628,12 @@ https://ailawsuittracker.com/cases/hachette-book-group-inc-v-google-llc-1-26-cv-
   
   
 </article>
-<article class="entry cat-other" data-cat="other" data-topics="" data-search="AI Safety × Philosophy Reading Group | Notion (2026.7.10) 요약불가 nous-ai-philosophy.notion.site">
+<article class="entry cat-other" data-cat="other" data-topics="" data-search="AI Safety × Philosophy Reading Group | Notion (2026.7.10)  nous-ai-philosophy.notion.site">
   <h2><a href="https://nous-ai-philosophy.notion.site/AI-Safety-Philosophy-Reading-Group-38bdd69661e980b68450e66c00652324" target="_blank" rel="noopener noreferrer">AI Safety × Philosophy Reading Group | Notion (2026.7.10)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-other">기타</span> · <span class="source">nous-ai-philosophy.notion.site</span></span><button type="button" class="copy-btn" data-copy="AI Safety × Philosophy Reading Group | Notion (2026.7.10)
 
-요약불가
-
 https://nous-ai-philosophy.notion.site/AI-Safety-Philosophy-Reading-Group-38bdd69661e980b68450e66c00652324" onclick="copyEntry(this)">복사</button></div>
-  <p class="unavailable">요약불가 (본문 확인 필요)</p>
+  
   
   
 </article>

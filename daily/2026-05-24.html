@@ -214,6 +214,12 @@
   }
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
+  .entry strong { font-weight: 700; }
+  .entry u {
+    text-decoration: underline 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--fg) 55%, transparent);
+  }
   .unavailable { color: var(--muted); font-style: italic; }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
@@ -443,7 +449,9 @@ MoE LLM 운영 중 유해 행동을 감사하되, 기존 콘텐츠 기반 감사
 https://arxiv.org/abs/2605.24817v1" onclick="copyEntry(this)">복사</button></div>
   <p>MoE LLM 운영 중 유해 행동을 감사하되, 기존 콘텐츠 기반 감사가 프롬프트/출력 접근으로 개인정보 노출 위험을 갖는 문제를 다룬다. RouteScan은 프리필링 단계에서 expert 모듈에 할당된 활성 GPU 스레드 수를 마이크로아키텍처 지문으로 사용하고, 경량 탐지 파이프라인으로 악성 프롬프트를 식별하도록 실험했다. 공개 MoE LLM들에서 AUROC가 미지 유해 도메인에서 0.93을 초과하고, 새로운 jailbreak wrapper에서는 0.96을 달성했으며, 텔레메트리 기반 프롬프트 복원(inversion) 정보는 제한적이라고 보고했다.</p>
   
-  <details class="related-stories" open><summary>같은 이슈 관련 5건 · arXiv</summary><article class="entry cat-research" data-cat="research" data-topics="incidents" data-search="Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24 Reflect-Guard는 Llama Guard류 안전 분류기가 역할극/허구 프레이밍/간접 요청 등으로 악의 의도를 숨기는 적대적 프롬프트에 취약한 문제를 다룬다. GPT-4o-mini의 분석을 구조화된 논리적 self-reflection 어노테이션으로 증류한 뒤, QLoRA로 Llama-Guard-3-8B를 1000개 학습 예시와 약 0.5% 파라미터 업데이트(약 42M)로 파인튜닝하여 verdict 전 self-reflection을 생성하게 한다. WildGuardTest에서 F1 0.770→0.842(+7.2pp), 적대적 프롬프트 recall 0.513→0.921(+40.8pp)로 개선되고, JailbreakBench에서 공격 성공률 10.3%→1.8%로 82.5% 상대 감소한다. arXiv">
+  
+</article>
+<article class="entry cat-research" data-cat="research" data-topics="incidents" data-search="Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24 Reflect-Guard는 Llama Guard류 안전 분류기가 역할극/허구 프레이밍/간접 요청 등으로 악의 의도를 숨기는 적대적 프롬프트에 취약한 문제를 다룬다. GPT-4o-mini의 분석을 구조화된 논리적 self-reflection 어노테이션으로 증류한 뒤, QLoRA로 Llama-Guard-3-8B를 1000개 학습 예시와 약 0.5% 파라미터 업데이트(약 42M)로 파인튜닝하여 verdict 전 self-reflection을 생성하게 한다. WildGuardTest에서 F1 0.770→0.842(+7.2pp), 적대적 프롬프트 recall 0.513→0.921(+40.8pp)로 개선되고, JailbreakBench에서 공격 성공률 10.3%→1.8%로 82.5% 상대 감소한다. arXiv">
   <h2><a href="https://arxiv.org/abs/2605.24834v1" target="_blank" rel="noopener noreferrer">Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="Reflect-Guard: 저자 외 6명, arXiv, 2026.5.24
 
@@ -497,7 +505,6 @@ https://arxiv.org/abs/2605.26158v1" onclick="copyEntry(this)">복사</button></d
   <p>LLM/MLLM의 안전 정렬이 이진 임계값처럼 동작한다는 가정을 깨고, 안전 거부가 “불안정 영역”에서 섬세한 교란에 의해 확률적으로 흔들리는 세팅을 다룬다. 외부/내부 신호를 함께 쓰는 다중 지표 진단 프레임워크로 불안정 입력에서 출력 불확실성은 증가하지만 내부 안전 활성은 감소하는 “디커플링” 시그니처를 실험적으로 식별하고, 이를 유도하는 장면-앵커드(fragmented) 프롬프트 기반 재잘브레이크 Furina를 제안한다. HarmBench에서 강한 단일/다중 턴 기준선을 능가하며, MM-SafetyBench에서도 경쟁 성능을 보였고, 코드가 공개되어 있다.</p>
   
   
-</article></details>
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-05-23.html">← 2026-05-23</a><a class="day-nav-btn" href="2026-05-25.html">2026-05-25 →</a></nav>
 </div>
 <nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>

@@ -214,6 +214,12 @@
   }
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
+  .entry strong { font-weight: 700; }
+  .entry u {
+    text-decoration: underline 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--fg) 55%, transparent);
+  }
   .unavailable { color: var(--muted); font-style: italic; }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
@@ -434,16 +440,7 @@
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="law" data-search="Claude Sonnet 4.5 최신 버전 출시 (2025.9.29) Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다. Anthropic">
-  <h2>🇺🇸 <a href="https://www.anthropic.com/news/claude-sonnet-4-5" target="_blank" rel="noopener noreferrer">Claude Sonnet 4.5 최신 버전 출시 (2025.9.29)</a></h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 4.5 최신 버전 출시 (2025.9.29)
-
-Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다.
-
-https://www.anthropic.com/news/claude-sonnet-4-5" onclick="copyEntry(this)">복사</button></div>
-  <p>Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다.</p>
-  
-  <details class="related-stories" open><summary>같은 이슈 관련 1건 · DemandSphere</summary><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Claude Sonnet 4.5 (Anthropic) (2025.9.29) General · Closed · 200K ctx · $3/M · $15/M
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button></div><div class="digest-feed"><article class="entry cat-company" data-cat="company" data-topics="frontier" data-search="Claude Sonnet 4.5 (Anthropic) (2025.9.29) General · Closed · 200K ctx · $3/M · $15/M
 
 GPQA 83.4% · SWE 77.2% · MMLU 82% · HE 94% · MATH 88% · AIME 87%
 
@@ -463,7 +460,17 @@ https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)
 <p>Leading coding model. 77.2% SWE-bench Verified. 30+ hour autonomous task operation. Computer use, extended thinking.</p>
   
   
-</article></details>
+</article>
+<article class="entry cat-company" data-cat="company" data-topics="law" data-search="Claude Sonnet 4.5 최신 버전 출시 (2025.9.29) Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다. Anthropic">
+  <h2>🇺🇸 <a href="https://www.anthropic.com/news/claude-sonnet-4-5" target="_blank" rel="noopener noreferrer">Claude Sonnet 4.5 최신 버전 출시 (2025.9.29)</a></h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-company">기업</span> · <span class="source">Anthropic</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="법">⚖️</span></span></span><button type="button" class="copy-btn" data-copy="Claude Sonnet 4.5 최신 버전 출시 (2025.9.29)
+
+Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다.
+
+https://www.anthropic.com/news/claude-sonnet-4-5" onclick="copyEntry(this)">복사</button></div>
+  <p>Claude Sonnet 4.5는 세계 최고의 코딩 모델로, 복잡한 에이전트 구축과 컴퓨터 활용에 최적화되어 있으며 추론과 수학 능력에서 획기적인 향상을 보여줍니다. 이번 업데이트는 코드 편집 기능 강화, 터미널 인터페이스 개선, VS Code 확장 프로그램 추가 등 다양한 기능 향상을 포함하며, 특히 코드 진행 상태 저장 및 롤백 기능이 새롭게 도입되었습니다. 또한, 이 모델은 다양한 분야에서 뛰어난 성능을 보여주며 특히 금융, 법률, 의학, STEM 분야에서 이전 모델 대비 크게 향상된 도메인 특화 지식과 추론 능력을 제공합니다. 보안 측면에서도 개선되어 위험 감소에 기여하며, 개발자들을 위한 Claude Agent SDK도 공개되어 다양한 작업에 활용 가능합니다. 가격은 이전 버전과 동일하게 유지됩니다.</p>
+  
+  
 </article>
 <article class="entry cat-company" data-cat="company" data-topics="" data-search="앤써픽, 클라이드 코드 자율성 향상 업데이트 발표 (2025.9.29) 앤써픽은 클라이드 코드의 기능을 향상시키는 여러 업데이트를 발표했습니다. 이 업데이트에는 VS Code 확장 프로그램, 터미널 인터페이스 버전 업그레이드, 그리고 자율 운영을 위한 체크포인트 기능이 포함됩니다. 클라이드 코드는 이제 더 복잡하고 긴 개발 작업을 터미널과 IDE에서 처리할 수 있습니다. 주요 업데이트 내용은 다음과 같습니다:
 
@@ -478,19 +485,19 @@ https://docs.anthropic.com/en/docs/about-claude/models" onclick="copyEntry(this)
 
 앤써픽은 클라이드 코드의 기능을 향상시키는 여러 업데이트를 발표했습니다. 이 업데이트에는 VS Code 확장 프로그램, 터미널 인터페이스 버전 업그레이드, 그리고 자율 운영을 위한 체크포인트 기능이 포함됩니다. 클라이드 코드는 이제 더 복잡하고 긴 개발 작업을 터미널과 IDE에서 처리할 수 있습니다. 주요 업데이트 내용은 다음과 같습니다:
 
-- **VS Code 확장 프로그램**: 클라이드 코드를 IDE 내에서 실시간으로 확인할 수 있는 사이드바 패널을 제공합니다.
-- **터미널 인터페이스 개선**: 상태 표시 개선과 검색 가능한 프롬프트 이력 기능을 추가하여 이전 프롬프트를 쉽게 재사용하거나 수정할 수 있습니다.
-- **클라이드 에이전트 SDK**: 사용자 정의 에이전트 경험을 구축하기 위한 도구와 기능을 제공합니다.
-- **체크포인트 기능**: 복잡한 작업 중 코드 변경 전후 상태를 자동으로 저장하여 작업의 안정성을 높입니다.
+- VS Code 확장 프로그램: 클라이드 코드를 IDE 내에서 실시간으로 확인할 수 있는 사이드바 패널을 제공합니다.
+- 터미널 인터페이스 개선: 상태 표시 개선과 검색 가능한 프롬프트 이력 기능을 추가하여 이전 프롬프트를 쉽게 재사용하거나 수정할 수 있습니다.
+- 클라이드 에이전트 SDK: 사용자 정의 에이전트 경험을 구축하기 위한 도구와 기능을 제공합니다.
+- 체크포인트 기능: 복잡한 작업 중 코드 변경 전후 상태를 자동으로 저장하여 작업의 안정성을 높입니다.
 
 이러한 기능들은 클라이드 코드가 더욱 자율적으로 작동하도록 지원하며, 개발자들이 복잡한 작업을 더욱 신뢰성 있게 수행할 수 있게 합니다. 업데이트는 현재 클라이드 코드 사용자들에게 즉시 제공됩니다.
 
 https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously" onclick="copyEntry(this)">복사</button></div>
   <p>앤써픽은 클라이드 코드의 기능을 향상시키는 여러 업데이트를 발표했습니다. 이 업데이트에는 VS Code 확장 프로그램, 터미널 인터페이스 버전 업그레이드, 그리고 자율 운영을 위한 체크포인트 기능이 포함됩니다. 클라이드 코드는 이제 더 복잡하고 긴 개발 작업을 터미널과 IDE에서 처리할 수 있습니다. 주요 업데이트 내용은 다음과 같습니다:</p>
-<p>- **VS Code 확장 프로그램**: 클라이드 코드를 IDE 내에서 실시간으로 확인할 수 있는 사이드바 패널을 제공합니다.
-- **터미널 인터페이스 개선**: 상태 표시 개선과 검색 가능한 프롬프트 이력 기능을 추가하여 이전 프롬프트를 쉽게 재사용하거나 수정할 수 있습니다.
-- **클라이드 에이전트 SDK**: 사용자 정의 에이전트 경험을 구축하기 위한 도구와 기능을 제공합니다.
-- **체크포인트 기능**: 복잡한 작업 중 코드 변경 전후 상태를 자동으로 저장하여 작업의 안정성을 높입니다.</p>
+<p>- <strong>VS Code 확장 프로그램</strong>: 클라이드 코드를 IDE 내에서 실시간으로 확인할 수 있는 사이드바 패널을 제공합니다.
+- <strong>터미널 인터페이스 개선</strong>: 상태 표시 개선과 검색 가능한 프롬프트 이력 기능을 추가하여 이전 프롬프트를 쉽게 재사용하거나 수정할 수 있습니다.
+- <strong>클라이드 에이전트 SDK</strong>: 사용자 정의 에이전트 경험을 구축하기 위한 도구와 기능을 제공합니다.
+- <strong>체크포인트 기능</strong>: 복잡한 작업 중 코드 변경 전후 상태를 자동으로 저장하여 작업의 안정성을 높입니다.</p>
 <p>이러한 기능들은 클라이드 코드가 더욱 자율적으로 작동하도록 지원하며, 개발자들이 복잡한 작업을 더욱 신뢰성 있게 수행할 수 있게 합니다. 업데이트는 현재 클라이드 코드 사용자들에게 즉시 제공됩니다.</p>
   
   

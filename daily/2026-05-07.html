@@ -214,6 +214,12 @@
   }
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
+  .entry strong { font-weight: 700; }
+  .entry u {
+    text-decoration: underline 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--fg) 55%, transparent);
+  }
   .unavailable { color: var(--muted); font-style: italic; }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
@@ -523,17 +529,17 @@ https://ec.europa.eu/commission/presscorner/detail/en/ip_26_1024" onclick="copyE
 
 Anthropic은 오픈소스 정렬 도구 Petri를 업데이트하고 제3버전을 공개하며, 이를 Meridian Labs에 기부하여 독립성과 신뢰성을 확보했습니다. Petri는 LLM의 정렬 테스트를 위한 도구로, 기존 모델의 편향성을 평가하는데 사용됩니다. 주요 업데이트 내용은 다음과 같습니다:
 
-- **적응성**: 사용자 정의를 위한 구조적 변화 도입으로 다양한 용도에 맞게 조정 가능.
-- **현실성**: 새로운 기능 &#x27;Dish&#x27;를 통해 테스트 환경의 현실성을 높여 모델의 실제 행동을 더 정확하게 평가.
-- **심층성**: Bloom 도구와 통합하여 특정 행동에 대한 심층 평가 가능.
+- 적응성: 사용자 정의를 위한 구조적 변화 도입으로 다양한 용도에 맞게 조정 가능.
+- 현실성: 새로운 기능 &#x27;Dish&#x27;를 통해 테스트 환경의 현실성을 높여 모델의 실제 행동을 더 정확하게 평가.
+- 심층성: Bloom 도구와 통합하여 특정 행동에 대한 심층 평가 가능.
 
 이러한 변화는 Petri의 중립성과 신뢰성을 강화하고, 다양한 사용자 그룹(연구소, 정부 등)이 활용할 수 있는 오픈 기술 스택 구축에 기여합니다. 자세한 내용은 Meridian Labs 블로그에서 확인 가능합니다.
 
 https://www.anthropic.com/research/donating-open-source-petri" onclick="copyEntry(this)">복사</button></div>
   <p>Anthropic은 오픈소스 정렬 도구 Petri를 업데이트하고 제3버전을 공개하며, 이를 Meridian Labs에 기부하여 독립성과 신뢰성을 확보했습니다. Petri는 LLM의 정렬 테스트를 위한 도구로, 기존 모델의 편향성을 평가하는데 사용됩니다. 주요 업데이트 내용은 다음과 같습니다:</p>
-<p>- **적응성**: 사용자 정의를 위한 구조적 변화 도입으로 다양한 용도에 맞게 조정 가능.
-- **현실성**: 새로운 기능 &#x27;Dish&#x27;를 통해 테스트 환경의 현실성을 높여 모델의 실제 행동을 더 정확하게 평가.
-- **심층성**: Bloom 도구와 통합하여 특정 행동에 대한 심층 평가 가능.</p>
+<p>- <strong>적응성</strong>: 사용자 정의를 위한 구조적 변화 도입으로 다양한 용도에 맞게 조정 가능.
+- <strong>현실성</strong>: 새로운 기능 &#x27;Dish&#x27;를 통해 테스트 환경의 현실성을 높여 모델의 실제 행동을 더 정확하게 평가.
+- <strong>심층성</strong>: Bloom 도구와 통합하여 특정 행동에 대한 심층 평가 가능.</p>
 <p>이러한 변화는 Petri의 중립성과 신뢰성을 강화하고, 다양한 사용자 그룹(연구소, 정부 등)이 활용할 수 있는 오픈 기술 스택 구축에 기여합니다. 자세한 내용은 Meridian Labs 블로그에서 확인 가능합니다.</p>
   
   
@@ -700,7 +706,9 @@ https://iapp.org/news/a/eu-agrees-to-amend-ai-act-clarifies-overlap-with-machine
 https://arxiv.org/abs/2605.06597" onclick="copyEntry(this)">복사</button></div>
   <p>연구 동기는 외부의 더 강한 교사 없이도 LLM을 적응(adaptation)할 수 있는 자기증류(self-distillation, SD)의 가능성은 크지만, 자가 생성 궤적이 자유형식이고 정답성·과제 의존성이 커서 감독 신호가 불안정해지는 문제를 해결하려는 데 있다. 핵심 기여는 SD의 효과를 체계적으로 분해·분석하기 위한 UniSD 통합 프레임워크로, 다중-교사 합의, EMA(지수이동평균) 기반 교사 안정화, 토큰 수준 대조학습, 특징 매칭, divergence clipping 등 상호보완적 메커니즘을 결합한다. 평가는 3개 모델 패밀리의 6개 모델과 6개 벤치마크에서 정적 모방(imitation) 대비 개선 여부, 어떤 구성요소가 이득을 만드는지, 구성요소 간 상호작용이 어떻게 나타나는지를 비교하는 방식으로 수행된다. 또한 구성요소를 통합한 UniSDfull 파이프라인을 제시해 베이스 모델 대비 +5.4점, 최강 베이스라인 대비 +2.8점의 성능 향상을 보고한다. 한계로는 본문에서 구체적 안전성/견고성(예: 환각 억제, 악의적 입력에 대한 거동)까지 직접 측정했는지의 범위가 요약만으로는 불명확하며, 향후에는 과제·데이터 분포 변화에 대한 일반화와 안정성 지표의 확장이 필요하다. 정책/규제·국가 전략 시사점으로는 더 강한 외부 교사 없이도 효율적으로 모델을 개선할 수 있어, 자원 제약 환경에서의 모델 고도화 전략(비용·데이터 접근성 측면)을 뒷받침할 수 있다는 점이 있다.</p>
   
-  <details class="related-stories" open><summary>같은 이슈 관련 1건 · HuggingFace-Papers</summary><article class="entry cat-research" data-cat="research" data-topics="" data-search="SafeHarbor: Hierarchical Memory-Augmented Guardrail for LLM Agent Safety (저자 외 7명, HuggingFace Daily Papers, 2026.5.7) LLM 에이전트의 도구 사용 능력이 악성 요청에 의해 유해한 도구 실행으로 이어질 수 있는 보안 위험과, 기존 방어의 과도한 거부로 인한 유용성 저하(오버-리퓨절)를 다룬다. SafeHarbor는 향상된 적대적 생성으로 문맥-인지 방어 규칙을 추출하고, 로컬 계층형 메모리로 규칙을 동적으로 주입하며, 정보 엔트로피 기반 self-evolution으로 노드 분할/병합을 통해 메모리 구조를 지속 최적화하는 학습-프리 플러그앤플레이 방식으로 평가했다. GPT-4o에서 양성 유틸리티 63.6%의 피크를 달성하면서 유해 요청에 대해 거부율 93% 이상을 유지했다. HuggingFace-Papers">
+  
+</article>
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="SafeHarbor: Hierarchical Memory-Augmented Guardrail for LLM Agent Safety (저자 외 7명, HuggingFace Daily Papers, 2026.5.7) LLM 에이전트의 도구 사용 능력이 악성 요청에 의해 유해한 도구 실행으로 이어질 수 있는 보안 위험과, 기존 방어의 과도한 거부로 인한 유용성 저하(오버-리퓨절)를 다룬다. SafeHarbor는 향상된 적대적 생성으로 문맥-인지 방어 규칙을 추출하고, 로컬 계층형 메모리로 규칙을 동적으로 주입하며, 정보 엔트로피 기반 self-evolution으로 노드 분할/병합을 통해 메모리 구조를 지속 최적화하는 학습-프리 플러그앤플레이 방식으로 평가했다. GPT-4o에서 양성 유틸리티 63.6%의 피크를 달성하면서 유해 요청에 대해 거부율 93% 이상을 유지했다. HuggingFace-Papers">
   <h2><a href="https://arxiv.org/abs/2605.05704" target="_blank" rel="noopener noreferrer">SafeHarbor: Hierarchical Memory-Augmented Guardrail for LLM Agent Safety (저자 외 7명, HuggingFace Daily Papers, 2026.5.7)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">HuggingFace-Papers</span></span><button type="button" class="copy-btn" data-copy="SafeHarbor: Hierarchical Memory-Augmented Guardrail for LLM Agent Safety (저자 외 7명, HuggingFace Daily Papers, 2026.5.7)
 
@@ -710,7 +718,6 @@ https://arxiv.org/abs/2605.05704" onclick="copyEntry(this)">복사</button></div
   <p>LLM 에이전트의 도구 사용 능력이 악성 요청에 의해 유해한 도구 실행으로 이어질 수 있는 보안 위험과, 기존 방어의 과도한 거부로 인한 유용성 저하(오버-리퓨절)를 다룬다. SafeHarbor는 향상된 적대적 생성으로 문맥-인지 방어 규칙을 추출하고, 로컬 계층형 메모리로 규칙을 동적으로 주입하며, 정보 엔트로피 기반 self-evolution으로 노드 분할/병합을 통해 메모리 구조를 지속 최적화하는 학습-프리 플러그앤플레이 방식으로 평가했다. GPT-4o에서 양성 유틸리티 63.6%의 피크를 달성하면서 유해 요청에 대해 거부율 93% 이상을 유지했다.</p>
   
   
-</article></details>
 </article>
 <article class="entry cat-research" data-cat="research" data-topics="" data-search="저자 외 3명, arXiv, 2026.5.7 RLHF에서 쌍별 선호 비교로부터 보상모델을 학습할 때, 선호가 잠재 보상 차이를 반영하는 정도를 나타내는 합리성(rationality) 파라미터 β를 고정값으로 두는 가정이 인간 판단의 인지 편향을 반영하지 못하는 문제를 다룬다. LLM-as-judge로 인지 편향의 가능성을 평가해 학습 중 β를 동적으로 조정하고, 편향/신뢰도 낮은 판단일 가능성이 큰 비교를 다운웨이트하는 방식으로 실험을 수행한다. 편향된 선호 데이터셋으로 파인튜닝하더라도 더 “합리적인” 다운스트림 모델을 학습함을 보였으며, 구체 수치 평가는 초록에 포함되지 않았다. arXiv">
   <h2><a href="https://arxiv.org/abs/2605.06895v1" target="_blank" rel="noopener noreferrer">저자 외 3명, arXiv, 2026.5.7</a></h2>
@@ -721,7 +728,20 @@ RLHF에서 쌍별 선호 비교로부터 보상모델을 학습할 때, 선호�
 https://arxiv.org/abs/2605.06895v1" onclick="copyEntry(this)">복사</button></div>
   <p>RLHF에서 쌍별 선호 비교로부터 보상모델을 학습할 때, 선호가 잠재 보상 차이를 반영하는 정도를 나타내는 합리성(rationality) 파라미터 β를 고정값으로 두는 가정이 인간 판단의 인지 편향을 반영하지 못하는 문제를 다룬다. LLM-as-judge로 인지 편향의 가능성을 평가해 학습 중 β를 동적으로 조정하고, 편향/신뢰도 낮은 판단일 가능성이 큰 비교를 다운웨이트하는 방식으로 실험을 수행한다. 편향된 선호 데이터셋으로 파인튜닝하더라도 더 “합리적인” 다운스트림 모델을 학습함을 보였으며, 구체 수치 평가는 초록에 포함되지 않았다.</p>
   
-  <details class="related-stories" open><summary>같은 이슈 관련 1건 · arXiv</summary><article class="entry cat-research" data-cat="research" data-topics="" data-search="에이전트 안전의 태스크 간 일반화 실패 원인 분석 (저자 외 4명, arXiv, 2026.5.7) 분야: 안전
+  
+</article>
+<article class="entry cat-research" data-cat="research" data-topics="agentic_ai" data-search="MAGIQ: A Post-Quantum Multi-Agentic AI Governance System with Provable Security (저자 외 4명, arXiv, 2026.05.07) 다중 에이전트 AI에서 에이전트가 소유자 정책(통신·접근 제어)을 따르도록 강제하고, 에이전트 간 메시지에 대한 귀속(책임성)을 제공하는 거버넌스 세팅을 다룬다. MAGIQ는 포스트-퀀텀 암호 원시를 사용해 세션 기반 정책 집행(에이전트-에이전트 및 one-to-many 포함)과 메시지 어트리뷰션을 구현하고, Universal Composability(UC) 프레임워크로 정확성·보안을 형식적으로 모델링 및 증명한다. 계산/통신 오버헤드를 측정해 SAGA와 비교하며, 핵심 결과로 UC 기반의 보안 보장과 정책 집행·책임성 기능을 함께 제공함을 제시한다. arXiv">
+  <h2><a href="https://arxiv.org/abs/2605.06933v1" target="_blank" rel="noopener noreferrer">MAGIQ: A Post-Quantum Multi-Agentic AI Governance System with Provable Security (저자 외 4명, arXiv, 2026.05.07)</a></h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="MAGIQ: A Post-Quantum Multi-Agentic AI Governance System with Provable Security (저자 외 4명, arXiv, 2026.05.07)
+
+다중 에이전트 AI에서 에이전트가 소유자 정책(통신·접근 제어)을 따르도록 강제하고, 에이전트 간 메시지에 대한 귀속(책임성)을 제공하는 거버넌스 세팅을 다룬다. MAGIQ는 포스트-퀀텀 암호 원시를 사용해 세션 기반 정책 집행(에이전트-에이전트 및 one-to-many 포함)과 메시지 어트리뷰션을 구현하고, Universal Composability(UC) 프레임워크로 정확성·보안을 형식적으로 모델링 및 증명한다. 계산/통신 오버헤드를 측정해 SAGA와 비교하며, 핵심 결과로 UC 기반의 보안 보장과 정책 집행·책임성 기능을 함께 제공함을 제시한다.
+
+https://arxiv.org/abs/2605.06933v1" onclick="copyEntry(this)">복사</button></div>
+  <p>다중 에이전트 AI에서 에이전트가 소유자 정책(통신·접근 제어)을 따르도록 강제하고, 에이전트 간 메시지에 대한 귀속(책임성)을 제공하는 거버넌스 세팅을 다룬다. MAGIQ는 포스트-퀀텀 암호 원시를 사용해 세션 기반 정책 집행(에이전트-에이전트 및 one-to-many 포함)과 메시지 어트리뷰션을 구현하고, Universal Composability(UC) 프레임워크로 정확성·보안을 형식적으로 모델링 및 증명한다. 계산/통신 오버헤드를 측정해 SAGA와 비교하며, 핵심 결과로 UC 기반의 보안 보장과 정책 집행·책임성 기능을 함께 제공함을 제시한다.</p>
+  
+  
+</article>
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="에이전트 안전의 태스크 간 일반화 실패 원인 분석 (저자 외 4명, arXiv, 2026.5.7) 분야: 안전
 
 다중 태스크에서 테스트 시 태스크가 지정될 때, 태스크 실행 능력은 일반화되더라도 안전한 실행은 일반화에 실패하는 현상을 이론적으로·실험적으로 분석한다. 선형-이차 제어와 H∞-robustness 세팅에서 안전 요구가 없는 경우보다 태스크 명세→최적 제어기 매핑의 Lipschitz 상수가 더 커짐을 보이고, 안전 관련 Lipschitz bound를 제시한다. 시뮬레이션 쿼드콥터 네비게이션(신경망 에이전트)과 CRM(LLM 에이전트)에서 안전 일반화가 실행 일반화와 분리되어 실패함을 실험으로 확인한다. arXiv">
   <h2><a href="https://arxiv.org/abs/2605.06992v1" target="_blank" rel="noopener noreferrer">에이전트 안전의 태스크 간 일반화 실패 원인 분석 (저자 외 4명, arXiv, 2026.5.7)</a></h2>
@@ -734,18 +754,6 @@ https://arxiv.org/abs/2605.06895v1" onclick="copyEntry(this)">복사</button></d
 https://arxiv.org/abs/2605.06992v1" onclick="copyEntry(this)">복사</button></div>
   <p>분야: 안전</p>
 <p>다중 태스크에서 테스트 시 태스크가 지정될 때, 태스크 실행 능력은 일반화되더라도 안전한 실행은 일반화에 실패하는 현상을 이론적으로·실험적으로 분석한다. 선형-이차 제어와 H∞-robustness 세팅에서 안전 요구가 없는 경우보다 태스크 명세→최적 제어기 매핑의 Lipschitz 상수가 더 커짐을 보이고, 안전 관련 Lipschitz bound를 제시한다. 시뮬레이션 쿼드콥터 네비게이션(신경망 에이전트)과 CRM(LLM 에이전트)에서 안전 일반화가 실행 일반화와 분리되어 실패함을 실험으로 확인한다.</p>
-  
-  
-</article></details>
-</article>
-<article class="entry cat-research" data-cat="research" data-topics="agentic_ai" data-search="MAGIQ: A Post-Quantum Multi-Agentic AI Governance System with Provable Security (저자 외 4명, arXiv, 2026.05.07) 다중 에이전트 AI에서 에이전트가 소유자 정책(통신·접근 제어)을 따르도록 강제하고, 에이전트 간 메시지에 대한 귀속(책임성)을 제공하는 거버넌스 세팅을 다룬다. MAGIQ는 포스트-퀀텀 암호 원시를 사용해 세션 기반 정책 집행(에이전트-에이전트 및 one-to-many 포함)과 메시지 어트리뷰션을 구현하고, Universal Composability(UC) 프레임워크로 정확성·보안을 형식적으로 모델링 및 증명한다. 계산/통신 오버헤드를 측정해 SAGA와 비교하며, 핵심 결과로 UC 기반의 보안 보장과 정책 집행·책임성 기능을 함께 제공함을 제시한다. arXiv">
-  <h2><a href="https://arxiv.org/abs/2605.06933v1" target="_blank" rel="noopener noreferrer">MAGIQ: A Post-Quantum Multi-Agentic AI Governance System with Provable Security (저자 외 4명, arXiv, 2026.05.07)</a></h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="에이전틱AI">🤖</span></span></span><button type="button" class="copy-btn" data-copy="MAGIQ: A Post-Quantum Multi-Agentic AI Governance System with Provable Security (저자 외 4명, arXiv, 2026.05.07)
-
-다중 에이전트 AI에서 에이전트가 소유자 정책(통신·접근 제어)을 따르도록 강제하고, 에이전트 간 메시지에 대한 귀속(책임성)을 제공하는 거버넌스 세팅을 다룬다. MAGIQ는 포스트-퀀텀 암호 원시를 사용해 세션 기반 정책 집행(에이전트-에이전트 및 one-to-many 포함)과 메시지 어트리뷰션을 구현하고, Universal Composability(UC) 프레임워크로 정확성·보안을 형식적으로 모델링 및 증명한다. 계산/통신 오버헤드를 측정해 SAGA와 비교하며, 핵심 결과로 UC 기반의 보안 보장과 정책 집행·책임성 기능을 함께 제공함을 제시한다.
-
-https://arxiv.org/abs/2605.06933v1" onclick="copyEntry(this)">복사</button></div>
-  <p>다중 에이전트 AI에서 에이전트가 소유자 정책(통신·접근 제어)을 따르도록 강제하고, 에이전트 간 메시지에 대한 귀속(책임성)을 제공하는 거버넌스 세팅을 다룬다. MAGIQ는 포스트-퀀텀 암호 원시를 사용해 세션 기반 정책 집행(에이전트-에이전트 및 one-to-many 포함)과 메시지 어트리뷰션을 구현하고, Universal Composability(UC) 프레임워크로 정확성·보안을 형식적으로 모델링 및 증명한다. 계산/통신 오버헤드를 측정해 SAGA와 비교하며, 핵심 결과로 UC 기반의 보안 보장과 정책 집행·책임성 기능을 함께 제공함을 제시한다.</p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-05-06.html">← 2026-05-06</a><a class="day-nav-btn" href="2026-05-08.html">2026-05-08 →</a></nav>

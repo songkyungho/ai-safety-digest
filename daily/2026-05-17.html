@@ -214,6 +214,12 @@
   }
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
+  .entry strong { font-weight: 700; }
+  .entry u {
+    text-decoration: underline 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--fg) 55%, transparent);
+  }
   .unavailable { color: var(--muted); font-style: italic; }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
@@ -476,7 +482,9 @@ https://chinai.substack.com/p/chinai-358-around-the-horn-25th-episode" onclick="
 https://arxiv.org/abs/2605.17203v1" onclick="copyEntry(this)">복사</button></div>
   <p>공공 교육 시스템에서 모델은 내부 테스트에서 기술적으로는 가능해도, 승인·데이터 체계·인간 감독·운영 역량·재정 지속성·법적 명확성 부족으로 확산 배치가 중단되는 문제를 다룬다. 두 개의 익명화된 운영 사례(영상 기반 인체계측 스크리닝 도구, 음성 분석 기반 조기 학습 위험 식별)에서 확산이 막힌 제도적 원인을 바탕으로, 배치 준비도를 5개 차원(제도/운영 적합성, 데이터 생태계 성숙도, 인간 감독 역량, 재정 지속가능성, 규제 정렬 준비도)으로 평가하는 IAR를 제시하고 no-go·pilot-only·광범위 배치 준비 같은 단계적 의사결정을 지원한다고 설명한다. 기존 책임 AI/모델 평가가 주로 모델·데이터·개발자 측을 다루는 한계를 보완해 “수용 기관”의 준비도를 평가하도록 설계되었다.</p>
   
-  <details class="related-stories" open><summary>같은 이슈 관련 3건 · arXiv</summary><article class="entry cat-research" data-cat="research" data-topics="" data-search="동적 LLM 정렬에서 선호의 비순환성·순환성을 분해하는 HRC 및 DSPPO (저자 외 3명, arXiv, 2026.5.17) RLHF의 단일 스칼라(전이적) 보상이 인간 선호의 순환적(cyclic) 성격을 반영하지 못하는 문제를 다루며, GPM류가 계층성과 순환성을 얽어 “dominant solution”을 보장하지 못한다는 이론적 한계를 제시한다. 게임이론적 분해로 선호를 직교한 전이적(스칼라) 성분과 순환적(벡터) 성분으로 명시적으로 분해하는 Hybrid Reward-Cyclic(HRC)와, 정렬을 시간가변 게임으로 보고 Nash equilibrium 쪽으로 점진 유도하는 Dynamic Self-Play Preference Optimization(DSPPO)를 제안하고 합성 데이터 및 RewardBench 2, AlpacaEval 2.0, Arena-Hard-v0.1, MT-Bench에서 실험한다. RewardBench 2에서 Gemma-2B-it 기준 +1.23% 개선을 포함해, AlpacaEval 2.0 length-controlled win-rate 44.75%, Arena-Hard-v0.1 46.8%의 peak 성능을 보고하며 BT·GPM 및 SPPO 변형 대비 우위를 보인다. arXiv">
+  
+</article>
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="동적 LLM 정렬에서 선호의 비순환성·순환성을 분해하는 HRC 및 DSPPO (저자 외 3명, arXiv, 2026.5.17) RLHF의 단일 스칼라(전이적) 보상이 인간 선호의 순환적(cyclic) 성격을 반영하지 못하는 문제를 다루며, GPM류가 계층성과 순환성을 얽어 “dominant solution”을 보장하지 못한다는 이론적 한계를 제시한다. 게임이론적 분해로 선호를 직교한 전이적(스칼라) 성분과 순환적(벡터) 성분으로 명시적으로 분해하는 Hybrid Reward-Cyclic(HRC)와, 정렬을 시간가변 게임으로 보고 Nash equilibrium 쪽으로 점진 유도하는 Dynamic Self-Play Preference Optimization(DSPPO)를 제안하고 합성 데이터 및 RewardBench 2, AlpacaEval 2.0, Arena-Hard-v0.1, MT-Bench에서 실험한다. RewardBench 2에서 Gemma-2B-it 기준 +1.23% 개선을 포함해, AlpacaEval 2.0 length-controlled win-rate 44.75%, Arena-Hard-v0.1 46.8%의 peak 성능을 보고하며 BT·GPM 및 SPPO 변형 대비 우위를 보인다. arXiv">
   <h2><a href="https://arxiv.org/abs/2605.17342v1" target="_blank" rel="noopener noreferrer">동적 LLM 정렬에서 선호의 비순환성·순환성을 분해하는 HRC 및 DSPPO (저자 외 3명, arXiv, 2026.5.17)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="동적 LLM 정렬에서 선호의 비순환성·순환성을 분해하는 HRC 및 DSPPO (저자 외 3명, arXiv, 2026.5.17)
 
@@ -508,7 +516,6 @@ https://arxiv.org/abs/2605.17380v1" onclick="copyEntry(this)">복사</button></d
   <p>ADR은 Model Context Protocol(MCP)로 동작하는 엔터프라이즈 AI 에이전트에서 (1) 추론·프롬프트·의도-실행 인과흐름의 관측 부족, (2) 정적 규칙 기반 방어의 일반화 한계, (3) LLM 추론 기반 탐지의 비용 문제를 다룬다. ADR은 에이전틱 텔레메트리 수집(ADR Sensor), 사전 레드팀/하드 예제 생성(ADR Explorer), 빠른 1차 트리아지와 맥락 기반 추론을 결합한 2단계 온라인 탐지(ADR Detector)로 구성되며, Uber에서 10개월 이상 운영하며 7,200개 호스트와 일 10,000개 에이전트 세션을 처리했다. 핵심 결과로 97.2% precision으로 206개 자격증명 노출을 탐지했고, ADR-Bench에서는 zero false positives로 67% 공격을 탐지하며 F1-score에서 기존 3개 베이스라인 대비 2–4x, AgentDojo에서는 93개 태스크 중 3개 false alarm으로 모든 공격을 탐지했다.</p>
   
   
-</article></details>
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-05-16.html">← 2026-05-16</a><a class="day-nav-btn" href="2026-05-18.html">2026-05-18 →</a></nav>
 </div>
 <nav class="year-nav hidden" id="yearNav" aria-label="연도 바로가기"></nav>

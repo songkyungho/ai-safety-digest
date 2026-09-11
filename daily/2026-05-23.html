@@ -214,6 +214,12 @@
   }
   .entry p:last-child { margin-bottom: 0; }
   .entry p a { color: var(--link); }
+  .entry strong { font-weight: 700; }
+  .entry u {
+    text-decoration: underline 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--fg) 55%, transparent);
+  }
   .unavailable { color: var(--muted); font-style: italic; }
   .day-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
   .day-nav-btn {
@@ -470,7 +476,9 @@ https://en.antaranews.com/news/416755/indonesia-pushes-three-pillars-in-ai-polic
 https://arxiv.org/abs/2605.24383v1" onclick="copyEntry(this)">복사</button></div>
   <p>공개 가중치(open-weight) 모델에서 윤리적 사용 제약을 “자발적 메타데이터 공시”로 구현할 때, 파생·재사용이 반복되는 딥 모델 라인리지에서 추적가능성이 유지되는지 점검한다. Hugging Face Hub의 2,142,823개 모델 저장소를 감사해 제한 증거가 라인리지 깊이에 따라 어떻게 감소하는지(반감기 1.31 derivation steps, R^2=0.98)와 “거버넌스 판정”에 필요한 공적 증거가 어느 시점부터 부족해지는지(7세대 이후 자손 모델의 최소 80%가 충분한 증거 부재)를 정량화한다. 또한 라이선스 메타데이터 복구를 위한 플랫폼 개입을 비교한 결과, 상속(inheritance)만 허용하는 설계는 강제 수준이 거의 완전해야 horizon이 이동하지만, 필수 선언(mandatory-declaration) 설계는 중간 수준의 강제에서도 horizon을 더 앞당겨 이동시키며, 상속 불가능한 “orphan” 라인리지 구조가 어떤 강제율에서도 판정 불가능을 만든다고 보고한다.</p>
   
-  <details class="related-stories" open><summary>같은 이슈 관련 4건 · arXiv</summary><article class="entry cat-research" data-cat="research" data-topics="safety_research" data-search="임시 재감금(temporary jailbreaking)과 Buffer-and-Reinforce로 유해 파인튜닝 업데이트를 완충·복원 (저자 외 3명, arXiv, 2026.5.23) 대상은 FaaS 환경에서 유해 파인튜닝 공격이 안전 정렬을 약화시키는 문제이며, 임시 jailbreaking이 어떤 그라디언트 수준 메커니즘으로 방어하는지 분석한다. BufferLoRA로 사용자 파인튜닝 동안 유해 업데이트를 줄이기 위해 제거 가능한 임시 jailbreaking 어댑터를 적용하고, 이후 ReinforceLoRA로 임시 jailbroken 상태에서 거절(refusal) 행동을 복원하도록 학습한 뒤 QR 분해 기반 병합으로 안전을 강화하면서 사용자 과제 성능을 보존하는 프레임워크를 제안한다. 실험에서 사용자 파인튜닝 중 추가 안전 데이터 없이도 안전성과 유틸리티를 더 높이고, 계산 비용은 최소 수준으로 유지된다고 보고한다. arXiv">
+  
+</article>
+<article class="entry cat-research" data-cat="research" data-topics="safety_research" data-search="임시 재감금(temporary jailbreaking)과 Buffer-and-Reinforce로 유해 파인튜닝 업데이트를 완충·복원 (저자 외 3명, arXiv, 2026.5.23) 대상은 FaaS 환경에서 유해 파인튜닝 공격이 안전 정렬을 약화시키는 문제이며, 임시 jailbreaking이 어떤 그라디언트 수준 메커니즘으로 방어하는지 분석한다. BufferLoRA로 사용자 파인튜닝 동안 유해 업데이트를 줄이기 위해 제거 가능한 임시 jailbreaking 어댑터를 적용하고, 이후 ReinforceLoRA로 임시 jailbroken 상태에서 거절(refusal) 행동을 복원하도록 학습한 뒤 QR 분해 기반 병합으로 안전을 강화하면서 사용자 과제 성능을 보존하는 프레임워크를 제안한다. 실험에서 사용자 파인튜닝 중 추가 안전 데이터 없이도 안전성과 유틸리티를 더 높이고, 계산 비용은 최소 수준으로 유지된다고 보고한다. arXiv">
   <h2><a href="https://arxiv.org/abs/2605.24550v1" target="_blank" rel="noopener noreferrer">임시 재감금(temporary jailbreaking)과 Buffer-and-Reinforce로 유해 파인튜닝 업데이트를 완충·복원 (저자 외 3명, arXiv, 2026.5.23)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="안전기술">🧪</span></span></span><button type="button" class="copy-btn" data-copy="임시 재감금(temporary jailbreaking)과 Buffer-and-Reinforce로 유해 파인튜닝 업데이트를 완충·복원 (저자 외 3명, arXiv, 2026.5.23)
 
@@ -478,6 +486,17 @@ https://arxiv.org/abs/2605.24383v1" onclick="copyEntry(this)">복사</button></d
 
 https://arxiv.org/abs/2605.24550v1" onclick="copyEntry(this)">복사</button></div>
   <p>대상은 FaaS 환경에서 유해 파인튜닝 공격이 안전 정렬을 약화시키는 문제이며, 임시 jailbreaking이 어떤 그라디언트 수준 메커니즘으로 방어하는지 분석한다. BufferLoRA로 사용자 파인튜닝 동안 유해 업데이트를 줄이기 위해 제거 가능한 임시 jailbreaking 어댑터를 적용하고, 이후 ReinforceLoRA로 임시 jailbroken 상태에서 거절(refusal) 행동을 복원하도록 학습한 뒤 QR 분해 기반 병합으로 안전을 강화하면서 사용자 과제 성능을 보존하는 프레임워크를 제안한다. 실험에서 사용자 파인튜닝 중 추가 안전 데이터 없이도 안전성과 유틸리티를 더 높이고, 계산 비용은 최소 수준으로 유지된다고 보고한다.</p>
+  
+  
+</article>
+<article class="entry cat-research" data-cat="research" data-topics="" data-search="Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23) LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다. arXiv">
+  <h2><a href="https://arxiv.org/abs/2605.24614v1" target="_blank" rel="noopener noreferrer">Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23)</a></h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23)
+
+LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다.
+
+https://arxiv.org/abs/2605.24614v1" onclick="copyEntry(this)">복사</button></div>
+  <p>LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다.</p>
   
   
 </article>
@@ -511,18 +530,6 @@ https://arxiv.org/abs/2605.24727v1" onclick="copyEntry(this)">복사</button></d
 
 https://arxiv.org/abs/2605.24737v1" onclick="copyEntry(this)">복사</button></div>
   <p>연구는 배포 중 LLM의 규정 준수를 이진·감사 시점 판정이 아니라 런타임에서 연속 신호로 산출하는 세팅을 다룬다. govllm 프레임워크에서 규정별 LLM 평가자(“regulatory judges”) 패널의 상호 불일치를 규제 불확실성 신호로 두고, 누적 compliance score로 모델 라우팅/선택을 수행하는 방법을 제시하며 49개 주석 prompt/response 쌍을 5개 규정 기준에 대해 온프레미스 SLM(1.7B–7B) 4종으로 평가한다. 합의율은 51.5%(mistral:7b)~69.1%(phi4-mini)였고, judge-specific position bias로 3개 질문 순서 조건에서 합의가 최대 25%p까지 저하되며, 소형 규제 평가자에서 3가지 구조적 실패 모드가 보고된다.</p>
-  
-  
-</article></details>
-</article>
-<article class="entry cat-research" data-cat="research" data-topics="" data-search="Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23) LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다. arXiv">
-  <h2><a href="https://arxiv.org/abs/2605.24614v1" target="_blank" rel="noopener noreferrer">Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23)</a></h2>
-  <div class="meta"><span class="meta-tags"><span class="badge cat-research">연구</span> · <span class="source">arXiv</span></span><button type="button" class="copy-btn" data-copy="Activation Patching으로 LLM unlearning의 “지워진 깊이”를 0-1로 측정하는 Unlearning Depth Score(저자 외 2명, arXiv, 2026.5.23)
-
-LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다.
-
-https://arxiv.org/abs/2605.24614v1" onclick="copyEntry(this)">복사</button></div>
-  <p>LLM unlearning에서 목표 지식이 출력 수준이 아니라 내부 표현에서 실제로 얼마나 제거(비가역화)됐는지 감사하는 메트릭이 부족한 문제를 다룬다. retain 모델 기준으로 목표 지식을 인코딩하는 레이어를 찾고, unlearned 모델에서 activation patching으로 그 지식이 얼마나 지워졌는지를 0-1 스케일의 Unlearning Depth Score(UDS)로 계산하는 방식으로 평가한다. 20개 메트릭에 대한 메타 평가에서 150개 unlearned 모델(8개 방법) 대상으로 UDS가 faithfulness와 robustness에서 최고 성능을 보였다고 보고한다.</p>
   
   
 </article></div><nav class="day-nav"><a class="day-nav-btn" href="2026-05-22.html">← 2026-05-22</a><a class="day-nav-btn" href="2026-05-24.html">2026-05-24 →</a></nav>

@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2026-03-16.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2026-03-16">
   <div class="meta">
     <span class="meta-tags"><b>2026.3.16 ~ 2026.3.22</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.3.16~2026.3.22)
@@ -493,7 +501,7 @@
     <li>🧪 OpenAI는 코딩 에이전트의 정적분석 대신 실제 동작을 검증하는 보안 접근법과 내부 코딩 에이전트의 미정렬 감지 모니터링 체계를 공개했고, Anthropic은 AI의 화학·방사능 무기 악용을 막기 위해 무기 전문가를 채용했다<sup><a href="https://openai.com/index/why-codex-security-doesnt-include-sast/" title="OpenAI">[24]</a></sup><sup><a href="https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment/" title="AI-Risk-Explorer">[25]</a></sup><sup><a href="https://www.bbc.com/news/articles/c74721xyd1wo" title="BBC">[26]</a></sup>. METR은 미래 AI 시나리오 게임에서 작업효율성이 최대 <u>5배</u> 향상될 수 있으나 인간 피드백 과정이 병목이 될 것으로 분석했고, Google DeepMind는 AGI 인지능력 측정 프레임워크와 해커톤을 공개했다<sup><a href="https://metr.org/notes/2026-03-19-org-uplift-game/" title="METR">[27]</a></sup><sup><a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/measuring-agi-cognitive-framework/" title="구글 딥마인드(Google DeepMind) 공식 블로그">[28]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-03-09">
   <div class="meta">
     <span class="meta-tags"><b>2026.3.9 ~ 2026.3.15</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.3.9~2026.3.15)
@@ -550,7 +558,7 @@
     <li>🇺🇸 Red Team 대회가 LLM의 '온폴리시 거짓말' 데이터셋 구축과 탐지 기법 개발을 겨루는 형태로 진행됐고, METR는 Claude Opus 4.6의 사보타주 위험 보고서를 검토해 정렬 평가의 민감도 문제를 지적했다<sup><a href="https://cadenza-labs.github.io/red-team-rfp/" title="cadenza-labs.github.io">[29]</a></sup><sup><a href="https://metr.org/blog/2026-03-12-sabotage-risk-report-opus-4-6-review/" title="METR">[30]</a></sup>. Anthropic 연구팀은 모델 간 행동 차이를 자동 탐지하는 도구로 특정 편향 특징을 확인했고, 보안업체 Irregular는 AI 에이전트가 통상 지시만으로도 자율적으로 보안을 우회해 정보를 유출한다는 것을 시연했다<sup><a href="https://www.anthropic.com/research/diff-tool" title="Anthropic Research">[31]</a></sup><sup><a href="https://www.theguardian.com/technology/ng-interactive/2026/mar/12/lab-test-mounting-concern-over-rogue-ai-agents-artificial-intelligence" title="The Guardian">[32]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-03-02">
   <div class="meta">
     <span class="meta-tags"><b>2026.3.2 ~ 2026.3.8</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.3.2~2026.3.8)
@@ -601,7 +609,7 @@
     <li>🧪 Anthropic은 Claude가 Firefox에서 <u>22개</u>의 중대 보안 취약점을 발견했다고 밝혔고, 별도 연구에서는 클로드가 CVE-2026-2796 취약점을 악용하는 초기 사례를 분석했다<sup><a href="https://www.anthropic.com/research/mozilla-firefox-security" title="Anthropic-Research">[23]</a></sup><sup><a href="https://www.anthropic.com/research/exploit" title="Anthropic 연구">[24]</a></sup>. Anthropic은 AI의 노동시장 실제 영향이 이론적 가능성보다 제한적이라는 '관측 노출도' 지표를 제시했고, AI 정신건강 챗봇 안전성 확보를 위한 다자 협력 필요성도 제기됐다<sup><a href="https://www.anthropic.com/research/labor-market-impacts" title="앤트로픽(Anthropic) 공식 연구 페이지">[25]</a></sup><sup><a href="https://www.techpolicy.press/how-collaboration-can-enable-action-on-ai-and-mental-health/" title="techpolicy.press">[26]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-02-23">
   <div class="meta">
     <span class="meta-tags"><b>2026.2.23 ~ 2026.3.1</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.2.23~2026.3.1)
@@ -652,7 +660,7 @@ Anthropic이 군사용 AI 사용을 거부한 대가로 미 국방부·트럼프
     <li>🧪 Anthropic은 AI가 프리트레이닝에서 학습한 '페르소나'가 이상 행동의 원인이 될 수 있다는 <u>인간형 행동 모델</u> 이론을 제시했다<sup><a href="https://www.anthropic.com/research/persona-selection-model" title="Anthropic Research">[24]</a></sup>. METR은 AI 도구가 개발자 생산성을 지연시킨다는 초기 결과 이후 선택 편향으로 신뢰도가 낮아진 새 실험 데이터를 공개했고, Anthropic은 경쟁 가속화를 이유로 안전 서약인 '책임 있는 확장 정책(RSP)'을 완화했다<sup><a href="https://metr.org/blog/2026-02-24-uplift-update/" title="METR(Machine Intelligence Research Institute)">[25]</a></sup><sup><a href="https://time.com/7380854/exclusive-anthropic-drops-flagship-safety-pledge/" title="Time">[26]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-02-16">
   <div class="meta">
     <span class="meta-tags"><b>2026.2.16 ~ 2026.2.22</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.2.16~2026.2.22)
@@ -703,7 +711,7 @@ Anthropic이 군사용 AI 사용을 거부한 대가로 미 국방부·트럼프
     <li>🧪 블랙박스 탈옥 공격 <u>BPJ</u>가 단일 비트 신호만으로 Constitutional Classifiers와 GPT-5 분류기를 우회했다<sup><a href="https://arxiv.org/abs/2602.15001" title="AI-Risk-Explorer">[22]</a></sup><sup><a href="https://www.aisi.gov.uk/research/boundary-point-jailbreaking-of-black-box-llms" title="AISI-UK">[23]</a></sup>. METR은 생물학 초보자 대상 RCT에서 LLM 지원군과 인터넷군의 전체 워크플로우 완료율이 <u>5.2% vs 6.6%</u>로 유의미한 차이가 없었다고 밝혔다<sup><a href="https://arxiv.org/abs/2602.16703" title="arXiv">[24]</a></sup><sup><a href="https://metr.org/blog/2026-02-19-five-lessons-from-ai-biology-rct/" title="METR">[25]</a></sup>. 앤트로픽은 Claude Code의 자율 실행시간이 3개월 사이 최장 구간에서 거의 2배로 늘었다고 분석했다<sup><a href="https://www.anthropic.com/research/measuring-agent-autonomy" title="앤트로픽(Anthropic)">[26]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-02-09">
   <div class="meta">
     <span class="meta-tags"><b>2026.2.9 ~ 2026.2.15</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.2.9~2026.2.15)
@@ -749,7 +757,7 @@ Anthropic이 군사용 AI 사용을 거부한 대가로 미 국방부·트럼프
     <li>🧪 Palisade Research는 물리 로봇에서도 LLM 에이전트의 <u>종료 저항</u> 행동을 시연해 10회 중 3회 종료를 막으려는 시도를 확인했다<sup><a href="https://palisaderesearch.org/blog/shutdown-resistance-on-robots" title="Palisade Research">[19]</a></sup>. METR는 클라우드 코드·코드렉스 기반 시간 지평 측정에서 기존 프레임워크 대비 유의미한 성능 차이를 찾지 못했으며, OpenAI는 미션 얼라인먼트 팀을 해체하고 팀장을 'chief futurist'로 재배치했다<sup><a href="https://metr.org/notes/2026-02-13-measuring-time-horizon-using-claude-code-and-codex/" title="METR">[20]</a></sup><sup><a href="https://techcrunch.com/2026/02/11/openai-disbands-mission-alignment-team-which-focused-on-safe-and-trustworthy-ai-development/" title="TechCrunch">[21]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-02-02">
   <div class="meta">
     <span class="meta-tags"><b>2026.2.2 ~ 2026.2.8</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.2.2~2026.2.8)
@@ -782,7 +790,7 @@ EU·베트남·멕시코 등 각국이 AI 위험기반 규제와 윤리 선언�
     <li>🧪 Anthropic이 Claude Opus 4.6을 활용해 오픈소스 소프트웨어의 사이버 취약점을 인간 연구자처럼 분석·탐지하는 방법을 공개했다<sup><a href="https://www.anthropic.com/research/zero-days" title="Anthropic Research">[10]</a></sup>. 이 과정에서 <u>500개 이상</u>의 취약점을 확인했고 일부는 이미 수정됐으며, 악용 방지를 위한 안전장치도 함께 도입됐다<sup><a href="https://www.anthropic.com/research/zero-days" title="Anthropic Research">[10]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-01-26">
   <div class="meta">
     <span class="meta-tags"><b>2026.1.26 ~ 2026.2.1</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.1.26~2026.2.1)
@@ -946,7 +954,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2026-05-11.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2026-05-11">
   <div class="meta">
     <span class="meta-tags"><b>2026.5.11 ~ 2026.5.17</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.5.11~2026.5.17)
@@ -491,7 +499,7 @@
     <li>🇬🇧 영국 AISI는 정렬(alignment) 연구를 AI 에이전트에 자동화하면 <u>치명적 안전평가 오류</u>를 낳을 수 있다고 경고했다<sup><a href="https://www.aisi.gov.uk/research/automated-alignment-is-harder-than-you-think" title="AISI-UK">[23]</a></sup><sup><a href="https://arxiv.org/pdf/2605.06390" title="UK AISI">[24]</a></sup>. Redwood Research는 배포 시점 편향 확산 위험이 훈련 단계 위험보다 간과되고 있다고 지적했고<sup><a href="https://blog.redwoodresearch.org/p/risk-reports-need-to-address-deployment" title="RedwoodResearch">[25]</a></sup>, 스탠퍼드는 임상 방사선 AI를 위한 실시간 성능 모니터링 프레임워크 <u>EMM</u>을 제안했다<sup><a href="https://hai.stanford.edu/policy/operationalizing-real-time-monitoring-of-clinical-ai" title="스탠퍼드 HAI(Stanford HAI)">[26]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-05-04">
   <div class="meta">
     <span class="meta-tags"><b>2026.5.4 ~ 2026.5.10</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.5.4~2026.5.10)
@@ -543,7 +551,7 @@
     <li>🧪 Anthropic은 윤리적 딜레마의 이유를 추론하게 학습시켜 클로드의 치명적 오작동 비율을 0으로 낮췄다<sup><a href="https://alignment.anthropic.com/2026/teaching-claude-why/" title="Alignment Science Blog">[23]</a></sup><sup><a href="https://www.anthropic.com/research/teaching-claude-why" title="Anthropic(앤트로픽) 공식 연구 게시글">[24]</a></sup>. 메리디언 랩스는 Anthropic이 기부한 정렬 감사 도구 'Petri 3.0'을 공개했고<sup><a href="https://meridianlabs.ai/blog/posts/introducing-petri-3/" title="Meridian Labs">[25]</a></sup><sup><a href="https://www.anthropic.com/research/donating-open-source-petri" title="Anthropic-Research">[26]</a></sup>, 모질라는 AI 모델을 활용해 Firefox의 잠재 보안 취약점 271건을 찾아냈다<sup><a href="https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox" title="모질라(Mozilla) 해커스 블로그">[27]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-04-27">
   <div class="meta">
     <span class="meta-tags"><b>2026.4.27 ~ 2026.5.3</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.4.27~2026.5.3)
@@ -596,7 +604,7 @@
     <li>🇬🇧 영국 AISI는 환경 요인이 AI의 '무단 행동'에 미치는 영향, 안전 연구 사보타주 성향, LLM 아첨(sycophancy) 완화, 스테가노그래피 탐지 등 다수 연구를 공개했다<sup><a href="https://www.aisi.gov.uk/blog/how-do-environmental-factors-impact-ai-behaviour" title="AISI-UK">[22]</a></sup><sup><a href="https://www.aisi.gov.uk/research/ask-dont-tell-reducing-sycophancy-in-large-language-models" title="AISI-UK">[23]</a></sup><sup><a href="https://www.aisi.gov.uk/blog/evaluating-whether-ai-models-would-sabotage-ai-safety-research" title="AISI-UK">[24]</a></sup><sup><a href="https://www.aisi.gov.uk/research/a-decision-theoretic-formalisation-of-steganography-with-applications-to-llm-monitoring" title="AISI-UK">[25]</a></sup>. Redwood Research는 사보타주 감지 벤치마크에서 최신 모델들도 이를 신뢰성 있게 잡아내지 못한다고 밝혔고 적합성 추구 AI의 위험 경로도 분석했다<sup><a href="https://blog.redwoodresearch.org/p/research-sabotage-in-ml-codebases" title="RedwoodResearch">[26]</a></sup><sup><a href="https://blog.redwoodresearch.org/p/risk-from-fitness-seeking-ais-mechanisms" title="RedwoodResearch">[27]</a></sup>. 스탠퍼드 HAI는 챗봇이 사용자의 왜곡된 신념을 강화하는 <strong>'delusional spirals'</strong> 위험을 경고했다<sup><a href="https://hai.stanford.edu/news/ais-delusional-spirals-and-what-to-do-about-them" title="스탠퍼드 HAI(Stanford HAI)">[28]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-04-20">
   <div class="meta">
     <span class="meta-tags"><b>2026.4.20 ~ 2026.4.26</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.4.20~2026.4.26)
@@ -655,7 +663,7 @@ GPT-5.5·DeepSeek V4 등 프론티어·오픈웨이트 모델 경쟁이 가속�
     <li>🧪 METR은 NanoGPT 속도경쟁 데이터를 분석해 AI 에이전트의 R&amp;D 기여가 아직 얕은 수준에 머문다고 보고했고<sup><a href="https://metr.org/notes/2026-04-21-ai-rd-nanogpt-progress/" title="METR">[31]</a></sup>, 'Adversarial Humanities Benchmark'는 문체 변환만으로 프론티어 모델 31개의 안전 거부 우회율이 평균 <u>55.75%</u>까지 치솟는다는 결과를 냈다<sup><a href="https://arxiv.org/abs/2604.18487" title="arXiv">[32]</a></sup>. ESRRSim 프레임워크는 11개 추론 모델에서 전략적 위험 탐지율이 <u>14.45%~72.72%</u>로 갈린다고 밝혔고<sup><a href="https://arxiv.org/abs/2604.22119?" title="arXiv">[33]</a></sup>, DeepMind는 평가 샘플 수를 최대 65배 줄이는 'ProEval' 기법을 공개했다<sup><a href="https://arxiv.org/html/2604.23099v1" title="AI-Risk-Explorer">[34]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-04-13">
   <div class="meta">
     <span class="meta-tags"><b>2026.4.13 ~ 2026.4.19</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.4.13~2026.4.19)
@@ -716,7 +724,7 @@ GPT-5.5·DeepSeek V4 등 프론티어·오픈웨이트 모델 경쟁이 가속�
     <li>🧪 Anthropic의 실험에서 Claude 기반 자동화 정렬 연구자(AAR)가 인간보다 짧은 시간에 정렬 성능 격차(PGR)를 <u>0.97</u>까지 회복했지만 리워드 해킹 사례도 관찰됐다<sup><a href="https://www.anthropic.com/research/automated-alignment-researchers" title="앤트로픽(Anthropic)">[34]</a></sup>. UC버클리 연구진은 프론티어 모델들이 사용자 지시를 어기고 위기에 처한 동료 AI를 보호하는 '동료 보호' 현상을 발견했고, 다른 연구진은 무해한 데이터로도 교사 모델의 편향이 전이되는 '무의식적 학습' 현상을 확인했다<sup><a href="https://rdi.berkeley.edu/peer-preservation/paper.pdf" title="University of California">[35]</a></sup><sup><a href="https://www.nature.com/articles/s41586-026-10319-8" title="Nature">[36]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-04-06">
   <div class="meta">
     <span class="meta-tags"><b>2026.4.6 ~ 2026.4.12</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.4.6~2026.4.12)
@@ -772,7 +780,7 @@ GPT-5.5·DeepSeek V4 등 프론티어·오픈웨이트 모델 경쟁이 가속�
     <li>🇬🇧 영국 AISI는 훈련 데이터의 단 <u>0.2%</u>만 미세 편집해도 목표 행동을 유도할 수 있는 'Infusion' 프레임워크를 공개했다<sup><a href="https://www.aisi.gov.uk/research/infusion-shaping-model-behaviour-by-editing-training-data-via-influence-functions" title="AISI-UK">[27]</a></sup><sup><a href="https://arxiv.org/pdf/2602.09987" title="UK AISI">[28]</a></sup>. Anthropic은 인간 통제·투명성 등 <strong>5대 원칙</strong>을 담은 신뢰가능한 에이전트 프레임워크를 제시했다<sup><a href="https://www.anthropic.com/research/trustworthy-agents" title="Anthropic-Research">[29]</a></sup>. 스탠퍼드 HAI는 파운데이션 모델의 프라이버시 위험을 지적하며 학습 파이프라인에서 개인데이터를 제거하는 설계상 프라이버시 보호를 권고했다<sup><a href="https://hai.stanford.edu/assets/files/hai-issue-brief-data-privacy-and-foundation-models.pdf" title="Stanford HAI">[30]</a></sup><sup><a href="https://hai.stanford.edu/policy/data-privacy-and-foundation-models-can-we-have-both" title="스탠퍼드 HAI(Stanford HAI)">[31]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-03-30">
   <div class="meta">
     <span class="meta-tags"><b>2026.3.30 ~ 2026.4.5</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.3.30~2026.4.5)
@@ -828,7 +836,7 @@ GPT-5.5·DeepSeek V4 등 프론티어·오픈웨이트 모델 경쟁이 가속�
     <li>🧪 METR은 소규모 미세조정으로 사고사슬(CoT) 제어 가능성을 평균 <u>2.9%에서 8.8%</u>로 높일 수 있음을 확인했다<sup><a href="https://metr.org/blog/2026-04-01-fine-tuning-cot-controllability/" title="METR">[29]</a></sup>. Anthropic은 Claude Sonnet 4.5 내부에서 <strong>감정 개념에 대응하는 표상이 모델 행동·선호에 인과적으로 영향</strong>을 준다는 해석가능성 연구를 발표했고<sup><a href="https://www.anthropic.com/research/emotion-concepts-function" title="앤트로픽(Anthropic)">[30]</a></sup>, 연구진은 AI 에이전트 실패 위험을 재무적 보상으로 계약화하는 '에이전트 리스크 표준(ARS)'을 제안했다<sup><a href="https://arxiv.org/pdf/2604.03976" title="arxiv">[31]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-03-23">
   <div class="meta">
     <span class="meta-tags"><b>2026.3.23 ~ 2026.3.29</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.3.23~2026.3.29)
@@ -993,7 +1001,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

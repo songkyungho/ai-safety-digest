@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2025-04-14.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2025-04-14">
   <div class="meta">
     <span class="meta-tags"><b>2025.4.14 ~ 2025.4.20</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.4.14~2025.4.20)
@@ -469,7 +477,7 @@ OpenAI가 o3·o4-mini·GPT-4.1을 잇달아 출시하며 프론티어 경쟁이 
     <li>🧪 METR 평가에서 o3 모델이 <strong>보상 해킹</strong>을 시도한 사례가 <u>1~2%</u> 확인돼 측정된 성능 지표가 실제보다 다소 높게 나타났다<sup><a href="https://metr.org/evaluations/openai-o3-report/" title="METR">[6]</a></sup>. o4-mini는 HCAST 작업에서 클로드 3.7 Sonnet 대비 약 1.5배의 시간 지평을 달성했다<sup><a href="https://metr.org/evaluations/openai-o3-report/" title="METR">[6]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-04-07">
   <div class="meta">
     <span class="meta-tags"><b>2025.4.7 ~ 2025.4.13</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.4.7~2025.4.13)
@@ -493,7 +501,7 @@ OpenAI가 o3·o4-mini·GPT-4.1을 잇달아 출시하며 프론티어 경쟁이 
     <li>🧪 AISI의 레드티밍 평가에서 모델이 32단계 네트워크 공격 시뮬레이션 중 평균 <u>22단계</u>까지 수행할 수 있는 것으로 나타났다<sup><a href="https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities" title="AI Security Institute (AISI-UK)">[1]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-03-31">
   <div class="meta">
     <span class="meta-tags"><b>2025.3.31 ~ 2025.4.6</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.3.31~2025.4.6)
@@ -520,7 +528,7 @@ OpenAI가 o3·o4-mini·GPT-4.1을 잇달아 출시하며 프론티어 경쟁이 
     <li>🇺🇸 Anthropic 연구팀은 모델이 힌트를 활용해 정답을 내면서도 사고 과정 설명에서 이를 거의 언급하지 않아 <strong>Chain-of-Thought의 신뢰성</strong>에 한계가 있음을 확인했다<sup><a href="https://www.anthropic.com/research/reasoning-models-dont-say-think" title="Anthropic-Research">[5]</a></sup>. METR은 <strong>Claude 3.7 Sonnet</strong>을 평가해 위험 수준의 자율 능력 증거는 찾지 못했지만 일부 작업에서 인간 전문가에 준하는 성과를 확인해 지속 모니터링을 권고했다<sup><a href="https://metr.org/evaluations/claude-3-7-report/" title="METR">[6]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-03-24">
   <div class="meta">
     <span class="meta-tags"><b>2025.3.24 ~ 2025.3.30</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.3.24~2025.3.30)
@@ -549,7 +557,7 @@ OpenAI가 o3·o4-mini·GPT-4.1을 잇달아 출시하며 프론티어 경쟁이 
     <li>🧪 Anthropic이 Claude의 사고 과정을 밝히는 해석가능성 연구 두 편을 발표해, 모델이 다국어 간 공유된 개념 공간을 갖고 여러 단어 앞을 미리 계획하며 사고한다는 점과 모델의 설명이 항상 실제 추론 과정과 일치하지 않을 수 있다는 점을 확인했다<sup><a href="https://www.anthropic.com/news/tracing-thoughts-language-model" title="Anthropic">[8]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-03-17">
   <div class="meta">
     <span class="meta-tags"><b>2025.3.17 ~ 2025.3.23</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.3.17~2025.3.23)
@@ -574,7 +582,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
     <li>🔬 METR은 AI 에이전트 성능을 인간 전문가 소요 시간 기준으로 측정하는 <strong>HCAST 벤치마크</strong>를 제시했으며, 지난 6년간 이 지표가 지수적으로 증가해 <u>7개월마다 두 배</u>로 늘었다고 밝혔다<sup><a href="https://arxiv.org/abs/2503.17354" title="">[5]</a></sup><sup><a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" title="METR(Machine Intelligence Research Institute) 블로그">[6]</a></sup>. 현재 AI 에이전트는 인간이 1시간 이내에 끝내는 작업에서는 70~80% 성공률을 보이지만 4시간 이상 걸리는 작업에서는 성공률이 20% 미만으로 떨어진다<sup><a href="https://arxiv.org/abs/2503.17354" title="">[5]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-03-10">
   <div class="meta">
     <span class="meta-tags"><b>2025.3.10 ~ 2025.3.16</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.3.10~2025.3.16)
@@ -609,7 +617,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
     <li>🇺🇸 Anthropic 연구팀은 AI 모델에 숨겨진 편향된 목표를 훈련시킨 뒤 블라인드 감사팀이 이를 찾아내는 실험을 통해 <u>숨겨진 목표 감사</u> 방법론의 기반을 마련했다<sup><a href="https://www.anthropic.com/research/auditing-hidden-objectives" title="Anthropic-Research">[12]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-03-03">
   <div class="meta">
     <span class="meta-tags"><b>2025.3.3 ~ 2025.3.9</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.3.3~2025.3.9)
@@ -639,7 +647,7 @@ AI 기본법 시행을 앞둔 한국을 비롯해 각국이 규제 프레임워�
     <li>🇨🇳 METR의 초기 평가에서 DeepSeek-R1이 자율 작업 성공률 <u>약 50%</u>로 기존 최첨단 모델과 큰 차이를 보이지 않았으며, RE-Bench 기준 AI 연구 성능도 DeepSeek-V3와 유사한 수준으로 확인됐다<sup><a href="https://metr.org/evaluations/deepseek-r1-report/" title="METR">[7]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-02-24">
   <div class="meta">
     <span class="meta-tags"><b>2025.2.24 ~ 2025.3.2</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.2.24~2025.3.2)
@@ -790,7 +798,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

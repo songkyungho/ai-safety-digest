@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2025-09-29.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2025-09-29">
   <div class="meta">
     <span class="meta-tags"><b>2025.9.29 ~ 2025.10.5</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.9.29~2025.10.5)
@@ -482,7 +490,7 @@
     <li>🇬🇧 영국 AISI는 학습 데이터에 원치 않는 특성을 의도적으로 유도하는 지시를 넣고 시험 시 제거하는 <u>inoculation prompting</u> 기법을 제안해 emergent misalignment 감소와 backdoor 방어 등에 효과가 있음을 확인했다<sup><a href="https://www.aisi.gov.uk/research/inoculation-prompting-eliciting-traits-from-llms-during-training-can-suppress-them-at-test-time" title="AISI-UK">[17]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-09-22">
   <div class="meta">
     <span class="meta-tags"><b>2025.9.22 ~ 2025.9.28</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.9.22~2025.9.28)
@@ -515,7 +523,7 @@
     <li>🇬🇧 영국 인터넷 워치 재단(IWF)은 AI 챗봇에서 <strong>아동 성착취물(CSAM) 생성 사례</strong>를 처음으로 확인했다고 밝혔다 — <u>6~8월 사이 17건</u>이 보고됐다<sup><a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2390753?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7&amp;read_main=1&amp;nlsidx=0&amp;nlaidx=9" title="MLex">[12]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-09-15">
   <div class="meta">
     <span class="meta-tags"><b>2025.9.15 ~ 2025.9.21</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.9.15~2025.9.21)
@@ -546,7 +554,7 @@
     <li>🇰🇷 한국교통연구원이 AI 에이전트의 행동 이유와 보상 요인을 분석하는 <u>설명 가능성(XAI)</u> 프레임워크를 소개하며 자율주행·교통신호 제어 분야 적용 가능성을 제시했다<sup><a href="https://www.koti.re.kr/common/file/download.do?atch_no=RPLDxAAXOwfQb5pJtpBMxw%3D%3D" title="한국교통연구원">[10]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-09-08">
   <div class="meta">
     <span class="meta-tags"><b>2025.9.8 ~ 2025.9.14</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.9.8~2025.9.14)
@@ -586,7 +594,7 @@
     <li>🇺🇸 Anthropic은 미국 CAISI, 영국 AISI와 협력해 모델의 <u>프롬프트 주입</u>, 암호 기반 공격, 입력·출력 은폐 공격 등 취약점을 레드팀 방식으로 발견해 해결했다고 밝혔다<sup><a href="https://www.anthropic.com/news/strengthening-our-safeguards-through-collaboration-with-us-caisi-and-uk-aisi" title="Anthropic">[15]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-09-01">
   <div class="meta">
     <span class="meta-tags"><b>2025.9.1 ~ 2025.9.7</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.9.1~2025.9.7)
@@ -629,7 +637,7 @@
     <li>🧪 Anthropic은 LLM이 생물무기 개발 등 바이오 위험의 잠재적 원인이 될 수 있다는 점을 확인하고 정보 공유 제한 등 완화 방안을 연구했다<sup><a href="https://www.anthropic.com/research/biorisk" title="Anthropic-Research">[17]</a></sup>. 존스홉킨스 연구진은 다국어 LLM이 질문 언어에 따라 편향된 정보를 제공해 저자원 언어 사용자에게 <u>정보 필터 버블</u>을 강화한다는 사실을 확인했다<sup><a href="https://hub.jhu.edu/2025/09/02/multilingual-artificial-intelligence-often-reinforces-bias" title="존스홉킨스대학교(Johns Hopkins) 허브(hub.jhu.edu)">[18]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-08-25">
   <div class="meta">
     <span class="meta-tags"><b>2025.8.25 ~ 2025.8.31</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.8.25~2025.8.31)
@@ -677,7 +685,7 @@
     <li>🧪 Anthropic은 Chrome용 Claude 파일럿에서 prompt injection 공격 성공률을 <u>23.6%에서 11.2%</u>로 낮췄다<sup><a href="https://www.anthropic.com/news/claude-for-chrome" title="앤트로픽(Anthropic) 공식 뉴스">[21]</a></sup>. Partnership on AI는 딥페이크·합성미디어로 인한 신뢰 훼손에 대응해 ‘AI and Human Connection’ 신규 작업을 출범했고<sup><a href="https://partnershiponai.org/how-can-ai-fortify-informed-and-connected-communities/" title="Partnership on AI(POAI) 블로그">[22]</a></sup>, 스탠퍼드 HAI는 자폐 스펙트럼 장애인의 공감 대화 연습을 돕는 챗봇 ‘Noora’를 소개하며 <u>71%</u> 개선 효과를 확인했다<sup><a href="https://hai.stanford.edu/news/an-ai-social-coach-is-teaching-empathy-to-people-with-autism" title="스탠퍼드 HAI(Stanford HAI)">[23]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-08-18">
   <div class="meta">
     <span class="meta-tags"><b>2025.8.18 ~ 2025.8.24</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.8.18~2025.8.24)
@@ -722,7 +730,7 @@ AI 챗봇이 취약계층의 실제 사망·자살 사건과 연결되며 규제
     <li>🧪 METR 연구에서 Claude·GPT·Gemini 계열 모델은 추론 과정을 숨겨 모니터링을 회피하려 할 경우 과제 정확도가 크게 떨어져 은폐에 실패했으며, 모델이 발전할수록 오히려 모니터링이 쉬워지는 것으로 나타났다<sup><a href="https://metr.org/notes/2025-08-22-claude-gpt-gemini-struggle-evade-monitors/" title="METR">[19]</a></sup>. 또 다른 METR 조사에서는 AI 연구개발 자동화로 인한 진전 가속화 전망에 대해 전문가와 초예측가 사이 의견이 크게 갈렸다<sup><a href="https://metr.org/blog/2025-08-20-forecasting-impacts-of-ai-acceleration/" title="METR">[20]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-08-11">
   <div class="meta">
     <span class="meta-tags"><b>2025.8.11 ~ 2025.8.17</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.8.11~2025.8.17)
@@ -882,7 +890,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

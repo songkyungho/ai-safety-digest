@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2026-01-19.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2026-01-19">
   <div class="meta">
     <span class="meta-tags"><b>2026.1.19 ~ 2026.1.25</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.1.19~2026.1.25)
@@ -484,7 +492,7 @@
     <li>🧪 Anthropic은 Claude의 가치·행동을 규정한 <strong>새 헌법</strong>을 CC0로 전문 공개하고 학습·평가 과정에 반영하겠다고 밝혔다<sup><a href="https://www.anthropic.com/news/claude-new-constitution" title="앤트로픽(Anthropic)">[15]</a></sup><sup><a href="https://www.anthropic.com/research/claude-new-constitution" title="Anthropic-Research">[16]</a></sup>. 같은 주 Anthropic은 정렬 감사 도구 Petri 2.0을 공개해 평가 인지 문제를 완화했고, METR은 SHUSHCAST로 에이전트의 은밀한 사이드 작업 적발률을 측정했으며, 한 연구는 파인튜닝으로 safeguard된 모델에서도 유해 능력의 <u>40%</u>를 복원할 수 있음을 확인했다<sup><a href="https://alignment.anthropic.com/2026/petri-v2/" title="Anthropic(얼라인먼트 사이언스 블로그)">[17]</a></sup><sup><a href="https://metr.org/blog/2026-01-19-early-work-on-monitorability-evaluations/" title="METR(Machine Evaluation and Threat Research) 블로그">[18]</a></sup><sup><a href="https://www.arxiv.org/abs/2601.13528" title="arXiv">[19]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-01-12">
   <div class="meta">
     <span class="meta-tags"><b>2026.1.12 ~ 2026.1.18</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.1.12~2026.1.18)
@@ -520,7 +528,7 @@ AI의 경제적 파급력과 사이버 공격 역량이 동시에 커지는 가�
     <li>🇺🇸 Anthropic 연구팀은 AI 에이전트를 활용한 속성 기반 테스트로 NumPy·SciPy·Pandas 등에서 수백 개의 잠재적 버그를 발견해 일부를 수정했다<sup><a href="https://www.anthropic.com/research/property-based-testing" title="Anthropic-Research">[11]</a></sup>. 별도 연구에서는 LLM 페르소나가 수렴하는 'Assistant Axis' 구조가 규명됐고, 영국 AISI는 misalignment 담론 비율을 조정한 사전학습 실험에서 misalignment 점수가 <u>45%에서 9%로</u> 낮아짐을 확인했다<sup><a href="https://arxiv.org/abs/2601.10387" title="arXiv">[12]</a></sup><sup><a href="https://www.aisi.gov.uk/research/alignment-pretraining-ai-discourse-causes-self-fulfilling-mis-alignment" title="AISI-UK">[13]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-01-05">
   <div class="meta">
     <span class="meta-tags"><b>2026.1.5 ~ 2026.1.11</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.1.5~2026.1.11)
@@ -550,7 +558,7 @@ AI의 경제적 파급력과 사이버 공격 역량이 동시에 커지는 가�
     <li>🧪 Anthropic이 차세대 'Constitutional Classifiers++'를 통해 유니버설 탈옥 방어 성능을 유지하면서 무해 질의 거부율을 <u>87% 감소</u>시켰다고 밝혔으며, 198,000회 레드팀 시도 중 고위험 취약점은 1건에 그쳤다고 설명했다<sup><a href="https://www.anthropic.com/research/next-generation-constitutional-classifiers" title="앤트로픽(Anthropic) 공식 연구 페이지">[9]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-12-29">
   <div class="meta">
     <span class="meta-tags"><b>2025.12.29 ~ 2026.1.4</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.12.29~2026.1.4)
@@ -586,7 +594,7 @@ AI의 경제적 파급력과 사이버 공격 역량이 동시에 커지는 가�
     <li>🧪 Center for AI Safety는 AI 시스템이 사람·기업·국가에 대해 어떤 가치와 선호를 보이는지 비교하는 <strong>AI Values Dashboard</strong>를 공개했다<sup><a href="https://values.safe.ai" title="Center for AI Safety">[11]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-12-22">
   <div class="meta">
     <span class="meta-tags"><b>2025.12.22 ~ 2025.12.28</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.12.22~2025.12.28)
@@ -609,7 +617,7 @@ AI의 경제적 파급력과 사이버 공격 역량이 동시에 커지는 가�
     <li>🇰🇷 과학기술정보통신부가 제43차 ICT 규제샌드박스 심의위원회에서 지자체 CCTV 원본 데이터 활용 등 <u>6건</u>의 규제 특례를 지정했다<sup><a href="https://eiec.kdi.re.kr/policy/materialView.do?num=275288" title="과학기술정보통신부">[3]</a></sup>. 한국교육과정평가원은 수업 및 평가를 위한 생성형 AI 활용 가이드라인을 발표했다<sup><a href="https://iaae.ai/research/?q=YToyOntzOjQ6InBhZ2UiO2k6MztzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&amp;bmode=view&amp;idx=169210202&amp;t=board" title="한국교육과정평가원">[4]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-12-15">
   <div class="meta">
     <span class="meta-tags"><b>2025.12.15 ~ 2025.12.21</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.12.15~2025.12.21)
@@ -646,7 +654,7 @@ AI의 경제적 파급력과 사이버 공격 역량이 동시에 커지는 가�
     <li>🧪 K-AISI 동향에 따르면 대규모 추론모델은 추론을 길게 할수록 정확도가 떨어지는 <strong>inverse scaling</strong> 현상을 보였고, Claude Sonnet 4에서는 자기보존 성향 표현이 증가한 것으로 나타났다<sup><a href="https://arxiv.org/abs/2507.14417" title="arXiv.org">[12]</a></sup>. AISI-UK는 블루팀-레드팀 적대적 게임으로 비동기 모니터링의 사보타주 억제력을 평가해 앙상블 모니터가 <u>false negative 6%</u> 수준을 달성함을 확인했고, Anthropic은 모델 행동을 자동 평가하는 오픈소스 도구 <strong>Bloom</strong>을 공개해 16개 최첨단 모델의 정렬 행동을 벤치마크했다<sup><a href="https://www.aisi.gov.uk/research/async-control-stress-testing-asynchronous-control-measures-for-llm-agents" title="AISI-UK">[13]</a></sup><sup><a href="https://www.anthropic.com/research/bloom" title="Anthropic-Research">[14]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-12-08">
   <div class="meta">
     <span class="meta-tags"><b>2025.12.8 ~ 2025.12.14</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.12.8~2025.12.14)
@@ -682,7 +690,7 @@ AI의 경제적 파급력과 사이버 공격 역량이 동시에 커지는 가�
     <li>🧪 예금보험공사는 AI의 설명가능성 부족이 금융권의 투명성·책임 문제를 야기할 수 있다고 지적하며 규제당국에 AI 평가 역량을 갖춘 인력 육성과 안전장치 전제의 활용 허용을 제안했다<sup><a href="https://www.kdic.or.kr/html/synap/skin/doc.html?key=HPEB2AE4678D5E4BA482E0BDDC9EA81EEF&amp;imageConverting=true&amp;convLocale=ko_KR&amp;contextPath=/html/synap/output/preview/202512/HPEB2AE4678D5E4BA482E0BDDC9EA81EEF/" title="예금보험공사">[11]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-12-01">
   <div class="meta">
     <span class="meta-tags"><b>2025.12.1 ~ 2025.12.7</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.12.1~2025.12.7)
@@ -841,7 +849,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

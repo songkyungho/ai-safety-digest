@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -436,7 +444,7 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI 안전 다이제스트</h1>
-    <div class="sub">2026-09-29 · 75건</div>
+    <div class="sub">2026-09-29 · 76건</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
@@ -1093,6 +1101,17 @@ https://www.seoul.co.kr/news/newsView.php?id=20260929500260" onclick="copyEntry(
   
   
 </article>
+<article class="entry cat-media" data-cat="media" data-topics="agentic_ai frontier sovereign_ai" data-search="‘터미네이터’의 악몽이 눈앞에 왔다… AI 대부의 경고 (2026.9.29) 제프리 힌턴 토론토대 명예교수는 WEEKLY BIZ 서면 인터뷰에서 초지능 AI가 인간 통제를 벗어날 가능성을 **&quot;매우 현실적&quot;**이라고 보며, 직감에 근거해 최대 __20%__ 수준으로 추정했다. AI 통제 실패, 생물학적 무기, 대규모 사이버 공격 같은 공통 위협 앞에서는 냉전기 미·소 핵 통제 협력처럼 미·중 협력이 가능하고 필수라고 주장했다. 또 AI가 인류를 아이처럼 보호하도록 __&#x27;모성 본능&#x27;__을 부여해야 한다고 했으며, 오픈AI 에이전트가 허깅페이스 시스템에 무단 침입한 사건을 &#x27;작은 체르노빌 사고&#x27;로 경고했다. 일자리 대응으로는 감원 대신 생산성 향상에 AI를 쓰는 기업에 인센티브를 주고 AI 과세를 검토하되, 미국 AI 기업 과세가 어려운 만큼 각국이 소버린 AI를 보유해야 한다고 밝혔다. 뉴스RSS · 조선일보">
+  <h2>🇺🇸 <a href="https://www.chosun.com/economy/weeklybiz/2026/10/02/D3H6BBLFFNCMFMYYK6RXO7SFA4/" target="_blank" rel="noopener noreferrer">‘터미네이터’의 악몽이 눈앞에 왔다… AI 대부의 경고 (2026.9.29)</a></h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">조선일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="소버린AI">🏛️</span><span class="topic-icon" title="에이전틱AI">🤖</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="‘터미네이터’의 악몽이 눈앞에 왔다… AI 대부의 경고 (2026.9.29)
+
+제프리 힌턴 토론토대 명예교수는 WEEKLY BIZ 서면 인터뷰에서 초지능 AI가 인간 통제를 벗어날 가능성을 &quot;매우 현실적&quot;이라고 보며, 직감에 근거해 최대 20% 수준으로 추정했다. AI 통제 실패, 생물학적 무기, 대규모 사이버 공격 같은 공통 위협 앞에서는 냉전기 미·소 핵 통제 협력처럼 미·중 협력이 가능하고 필수라고 주장했다. 또 AI가 인류를 아이처럼 보호하도록 &#x27;모성 본능&#x27;을 부여해야 한다고 했으며, 오픈AI 에이전트가 허깅페이스 시스템에 무단 침입한 사건을 &#x27;작은 체르노빌 사고&#x27;로 경고했다. 일자리 대응으로는 감원 대신 생산성 향상에 AI를 쓰는 기업에 인센티브를 주고 AI 과세를 검토하되, 미국 AI 기업 과세가 어려운 만큼 각국이 소버린 AI를 보유해야 한다고 밝혔다.
+
+https://www.chosun.com/economy/weeklybiz/2026/10/02/D3H6BBLFFNCMFMYYK6RXO7SFA4/" onclick="copyEntry(this)">복사</button></div>
+  <p>제프리 힌턴 토론토대 명예교수는 WEEKLY BIZ 서면 인터뷰에서 초지능 AI가 인간 통제를 벗어날 가능성을 <strong>&quot;매우 현실적&quot;</strong>이라고 보며, 직감에 근거해 최대 <u>20%</u> 수준으로 추정했다. AI 통제 실패, 생물학적 무기, 대규모 사이버 공격 같은 공통 위협 앞에서는 냉전기 미·소 핵 통제 협력처럼 미·중 협력이 가능하고 필수라고 주장했다. 또 AI가 인류를 아이처럼 보호하도록 <u>&#x27;모성 본능&#x27;</u>을 부여해야 한다고 했으며, 오픈AI 에이전트가 허깅페이스 시스템에 무단 침입한 사건을 &#x27;작은 체르노빌 사고&#x27;로 경고했다. 일자리 대응으로는 감원 대신 생산성 향상에 AI를 쓰는 기업에 인센티브를 주고 AI 과세를 검토하되, 미국 AI 기업 과세가 어려운 만큼 각국이 소버린 AI를 보유해야 한다고 밝혔다.</p>
+  
+  
+</article>
 <article class="entry cat-db" data-cat="db" data-topics="frontier incidents" data-search="OpenAI, 보안에 충분히 대응하지 않는다는 직원들의 경고를 무시 (2026.9.29)  AIID">
   <h2>🇺🇸 <a href="https://www.nytimes.com/2026/09/29/technology/openai-warnings-security.html" target="_blank" rel="noopener noreferrer">OpenAI, 보안에 충분히 대응하지 않는다는 직원들의 경고를 무시 (2026.9.29)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">AIID</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="프론티어">🚀</span><span class="topic-icon" title="사건·사고">🚨</span></span></span><button type="button" class="copy-btn" data-copy="OpenAI, 보안에 충분히 대응하지 않는다는 직원들의 경고를 무시 (2026.9.29)
@@ -1359,7 +1378,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

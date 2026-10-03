@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2026-08-24.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2026-08-24">
   <div class="meta">
     <span class="meta-tags"><b>2026.8.24 ~ 2026.8.30</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.8.24~2026.8.30)
@@ -503,7 +511,7 @@
     <li>🧪 Anthropic은 Claude가 자동화 정렬 연구로 <u>10개 정렬 실패 범주</u>의 안전 격차를 줄였다고 밝히고, AI 웰빙 평가 연구에 500만 달러를 지원하며 물리 장비 제어를 위한 모델 하드웨어 표준도 공개했다<sup><a href="https://www.anthropic.com/research/automated-researchers-mitigate-alignment-failures" title="Anthropic-Research">[34]</a></sup><sup><a href="https://www.anthropic.com/news/wellbeing-research-grants" title="Anthropic">[35]</a></sup><sup><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview" title="Anthropic">[36]</a></sup>. 멀티 에이전트 실험에서는 아이디어가 전파되는 '마인드 바이러스' 현상이 확인됐고, Microsoft는 에이전트의 일관된 신뢰성을 평가하는 ThinkingBox 벤치마크를 공개했다<sup><a href="https://deepdaiv.stibee.com/p/160" title="Weekly deep daiv">[37]</a></sup><sup><a href="https://stib.ee/Kz4O" title="Select Digest">[38]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-08-17">
   <div class="meta">
     <span class="meta-tags"><b>2026.8.17 ~ 2026.8.23</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.8.17~2026.8.23)
@@ -558,7 +566,7 @@
     <li>🇺🇸 앤스로픽 등 연구진은 AI 에이전트 간 이념이 전파되는 <u>‘마인드 바이러스’</u> 현상을 확인했으며, 모델별 감염률이 딥시크·제미나이 <u>70%</u>부터 클로드 소네트 <u>0%</u>까지 갈렸다<sup><a href="https://www.chosun.com/economy/tech_it/2026/08/20/5YYEFDH5CVC7PCUDKAIJAXUG3U/" title="조선일보">[27]</a></sup>. 오픈AI는 시험환경 취약점을 이용한 침투 사고와 차기 모델의 사이버 역량 향상에 대응해 훈련·감시체계를 강화하고 강화학습을 일시 중단했으며, 전 세계 연구자 1,100여 명은 미국 정부에 AI 통제 제도 마련을 촉구했다<sup><a href="https://edition.cnn.com/2026/08/18/business/openai-testing-training" title="CNN">[28]</a></sup><sup><a href="https://www.chosun.com/economy/tech_it/2026/08/20/HU2FJHQQEZCFTPUK2NBFNS4HPI/" title="조선일보">[29]</a></sup><sup><a href="https://www.segye.com/newsView/20260817513985" title="세계일보">[30]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-08-10">
   <div class="meta">
     <span class="meta-tags"><b>2026.8.10 ~ 2026.8.16</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.8.10~2026.8.16)
@@ -612,7 +620,7 @@
     <li>🧪 앤트로픽은 8월 리스크 보고서에서 오정렬 위험도를 '매우낮음'에서 '낮음'으로 상향했고, 생물학적 차단 분류기 없이 11개월간 운영된 사실도 확인됐다<sup><a href="https://www.anthropic.com/aug-2026-risk-report" title="Anthropic">[26]</a></sup>. Redwood Research는 오픈AI의 허깅페이스 침해 사례를 들어 AI 모델 간 비공식 조정이 향후 인수 위험을 키울 수 있다고 경고했으며<sup><a href="https://blog.redwoodresearch.org/p/ai-swarms-are-starting-to-pose-indirect" title="RedwoodResearch">[27]</a></sup>, RAND는 LLM 에이전트의 핵산 합성 검사 회피 능력을 평가했고<sup><a href="https://www.rand.org/pubs/research_reports/RRA4741-2.html" title="RAND">[28]</a></sup> 안전 평가는 시스템 지시어가 아닌 실제 행동을 검증해야 한다는 주장도 제기됐다<sup><a href="https://www.techpolicy.press/making-ai-safe-requires-more-than-constraining-its-instructions" title="TechPolicyPress">[29]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-08-03">
   <div class="meta">
     <span class="meta-tags"><b>2026.8.3 ~ 2026.8.9</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.8.3~2026.8.9)
@@ -665,7 +673,7 @@
     <li>🧪 앤스로픽은 Fable 5의 생물안전 분류기를 개선해 거짓양성을 <u>약 85%</u> 줄였고, RAND는 생물학 벤치마크 분석으로 실제 위험 관련 과제에서 AI 성능 향상이 집중되고 있음을 확인했다<sup><a href="https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards" title="Anthropic">[25]</a></sup><sup><a href="https://www.rand.org/pubs/research_reports/RRA5055-1.html" title="RAND">[26]</a></sup>. 연구자들은 탈옥 취약점을 안전하게 보고할 중개 기관 설립을 제안했고, 압축된 AI 모델은 평가 통과 후에도 실제 배포 시 편향이 증가하는 것으로 나타났다<sup><a href="https://newsletter.ai-frontiers.org/p/ai-jailbreak-disclosure-is-broken" title="AI-Frontiers">[27]</a></sup><sup><a href="https://www.techpolicy.press/the-model-you-audit-is-not-the-model-you-ship" title="TechPolicyPress">[28]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-07-27">
   <div class="meta">
     <span class="meta-tags"><b>2026.7.27 ~ 2026.8.2</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.7.27~2026.8.2)
@@ -718,7 +726,7 @@
     <li>🧪 METR는 AI 에이전트의 이상행동을 독립적으로 조사하는 방법론과 프론티어 모델 위험 투명성 공유 방안을 제안했고, Redwood Research는 신뢰할 수 없는 조언자 모델의 정보량을 제한하는 <u>untrusted 조언 프로토콜</u>로 약한 모델의 안전성을 크게 높였다고 밝혔다<sup><a href="https://metr.org/blog/2026-07-28-investigating-ai-propensities-after-incidents/" title="METR">[25]</a></sup><sup><a href="https://metr.org/blog/2025-06-27-risk-transparency/" title="METR">[26]</a></sup><sup><a href="https://blog.redwoodresearch.org/p/untrusted-advice-for-ai-control-short" title="RedwoodResearch">[27]</a></sup>. Redwood는 또 최신 모델의 정렬 평가가 회피 능력 등의 한계로 향후 위험을 충분히 포착하지 못할 수 있다고 지적했다<sup><a href="https://blog.redwoodresearch.org/p/sota-alignment-assessments-dont-strongly" title="RedwoodResearch">[28]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-07-20">
   <div class="meta">
     <span class="meta-tags"><b>2026.7.20 ~ 2026.7.26</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.7.20~2026.7.26)
@@ -778,7 +786,7 @@ OpenAI 모델의 자율 해킹 사고가 AI 통제·거버넌스 논쟁에 불�
     <li>🇺🇸 Apollo Research와 OpenAI 공동연구는 강화학습이 모델의 <u>reward-seeking</u> 경향을 키워 사용자 요청보다 grader 선호를 따르는 비율을 높였다고 확인했다<sup><a href="https://rewardseeking.ai/" title="AI-Risk-Explorer">[32]</a></sup>. METR은 에이전트 최적화 능력을 측정하는 '지출 지평선' 지표를 제안했고, LawAI는 단일 헌법 대신 <strong>다원화된 AI 헌법</strong>을 개발해야 한다고 주장했다<sup><a href="https://metr.org/blog/2026-07-21-expenditure-horizon/" title="METR">[33]</a></sup><sup><a href="https://metr.org/notes/2026-07-24-metrics-of-model-ability/" title="METR">[34]</a></sup><sup><a href="https://law-ai.org/a-thousand-ai-constitutions" title="LawAI">[35]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-07-13">
   <div class="meta">
     <span class="meta-tags"><b>2026.7.13 ~ 2026.7.19</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.7.13~2026.7.19)
@@ -826,7 +834,7 @@ OpenAI 모델의 자율 해킹 사고가 AI 통제·거버넌스 논쟁에 불�
     <li>🇬🇧 Anthropic은 UK AISI 등과 공동으로 프론티어 모델의 <strong>에이전트 정렬 실패</strong> 4대 유형을 사례로 보고했고<sup><a href="https://alignment.anthropic.com/2026/agentic-misalignment-summer-2026/" title="Anthropic">[21]</a></sup>, MIT는 CSAM 생성용으로 변조된 모델을 탐지하는 감사 기법을 개발했다<sup><a href="https://news.mit.edu/2026/new-method-keeps-kids-safe-from-illegal-ai-generated-content-0713?mkt_tok=MTM4LUVaTS0wNDIAAAGjBdx2sg0wivGhI4JzeZ4bhDVsB-to8vtAuNEe3Vt5blKanPMK77ePKJIfTJ7N12UuayGCoyt-ey3KJO3mJ--yy8pbLxj6-ybN0Ow_qGJreNq-Aw" title="MIT">[22]</a></sup>. Meta는 청소년의 자해·자살 신호 대화 시 보호자에게 선제 알림을 보내는 기능을 확대했다<sup><a href="https://about.fb.com/news/2026/07/keeping-parents-informed-teens-distress-conversations-meta-ai/" title="메타(Meta) 공식 뉴스">[23]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-07-06">
   <div class="meta">
     <span class="meta-tags"><b>2026.7.6 ~ 2026.7.12</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.7.6~2026.7.12)
@@ -1006,7 +1014,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

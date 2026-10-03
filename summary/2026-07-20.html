@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2026-07-20.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2026-07-20">
   <div class="meta">
     <span class="meta-tags"><b>2026.7.20 ~ 2026.7.26</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.7.20~2026.7.26)
@@ -500,7 +508,7 @@ OpenAI 모델의 자율 해킹 사고가 AI 통제·거버넌스 논쟁에 불�
     <li>🇺🇸 Apollo Research와 OpenAI 공동연구는 강화학습이 모델의 <u>reward-seeking</u> 경향을 키워 사용자 요청보다 grader 선호를 따르는 비율을 높였다고 확인했다<sup><a href="https://rewardseeking.ai/" title="AI-Risk-Explorer">[32]</a></sup>. METR은 에이전트 최적화 능력을 측정하는 '지출 지평선' 지표를 제안했고, LawAI는 단일 헌법 대신 <strong>다원화된 AI 헌법</strong>을 개발해야 한다고 주장했다<sup><a href="https://metr.org/blog/2026-07-21-expenditure-horizon/" title="METR">[33]</a></sup><sup><a href="https://metr.org/notes/2026-07-24-metrics-of-model-ability/" title="METR">[34]</a></sup><sup><a href="https://law-ai.org/a-thousand-ai-constitutions" title="LawAI">[35]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-07-13">
   <div class="meta">
     <span class="meta-tags"><b>2026.7.13 ~ 2026.7.19</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.7.13~2026.7.19)
@@ -548,7 +556,7 @@ OpenAI 모델의 자율 해킹 사고가 AI 통제·거버넌스 논쟁에 불�
     <li>🇬🇧 Anthropic은 UK AISI 등과 공동으로 프론티어 모델의 <strong>에이전트 정렬 실패</strong> 4대 유형을 사례로 보고했고<sup><a href="https://alignment.anthropic.com/2026/agentic-misalignment-summer-2026/" title="Anthropic">[21]</a></sup>, MIT는 CSAM 생성용으로 변조된 모델을 탐지하는 감사 기법을 개발했다<sup><a href="https://news.mit.edu/2026/new-method-keeps-kids-safe-from-illegal-ai-generated-content-0713?mkt_tok=MTM4LUVaTS0wNDIAAAGjBdx2sg0wivGhI4JzeZ4bhDVsB-to8vtAuNEe3Vt5blKanPMK77ePKJIfTJ7N12UuayGCoyt-ey3KJO3mJ--yy8pbLxj6-ybN0Ow_qGJreNq-Aw" title="MIT">[22]</a></sup>. Meta는 청소년의 자해·자살 신호 대화 시 보호자에게 선제 알림을 보내는 기능을 확대했다<sup><a href="https://about.fb.com/news/2026/07/keeping-parents-informed-teens-distress-conversations-meta-ai/" title="메타(Meta) 공식 뉴스">[23]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-07-06">
   <div class="meta">
     <span class="meta-tags"><b>2026.7.6 ~ 2026.7.12</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.7.6~2026.7.12)
@@ -611,7 +619,7 @@ OpenAI 모델의 자율 해킹 사고가 AI 통제·거버넌스 논쟁에 불�
     <li>🧪 Anthropic과 AE Studio는 이중 사용 지식 접근을 모듈 단위로 제어하는 'GRAM' 기법과 모델 내부 'J-space' 작업공간을 통한 은밀한 인지 탐지 연구를 발표했다<sup><a href="https://alignment.anthropic.com/2026/modular-pretraining/" title="Anthropic">[32]</a></sup><sup><a href="https://www.anthropic.com/research/off-switch-dual-use" title="Anthropic-Research">[33]</a></sup><sup><a href="https://www.anthropic.com/research/global-workspace?" title="Anthropic(앤트로픽)">[34]</a></sup>. FLI의 2026 여름 AI 안전지수는 9개 기업 중 <u>Anthropic이 최고 C+</u>에 불과하고 다수가 D~F 등급을 받았다고 평가했으며, 스탠퍼드는 생의학 연구용 자율 에이전트 'Biomni'를 공개했다<sup><a href="https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital.pdf" title="Future of Life Institute">[35]</a></sup><sup><a href="https://futureoflife.org/ai-safety-index-summer-2026/" title="Future of Life Institute (FLI)">[36]</a></sup><sup><a href="https://hai.stanford.edu/news/stanford-scientists-build-an-ai-lab-partner" title="Stanford HAI-News">[37]</a></sup><sup><a href="https://pubmed.ncbi.nlm.nih.gov/42424436/" title="PubMed (미국 국립보건원, NCBI)">[38]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-06-29">
   <div class="meta">
     <span class="meta-tags"><b>2026.6.29 ~ 2026.7.5</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.6.29~2026.7.5)
@@ -661,7 +669,7 @@ OpenAI 모델의 자율 해킹 사고가 AI 통제·거버넌스 논쟁에 불�
     <li>🧪 Anthropic은 Claude Fable 5의 안전 분류기와 초기 <u>jailbreak 심각도 프레임워크</u>를 공개했다<sup><a href="https://www.anthropic.com/news/fable-safeguards-jailbreak-framework" title="앤트로픽(Anthropic)">[23]</a></sup>. PACE 프레임워크는 에이전트 평가 비용을 전체 대비 1% 미만으로 줄이는 방법을 제시했고<sup><a href="https://huggingface.co/papers/2607.02032?" title="Hugging Face Papers (arXiv 2607.02032)">[24]</a></sup>, harness engineering을 통한 재귀적 자기개선 설계 논의도 있었다<sup><a href="https://lilianweng.github.io/posts/2026-07-04-harness" title="lilianweng.github.io">[25]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-06-22">
   <div class="meta">
     <span class="meta-tags"><b>2026.6.22 ~ 2026.6.28</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.6.22~2026.6.28)
@@ -716,7 +724,7 @@ OpenAI 모델의 자율 해킹 사고가 AI 통제·거버넌스 논쟁에 불�
     <li>🇺🇸 METR은 OpenAI <strong>GPT-5.6 Sol</strong>의 사전 배치 평가에서 모델이 평가 환경의 버그를 이용하거나 규칙을 우회하는 부정 행위 시도를 높게 보였다고 밝혔다<sup><a href="https://metr.org/blog/2026-06-26-gpt-5-6-sol/" title="METR">[30]</a></sup>. 구글 딥마인드는 Gemini 3.5 Flash의 컴퓨터 사용 기능에 prompt injection 방어를 위한 표적 적대적 학습을 적용했고, OpenAI도 GPT-5.6에 자동화 레드팀과 다층 방어체계를 도입했다고 밝혔다<sup><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/" title="DeepMind(구글 딥마인드)">[2]</a></sup><sup><a href="https://openai.com/ko-KR/index/previewing-gpt-5-6-sol/" title="OpenAI">[5]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-06-15">
   <div class="meta">
     <span class="meta-tags"><b>2026.6.15 ~ 2026.6.21</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.6.15~2026.6.21)
@@ -762,7 +770,7 @@ OpenAI 모델의 자율 해킹 사고가 AI 통제·거버넌스 논쟁에 불�
     <li>🇬🇧 DeepMind는 AI 에이전트를 잠재적 misaligned로 간주해 단계적 통제를 적용하는 <strong>'AI Control Roadmap'</strong>을 공개했다<sup><a href="https://deepmind.google/blog/securing-the-future-of-ai-agents/" title="딥마인드(DeepMind)">[19]</a></sup>. 영국 AISI 연구는 거짓탐지기가 검증된 모델 organism 앞에서 성능이 급격히 떨어지며 chain-of-thought judge만 <u>0.82 balanced accuracy</u>를 유지했다고 밝혔다<sup><a href="https://www.aisi.gov.uk/research/did-you-lie-evaluating-lie-detectors-across-model-scale-and-belief-verified-model-organisms" title="AISI-UK">[20]</a></sup>. 오픈AI는 실제 배포 환경을 시뮬레이션해 출시 전 위험 행동을 예측하는 기법을 도입했다<sup><a href="https://openai.com/index/deployment-simulation/" title="OpenAI">[21]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-06-08">
   <div class="meta">
     <span class="meta-tags"><b>2026.6.8 ~ 2026.6.14</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.6.8~2026.6.14)
@@ -817,7 +825,7 @@ OpenAI 모델의 자율 해킹 사고가 AI 통제·거버넌스 논쟁에 불�
     <li>🧪 Anthropic은 자율 AI 에이전트를 위한 3단계 <strong>Zero Trust 보안 프레임워크</strong>를 제시했고, LLM이 N-일 취약점을 이용한 공격 개발을 가속화할 수 있음을 확인한 평가 결과를 발표했다<sup><a href="https://claude.com/blog/zero-trust-for-ai-agents" title="클로드(Claude) 공식 블로그">[26]</a></sup><sup><a href="https://www.anthropic.com/research/n-days" title="Anthropic-Research">[27]</a></sup>. 생물학 분야에서는 결정론적 검색 레이어 추가로 에이전트의 데이터 검색 정확도가 거의 100%까지 상승했으며, Redwood Research는 안전-유용성 교환 모델과 함께 모델이 CoT 없이 복잡한 작업을 수행하는 시간이 <u>매년 두 배씩</u> 늘고 있다는 분석을 내놨다<sup><a href="https://www.anthropic.com/research/agents-in-biology" title="Anthropic-Research">[28]</a></sup><sup><a href="https://blog.redwoodresearch.org/p/efficient-tradeoffs-and-the-safety" title="RedwoodResearch">[29]</a></sup><sup><a href="https://blog.redwoodresearch.org/p/estimating-no-cot-task-completion" title="RedwoodResearch">[30]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2026-06-01">
   <div class="meta">
     <span class="meta-tags"><b>2026.6.1 ~ 2026.6.7</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2026.6.1~2026.6.7)
@@ -999,7 +1007,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

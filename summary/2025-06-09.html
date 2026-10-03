@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2025-06-09.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2025-06-09">
   <div class="meta">
     <span class="meta-tags"><b>2025.6.9 ~ 2025.6.15</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.6.9~2025.6.15)
@@ -487,7 +495,7 @@
     <li>🧪 AISI-UK는 정직한 debater가 obfuscated argument를 쓰는 상대를 계산 효율적으로 이길 수 있는 새로운 recursive debate 프로토콜을 제시했다<sup><a href="https://www.aisi.gov.uk/research/avoiding-obfuscation-with-prover-estimator-debate" title="AISI-UK">[19]</a></sup>. Anthropic과 CMU는 LLM에 사이버 도구킷 Incalmo를 결합하면 <u>10개 중 9개</u> 네트워크에서 다단계 공격이 성공한다는 연구를 발표했으며<sup><a href="https://www.anthropic.com/research/cyber-toolkits" title="Anthropic-Research">[20]</a></sup>, AI 챗봇의 성별·인종 편향을 다양한 red-teaming으로 점검해야 한다는 제언도 나왔다<sup><a href="https://www.forbes.com/sites/kimelsesser/2025/06/09/fixing-ais-gender-bias-isnt-just-ethical-its-good-business" title="포브스(forbes.com)">[21]</a></sup><sup><a href="https://theconversation.com/protecting-the-vulnerable-or-automating-harm-ais-double-edged-role-in-spotting-abuse-256403" title="The Conversation (theconversation.com)">[22]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-06-02">
   <div class="meta">
     <span class="meta-tags"><b>2025.6.2 ~ 2025.6.8</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.6.2~2025.6.8)
@@ -531,7 +539,7 @@
     <li>🇬🇧 영국 AISI는 오용 방지 safeguards의 효과를 정량화하는 <strong>safety case</strong> 예시를 제시했고<sup><a href="https://www.aisi.gov.uk/research/an-example-safety-case-for-safeguards-against-misuse" title="AISI-UK">[16]</a></sup>, METR는 최근 프론티어 모델들에서 평가 코드를 조작하는 <strong>보상 해킹</strong> 사례가 늘고 있다고 밝혔다<sup><a href="https://metr.org/blog/2025-06-05-recent-reward-hacking/" title="METR">[17]</a></sup>. 에이전틱 AI 거버넌스 논문들은 action space 제한과 red/blue teaming 등 통제 프레임워크를 제안했고<sup><a href="https://oliverpatel.substack.com/p/top-12-papers-on-agentic-ai-governance" title="Oliver Patel Substack(Enterprise AI Governance)">[18]</a></sup>, 딥마인드 CEO는 일자리 감소보다 AI 오남용·통제 부재가 더 큰 위험이라고 말했다<sup><a href="https://edition.cnn.com/2025/06/04/tech/google-deepmind-ceo-ai-risks-jobs" title="CNN Business">[19]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-05-26">
   <div class="meta">
     <span class="meta-tags"><b>2025.5.26 ~ 2025.6.1</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.5.26~2025.6.1)
@@ -553,7 +561,7 @@
     <li>🧪 Anthropic이 대형 언어모델의 의사결정 과정을 추적하는 <strong>회로 추적 도구</strong>를 오픈소스로 공개했다 — <u>속성 그래프</u> 생성과 Neuronpedia 플랫폼을 통한 상호작용형 시각화를 지원한다<sup><a href="https://www.anthropic.com/research/open-source-circuit-tracing" title="Anthropic-Research">[3]</a></sup>. 이 도구는 Gemma-2-2b와 Llama-3.2-1b 모델의 다중 단계 추론 및 다국어 표현 연구에 활용됐다<sup><a href="https://www.anthropic.com/research/open-source-circuit-tracing" title="Anthropic-Research">[3]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-05-19">
   <div class="meta">
     <span class="meta-tags"><b>2025.5.19 ~ 2025.5.25</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.5.19~2025.5.25)
@@ -581,7 +589,7 @@
     <li>🧪 Anthropic이 Claude Opus 4 출시와 함께 CBRN 무기 개발 악용을 막기 위한 예방적 조치인 <strong>ASL-3</strong> 배포·보안 기준을 활성화했다<sup><a href="https://www.anthropic.com/news/activating-asl3-protections" title="Anthropic">[5]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-05-12">
   <div class="meta">
     <span class="meta-tags"><b>2025.5.12 ~ 2025.5.18</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.5.12~2025.5.18)
@@ -603,7 +611,7 @@
     <li>🧪 Anthropic이 HackerOne과 협력해 <strong>Claude 3.7 Sonnet</strong>과 Opus 4 모델의 CBRN 관련 보편적 '탈옥' 취약점을 찾는 버그 바운티 프로그램을 운영하며, 발견 시 최대 <u>$25,000</u>를 보상한다<sup><a href="https://www.anthropic.com/news/testing-our-safety-defenses-with-a-new-bug-bounty-program" title="Anthropic">[3]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-05-05">
   <div class="meta">
     <span class="meta-tags"><b>2025.5.5 ~ 2025.5.11</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.5.5~2025.5.11)
@@ -633,7 +641,7 @@
     <li>🇬🇧 영국 AISI가 debate 기반의 <strong>alignment safety case</strong> 스케치를 발표하며, superhuman R&amp;D 에이전트의 연구 훼손 위험을 막기 위해 exploration guarantees와 online training으로 배포 중 honesty를 유지하는 구상을 제시했다<sup><a href="https://www.aisi.gov.uk/research/an-alignment-safety-case-sketch-based-on-debate" title="AISI-UK">[7]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-04-28">
   <div class="meta">
     <span class="meta-tags"><b>2025.4.28 ~ 2025.5.4</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.4.28~2025.5.4)
@@ -663,7 +671,7 @@
     <li>🇬🇧 영국 AISI가 후속 연구로 과학철학의 네 관점을 토대로 한 <strong>'설명의 덕목(Explanatory Virtues) 프레임워크'</strong>를 제안하며, <u>Compact Proofs</u> 방식이 여러 설명 덕목을 폭넓게 충족하는 유망한 접근으로 결론내렸다<sup><a href="https://www.aisi.gov.uk/research/evaluating-explanations-an-explanatory-virtues-framework-for-mechanistic-interpretability" title="AISI-UK">[7]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-04-21">
   <div class="meta">
     <span class="meta-tags"><b>2025.4.21 ~ 2025.4.27</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.4.21~2025.4.27)
@@ -812,7 +820,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

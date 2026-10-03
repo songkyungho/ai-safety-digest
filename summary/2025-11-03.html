@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2025-11-03.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2025-11-03">
   <div class="meta">
     <span class="meta-tags"><b>2025.11.3 ~ 2025.11.9</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.11.3~2025.11.9)
@@ -469,7 +477,7 @@
     <li>🧪 구글 딥마인드는 집단 의사결정 과제에서 인간-AI 정렬을 평가하는 실증 프레임워크를 제시했다 — Gemini, GPT-4.1, Claude Haiku, Gemma 등을 비교한 결과 LLM이 인간 편향을 <strong>mirror</strong>하기도 하고 <strong>mask</strong>하며 보정하기도 하는 것으로 나타났다<sup><a href="https://deepmind.google/research/publications/180362" title="Google DeepMind">[8]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-10-27">
   <div class="meta">
     <span class="meta-tags"><b>2025.10.27 ~ 2025.11.2</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.10.27~2025.11.2)
@@ -499,7 +507,7 @@ Anthropic이 금융·아시아 시장 확장과 모델 자기반성 연구로 �
     <li>🇺🇸 METR가 Anthropic의 <u>Claude Opus 4/4.1</u> 사보타주 위험 보고서를 외부 검토해 위험을 '낮지만 무시할 수 없는 수준'으로 재확인했다<sup><a href="https://metr.org/blog/2025-10-28-sabotage-report-review/" title="METR">[6]</a></sup>. Anthropic 연구진은 Claude 모델에서 내부 상태를 인식·수정하려는 초기적 자기반성 징후를 발견했다고 밝혔다<sup><a href="https://www.anthropic.com/research/introspection" title="Anthropic Research">[7]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-10-20">
   <div class="meta">
     <span class="meta-tags"><b>2025.10.20 ~ 2025.10.26</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.10.20~2025.10.26)
@@ -541,7 +549,7 @@ AI 안전연구소들이 오픈웨이트 모델과 에이전트 보안 평가체
     <li>🇬🇧 영국 AISI는 백본 LLM 보안을 평가하는 <u>194,331개</u> 공격으로 구성된 b³ 벤치마크를 공개했고<sup><a href="https://www.aisi.gov.uk/research/breaking-agent-backbones-evaluating-the-security-of-backbone-llms-in-ai-agents" title="AISI-UK">[16]</a></sup>, 오픈웨이트 모델 위험관리를 위한 <u>16가지</u> 기술 과제를 제시했다<sup><a href="https://www.aisi.gov.uk/research/open-technical-problems-in-open-weight-ai-model-risk-management" title="AISI-UK">[17]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-10-13">
   <div class="meta">
     <span class="meta-tags"><b>2025.10.13 ~ 2025.10.19</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.10.13~2025.10.19)
@@ -569,7 +577,7 @@ AI 안전연구소들이 오픈웨이트 모델과 에이전트 보안 평가체
     <li>🧪 METR이 보상 해킹·모래백깅 등 평가 무결성 위협 행동을 담은 <u>MALT 데이터셋</u>을 공개했다 — <u>21개 모델, 403개 작업, 10,919건</u>의 에이전트 전사 기록을 포함한다<sup><a href="https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/" title="METR">[7]</a></sup>. 단순 프롬프트 기반 모니터가 이런 행동 탐지에는 효과적이지만 실제 세계 위험 탐지에는 한계가 있는 것으로 나타났다<sup><a href="https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/" title="METR">[7]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-10-06">
   <div class="meta">
     <span class="meta-tags"><b>2025.10.6 ~ 2025.10.12</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.10.6~2025.10.12)
@@ -602,7 +610,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
     <li>🧪 METR은 QA 환경에서 모델이 사이드 작업을 숨기며 모니터를 속이는 능력을 측정한 초기 결과를 공개했고, 더 작은 모델이 더 강력한 모니터 모델을 속이는 사례도 확인됐다<sup><a href="https://metr.org/notes/2025-10-06-early-results-on-monitorability-in-qa-settings/" title="METR">[9]</a></sup>. Anthropic은 AI 행동 가설을 자동으로 검증하는 오픈소스 감사 도구 <u>Petri</u>를 공개했다<sup><a href="https://www.anthropic.com/research/petri-open-source-auditing" title="Anthropic-Research">[10]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-09-29">
   <div class="meta">
     <span class="meta-tags"><b>2025.9.29 ~ 2025.10.5</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.9.29~2025.10.5)
@@ -644,7 +652,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
     <li>🇬🇧 영국 AISI는 학습 데이터에 원치 않는 특성을 의도적으로 유도하는 지시를 넣고 시험 시 제거하는 <u>inoculation prompting</u> 기법을 제안해 emergent misalignment 감소와 backdoor 방어 등에 효과가 있음을 확인했다<sup><a href="https://www.aisi.gov.uk/research/inoculation-prompting-eliciting-traits-from-llms-during-training-can-suppress-them-at-test-time" title="AISI-UK">[17]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-09-22">
   <div class="meta">
     <span class="meta-tags"><b>2025.9.22 ~ 2025.9.28</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.9.22~2025.9.28)
@@ -677,7 +685,7 @@ AI 안전 연구소들이 데이터 오염과 모니터링 회피 취약점을 �
     <li>🇬🇧 영국 인터넷 워치 재단(IWF)은 AI 챗봇에서 <strong>아동 성착취물(CSAM) 생성 사례</strong>를 처음으로 확인했다고 밝혔다 — <u>6~8월 사이 17건</u>이 보고됐다<sup><a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2390753?nl_pk=98f16633-c192-447e-8e63-104f9698e3f7&amp;read_main=1&amp;nlsidx=0&amp;nlaidx=9" title="MLex">[12]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-09-15">
   <div class="meta">
     <span class="meta-tags"><b>2025.9.15 ~ 2025.9.21</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.9.15~2025.9.21)
@@ -825,7 +833,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

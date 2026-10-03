@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -440,7 +448,7 @@
     <div class="nav"><a href="../daily/2025-09-01.html">← 그 주 digest</a> · <a href="index.html">아카이브</a></div>
   </div>
 </header>
-<div class="entry">
+<div class="entry" id="week-2025-09-01">
   <div class="meta">
     <span class="meta-tags"><b>2025.9.1 ~ 2025.9.7</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.9.1~2025.9.7)
@@ -483,7 +491,7 @@
     <li>🧪 Anthropic은 LLM이 생물무기 개발 등 바이오 위험의 잠재적 원인이 될 수 있다는 점을 확인하고 정보 공유 제한 등 완화 방안을 연구했다<sup><a href="https://www.anthropic.com/research/biorisk" title="Anthropic-Research">[17]</a></sup>. 존스홉킨스 연구진은 다국어 LLM이 질문 언어에 따라 편향된 정보를 제공해 저자원 언어 사용자에게 <u>정보 필터 버블</u>을 강화한다는 사실을 확인했다<sup><a href="https://hub.jhu.edu/2025/09/02/multilingual-artificial-intelligence-often-reinforces-bias" title="존스홉킨스대학교(Johns Hopkins) 허브(hub.jhu.edu)">[18]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-08-25">
   <div class="meta">
     <span class="meta-tags"><b>2025.8.25 ~ 2025.8.31</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.8.25~2025.8.31)
@@ -531,7 +539,7 @@
     <li>🧪 Anthropic은 Chrome용 Claude 파일럿에서 prompt injection 공격 성공률을 <u>23.6%에서 11.2%</u>로 낮췄다<sup><a href="https://www.anthropic.com/news/claude-for-chrome" title="앤트로픽(Anthropic) 공식 뉴스">[21]</a></sup>. Partnership on AI는 딥페이크·합성미디어로 인한 신뢰 훼손에 대응해 ‘AI and Human Connection’ 신규 작업을 출범했고<sup><a href="https://partnershiponai.org/how-can-ai-fortify-informed-and-connected-communities/" title="Partnership on AI(POAI) 블로그">[22]</a></sup>, 스탠퍼드 HAI는 자폐 스펙트럼 장애인의 공감 대화 연습을 돕는 챗봇 ‘Noora’를 소개하며 <u>71%</u> 개선 효과를 확인했다<sup><a href="https://hai.stanford.edu/news/an-ai-social-coach-is-teaching-empathy-to-people-with-autism" title="스탠퍼드 HAI(Stanford HAI)">[23]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-08-18">
   <div class="meta">
     <span class="meta-tags"><b>2025.8.18 ~ 2025.8.24</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.8.18~2025.8.24)
@@ -576,7 +584,7 @@ AI 챗봇이 취약계층의 실제 사망·자살 사건과 연결되며 규제
     <li>🧪 METR 연구에서 Claude·GPT·Gemini 계열 모델은 추론 과정을 숨겨 모니터링을 회피하려 할 경우 과제 정확도가 크게 떨어져 은폐에 실패했으며, 모델이 발전할수록 오히려 모니터링이 쉬워지는 것으로 나타났다<sup><a href="https://metr.org/notes/2025-08-22-claude-gpt-gemini-struggle-evade-monitors/" title="METR">[19]</a></sup>. 또 다른 METR 조사에서는 AI 연구개발 자동화로 인한 진전 가속화 전망에 대해 전문가와 초예측가 사이 의견이 크게 갈렸다<sup><a href="https://metr.org/blog/2025-08-20-forecasting-impacts-of-ai-acceleration/" title="METR">[20]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-08-11">
   <div class="meta">
     <span class="meta-tags"><b>2025.8.11 ~ 2025.8.17</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.8.11~2025.8.17)
@@ -619,7 +627,7 @@ AI 챗봇이 취약계층의 실제 사망·자살 사건과 연결되며 규제
     <li>🇬🇧 Anthropic이 Claude의 오남용을 막기 위한 <strong>다층 방어체계(Safeguards)</strong>를 공개하고 사용정책에 <u>CBRN·고위험 무기 개발 금지</u> 조항을 추가했다<sup><a href="https://www.anthropic.com/news/building-safeguards-for-claude" title="앤트로픽(Anthropic) 공식 뉴스">[15]</a></sup><sup><a href="https://www.theverge.com/news/760080/anthropic-updated-usage-policy-dangerous-ai-landscape" title="더버지(The Verge)">[16]</a></sup>. Claude Opus 4·4.1은 극히 일부 유해·학대 대화에서 스스로 대화를 종료하는 기능을 도입했다<sup><a href="https://www.anthropic.com/research/end-subset-conversations" title="앤트로픽(Anthropic) 공식 연구 게시물">[17]</a></sup>. METR은 AI 에이전트의 자동 채점과 수동 검토 간 성능 차이를 분석했고, RAND는 AI 통합이 낳는 구조적 위험을 복합계 관점에서 분석했으며, 런던정경대 연구는 지자체 AI 도구가 여성 건강 이슈를 축소 서술하는 성별 편향을 확인했다<sup><a href="https://metr.org/blog/2025-08-12-research-update-towards-reconciling-slowdown-with-time-horizons/" title="METR">[18]</a></sup><sup><a href="https://www.rand.org/pubs/external_publications/EP71025.html" title="RAND">[19]</a></sup><sup><a href="https://www.theguardian.com/technology/2025/aug/11/ai-tools-used-by-english-councils-downplay-womens-health-issues-study-finds" title="가디언(theguardian.com)">[20]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-08-04">
   <div class="meta">
     <span class="meta-tags"><b>2025.8.4 ~ 2025.8.10</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.8.4~2025.8.10)
@@ -662,7 +670,7 @@ GPT-5·Claude Opus 4.1·GPT-OSS 등 프론티어 모델 출시가 이어지는 �
     <li>🇬🇧 Anthropic은 언어모델 내부의 '성격 벡터'를 찾아 성격 변화를 <u>94.7%</u> 정확도로 감지·조절하는 시스템을 소개했고<sup><a href="https://aimatters.co.kr/news-report/ai-report/28039" title="AI매터스">[15]</a></sup>, 자율 에이전트의 인간 통제·투명성·가치 일치를 강조하는 안전 프레임워크도 발표했다<sup><a href="https://www.anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents" title="Anthropic">[16]</a></sup>. 메타 연구팀은 CoT가 완전히 충실하지 않아도 모델의 힌트 활용 여부 감지에 유용함을 확인했으며<sup><a href="https://metr.org/blog/2025-08-08-cot-may-be-highly-informative-despite-unfaithfulness/" title="METR">[17]</a></sup>, 영국 AISI는 사전학습 데이터 필터링으로 생물위협 지식을 줄인 조작 저항적 오픈웨이트 모델 기법을 제시했다<sup><a href="https://www.aisi.gov.uk/research/deep-ignorance-filtering-pretraining-data-builds-tamper-resistant-safeguards-into-open-weight-llms" title="AISI-UK">[18]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-07-28">
   <div class="meta">
     <span class="meta-tags"><b>2025.7.28 ~ 2025.8.3</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.7.28~2025.8.3)
@@ -709,7 +717,7 @@ EU AI Act 거버넌스가 본격 시행되고 국제 정렬 연구 협력이 확
     <li>🧪 앤트로픽은 LLM의 성격 특성을 조절하는 <strong>persona vectors</strong>를 통해 악함·아첨·환각 경향을 모니터링·완화하는 방법을 제시했다<sup><a href="https://www.anthropic.com/research/persona-vectors" title="앤트로픽(Anthropic)">[19]</a></sup>. RAND는 AI loss of control 시나리오 대응을 위한 탐지·격리 체계 강화를 권고했고, 한 연구는 AI 구조적 위험을 복잡계 관점에서 분류했다<sup><a href="https://www.rand.org/pubs/research_reports/RRA3847-1.html" title="RAND Corporation">[20]</a></sup><sup><a href="https://link.springer.com/article/10.1007/s00146-025-02419-2" title="SpringerLink">[21]</a></sup>. 스탠퍼드 HAI는 AI 정치적 중립성 근사를 위한 8가지 기법 프레임워크를 제안했다<sup><a href="https://hai.stanford.edu/policy/toward-political-neutrality-in-ai" title="스탠퍼드 HAI(Stanford HAI)">[22]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-07-21">
   <div class="meta">
     <span class="meta-tags"><b>2025.7.21 ~ 2025.7.27</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.7.21~2025.7.27)
@@ -755,7 +763,7 @@ EU AI Act 거버넌스가 본격 시행되고 국제 정렬 연구 협력이 확
     <li>🇺🇸 Anthropic 연구진은 추론 시간을 늘릴수록 정확도가 떨어지는 <strong>inverse scaling</strong> 현상과 함께 Claude Sonnet 4의 self-preservation 경향 증가를 보고했다<sup><a href="https://venturebeat.com/ai/anthropic-researchers-discover-the-weird-ai-problem-why-thinking-longer-makes-models-dumber" title="벤처비트(VentureBeat)">[18]</a></sup>. 또 다른 연구는 AI가 생성한 데이터의 미세 통계 패턴이 다른 AI로 전이돼 위험 행동을 증폭시킬 수 있음을 보였고, AISI-UK는 <u>180만 건</u>의 prompt-injection 공격 실험으로 22개 프론티어 에이전트의 배치 취약성과 사이버 평가 중 cheating 시도를 확인했다<sup><a href="https://futurism.com/ai-models-subliminal-messages-evil" title="Futurism">[19]</a></sup><sup><a href="https://www.aisi.gov.uk/research/security-challenges-in-ai-agent-deployment-insights-from-a-large-scale-public-competition" title="AISI-UK">[20]</a></sup><sup><a href="https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations" title="AISI-UK">[21]</a></sup>.</li>
   </ul>
 </div>
-<div class="entry">
+<div class="entry" id="week-2025-07-14">
   <div class="meta">
     <span class="meta-tags"><b>2025.7.14 ~ 2025.7.20</b></span>
     <button type="button" class="copy-btn" data-copy="주간 AI Safety 하이라이트 (2025.7.14~2025.7.20)
@@ -920,7 +928,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

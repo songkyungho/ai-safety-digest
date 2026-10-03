@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -436,11 +444,11 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI 안전 다이제스트</h1>
-    <div class="sub">주제: 🎭 딥페이크·허위정보 · 총 310건</div>
+    <div class="sub">주제: 🎭 딥페이크·허위정보 · 총 311건</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
-<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-10-02 <span class="archive-count">(2건)</span></h3>
+<div class="digest-toolbar"><input type="search" id="digest-q" placeholder="이 페이지에서 검색" autocomplete="off"><button type="button" class="filter-chip" data-cat-filter="media">언론</button><button type="button" class="filter-chip" data-cat-filter="db">DB</button><button type="button" class="filter-chip" data-cat-filter="company">기업</button><button type="button" class="filter-chip" data-cat-filter="public">공공</button><button type="button" class="filter-chip" data-cat-filter="archive">아카이브</button><button type="button" class="filter-chip" data-cat-filter="aisi-weekly">K-AISI 주간동향</button><button type="button" class="filter-chip" data-cat-filter="other">기타</button><button type="button" class="filter-chip" data-topic="cybersecurity">🔒 사이버안보</button><button type="button" class="filter-chip" data-topic="deepfake_disinfo">🎭 딥페이크·허위정보</button><button type="button" class="filter-chip" data-topic="law">⚖️ 법</button><button type="button" class="filter-chip" data-topic="politics">🗳️ 정치</button><button type="button" class="filter-chip" data-topic="youth">🧒 청소년</button><button type="button" class="filter-chip" data-topic="frontier">🚀 프론티어</button><button type="button" class="filter-chip" data-topic="national_security">🛡️ 국가안보</button><button type="button" class="filter-chip" data-topic="incidents">🚨 사건·사고</button><button type="button" class="filter-chip" data-topic="safety_research">🧪 안전기술</button><button type="button" class="filter-chip" data-topic="norms">📜 윤리·규범</button><button type="button" class="filter-chip" data-topic="sovereign_ai">🏛️ 소버린AI</button><button type="button" class="filter-chip" data-topic="agentic_ai">🤖 에이전틱AI</button><button type="button" class="filter-chip" data-topic="aisi_topic">🔬 안전연구소</button><button type="button" class="filter-chip" data-topic="guideline">📋 가이드라인</button><button type="button" class="filter-chip" data-topic="physical_ai">🦾 피지컬AI</button><button type="button" class="filter-chip" data-topic="open_weight">🔓 오픈소스·오픈웨이트</button><button type="button" class="filter-chip" data-topic="healthcare">🏥 의료</button><button type="button" class="filter-chip" data-topic="standards">📏 표준</button></div><div class="digest-feed"><section class="year-group" id="year-2026"><section class="cat-recent"><h3 class="cat-date-heading">2026-10-02 <span class="archive-count">(3건)</span></h3>
 <article class="entry cat-media" data-cat="media" data-topics="cybersecurity deepfake_disinfo" data-search="중국 연계 추정 해커, 백악관·앤스로픽 간부 사칭해 AI 전문가 공격 (2026.10.2) 중국과 연계된 것으로 추정되는 해킹 조직 TA419가 미국의 AI 정책 전문가들에게 백악관 출신 인사와 앤스로픽 고위 직원을 사칭한 표적형 피싱 공격을 벌였다. 공격자는 가짜 원드라이브 로그인 페이지와 실시간 인증 중계 수법으로 계정 비밀번호와 일회용 인증번호를 탈취하려 했다. **공격 목적은 미국의 AI 정책·규제 및 수출통제 관련 정보 수집으로 분석됐으며, 확인된 표적은 __10명 미만__이지만 실제 계정 탈취 성공 여부는 공개되지 않았다.** 뉴스RSS · 동아일보">
   <h2>🇨🇳🇺🇸 <a href="https://www.donga.com/news/Economy/article/all/20261002/134774160/1" target="_blank" rel="noopener noreferrer">중국 연계 추정 해커, 백악관·앤스로픽 간부 사칭해 AI 전문가 공격 (2026.10.2)</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">동아일보</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span></span></span><button type="button" class="copy-btn" data-copy="중국 연계 추정 해커, 백악관·앤스로픽 간부 사칭해 AI 전문가 공격 (2026.10.2)
@@ -449,7 +457,7 @@
 
 https://www.donga.com/news/Economy/article/all/20261002/134774160/1" onclick="copyEntry(this)">복사</button></div>
   <p>중국과 연계된 것으로 추정되는 해킹 조직 TA419가 미국의 AI 정책 전문가들에게 백악관 출신 인사와 앤스로픽 고위 직원을 사칭한 표적형 피싱 공격을 벌였다. 공격자는 가짜 원드라이브 로그인 페이지와 실시간 인증 중계 수법으로 계정 비밀번호와 일회용 인증번호를 탈취하려 했다. <strong>공격 목적은 미국의 AI 정책·규제 및 수출통제 관련 정보 수집으로 분석됐으며, 확인된 표적은 <u>10명 미만</u>이지만 실제 계정 탈취 성공 여부는 공개되지 않았다.</strong></p>
-  
+  <div class="related-links"><div class="related-links-label">관련 보도</div><ul><li><a href="https://www.newsis.com/view/NISX20261002_0003812325" target="_blank" rel="noopener noreferrer">뉴스RSS · 뉴시스 · 중국 연계 해커, 앤트로픽 간부까지 사칭…미국 AI 정보 노려 (2026.10.2)</a></li></ul></div>
   
 </article>
 <article class="entry cat-media" data-cat="media" data-topics="deepfake_disinfo law politics youth" data-search="위키백과는 빅테크가 아니며 브라질의 플랫폼 규정은 이를 반영해야 한다 (2026.10.2) 브라질의 플랫폼 규제가 선거 허위정보와 상업 플랫폼의 피해에 대응하는 데 초점을 맞추면서, 위키백과 같은 비영리·광고 없는 공익 디지털 플랫폼까지 동일하게 규제할 위험이 커지고 있다. Wikimedia Brasil은 ‘Fake News 법안’에 위키백과 예외를 반영하도록 활동했으며, 2026년 시행된 법령과 아동·청소년 디지털 법률에 대해서도 플랫폼의 유형과 실제 위험에 비례한 의무를 요구했다. **글은 디지털 공공재를 위한 별도 법적 범주를 만들고, 위험 수준에 맞춰 의무를 차등화하며, 공동체 거버넌스와 pseudonymity를 보호해야 한다고 제안한다.** TechPolicyPress">
@@ -460,6 +468,17 @@ https://www.donga.com/news/Economy/article/all/20261002/134774160/1" onclick="co
 
 https://www.techpolicy.press/wikipedia-isnt-big-tech-and-brazils-platform-rules-should-say-so" onclick="copyEntry(this)">복사</button></div>
   <p>브라질의 플랫폼 규제가 선거 허위정보와 상업 플랫폼의 피해에 대응하는 데 초점을 맞추면서, 위키백과 같은 비영리·광고 없는 공익 디지털 플랫폼까지 동일하게 규제할 위험이 커지고 있다. Wikimedia Brasil은 ‘Fake News 법안’에 위키백과 예외를 반영하도록 활동했으며, 2026년 시행된 법령과 아동·청소년 디지털 법률에 대해서도 플랫폼의 유형과 실제 위험에 비례한 의무를 요구했다. <strong>글은 디지털 공공재를 위한 별도 법적 범주를 만들고, 위험 수준에 맞춰 의무를 차등화하며, 공동체 거버넌스와 pseudonymity를 보호해야 한다고 제안한다.</strong></p>
+  
+  
+</article>
+<article class="entry cat-media" data-cat="media" data-topics="cybersecurity deepfake_disinfo frontier national_security" data-search="중국 연계 해커, 앤트로픽 간부까지 사칭…미국 AI 정보 노려 (2026.10.2) 미국 보안업체 프루프포인트는 1일(현지시간) 보고서에서 중국 연계 해킹 조직 **TA419가 지난 7월 미국 싱크탱크·대학·법무법인의 AI 정책 전문가들을 공격했다**고 밝혔다. 해커들은 전직 백악관 OSTP 당국자 등을 사칭해 가상의 AI 정책 자문위원회 참여를 요청했고, 링크를 누르면 __원드라이브를 모방한 로그인 페이지__로 연결돼 추가 인증을 거쳐도 계정 접근 권한을 빼앗도록 설계됐다. TA419는 지난 2월에도 앤트로픽 고위 직원을 사칭해 &#x27;클로드&#x27;의 군사적 활용에 관한 의견을 요청했으며, 지난해 4월부터 미국·일본 정부·정책 관계자를 겨냥해 피싱 공격을 벌여왔다. 프루프포인트는 이번 공격을 미국의 AI 규제와 수출통제 정책에 관한 내부 정보를 노린 첩보 활동으로 분석했다. 뉴스RSS · 뉴시스">
+  <h2>🇨🇳🇺🇸 <a href="https://www.newsis.com/view/NISX20261002_0003812325" target="_blank" rel="noopener noreferrer">중국 연계 해커, 앤트로픽 간부까지 사칭…미국 AI 정보 노려 (2026.10.2)</a></h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-media">언론</span> · <span class="source">뉴시스</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="국가안보">🛡️</span><span class="topic-icon" title="사이버안보">🔒</span><span class="topic-icon" title="딥페이크·허위정보">🎭</span><span class="topic-icon" title="프론티어">🚀</span></span></span><button type="button" class="copy-btn" data-copy="중국 연계 해커, 앤트로픽 간부까지 사칭…미국 AI 정보 노려 (2026.10.2)
+
+미국 보안업체 프루프포인트는 1일(현지시간) 보고서에서 중국 연계 해킹 조직 TA419가 지난 7월 미국 싱크탱크·대학·법무법인의 AI 정책 전문가들을 공격했다고 밝혔다. 해커들은 전직 백악관 OSTP 당국자 등을 사칭해 가상의 AI 정책 자문위원회 참여를 요청했고, 링크를 누르면 원드라이브를 모방한 로그인 페이지로 연결돼 추가 인증을 거쳐도 계정 접근 권한을 빼앗도록 설계됐다. TA419는 지난 2월에도 앤트로픽 고위 직원을 사칭해 &#x27;클로드&#x27;의 군사적 활용에 관한 의견을 요청했으며, 지난해 4월부터 미국·일본 정부·정책 관계자를 겨냥해 피싱 공격을 벌여왔다. 프루프포인트는 이번 공격을 미국의 AI 규제와 수출통제 정책에 관한 내부 정보를 노린 첩보 활동으로 분석했다.
+
+https://www.newsis.com/view/NISX20261002_0003812325" onclick="copyEntry(this)">복사</button></div>
+  <p>미국 보안업체 프루프포인트는 1일(현지시간) 보고서에서 중국 연계 해킹 조직 <strong>TA419가 지난 7월 미국 싱크탱크·대학·법무법인의 AI 정책 전문가들을 공격했다</strong>고 밝혔다. 해커들은 전직 백악관 OSTP 당국자 등을 사칭해 가상의 AI 정책 자문위원회 참여를 요청했고, 링크를 누르면 <u>원드라이브를 모방한 로그인 페이지</u>로 연결돼 추가 인증을 거쳐도 계정 접근 권한을 빼앗도록 설계됐다. TA419는 지난 2월에도 앤트로픽 고위 직원을 사칭해 &#x27;클로드&#x27;의 군사적 활용에 관한 의견을 요청했으며, 지난해 4월부터 미국·일본 정부·정책 관계자를 겨냥해 피싱 공격을 벌여왔다. 프루프포인트는 이번 공격을 미국의 AI 규제와 수출통제 정책에 관한 내부 정보를 노린 첩보 활동으로 분석했다.</p>
   
   
 </article>
@@ -4208,7 +4227,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {

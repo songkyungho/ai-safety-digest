@@ -301,31 +301,32 @@
   .year-nav-item:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
   .year-nav-item.active { color: var(--fg); font-weight: 600; }
 
-  .trend-section { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .trend-title { font-size: 1.05rem; margin: 0 0 2px; }
-  .trend-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 10px; }
-  .trend-legend {
-    display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px;
-    font-size: 0.75rem; color: var(--muted);
+
+  .recent-hl { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .recent-hl .trend-title a { color: inherit; text-decoration: none; }
+  .recent-hl .trend-title a::after { content: " →"; color: var(--link); }
+  .recent-hl .trend-title a:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+  .recent-hl-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .recent-hl-list > li { border-top: 1px solid var(--border); }
+  .recent-hl-list > li:first-child { border-top: none; }
+  a.recent-hl-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 0;
+    color: inherit; text-decoration: none; line-height: 1.75; font-size: 0.95rem;
   }
-  .trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-  .trend-swatch {
-    width: 10px; height: 10px; border-radius: 2px; display: inline-block;
-  }
-  .trend-chart-wrap { overflow-x: auto; }
-  .trend-svg { display: block; width: 100%; min-width: 480px; height: auto; }
-  .trend-grid { stroke: var(--border); stroke-width: 1; }
-  .trend-axis { fill: var(--muted); font-size: 9px; font-family: inherit; }
+  .recent-hl-period { font-weight: 700; white-space: nowrap; }
+  .recent-hl-line { flex: 1 1 22em; min-width: 0; }
+  a.recent-hl-row:hover .recent-hl-period { color: var(--link); text-decoration: underline; }
+  .entry[id] { scroll-margin-top: 16px; }
+  .hl-weather { font-style: normal; cursor: help; font-size: 1.2em; line-height: 1; vertical-align: -0.1em; }
+  .hl-weather-reason { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin: -2px 0 10px; }
 
   .ribbon-nav { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-  .digest-shortcuts {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px;
-  }
-  .digest-shortcuts a.cta-btn {
-    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
-    padding: 2px 9px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
-  }
-  .digest-shortcuts a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); opacity: 0.85; }
+  /* 소스별·주제별 모아보기는 한 묶음 — 둘 사이 구분선은 두지 않는다 */
+  .ribbon-nav:not(#topic-nav) { margin-bottom: 22px; padding-bottom: 0; border-bottom: none; }
+  .archive-latest { margin: 0 0 12px; font-size: 1.05rem; }
+  .archive-latest a { color: var(--link); text-decoration: none; font-weight: 700; }
+  .archive-latest a:hover { text-decoration: underline; }
   .ribbon-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ribbon-link { text-decoration: none; font-size: 0.82rem; cursor: pointer; }
   .ribbon-link:hover { opacity: 0.85; }
@@ -343,6 +344,13 @@
     margin-top: 4px;
   }
   header.page-head .nav a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
+  header.page-head .head-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 4px; }
+  header.page-head .head-title-row h1 { margin: 0; }
+  header.page-head .head-title-row a.cta-btn {
+    display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+    padding: 2px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  }
+  header.page-head .head-title-row a.cta-btn:hover { background: var(--gold-strong); color: var(--navy); }
 
   .pd-intro { margin-bottom: 22px; }
   .pd-intro p { margin: 0; color: var(--fg); }
@@ -436,7 +444,7 @@
 <header class="page-head">
   <div class="page-head-inner">
     <h1>AI 안전 다이제스트</h1>
-    <div class="sub">2026-10-01 · 47건</div>
+    <div class="sub">2026-10-01 · 48건</div>
     <div class="nav"><a href="../index.html">← 전체 목록</a></div>
   </div>
 </header>
@@ -923,6 +931,17 @@ https://www.hawley.senate.gov/senators-hawley-murphy-announce-bipartisan-ai-agen
   
   
 </article>
+<article class="entry cat-db" data-cat="db" data-topics="cybersecurity guideline" data-search="캐나다 정부, 프런티어 AI 시대 사이버 보안 대비 지침(SPIN) 발표 (2026.10.1) 이 보안 정책 시행 공지(SPIN)는 **2026년 10월 1일부터 시행**되며, 연방 부처·기관이 프런티어 AI 기반 위협에 대비해 기본 보안 통제를 일관되게 적용하고 &quot;assume breach&quot;(침해 가정) 원칙으로 운영하도록 요구한다. 부처는 핵심 서비스의 우선순위 목록을 __2026년 11월 30일까지__ TBS의 EPM 도구에 제출해야 하며, 애플리케이션 자산 목록, 아키텍처 다이어그램, 인터넷 연결 목록, SBOM 등을 최신 상태로 유지해야 한다. 또한 위험 기반 취약점·패치 관리를 가속하고, 방어용 AI 모델과 보안 도구를 안전하게 활용하며, 모든 사용자 계정에 MFA를 적용하고 관리자·고위험 계정에는 phishing-resistant MFA를 적용해야 한다. 이와 함께 약한 비밀번호 차단과 최소 권한 원칙 적용도 요구된다. GlobalAIRegTracker">
+  <h2><a href="https://www.canada.ca/en/government/system/digital-government/policies-standards/spin/direction-government-canada-cyber-security-readiness-frontier-artificial-intelligence-era.html" target="_blank" rel="noopener noreferrer">캐나다 정부, 프런티어 AI 시대 사이버 보안 대비 지침(SPIN) 발표 (2026.10.1)</a></h2>
+  <div class="meta"><span class="meta-tags"><span class="badge cat-db">DB</span> · <span class="source">GlobalAIRegTracker</span> · <span class="topic-icons" aria-label="주제 태그"><span class="topic-icon" title="가이드라인">📋</span><span class="topic-icon" title="사이버안보">🔒</span></span></span><button type="button" class="copy-btn" data-copy="캐나다 정부, 프런티어 AI 시대 사이버 보안 대비 지침(SPIN) 발표 (2026.10.1)
+
+이 보안 정책 시행 공지(SPIN)는 2026년 10월 1일부터 시행되며, 연방 부처·기관이 프런티어 AI 기반 위협에 대비해 기본 보안 통제를 일관되게 적용하고 &quot;assume breach&quot;(침해 가정) 원칙으로 운영하도록 요구한다. 부처는 핵심 서비스의 우선순위 목록을 2026년 11월 30일까지 TBS의 EPM 도구에 제출해야 하며, 애플리케이션 자산 목록, 아키텍처 다이어그램, 인터넷 연결 목록, SBOM 등을 최신 상태로 유지해야 한다. 또한 위험 기반 취약점·패치 관리를 가속하고, 방어용 AI 모델과 보안 도구를 안전하게 활용하며, 모든 사용자 계정에 MFA를 적용하고 관리자·고위험 계정에는 phishing-resistant MFA를 적용해야 한다. 이와 함께 약한 비밀번호 차단과 최소 권한 원칙 적용도 요구된다.
+
+https://www.canada.ca/en/government/system/digital-government/policies-standards/spin/direction-government-canada-cyber-security-readiness-frontier-artificial-intelligence-era.html" onclick="copyEntry(this)">복사</button></div>
+  <p>이 보안 정책 시행 공지(SPIN)는 <strong>2026년 10월 1일부터 시행</strong>되며, 연방 부처·기관이 프런티어 AI 기반 위협에 대비해 기본 보안 통제를 일관되게 적용하고 &quot;assume breach&quot;(침해 가정) 원칙으로 운영하도록 요구한다. 부처는 핵심 서비스의 우선순위 목록을 <u>2026년 11월 30일까지</u> TBS의 EPM 도구에 제출해야 하며, 애플리케이션 자산 목록, 아키텍처 다이어그램, 인터넷 연결 목록, SBOM 등을 최신 상태로 유지해야 한다. 또한 위험 기반 취약점·패치 관리를 가속하고, 방어용 AI 모델과 보안 도구를 안전하게 활용하며, 모든 사용자 계정에 MFA를 적용하고 관리자·고위험 계정에는 phishing-resistant MFA를 적용해야 한다. 이와 함께 약한 비밀번호 차단과 최소 권한 원칙 적용도 요구된다.</p>
+  
+  
+</article>
 <article class="entry cat-public" data-cat="public" data-topics="" data-search="[초점] AI 워싱(AI Washing)의 법적 쟁점과 시사점  KISDI">
   <h2>🇰🇷 <a href="https://www.kisdi.re.kr/report/fileView.do?key=m2102058837181&amp;arrMasterId=4334696&amp;id=1974916" target="_blank" rel="noopener noreferrer">[초점] AI 워싱(AI Washing)의 법적 쟁점과 시사점</a></h2>
   <div class="meta"><span class="meta-tags"><span class="badge cat-public">공공</span> · <span class="source">KISDI</span></span><button type="button" class="copy-btn" data-copy="[초점] AI 워싱(AI Washing)의 법적 쟁점과 시사점
@@ -1060,7 +1079,21 @@ function initYearNav() {
     groups.forEach(function (g) { io.observe(g); });
   }
 }
+function openHashTarget() {
+  // 메인의 주간 하이라이트 줄은 summary/index.html#week-YYYY-MM-DD 로 온다.
+  // 이전 달은 <details>로 접혀 있어 그대로면 앵커가 안 보이니 감싼 details를 연다.
+  var id = decodeURIComponent((location.hash || '').slice(1));
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var p = el.parentElement; p; p = p.parentElement) {
+    if (p.tagName === 'DETAILS') p.open = true;
+  }
+  el.scrollIntoView();
+}
+window.addEventListener('hashchange', openHashTarget);
 document.addEventListener('DOMContentLoaded', function () {
+  openHashTarget();
   initDigestFilter();
   initYearNav();
   document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function (a) {
